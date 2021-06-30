@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAALLOCATE">
+
+    <typeAlias alias="Bapaallocate" type="tw.gov.bli.ba.domain.Bapaallocate" />
+
+    <resultMap id="BAPAALLOCATEResult" class="Bapaallocate">                                                                        
+        <result column="PAYCODE"        property="payCode"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EMPNO"          property="empNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EMPNAME"        property="empName"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EMPEXT"         property="empExt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATESNO"    property="alLocateSno"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATEENO"    property="alLocateEno"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATENO1"    property="alLocateNo1"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATENO2"    property="alLocateNo2"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATENO3"    property="alLocateNo3"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATENO4"    property="alLocateNo4"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="ALLOCATENO5"    property="alLocateNo5"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="CRTUSER"        property="crtUser"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="CRTTIME"        property="crtTime"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDUSER"        property="updUser"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDTIME"        property="updTime"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>   
+    
+    <select id="selectEmpExtDataBy" resultClass="java.lang.String">
+        SELECT EMPEXT          
+          FROM BAPAALLOCATE    
+         WHERE EMPNO = #empNo:VARCHAR#
+           AND PAYCODE = #payCode:VARCHAR#  
+    </select>
+    
+    <select id="selectEmpNoBy" resultClass="java.lang.String">
+        <![CDATA[
+        SELECT EMPNO                                                                                    
+          FROM BAPAALLOCATE                                                                             
+         WHERE PAYCODE=SUBSTR(#apNo:VARCHAR#,1,1)                                                          
+           AND ((ALLOCATESNO>=SUBSTR(#apNo:VARCHAR#,11,2) AND ALLOCATEENO<=SUBSTR(#apNo:VARCHAR#,11,2))       
+                 OR (ALLOCATENO1=SUBSTR(#apNo:VARCHAR#,11,2))                                              
+                 OR (ALLOCATENO2=SUBSTR(#apNo:VARCHAR#,11,2))                                              
+                 OR (ALLOCATENO3=SUBSTR(#apNo:VARCHAR#,11,2))                                              
+                 OR (ALLOCATENO4=SUBSTR(#apNo:VARCHAR#,11,2))                                              
+                 OR (ALLOCATENO5=SUBSTR(#apNo:VARCHAR#,11,2)))
+        ]]>                                               
+    </select>
+</sqlMap>

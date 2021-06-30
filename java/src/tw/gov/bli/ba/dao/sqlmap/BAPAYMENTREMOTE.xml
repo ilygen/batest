@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENTREMOTE">
+	<typeAlias alias="Bapaymentremote" type="tw.gov.bli.ba.domain.Bapaymentremote" />
+	
+	<insert id="insertPaymentWebservice">
+        INSERT INTO BAPAYMENTREMOTE 
+        ( 
+          EDATE,         
+		  CASHAMT,      
+		  SITDTE,        
+		  BARCODE1,       
+		  BARCODE2,      
+		  BARCODE3,       
+		  PNO,         
+		  WAITMK,         
+		  DIVMRK,        
+		  PERUNITCD,      
+		  PERUNITNAME,    
+		  IDNO
+        )  
+        VALUES
+        ( 
+            #eDate:VARCHAR#,
+            #cashAmt:NUMERIC#,      
+            #sitDte:VARCHAR#,     
+            #barCode1:VARCHAR#,
+            #barCode2:VARCHAR#,
+            #barCode3:VARCHAR#,
+            #pno:VARCHAR#,
+            #waitMk:VARCHAR#,
+            #divMrk:VARCHAR#,
+            #perUnitCd:VARCHAR#,
+            #perUnitName:VARCHAR#,
+            #idNo:VARCHAR#
+         )     
+    </insert>
+    
+   <update id="updatePaymentWebservice">
+        UPDATE BAPAYMENTREMOTE t1 SET
+               t1.INSKD = #insKd:VARCHAR#,
+               t1.BLIACCOUNTCODE =  #bliAccountCode:VARCHAR#,
+               t1.BOOKEDBOOK =  #bookEdBook:VARCHAR#,
+               t1.BKACCOUNTDT = #bkAccountDt:VARCHAR#,
+               t1.BATCHNO = #batchNo:VARCHAR#,
+               t1.SERIALNO = #serialNo:VARCHAR#,
+               t1.INDEXNO = #indexNo:VARCHAR#,
+               t1.MSG = #msg:VARCHAR#,
+               t1.STATUS = #status:VARCHAR#
+         WHERE t1.BARCODE1 = #barCode1:VARCHAR#
+           AND t1.BARCODE2 = #barCode2:VARCHAR#
+           AND t1.BARCODE3 = #barCode3:VARCHAR#
+    </update>
+    
+   
+</sqlMap>

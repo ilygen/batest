@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BALETTERCODE">
+
+    <typeAlias alias="Balettercode" type="tw.gov.bli.ba.domain.Balettercode" />
+
+    <resultMap id="BALETTERCODEResult" class="Balettercode">
+        <result column="CODE"        property="code"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CODENAME"    property="codeName"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectBalettercodeDataBy" resultMap="BALETTERCODEResult">
+        SELECT CODE, CODENAME 
+          FROM BALETTERCODE 
+         WHERE INUSE='Y' ORDER BY CODE
+    </select>
+
+</sqlMap>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BALP0D020">
+
+    <typeAlias alias="Balp0d020" type="tw.gov.bli.ba.domain.Balp0d020" />
+
+    <resultMap id="BALP0D020Result" class="Balp0d020">
+        <result column="BALP0D020ID"    property="balp0d020Id"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VERISEQ"        property="veriSeq"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CASETYP"        property="caseTyp"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MCHKTYP"        property="mchkTyp"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYSYM"         property="paysYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYEYM"         property="payeYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TISSUEAMT"      property="tissueAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="TAPLPAYAMT"     property="taplPayAmt"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RPTDATE"        property="rptDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAGENO"         property="pageNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />  
+        <result column="CHKDATE"        property="chkDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKMAN"         property="chkMan"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MEXCLVL"        property="mexcLvl"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EXEMK"          property="exeMk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVTIDS"         property="evtIds"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVTIDNNO"       property="evtIdnNo"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVTBRDATE"      property="evtBrDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVTNAME"        property="evtName"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDS"         property="benIds"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDNNO"       property="benIdnNo"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENBRDATE"      property="benBrDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROCMK"         property="procMk"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCEPTMK"       property="acceptMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MANCHKMK"       property="manchkMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="REALEXCLVL"     property="realExcLvl"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RECHKDATE"      property="reChkDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="RECHKMAN"       property="reChkMan"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EXEDATE"        property="exeDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EXEMAN"         property="exeMan"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+
+    <resultMap id="NonPackDataResult" class="Balp0d020">
+        <result column="BALP0D020ID"    property="balp0d020Id"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="PAYCODE"         property="payCode"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MEXCLVL"        property="mexcLvl"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt02DataResult" class="Balp0d020">
+        <result column="PAGENO"         property="pageNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />  
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKMAN"         property="chkMan"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RPTDATE"        property="rptDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MEXCLVL"        property="mexcLvl"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VERISEQ"        property="veriSeq"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYSYM"         property="paysYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYEYM"         property="payeYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVTNAME"        property="evtName"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TISSUEAMT"      property="tissueAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="TAPLPAYAMT"     property="taplPayAmt"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="CASETYP"        property="caseTyp"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKDATE"        property="chkDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+        
+    <select id="selectMaxPageNoBy" resultClass="java.math.BigDecimal">
+        SELECT NVL(MAX(T.PAGENO),0) AS PAGENO
+          FROM BALP0D020 T
+         WHERE T.PAYCODE = #payCode:VARCHAR#
+           AND T.CHKMAN = #chkMan:VARCHAR#
+           AND T.RPTDATE = #rptDate:VARCHAR#
+    </select>
+    
+    <select id="selectNonPackDataBy" resultMap="NonPackDataResult">
+        SELECT T.BALP0D020ID
+              ,T.PAYCODE
+              ,T.ISSUYM
+              ,T.MEXCLVL
+          FROM BALP0D020 T
+         WHERE T.PAYCODE = #payCode:VARCHAR#
+           AND T.CHKMAN = #chkMan:VARCHAR#
+           AND T.PROCMK = '0'
+           AND T.BALP0D020ID = (SELECT Max(T1.BALP0D020ID) From BALP0D020 T1                      
+                                 WHERE T1.PAYCODE = #payCode:VARCHAR#                             
+                                   AND T1.CHKMAN = #chkMan:VARCHAR#                               
+                                   AND T1.PROCMK = '0'          
+                                   <isNotEmpty prepend="AND" property="chkDate">                                  
+                                       T1.CHKDATE = #chkDate:VARCHAR#  
+                                   </isNotEmpty>                           
+                                   AND T1.APNO = T.APNO                                           
+                                )                                                                 
+           AND T.APNO = (SELECT T2.APNO From BAAPPBASE T2                                         
+                          WHERE T2.APNO = T.APNO                                                  
+                            AND T2.SEQNO = '0000'                                                 
+                            AND T2.PROCSTAT = '20'                                                
+                        )             
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="chkDate">
+                    T.CHKDATE = #chkDate:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+         ORDER BY T.PAYCODE,T.ISSUYM,T.MEXCLVL,T.BALP0D020ID
+    </select>
+    
+    <update id="updateDataForOldAgeReviewRpt02">
+        UPDATE BALP0D020 T
+           SET T.PAGENO = #pageNo:NUMERIC#
+              ,T.RPTDATE = #rptDate:VARCHAR#
+              ,T.PROCMK = '1'
+         WHERE T.BALP0D020ID = #balp0d020Id:NUMERIC#
+    </update>
+
+    <select id="selectOldAgeReviewRpt02DataBy" resultMap="OldAgeReviewRpt02DataResult">
+        SELECT T.PAGENO                   
+              ,T.PAYCODE                   
+              ,T.ISSUYM                   
+              ,T.CHKMAN                   
+              ,T.RPTDATE                  
+              ,T.MEXCLVL                  
+              ,T.APNO                     
+              ,T.VERISEQ                  
+              ,T.PAYSYM                   
+              ,T.PAYEYM                   
+              ,T.EVTNAME                  
+              ,T.TISSUEAMT                
+              ,T.TAPLPAYAMT as TAPLPAYAMT 
+              ,T.CASETYP                  
+              ,T.CHKDATE                  
+          FROM BALP0D020 T
+         WHERE T.PAYCODE = #payCode:VARCHAR#
+           AND T.CHKMAN = #chkMan:VARCHAR#
+           AND T.RPTDATE = #rptDate:VARCHAR#
+           AND T.PROCMK = '1'
+            <dynamic prepend="">
+	            <isParameterPresent>
+	                <isEqual prepend="AND" property="prtTyp" compareValue="1">
+	                    <![CDATA[
+                        T.PAGENO >= #spageNo:NUMERIC# 
+                        AND T.PAGENO <= #epageNo:NUMERIC#
+                        ]]>
+                    </isEqual>
+	                <isEqual prepend="" property="prtTyp" compareValue="2">
+	                	<isNotEmpty prepend="AND" property="pageNo">
+                        	T.PAGENO = #pageNo:NUMERIC#
+                        </isNotEmpty>
+	                </isEqual>
+	            </isParameterPresent>
+            </dynamic>
+         ORDER BY T.PAYCODE,T.RPTDATE,T.PAGENO,T.BALP0D020ID    
+    </select>
+    
+    <!-- PaymentReview START -->
+    <!-- [ -->
+    <update id="updateDataForReview">
+        UPDATE BALP0D020
+           SET PROCMK = #procMk:VARCHAR#
+         WHERE APNO = #apNo:VARCHAR#
+           AND ISSUYM = #issuYm:VARCHAR#
+    </update>
+    
+    <insert id="insertDataForReview">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="balp0d020Id" >
+            SELECT BALP0D020ID.NEXTVAL AS BALP0D020ID FROM DUAL
+        </selectKey> 
+        INSERT INTO BALP0D020 
+        (
+            BALP0D020ID
+           ,PAYCODE
+           ,APNO
+           ,SEQNO
+           ,ISSUYM
+           ,VERISEQ
+           ,CASETYP
+           ,MCHKTYP
+           ,PAYSYM
+           ,PAYEYM
+           ,TISSUEAMT
+           ,TAPLPAYAMT
+           ,MEXCLVL
+           ,CHKDATE
+           ,CHKMAN
+           ,EXEMK
+           ,EVTIDS
+           ,EVTIDNNO
+           ,EVTBRDATE
+           ,EVTNAME
+           ,BENIDS
+           ,BENIDNNO
+           ,BENBRDATE
+           ,BENNAME
+           ,PROCMK
+           ,CRTUSER
+           ,CRTTIME
+           ,ACCEPTMK
+           ,MANCHKMK
+        )
+        VALUES 
+        (
+            #balp0d020Id:NUMERIC#,   
+            #payCode:VARCHAR#,   
+            #apNo:VARCHAR#,      
+            #seqNo:VARCHAR#,     
+            #issuYm:VARCHAR#,    
+            #veriSeq:VARCHAR#,   
+            #caseTyp:VARCHAR#,   
+            #mchkTyp:VARCHAR#,   
+            #paysYm:VARCHAR#,    
+            #payeYm:VARCHAR#,    
+            #tissueAmt:NUMERIC#, 
+            #taplPayAmt:NUMERIC#,
+            #mexcLvl:VARCHAR#,   
+            #chkDate:VARCHAR#,   
+            #chkMan:VARCHAR#,    
+            #exeMk:VARCHAR#,     
+            #evtIds:VARCHAR#,    
+            #evtIdnNo:VARCHAR#,  
+            #evtBrDate:VARCHAR#, 
+            #evtName:VARCHAR#,   
+            #benIds:VARCHAR#,    
+            #benIdnNo:VARCHAR#,  
+            #benBrDate:VARCHAR#, 
+            #benName:VARCHAR#,   
+            #procMk:VARCHAR#,    
+            #crtUser:VARCHAR#,   
+            #crtTime:VARCHAR#,
+            #acceptMk:VARCHAR#,   
+            #manchkMk:VARCHAR#
+        )
+    </insert>
+    
+    <insert id="insertDataForSurvivorPaymentReview">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="balp0d020Id" >
+            SELECT BALP0D020ID.NEXTVAL AS BALP0D020ID FROM DUAL
+        </selectKey> 
+        INSERT INTO BALP0D020 
+        (
+            BALP0D020ID
+           ,PAYCODE
+           ,APNO
+           ,SEQNO
+           ,ISSUYM
+           ,VERISEQ
+           ,CASETYP
+           ,MCHKTYP
+           ,PAYSYM
+           ,PAYEYM
+           ,TISSUEAMT
+           ,TAPLPAYAMT
+           ,ACCEPTMK
+           ,MANCHKMK
+           ,MEXCLVL
+           ,CHKDATE
+           ,CHKMAN
+           ,EXEMK
+           ,EVTIDS
+           ,EVTIDNNO
+           ,EVTBRDATE
+           ,EVTNAME
+           ,PROCMK
+           ,CRTUSER
+           ,CRTTIME
+        )
+        VALUES 
+        (
+            #balp0d020Id:NUMERIC#,   
+            #payCode:VARCHAR#,   
+            #apNo:VARCHAR#,      
+            #seqNo:VARCHAR#,     
+            #issuYm:VARCHAR#,    
+            #veriSeq:VARCHAR#,   
+            #caseTyp:VARCHAR#,   
+            #mchkTyp:VARCHAR#,   
+            #paysYm:VARCHAR#,    
+            #payeYm:VARCHAR#,    
+            #tissueAmt:NUMERIC#, 
+            #taplPayAmt:NUMERIC#,
+            #acceptMk:VARCHAR#,   
+            #manchkMk:VARCHAR#,
+            #mexcLvl:VARCHAR#,   
+            #chkDate:VARCHAR#,   
+            #chkMan:VARCHAR#,    
+            #exeMk:VARCHAR#,     
+            #evtIds:VARCHAR#,    
+            #evtIdnNo:VARCHAR#,  
+            #evtBrDate:VARCHAR#, 
+            #evtName:VARCHAR#,   
+            #procMk:VARCHAR#,    
+            #crtUser:VARCHAR#,   
+            #crtTime:VARCHAR#
+        )
+    </insert>
+    <!-- ] -->
+    <!-- PaymentReview End -->
+    
+    <!-- PaymentDecision START -->
+    <!-- [ -->
+    <update id="updateDataForDecision">
+        UPDATE BALP0D020 SET 
+            <dynamic prepend="">
+                <isParameterPresent>
+                    <isEqual prepend="" property="procStat" compareValue="11">
+                        EXEMK = #exeMk:VARCHAR#,                       
+                        RECHKMAN = #reChkMan:VARCHAR#,                       
+                        RECHKDATE = #reChkDate:VARCHAR#,                       
+                        EXEMAN = #exeMan:VARCHAR#,                       
+                        EXEDATE = #exeDate:VARCHAR#,   
+                    </isEqual>
+                    <isEqual prepend="" property="procStat" compareValue="30">
+                        EXEMK = #exeMk:VARCHAR#,                       
+                        RECHKMAN = #reChkMan:VARCHAR#,                       
+                        RECHKDATE = #reChkDate:VARCHAR#,                       
+                    </isEqual>
+                    <isEqual prepend="" property="procStat" compareValue="40">
+                        EXEMK = #exeMk:VARCHAR#,                       
+                        RECHKMAN = DECODE(NVL(TRIM(RECHKMAN), ''), '', #reChkMan:VARCHAR#, RECHKMAN),                       
+                        RECHKDATE = DECODE(NVL(TRIM(RECHKDATE), ''), '', #reChkDate:VARCHAR#, RECHKDATE),
+                        EXEMAN = #exeMan:VARCHAR#,                       
+                        EXEDATE = #exeDate:VARCHAR#,      
+                    </isEqual>    
+               </isParameterPresent>
+           </dynamic>
+               REALEXCLVL = (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empNo:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empNo:VARCHAR# And (PAYTYP = SUBSTR(#apNo:VARCHAR#, 1, 1) OR (PAYTYP = '99')))))
+         WHERE APNO = #apNo:VARCHAR#
+           AND BALP0D020ID = #balp0d020Id:NUMERIC#
+           <![CDATA[
+           AND PROCMK <> '2'
+           ]]>
+    </update>
+    <!-- ] -->
+    <!-- PaymentDecision End -->
+    
+    <update id="updateProcmkForOldAgeReviewRpt02">
+	   UPDATE BALP0D020 T SET PROCMK = '2'
+        WHERE T.PROCMK = '0'  
+          AND (T.APNO in (SELECT A.APNO FROM BAAPPBASE A WHERE (A.PROCSTAT LIKE '1%' OR A.PROCSTAT LIKE '0%')) OR T.MANCHKMK = 'N') 
+    </update>
+    
+    <update id="updateProcMkByApNo">
+        UPDATE BALP0D020 SET PROCMK = '2'
+         WHERE APNO = #apNo:VARCHAR#
+           AND ISSUYM = (SELECT DISTINCT A.ISSUYM FROM BAAPPBASE A WHERE A.APNO = #apNo:VARCHAR# AND A.SEQNO = '0000')
+           AND PROCMK = '0'
+    </update>
+</sqlMap>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="SYSFUNC">
+
+    <typeAlias alias="Sysfunc" type="tw.gov.bli.common.domain.SystemFunction" />
+
+    <resultMap id="SYSFUNCResult" class="Sysfunc">
+        <result column="ITEM_ID"        property="itemId"       jdbcType="VARCHAR"      javaType="java.lang.String"  />
+        <result column="ITEM_NAME"      property="itemName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="URL"            property="url"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="URLDESC"        property="urlDesc"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectSysFuncBySystemId" parameterClass="java.lang.String" resultMap="SYSFUNCResult">
+        (
+            SELECT A.ITEM_ID, 
+                   A.ITEM_NAME, 
+                   B.URL AS URL, 
+                   NVL(B.URLDESC, A.ITEM_NAME) AS URLDESC
+            FROM   ITEMS A, ITEM_URL B
+            WHERE  A.ITEM_ID = B.ITEM_ID AND 
+                   A.ITEM_ID LIKE #systemId# || '%'
+        )
+        UNION
+        (
+            SELECT A.ITEM_ID, 
+                   A.ITEM_NAME, 
+                   UPPER(B.PROG_ID) AS URL, 
+                   NVL(B.PROGDESC, A.ITEM_NAME) AS URLDESC
+            FROM   ITEMS A, ITEM_PROG B
+            WHERE  A.ITEM_ID = B.ITEM_ID AND 
+                   A.ITEM_ID LIKE #systemId# || '%'
+        )
+    </select>
+    
+    <select id="selectCasSysFuncBySystemId" resultMap="SYSFUNCResult">
+        (
+            SELECT A.ITEM_ID, 
+                   '' AS ITEM_NAME, 
+                   A.URL AS URL, 
+                   A.URLDESC AS URLDESC
+            FROM   ITEM_URL A
+            WHERE  A.ITEM_ID NOT LIKE '%-'
+        )
+        UNION
+        (
+            SELECT A.ITEM_ID, 
+                   '' AS ITEM_NAME, 
+                   UPPER(A.PROG_ID) AS URL, 
+                   A.PROGDESC AS URLDESC
+            FROM   ITEM_PROG A
+            WHERE  A.ITEM_ID NOT LIKE '%-'
+        )
+    </select>
+
+</sqlMap>

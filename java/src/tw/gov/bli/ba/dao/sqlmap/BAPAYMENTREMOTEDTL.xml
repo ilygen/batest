@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENTREMOTEDTL">
+	<typeAlias alias="Bapaymentremotedtl" type="tw.gov.bli.ba.domain.Bapaymentremotedtl" />
+	
+	<insert id="insertPaymentData">
+        INSERT INTO BAPAYMENTREMOTEDTL 
+        ( 
+          BARCODE1,         
+		  BARCODE2,      
+		  BARCODE3,        
+		  DIVSEQ,       
+		  TEMPHANDLENO,      
+		  DIVAMOUNT,       
+		  TEMPCHKMEMO,           
+		  GVSEQ,         
+		  NLWKMK, 
+		  CMMK,     
+		  ADWKMK
+        )  
+        VALUES
+        ( 
+            #barCode1:VARCHAR#,
+            #barCode2:NUMERIC#,      
+            #barCode3:VARCHAR#,     
+            #divSeq:NUMERIC#,
+            #tempHandleNo:VARCHAR#,
+            #divAmount:NUMERIC#,
+            #tempChkMemo:VARCHAR#,
+            #gvSeq:VARCHAR#,
+            #nlwkMk:VARCHAR#,
+            #cmMk:VARCHAR#,
+            #adwkMk:VARCHAR#
+         )     
+    </insert>
+    
+   
+</sqlMap>

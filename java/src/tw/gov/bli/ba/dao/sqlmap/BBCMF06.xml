@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF06">
+
+    <typeAlias alias="Bbcmf06" type="tw.gov.bli.ba.domain.Bbcmf06" />
+
+    <resultMap id="BBCMF06Result" class="Bbcmf06">
+        <result column="INSKD"          property="insKd"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PMTYP"          property="pmTyp"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATAKD"         property="dataKd"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SUBDATAKD"      property="subDataKd"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATACD"         property="dataCd"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATANM"         property="dataNm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA1"          property="data1"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA2"          property="data2"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA3"          property="data3"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALID"          property="valid"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACTDTE"         property="actDte"       jdbcType="DATE"         javaType="java.sql.Timestamp" />
+        <result column="PMDESC"         property="pmDesc"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYINMAN"       property="keyinMan"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYINDATE"      property="keyinDate"    jdbcType="DATE"         javaType="java.sql.Timestamp" />
+        <result column="UPPNO"          property="uppNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTE"          property="upDte"        jdbcType="DATE"         javaType="java.sql.Timestamp" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BBCMF06Result">
+        SELECT A.INSKD,
+               A.PAYTYP, 
+               '' AS PMTYP, 
+               A.DATAKD, 
+               A.SUBDATAKD, 
+               A.DATACD, 
+               A.DATANM, 
+               SUBSTR(A.DATA1,1,1) AS DATA1, 
+               A.DATA2, 
+               SUBSTR(A.DATA1,3,1) AS DATA3, 
+               A.VALID, 
+               A.ACTDTE, 
+               A.PMDESC, 
+               A.KEYINMAN, 
+               A.KEYINDATE, 
+               A.UPPNO, 
+               A.UPDTE 
+        FROM   BCCMF06 A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="insKd">
+                    A.INSKD = #insKd:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataKd">
+                    A.DATAKD = #dataKd:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataCd">
+                    A.DATACD = #dataCd:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectCriInJdpListBy" resultMap="BBCMF06Result">
+        SELECT A.INSKD,
+               A.PAYTYP, 
+               '' AS PMTYP, 
+               A.DATAKD, 
+               A.SUBDATAKD, 
+               A.DATACD, 
+               A.DATANM, 
+               SUBSTR(A.DATA1,1,1) AS DATA1, 
+               A.DATA2, 
+               SUBSTR(A.DATA1,3,1) AS DATA3, 
+               A.VALID, 
+               A.ACTDTE, 
+               A.PMDESC, 
+               A.KEYINMAN, 
+               A.KEYINDATE, 
+               A.UPPNO, 
+               A.UPDTE 
+        FROM   BCCMF06 A
+        WHERE  A.INSKD = '1' AND
+               A.DATAKD IN ('18', '30') AND
+               A.DATACD = #dataCd:VARCHAR#
+    </select>
+
+</sqlMap>

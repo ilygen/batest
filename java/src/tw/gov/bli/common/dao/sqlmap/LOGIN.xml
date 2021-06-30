@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LOGIN">
+
+    <typeAlias alias="UserButton" type="tw.gov.bli.common.domain.UserButton" />
+    <!--
+    <typeAlias alias="CasUser" type="tw.gov.bli.common.domain.CasUser" />
+
+    <resultMap id="CasUserResult" class="CasUser">
+        <result column="USER_ID"        property="userId"       jdbcType="VARCHAR"      javaType="java.lang.String"  />
+        <result column="USER_NAME"      property="userName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EMP_ID"         property="empId"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DEPT_ID"        property="deptId"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    -->
+
+    <resultMap id="UserButtonResult" class="UserButton">
+        <result column="PROG_ID"        property="progId"       jdbcType="VARCHAR"      javaType="java.lang.String"  />
+        <result column="TAG_ID"         property="tagId"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <parameterMap id="LoginStatusParam" class="java.util.HashMap" >
+        <parameter property="result"        jdbcType="VARCHAR"      javaType="java.lang.String"     mode="OUT" />
+        <parameter property="p_user_id"     jdbcType="VARCHAR"      javaType="java.lang.String"     mode="IN" />
+        <parameter property="p_token"       jdbcType="VARCHAR"      javaType="java.lang.String"     mode="IN" />
+    </parameterMap>
+    
+    <procedure id="selectUserLoginStatus" parameterMap="LoginStatusParam" >
+       <![CDATA[
+        { ? = call get_logon_status(?,?) }
+       ]]>
+    </procedure>
+    
+    <!--
+    <select id="selectCasUser" resultMap="CasUserResult">
+        SELECT A.USER_ID, 
+               A.USER_NAME,
+               A.EMP_ID,
+               A.DEPT_ID
+        FROM   USERS A 
+        WHERE  A.USER_ID = #userId#
+    </select>
+    --> 
+
+    <select id="selectUserItem" resultClass="java.lang.String">
+        SELECT B.ITEM_ID FROM USER_TEAMS A,(SELECT * FROM TEAM_ACL WHERE ITEM_ID LIKE #systemId# || '%') B 
+        WHERE  A.TEAM_ID = B.TEAM_ID AND
+               A.USER_ID = #userId#
+        ORDER BY B.ITEM_ID
+    </select>
+    
+    <!--
+    <select id="selectCasUserItem" resultClass="java.lang.String">
+        <![CDATA[
+        SELECT FUNC_ID AS ITEM_ID 
+        FROM   TABLE ( USER_MENU_ITEM( #userId# , #systemId# ) ) 
+        WHERE  IS_DISABLED IS NULL OR
+               IS_DISABLED <> 'Y' 
+        ORDER  BY FUNC_ID
+        ]]>
+    </select>
+    -->
+    
+    <select id="selectUserButton" resultMap="UserButtonResult">
+        SELECT UPPER(A.PROG_ID) AS PROG_ID,
+               A.TAG_ID
+        FROM   ITEM_TAGS_ACL A
+        WHERE  A.USER_ID = #userId# AND 
+               A.TAG_KIND = 'BUTTON' AND 
+               UPPER(A.PROG_ID) LIKE #systemId# || '%'
+        ORDER BY A.PROG_ID
+    </select>
+
+    <insert id="insertNpportalLogonLogData">
+        INSERT INTO NPPORTAL_LOGON_LOG
+        (
+            USER_ID, 
+            LOGON_STATUS, 
+            LOG_NO, 
+            USER_IP, 
+            LOGIN_TIME, 
+            LOGOUT_TIME, 
+            VERIFY_TIME, 
+            TOKEN, 
+            TEAM_ID, 
+            TEAM_ID1, 
+            OFFICE_ID, 
+            OFFICE_ID1
+        ) 
+        VALUES
+        (
+            #userId:VARCHAR#, 
+            'I', 
+            to_number(to_char(systimestamp,'yyyymmddhhmmss')||'0'), 
+            #loginIP:VARCHAR#, 
+            sysdate, 
+            null, 
+            null, 
+            #token:VARCHAR#, 
+            null, 
+            null, 
+            to_number(#deptId:VARCHAR#), 
+            null
+        )
+    </insert>
+
+</sqlMap>

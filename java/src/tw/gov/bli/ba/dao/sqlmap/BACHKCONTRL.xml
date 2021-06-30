@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACHKCONTRL">
+
+    <typeAlias alias="Bachkcontrl" type="tw.gov.bli.ba.domain.Bachkcontrl" />
+
+    <resultMap id="BACHKCONTRLResult" class="Bachkcontrl">
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CONTRLTYP"      property="contrlTyp"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODE"        property="chkCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALISYM"        property="valiSym"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALIEYM"        property="valiEym"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYVALUE"       property="keyValue"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <delete id="deleteData" parameterClass="java.util.HashMap">
+        DELETE FROM BACHKCONTRL
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+
+    <insert id="insertData">
+        INSERT INTO BACHKCONTRL
+        (
+            APNO, 
+            SEQNO, 
+            ISSUYM, 
+            PAYYM, 
+            CONTRLTYP, 
+            CHKCODE, 
+            VALISYM, 
+            VALIEYM, 
+            KEYVALUE, 
+            CRTUSER, 
+            CRTTIME
+        ) 
+        VALUES
+        (
+            #apNo:VARCHAR#, 
+            #seqNo:VARCHAR#, 
+            #issuYm:VARCHAR#, 
+            #payYm:VARCHAR#, 
+            #contrlTyp:VARCHAR#, 
+            #chkCode:VARCHAR#, 
+            #valiSym:VARCHAR#, 
+            #valiEym:VARCHAR#, 
+            #keyValue:VARCHAR#, 
+            #crtUser:VARCHAR#, 
+            #crtTime:VARCHAR#
+        )
+    </insert>
+   
+    <select id="selectDataBy" resultMap="BACHKCONTRLResult">
+    	SELECT APNO,     
+			 SEQNO,    
+			 ISSUYM,   
+			 PAYYM,    
+			 CONTRLTYP, 
+			 CHKCODE,  
+			 VALISYM,  
+			 VALIEYM,  
+			 KEYVALUE, 
+			 CRTUSER,  
+			 CRTTIME 
+		FROM BACHKCONTRL 
+		WHERE APNO = #apNo:VARCHAR# 
+		AND ISSUYM = #issuYm:VARCHAR#
+    </select>
+    
+     <delete id="deleteDataBySeqNo" parameterClass="java.util.HashMap">
+        DELETE FROM BACHKCONTRL
+        WHERE APNO = #apNo:VARCHAR#
+        AND SEQNO = #seqNo:VARCHAR#
+    </delete>
+    
+</sqlMap>

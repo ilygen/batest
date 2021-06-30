@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BARVCONFIRM">
+
+    <typeAlias alias="Barvconfirm" type="tw.gov.bli.ba.domain.Barvconfirm" />
+    
+    <resultMap id="BARVCONFIRMResult" class="Barvconfirm">
+        <result column="PAYCODE"    property="payCode"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"     property="issuYm"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CONFIRMMK"  property="confirmMk"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <select id="selectBarvconfirmDataBy" resultMap="BARVCONFIRMResult">
+                  SELECT PAYCODE,
+                         ISSUYM,
+                         CONFIRMMK
+                    FROM BARVCONFIRM      
+                   WHERE PAYCODE = #payCode:VARCAHR#
+                     AND ISSUYM = #issuYm:VARCAHR#
+    </select>
+    
+    <update id="updateBarvconfirmData">
+         UPDATE BARVCONFIRM SET 
+                CONFIRMMK = #confirmMk:VARCHAR#
+          WHERE PAYCODE = #payCode:VARCHAR#
+            AND ISSUYM  = #issuYm:VARCHAR#
+    </update>
+    
+    <select id="selectDataCountBy" resultClass="java.lang.String">
+        SELECT Count(*)  
+          FROM BARVCONFIRM
+         WHERE PAYCODE = #payCode:VARCHAR#
+           AND ISSUYM  = #issuYm:VARCHAR#
+           AND CONFIRMMK = 'Y'
+    </select>
+  
+</sqlMap>

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation" value="WEB-INF/conf/sql-map-config.xml" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- for BA System Begin -->
+    <!-- [ -->
+    <bean id="baparamDao" class="tw.gov.bli.ba.dao.impl.BaparamDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapainspectDao" class="tw.gov.bli.ba.dao.impl.BapainspectDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+
+    <bean id="baappbaseDao" class="tw.gov.bli.ba.dao.impl.BaappbaseDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bacountryDao" class="tw.gov.bli.ba.dao.impl.BacountryDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="cvldtlDao" class="tw.gov.bli.ba.dao.impl.CvldtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="npbanklistDao" class="tw.gov.bli.ba.dao.impl.NpbanklistDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bcbpfDao" class="tw.gov.bli.ba.dao.impl.BcbpfDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="nppostlistDao" class="tw.gov.bli.ba.dao.impl.NppostlistDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baapplogDao" class="tw.gov.bli.ba.dao.impl.BaapplogDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapandomkDao" class="tw.gov.bli.ba.dao.impl.BapandomkDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapacutDao" class="tw.gov.bli.ba.dao.impl.BapacutDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapadchkDao" class="tw.gov.bli.ba.dao.impl.BapadchkDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapadcslvlDao" class="tw.gov.bli.ba.dao.impl.BapadcslvlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="banotifyDao" class="tw.gov.bli.ba.dao.impl.BanotifyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="badaprDao" class="tw.gov.bli.ba.dao.impl.BadaprDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bachkfileDao" class="tw.gov.bli.ba.dao.impl.BachkfileDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="basenimaintDao" class="tw.gov.bli.ba.dao.impl.BasenimaintDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baexalistDao" class="tw.gov.bli.ba.dao.impl.BaexalistDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="ciptDao" class="tw.gov.bli.ba.dao.impl.CiptDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bacutrecDao" class="tw.gov.bli.ba.dao.impl.BacutrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="lnmDao" class="tw.gov.bli.ba.dao.impl.LnmDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="lnmdDao" class="tw.gov.bli.ba.dao.impl.LnmdDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="balp0d330Dao" class="tw.gov.bli.ba.dao.impl.Balp0d330DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="balp0d340Dao" class="tw.gov.bli.ba.dao.impl.Balp0d340DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="pbbmsaDao" class="tw.gov.bli.ba.dao.impl.PbbmsaDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="caubDao" class="tw.gov.bli.ba.dao.impl.CaubDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baoncepayDao" class="tw.gov.bli.ba.dao.impl.BaoncepayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapaissudateDao" class="tw.gov.bli.ba.dao.impl.BapaissudateDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="birefDao" class="tw.gov.bli.ba.dao.impl.BirefDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="nbexcepDao" class="tw.gov.bli.ba.dao.impl.NbexcepDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <!-- <bean id="bapaallocateDao" class="tw.gov.bli.ba.dao.impl.BapaallocateDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+        </bean> -->
+
+    <bean id="nbappbaseDao" class="tw.gov.bli.ba.dao.impl.NbappbaseDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="nbdaprDao" class="tw.gov.bli.ba.dao.impl.NbdaprDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baunacprecDao" class="tw.gov.bli.ba.dao.impl.BaunacprecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baunacpdtlDao" class="tw.gov.bli.ba.dao.impl.BaunacpdtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="babatchrecDao" class="tw.gov.bli.ba.dao.impl.BabatchrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbcmf09Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf09DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bbcmf29Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf29DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bccmf01Dao" class="tw.gov.bli.ba.dao.impl.Bccmf01DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bccmf42Dao" class="tw.gov.bli.ba.dao.impl.Bccmf42DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="badupeidnDao" class="tw.gov.bli.ba.dao.impl.BadupeidnDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bagivetmpdtlDao" class="tw.gov.bli.ba.dao.impl.BagivetmpdtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapayrptrecordDao" class="tw.gov.bli.ba.dao.impl.BapayrptrecordDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bagivedtlDao" class="tw.gov.bli.ba.dao.impl.BagivedtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapflbacDao" class="tw.gov.bli.ba.dao.impl.BapflbacDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+
+    <bean id="barxfDao" class="tw.gov.bli.ba.dao.impl.BarxfDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbarfDao" class="tw.gov.bli.ba.dao.impl.BbarfDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bapapaykindDao" class="tw.gov.bli.ba.dao.impl.BapapaykindDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbcmf08Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf08DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="maadmrecDao" class="tw.gov.bli.ba.dao.impl.MaadmrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="kcafDao" class="tw.gov.bli.ba.dao.impl.KcafDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="balp0d020Dao" class="tw.gov.bli.ba.dao.impl.Balp0d020DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="babcml7Dao" class="tw.gov.bli.ba.dao.impl.Babcml7DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baappexpandDao" class="tw.gov.bli.ba.dao.impl.BaappexpandDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bafamilyDao" class="tw.gov.bli.ba.dao.impl.BafamilyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bafamilytempDao" class="tw.gov.bli.ba.dao.impl.BafamilytempDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bachkcontrlDao" class="tw.gov.bli.ba.dao.impl.BachkcontrlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbcmf07Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf07DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bbcmf13Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf13DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baregivedtlDao" class="tw.gov.bli.ba.dao.impl.BaregivedtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bastudtermDao" class="tw.gov.bli.ba.dao.impl.BastudtermDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="babanDao" class="tw.gov.bli.ba.dao.impl.BabanDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbcmf06Dao" class="tw.gov.bli.ba.dao.impl.Bbcmf06DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bacriinjDao" class="tw.gov.bli.ba.dao.impl.BacriinjDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="cipgDao" class="tw.gov.bli.ba.dao.impl.CipgDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bacpidtlDao" class="tw.gov.bli.ba.dao.impl.BacpidtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>    
+    
+    <bean id="bacpirecDao" class="tw.gov.bli.ba.dao.impl.BacpirecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>    
+    
+    <bean id="bacolumnrecDao" class="tw.gov.bli.ba.dao.impl.BacolumnrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>    
+    
+    <bean id="bacompelnopayDao" class="tw.gov.bli.ba.dao.impl.BacompelnopayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="baarclistDao" class="tw.gov.bli.ba.dao.impl.BaarclistDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>    
+       
+    <bean id="bapayrptsumDao" class="tw.gov.bli.ba.dao.impl.BapayrptsumDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapayrptaccountDao" class="tw.gov.bli.ba.dao.impl.BapayrptaccountDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="cipbDao" class="tw.gov.bli.ba.dao.impl.CipbDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>      
+    
+    <bean id="babasicamtDao" class="tw.gov.bli.ba.dao.impl.BabasicamtDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>     
+    
+    <bean id="localPfpcckyDao" class="tw.gov.bli.ba.dao.impl.LocalPfpcckyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>   
+    
+    <bean id="baacpdtlDao" class="tw.gov.bli.ba.dao.impl.BaacpdtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>     
+    
+    <bean id="pfpcckyDao" class="tw.gov.bli.pf.model.dao.PfpcckyDao">
+          <description>暫收款項明細檔</description>
+          <property name="dataSource" ref="dataSource" />
+    </bean>
+    <bean id="pfpcckyuserrecDao" class="tw.gov.bli.pf.model.dao.PfpcckyuserrecDao">
+          <description>退回現金業務單位使用紀錄檔</description>
+          <property name="dataSource" ref="dataSource" />
+    </bean> 
+    
+    <bean id="bapaavgmonDao" class="tw.gov.bli.ba.dao.impl.BapaavgmonDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>   
+    
+    <bean id="bapairrDao" class="tw.gov.bli.ba.dao.impl.BapairrDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="barptlogDao" class="tw.gov.bli.ba.dao.impl.BarptlogDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>   
+    
+    <bean id="bapasignDao" class="tw.gov.bli.ba.dao.impl.BapasignDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="barecheckDao" class="tw.gov.bli.ba.dao.impl.BarecheckDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bastudnotifyDao" class="tw.gov.bli.ba.dao.impl.BastudnotifyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="balettercodeDao" class="tw.gov.bli.ba.dao.impl.BalettercodeDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="baonlinejobDao" class="tw.gov.bli.ba.dao.impl.BaonlinejobDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="babatchjobDao" class="tw.gov.bli.ba.dao.impl.BabatchjobDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="babatchjobdtlDao" class="tw.gov.bli.ba.dao.impl.BabatchjobdtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bauseremailDao" class="tw.gov.bli.ba.dao.impl.BauseremailDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="npcodeDao" class="tw.gov.bli.ba.dao.impl.NpcodeDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="barvconfirmDao" class="tw.gov.bli.ba.dao.impl.BarvconfirmDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+     <bean id="barvcaseDao" class="tw.gov.bli.ba.dao.impl.BarvcaseDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baprocedureDao" class="tw.gov.bli.ba.dao.impl.BaprocedureDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="baproceduredtlDao" class="tw.gov.bli.ba.dao.impl.BaproceduredtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="baproceduredataDao" class="tw.gov.bli.ba.dao.impl.BaproceduredataDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapaymentDao" class="tw.gov.bli.ba.dao.impl.BapaymentDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapaymentdtlDao" class="tw.gov.bli.ba.dao.impl.BapaymentdtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapaymentstagedtlDao" class="tw.gov.bli.ba.dao.impl.BapaymentstagedtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+     <bean id="bapaymentassigndtlDao" class="tw.gov.bli.ba.dao.impl.BapaymentassigndtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="runprocedurejobDao" class="tw.gov.bli.ba.dao.impl.RunprocedurejobDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>    
+    
+    <bean id="bapaymentremoteDao" class="tw.gov.bli.ba.dao.impl.BapaymentremoteDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapaymentremotedtlDao" class="tw.gov.bli.ba.dao.impl.BapaymentremotedtlDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean> 
+    
+    <bean id="bccmf45Dao" class="tw.gov.bli.ba.dao.impl.Bccmf45DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>  
+    
+    <bean id="localPfpcckyuserrecDao" class="tw.gov.bli.ba.dao.impl.LocalPfpcckyuserrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bafailurelistDao" class="tw.gov.bli.ba.dao.impl.BafailurelistDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="pfpfmDao" class="tw.gov.bli.ba.dao.impl.PfpfmDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="pfpfdDao" class="tw.gov.bli.ba.dao.impl.PfpfdDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="baunqualifiednoticeDao" class="tw.gov.bli.ba.dao.impl.BaunqualifiednoticeDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bapawagerecDao" class="tw.gov.bli.ba.dao.impl.BapawagerecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="sdholidayDao" class="tw.gov.bli.ba.dao.impl.SdholidayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bamarginamtnotifyDao" class="tw.gov.bli.ba.dao.impl.BamarginamtnotifyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bahandicaptermDao" class="tw.gov.bli.ba.dao.impl.BahandicaptermDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+    
+    <bean id="bansfDao" class="tw.gov.bli.ba.dao.impl.BansfDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baappattfileDao" class="tw.gov.bli.ba.dao.impl.BaappattfileDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <!-- ] -->
+    <!-- End for BA System -->
+
+    <!-- for Common Framework Begin -->
+    <!-- [ -->
+    <bean id="sysfuncDao" class="tw.gov.bli.common.dao.impl.SysfuncDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="loginDao" class="tw.gov.bli.common.dao.impl.LoginDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="portalLogDao" class="tw.gov.bli.common.dao.impl.PortalLogDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="mmaccesslgDao" class="tw.gov.bli.common.dao.impl.MmaccesslgDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="mmquerylogDao" class="tw.gov.bli.common.dao.impl.MmquerylogDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="mmaplogDao" class="tw.gov.bli.common.dao.impl.MmaplogDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bamfileftprecordDao" class="tw.gov.bli.ba.dao.impl.BamfileftprecordDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <!-- ] -->
+    <!-- End for Common Framework -->
+    
+</beans>

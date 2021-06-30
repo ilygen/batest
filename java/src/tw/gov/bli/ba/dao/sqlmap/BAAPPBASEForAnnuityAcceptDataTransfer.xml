@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAPPBASEForAnnuityAcceptDataTransfer">
+
+    <typeAlias alias="Baappbase" type="tw.gov.bli.ba.domain.Baappbase" />
+
+    <select id="forAnnuityAcceptDataTransfer" resultClass="java.lang.String">
+		SELECT 'INSERT INTO BAAPPBASE(BAAPPBASEID,APNO,SEQNO,IMK,APITEM,PAYKIND,APPDATE,CASETYP,MAPNO,MAPROOTMK,COMBAPMARK,CASEMK,PROCSTAT,ACCEPTMK,MANCHKMK,CHGNOTE,EXESTAT,APUBNO,
+		            APUBNOCK,LSUBNO,LSUBNOCK,EVTIDS,EVTIDNNO,EVTNAME,EVTBRDATE,EVTSEX,EVTNATIONTPE,EVTNATIONCODE,EVTIDENT,EVTJOBDATE,EVTDATE,EVTDIEDATE,EVTAGE,BENIDS,BENIDNNO,BENNAME,
+					BENBRDATE,BENSEX,BENNATIONTYP,BENNATIONCODE,BENEVTREL,BENDIEDATE,BENPAYMK,IDNCHKYM,IDNCHKNOTE,TEL1,TEL2,COMMTYP,COMMZIP,COMMADDR,PAYTYP,BANKNAME,PAYBANKID,BRANCHID,
+					PAYEEACC,ACCIDN,ACCNAME,ACCREL,MITRATE,GRDIDNNO,GRDNAME,GRDBRDATE,ASSIGNIDNNO,ASSIGNNAME,ASSIGNBRDATE,ISSUYM,PAYYM,ISSUEAMT,PAYDATE,PAYYMS,PAYYME,PAUSEYM,UNPAUSEYM,
+					NOTIFYFORM,LOANMK,MEXCLVL,REALEXCLVL,CHKDATE,CHKMAN,RECHKDATE,RECHKMAN,EXEDATE,EXEMAN,ARCDATE,ARCPG,CLOSEDATE,CLOSECAUSE,PROMOTEUSER,CRTUSER,CRTTIME,UPDUSER,UPDTIME,
+					ONCEPAYMK,MUSTISSUEAMT,OLDSENIAB,DUPEIDNNOMK,LSINSMAMT,EVTEXPIREDATE,EVTELIGIBLEDATE,EVTMISSINGDATE,LSCHKMK,LSCOUNT,LNCHKMK,DABAPNO,DABANNUAMT,CBMK,RESENIMK,OFFINSURDATE,
+					LAWRETIREDATE,OWESDAY,LEAPDAY,EVTAPPNAME,CUTAMT,ACCSEQNO,BENMARRMK,CHGMK,PAYAMTS,EVTAPPIDNNO,EVTAPPBRDATE,ANNUAMT,OLDAPLDPT,CHOICEYM,MOBILEPHONE,EMAIL,BANKNATIONCODE,
+					BRANCHNAME,BANKADDR,INTERVALMONTH,REGETCIPBMK,CHKPAYBANKID,CHKBRANCHID,CHKPAYEEACC,SPECIALACC,SPEACCDATE,UNQUALIFIEDCAUSE,ISSUNOTIFYINGMK,EVTJOBAGE,SAMTY,SAMTD,ONCETY,
+					ONCEPAYM,ONCEISSUEAMT,MARGINAMT
+		        ) VALUES(''' || BAAPPBASEID || ''',''' || APNO ||
+		               ''',''' || SEQNO || ''',''' || IMK || ''',''' || APITEM || ''',''' ||
+		               PAYKIND || ''',''' || APPDATE || ''',''' || CASETYP || ''',''' ||
+		               MAPNO || ''',''' || MAPROOTMK || ''',''' || COMBAPMARK || ''',''' ||
+		               CASEMK || ''',''' || PROCSTAT || ''',''' || ACCEPTMK || ''',''' ||
+		               MANCHKMK || ''',''' || CHGNOTE || ''',''' || EXESTAT || ''',''' ||
+		               APUBNO || ''',''' || APUBNOCK || ''',''' || LSUBNO || ''',''' ||
+		               LSUBNOCK || ''',''' || EVTIDS || ''',''' || EVTIDNNO || ''',''' ||
+		               EVTNAME || ''',''' || EVTBRDATE || ''',''' || EVTSEX || ''',''' ||
+		               EVTNATIONTPE || ''',''' || EVTNATIONCODE || ''',''' || EVTIDENT ||
+		               ''',''' || EVTJOBDATE || ''',''' || EVTDATE || ''',''' || EVTDIEDATE ||
+		               ''',''' || EVTAGE || ''',''' || BENIDS || ''',''' || BENIDNNO ||
+		               ''',''' || BENNAME || ''',''' || BENBRDATE || ''',''' || BENSEX ||
+		               ''',''' || BENNATIONTYP || ''',''' || BENNATIONCODE || ''',''' ||
+		               BENEVTREL || ''',''' || BENDIEDATE || ''',''' || BENPAYMK || ''',''' ||
+		               IDNCHKYM || ''',''' || IDNCHKNOTE || ''',''' || TEL1 || ''',''' || TEL2 ||
+		               ''',''' || COMMTYP || ''',''' || COMMZIP || ''',''' || COMMADDR ||
+		               ''',''' || PAYTYP || ''',''' || BANKNAME || ''',''' || PAYBANKID ||
+		               ''',''' || BRANCHID || ''',''' || PAYEEACC || ''',''' || ACCIDN ||
+		               ''',''' || ACCNAME || ''',''' || ACCREL || ''',''' || MITRATE ||
+		               ''',''' || GRDIDNNO || ''',''' || GRDNAME || ''',''' || GRDBRDATE ||
+		               ''',''' || ASSIGNIDNNO || ''',''' || ASSIGNNAME || ''',''' ||
+		               ASSIGNBRDATE || ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' ||
+		               ISSUEAMT || ''',''' || PAYDATE || ''',''' || PAYYMS || ''',''' ||
+		               PAYYME || ''',''' || PAUSEYM || ''',''' || UNPAUSEYM || ''',''' ||
+		               NOTIFYFORM || ''',''' || LOANMK || ''',''' || MEXCLVL || ''',''' ||
+		               REALEXCLVL || ''',''' || CHKDATE || ''',''' || CHKMAN || ''',''' ||
+		               RECHKDATE || ''',''' || RECHKMAN || ''',''' || EXEDATE || ''',''' ||
+		               EXEMAN || ''',''' || ARCDATE || ''',''' || ARCPG || ''',''' ||
+		               CLOSEDATE || ''',''' || CLOSECAUSE || ''',''' || PROMOTEUSER ||
+		               ''',''' || CRTUSER || ''',''' || CRTTIME || ''',''' || UPDUSER ||
+		               ''',''' || UPDTIME || ''',''' || ONCEPAYMK || ''',''' ||
+		               MUSTISSUEAMT || ''',''' || OLDSENIAB || ''',''' || DUPEIDNNOMK ||
+		               ''',''' || LSINSMAMT || ''',''' || EVTEXPIREDATE || ''',''' ||
+		               EVTELIGIBLEDATE || ''',''' || EVTMISSINGDATE || ''',''' || LSCHKMK ||
+		               ''',''' || LSCOUNT || ''',''' || LNCHKMK || ''',''' || DABAPNO ||
+		               ''',''' || DABANNUAMT || ''',''' || CBMK || ''',''' || RESENIMK ||
+		               ''',''' || OFFINSURDATE || ''',''' || LAWRETIREDATE || ''',''' ||
+		               OWESDAY || ''',''' || LEAPDAY || ''',''' || EVTAPPNAME || ''',''' ||
+		               CUTAMT || ''',''' || ACCSEQNO || ''',''' || BENMARRMK || ''',''' ||
+		               CHGMK || ''',''' || PAYAMTS || ''',''' || EVTAPPIDNNO || ''',''' ||
+		               EVTAPPBRDATE || ''',''' || ANNUAMT || ''',''' || OLDAPLDPT ||
+		               ''',''' || CHOICEYM || ''',''' || MOBILEPHONE || ''',''' || EMAIL ||
+		               ''',''' || BANKNATIONCODE || ''',''' || BRANCHNAME || ''',''' ||
+		               BANKADDR || ''',''' || INTERVALMONTH || ''',''' || REGETCIPBMK ||
+		               ''',''' || CHKPAYBANKID || ''',''' || CHKBRANCHID || ''',''' ||
+		               CHKPAYEEACC || ''',''' || SPECIALACC || ''',''' || SPEACCDATE ||
+		               ''',''' || UNQUALIFIEDCAUSE || ''',''' || ISSUNOTIFYINGMK || ''',''' ||
+		               EVTJOBAGE || ''',''' || SAMTY || ''',''' || SAMTD || ''',''' ||
+		               ONCETY || ''',''' || ONCEPAYM || ''',''' || ONCEISSUEAMT || ''',''' ||
+		               MARGINAMT || ''');' AS DETAILSQL
+		          FROM BA.BAAPPBASE
+		         WHERE APNO = #apno:VARCHAR#
+		         UNION ALL 
+		         SELECT 'INSERT INTO BAAPPEXPAND (BAAPPEXPANDID,BAAPPBASEID,APNO,SEQNO,CANCELMK,CANCELYM,OCACCIDENTMK,PRTYPE,CRIMEDIUM,EVTYP,EVCODE,CRIINPART1,CRIINPART2,CRIINPART3,
+		                 CRIINJNME1,CRIINJNME2,CRIINJNME3,CRIINJNME4,CRIINJCL1,CRIINJCL2,CRIINJCL3,CRIINJDP1,CRIINJDP2,CRIINJDP3,CRIINJDP4, CRIINJDP5,CRIINJDP6,CRIINJDP7,CRIINJDP8,
+						 CRIINJDP9,CRIINJDP10,CRIINISSUL,REHCMK,REHCYM,HOSID,DOCTORNAME1,DOCTORNAME2,OCACCADDAMT,FAMAPPMK,PRFMLYMK,MONINCOMEMK,MONINCOME,STUDMK,MARRYDATE,DIGAMYDATE,
+						 ABANAPPLYMK,ABANAPSYM,ABLEAPSYM,RAISECHILDMK,HANDICAPMK,INTERDICTMK,INTERDICTDATE,BENMISSINGSDATE,BENMISSINGEDATE,PRISONSDATE,PRISONEDATE,RELATCHGDATE,ADOPTDATE,
+						 JUDGEDATE,ASSIGNIDNNO,ASSIGNNAME,ASSIGNBRDATE,CRTUSER,CRTTIME,UPDUSER,UPDTIME,RAISEEVTMK,DEDUCTDAY,NLWKMK,ADWKMK,SAVINGMK,REPEALINTERDICTDATE,EVAPPTYP,COMPELMK,
+		                 COMNPMK,DISQUALMK,CPIBASEYM,SCHOOLCODE,OCACCHOSID,OCACCDOCTORNAME1,OCACCDOCTORNAME2,MONNOTIFYINGMK,INSAVGAMTAPPYEAR
+		                ) VALUES(''' || BAAPPEXPANDID || ''',''' ||
+		                       BAAPPBASEID || ''',''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                       CANCELMK || ''',''' || CANCELYM || ''',''' || OCACCIDENTMK ||
+		                       ''',''' || PRTYPE || ''',''' || CRIMEDIUM || ''',''' || EVTYP ||
+		                       ''',''' || EVCODE || ''',''' || CRIINPART1 || ''',''' || CRIINPART2 ||
+		                       ''',''' || CRIINPART3 || ''',''' || CRIINJNME1 || ''',''' ||
+		                       CRIINJNME2 || ''',''' || CRIINJNME3 || ''',''' || CRIINJNME4 ||
+		                       ''',''' || CRIINJCL1 || ''',''' || CRIINJCL2 || ''',''' || CRIINJCL3 ||
+		                       ''',''' || CRIINJDP1 || ''',''' || CRIINJDP2 || ''',''' || CRIINJDP3 ||
+		                       ''',''' || CRIINJDP4 || ''',''' || CRIINJDP5 || ''',''' || CRIINJDP6 ||
+		                       ''',''' || CRIINJDP7 || ''',''' || CRIINJDP8 || ''',''' || CRIINJDP9 ||
+		                       ''',''' || CRIINJDP10 || ''',''' || CRIINISSUL || ''',''' || REHCMK ||
+		                       ''',''' || REHCYM || ''',''' || HOSID || ''',''' || DOCTORNAME1 ||
+		                       ''',''' || DOCTORNAME2 || ''',''' || OCACCADDAMT || ''',''' ||
+		                       FAMAPPMK || ''',''' || PRFMLYMK || ''',''' || MONINCOMEMK || ''',''' ||
+		                       MONINCOME || ''',''' || STUDMK || ''',''' || MARRYDATE || ''',''' ||
+		                       DIGAMYDATE || ''',''' || ABANAPPLYMK || ''',''' || ABANAPSYM ||
+		                       ''',''' || ABLEAPSYM || ''',''' || RAISECHILDMK || ''',''' ||
+		                       HANDICAPMK || ''',''' || INTERDICTMK || ''',''' || INTERDICTDATE ||
+		                       ''',''' || BENMISSINGSDATE || ''',''' || BENMISSINGEDATE || ''',''' ||
+		                       PRISONSDATE || ''',''' || PRISONEDATE || ''',''' || RELATCHGDATE ||
+		                       ''',''' || ADOPTDATE || ''',''' || JUDGEDATE || ''',''' ||
+		                       ASSIGNIDNNO || ''',''' || ASSIGNNAME || ''',''' || ASSIGNBRDATE ||
+		                       ''',''' || CRTUSER || ''',''' || CRTTIME || ''',''' || UPDUSER ||
+		                       ''',''' || UPDTIME || ''',''' || RAISEEVTMK || ''',''' || DEDUCTDAY ||
+		                       ''',''' || NLWKMK || ''',''' || ADWKMK || ''',''' || SAVINGMK ||
+		                       ''',''' || REPEALINTERDICTDATE || ''',''' || EVAPPTYP || ''',''' ||
+		                       COMPELMK || ''',''' || COMNPMK || ''',''' || DISQUALMK || ''',''' ||
+		                       CPIBASEYM || ''',''' || SCHOOLCODE || ''',''' || OCACCHOSID ||
+		                       ''',''' || OCACCDOCTORNAME1 || ''',''' || OCACCDOCTORNAME2 ||
+		                       ''',''' || MONNOTIFYINGMK || ''',''' || INSAVGAMTAPPYEAR || ''');' AS DETAILSQL
+		          FROM BA.BAAPPEXPAND 
+		          WHERE APNO = #apno:VARCHAR#
+		          UNION ALL 
+		          SELECT 'INSERT INTO BAACPDTL (BAACPDTLID,BAUNACPDTLID,UNACPSTIMES,BENIDS,BENIDNNO,TYPEMK,RECAMT,DISPAYKIND,APNO,SEQNO,ISSUYM,PAYYM,TRANSACTIONID,
+		                  INSKDREGIVE,WRITEOFFNO,BANKTYP,PAYEEACCTYP,PENTYP,PENDATE,BATNO,SITDATE,INSKDCASH,BLIACCOUNTCODE,BOOKEDBOOK,BKACCOUNTDT,BATCHNO,SERIALNO,CASHAMT,
+		                  DIVSEQ,INDEXNO,APLPAYDATE,WORKTYPE,CPRNDATE,CPRNPAGE,RECHKMK,FWOFLG,MDFNUM,PROCBATCHNO,PROCFUN,PROCUSER,PROCTIME,UPDTIME,ACPDATE,NLWKMK,ADWKMK,NACHGMK,
+		                  TRANSACTIONSEQ,CANCELDATE,RPTROWS,STS)VALUES(''' || BAACPDTLID || ''',''' ||
+		                         BAUNACPDTLID || ''',''' || UNACPSTIMES || ''',''' || BENIDS ||
+		                         ''',''' || BENIDNNO || ''',''' || TYPEMK || ''',''' || RECAMT ||
+		                         ''',''' || DISPAYKIND || ''',''' || APNO || ''',''' || SEQNO ||
+		                         ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' || TRANSACTIONID ||
+		                         ''',''' || INSKDREGIVE || ''',''' || WRITEOFFNO || ''',''' ||
+		                         BANKTYP || ''',''' || PAYEEACCTYP || ''',''' || PENTYP || ''',''' ||
+		                         PENDATE || ''',''' || BATNO || ''',''' || SITDATE || ''',''' ||
+		                         INSKDCASH || ''',''' || BLIACCOUNTCODE || ''',''' || BOOKEDBOOK ||
+		                         ''',''' || BKACCOUNTDT || ''',''' || BATCHNO || ''',''' || SERIALNO ||
+		                         ''',''' || CASHAMT || ''',''' || DIVSEQ || ''',''' || INDEXNO ||
+		                         ''',''' || APLPAYDATE || ''',''' || WORKTYPE || ''',''' || CPRNDATE ||
+		                         ''',''' || CPRNPAGE || ''',''' || RECHKMK || ''',''' || FWOFLG ||
+		                         ''',''' || MDFNUM || ''',''' || PROCBATCHNO || ''',''' || PROCFUN ||
+		                         ''',''' || PROCUSER || ''',''' || PROCTIME || ''',''' || UPDTIME ||
+		                         ''',''' || ACPDATE || ''',''' || NLWKMK || ''',''' || ADWKMK ||
+		                         ''',''' || NACHGMK || ''',''' || TRANSACTIONSEQ || ''',''' ||
+		                         CANCELDATE || ''',''' || RPTROWS || ''',''' || STS || ''');' AS DETAILSQL
+		            FROM BA.BAACPDTL 
+		            WHERE APNO = #apno:VARCHAR#
+		            UNION ALL 
+		            SELECT 'INSERT INTO BADAPR (BADAPRID,BAAPPBASEID,APNO,SEQNO,ISSUYM,PAYYM,MTESTMK,VERISEQ,MCHKTYP,MAPNO,MAPROOTMK,BENIDS,BENIDN,OLDAB,
+							OLDAAMT,OLDBAMT,SUPRECMK,ISSUEAMT,ADJUSTAMT,RECAMT,SUPAMT,APLPAYAMT,PAYRATE,ANNUAMT,UNITPAYAMT,RETURNAMT,REMAINAMT,COMPENAMT,
+							LECOMAMT,RECOMAMT,LOANAMT,RECAPAMT,LOANITRT,DLINEDATE,OFFSETEXP,OFFSETAMT,OTHERAMT,REMITAMT,OVRCUTAMT,PAYBANANCE,APLPAYMK,APLPAYDATE,
+							GENMEDDATE,REMITMK,REMITDATE,TRANSACTIOND,STEXPNDMK,STEXPNDREASON,ACCEPTMK,MANCHKMK,CPRNDATE,CPRNPAGE,CHKDATE,PROCTIME,STEXPNDDATE,
+		                    INSAVGAMT,ITRMY,ITRMD,NITRMY,NITRMM,NOLDTY,NOLDTM,VALSENIY,VALSENIM,APLPAYSENIY,APLPAYSENIM,OLDRATE,OLDRATESDATE,OLDRATEEDATE,BUREAUACC,
+							BANKNAME,PAYBANKID,BRANCHID,PAYEEACC,ACCIDN,ACCNAME,PAYTYP,BADDEBTAMT,OWESDAY,LEAPDAY,PAYKIND,BEFISSUEAMT,DRDATE,DRNO,BENEVTREL,CHKLIST,
+							CHGLIST,OTHERAAMT,OTHERBAMT,OLDAPLDPT,QUALCOUNT,OCACCADDAMT,PREISSUEAMT,EVTOTHERAAMT,EVTOTHERBAMT,EVTOFFSETAMT,NLWKMK,ADWKMK,SAVINGMK,
+							OLDEXTRARATE,GROUPNO,ISSUCALCAMT,CPIRATE,NACHGMK,INHERITORAMT,EXCOMPENAMT,ORICOMPENAMT
+		                  ) VALUES(''' || BADAPRID || ''',''' ||
+		                          BAAPPBASEID || ''',''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                          ISSUYM || ''',''' || PAYYM || ''',''' || MTESTMK || ''',''' ||
+		                          VERISEQ || ''',''' || MCHKTYP || ''',''' || MAPNO || ''',''' ||
+		                          MAPROOTMK || ''',''' || BENIDS || ''',''' || BENIDN || ''',''' ||
+		                          OLDAB || ''',''' || OLDAAMT || ''',''' || OLDBAMT || ''',''' ||
+		                          SUPRECMK || ''',''' || ISSUEAMT || ''',''' || ADJUSTAMT || ''',''' ||
+		                          RECAMT || ''',''' || SUPAMT || ''',''' || APLPAYAMT || ''',''' ||
+		                          PAYRATE || ''',''' || ANNUAMT || ''',''' || UNITPAYAMT || ''',''' ||
+		                          RETURNAMT || ''',''' || REMAINAMT || ''',''' || COMPENAMT ||
+		                          ''',''' || LECOMAMT || ''',''' || RECOMAMT || ''',''' || LOANAMT ||
+		                          ''',''' || RECAPAMT || ''',''' || LOANITRT || ''',''' || DLINEDATE ||
+		                          ''',''' || OFFSETEXP || ''',''' || OFFSETAMT || ''',''' || OTHERAMT ||
+		                          ''',''' || REMITAMT || ''',''' || OVRCUTAMT || ''',''' ||
+		                          PAYBANANCE || ''',''' || APLPAYMK || ''',''' || APLPAYDATE ||
+		                          ''',''' || GENMEDDATE || ''',''' || REMITMK || ''',''' || REMITDATE ||
+		                          ''',''' || TRANSACTIOND || ''',''' || STEXPNDMK || ''',''' ||
+		                          STEXPNDREASON || ''',''' || ACCEPTMK || ''',''' || MANCHKMK ||
+		                          ''',''' || CPRNDATE || ''',''' || CPRNPAGE || ''',''' || CHKDATE ||
+		                          ''',''' || PROCTIME || ''',''' || STEXPNDDATE || ''',''' ||
+		                          INSAVGAMT || ''',''' || ITRMY || ''',''' || ITRMD || ''',''' ||
+		                          NITRMY || ''',''' || NITRMM || ''',''' || NOLDTY || ''',''' ||
+		                          NOLDTM || ''',''' || VALSENIY || ''',''' || VALSENIM || ''',''' ||
+		                          APLPAYSENIY || ''',''' || APLPAYSENIM || ''',''' || OLDRATE ||
+		                          ''',''' || OLDRATESDATE || ''',''' || OLDRATEEDATE || ''',''' ||
+		                          BUREAUACC || ''',''' || BANKNAME || ''',''' || PAYBANKID || ''',''' ||
+		                          BRANCHID || ''',''' || PAYEEACC || ''',''' || ACCIDN || ''',''' ||
+		                          ACCNAME || ''',''' || PAYTYP || ''',''' || BADDEBTAMT || ''',''' ||
+		                          OWESDAY || ''',''' || LEAPDAY || ''',''' || PAYKIND || ''',''' ||
+		                          BEFISSUEAMT || ''',''' || DRDATE || ''',''' || DRNO || ''',''' ||
+		                          BENEVTREL || ''',''' || CHKLIST || ''',''' || CHGLIST || ''',''' ||
+		                          OTHERAAMT || ''',''' || OTHERBAMT || ''',''' || OLDAPLDPT ||
+		                          ''',''' || QUALCOUNT || ''',''' || OCACCADDAMT || ''',''' ||
+		                          PREISSUEAMT || ''',''' || EVTOTHERAAMT || ''',''' || EVTOTHERBAMT ||
+		                          ''',''' || EVTOFFSETAMT || ''',''' || NLWKMK || ''',''' || ADWKMK ||
+		                          ''',''' || SAVINGMK || ''',''' || OLDEXTRARATE || ''',''' ||
+		                          GROUPNO || ''',''' || ISSUCALCAMT || ''',''' || CPIRATE || ''',''' ||
+		                          NACHGMK || ''',''' || INHERITORAMT || ''',''' || EXCOMPENAMT ||
+		                          ''',''' || ORICOMPENAMT || ''');' AS DETAILSQL
+		            FROM BA.BADAPR 
+		            WHERE APNO = #apno:VARCHAR#
+		            UNION ALL
+		            SELECT 'INSERT INTO BACHKFILE (BACHKFILEID,BAAPPBASEID,APNO,SEQNO,ISSUYM,PAYYM,CHKTYP,CHKCODE,CHKCODEPRE,CHKCODEPOST,CHKRESULT,KEYVALUE)
+		              VALUES(''' || BACHKFILEID || ''',''' ||
+		                 BAAPPBASEID || ''',''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                 ISSUYM || ''',''' || PAYYM || ''',''' || CHKTYP || ''',''' ||
+		                 CHKCODE || ''',''' || CHKCODEPRE || ''',''' || CHKCODEPOST ||
+		                 ''',''' || CHKRESULT || ''',''' || KEYVALUE || ''');' AS DETAILSQL
+		            FROM BA.BACHKFILE WHERE APNO = #apno:VARCHAR#
+		            UNION ALL
+		            SELECT 'INSERT INTO BACHKCONTRL (APNO,SEQNO,ISSUYM,PAYYM,CONTRLTYP,CHKCODE,VALISYM,VALIEYM,KEYVALUE,CRTUSER,CRTTIME)
+		                    VALUES(''' || APNO || ''',''' || SEQNO ||
+		                           ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' || CONTRLTYP ||
+		                           ''',''' || CHKCODE || ''',''' || VALISYM || ''',''' || VALIEYM ||
+		                           ''',''' || KEYVALUE || ''',''' || CRTUSER || ''',''' || CRTTIME ||
+		                           ''');' AS DETAILSQL
+		            FROM BA.BACHKCONTRL  
+		            WHERE APNO = #apno:VARCHAR#
+		            UNION ALL
+		            SELECT 'INSERT INTO BACUTREC (BACUTRECID,MAPNO,MSEQNO,MISSUYM,MPAYYM,MTESTMK,DISPAYKIND,TYPEMK,RECSEQ,RECAMT,RECREM,DISAMT,
+		                    DISDATE,BENIDS,APNO,SEQNO,ISSUYM,PAYYM,PAYKIND,TRANSACTIONID,INSKD,PENDATE,BATNO,INSKDCASH,BLIACCOUNTCODE,BOOKEDBOOK,
+		                    BKACCOUNTDT,BATCHNO,SERIALNO,CASHAMT,DIVSEQ,INDEXNO,PRTMK,ACTENDMK,UPDUSER,UPDTIME,CHKDATE,UNACPMK,MNLWKMK,MADWKMK,
+							NLWKMK,ADWKMK,NACHGMK,TRANSACTIONSEQ
+		                  ) VALUES(''' || BACUTRECID || ''',''' || MAPNO ||
+		                         ''',''' || MSEQNO || ''',''' || MISSUYM || ''',''' || MPAYYM ||
+		                         ''',''' || MTESTMK || ''',''' || DISPAYKIND || ''',''' || TYPEMK ||
+		                         ''',''' || RECSEQ || ''',''' || RECAMT || ''',''' || RECREM ||
+		                         ''',''' || DISAMT || ''',''' || DISDATE || ''',''' || BENIDS ||
+		                         ''',''' || APNO || ''',''' || SEQNO || ''',''' || ISSUYM || ''',''' ||
+		                         PAYYM || ''',''' || PAYKIND || ''',''' || TRANSACTIONID || ''',''' ||
+		                         INSKD || ''',''' || PENDATE || ''',''' || BATNO || ''',''' ||
+		                         INSKDCASH || ''',''' || BLIACCOUNTCODE || ''',''' || BOOKEDBOOK ||
+		                         ''',''' || BKACCOUNTDT || ''',''' || BATCHNO || ''',''' || SERIALNO ||
+		                         ''',''' || CASHAMT || ''',''' || DIVSEQ || ''',''' || INDEXNO ||
+		                         ''',''' || PRTMK || ''',''' || ACTENDMK || ''',''' || UPDUSER ||
+		                         ''',''' || UPDTIME || ''',''' || CHKDATE || ''',''' || UNACPMK ||
+		                         ''',''' || MNLWKMK || ''',''' || MADWKMK || ''',''' || NLWKMK ||
+		                         ''',''' || ADWKMK || ''',''' || NACHGMK || ''',''' || TRANSACTIONSEQ ||
+		                         ''');' AS DETAILSQL
+		              FROM BA.BACUTREC 
+		              WHERE APNO = #apno:VARCHAR#
+		              UNION ALL
+		              SELECT 'INSERT INTO BADUPEIDN (APNO,SEQNO,IDNNO,NAME,BRDATE,SELMK,UPDUSER,UPDTIME) 
+		                       VALUES(''' || APNO || ''',''' || SEQNO ||
+		                         ''',''' || IDNNO || ''',''' || NAME || ''',''' || BRDATE || ''',''' ||
+		                         SELMK || ''',''' || UPDUSER || ''',''' || UPDTIME || ''');' AS DETAILSQL
+		              FROM BA.BADUPEIDN 
+		              WHERE APNO = #apno:VARCHAR#
+		              UNION ALL
+		              SELECT 'INSERT INTO BACOLUMNREC (BACOLUMNID,APNO,SEQNO,BENEVTREL,COLUMNNAME,COLUMNVALUE,CRTUSER,CRTTIME,PROCMK,PROCTIME) VALUES(''' || BACOLUMNID || ''',''' || APNO ||
+		                     ''',''' || SEQNO || ''',''' || BENEVTREL || ''',''' || COLUMNNAME ||
+		                     ''',''' || COLUMNVALUE || ''',''' || CRTUSER || ''',''' || CRTTIME ||
+		                     ''',''' || PROCMK || ''',''' || PROCTIME || ''');'
+		              FROM BA.BACOLUMNREC WHERE APNO = #apno:VARCHAR#
+		              UNION ALL
+		              SELECT 'INSERT INTO BAFAMILY (BAFAMILYID,BAAPPBASEID,APNO,SEQNO,FAMAPPDATE,FAMIDNNO,FAMNAME,FAMBRDATE,FAMSEX,FAMNATIONTYP,
+					          FAMNATIONCODE,FAMEVTREL,FAMDIEDATE,RELATCHGDATE,RAISECHILDMK,HANDICAPMK,MONINCOMEMK,MONINCOME,MARRYDATE,DIVORCEDATE,
+							  ABANAPPLYMK,ABANAPSYM,INTERDICTMK,INTERDICTDATE,ADOPTDATE,BENMISSINGSDATE,BENMISSINGEDATE,PRISONSDATE,PRISONEDATE,
+		                      STUDMK,STUDSDATE,STUDEDATE,CLOSEDATE,CLOSECAUSE,DELMK,CRTUSER,CRTTIME,UPDUSER,UPDTIME,CHOICEYM,IDNCHKYM,IDNCHKNOTE,
+							  REPEALINTERDICTDATE,COMPELMK,ABLEAPSYM,SCHOOLCODE
+		                      )VALUES(''' || BAFAMILYID || ''',''' ||
+		                         BAAPPBASEID || ''',''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                         FAMAPPDATE || ''',''' || FAMIDNNO || ''',''' || FAMNAME || ''',''' ||
+		                         FAMBRDATE || ''',''' || FAMSEX || ''',''' || FAMNATIONTYP || ''',''' ||
+		                         FAMNATIONCODE || ''',''' || FAMEVTREL || ''',''' || FAMDIEDATE ||
+		                         ''',''' || RELATCHGDATE || ''',''' || RAISECHILDMK || ''',''' ||
+		                         HANDICAPMK || ''',''' || MONINCOMEMK || ''',''' || MONINCOME ||
+		                         ''',''' || MARRYDATE || ''',''' || DIVORCEDATE || ''',''' ||
+		                         ABANAPPLYMK || ''',''' || ABANAPSYM || ''',''' || INTERDICTMK ||
+		                         ''',''' || INTERDICTDATE || ''',''' || ADOPTDATE || ''',''' ||
+		                         BENMISSINGSDATE || ''',''' || BENMISSINGEDATE || ''',''' ||
+		                         PRISONSDATE || ''',''' || PRISONEDATE || ''',''' || STUDMK ||
+		                         ''',''' || STUDSDATE || ''',''' || STUDEDATE || ''',''' || CLOSEDATE ||
+		                         ''',''' || CLOSECAUSE || ''',''' || DELMK || ''',''' || CRTUSER ||
+		                         ''',''' || CRTTIME || ''',''' || UPDUSER || ''',''' || UPDTIME ||
+		                         ''',''' || CHOICEYM || ''',''' || IDNCHKYM || ''',''' || IDNCHKNOTE ||
+		                         ''',''' || REPEALINTERDICTDATE || ''',''' || COMPELMK || ''',''' ||
+		                         ABLEAPSYM || ''',''' || SCHOOLCODE || ''');'  AS DETAILSQL
+		               FROM BA.BAFAMILY WHERE APNO = #apno:VARCHAR#
+		               UNION ALL
+		               SELECT 'INSERT INTO BAFAMQUAL (BAFAMQUALID,BAFAMILYID,APNO,SEQNO,ISSUYM,PAYYM,MTESTMK,VERISEQ,QUALMK,QUALLIST,CHKLIST)
+		                      VALUES(''' || BAFAMQUALID || ''',''' ||
+		                           BAFAMILYID || ''',''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                           ISSUYM || ''',''' || PAYYM || ''',''' || MTESTMK || ''',''' ||
+		                           VERISEQ || ''',''' || QUALMK || ''',''' || QUALLIST || ''',''' ||
+		                           CHKLIST || ''');' AS DETAILSQL
+		               FROM BA.BAFAMQUAL 
+		               WHERE APNO = #apno:VARCHAR#
+		               UNION ALL
+		               SELECT 'INSERT INTO BAGIVEDTL (BABATCHRECID,MFILENAME,MFILEDATE,SEQNO,RC2,SUNIT2,HBANK2,BBANK2,TATYP2,PAYDATE2,ACCNO2,AMT2,STAT2,
+		                      APNO2,SEQ2,PAYTYP2,SPACE2,PAYYM2,IDN2,NAME2,INSKD2,EMGMK2,RPAYDATE2,ISSUYM2,NC2,COMPAREMK,SOURCEFILESEQ,UPDTIME,PAYSEQNO
+		                    ) VALUES(''' || BABATCHRECID || ''',''' ||
+		                           MFILENAME || ''',''' || MFILEDATE || ''',''' || SEQNO || ''',''' || RC2 ||
+		                           ''',''' || SUNIT2 || ''',''' || HBANK2 || ''',''' || BBANK2 ||
+		                           ''',''' || TATYP2 || ''',''' || PAYDATE2 || ''',''' || ACCNO2 ||
+		                           ''',''' || AMT2 || ''',''' || STAT2 || ''',''' || APNO2 || ''',''' || SEQ2 ||
+		                           ''',''' || PAYTYP2 || ''',''' || SPACE2 || ''',''' || PAYYM2 ||
+		                           ''',''' || IDN2 || ''',''' || NAME2 || ''',''' || INSKD2 || ''',''' ||
+		                           EMGMK2 || ''',''' || RPAYDATE2 || ''',''' || ISSUYM2 || ''',''' || NC2 ||
+		                           ''',''' || COMPAREMK || ''',''' || SOURCEFILESEQ || ''',''' ||
+		                           UPDTIME || ''',''' || PAYSEQNO || ''');' AS DETAILSQL
+		                FROM BA.BAGIVEDTL 
+		                WHERE APNO2 = #apno:VARCHAR#
+		                UNION ALL 
+		                SELECT 'INSERT INTO BAGIVETMPDTL (MFILENAME,MFILEDATE,SEQNO,RC2,SUNIT2,HBANK2,BBANK2,TATYP2,PAYDATE2,ACCNO2,AMT2,STAT2,APNO2,SEQ2,PAYTYP2,SPACE2,PAYYM2,IDN2,
+								NAME2,INSKD2,EMGMK2,RPAYDATE2,ISSUYM2,NC2,ISSUTYP,MFILEREMK,DLINEDATE,DLINESEQNO,UPDTIME,COMPARENAME,PAYISSUYM,CHKDATE,DLINEMK,PAYSEQNO
+		                      ) VALUES(''' || MFILENAME || ''',''' ||
+		                             MFILEDATE || ''',''' || SEQNO || ''',''' || RC2 || ''',''' || SUNIT2 ||
+		                             ''',''' || HBANK2 || ''',''' || BBANK2 || ''',''' || TATYP2 ||
+		                             ''',''' || PAYDATE2 || ''',''' || ACCNO2 || ''',''' || AMT2 ||
+		                             ''',''' || STAT2 || ''',''' || APNO2 || ''',''' || SEQ2 || ''',''' ||
+		                             PAYTYP2 || ''',''' || SPACE2 || ''',''' || PAYYM2 || ''',''' || IDN2 ||
+		                             ''',''' || NAME2 || ''',''' || INSKD2 || ''',''' || EMGMK2 ||
+		                             ''',''' || RPAYDATE2 || ''',''' || ISSUYM2 || ''',''' || NC2 ||
+		                             ''',''' || ISSUTYP || ''',''' || MFILEREMK || ''',''' || DLINEDATE ||
+		                             ''',''' || DLINESEQNO || ''',''' || UPDTIME || ''',''' ||
+		                             COMPARENAME || ''',''' || PAYISSUYM || ''',''' || CHKDATE || ''',''' ||
+		                             DLINEMK || ''',''' || PAYSEQNO || ''');'  AS DETAILSQL
+		                 FROM BA.BAGIVETMPDTL WHERE APNO2 = #apno:VARCHAR# 
+		                 UNION ALL
+		                 SELECT 'INSERT INTO BAISSUDATATEMP (APNO,SEQNO,PAYCODE,INSKD,PAYKIND,ISSUTYP,CASETYP,ISSUYM,PAYYM,SOURCEPAYTYP,PAYTYP,BENIDS,BENIDN,BENNAME,
+		                          BENEVTREL,COMMZIP,COMMADDR,COMMTEL,ACCIDN,ACCNAME,ACCSEQNO,PAYBANKID,BRANCHID,PAYEEACC,ISSUEAMT,APLPAYAMT,PAYRATE,OTHERAAMT,OTHERBAMT,
+								  OFFSETAMT,COMPENAMT,CHKDATE,DLINEDATE,DLINEMK,CPRNPAGE,CPRNDATE,APLPAYDATE,PROCTIME,PAYSEQNO,MANCHKMK,NACHGMK,NLWKMK,ADWKMK,UNACPAMT,INHERITORAMT
+		                        )VALUES(''' || APNO || ''',''' || SEQNO ||
+		                               ''',''' || PAYCODE || ''',''' || INSKD || ''',''' || PAYKIND ||
+		                               ''',''' || ISSUTYP || ''',''' || CASETYP || ''',''' || ISSUYM ||
+		                               ''',''' || PAYYM || ''',''' || SOURCEPAYTYP || ''',''' || PAYTYP ||
+		                               ''',''' || BENIDS || ''',''' || BENIDN || ''',''' || BENNAME ||
+		                               ''',''' || BENEVTREL || ''',''' || COMMZIP || ''',''' || COMMADDR ||
+		                               ''',''' || COMMTEL || ''',''' || ACCIDN || ''',''' || ACCNAME ||
+		                               ''',''' || ACCSEQNO || ''',''' || PAYBANKID || ''',''' || BRANCHID ||
+		                               ''',''' || PAYEEACC || ''',''' || ISSUEAMT || ''',''' || APLPAYAMT ||
+		                               ''',''' || PAYRATE || ''',''' || OTHERAAMT || ''',''' || OTHERBAMT ||
+		                               ''',''' || OFFSETAMT || ''',''' || COMPENAMT || ''',''' || CHKDATE ||
+		                               ''',''' || DLINEDATE || ''',''' || DLINEMK || ''',''' || CPRNPAGE ||
+		                               ''',''' || CPRNDATE || ''',''' || APLPAYDATE || ''',''' || PROCTIME ||
+		                               ''',''' || PAYSEQNO || ''',''' || MANCHKMK || ''',''' || NACHGMK ||
+		                               ''',''' || NLWKMK || ''',''' || ADWKMK || ''',''' || UNACPAMT ||
+		                               ''',''' || INHERITORAMT || ''');' AS  DETAILSQL
+		                   FROM BA.BAISSUDATATEMP 
+		                   WHERE APNO = #apno:VARCHAR#
+		                   UNION ALL
+		                   SELECT 'INSERT INTO BALASTLOAN (APNO,SEQNO,ISSUYM,PAYYM,IDNNO,PAYDATE,ACCOUNTPAY,BRNO,LMSEQNO,PROCMK,PROCTIME,REPTIME,FILENAME,FILEDATE) 
+		                             VALUES(''' || APNO || ''',''' || SEQNO ||
+		                               ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' || IDNNO || ''',''' ||
+		                               PAYDATE || ''',''' || ACCOUNTPAY || ''',''' || BRNO || ''',''' ||
+		                               LMSEQNO || ''',''' || PROCMK || ''',''' || PROCTIME || ''',''' ||
+		                               REPTIME || ''',''' || FILENAME || ''',''' || FILEDATE || ''');' AS  DETAILSQL
+		                  FROM BA.BALASTLOAN  
+		                  WHERE APNO = #apno:VARCHAR#
+		                  UNION ALL 
+		                  SELECT 'INSERT INTO BALASTREPLY (FILENAME,FILEDATE,SEQNUM,ACCOUNTPAY,BRNO,LMSEQNO,IDNNO,PAYDATE,NRMONEY,OWINT,OFFSETEXP,APNO,ISSUYM,PAYYM,SEQNO,ERRMK,ERRCODE)
+		                           VALUES(''' || FILENAME || ''',''' ||
+		                             FILEDATE || ''',''' || SEQNUM || ''',''' || ACCOUNTPAY || ''',''' || BRNO ||
+		                             ''',''' || LMSEQNO || ''',''' || IDNNO || ''',''' || PAYDATE ||
+		                             ''',''' || NRMONEY || ''',''' || OWINT || ''',''' || OFFSETEXP ||
+		                             ''',''' || APNO || ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' ||
+		                             SEQNO || ''',''' || ERRMK || ''',''' || ERRCODE || ''');' AS DETAILSQL 
+		                  FROM BA.BALASTREPLY 
+		                  WHERE APNO = #apno:VARCHAR#
+		                  UNION ALL
+		                  SELECT 'INSERT INTO BANBDAPR (BANBDAPRID,APNO,SEQNO,ISSUYM,PAYYM,MTESTMK,VERISEQ,NBAPNO,NBSEQNO,NBISSUYM,NBPAYYM,NBMTESTMK,NBVERISEQ,NBISSUEAMT,PROCTIME,NBLABMERGE,NBPAYKIND
+		                          ) VALUES(''' || BANBDAPRID || ''',''' || APNO ||
+		                                 ''',''' || SEQNO || ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' ||
+		                                 MTESTMK || ''',''' || VERISEQ || ''',''' || NBAPNO || ''',''' ||
+		                                 NBSEQNO || ''',''' || NBISSUYM || ''',''' || NBPAYYM || ''',''' ||
+		                                 NBMTESTMK || ''',''' || NBVERISEQ || ''',''' || NBISSUEAMT ||
+		                                 ''',''' || PROCTIME || ''',''' || NBLABMERGE || ''',''' || NBPAYKIND ||
+		                                 ''');' AS DETAILSQL
+		                  FROM BA.BANBDAPR 
+		                  WHERE APNO = #apno:VARCHAR#
+		                  UNION ALL
+		                  SELECT 'INSERT INTO BAPASSLIST (SEQNUM,ISSUYM,PAYYM,APNO,MANCHKMK,EXEDATE,CHKDATE) 
+		                          VALUES(''' || SEQNUM || ''',''' || ISSUYM ||
+		                             ''',''' || PAYYM || ''',''' || APNO || ''',''' || MANCHKMK ||
+		                             ''',''' || EXEDATE || ''',''' || CHKDATE || ''');' AS DETAILSQL
+		                  FROM BA.BAPASSLIST
+		                  WHERE APNO = #apno:VARCHAR#
+		                  UNION ALL
+		                  SELECT 'INSERT INTO BAPAY (APNO,SEQNO,PAYKIND,INSKD,ORIISSUYM,ISSUYM,PAYYM,ISSUTYP,CASETYP,BENIDS,BENIDN,BENNAME,PAYTYP,ACCSEQNO,ACCNAME,ACCIDN,PAYBANKID,BRANCHID,PAYEEACC,
+						          PAYAMT,MITRATE,DLINEDATE,DLINESEQNO,PROCTIME,BENEVTREL,PAYDATE,DLINEMK,PAYSEQNO,NLWKMK,ADWKMK,NACHGMK
+		                        )VALUES(''' || APNO || ''',''' || SEQNO || ''',''' ||
+		                               PAYKIND || ''',''' || INSKD || ''',''' || ORIISSUYM || ''',''' ||
+		                               ISSUYM || ''',''' || PAYYM || ''',''' || ISSUTYP || ''',''' ||
+		                               CASETYP || ''',''' || BENIDS || ''',''' || BENIDN || ''',''' ||
+		                               BENNAME || ''',''' || PAYTYP || ''',''' || ACCSEQNO || ''',''' ||
+		                               ACCNAME || ''',''' || ACCIDN || ''',''' || PAYBANKID || ''',''' ||
+		                               BRANCHID || ''',''' || PAYEEACC || ''',''' || PAYAMT || ''',''' ||
+		                               MITRATE || ''',''' || DLINEDATE || ''',''' || DLINESEQNO || ''',''' ||
+		                               PROCTIME || ''',''' || BENEVTREL || ''',''' || PAYDATE || ''',''' ||
+		                               DLINEMK || ''',''' || PAYSEQNO || ''',''' || NLWKMK || ''',''' ||
+		                               ADWKMK || ''',''' || NACHGMK || ''');' AS DETAILSQL
+		                   FROM BA.BAPAY 
+		                   WHERE APNO = #apno:VARCHAR#
+		                   UNION ALL 
+		                   SELECT 'INSERT INTO BAPAYRPTACCOUNT (RPTTYP,CPRNDATE,RPTPAGE,PAYCODE,ISSUYM,PAYTYP,CHKDATE,ACCOUNTSEQ,SEQNO,BENEVTREL,ACCOUNTNO,ACCOUNTNAME, PAYAMT,PAYSEQNO,NACHGMK,
+						           PROCTIME,NLWKMK,ADWKMK,ACCOUNTMEMO,OPPACCOUNTNO,OPPACCOUNTNAME,ACTTITLEAPCODE,DATACD,DECIDEAMT,CASHAMT,CUTAMT,ACCEPTPAYTYPE,CNT,ERPTPAGE,ACCOUNTTOPFMK,ISSUTYP,APNO,APSEQNO,STS
+		                            ) VALUES(''' || RPTTYP || ''',''' ||
+		                                   CPRNDATE || ''',''' || RPTPAGE || ''',''' || PAYCODE || ''',''' ||
+		                                   ISSUYM || ''',''' || PAYTYP || ''',''' || CHKDATE || ''',''' ||
+		                                   ACCOUNTSEQ || ''',''' || SEQNO || ''',''' || BENEVTREL || ''',''' ||
+		                                   ACCOUNTNO || ''',''' || ACCOUNTNAME || ''',''' || PAYAMT || ''',''' ||
+		                                   PAYSEQNO || ''',''' || NACHGMK || ''',''' || PROCTIME || ''',''' ||
+		                                   NLWKMK || ''',''' || ADWKMK || ''',''' || ACCOUNTMEMO || ''',''' ||
+		                                   OPPACCOUNTNO || ''',''' || OPPACCOUNTNAME || ''',''' ||
+		                                   ACTTITLEAPCODE || ''',''' || DATACD || ''',''' || DECIDEAMT ||
+		                                   ''',''' || CASHAMT || ''',''' || CUTAMT || ''',''' || ACCEPTPAYTYPE ||
+		                                   ''',''' || CNT || ''',''' || ERPTPAGE || ''',''' || ACCOUNTTOPFMK ||
+		                                   ''',''' || ISSUTYP || ''',''' || APNO || ''',''' || APSEQNO ||
+		                                   ''',''' || STS || ''');' AS DETAILSQL
+		                    FROM BA.BAPAYRPTACCOUNT
+		                    WHERE APNO = #apno:VARCHAR#
+		                    UNION ALL
+		                    SELECT 'INSERT INTO BAPAYRPTRECORD (RPTTYP,CPRNDATE,RPTPAGE,PAYDATE,CHKDATE,APNO,SEQNO,PAYCODE,PAYKIND,ISSUTYP,CASETYP,ISSUYM,PAYYM,TATYP, DATAKD,PAYTYP,BENIDS,BENIDN,BENNAME,COMMZIP,
+							       COMMADDR,COMMTEL,PAYBANKID,BRANCHID,PAYEEACC,ISSUEAMT,PAYAMT,MITRATE,OTHERAAMT,OTHERBAMT,OFFSETAMT,COMPENAMT,INHERITORAMT,ITRTTAX,OTHERAMT,RPTNOTE,DLINEDATE,DLINESEQNO,HJMK,
+		                           OTHERAPNO1,OTHERSEQNO1,PROCTIME,BENEVTREL,ACCIDN,ACCNAME,COMPID1,COMPNAME1,SOURCEPAYTYP,UNACPAMT,COMPID2,COMPNAME2,PAYSEQNO,NACHGMK,NLWKMK,ADWKMK,RPTROWS,STS,EVTNAME
+		                          ) VALUES(''' || RPTTYP || ''',''' ||
+		                                 CPRNDATE || ''',''' || RPTPAGE || ''',''' || PAYDATE || ''',''' ||
+		                                 CHKDATE || ''',''' || APNO || ''',''' || SEQNO || ''',''' || PAYCODE ||
+		                                 ''',''' || PAYKIND || ''',''' || ISSUTYP || ''',''' || CASETYP ||
+		                                 ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' || TATYP || ''',''' ||
+		                                 DATAKD || ''',''' || PAYTYP || ''',''' || BENIDS || ''',''' ||
+		                                 BENIDN || ''',''' || BENNAME || ''',''' || COMMZIP || ''',''' ||
+		                                 COMMADDR || ''',''' || COMMTEL || ''',''' || PAYBANKID || ''',''' ||
+		                                 BRANCHID || ''',''' || PAYEEACC || ''',''' || ISSUEAMT || ''',''' ||
+		                                 PAYAMT || ''',''' || MITRATE || ''',''' || OTHERAAMT || ''',''' ||
+		                                 OTHERBAMT || ''',''' || OFFSETAMT || ''',''' || COMPENAMT || ''',''' ||
+		                                 INHERITORAMT || ''',''' || ITRTTAX || ''',''' || OTHERAMT || ''',''' ||
+		                                 RPTNOTE || ''',''' || DLINEDATE || ''',''' || DLINESEQNO || ''',''' || HJMK ||
+		                                 ''',''' || OTHERAPNO1 || ''',''' || OTHERSEQNO1 || ''',''' ||
+		                                 PROCTIME || ''',''' || BENEVTREL || ''',''' || ACCIDN || ''',''' ||
+		                                 ACCNAME || ''',''' || COMPID1 || ''',''' || COMPNAME1 || ''',''' ||
+		                                 SOURCEPAYTYP || ''',''' || UNACPAMT || ''',''' || COMPID2 || ''',''' ||
+		                                 COMPNAME2 || ''',''' || PAYSEQNO || ''',''' || NACHGMK || ''',''' ||
+		                                 NLWKMK || ''',''' || ADWKMK || ''',''' || RPTROWS || ''',''' || STS ||
+		                                 ''',''' || EVTNAME || ''');'  AS DETAILSQL
+		                     FROM BA.BAPAYRPTRECORD 
+		                     WHERE APNO = #apno:VARCHAR#
+		                     UNION ALL 
+		                     SELECT 'INSERT INTO BAPAYRPTSUM (RPTTYP,CPRNDATE,RPTPAGE,PAYTYP,PAYDATE,CHKDATE,PAYCODE,ISSUTYP,CASETYP,ISSUYM,BENEVTREL,APNOAMT,DATAAMT,ISSUEAMT,
+		                              OTHERAAMT,OTHERBAMT,MITRATE,OFFSETAMT,COMPENAMT,INHERITORAMT,ITRTTAX,OTHERAMT,PAYAMT,PAYSEQNO,RPTNOTE,NACHGMK,PROCTIME,NLWKMK,ADWKMK,UNACPAMT,
+									  APNO,APSEQNO,STS
+		                            ) VALUES(''' || RPTTYP || ''',''' || CPRNDATE ||
+		                                   ''',''' || RPTPAGE || ''',''' || PAYTYP || ''',''' || PAYDATE ||
+		                                   ''',''' || CHKDATE || ''',''' || PAYCODE || ''',''' || ISSUTYP ||
+		                                   ''',''' || CASETYP || ''',''' || ISSUYM || ''',''' || BENEVTREL ||
+		                                   ''',''' || APNOAMT || ''',''' || DATAAMT || ''',''' || ISSUEAMT ||
+		                                   ''',''' || OTHERAAMT || ''',''' || OTHERBAMT || ''',''' || MITRATE ||
+		                                   ''',''' || OFFSETAMT || ''',''' || COMPENAMT || ''',''' ||
+		                                   INHERITORAMT || ''',''' || ITRTTAX || ''',''' || OTHERAMT || ''',''' ||
+		                                   PAYAMT || ''',''' || PAYSEQNO || ''',''' || RPTNOTE || ''',''' ||
+		                                   NACHGMK || ''',''' || PROCTIME || ''',''' || NLWKMK || ''',''' ||
+		                                   ADWKMK || ''',''' || UNACPAMT || ''',''' || APNO || ''',''' ||
+		                                   APSEQNO || ''',''' || STS || ''');' AS DETAILSQL
+		                     FROM BA.BAPAYRPTSUM 
+		                     WHERE APNO = #apno:VARCHAR#
+		                     UNION ALL
+		                     SELECT 'INSERT INTO BAPFLBAC (APNO,SEQNO,PAYDATE,ISSUYM,PAYYM,INSDK,ISSUKIND,BRCHKDATE,BRMK,AFMK,BRNOTE,BLIACCOUNT,BENTYP,BENIDS,BENIDN,BENNAME,ISSUTYP,
+		                              PAYTYP,PAYBANKID,BRANCHID,PAYEEACC,ACCIDN,ACCNAME,ACCSEQNO,COMMZIP,COMMADDR,BRADDR,COMMTEL,REMITAMT,RECHKMAN,RECHKDATE,CONFIRMMAN,CONFIRMDATE,
+									  CONFIRMRECDATE,ACTTITLEAPCODE,CPRNDATE,RPTPAGE,RPTROWS,PROCUSER,PROCDEPTID,PROCIP,UPDTIME,ORIISSUYM,BRISSUYM,REPAYSEQNO,STEXPNDRECMK,STEXPNDRECDATE,NLWKMK,ADWKMK
+		                            ) VALUES(''' || APNO || ''',''' || SEQNO ||
+		                                   ''',''' || PAYDATE || ''',''' || ISSUYM || ''',''' || PAYYM ||
+		                                   ''',''' || INSDK || ''',''' || ISSUKIND || ''',''' || BRCHKDATE ||
+		                                   ''',''' || BRMK || ''',''' || AFMK || ''',''' || BRNOTE || ''',''' ||
+		                                   BLIACCOUNT || ''',''' || BENTYP || ''',''' || BENIDS || ''',''' ||
+		                                   BENIDN || ''',''' || BENNAME || ''',''' || ISSUTYP || ''',''' ||
+		                                   PAYTYP || ''',''' || PAYBANKID || ''',''' || BRANCHID || ''',''' ||
+		                                   PAYEEACC || ''',''' || ACCIDN || ''',''' || ACCNAME || ''',''' ||
+		                                   ACCSEQNO || ''',''' || COMMZIP || ''',''' || COMMADDR || ''',''' ||
+		                                   BRADDR || ''',''' || COMMTEL || ''',''' || REMITAMT || ''',''' ||
+		                                   RECHKMAN || ''',''' || RECHKDATE || ''',''' || CONFIRMMAN || ''',''' ||
+		                                   CONFIRMDATE || ''',''' || CONFIRMRECDATE || ''',''' ||
+		                                   ACTTITLEAPCODE || ''',''' || CPRNDATE || ''',''' || RPTPAGE ||
+		                                   ''',''' || RPTROWS || ''',''' || PROCUSER || ''',''' || PROCDEPTID ||
+		                                   ''',''' || PROCIP || ''',''' || UPDTIME || ''',''' || ORIISSUYM ||
+		                                   ''',''' || BRISSUYM || ''',''' || REPAYSEQNO || ''',''' ||
+		                                   STEXPNDRECMK || ''',''' || STEXPNDRECDATE || ''',''' || NLWKMK ||
+		                                   ''',''' || ADWKMK || ''');' AS DETAILSQL
+		                      FROM BA.BAPFLBAC 
+		                      WHERE APNO = #apno:VARCHAR#
+		                      UNION ALL
+		                      SELECT 'INSERT INTO BARBF (APNO,HJSEQ,OTAPNO,SEQNO,ISSUYM,PAYYM,PAYKIND,MTESTMK,GVNAME,GVIDNNO,TEL1,RBAMT,RBDATE,RBST,STS,DATAKD) 
+		                              VALUES(''' || APNO || ''',''' || HJSEQ || ''',''' ||
+		                                 OTAPNO || ''',''' || SEQNO || ''',''' || ISSUYM || ''',''' || PAYYM ||
+		                                 ''',''' || PAYKIND || ''',''' || MTESTMK || ''',''' || GVNAME ||
+		                                 ''',''' || GVIDNNO || ''',''' || TEL1 || ''',''' || RBAMT || ''',''' ||
+		                                 RBDATE || ''',''' || RBST || ''',''' || STS || ''',''' || DATAKD ||
+		                                 ''');' AS DETAILSQL
+		                       FROM BA.BARBF 
+		                       WHERE OTAPNO = #apno:VARCHAR#
+		                       UNION ALL
+		                       SELECT 'INSERT INTO BAREGIVEDTL (APNO,SEQNO,ORIISSUYM,BRISSUYM,ISSUYM,PAYYM,TRANSACTIONID,INSKD,ISSUKIND,MK,BRMK,AFMK,WORKMK,AFCHKDATE,AFPAYDATE,BLIACCOUNT,BENTYP,
+							            BENIDS,BENIDN,BENNAME,ISSUTYP,PAYTYP,PAYBANKID,BRANCHID,PAYEEACC,ACCIDN,ACCNAME,ACCSEQNO,COMMZIP,COMMADDR,COMMTEL,REMITAMT,RECAMT,RECHKMAN,RECHKDATE,
+		                                EXEDATE,EXEMAN,ACTTITLEAPCODE,CPRNDATE,RPTPAGE,RPTROWS,GENMEDDATE,PROCUSER,PROCDEPTID,PROCIP,UPDTIME,TRANSACTIONSEQ,REPAYSEQNO,NLWKMK,ADWKMK
+		                            ) VALUES(''' || APNO || ''',''' || SEQNO ||
+		                                   ''',''' || ORIISSUYM || ''',''' || BRISSUYM || ''',''' || ISSUYM ||
+		                                   ''',''' || PAYYM || ''',''' || TRANSACTIONID || ''',''' || INSKD ||
+		                                   ''',''' || ISSUKIND || ''',''' || MK || ''',''' || BRMK || ''',''' || AFMK ||
+		                                   ''',''' || WORKMK || ''',''' || AFCHKDATE || ''',''' || AFPAYDATE ||
+		                                   ''',''' || BLIACCOUNT || ''',''' || BENTYP || ''',''' || BENIDS ||
+		                                   ''',''' || BENIDN || ''',''' || BENNAME || ''',''' || ISSUTYP ||
+		                                   ''',''' || PAYTYP || ''',''' || PAYBANKID || ''',''' || BRANCHID ||
+		                                   ''',''' || PAYEEACC || ''',''' || ACCIDN || ''',''' || ACCNAME ||
+		                                   ''',''' || ACCSEQNO || ''',''' || COMMZIP || ''',''' || COMMADDR ||
+		                                   ''',''' || COMMTEL || ''',''' || REMITAMT || ''',''' || RECAMT ||
+		                                   ''',''' || RECHKMAN || ''',''' || RECHKDATE || ''',''' || EXEDATE ||
+		                                   ''',''' || EXEMAN || ''',''' || ACTTITLEAPCODE || ''',''' ||
+		                                   CPRNDATE || ''',''' || RPTPAGE || ''',''' || RPTROWS || ''',''' ||
+		                                   GENMEDDATE || ''',''' || PROCUSER || ''',''' || PROCDEPTID ||
+		                                   ''',''' || PROCIP || ''',''' || UPDTIME || ''',''' || TRANSACTIONSEQ ||
+		                                   ''',''' || REPAYSEQNO || ''',''' || NLWKMK || ''',''' || ADWKMK ||
+		                                   ''');' AS DETAILSQL
+		                        FROM BA.BAREGIVEDTL 
+		                        WHERE APNO = #apno:VARCHAR#
+		                        UNION ALL
+		                        SELECT 'INSERT INTO BARXF (RXFAPNO,RXFIDNNO,RXFBRDATE,RXFNAME,APNO,SEQNO,BENIDNNO,BENBRDATE,BENNAME,EVTJOBDATE,DISPAYKIND,STS,SUBAMT,RBAMT,PRST,PRDTE,PRPNO,PRTMK,DATAKD
+		                                  ) VALUES(''' || RXFAPNO || ''',''' || RXFIDNNO ||
+		                                         ''',''' || RXFBRDATE || ''',''' || RXFNAME || ''',''' || APNO ||
+		                                         ''',''' || SEQNO || ''',''' || BENIDNNO || ''',''' || BENBRDATE ||
+		                                         ''',''' || BENNAME || ''',''' || EVTJOBDATE || ''',''' || DISPAYKIND ||
+		                                         ''',''' || STS || ''',''' || SUBAMT || ''',''' || RBAMT || ''',''' || PRST ||
+		                                         ''',''' || PRDTE || ''',''' || PRPNO || ''',''' || PRTMK || ''',''' ||
+		                                         DATAKD || ''');' AS DETAILSQL
+		                        FROM BA.BARXF 
+		                        WHERE APNO = #apno:VARCHAR#
+		                        UNION ALL
+		                        SELECT 'INSERT INTO BASTUDTERM (APNO,SEQNO,TERMNO,STUDSDATE,STUDEDATE,CRTUSER,CRTTIME,UPDUSER,UPDTIME) 
+		                                 VALUES(''' || APNO || ''',''' || SEQNO ||
+		                                     ''',''' || TERMNO || ''',''' || STUDSDATE || ''',''' || STUDEDATE ||
+		                                     ''',''' || CRTUSER || ''',''' || CRTTIME || ''',''' || UPDUSER ||
+		                                     ''',''' || UPDTIME || ''');' AS DETAILSQL
+		                         FROM BA.BASTUDTERM 
+		                         WHERE APNO = #apno:VARCHAR#
+		                         UNION ALL
+		                         SELECT 'INSERT INTO BAUNACPDTL (BAUNACPDTLID,APNO,SEQNO,ISSUYM,PAYYM,BENIDS,BENIDNNO,PAYKIND,WRITEOFFNO,RECAMT,RECREM,UNACPDATE,DUENOTICE,NOTICEDATE,DEMMK,DEMDATE,TDEMWORKTYPE,
+		                                TDEMDATE,BDEBTMK,BDEBTDATE,BDEBTWORKTYPE,TBDEBTDATE,ADENFORCEM,ADENFORCED,SERAPMK,SERAPNO,STGCNT,BILLNUM,ACTENDMK,RECHKMK,MDCHKMK,CPRNDATE,CPRNPAGE,TXDATE,STS,TYPEMK,NLWKMK,
+										ADWKMK,NACHGMK,RPTROWS,BDEBTYEAR
+		                              )VALUES(''' || BAUNACPDTLID || ''',''' || APNO ||
+		                                     ''',''' || SEQNO || ''',''' || ISSUYM || ''',''' || PAYYM || ''',''' ||
+		                                     BENIDS || ''',''' || BENIDNNO || ''',''' || PAYKIND || ''',''' ||
+		                                     WRITEOFFNO || ''',''' || RECAMT || ''',''' || RECREM || ''',''' ||
+		                                     UNACPDATE || ''',''' || DUENOTICE || ''',''' || NOTICEDATE ||
+		                                     ''',''' || DEMMK || ''',''' || DEMDATE || ''',''' || TDEMWORKTYPE ||
+		                                     ''',''' || TDEMDATE || ''',''' || BDEBTMK || ''',''' || BDEBTDATE ||
+		                                     ''',''' || BDEBTWORKTYPE || ''',''' || TBDEBTDATE || ''',''' ||
+		                                     ADENFORCEM || ''',''' || ADENFORCED || ''',''' || SERAPMK || ''',''' ||
+		                                     SERAPNO || ''',''' || STGCNT || ''',''' || BILLNUM || ''',''' ||
+		                                     ACTENDMK || ''',''' || RECHKMK || ''',''' || MDCHKMK || ''',''' ||
+		                                     CPRNDATE || ''',''' || CPRNPAGE || ''',''' || TXDATE || ''',''' || STS ||
+		                                     ''',''' || TYPEMK || ''',''' || NLWKMK || ''',''' || ADWKMK ||
+		                                     ''',''' || NACHGMK || ''',''' || RPTROWS || ''',''' || BDEBTYEAR ||
+		                                     ''');'  AS DETAILSQL
+		                           FROM BA.BAUNACPDTL 
+		                           WHERE APNO = #apno:VARCHAR#
+		                           UNION ALL
+		                           SELECT 'INSERT INTO BAUNQUALIFIEDNOTICE (BAAPPBASEID,APNO,CASETYP,ISSUYM,SEQNO,BENIDNNO,BENNAME,UNQUALIFIEDCAUSE,NOTIFYFORM,CRTUSER,CRTTIME) 
+		                                  VALUES(''' || BAAPPBASEID ||
+		                                       ''',''' || APNO || ''',''' || CASETYP || ''',''' || ISSUYM ||
+		                                       ''',''' || SEQNO || ''',''' || BENIDNNO || ''',''' || BENNAME ||
+		                                       ''',''' || UNQUALIFIEDCAUSE || ''',''' || NOTIFYFORM || ''',''' ||
+		                                       CRTUSER || ''',''' || CRTTIME || ''');'  AS DETAILSQL
+		                            FROM BA.BAUNQUALIFIEDNOTICE 
+		                            WHERE APNO = #apno:VARCHAR#
+		                            UNION ALL
+		                            SELECT 'INSERT INTO BALP0D020 (BALP0D020ID,PAYCODE,APNO,SEQNO,ISSUYM,VERISEQ,CASETYP,MCHKTYP,PAYSYM,PAYEYM,TISSUEAMT,TAPLPAYAMT,RPTDATE,PAGENO,ACCEPTMK,MANCHKMK,MEXCLVL,REALEXCLVL,CHKDATE,CHKMAN,
+		                                    RECHKDATE,RECHKMAN,EXEDATE,EXEMAN,EXEMK,EVTIDS,EVTIDNNO,EVTBRDATE,EVTNAME,BENIDS,BENIDNNO,BENBRDATE,BENNAME,PROCMK,CRTUSER,CRTTIME
+		                                  ) VALUES(''' || BALP0D020ID || ''',''' ||
+		                                         PAYCODE || ''',''' || APNO || ''',''' || SEQNO || ''',''' || ISSUYM ||
+		                                         ''',''' || VERISEQ || ''',''' || CASETYP || ''',''' || MCHKTYP ||
+		                                         ''',''' || PAYSYM || ''',''' || PAYEYM || ''',''' || TISSUEAMT ||
+		                                         ''',''' || TAPLPAYAMT || ''',''' || RPTDATE || ''',''' || PAGENO ||
+		                                         ''',''' || ACCEPTMK || ''',''' || MANCHKMK || ''',''' || MEXCLVL ||
+		                                         ''',''' || REALEXCLVL || ''',''' || CHKDATE || ''',''' || CHKMAN ||
+		                                         ''',''' || RECHKDATE || ''',''' || RECHKMAN || ''',''' || EXEDATE ||
+		                                         ''',''' || EXEMAN || ''',''' || EXEMK || ''',''' || EVTIDS ||
+		                                         ''',''' || EVTIDNNO || ''',''' || EVTBRDATE || ''',''' || EVTNAME ||
+		                                         ''',''' || BENIDS || ''',''' || BENIDNNO || ''',''' || BENBRDATE ||
+		                                         ''',''' || BENNAME || ''',''' || PROCMK || ''',''' || CRTUSER ||
+		                                         ''',''' || CRTTIME || ''');' AS DETAILSQL
+		                            FROM BA.BALP0D020 
+		                            WHERE APNO = #apno:VARCHAR#
+		                            UNION ALL
+		                            SELECT 'INSERT INTO BA.CIPB (INTYP,IDN,BRDTE,NAME,SEX,FMK,NOVMK,EMK,CMK,IVMK,PRDTE,QMK,BSCD,CBMK,BMK,UINMK,OFIMK,POM,KMK,CVEPT,ITRMY,ITRMD,DEPTY,
+		                                    DEPTD,OLDTY,OLDTD,AVGWG,AVGM,EFMK,NITRMY,NITRMM,NOLDTY,NOLDTM,ITRMD_15,HAVGWG,HAVGM,DWCMK,MPMK,PROCDATE,HBEDMK,HMK,CIID,ADJYM,ADJMK,APNO,SEQNO,HDMK,SAMTY,SAMTD,
+		                                    )VALUES(''' || INTYP || ''',''' || IDN ||
+		                                           ''',''' || BRDTE || ''',''' || NAME || ''',''' || SEX || ''',''' || FMK ||
+		                                           ''',''' || NOVMK || ''',''' || EMK || ''',''' || CMK || ''',''' || IVMK ||
+		                                           ''',''' || PRDTE || ''',''' || QMK || ''',''' || BSCD || ''',''' || CBMK ||
+		                                           ''',''' || BMK || ''',''' || UINMK || ''',''' || OFIMK || ''',''' || POM ||
+		                                           ''',''' || KMK || ''',''' || CVEPT || ''',''' || ITRMY || ''',''' ||
+		                                           ITRMD || ''',''' || DEPTY || ''',''' || DEPTD || ''',''' || OLDTY ||
+		                                           ''',''' || OLDTD || ''',''' || AVGWG || ''',''' || AVGM || ''',''' || EFMK ||
+		                                           ''',''' || NITRMY || ''',''' || NITRMM || ''',''' || NOLDTY ||
+		                                           ''',''' || NOLDTM || ''',''' || ITRMD_15 || ''',''' || HAVGWG ||
+		                                           ''',''' || HAVGM || ''',''' || DWCMK || ''',''' || MPMK || ''',''' ||
+		                                           PROCDATE || ''',''' || HBEDMK || ''',''' || HMK || ''',''' || CIID ||
+		                                           ''',''' || ADJYM || ''',''' || ADJMK || ''',''' || APNO || ''',''' ||
+		                                           SEQNO || ''',''' || HDMK || ''',''' || SAMTY || ''',''' || SAMTD ||
+		                                           ''');'  AS DETAILSQL
+		                             FROM BA.CIPB 
+		                             WHERE APNO = #apno:VARCHAR#
+		                             UNION ALL
+		                             SELECT 'INSERT INTO BA.CIPT (INTYP,IDN,BRDTE,NAME,SEX,FMK,NOVMK,EMK,CMK,IVMK,PRDTE,QMK,BSCD,CBMK,BMK,UINMK,OFIMK,POM,KMK,CVEPT,ITRMY,ITRMD,DEPTY,DEPTD,OLDTY,OLDTD,AVGWG,
+		                                      AVGM,EFMK,NITRMY,NITRMM,NOLDTY,NOLDTM,ITRMD_15,HAVGWG,HAVGM,DWCMK,MPMK,PROCDATE,HBEDMK,HMK,CIID,ADJYM,ADJMK,APNO,SEQNO,HDMK,SAMTY,SAMTD
+		                                    )VALUES(''' || INTYP || ''',''' || IDN ||
+		                                           ''',''' || UNO || ''',''' || UNOCK || ''',''' || SEQNO || ''',''' || TXCD ||
+		                                           ''',''' || EFDTE || ''',''' || WAGE || ''',''' || DEPT || ''',''' || BSMN ||
+		                                           ''',''' || STAFF || ''',''' || SIDMK || ''',''' || TSMK || ''',''' ||
+		                                           NRPMK || ''',''' || FILL || ''',''' || PRODTE || ''',''' || APNO ||
+		                                           ''',''' || APSEQNO || ''');' AS DETAILSQL
+		                              FROM BA.CIPT
+		                              WHERE APNO = #apno:VARCHAR#
+		                              UNION ALL
+		                              SELECT 'INSERT INTO BA.CIPG (INTYP,IDN,AVGTYP,AVGMYM,AVGWG,PRODTE,APNO,SEQNO,CIID,DWMK) VALUES(''' || INTYP || ''',''' || IDN ||
+		                                     ''',''' || AVGTYP || ''',''' || AVGMYM || ''',''' || AVGWG ||
+		                                     ''',''' || PRODTE || ''',''' || APNO || ''',''' || SEQNO || ''',''' || CIID ||
+		                                     ''',''' || DWMK || ''');' AS DETAILSQL
+		                               FROM BA.CIPG  WHERE APNO = #apno:VARCHAR#
+		                               UNION ALL
+		                               SELECT DISTINCT  'INSERT INTO BLIADM.MBLNM(BANKCD,BRNO,SEQNO,IDN_APLY,BRDTE_APLY,NAME_APLY,PCODE_APLY,DATE_APLY,MONEY_APLY,TELNO1,TELNO2,ACPTDTE,UPDATEDTE,EDMRK,
+		                                                  BRDTE_LIB,NAME_LIB,PCODE_EXM,CITRMY,CITRMD,OK_EXM,DATE_EXM,MONEY_EXM,ACCOUNT_PAY,DATE_PAY,MONEY_PAY,LOAN_TERM,AADEMONEY,ADETIMES,ARINT,NRMONEY,
+		                                                  OWMONEY,OWINT,ACHKDTE,PDATE,EMRK,EDATE,MNEQ,IDN_LIB,CITRM_MRK,DUP,FILLER_05,CREATOR,CREATDTE,MODUSR,MODDTE
+		                                                ) VALUES(''' || B.BANKCD || ''',''' ||
+		                                                       B.BRNO || ''',''' || B.SEQNO || ''',''' || B.IDN_APLY || ''',''' ||
+		                                                       B.BRDTE_APLY || ''',''' || B.NAME_APLY || ''',''' || B.PCODE_APLY ||
+		                                                       ''',''' || B.DATE_APLY || ''',''' || B.MONEY_APLY || ''',''' ||
+		                                                       B.TELNO1 || ''',''' || B.TELNO2 || ''',''' || B.ACPTDTE || ''',''' ||
+		                                                       B.UPDATEDTE || ''',''' || B.EDMRK || ''',''' || B.BRDTE_LIB ||
+		                                                       ''',''' || B.NAME_LIB || ''',''' || B.PCODE_EXM || ''',''' ||
+		                                                       B.CITRMY || ''',''' || B.CITRMD || ''',''' || B.OK_EXM || ''',''' ||
+		                                                       B.DATE_EXM || ''',''' || B.MONEY_EXM || ''',''' || B.ACCOUNT_PAY ||
+		                                                       ''',''' || B.DATE_PAY || ''',''' || B.MONEY_PAY || ''',''' ||
+		                                                       B.LOAN_TERM || ''',''' || B.AADEMONEY || ''',''' || B.ADETIMES ||
+		                                                       ''',''' || B.ARINT || ''',''' || B.NRMONEY || ''',''' || B.OWMONEY ||
+		                                                       ''',''' || B.OWINT || ''',''' || B.ACHKDTE || ''',''' || B.PDATE ||
+		                                                       ''',''' || B.EMRK || ''',''' || B.EDATE || ''',''' || B.MNEQ ||
+		                                                       ''',''' || B.IDN_LIB || ''',''' || B.CITRM_MRK || ''',''' || B.DUP ||
+		                                                       ''',''' || B.FILLER_05 || ''',''' || B.CREATOR || ''',''' ||
+		                                                       B.CREATDTE || ''',''' || B.MODUSR || ''',''' || B.MODDTE || ''');'  AS DETAILSQL
+		                                   FROM BLIADM.MBLNM B, BA.BAAPPBASE A WHERE  A.APNO = #apno:VARCHAR# AND (A.EVTIDNNO = B.IDN_APLY OR A.EVTIDNNO = B.IDN_LIB)
+		                                   UNION ALL
+		                                   SELECT DISTINCT 'INSERT INTO BLIADM.ACTMASTER (IDN_11,BIRTHDT,NAME,LAST_ISSUE_DT,RETIRE_PAY1,RETIRE_PAY,BAL,LAST_UPD_DT) 
+		                                                   VALUES(''' || B.IDN_11 || ''',''' ||
+		                                                       B.BIRTHDT || ''',''' || B.NAME || ''',''' || B.LAST_ISSUE_DT ||
+		                                                       ''',''' || B.RETIRE_PAY1 || ''',''' || B.RETIRE_PAY || ''',''' ||
+		                                                       B.BAL || ''',''' || B.LAST_UPD_DT || ''');' AS DETAILSQL
+		                                   FROM BLIADM.ACTMASTER B, BA.BAAPPBASE A 
+		                                   WHERE A.APNO = #apno:VARCHAR# AND ( B.IDN_11 LIKE A.EVTIDNNO || '%' )
+		                                   UNION ALL
+		                                   SELECT 'INSERT INTO BLIADM.MAADMREC (MAADMRECID,APNO,PRODATE,LETTERTYPE,SEQNO,ISSUYM,IMK,RPNO,SLRELATE,UNITNO,IDNO,NAME,BRDATE,SUBNO,PRODEPNO,
+										          SLRPNO,SLDATE,UNNO,UNDES,CASETYP,NOTE,DEALDESC,NDOMK1,NDOMK2,SECLVL,SDDMK,PROMOTEUSER,SAVEYEAR,DELMK,SUPFLOWMK,CHGMK,UPADMMK,CHKMK,BDMK,
+												  HURRYMK,RECHKMK,FINISHDATE,ADDRMK,OWESYM,OWEEYM,PRTYP,RELIEFCAUSE,RELIEFTYP,RELIEFKIND,RELIEFSTAT,CLOSDATE,CLOSEMK,CLOSENO,HPNO,INJSER,IDS,
+												  SOURCE,OMDATE,CRTUSER,CRTTIME,UPDUSER,UPDTIME
+		                                        ) VALUES(''' || MAADMRECID || ''',''' || APNO ||
+		                                               ''',''' || PRODATE || ''',''' || LETTERTYPE || ''',''' || SEQNO ||
+		                                               ''',''' || ISSUYM || ''',''' || IMK || ''',''' || RPNO || ''',''' ||
+		                                               SLRELATE || ''',''' || UNITNO || ''',''' || IDNO || ''',''' || NAME ||
+		                                               ''',''' || BRDATE || ''',''' || SUBNO || ''',''' || PRODEPNO ||
+		                                               ''',''' || SLRPNO || ''',''' || SLDATE || ''',''' || UNNO || ''',''' ||
+		                                               UNDES || ''',''' || CASETYP || ''',''' || NOTE || ''',''' ||
+		                                               DEALDESC || ''',''' || NDOMK1 || ''',''' || NDOMK2 || ''',''' ||
+		                                               SECLVL || ''',''' || SDDMK || ''',''' || PROMOTEUSER || ''',''' ||
+		                                               SAVEYEAR || ''',''' || DELMK || ''',''' || SUPFLOWMK || ''',''' ||
+		                                               CHGMK || ''',''' || UPADMMK || ''',''' || CHKMK || ''',''' || BDMK ||
+		                                               ''',''' || HURRYMK || ''',''' || RECHKMK || ''',''' || FINISHDATE ||
+		                                               ''',''' || ADDRMK || ''',''' || OWESYM || ''',''' || OWEEYM ||
+		                                               ''',''' || PRTYP || ''',''' || RELIEFCAUSE || ''',''' || RELIEFTYP ||
+		                                               ''',''' || RELIEFKIND || ''',''' || RELIEFSTAT || ''',''' ||
+		                                               CLOSDATE || ''',''' || CLOSEMK || ''',''' || CLOSENO || ''',''' || HPNO ||
+		                                               ''',''' || INJSER || ''',''' || IDS || ''',''' || SOURCE || ''',''' ||
+		                                               OMDATE || ''',''' || CRTUSER || ''',''' || CRTTIME || ''',''' ||
+		                                               UPDUSER || ''',''' || UPDTIME || ''');' AS DETAILSQL 
+		                                   FROM BLIADM.MAADMREC 
+		                                   WHERE APNO = #apno:VARCHAR#
+		                                   UNION ALL
+		                                   SELECT 'INSERT INTO NPS.NPOBSL (NPIDS,OBGVIDN,OBGVEBDATE,OBGVNAME,OBOFGOVCD,EFFDTE,OBSLBDATE,EFFMK,KIND,OBSLPAYAMT,REASON,SENIYY,
+		                                          SENIDD,DATEBDT,OBSLINDATE,OBSLTXDATE,OBSLTXCODE,OBSLFZCODE,CREATOR,CREATDT,UPDATOR,UPDATDT,OBSLCODE
+		                                          ) VALUES(''' || B.NPIDS || ''',''' ||
+		                                                 B.OBGVIDN || ''',''' || B.OBGVEBDATE || ''',''' || B.OBGVNAME ||
+		                                                 ''',''' || B.OBOFGOVCD || ''',''' || B.EFFDTE || ''',''' ||
+		                                                 B.OBSLBDATE || ''',''' || B.EFFMK || ''',''' || B.KIND || ''',''' ||
+		                                                 B.OBSLPAYAMT || ''',''' || B.REASON || ''',''' || B.SENIYY ||
+		                                                 ''',''' || B.SENIDD || ''',''' || B.DATEBDT || ''',''' ||
+		                                                 B.OBSLINDATE || ''',''' || B.OBSLTXDATE || ''',''' || B.OBSLTXCODE ||
+		                                                 ''',''' || B.OBSLFZCODE || ''',''' || B.CREATOR || ''',''' ||
+		                                                 B.CREATDT || ''',''' || B.UPDATOR || ''',''' || B.UPDATDT || ''',''' ||
+		                                                 B.OBSLCODE || ''');' AS DETAILSQL 
+		                                    FROM BA.BAAPPBASE A , NPS.NPOBSL B 
+		                                    WHERE A.APNO = #apno:VARCHAR# AND  B.OBGVIDN = A.EVTIDNNO AND A.EVTBRDATE = B.OBGVEBDATE AND A.SEQNO = '0000'
+		                                    UNION ALL
+		                                    SELECT 'INSERT INTO NPS.NPOBOF (OBGVIDN,OBGVEBDATE,OBGVNAME,NPIDS,OBOFOAYDTE,OBOFPAYAMT,OBOFINDATE,OBOFTXCODE,OBOFTXDATE,OBOFFZCODE,OBOFGOVCD,OBOFRMK,
+		                                            EFFDTE,EFFMK,KIND,CREATOR,CREATDT,UPDATOR,UPDATDT,SENIYY,SENIDD,DATEBDT
+		                                            ) VALUES(''' || B.OBGVIDN || ''',''' ||
+		                                                 B.OBGVEBDATE || ''',''' || B.OBGVNAME || ''',''' || B.NPIDS ||
+		                                                 ''',''' || B.OBOFOAYDTE || ''',''' || B.OBOFPAYAMT || ''',''' ||
+		                                                 B.OBOFINDATE || ''',''' || B.OBOFTXCODE || ''',''' || B.OBOFTXDATE ||
+		                                                 ''',''' || B.OBOFFZCODE || ''',''' || B.OBOFGOVCD || ''',''' ||
+		                                                 B.OBOFRMK || ''',''' || B.EFFDTE || ''',''' || B.EFFMK || ''',''' ||
+		                                                 B.KIND || ''',''' || B.CREATOR || ''',''' || B.CREATDT || ''',''' ||
+		                                                 B.UPDATOR || ''',''' || B.UPDATDT || ''',''' || B.SENIYY || ''',''' ||
+		                                                 B.SENIDD || ''',''' || B.DATEBDT || ''');'  AS DETAILSQL 
+		                                     FROM NPS.NPOBOF B, BA.BAAPPBASE A 
+		                                     WHERE A.APNO = #apno:VARCHAR# AND  B.OBGVIDN = A.EVTIDNNO AND A.EVTBRDATE = B.OBGVEBDATE AND A.SEQNO = '0000'
+		                                     UNION ALL
+		                                     SELECT DISTINCT 'INSERT INTO NPS.SDALIST (IDN,BDATE,NAME,NPIDS,DATAKIND,ASSMK,TRANKIND,APYM,GETDATE,HHSN,TXDATE,DELFLG,CREUSERID,CREDT,UPDUSERID,UPDDT,HHSN_OLD
+		                                                      ) VALUES(''' || B.IDN || ''',''' || B.BDATE ||
+		                                                             ''',''' || B.NAME || ''',''' || B.NPIDS || ''',''' || B.DATAKIND ||
+		                                                             ''',''' || B.ASSMK || ''',''' || B.TRANKIND || ''',''' || B.APYM ||
+		                                                             ''',''' || B.GETDATE || ''',''' || B.HHSN || ''',''' || B.TXDATE ||
+		                                                             ''',''' || B.DELFLG || ''',''' || B.CREUSERID || ''',''' || B.CREDT ||
+		                                                             ''',''' || B.UPDUSERID || ''',''' || B.UPDDT || ''',''' ||
+		                                                             B.HHSN_OLD || ''');'  AS DETAILSQL 
+		                                      FROM NPS.SDALIST B, BA.BAAPPBASE A 
+		                                      WHERE A.APNO = #apno:VARCHAR#  AND A.BENIDNNO = B.IDN
+		                                      UNION ALL
+		                                      SELECT DISTINCT 'INSERT INTO NPS.NBSCHOOL (KEY,SCHOOLID,STUDENTID,STATUS_S,STATUSDATE_S,CRTDT_S,DELFLG_S,STATUS_E,STATUSDATE_E,CRTDT_E,DELFLG_E,PRCDT,DELFLG
+		                                                      ) VALUES(''' || B.KEY || ''',''' ||
+		                                                             B.SCHOOLID || ''',''' || B.STUDENTID || ''',''' || B.STATUS_S ||
+		                                                             ''',''' || B.STATUSDATE_S || ''',''' || B.CRTDT_S || ''',''' ||
+		                                                             B.DELFLG_S || ''',''' || B.STATUS_E || ''',''' || B.STATUSDATE_E ||
+		                                                             ''',''' || B.CRTDT_E || ''',''' || B.DELFLG_E || ''',''' || B.PRCDT ||
+		                                                             ''',''' || B.DELFLG || ''');' AS DETAILSQL 
+		                                       FROM NPS.NBSCHOOL B, BA.BAAPPBASE A  
+		                                       WHERE A.APNO = #apno:VARCHAR#  AND A.BENIDNNO = B.KEY
+		                                       UNION ALL
+		                                       SELECT DISTINCT  'INSERT INTO NPS.NBAPPBASE (APNO,SEQNO,BENIDS,PAYKIND,MAPNO,MAPROOTFLG,EVTDT,CASEKIND,APPDATE,EVTIDS,EVTEENAME,EVTIDNNO,EVTEEBIRT,
+		                                                        EVTSEX,EVTIDENT,BENEENAME,BENIDNNO,BENEEBIRT,BENSEX,BENEVTREL,NATIONTYPE,GRDNAME,GRDIDNNO,GRDBIRTH,ASSIGNNAME,ASSIGNIDNNO,ASSIGNBIRT,
+																PAYYM,ISSUEAMT,PAYBANKID,BRANCHID,PAYEEACC,ACCNAME,ACCIDN,ACCREL,MITRATE,PAYTYPE,PAYDT,PAYYMS,PAYYME,ADMSUPMARK,ADMMARK,SUPPLYFLG,CHGFLG,
+																UNPAYSTAT,SUPPLYMARK,VARISTAT,DELIFLG,SIGNMARK,MEXCLVL,REALEXCLVL,PROCFLG,PROCSTAT,ACCEPTMARK,MANCHKFLG,NOTIFYFORM,COMMTYPE,DIEDATE,CLOSEDT,
+																CHKDT,CHKMAN,EXEDT,EXEMAN,EXESTAT,ARCDT,ARCPG,PRFMLYFLG,MONINCOME,STUDFLG,MARRYDT,ABANACCEDE,ABANACCEDDT,REHCMK,HOSID,DOCTORNAME,HANDICAP,
+																DABLEVEL,DABTYPE,RECHKFLG,RECHKDT,HANDICAPDT,PAUSEYM,UNPAUSEYM,FUTURECHKDT,WORKFLG,DIADABDT,WORKFLGDT,PROMOTERID,CREUSERID,CREDT,NPSUPP,
+		                                                        MATESUPP,CHGITEM,CHGREASON,DIGAMY,CANCELFLG,CANCELYM,REEXAMFLG,REEXAMYM,INTERDICTDT,CANCEDICTDT,RELATCHGDT,ADOPTNFLG,EVTDIEDT,DISAPDATE,ISSUYM,
+																CLOSEREASON,COMMZIP,COMMADDR,COMMTEL,MOBILE,JUDGEDT,BATPROCFLG,CHOOSEFLG,CHOOSESDT,CHOOSEAPNO,NOTIFYFLG,HIDN,HNAME,HBIRTH,LABAPNO,LABAMT,
+		                                                        LABSENI,LIMITDT,OLIVCODE,KINDCHGDT,URGENT,DELAYDT,MOBILECHK,LABSALARY,LABMERGE,DABPART,RENEWDT,NPMERGE,BABIES,WEEKSBABYW,
+																WEEKSBABYD,LMP,URGENCY,CONFIRMRMK,GOBACK,REEXAMDICTYM,ALLOWDEBT,SCHID,SCHNM,SPECIALACC,SCHFLG,CALCLABDATE,CALCLABFLG,
+																STARTYM,APPTRACEDT
+		                                                      ) VALUES(''' || B.APNO || ''',''' ||
+		                                                             B.SEQNO || ''',''' || B.BENIDS || ''',''' || B.PAYKIND || ''',''' ||
+		                                                             B.MAPNO || ''',''' || B.MAPROOTFLG || ''',''' || B.EVTDT || ''',''' ||
+		                                                             B.CASEKIND || ''',''' || B.APPDATE || ''',''' || B.EVTIDS || ''',''' ||
+		                                                             B.EVTEENAME || ''',''' || B.EVTIDNNO || ''',''' || B.EVTEEBIRT ||
+		                                                             ''',''' || B.EVTSEX || ''',''' || B.EVTIDENT || ''',''' ||
+		                                                             B.BENEENAME || ''',''' || B.BENIDNNO || ''',''' || B.BENEEBIRT ||
+		                                                             ''',''' || B.BENSEX || ''',''' || B.BENEVTREL || ''',''' ||
+		                                                             B.NATIONTYPE || ''',''' || B.GRDNAME || ''',''' || B.GRDIDNNO ||
+		                                                             ''',''' || B.GRDBIRTH || ''',''' || B.ASSIGNNAME || ''',''' ||
+		                                                             B.ASSIGNIDNNO || ''',''' || B.ASSIGNBIRT || ''',''' || B.PAYYM ||
+		                                                             ''',''' || B.ISSUEAMT || ''',''' || B.PAYBANKID || ''',''' ||
+		                                                             B.BRANCHID || ''',''' || B.PAYEEACC || ''',''' || B.ACCNAME ||
+		                                                             ''',''' || B.ACCIDN || ''',''' || B.ACCREL || ''',''' || B.MITRATE ||
+		                                                             ''',''' || B.PAYTYPE || ''',''' || B.PAYDT || ''',''' || B.PAYYMS ||
+		                                                             ''',''' || B.PAYYME || ''',''' || B.ADMSUPMARK || ''',''' ||
+		                                                             B.ADMMARK || ''',''' || B.SUPPLYFLG || ''',''' || B.CHGFLG ||
+		                                                             ''',''' || B.UNPAYSTAT || ''',''' || B.SUPPLYMARK || ''',''' ||
+		                                                             B.VARISTAT || ''',''' || B.DELIFLG || ''',''' || B.SIGNMARK ||
+		                                                             ''',''' || B.MEXCLVL || ''',''' || B.REALEXCLVL || ''',''' ||
+		                                                             B.PROCFLG || ''',''' || B.PROCSTAT || ''',''' || B.ACCEPTMARK ||
+		                                                             ''',''' || B.MANCHKFLG || ''',''' || B.NOTIFYFORM || ''',''' ||
+		                                                             B.COMMTYPE || ''',''' || B.DIEDATE || ''',''' || B.CLOSEDT ||
+		                                                             ''',''' || B.CHKDT || ''',''' || B.CHKMAN || ''',''' || B.EXEDT ||
+		                                                             ''',''' || B.EXEMAN || ''',''' || B.EXESTAT || ''',''' || B.ARCDT ||
+		                                                             ''',''' || B.ARCPG || ''',''' || B.PRFMLYFLG || ''',''' ||
+		                                                             B.MONINCOME || ''',''' || B.STUDFLG || ''',''' || B.MARRYDT ||
+		                                                             ''',''' || B.ABANACCEDE || ''',''' || B.ABANACCEDDT || ''',''' ||
+		                                                             B.REHCMK || ''',''' || B.HOSID || ''',''' || B.DOCTORNAME || ''',''' ||
+		                                                             B.HANDICAP || ''',''' || B.DABLEVEL || ''',''' || B.DABTYPE ||
+		                                                             ''',''' || B.RECHKFLG || ''',''' || B.RECHKDT || ''',''' ||
+		                                                             B.HANDICAPDT || ''',''' || B.PAUSEYM || ''',''' || B.UNPAUSEYM ||
+		                                                             ''',''' || B.FUTURECHKDT || ''',''' || B.WORKFLG || ''',''' ||
+		                                                             B.DIADABDT || ''',''' || B.WORKFLGDT || ''',''' || B.PROMOTERID ||
+		                                                             ''',''' || B.CREUSERID || ''',''' || B.CREDT || ''',''' || B.NPSUPP ||
+		                                                             ''',''' || B.MATESUPP || ''',''' || B.CHGITEM || ''',''' ||
+		                                                             B.CHGREASON || ''',''' || B.DIGAMY || ''',''' || B.CANCELFLG ||
+		                                                             ''',''' || B.CANCELYM || ''',''' || B.REEXAMFLG || ''',''' ||
+		                                                             B.REEXAMYM || ''',''' || B.INTERDICTDT || ''',''' || B.CANCEDICTDT ||
+		                                                             ''',''' || B.RELATCHGDT || ''',''' || B.ADOPTNFLG || ''',''' ||
+		                                                             B.EVTDIEDT || ''',''' || B.DISAPDATE || ''',''' || B.ISSUYM ||
+		                                                             ''',''' || B.CLOSEREASON || ''',''' || B.COMMZIP || ''',''' ||
+		                                                             B.COMMADDR || ''',''' || B.COMMTEL || ''',''' || B.MOBILE || ''',''' ||
+		                                                             B.JUDGEDT || ''',''' || B.BATPROCFLG || ''',''' || B.CHOOSEFLG ||
+		                                                             ''',''' || B.CHOOSESDT || ''',''' || B.CHOOSEAPNO || ''',''' ||
+		                                                             B.NOTIFYFLG || ''',''' || B.HIDN || ''',''' || B.HNAME || ''',''' ||
+		                                                             B.HBIRTH || ''',''' || B.LABAPNO || ''',''' || B.LABAMT || ''',''' ||
+		                                                             B.LABSENI || ''',''' || B.LIMITDT || ''',''' || B.OLIVCODE ||
+		                                                             ''',''' || B.KINDCHGDT || ''',''' || B.URGENT || ''',''' ||
+		                                                             B.DELAYDT ||
+		                                                             ''',''' || B.MOBILECHK || ''',''' || B.LABSALARY || ''',''' ||
+		                                                             B.LABMERGE || ''',''' || B.DABPART || ''',''' || B.RENEWDT ||
+		                                                             ''',''' || B.NPMERGE || ''',''' || B.BABIES || ''',''' ||
+		                                                             B.WEEKSBABYW || ''',''' || B.WEEKSBABYD || ''',''' || B.LMP ||
+		                                                             ''',''' || B.URGENCY || ''',''' || B.CONFIRMRMK || ''',''' ||
+		                                                             B.GOBACK || ''',''' || B.REEXAMDICTYM || ''',''' || B.ALLOWDEBT ||
+		                                                             ''',''' || B.SCHID || ''',''' || B.SCHNM || ''',''' || B.SPECIALACC ||
+		                                                             ''',''' || B.SCHFLG || ''',''' || B.CALCLABDATE || ''',''' ||
+		                                                             B.CALCLABFLG || ''',''' ||
+		                                                             ''',''' || B.STARTYM || ''',''' ||
+		                                                             B.APPTRACEDT || ''');' AS DETAILSQL 
+		                                       FROM NPS.NBAPPBASE B, BA.BAAPPBASE A  WHERE A.APNO = #apno:VARCHAR#  AND A.BENIDNNO = B.BENIDNNO
+		                                       UNION ALL
+		                                       SELECT DISTINCT  'INSERT INTO NPS.NBDAPR (APNO,SEQNO,ISSUYM,PAYYM,MTESTFLG,MCHKTYPE,MAPNO,MAPROOTFLG,VALFLG,BENIDS,BENIDN,OLDAB,OLDAAMT,OLDBAMT,
+		                                                          ISSUEAMT,APLPAYAMT,INSMAMT,SUPRECFLG,PAYRATE,FUND1,FUND1AMT,FUND2,FUND2AMT,FUND3,FUND3AMT,FUND4,FUND4AMT,FUND5,FUND5AMT,VALSENI,
+		                                                          MIDLSENI,LABSENI,FMRSEN,RECAMT,SUPAMT,SAGTOTAMT,CUTAMT,APPLYCUTAMT,OTHERAMT,REMITAMT,OVRCUTAMT,LESSINSU,PAYBANANCE,APLPAYFLG,APLPAYDATE,
+		                                                          GENMEDDATE,REMITFLG,REMITDT,TRANSACTIOND,INSKD,CPRNDT,CPRNPAGE,STEXPNDFLG,ACCEPTMARK,CLOSEDT,CHKDT,PROCDT,VERISEQ,GETOPTION,ARCDT,ARCPG,
+																  ISSUEFAMT,FUND1PROCAMT,FUND2PROCAMT,FUND3PROCAMT,FUND4PROCAMT,FUND5PROCAMT,MANCHKFLG,BRTCD,CHKLIST,CHGLIST,STEXPNDRES,STEXPNDT,DELFLG,PAYKIND,
+																  HAREA,LABAPNO,LABAMT,OLIVCODE,BATCHNO,ITRTAMT,ESTIMAMT,LOTNUMBER,REJECTID,VOUCHERDT,COMDATE,EXEDT,VALSENID,MIDLSENID,ESTIMITRT,UNOVRAMT
+		                                                        ) VALUES(''' || B.APNO || ''',''' || B.SEQNO ||
+		                                                               ''',''' || B.ISSUYM || ''',''' || B.PAYYM || ''',''' || B.MTESTFLG ||
+		                                                               ''',''' || B.MCHKTYPE || ''',''' || B.MAPNO || ''',''' || B.MAPROOTFLG ||
+		                                                               ''',''' || B.VALFLG || ''',''' || B.BENIDS || ''',''' || B.BENIDN ||
+		                                                               ''',''' || B.OLDAB || ''',''' || B.OLDAAMT || ''',''' || B.OLDBAMT ||
+		                                                               ''',''' || B.ISSUEAMT || ''',''' || B.APLPAYAMT || ''',''' || B.INSMAMT ||
+		                                                               ''',''' || B.SUPRECFLG || ''',''' || B.PAYRATE || ''',''' || B.FUND1 ||
+		                                                               ''',''' || B.FUND1AMT || ''',''' || B.FUND2 || ''',''' || B.FUND2AMT ||
+		                                                               ''',''' || B.FUND3 || ''',''' || B.FUND3AMT || ''',''' || B.FUND4 ||
+		                                                               ''',''' || B.FUND4AMT || ''',''' || B.FUND5 || ''',''' || B.FUND5AMT ||
+		                                                               ''',''' || B.VALSENI || ''',''' || B.MIDLSENI || ''',''' || B.LABSENI ||
+		                                                               ''',''' || B.FMRSEN || ''',''' || B.RECAMT || ''',''' || B.SUPAMT ||
+		                                                               ''',''' || B.SAGTOTAMT || ''',''' || B.CUTAMT || ''',''' || B.APPLYCUTAMT ||
+		                                                               ''',''' || B.OTHERAMT || ''',''' || B.REMITAMT || ''',''' || B.OVRCUTAMT ||
+		                                                               ''',''' || B.LESSINSU || ''',''' || B.PAYBANANCE || ''',''' || B.APLPAYFLG ||
+		                                                               ''',''' || B.APLPAYDATE || ''',''' || B.GENMEDDATE || ''',''' ||
+		                                                               B.REMITFLG || ''',''' || B.REMITDT || ''',''' || B.TRANSACTIOND || ''',''' ||
+		                                                               B.INSKD || ''',''' || B.CPRNDT || ''',''' || B.CPRNPAGE || ''',''' ||
+		                                                               B.STEXPNDFLG || ''',''' || B.ACCEPTMARK || ''',''' || B.CLOSEDT || ''',''' ||
+		                                                               B.CHKDT || ''',''' || B.PROCDT || ''',''' || B.VERISEQ || ''',''' ||
+		                                                               B.GETOPTION || ''',''' || B.ARCDT || ''',''' || B.ARCPG || ''',''' ||
+		                                                               B.ISSUEFAMT || ''',''' || B.FUND1PROCAMT || ''',''' || B.FUND2PROCAMT ||
+		                                                               ''',''' || B.FUND3PROCAMT || ''',''' || B.FUND4PROCAMT || ''',''' ||
+		                                                               B.FUND5PROCAMT || ''',''' || B.MANCHKFLG || ''',''' || B.BRTCD || ''',''' ||
+		                                                               B.CHKLIST || ''',''' || B.CHGLIST || ''',''' || B.STEXPNDRES || ''',''' ||
+		                                                               B.STEXPNDT || ''',''' || B.DELFLG || ''',''' || B.PAYKIND || ''',''' ||
+		                                                               B.HAREA || ''',''' || B.LABAPNO || ''',''' || B.LABAMT || ''',''' ||
+		                                                               B.OLIVCODE || ''',''' || B.BATCHNO || ''',''' || B.ITRTAMT || ''',''' ||
+		                                                               B.ESTIMAMT || ''',''' || B.LOTNUMBER || ''',''' || B.REJECTID || ''',''' ||
+		                                                               B.VOUCHERDT || ''',''' || B.COMDATE || ''',''' || B.EXEDT || ''',''' ||
+		                                                               B.VALSENID || ''',''' || B.MIDLSENID || ''',''' || B.ESTIMITRT || ''',''' ||
+		                                                               B.UNOVRAMT || ''');'  AS DETAILSQL 
+		                                       FROM NPS.NBDAPR  B, BA.BAAPPBASE A  WHERE A.APNO = #apno:VARCHAR#  AND A.BENIDNNO = B.BENIDN
+    </select>
+</sqlMap>

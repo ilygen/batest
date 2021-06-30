@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BALP0D340">
+
+    <typeAlias alias="Balp0d340" type="tw.gov.bli.ba.domain.Balp0d340" />
+
+    <resultMap id="BALP0D340Result" class="Balp0d340">
+        <result column="PAYCODE"        property="payCode"       jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="ISSUYM"         property="issuYm"        jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CASETYP"        property="caseTyp"       jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CASECOUNT"      property="caseCount"     jdbcType="NUMERIC"     javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYMCOUNT"      property="paymCount"     jdbcType="NUMERIC"     javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUEAMT"       property="issueAmt"      jdbcType="NUMERIC"     javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="APLPAYAMT"      property="aplpayAmt"     jdbcType="NUMERIC"     javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CRTUSER"        property="crtUser"       jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"       jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+        
+    <select id="selectData" resultMap="BALP0D340Result">
+        SELECT PAYCODE,         
+               ISSUYM,
+               CASETYP,
+               CASECOUNT,
+               PAYMCOUNT,  
+               ISSUEAMT,           
+               APLPAYAMT,
+               CRTUSER,
+               CRTTIME
+        FROM BALP0D340       
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        Order By CASETYP
+    </select>
+    
+</sqlMap>

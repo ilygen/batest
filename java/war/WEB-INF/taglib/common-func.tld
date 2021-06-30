@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+
+    <description>Framework Common Function Tag Library</description>
+    <display-name>Framework Common Function Taglib</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>func</short-name>
+    <uri>http://www.bli.gov.tw/common-func</uri>
+
+    <tag>
+        <description>Get now chinese datetime string</description>
+        <name>nowDateTime</name>
+        <tag-class>tw.gov.bli.common.tag.func.NowDateTimeTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>chtType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <description>Get PID and Server Name</description>
+        <name>serverInfo</name>
+        <tag-class>tw.gov.bli.common.tag.func.ServerInfoTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+</taglib>

@@ -1,0 +1,24 @@
+package tw.gov.bli.ba.dao;
+
+import tw.gov.bli.ba.bj.cases.CompPaymentCase;
+import tw.gov.bli.ba.domain.Baappattfile;
+import tw.gov.bli.ba.domain.Baapplog;
+
+import java.util.List;
+
+/**
+ * DAO for 給付案件附件檔 (<code>BAAPPATTFILE</code>)
+ * 
+ * @author Eddie
+ */
+public interface BaappattfileDao {
+
+    /**
+     * 依傳入的條件取得 給付案件附件檔(<code>BAAPPLOG</code>) 的File資料
+     * 
+     * @param apNo 受理編號
+     * @return File
+     */
+    public Baappattfile selectFile(String apNo);
+
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAPAYKIND">
+
+     <typeAlias alias="Bapapaykind" type="tw.gov.bli.ba.domain.Bapapaykind" />
+   
+     <resultMap id="BAPAPAYKINDResult" class="Bapapaykind">
+        <result column="RETYPE"      property="reType"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYKIND"     property="payKind"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYITEM"     property="payItem"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="IMK"         property="imk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="ACCOUNT"     property="account"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="DEPARTMENT"  property="department"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap> 
+    
+    <select id="selectDataBy" resultMap="BAPAPAYKINDResult">
+               Select  RETYPE,
+                       PAYKIND,   
+                       PAYITEM,    
+                       IMK,        
+                       ACCOUNT,   
+                       DEPARTMENT  
+                 From  BAPAPAYKIND
+                 where PAYKIND = #payKind:VARCHAR#
+    </select>   
+    
+</sqlMap>

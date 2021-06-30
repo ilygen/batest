@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAEXALIST">
+
+    <typeAlias alias="Baexalist" type="tw.gov.bli.ba.domain.Baexalist" />
+    <resultMap id="BAEXALISTResult" class="Baexalist">
+        <result column="RPTTYP"        property="rptTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RPTDATE"       property="rptDate"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAGENO"        property="pageNo"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="SEQNO"         property="seqNo"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="PAYTYP"        property="payTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="APNO"          property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTNAME"       property="evtName"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CASETYP"       property="caseTyp"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYSYM"        property="paysYm"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYEYM"        property="payeYm"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="TISSUEAMT"     property="tissueAmt"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="TAPLPAYAMT"    property="taplPayAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="CHKMAN"        property="chkMan"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CHKDATE"       property="chkDate"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MEXCLVL"       property="mexcLvl"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="UPCAUSECODE"   property="upCauseCode"     jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CPRNDATE"      property="cprnDate"        jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CPRNPAGE"      property="cprnPage"        jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CRTUSER"       property="crtUser"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CRTTIME"       property="crtTime"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUYM"        property="issuYm"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="VERISEQ"       property="veriSeq"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MTESTMK"       property="mtestMk"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PRECHKLIST"    property="preChkList"      jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CHKLIST"       property="chkList"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTIDNNO"      property="evtIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="PaymentReviewListResult" class="Baexalist">
+        <result column="APNO"               property="apNo"                 jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUYM"             property="issuYm"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTNAME"            property="evtName"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTIDNNO"           property="evtIdnNo"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACCEPTMK"           property="accptMk"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CASETYP"            property="caseTyp"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTIDS"             property="evtIds"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EVTBRDATE"          property="evtBrDate"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENIDS"             property="benIds"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENIDNNO"           property="benIdnNo"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENBRDATE"          property="benBrDate"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENNAME"            property="benName"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MEXCLVL"            property="mexcLvl"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYTYP"             property="payTyp"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RPTTYP"             property="rptTyp"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RPTDATE"            property="rptDate"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAGENO"             property="pageNo"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="VERISEQ"            property="veriSeq"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="TISSUEAMT"          property="tissueAmt"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="TAPLPAYAMT"         property="taplPayAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="PAYSYM"             property="paysYm"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYEYM"             property="payeYm"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MTESTMK"            property="mtestMk"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MCHKTYP"            property="mchkTyp"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MANCHKMK"           property="manchkMk"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="FLAG1"              property="flag1"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+    </resultMap>   
+    
+    <!-- 
+    <resultMap id="PaymentDecisionListResult" class="Baexalist">
+        <result column="BAAPPBASEID"       property="baappbaseId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="APNO"              property="apNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"            property="issuYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"           property="evtName"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"          property="evtIdnNo"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"           property="caseTyp"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"          property="procStat"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKMAN"            property="chkMan"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"           property="chkDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MANCHKMK"          property="manchkMk"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MEXCLVL"           property="mexcLvl"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="RECHK"             property="reChk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EXEMK"             property="exeMk"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="MINPAYYM"          property="minPayYm"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MAXPAYYM"          property="maxPayYm"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APLPAYAMT"         property="aplPayAmt"     jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="ISSUEAMT"          property="issueAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="VERISEQ"           property="veriSeq"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"             property="seqNo"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="RPTTYP"            property="rptTyp"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="RPTDATE"           property="rptDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAGENO"            property="pageNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"            property="payTyp"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    -->
+    
+    <select id="selectReviewDataBy" resultMap="PaymentReviewListResult">
+        SELECT A.APNO,                                                  
+               A.ISSUYM,                                                
+               A.EVTNAME,                                               
+               A.EVTIDNNO,                                              
+               A.ACCEPTMK,                                              
+               A.CASETYP,                                               
+               A.EVTIDS,                                                
+               A.EVTBRDATE,                                             
+               A.BENIDS,                                                
+               A.BENIDNNO,                                              
+               A.BENBRDATE,                                             
+               A.BENNAME,                                               
+               A.MEXCLVL,                                               
+               B.PAYTYP,                                                
+               B.RPTTYP,                                                
+               B.RPTDATE,                                               
+               B.PAGENO,                                                
+               C.VERISEQ,                                               
+               C.TISSUEAMT,                                             
+               C.TAPLPAYAMT,                                            
+               C.PAYSYM,                                                
+               C.PAYEYM,                                                
+               C.MTESTMK,                                               
+               C.MCHKTYP,                                               
+               DECODE(NVL(D.DATACOUNT1,0),0,A.ACCEPTMK,'N') MANCHKMK,   
+               DECODE(NVL(E.DATACOUNT2,0),0,'Y','N') FLAG1              
+          FROM (SELECT APNO,
+                       ISSUYM,             
+                       EVTNAME,
+                       EVTIDNNO,
+                       ACCEPTMK,
+                       CASETYP,
+                       EVTIDS,                                            
+                       EVTBRDATE,                                         
+                       BENIDS,                                            
+                       BENIDNNO,                                          
+                       BENBRDATE,                                         
+                       BENNAME,
+                       MEXCLVL                                            
+                  FROM BAAPPBASE
+                 WHERE APNO IN 
+                       (SELECT APNO FROM BAEXALIST 
+                         WHERE RPTTYP = '001' 
+                           AND PAYTYP = #payTyp:VARCHAR#
+                           AND RPTDATE = #rptDate:VARCHAR# 
+                           AND PAGENO = #pageNo:NUMERIC#)
+                   AND SEQNO = '0000'
+                   AND PROCSTAT IN ('10','11','12','20')) A,
+               (SELECT PAYTYP,
+                       APNO,
+                       ISSUYM,
+                       MAX(SEQNO) SEQNO,                     
+                       MTESTMK,  
+                       RPTTYP,
+                       RPTDATE,
+                       PAGENO    
+                  FROM BAEXALIST
+                 WHERE RPTTYP = '001' 
+                   AND PAYTYP = #payTyp:VARCHAR#
+                   AND RPTDATE = #rptDate:VARCHAR# 
+                   AND PAGENO = #pageNo:NUMERIC#
+                 GROUP BY PAYTYP,APNO,ISSUYM,MTESTMK,RPTTYP,RPTDATE,PAGENO) B,
+               (SELECT APNO,
+                       ISSUYM,
+                       VERISEQ,
+                       MTESTMK,        
+                       MCHKTYP,
+                       SUM(DECODE(MCHKTYP,'2',DECODE(SUPRECMK,'C',SUPAMT,'D','0',BEFISSUEAMT),'5',DECODE(SUPRECMK,'C',SUPAMT,'D','0',BEFISSUEAMT),BEFISSUEAMT)) AS TISSUEAMT,
+                       SUM(APLPAYAMT) AS TAPLPAYAMT,
+                       MIN(PAYYM) PAYSYM,
+                       MAX(PAYYM) PAYEYM
+                  FROM BADAPR X
+                 WHERE APNO IN 
+                       (SELECT APNO FROM BAEXALIST 
+                         WHERE RPTTYP = '001' 
+                           AND PAYTYP = #payTyp:VARCHAR#
+                           AND ISSUYM = X.ISSUYM
+                           AND RPTDATE = #rptDate:VARCHAR# 
+                           AND PAGENO = #pageNo:NUMERIC#)
+                   AND MTESTMK = 'D'
+                   <isEqual property="payTyp" compareValue="L">
+                        AND Y.SEQNO = '0000'
+                    </isEqual>
+                    <isEqual property="payTyp" compareValue="K">
+                        AND Y.SEQNO = '0000'
+                    </isEqual>
+                    <isEqual property="payTyp" compareValue="S">
+                        <![CDATA[
+                        AND Y.SEQNO <> '0000'
+                        ]]>
+                    </isEqual>
+                 GROUP BY APNO,ISSUYM,VERISEQ,MTESTMK,MCHKTYP) C,
+               (SELECT COUNT(*) AS DATACOUNT1,
+                       APNO,
+                       ISSUYM
+                  FROM MAADMREC Y
+                 WHERE APNO IN 
+                       (SELECT APNO FROM BAEXALIST 
+                         WHERE RPTTYP = '001' 
+                           AND PAYTYP = #payTyp:VARCHAR#
+                           AND ISSUYM = Y.ISSUYM
+                           AND RPTDATE = #rptDate:VARCHAR# 
+                           AND PAGENO = #pageNo:NUMERIC#)
+                   AND LETTERTYPE = '21'
+                   <![CDATA[
+                   AND NVL(TRIM(DELMK),' ') <> 'D'
+                   ]]>
+                 GROUP BY APNO,ISSUYM ) D,
+               (SELECT COUNT(*) AS DATACOUNT2,
+                       APNO,
+                       ISSUYM
+                  FROM MAADMREC Z 
+                 WHERE APNO IN 
+                       (SELECT APNO FROM BAEXALIST 
+                         WHERE RPTTYP = '001' 
+                           AND PAYTYP = #payTyp:VARCHAR#
+                           AND ISSUYM = Z.ISSUYM
+                           AND RPTDATE = #rptDate:VARCHAR# 
+                           AND PAGENO = #pageNo:NUMERIC#)
+                   AND LETTERTYPE IN ('11','12','14','15','16','17','19')
+                   <![CDATA[
+                   AND NVL(TRIM(DELMK),' ') <> 'D'
+                   ]]> 
+                   AND NVL(TRIM(CLOSDATE),' ') = ' '
+                 GROUP BY APNO,ISSUYM ) E
+         WHERE A.APNO = B.APNO
+           AND A.APNO = C.APNO
+           AND A.APNO = D.APNO(+)
+           AND A.APNO = E.APNO(+)
+           AND A.ISSUYM = B.ISSUYM
+           AND A.ISSUYM = C.ISSUYM
+           AND A.ISSUYM = D.ISSUYM(+)
+           AND A.ISSUYM = E.ISSUYM(+)
+           AND B.MTESTMK = C.MTESTMK
+           AND B.RPTTYP = '001'
+           AND B.PAYTYP = #payTyp:VARCHAR#
+           AND B.RPTDATE = #rptDate:VARCHAR#
+           AND B.PAGENO = #pageNo:NUMERIC#
+        ORDER BY B.SEQNO
+         
+    </select>
+    
+    <!--
+    <select id="selectDecisionDataBy" resultMap="PaymentDecisionListResult">        
+        SELECT T1.BAAPPBASEID,
+               T1.APNO,                  
+               T1.ISSUYM,                
+               T1.EVTNAME,               
+               T1.EVTIDNNO,              
+               T1.CASETYP,               
+               T1.PROCSTAT,              
+               T1.CHKMAN,                
+               T1.CHKDATE,               
+               T1.MANCHKMK,              
+               T1.MEXCLVL,               
+               T1.RECHK,       
+               T1.EXEMK,        
+               T2.MINPAYYM,              
+               T2.MAXPAYYM,              
+               T2.APLPAYAMT,             
+               T2.ISSUEAMT,              
+               T3.VERISEQ,               
+               T4.RPTTYP,                
+               T4.RPTDATE,               
+               T4.PAGENO,                
+               T4.SEQNO,                 
+               T4.PAYTYP                                                                       
+          FROM (SELECT BAAPPBASEID,
+                       APNO,                                                                  
+                       ISSUYM,                                                                
+                       EVTNAME,                                                               
+                       EVTIDNNO,                                                              
+                       CASETYP,                                                               
+                       PROCSTAT,                                                              
+                       CHKMAN,                                                                
+                       CHKDATE,                                                               
+                       DECODE(NVL(TRIM(MANCHKMK),' '),' ',' ','*') AS MANCHKMK,               
+                       MEXCLVL,                                                               
+                       (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND PAYTYP = SUBSTR(M1.APNO, 1, 1)) AS RECHK,
+                       (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) 
+                            FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR#
+                            AND PAYTYP = SUBSTR(M1.APNO, 1, 1)) AS EXEMK
+                  FROM BAAPPBASE M1
+                 WHERE SEQNO = '0000'
+                   AND APNO IN 
+                       (SELECT APNO FROM BAEXALIST 
+                         WHERE RPTTYP='002' 
+                           AND RPTDATE = #rptDate:VARCHAR# 
+                           AND PAGENO = #pageNo:VARCHAR# 
+                           <dynamic prepend="">
+                                <isNotParameterPresent>
+                                    AND 1 = 0
+                                </isNotParameterPresent>
+                                <isParameterPresent>
+                                    <isNotEmpty prepend="AND" property="chkMan">
+                                          CHKMAN = #chkMan:VARCHAR#
+                                    </isNotEmpty>
+                                </isParameterPresent>
+                            </dynamic>
+                           )
+                   <![CDATA[
+                   AND ((MEXCLVL<=(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND PAYTYP = SUBSTR(M1.APNO, 1, 1)))
+                          OR(MEXCLVL>(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND PAYTYP = SUBSTR(M1.APNO, 1, 1))
+                         AND(SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND PAYTYP = SUBSTR(M1.APNO, 1, 1))='Y'))
+                   ]]>      
+                   AND PROCSTAT IN ('20','30','40')
+                   <![CDATA[
+                   AND (MANCHKMK IS NOT NULL) AND NVL(TRIM(MANCHKMK),' ')<>' '
+                   ]]>) T1,
+                (SELECT APNO,
+                        ISSUYM,
+                        MIN(PAYYM) AS MINPAYYM,                                           
+                        MAX(PAYYM) AS MAXPAYYM,                                           
+                        SUM(APLPAYAMT) AS APLPAYAMT,                                      
+                        SUM(ISSUEAMT) AS ISSUEAMT                                         
+                   FROM BADAPR                    
+                  WHERE APNO IN 
+                        (SELECT APNO FROM BAEXALIST 
+                          WHERE RPTTYP='002' 
+                            AND RPTDATE = #rptDate:VARCHAR# 
+                            AND PAGENO = #pageNo:VARCHAR# 
+                            <dynamic prepend="">
+                                <isNotParameterPresent>
+                                    AND 1 = 0
+                                </isNotParameterPresent>
+                                <isParameterPresent>
+                                    <isNotEmpty prepend="AND" property="chkMan">
+                                          CHKMAN = #chkMan:VARCHAR#
+                                    </isNotEmpty>
+                                </isParameterPresent>
+                            </dynamic>
+                            )                                
+                  GROUP BY APNO,ISSUYM ) T2,
+                (SELECT APNO,
+                        ISSUYM,
+                        VERISEQ                                         
+                   FROM BADAPR 
+                  WHERE SEQNO = '0000'
+                    AND APNO IN 
+                        (SELECT APNO FROM BAEXALIST 
+                          WHERE RPTTYP='002' 
+                            AND RPTDATE = #rptDate:VARCHAR# 
+                            AND PAGENO = #pageNo:VARCHAR# 
+                            <dynamic prepend="">
+                                <isNotParameterPresent>
+                                    AND 1 = 0
+                                </isNotParameterPresent>
+                                <isParameterPresent>
+                                    <isNotEmpty prepend="AND" property="chkMan">
+                                          CHKMAN = #chkMan:VARCHAR#
+                                    </isNotEmpty>
+                                </isParameterPresent>
+                            </dynamic>
+                            )                       
+                    AND ROWNUM = 1 )T3,
+                        (SELECT RPTTYP,                                                  
+                                RPTDATE,                                                 
+                                PAGENO,                                                  
+                                SEQNO,                                                   
+                                PAYTYP,                                                  
+                                APNO
+                           FROM BAEXALIST
+                          WHERE RPTTYP = '002' 
+                            AND RPTDATE = #rptDate:VARCHAR#
+                            AND PAGENO = #pageNo:VARCHAR#
+                            <dynamic prepend="">
+                                <isNotParameterPresent>
+                                    AND 1 = 0
+                                </isNotParameterPresent>
+                                <isParameterPresent>
+                                    <isNotEmpty prepend="AND" property="chkMan">
+                                          CHKMAN = #chkMan:VARCHAR#
+                                    </isNotEmpty>
+                                </isParameterPresent>
+                            </dynamic>
+                            ) T4
+         WHERE T1.APNO = T2.APNO
+           AND T1.APNO = T3.APNO
+           AND T1.APNO = T4.APNO
+           AND T1.ISSUYM = T2.ISSUYM
+           AND T1.ISSUYM = T3.ISSUYM
+           AND T4.RPTTYP = '002'
+           AND T4.RPTDATE = #rptDate:VARCHAR#
+           AND T4.PAGENO = #pageNo:VARCHAR#
+           <dynamic prepend="">
+               <isNotParameterPresent>
+                   AND 1 = 0
+               </isNotParameterPresent>
+               <isParameterPresent>
+                   <isNotEmpty prepend="AND" property="chkMan">
+                       T4.CHKMAN = #chkMan:VARCHAR#
+                   </isNotEmpty>
+               </isParameterPresent>
+           </dynamic>
+         ORDER BY SEQNO
+    </select>
+    -->
+    
+    <insert id="insertData">
+        INSERT INTO BAEXALIST 
+        ( 
+            RPTTYP,
+            RPTDATE,
+            PAGENO,
+            SEQNO,
+            PAYTYP,
+            APNO,
+            EVTNAME,
+            CASETYP,
+            PAYSYM,
+            PAYEYM,
+            TISSUEAMT,
+            TAPLPAYAMT,
+            CHKDATE,
+            CHKMAN,
+            MEXCLVL,
+            CRTUSER,
+            CRTTIME
+        )  
+        VALUES
+        ( 
+            #rptTyp:VARCHAR#,
+            #rptDate:VARCHAR#,
+            #pageNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #payTyp:VARCHAR#,
+            #apNo:VARCHAR#,
+            #evtName:VARCHAR#,
+            #caseTyp:VARCHAR#,
+            #paysYm:VARCHAR#,
+            #payeYm:VARCHAR#,
+            #tissueAmt:VARCHAR#,
+            #taplPayAmt:VARCHAR#,
+            #chkDate:VARCHAR#,
+            #chkMan:VARCHAR#,
+            #mexcLvl:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#
+        )     
+    </insert>
+    
+    <select id="selectMaxVersion" resultClass="java.lang.String">
+    Select NVL(MAX(TO_NUMBER(VERSION))+1, 1)
+      From BAEXALIST
+     Where RPTTYP = #rptTyp:VARCHAR#
+       And RPTDATE = #rptDate:VARCHAR# 
+   </select>
+   
+   <select id="selectMonthlyRpt02DataBy" resultMap="BAEXALISTResult">
+   SELECT A.RPTTYP,
+             A.RPTDATE,
+             A.PAGENO,
+             A.SEQNO,
+             A.PAYTYP,
+             A.MTESTMK,
+             A.APNO,
+             A.EVTNAME,
+             A.CASETYP,
+             A.PAYSYM,
+             A.PAYEYM,
+             A.TISSUEAMT,
+             A.TAPLPAYAMT,
+             A.CHKDATE,
+             B.PRPNO as CHKMAN,
+             A.MEXCLVL,
+             A.UPCAUSECODE,
+             A.CPRNDATE,
+             A.CPRNPAGE,
+             A.CRTUSER,
+             A.CRTTIME,
+             A.ISSUYM,
+             A.VERISEQ,
+             A.PRECHKLIST,
+             A.CHKLIST,
+             A.EVTIDNNO
+        FROM BAEXALIST A, BCCMF09 B
+       Where A.PAYTYP = #payTyp:VARCHAR#
+         AND A.ISSUYM = #issuYm:VARCHAR#
+         AND A.MTESTMK = #mtestMk:VARCHAR#
+             <![CDATA[
+             AND A.RPTKIND = '1'
+             AND NVL(TRIM(TAL20),' ') <> '0099'
+             AND (B.PAYTYP||B.GROUPMK) LIKE (SUBSTR(A.APNO,1,2)||'%')
+             AND ((SUBSTR(A.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
+                  (SUBSTR(B.TAL20, 1, 2) <= SUBSTR(A.APNO, 11, 2) AND
+                  SUBSTR(TAL20, 3, 2) >= SUBSTR(A.APNO, 11, 2)) OR
+                  (SUBSTR(A.APNO, 11, 2) IN
+                  (B.TAL21, B.TAL22, B.TAL23, B.TAL24, B.TAL25)))
+             AND (TRIM(B.STATUS) IS NULL OR B.STATUS <> 'D')
+             ]]>
+        Order By B.PRPNO, A.CASETYP, A.APNO, A.UPCAUSECODE 
+   </select>
+   
+   <select id="selectMonthlyBatchRptDataBy" resultMap="BAEXALISTResult">
+      SELECT A.RPTTYP,
+             A.RPTDATE,
+             A.PAGENO,
+             A.SEQNO,
+             A.PAYTYP,
+             A.MTESTMK,
+             A.APNO,
+             A.EVTNAME,
+             A.CASETYP,
+             A.PAYSYM,
+             A.PAYEYM,
+             A.TISSUEAMT,
+             A.TAPLPAYAMT,
+             A.CHKDATE,
+             B.PRPNO as CHKMAN,
+             A.MEXCLVL,
+             A.UPCAUSECODE,
+             A.CPRNDATE,
+             A.CPRNPAGE,
+             A.CRTUSER,
+             A.CRTTIME,
+             A.ISSUYM,
+             A.VERISEQ,
+             A.PRECHKLIST,
+             A.CHKLIST,
+             A.EVTIDNNO
+        FROM BAEXALIST A, BCCMF09 B
+       Where A.PAYTYP = #payTyp:VARCHAR#
+         AND A.ISSUYM = #issuYm:VARCHAR#
+         AND A.MTESTMK = #mtestMk:VARCHAR#
+         <dynamic prepend="">
+           <isNotParameterPresent>
+               AND 1 = 0
+           </isNotParameterPresent>
+         <isParameterPresent>
+            <isNotEmpty prepend="AND" property="rptDate">
+                substr(A.RPTDATE,1,8) = #rptDate:VARCHAR#
+            </isNotEmpty>
+         </isParameterPresent>
+         </dynamic>
+             <![CDATA[
+             AND A.RPTKIND = '2'
+             AND NVL(TRIM(B.TAL20),' ') <> '0099'
+             AND (B.PAYTYP||B.GROUPMK) LIKE (SUBSTR(A.APNO,1,2)||'%')
+             AND ((SUBSTR(A.APNO, 12, 1) IN (B.TAL11, B.TAL12, B.TAL13, B.TAL14, B.TAL15)) OR
+                  (SUBSTR(B.TAL20, 1, 2) <= SUBSTR(A.APNO, 11, 2) AND
+                  SUBSTR(B.TAL20, 3, 2) >= SUBSTR(A.APNO, 11, 2)) OR
+                  (SUBSTR(A.APNO, 11, 2) IN (B.TAL21, B.TAL22, B.TAL23, B.TAL24, B.TAL25)))
+             AND (TRIM(B.STATUS) IS NULL OR B.STATUS <> 'D')
+             ]]>
+        Order By B.PRPNO, A.CASETYP, A.APNO, A.UPCAUSECODE
+   </select>
+   
+   <select id="selectOldAgeReviewRpt02DataBy" resultMap="BAEXALISTResult">
+   SELECT RPTTYP,
+          RPTDATE,
+          PAGENO,
+          SEQNO,
+          PAYTYP,
+          APNO,
+          EVTNAME,
+          CASETYP,
+          PAYSYM,
+          PAYEYM,
+          TISSUEAMT,
+          TAPLPAYAMT,
+          CHKDATE,
+          CHKMAN,
+          MEXCLVL,
+          UPCAUSECODE,
+          CPRNDATE,
+          CPRNPAGE,
+          CRTUSER,
+          CRTTIME,
+          ISSUYM,
+          VERISEQ,
+          MTESTMK,
+          PRECHKLIST,
+          CHKLIST,
+          EVTIDNNO
+     FROM BAEXALIST
+    WHERE RPTTYP = '002'      
+    <dynamic prepend="">
+        <isNotParameterPresent>
+            AND 1 = 0
+        </isNotParameterPresent>
+        <isParameterPresent>
+            <isNotEmpty prepend="AND" property="chkMan">
+                CHKMAN = #chkMan:VARCHAR#
+            </isNotEmpty>
+        </isParameterPresent>
+        <isParameterPresent>
+            <isNotEmpty prepend="AND" property="chkDate">
+                CHKDATE = #chkDate:VARCHAR#
+            </isNotEmpty>
+        </isParameterPresent>
+        <isParameterPresent>
+            <isNotEmpty prepend="AND" property="payTyp">
+                PAYTYP = #payTyp:VARCHAR#
+            </isNotEmpty>
+        </isParameterPresent>
+    </dynamic>
+    Order by CHKDATE, MEXCLVL
+   </select>
+</sqlMap>

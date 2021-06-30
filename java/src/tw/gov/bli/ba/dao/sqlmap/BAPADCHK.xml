@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPADCHK">
+
+    <typeAlias alias="Bapadchk" type="tw.gov.bli.ba.domain.Bapadchk" />
+
+    <resultMap id="BAPADCHKResult" class="Bapadchk">
+        <result column="CHKTYP"         property="chkTyp"       jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKCODE"        property="chkCode"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKGROUP"       property="chkGroup"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKOBJ"         property="chkObj"       jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="VALIBDATE"      property="valibDate"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="VALIEDATE"      property="valieDate"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKDESC"        property="chkDesc"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKLEVEL"       property="chkLevel"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKCONDESC"     property="chkCondesc"   jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CHKLAWDESC"     property="chkLawdesc"   jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO BAPADCHK 
+        ( 
+            CHKTYP,
+            CHKCODE,
+            CHKGROUP,
+            CHKOBJ,
+            VALIBDATE,
+            VALIEDATE,
+            CHKDESC,
+            CHKLEVEL,
+            CHKCONDESC,
+            CHKLAWDESC,
+            CRTUSER,
+            CRTTIME,
+            UPDUSER,
+            UPDTIME
+        )  
+        VALUES
+        ( 
+            #chkTyp:VARCHAR#,
+            #chkCode:VARCHAR#,
+            #chkGroup:VARCHAR#,
+            #chkObj:VARCHAR#,
+            #valibDate:VARCHAR#,
+            #valieDate:VARCHAR#,
+            #chkDesc:VARCHAR#,
+            #chkLevel:VARCHAR#,
+            #chkCondesc:VARCHAR#,
+            #chkLawdesc:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+        
+    <select id="selectData" resultMap="BAPADCHKResult">
+        SELECT A.CHKTYP,         
+               A.CHKCODE,
+               A.CHKGROUP,
+               A.CHKOBJ,  
+               A.VALIBDATE,           
+               A.VALIEDATE,
+               A.CHKDESC,
+               A.CHKLEVEL,
+               A.CHKCONDESC,
+               A.CHKLAWDESC,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME
+        FROM BAPADCHK A    
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="chkCode">
+                    A.CHKCODE = #chkCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkGroup">
+                    A.CHKGROUP = #chkGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkObj">
+                    A.CHKOBJ = #chkObj:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        Order By A.CHKGROUP    
+    </select>
+    
+    <update id="updateData">
+        UPDATE BAPADCHK SET
+               chkTyp= #chkTyp:VARCHAR#,
+               chkCode = #chkCode:VARCHAR#,
+               chkGroup = #chkGroup:VARCHAR#,
+               chkObj = #chkObj:VARCHAR#,
+               valibDate = #valibDate:VARCHAR#,
+               valieDate =#valieDate:VARCHAR#,
+               chkDesc = #chkDesc:VARCHAR#,
+               chkLevel = #chkLevel:VARCHAR#,
+               chkCondesc = #chkCondesc:VARCHAR#,
+               chkLawdesc = #chkLawdesc:VARCHAR#,
+               crtUser = #crtUser:VARCHAR#,
+               crtTime = #crtTime:VARCHAR#,
+               updUser = #updUser:VARCHAR#,
+               updTime = #updTime:VARCHAR#
+         WHERE CHKTYP = 'A'
+         <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="chkCode">
+                    CHKCODE = #chkCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkObj">
+                    CHKOBJ = #chkObj:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </update>
+    
+    <select id="selectSingleForUpdateData" resultMap="BAPADCHKResult">
+        SELECT A.CHKTYP,         
+               A.CHKCODE,
+               A.CHKGROUP,
+               A.CHKOBJ,  
+               A.VALIBDATE,           
+               A.VALIEDATE,
+               A.CHKDESC,
+               A.CHKLEVEL,
+               A.CHKCONDESC,
+               A.CHKLAWDESC,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME
+        FROM BAPADCHK A          
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="chkTyp">
+                    A.CHKTYP = #chkTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkCode">
+                    A.CHKCODE = #chkCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkGroup">
+                    A.CHKGROUP = #chkGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="chkObj">
+                    A.CHKOBJ = #chkObj:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="valibDate">
+                    A.VALIBDATE = #valibDate:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        Order By A.CHKGROUP    
+    </select>    
+</sqlMap>

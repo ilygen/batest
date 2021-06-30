@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAGIVETMPDTL">
+
+    <typeAlias alias="Bagivetmpdtl" type="tw.gov.bli.ba.domain.Bagivetmpdtl" />
+
+    <resultMap id="BAGIVETMPDTLResult" class="Bagivetmpdtl">
+        <result column="MFILENAME"      property="mfileName"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="MFILEDATE"      property="mfileDate"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="SEQNO"          property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="RC2"            property="rc2"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SUNIT2"         property="sunit2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="HBANK2"         property="hbank2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BBANK2"         property="bbank2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TATYP2"         property="taTyp2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE2"       property="payDate2"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCNO2"         property="accNo2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AMT2"           property="amt2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="STAT2"          property="stat2"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO2"          property="apNo2"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQ2"           property="seq2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP2"        property="payTyp2"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SPACE2"         property="space2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM2"         property="payYm2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDN2"           property="idN2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NAME2"          property="name2"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INSKD2"         property="insKd2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EMGMK2"         property="emgMk2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RPAYDATE2"      property="rpayDate2"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM2"        property="issuYm2"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NC2"            property="nc2"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MFILEREMK"      property="mfileReMk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DLINEDATE"      property="dlineDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DLINESEQNO"     property="dlineSeqNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    	<result column="CHKDATE"		property="chkDate"			jdbcType="VARCHAR"		javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <!-- MonthlyRpt 07 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt07HeaderResult" class="Bagivetmpdtl">
+        <result column="AMT2"           property="amt2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TATYP2"         property="taTyp2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE2"       property="payDate2"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Field not in BAGIVETMPDTL -->
+        <result column="DATACOUNT"      property="dataCount"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt07MiddleResult" class="Bagivetmpdtl">
+        <result column="AMT2"           property="amt2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TATYP2"         property="taTyp2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="HBANK2"         property="hbank2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Field not in BAGIVETMPDTL -->
+        <result column="DATACOUNT"      property="dataCount"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt07FooterResult" class="Bagivetmpdtl">
+        <result column="AMT2"           property="amt2"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TATYP2"         property="taTyp2"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP2"        property="payTyp2"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Field not in BAGIVETMPDTL -->
+        <result column="DATACOUNT"      property="dataCount"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+    </resultMap>
+    
+     <resultMap id="MonthlyRpt07mFileNameResult" class="Bagivetmpdtl">
+        <result column="MFILENAME"      property="mfileName"        jdbcType="VARCHAR"      javaType="java.lang.String" />
+    </resultMap>
+    
+     <resultMap id="MedaiFileOnlineDownloadDataResult" class="Bagivetmpdtl">
+        <result column="MFILENAME"         property="mfileName"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MFILEDATE"         property="mfileDate"           	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKDATE"           property="chkDate"          		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FTPSEQ"            property="ftpSeq"          		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+     </resultMap>
+    
+    <!-- ] -->
+    <!-- MonthlyRpt 07 End -->
+    
+    <!-- MonthlyRpt 07 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt07TaTyp2List" resultClass="java.lang.String">
+        SELECT DISTINCT A.TATYP2
+        FROM   BAGIVETMPDTL A
+        WHERE  A.PAYISSUYM = #issuYm:VARCHAR# AND 
+        	   CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO2, 1, 1) = #payCode:VARCHAR#
+        ORDER  BY A.TATYP2
+    </select>
+    
+    <select id="getMonthlyRptK07TaTyp2List" resultClass="java.lang.String">
+        SELECT DISTINCT A.TATYP2
+        FROM   BAGIVETMPDTL A
+        WHERE  A.PAYISSUYM = #issuYm:VARCHAR# AND 
+        	   CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO2, 1, 1) = #payCode:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>               
+        ORDER  BY A.TATYP2
+    </select>
+    
+    <select id="getMonthlyRptS07TaTyp2List" resultClass="java.lang.String">
+        SELECT DISTINCT A.TATYP2
+        FROM   BAGIVETMPDTL A
+        WHERE  A.PAYISSUYM = #issuYm:VARCHAR# AND 
+        	   CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO2, 1, 1) = #payCode:VARCHAR#
+        ORDER  BY A.TATYP2
+    </select>        
+    
+    <select id="getMonthlyRpt07HeaderDataBy" resultMap="MonthlyRpt07HeaderResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               ISSUTYP,
+               PAYDATE2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND 
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, ISSUTYP, PAYDATE2
+    </select>
+    
+    <select id="getMonthlyRpt07mFileNameBy" resultMap="MonthlyRpt07mFileNameResult">
+        SELECT DISTINCT MFILENAME
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND 
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+    </select>
+    
+    <select id="getMonthlyRptK07HeaderDataBy" resultMap="MonthlyRpt07HeaderResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               ISSUTYP,
+               PAYDATE2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND 
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND
+               PAYSEQNO = #paySeqNo:VARCHAR#
+        GROUP BY TATYP2, ISSUTYP, PAYDATE2
+    </select>
+    
+    <select id="getMonthlyRptS07HeaderDataBy" resultMap="MonthlyRpt07HeaderResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               ISSUTYP,
+               PAYDATE2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND 
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, ISSUTYP, PAYDATE2
+    </select>        
+    
+    <select id="getMonthlyRpt07MiddleDataBy" resultMap="MonthlyRpt07MiddleResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               HBANK2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, HBANK2
+        ORDER BY HBANK2
+    </select>
+    
+    <select id="getMonthlyRptK07MiddleDataBy" resultMap="MonthlyRpt07MiddleResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               HBANK2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND
+               PAYSEQNO = #paySeqNo:VARCHAR#
+        GROUP BY TATYP2, HBANK2
+        ORDER BY HBANK2
+    </select>
+    
+    <select id="getMonthlyRptS07MiddleDataBy" resultMap="MonthlyRpt07MiddleResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               HBANK2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, HBANK2
+        ORDER BY HBANK2
+    </select>        
+    
+    <select id="getMonthlyRpt07FooterDataBy" resultMap="MonthlyRpt07FooterResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               PAYTYP2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, PAYTYP2
+        ORDER BY PAYTYP2
+    </select>
+    
+    <select id="getMonthlyRptK07FooterDataBy" resultMap="MonthlyRpt07FooterResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               PAYTYP2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               PAYSEQNO = #paySeqNo:VARCHAR#
+        GROUP BY TATYP2, PAYTYP2
+        ORDER BY PAYTYP2
+    </select>
+    
+    <select id="getMonthlyRptS07FooterDataBy" resultMap="MonthlyRpt07FooterResult">
+        SELECT COUNT(*) AS DATACOUNT,
+               SUM(AMT2) AS AMT2,
+               TATYP2,
+               PAYTYP2
+        FROM   BAGIVETMPDTL
+        WHERE  PAYISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO2, 1, 1) = #payCode:VARCHAR# AND 
+               TATYP2 = #taTyp2:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR#
+        GROUP BY TATYP2, PAYTYP2
+        ORDER BY PAYTYP2
+    </select>        
+    
+    <select id="getMedaiFileOnlineDownloadDataBy" resultMap="MedaiFileOnlineDownloadDataResult">
+        SELECT DISTINCT (t1.MFILENAME), t1.MFILEDATE, t1.CHKDATE, NVL(T3.FTPSEQ,0) FTPSEQ
+		  FROM BAGIVETMPDTL t1,
+		       (SELECT to_char(to_number(t.GENMEDDATE) - 19110000) GENMEDDATE
+		          FROM BAPAISSUDATE t
+		         WHERE t.PAYCODE = #payCode:VARCHAR#
+		           AND t.ISSUYM = to_char(to_number(#issuYm:VARCHAR#) + 191100)
+		           AND t.ISSUDATE = #chkDate:VARCHAR#
+		           AND t.BANKKIND = '1') t2,
+		       BAMFILEFTPRECORD T3
+		 WHERE SUBSTR(t1.APNO2, 1, 1) = #payCode:VARCHAR#
+		   AND t1.PAYISSUYM = to_char(to_number(#issuYm:VARCHAR#) + 191100)
+		   AND t1.PAYDATE2 = t2.GENMEDDATE
+		   AND t1.PAYSEQNO = #paySeqNo:VARCHAR#
+		   AND T1.MFILENAME = T3.MFILENAME(+)
+           AND T1.MFILEDATE = T3.MFILEDATE(+)
+           AND T1.CHKDATE = T3.CHKDATE(+)
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 07 End -->
+</sqlMap>

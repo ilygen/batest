@@ -1,0 +1,57 @@
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr//dwr20.dtd">
+<dwr>
+    <allow>
+        <convert converter="bean" match="tw.gov.bli.ba.domain.*" />
+        <convert converter="bean" match="tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptFamCase" />
+        <convert converter="bean" match="tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptBenCase" />
+        <convert converter="bean" match="tw.gov.bli.ba.review.cases.*" />
+        <convert converter="bean" match="tw.gov.bli.ba.decision.cases.*" />
+        <convert converter="bean" match="tw.gov.bli.ba.update.cases.SurvivorCheckMarkLevelAdjustBenDataCase" />
+        <convert converter="bean" match="tw.gov.bli.ba.update.cases.SurvivorCheckMarkLevelAdjustBenDetailDataCase" />
+        <convert converter="bean" match="tw.gov.bli.ba.query.cases.*" />
+        
+        <create creator="spring" javascript="logoutAjaxDo">
+            <param name="beanName" value="logoutAjax" />
+        </create>  
+        
+        <create creator="spring" javascript="receiptCommonAjaxDo">
+            <param name="beanName" value="receiptCommonAjax" />
+        </create>   
+        
+        <create creator="spring" javascript="executiveCommonAjaxDo">
+            <param name="beanName" value="executiveCommonAjax" />
+        </create>
+        
+        <create creator="spring" javascript="updateCommonAjaxDo">
+            <param name="beanName" value="updateCommonAjax" />
+        </create>  
+        
+        <create creator="spring" javascript="reviewCommonAjaxDo">
+            <param name="beanName" value="reviewCommonAjax" />
+        </create>
+        
+        <create creator="spring" javascript="reviewFeeCommonAjaxDo">
+            <param name="beanName" value="reviewFeeCommonAjax" />
+        </create> 
+        
+        <create creator="spring" javascript="decisionCommonAjaxDo">
+            <param name="beanName" value="decisionCommonAjax" />
+        </create>        
+        
+        <create creator="spring" javascript="queryCommonAjaxDo">
+            <param name="beanName" value="queryCommonAjax" />
+        </create>
+        
+        <create creator="spring" javascript="maintCommonAjaxDo">
+            <param name="beanName" value="maintCommonAjax" />
+        </create>
+        
+        <create creator="spring" javascript="rptAjaxDo">
+            <param name="beanName" value="rptAjax" />
+        </create>
+        
+        <create creator="spring" javascript="bjCommonAjaxDo">
+            <param name="beanName" value="bjCommonAjax" />
+        </create>
+    </allow>
+</dwr>

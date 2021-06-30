@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="NBEXCEP">
+
+    <select id="selectCountForNbexcep" resultClass="java.lang.Integer">
+             SELECT COUNT(*) 
+               FROM NPS.NBEXCEP 
+              WHERE BENIDS = #evtIds:VARCHAR#
+                AND EXCEPTYPE = 'G'
+    </select>
+    
+    <select id="selectCtrlBdtBy" resultClass="java.lang.String">
+              SELECT CTRLBDT 
+                FROM NPS.NBEXCEP 
+               WHERE BENIDS = #evtIds:VARCHAR#
+                 AND EXCEPTYPE = 'G'
+    </select>
+    
+</sqlMap>

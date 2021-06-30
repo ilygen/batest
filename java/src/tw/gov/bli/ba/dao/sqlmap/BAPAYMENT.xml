@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENT">
+	<typeAlias alias="Bapayment" type="tw.gov.bli.ba.domain.Bapayment" />
+	
+	<resultMap id="paymentQueryDataResult" class="Bapayment">
+        <result column="IDN"      		property="idn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYMENTNAME"    property="paymentName"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PRTDATE"        property="prtDate"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYMENTNO"      property="paymentNo"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CASENO"        	property="caseNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO"        	property="apno"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />     
+		<result column="PAYTOTAMT"      property="payTotAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="" />                                           
+    </resultMap>
+    <resultMap id="paymentResult" class="Bapayment">
+        <result column="PAYMENTNO"     	 	property="paymentNo"    	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="CASENO"   		 	property="caseNo"   	 	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="CASETYPE"        	property="caseType"       	jdbcType="VARCHAR"      javaType="java.lang.String"    	 	nullValue="" />
+        <result column="PAYMENTDATELINE" 	property="paymentDateLine"  jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTZIP"      	property="paymentZip"       jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTADDR"     	property="paymentAddr"      jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />     
+		<result column="TOTAMTSTAGE"     	property="totAmtStage"     	jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>                                           
+    	<result column="INTERESTSTAGE"   	property="interestStage"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="STAGEAMT"    	 	property="stageAmt"   		jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="TOTTRGAMT"        	property="totTrgAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="INTERESTTRYSTAGE"   property="interestTryStage" jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="MONTHLYPAYAMT"      property="monthlyPayAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="PRTDATE"        	property="prtDate" 	        jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />     
+		<result column="IDN"      			property="idn"    			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />                                           
+    	<result column="PAYTOTAMT"      	property="payTotAmt"     	jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0" />   
+    	<result column="CHKOBJ"      		property="chkObj"    		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />                                         
+    </resultMap>
+    <resultMap id="paymentProgressResult" class="Bapayment">
+        <result column="IDN"      			property="idn"    			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />                                           
+    	<result column="PRTDATE"     	 	property="prtDate"    		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTNO"   		property="paymentNo"   	 	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="CASENO"        		property="caseNo"       	jdbcType="VARCHAR"      javaType="java.lang.String"    	 	nullValue="" />
+        <result column="PAYMENTNAME"        property="paymentName"    	jdbcType="VARCHAR"      javaType="java.lang.String"    	 	nullValue="" />
+        <result column="APNO" 				property="apno"  			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYTOTAMT"      	property="payTotAmt"     	jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0" />   
+    	<result column="NOWSTAGE"      		property="nowStage"    		jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0" />                                          
+    </resultMap>
+	<select id="selectPaymentQueryData" resultMap="paymentQueryDataResult">
+	 <![CDATA[
+  	  SELECT t2.IDN,
+            t3.PAYMENTNAME,
+            t2.PRTDATE,
+            t2.PAYMENTNO,
+            t2.CASENO,
+            t3.APNO,
+            t2.PAYTOTAMT
+      FROM BAPAYMENT t2, BAPAYMENTDTL t3
+		 WHERE t2.IDN = #idn:VARCHAR#
+	  	   and t3.PAYMENTNO = t2.PAYMENTNO
+	  	   and t3.MAPNOMK = '1'
+	       and t2.USEMK <> 'N'
+	       ORDER BY SUBSTR(t2.PAYMENTNO,3,15) DESC
+	 ]]>	
+	</select>
+	<select id="selectCountForPaymentToday" resultClass="java.lang.Integer">
+		SELECT COUNT(t1.PAYMENTNO)
+		  From BAPAYMENT t1
+		 WHERE t1.CRTTIME LIKE (#nowDate:VARCHAR# || '%')
+	</select>
+	
+	<select id="selectPaymentCount" resultClass="java.lang.Integer">
+		SELECT COUNT(t1.PAYMENTNO)
+		  From BAPAYMENT t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+	</select>
+	<insert id="insertPaymentData">
+        INSERT INTO BAPAYMENT 
+        ( 
+           PAYMENTNO,
+           CASENO,
+           CASETYPE,
+           PAYMENTDATELINE,
+           PAYMENTZIP,
+           PAYMENTADDR,
+           TOTAMTSTAGE,
+           INTERESTSTAGE,
+           STAGEAMT,
+           TOTTRGAMT,
+           INTERESTTRYSTAGE,
+           MONTHLYPAYAMT,
+           PRTDATE,
+           IDN,
+           PAYTOTAMT,
+           USEMK,
+           CRTTIME,
+           CRTUSER,
+           CHKOBJ
+        )  
+        VALUES
+        ( 
+            #paymentNo:VARCHAR#,
+            #caseNo:VARCHAR#,
+            #caseType:VARCHAR#,
+            #paymentDateLine:VARCHAR#,
+            #paymentZip:VARCHAR#,
+            #paymentAddr:VARCHAR#,
+            #totAmtStage:NUMERIC#,
+            #interestStage:NUMERIC#,
+            #stageAmt:NUMERIC#,
+            #totTrgAmt:NUMERIC#,
+            #interestTryStage:NUMERIC#,
+            #monthlyPayAmt:NUMERIC#,
+            #prtDate:VARCHAR#,
+            #idn:VARCHAR#,
+            #payTotAmt:VARCHAR#,
+            #useMk:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #chkObj:VARCHAR#             
+        )     
+    </insert>
+    <select id="selectPaymentData" resultMap="paymentResult">
+		SELECT t1.PAYMENTNO,
+	           t1.CASENO,
+	           t1.CASETYPE,
+	           t1.PAYMENTDATELINE,
+	           t1.PAYMENTZIP,
+	           t1.PAYMENTADDR,
+	           t1.TOTAMTSTAGE,
+	           t1.INTERESTSTAGE,
+	           t1.STAGEAMT,
+	           t1.TOTTRGAMT,
+	           t1.INTERESTTRYSTAGE,
+	           t1.MONTHLYPAYAMT,
+	           t1.PRTDATE,
+	           t1.IDN,
+	           t1.PAYTOTAMT,
+	           t1.CHKOBJ
+		  From BAPAYMENT t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+		  AND  t1.USEMK = 'Y'
+	</select>
+	<update id="updatePrintDate">
+		UPDATE BAPAYMENT SET 
+		 PRTDATE=#westDate:VARCHAR#
+		WHERE PAYMENTNO = #paymentNo:VARCHAR#
+	</update>
+    <update id="updatePaymentData">
+    	UPDATE BAPAYMENT SET
+    		   PAYMENTNO=#paymentNo:VARCHAR#,
+	           CASENO= #caseNo:VARCHAR#,
+	           CASETYPE= #caseType:VARCHAR#,
+	           PAYMENTDATELINE=#paymentDateLine:VARCHAR#,
+	           PAYMENTZIP=#paymentZip:VARCHAR#,
+	           PAYMENTADDR=#paymentAddr:VARCHAR#,
+	           TOTAMTSTAGE=#totAmtStage:NUMERIC#,
+	           INTERESTSTAGE=#interestStage:NUMERIC#,
+	           STAGEAMT=#stageAmt:NUMERIC#,
+	           TOTTRGAMT=#totTrgAmt:NUMERIC#,
+	           INTERESTTRYSTAGE= #interestTryStage:NUMERIC#,
+	           MONTHLYPAYAMT=#monthlyPayAmt:NUMERIC#,
+	           PRTDATE=#prtDate:VARCHAR#,
+	           IDN=#idn:VARCHAR#,
+	           PAYTOTAMT=#payTotAmt:VARCHAR#,
+	           USEMK=#useMk:VARCHAR#,
+	           UPDUSER=#updUser:VARCHAR#,
+    		   UPDTIME=#updTime:VARCHAR#,
+    		   CHKOBJ=#chkObj:VARCHAR#
+    	WHERE  PAYMENTNO = #paymentNo:VARCHAR#
+    </update>
+    <update id="updateUsemkForBapayment">
+    	UPDATE BAPAYMENT SET
+    	       USEMK = 'N'
+    	  WHERE PAYMENTNO = #paymentNo:VARCHAR#
+    </update>
+    <select id="selectPaymentProgressQueryData" resultMap="paymentProgressResult">
+		SELECT  t1.PAYMENTNO,
+        		t1.PRTDATE,
+		        t1.CASENO,
+		        t2.PAYMENTNAME,
+		        t2.APNO,
+		        t1.IDN,
+		        sum(t3.PAYAMT+ t3.PAYINTEREST+ t3.EXECAMT) AS PAYTOTAMT,
+		        max(t3.NOWSTAGE) AS NOWSTAGE
+		From BAPAYMENT t1, BAPAYMENTDTL t2, BAPAYMENTASSIGNDTL t3 
+	   <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idn">
+                    t1.IDN = #idn:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paymentNo">
+                    t1.PAYMENTNO = #paymentNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="caseNo"> 	
+                    t1.CASENO = #caseNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="sequenceNo">
+                    SUBSTR(t1.PAYMENTNO, 9, 5) = #sequenceNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paymentDate">
+                    t1.CRTTIME LIKE #paymentDate:VARCHAR# || '%'
+                </isNotEmpty>
+            </isParameterPresent>
+      </dynamic>      
+	  AND  t1.PAYMENTNO = t2.PAYMENTNO
+	  AND  t2.PAYMENTNO = t3.PAYMENTNO
+	  AND  t1.USEMK = 'Y'
+	  AND  t2.MAPNOMK = '1'
+	 GROUP BY t1.PAYMENTNO, t1.PRTDATE, t1.CASENO, t2.APNO, t2.PAYMENTNAME, t1.IDN
+	  ORDER BY SUBSTR(t1.PAYMENTNO,3,15) DESC
+    </select>
+</sqlMap>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAHANDICAPTERM">
+
+	<typeAlias alias="Bahandicapterm" type="tw.gov.bli.ba.domain.Bahandicapterm" />
+	
+	<resultMap id="BAHANDICAPTERMResult" class="Bahandicapterm">
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="TERMNO"       property="termNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="HANDICAPSDATE"    property="handicapSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPEDATE"    property="handicapEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"      property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+	
+	<resultMap id="HandicapMasterDataForSurvivorPaymentQueryResult" class="Bahandicapterm">
+		<result column="HANDICAPSDATE"    property="handicapSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPEDATE"    property="handicapEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPDATACOUNT"    property="handicapDataCount"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+	</resultMap>
+	
+	<resultMap id="HandicapDetailDataForSurvivorPaymentQueryResult" class="Bahandicapterm">
+        <result column="HANDICAPSDATE"    property="handicapSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPEDATE"    property="handicapEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+
+    <resultMap id="BahandicapTermListResult" class="Bahandicapterm">
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="TERMNO"       property="termNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="HANDICAPSDATE"    property="handicapSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPEDATE"    property="handicapEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"      property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+
+	<select id="selectBahandicapMasterDataForSurvivorPaymentQuery" resultMap="HandicapMasterDataForSurvivorPaymentQueryResult">
+        SELECT MIN(HANDICAPSDATE) AS HANDICAPSDATE    
+              ,MAX(HANDICAPEDATE) AS HANDICAPEDATE    
+              ,COUNT(*) AS HANDICAPDATACOUNT          
+          FROM BAHANDICAPTERM                     
+         WHERE APNO = #apNo:VARCHAR#          
+           AND SEQNO = #seqNo:VARCHAR#        
+	</select>
+	
+	<select id="selectBahandicapDetailDataForSurvivorPaymentQuery" resultMap="HandicapDetailDataForSurvivorPaymentQueryResult">
+	    SELECT HANDICAPSDATE
+	          ,HANDICAPEDATE
+	      FROM BAHANDICAPTERM
+	     WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+	     ORDER BY TERMNO
+    </select>
+       
+    <select id="selectBahandicaptermListForSurvivorPayeeDataUpdate" resultMap="BahandicapTermListResult">
+        SELECT APNO,
+               SEQNO,
+               TERMNO,
+               HANDICAPSDATE,
+               HANDICAPEDATE,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME
+        FROM  BAHANDICAPTERM
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+        ORDER BY HANDICAPSDATE, TERMNO
+    </select>
+    
+     <select id="selectMaxTermNoBy" resultClass="java.math.BigDecimal" >
+       SELECT (max(TERMNO) + 1)
+         FROM BAHANDICAPTERM 
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectBahandicaptermListForDependantDataUpdate" resultMap="BahandicapTermListResult">
+        SELECT APNO,
+               SEQNO,
+               TERMNO,
+               HANDICAPSDATE,
+               HANDICAPEDATE,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME
+        FROM  BAHANDICAPTERM
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+        ORDER BY HANDICAPSDATE, TERMNO
+    </select>
+
+    <insert id="insertBahandicapterm">
+        INSERT INTO BAHANDICAPTERM(
+             APNO,
+             SEQNO,
+             TERMNO,
+             HANDICAPSDATE,
+             HANDICAPEDATE,
+             CRTUSER,
+             CRTTIME,
+             UPDUSER,
+             UPDTIME)
+        VALUES (
+             #apNo:VARCHAR#,
+             #seqNo:VARCHAR#,
+             #termNo:VARCHAR#,
+             #handicapSdate:VARCHAR#,
+             #handicapEdate:VARCHAR#,
+             #crtUser:VARCHAR#,
+             #crtTime:VARCHAR#,
+             #updUser:VARCHAR#,
+             #updTime:VARCHAR#
+            )
+    </insert>
+
+    <update id="updateBahandcapiterm">
+        UPDATE BAHANDICAPTERM
+        SET HANDICAPSDATE = #handicapSdate:VARCHAR#,
+            HANDICAPEDATE = #handicapEdate:VARCHAR#,
+            UPDUSER = #cpdUser:VARCHAR#,
+            UPDTIME = #updTime:VARCHAR#
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+          AND TERMNO = #termNo:VARCHAR#
+     </update>
+
+     <delete id="deleteBahandicapterm">
+         DELETE FROM BAHANDICAPTERM
+           WHERE APNO = #apNo:VARCHAR#
+             AND SEQNO = #seqNo:VARCHAR#
+     </delete>
+
+</sqlMap>

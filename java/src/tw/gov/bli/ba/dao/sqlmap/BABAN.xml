@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABAN">
+
+	<typeAlias alias="Baban" type="tw.gov.bli.ba.domain.Baban" />
+	
+	<resultMap id="BABANResult" class="Baban">
+		<result column="APNO"               property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" />
+		<result column="PRODTE"             property="proDte"           jdbcType="VARCHAR"      javaType="java.lang.String" />
+		<result column="CLINNO"         	property="clinNo"           jdbcType="VARCHAR"      javaType="java.lang.String" /> 
+		<result column="IDNO"          		property="idNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+		<result column="NAME"         	 	property="name"            	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYTYP"				property="payType"			jdbcType="VARCHAR"		javaType="java.lang.String" nullValue=""/>
+        <result column="CLINNM"				property="clinNm"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYWAY"				property="payWay"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="EXPENS"				property="expEns"			jdbcType="NUMERIC"      javaType="java.math.BigDecimal"/> 
+		<result column="INVRPN"				property="invRpn"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="INVDTE"				property="invDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="INVPNO"				property="invPno"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="REPDTE"				property="repDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYRPN"				property="payRpn"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="SLDTE"				property="slDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYPNO"				property="payPno"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="ADVDTE"				property="advDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYMK"				property="payMk"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="APPDTE"				property="appDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="CLDTE"				property="clDte" 			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+	</resultMap>
+	
+	<resultMap id="BABANListResult" class="Baban">
+		<result column="APNO"               property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"/>
+		<result column="PRODTE"             property="proDte"           jdbcType="VARCHAR"      javaType="java.lang.String"/>
+		<result column="CLINNO"         	property="clinNo"           jdbcType="VARCHAR"      javaType="java.lang.String"/>
+		<result column="IDNO"          		property="idNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+		<result column="NAME"         	 	property="name"            	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYTYP"				property="payType"			jdbcType="VARCHAR"		javaType="java.lang.String" nullValue=""/>
+        <result column="CLINNM"				property="clinNm"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYWAY"				property="payWay"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="EXPENS"				property="expEns"			jdbcType="NUMERIC"      javaType="java.math.BigDecimal"/> 
+		<result column="INVRPN"				property="invRpn"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="INVDTE"				property="invDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="INVPNO"				property="invPno"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="ADVDTE"				property="advDte"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="PAYMK"				property="payMk"			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+	
+	<select id="getBabanCount" resultClass="java.lang.Integer">
+        Select COUNT(b.APNO) as Q1
+        FROM  MAADMREC m, BABAN b               
+        WHERE  m.APNO   = #apNo:VARCHAR#
+         AND m.ISSUYM = #issuYm:VARCHAR#
+         AND m.PRODATE = #proDte:VARCHAR# 
+         AND m.HPNO = #clinNo:VARCHAR#
+         AND m.LETTERTYPE='17' 
+         AND m.APNO=b.APNO
+         AND m.PRODATE=b.PRODTE
+         AND m.HPNO=b.CLINNO 
+    </select>
+    
+    <select id="getBabanPayMk" resultClass="java.lang.String">
+        Select b.payMk 
+        FROM  MAADMREC m, BABAN b               
+        WHERE  m.APNO   = #apNo:VARCHAR#
+         AND m.ISSUYM = #issuYm:VARCHAR#
+         AND m.PRODATE = #proDte:VARCHAR# 
+         AND m.HPNO = #clinNo:VARCHAR#
+         AND m.LETTERTYPE='17' 
+         AND m.APNO=b.APNO
+         AND m.PRODATE=b.PRODTE
+         AND m.HPNO=b.CLINNO 
+    </select>
+    
+    <insert id="insertData" >
+        
+        INSERT INTO BABAN
+        ( 
+            APNO, 
+            PRODTE, 
+            CLINNO, 
+            IDNO, 
+            NAME, 
+            PAYTYP, 
+            CLINNM, 
+            PAYWAY, 
+            EXPENS, 
+            INVRPN, 
+            INVDTE, 
+            INVPNO, 
+            REPDTE, 
+            PAYRPN, 
+            SLDTE, 
+            PAYPNO, 
+            ADVDTE, 
+            PAYMK, 
+            APPDTE, 
+            CLDTE 
+        )
+        VALUES
+        (
+        	#apNo:VARCHAR#, 
+        	#proDte:VARCHAR#, 
+            #clinNo:VARCHAR#, 
+            #idNo:VARCHAR#, 
+            #name:VARCHAR#,         
+            #payType:VARCHAR#, 
+            #clinNm:VARCHAR#, 
+            #payWay:VARCHAR#, 
+            #expEns:NUMERIC#, 
+            #invRpn:VARCHAR#, 
+            #invDte:VARCHAR#, 
+            #invPno:VARCHAR#, 
+            #repDte:VARCHAR#, 
+            #payRpn:VARCHAR#, 
+            #slDte:VARCHAR#, 
+            #payPno:VARCHAR#, 
+            #advDte:VARCHAR#, 
+            #payMk:VARCHAR#, 
+            #appDte:VARCHAR#, 
+            #clDte:VARCHAR#    
+        )  
+    </insert>
+    
+    <update id="updateData">
+        update BABAN set
+            IDNO=#idNo:VARCHAR#, 
+            NAME=#name:VARCHAR#,  
+            PAYTYP=#payType:VARCHAR#, 
+            CLINNM=#clinNm:VARCHAR#, 
+            PAYWAY=#payWay:VARCHAR#, 
+            EXPENS=#expEns:NUMERIC#, 
+            INVRPN=#invRpn:VARCHAR#, 
+            INVDTE=#invDte:VARCHAR#, 
+            INVPNO=#invPno:VARCHAR#, 
+            REPDTE=#repDte:VARCHAR#, 
+            PAYRPN=#payRpn:VARCHAR#, 
+            SLDTE=#slDte:VARCHAR#, 
+            PAYPNO=#payPno:VARCHAR#, 
+            ADVDTE=#advDte:VARCHAR#, 
+            PAYMK=#payMk:VARCHAR#, 
+            APPDTE=#appDte:VARCHAR#, 
+            CLDTE=#clDte:VARCHAR# 
+        where APNO=#apNo:VARCHAR#  
+	 	and PRODTE=#proDte:VARCHAR#            
+	 	and CLINNO=#clinNo:VARCHAR# 
+            
+    </update>
+    
+    
+
+</sqlMap>

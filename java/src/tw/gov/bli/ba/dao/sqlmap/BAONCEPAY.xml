@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAONCEPAY">
+
+    <typeAlias alias="Baoncepay" type="tw.gov.bli.ba.domain.Baoncepay" />
+
+    <resultMap id="BAONCEPAYResult" class="Baoncepay">
+        <result column="BAONCEPAYID"       property="baoncepayId"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="APNO"              property="apNo"           jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="SEQNO"             property="seqNo"          jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="APPDATE"           property="appDate"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EVTIDS"            property="evtIds"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="EVTIDNNO"          property="evtIdnNo"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EVTNAME"           property="evtName"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="EVTBRDATE"         property="evtBrDate"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EVTEXPIREDATE"     property="evtExpireDate"  jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="EVTDATE"           property="evtDate"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EVTJOBDATE"        property="evtJobDate"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="OLDTY"             property="oldtY"          jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="OLDTD"             property="oldtD"          jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="NITRMY"            property="nitrmY"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="NITRMM"            property="nitrmM"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="NOLDTY"            property="noldtY"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="NOLDTM"            property="noldtM"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="ONCEAVGAMT"        property="onceAvgAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="ONCEPAYYM"         property="oncePayYm"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="ONCEPAYAMT"        property="oncePayAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="ONCEOLDAMT"        property="onceOldAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="INSAVGAMT"         property="insAvgAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="INSNITRMY"         property="insNitrmY"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="INSNITRMM"         property="insNitrmM"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />        
+        <result column="PROCTIME"          property="procTime"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>    
+    
+    <resultMap id="OncePayDataResult" class="Baoncepay">
+        <result column="OLDTY"             property="oldtY"          jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />        
+        <result column="OLDTD"             property="oldtD"          jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />
+        <result column="NITRMY"            property="nitrmY"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />        
+        <result column="NITRMM"            property="nitrmM"         jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />
+        <result column="ONCEOLDAMT"        property="onceOldAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />
+        <result column="ONCEPAYAMT"        property="oncePayAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />        
+        <result column="ONCEAVGAMT"        property="onceAvgAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />        
+        <result column="ONCEPAYYM"         property="oncePayYm"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />
+    </resultMap>  
+    
+    <select id="selectOncePayDataBy" resultMap="OncePayDataResult">
+		SELECT OLDTY,           
+		       OLDTD,           
+		       NITRMY,          
+		       NITRMM,          
+		       ONCEOLDAMT,      
+		       ONCEPAYAMT,      
+		       ONCEAVGAMT,      
+		       ONCEPAYYM       
+		  FROM BAONCEPAY       
+		 WHERE APNO=#apNo:VARCHAR#    
+		   AND SEQNO='0000'    
+		   AND ROWNUM=1        
+		 ORDER BY PROCTIME DESC
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01DieOncePayDataBy" resultMap="BAONCEPAYResult">
+        SELECT A.BAONCEPAYID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.APPDATE, 
+               A.EVTIDS, 
+               A.EVTIDNNO, 
+               A.EVTNAME, 
+               A.EVTBRDATE, 
+               A.EVTEXPIREDATE, 
+               A.EVTDATE, 
+               A.EVTJOBDATE, 
+               A.OLDTY, 
+               A.OLDTD, 
+               A.NITRMY, 
+               A.NITRMM, 
+               A.NOLDTY, 
+               A.NOLDTM, 
+               A.ONCEAVGAMT, 
+               A.ONCEPAYYM, 
+               A.ONCEPAYAMT, 
+               A.ONCEOLDAMT, 
+               A.INSAVGAMT, 
+               A.INSNITRMY, 
+               A.INSNITRMM, 
+               A.PROCTIME 
+        FROM   BAONCEPAY A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND A.SEQNO = '0000' 
+                AND ROWNUM <= 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PROCTIME DESC
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+</sqlMap>

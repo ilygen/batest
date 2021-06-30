@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAISSUDATE">
+
+    <typeAlias alias="Bapaissudate" type="tw.gov.bli.ba.domain.Bapaissudate" />
+
+    <resultMap id="BAPAISSUDATEResult" class="Bapaissudate">
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUDATE"       property="issuDate"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />     
+    </resultMap>
+    
+    <!-- DataUpdateRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectDataUpdateRpt01DataBy" resultMap="BAPAISSUDATEResult">
+        SELECT A.ISSUYM, 
+               A.PAYYM, 
+               A.ISSUDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPAISSUDATE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        AND A.PAYCODE = 'L' 
+        AND A.BANKKIND = '1' 
+        AND A.ISSUTYP = '1'
+    </select>
+    <!-- ] -->
+    <!-- DataUpdateRpt 01 End -->
+    
+    <select id="selectMaxIssuYmBy" resultClass="java.lang.String">
+                  Select Min(t.ISSUYM)
+                    From BAPAISSUDATE t
+                   Where t.PAYCODE = #payCode:VARCHAR#
+                     <![CDATA[
+                     And t.issudate >= TO_CHAR(SYSDATE,'YYYYMMDD')
+                     ]]>
+                     And t.ISSUTYP = '1'
+    </select>
+    
+    <select id="selectCheckCountForBjMonthBy" resultClass="java.math.BigDecimal">
+        Select Count(t.Issuym) 
+          From BAPAISSUDATE t
+         Where t.PAYCODE = #payCode:VARCHAR#
+           <![CDATA[
+           And t.fchkdate <= TO_CHAR(SYSDATE,'YYYYMMDD')
+           And t.issudate >= TO_CHAR(SYSDATE,'YYYYMMDD')
+           ]]>
+           And t.ISSUTYP = '1'
+           And ROWNUM = 1
+    </select>
+    
+    <select id="selectCheckCountForBjMonthBy2" resultClass="java.math.BigDecimal">
+        Select Count(t.Issuym) 
+          From BAPAISSUDATE t
+         Where t.PAYCODE = #payCode:VARCHAR#
+           <![CDATA[
+           And t.fchkdate <= TO_CHAR(SYSDATE,'YYYYMMDD')
+           And t.innaccdate >= TO_CHAR(SYSDATE,'YYYYMMDD')
+           ]]>
+           And t.ISSUTYP = '1'
+           And ROWNUM = 1
+    </select>
+    
+    <select id="selectCheckChkdate" resultClass="java.math.BigDecimal">
+        Select Count(t.Issuym) 
+          From BAPAISSUDATE t
+         Where t.PAYCODE = #payCode:VARCHAR#
+           <![CDATA[
+           And t.ISSUDATE =  #chkDate:VARCHAR#
+           And t.ISSUYM   =  #issuYm:VARCHAR#
+           ]]>
+           And t.ISSUTYP = '1'
+    </select>
+
+	<select id="selectIssuDateForOtherRpt10" resultClass="java.lang.String">
+		SELECT ISSUDATE
+		  FROM BAPAISSUDATE t
+		 WHERE t.PAYCODE = #payCode:VARCHAR#
+		   AND t.ISSUYM = #issuYm:VARCHAR#
+		   AND t.ISSUTYP = '1'
+		   AND t.BANKKIND = '1'
+	</select>
+     
+    <select id="qryChkIssuym" resultClass="java.lang.String">
+        SELECT DISTINCT TO_CHAR(ADD_MONTHS(SYSDATE,-1),'YYYYMM') ISSUYM
+          FROM BAPAISSUDATE T
+         WHERE T.PAYCODE = #payCode:VARCHAR#
+           AND T.ISSUYM = TO_CHAR(SYSDATE,'YYYYMM') AND T.ISSUDATE >= TO_CHAR(SYSDATE,'YYYYMMDD')
+           AND T.ISSUTYP = '1'
+           AND T.BANKKIND = '1'
+           AND T.PAYKIND IN ('35','45','55')
+        UNION
+        SELECT DISTINCT T.ISSUYM ISSUYM
+          FROM BAPAISSUDATE T
+         WHERE T.PAYCODE = #payCode:VARCHAR#
+           <![CDATA[
+           AND T.ISSUYM = TO_CHAR(SYSDATE,'YYYYMM') AND T.ISSUDATE < TO_CHAR(SYSDATE,'YYYYMMDD')
+           ]]>
+           AND T.ISSUTYP = '1'
+           AND T.BANKKIND = '1'
+           AND T.PAYKIND IN ('35','45','55')
+
+	</select>
+</sqlMap>

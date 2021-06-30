@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABCML7">
+	
+	<typeAlias alias="Babcml7" type="tw.gov.bli.ba.domain.Babcml7" />
+	
+	<resultMap id="BABCML7Result" class="Babcml7">
+		<result column="REAPNO"					property="reApNo"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="APSEQ"                  property="apSeq"        			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="APNO"                   property="apNo"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PROCSTAT"               property="procStat"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="INREDATE"               property="inreDate"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="REASCODE"               property="reasCode"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="HOSID"                  property="hosId"        			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RECOSDATE"              property="recosDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RENUM"                  property="reNum"        			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="REHPSTAY"               property="rehpStay"     			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="REFEES"                 property="reFees"       			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="NONREFEES"              property="nonreFees"    			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="REAMTPAY"               property="reAmtPay"     			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="NOTIFYFORM"             property="notifyForm"   			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENIDNNO"               property="benIdnNo"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENNAME"                property="benName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENBRDATE"              property="benBrDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENSEX"                 property="benSex"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENNATIONTYP"           property="benNationTyp" 			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENNATIONCODE"          property="benNationCode"			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BENEVTREL"              property="benEvtRel"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="TEL1"                   property="tel1"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="TEL2"                   property="tel2"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="COMMTYP"                property="commTyp"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="COMMZIP"                property="commZip"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="COMMADDR"               property="commAddr"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PAYTYP"                 property="payTyp"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BANKNAME"               property="bankName"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PAYBANKID"              property="payBankId"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BRANCHID"               property="branchId"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PAYEEACC"               property="payeeAcc"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="ACCIDN"                 property="accIdn"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="ACCNAME"                property="accName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="ACCREL"                 property="accRel"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="MITRATE"                property="mitRate"      			jdbcType="NUMERIC"					javaType="java.math.BigDecimal" />
+		<result column="GRDIDNNO"               property="grdIdnNo"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="GRDNAME"                property="grdName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="GRDBRDATE"              property="grdBrDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="MEXCLVL"                property="mexcLvl"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="REALEXCLVL"             property="realexcLvl"   			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CHKDATE"                property="chkDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CHKMAN"                 property="chkMan"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RECHKDATE"              property="rechkDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RECHKMAN"               property="rechkMan"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="EXEDATE"                property="exeDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="EXEMAN"                 property="exeMan"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PROMOTEUSER"            property="promoteUser"  			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CHKSTAT"                property="chkStat"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RECHKSTAT"              property="rechkStat"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CONMK"                  property="conMk"        			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CONDATE"                property="conDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CONMAN"                 property="conMan"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="REJMK"                  property="rejMk"        			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="DRDATE"                 property="drDate"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="DRNO"                   property="drNo"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PAYDATE"                property="payDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RPAYDATE"               property="rpayDate"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="RTDATE"                 property="rtDate"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="REPDATE"                property="repDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="STEXPNDMK"              property="stexpndMk"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="STEXPNDREASON"          property="stexpndReason"			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="STEXPNDDATE"            property="stexpndDate"  			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="BUREAUACC"              property="bureauAcc"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CRTUSER"                property="crtUser"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="CRTTIME"                property="crtTime"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="UPDUSER"                property="updUser"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="UPDTIME"                property="updTime"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+	</resultMap>
+
+    <!-- ReviewFeeReceipt Begin -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReceiptResult" class="Babcml7">
+    	<result column="REAPNO"					property="reApNo"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="APSEQ"                  property="apSeq"        			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="RECOSDATE"              property="recosDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="REFEES"                 property="reFees"       			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+        <result column="NONREFEES"              property="nonreFees"    			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+        <result column="REAMTPAY"               property="reAmtPay"     			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+        <result column="HOSID"                  property="hosId"        			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="BENIDNNO"               property="benIdnNo"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="BENNAME"                property="benName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="BENBRDATE"              property="benBrDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="BENEVTREL"              property="benEvtRel"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="TEL1"                   property="tel1"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="TEL2"                   property="tel2"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="COMMZIP"                property="commZip"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="COMMADDR"               property="commAddr"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="PAYTYP"                 property="payTyp"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="BANKNAME"               property="bankName"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="PAYBANKID"              property="payBankId"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="PAYEEACC"               property="payeeAcc"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="ACCNAME"                property="accName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="ACCREL"                 property="accRel"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="ACCIDN"                 property="accIdn"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="GRDIDNNO"               property="grdIdnNo"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="GRDNAME"                property="grdName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="GRDBRDATE"              property="grdBrDate"    			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="EXEDATE"                property="exeDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="CRTUSER"                property="crtUser"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="UPDUSER"                property="updUser"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <result column="NOTIFYFORM"             property="notifyForm"   			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+        <!-- Field not in BABCML7 -->
+        <result column="EVTNAME"                property="evtName"                  jdbcType="VARCHAR"                  javaType="java.lang.String"                 nullValue="" />
+        <result column="EVTIDNNO"               property="evtIdnNo"                 jdbcType="VARCHAR"                  javaType="java.lang.String"                 nullValue="" />
+        <result column="EVTBRDATE"              property="evtBrDate"                jdbcType="VARCHAR"                  javaType="java.lang.String"                 nullValue="" />
+        <result column="EVTAGE"                 property="evtAge"                   jdbcType="VARCHSR"                  javaType="java.lang.String"                 nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    
+    <!-- [ -->
+    <resultMap id="ReviewFeeReceiptRpt02Result" class="Babcml7">
+    	<result column="REAPNO"					property="reApNo"       			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+		<result column="APSEQ"                  property="apSeq"        			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+		<result column="APNO"                   property="apNo"         			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="BENNAME"                property="benName"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="COMMADDR"               property="commAddr"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="NOTIFYFORM"             property="notifyForm"   			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="PAYDATE"                property="payDate"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="COMMZIP"                property="commZip"      			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="COMMADDR"               property="commAddr"     			jdbcType="VARCHAR"					javaType="java.lang.String"					nullValue="" />
+    	<result column="REAMTPAY"               property="reAmtPay"     			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+    	<result column="NONREFEES"              property="nonreFees"    			jdbcType="NUMERIC"					javaType="java.math.BigDecimal"	/>
+    	<!-- Field not in BABCML7 -->
+        <result column="EVTNAME"                property="evtName"                  jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTIDNNO"               property="evtIdnNo"                 jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTBRDATE"              property="evtBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- ReviewFeeReceipt End -->    
+    
+    <resultMap id="ReFeesMasterDataForDisabledPaymentQueryResult" class="Babcml7">
+        <result column="REAPNO"             property="reApNo"               jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />
+        <result column="APSEQ"              property="apSeq"                jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />
+        <result column="APNO"               property="apNo"                 jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />
+        <result column="INREDATE"           property="inreDate"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />
+        <result column="RECOSDATE"          property="recosDate"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />
+        <result column="REFEES"             property="reFees"               jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />
+        <result column="NONREFEES"          property="nonreFees"            jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />
+        <result column="REAMTPAY"           property="reAmtPay"             jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />
+        <result column="PAYDATE"            property="payDate"              jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="ReFeesDetailDataForDisabledPaymentQueryResult" class="Babcml7">
+        <result column="REAPNO"           property="reApNo"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="APSEQ"            property="apSeq"              jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="APNO"             property="apNo"               jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="PROCSTAT"         property="procStat"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="INREDATE"         property="inreDate"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="REASCODE"         property="reasCode"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="HOSID"            property="hosId"              jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RECOSDATE"        property="recosDate"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RENUM"            property="reNum"              jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="REHPSTAY"         property="rehpStay"           jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="REFEES"           property="reFees"             jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="NONREFEES"        property="nonreFees"          jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="REAMTPAY"         property="reAmtPay"           jdbcType="NUMERIC"          javaType="java.math.BigDecimal" />      
+        <result column="NOTIFYFORM"       property="notifyForm"         jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENIDNNO"         property="benIdnNo"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENNAME"          property="benName"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENBRDATE"        property="benBrDate"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENSEX"           property="benSex"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENNATIONTYP"     property="benNationTyp"       jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENNATIONCODE"    property="benNationCode"      jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENNATIONNAME"    property="benNationName"      jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BENEVTREL"        property="benEvtRel"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="TEL1"             property="tel1"               jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="TEL2"             property="tel2"               jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="COMMTYP"          property="commTyp"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="COMMZIP"          property="commZip"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="COMMADDR"         property="commAddr"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="PAYTYP"           property="payTyp"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BANKNAME"         property="bankName"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="PAYBANKID"        property="payBankId"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="BRANCHID"         property="branchId"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="PAYEEACC"         property="payeeAcc"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="ACCNAME"          property="accName"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="ACCREL"           property="accRel"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="REALEXCLVL"       property="mexcLvl"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="CHKDATE"          property="chkDate"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="CHKMAN"           property="chkMan"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RECHKDATE"        property="rechkDate"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RECHKMAN"         property="rechkMan"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="EXEDATE"          property="exeDate"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="EXEMAN"           property="exeMan"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="CHKSTAT"          property="chkStat"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RECHKSTAT"        property="rechkStat"          jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="PAYDATE"          property="payDate"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RPAYDATE"         property="rpayDate"           jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="RTDATE"           property="rtDate"             jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="REPDATE"          property="repDate"            jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="STEXPNDREASON"    property="stexpndReason"      jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />    
+        <result column="STEXPNDDATE"      property="stexpndDate"        jdbcType="VARCHAR"          javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+    
+    <!-- Review Fee Review -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReviewListResult" class="Babcml7" extends="BABCML7Result">
+        <!-- Field not in BABCML7 -->
+        <result column="REASNAME"       property="reasName"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="HOSNAME"        property="hosName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENEVTRELNAME"  property="benEvtRelName"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNATIONNAME"  property="benNationName"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYPNAME"     property="payTypName"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Review -->
+    
+    <!-- Review Fee Decision -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeDecisionListResult" class="Babcml7" extends="BABCML7Result">
+        <!-- Field not in BABCML7 -->
+        <result column="REASNAME"       property="reasName"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="HOSNAME"        property="hosName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENEVTRELNAME"  property="benEvtRelName"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNATIONNAME"  property="benNationName"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYPNAME"     property="payTypName"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Decision -->
+    
+    <!-- ReviewFeeReceipt Begin -->
+    <!-- [ -->
+    <select id="getReviewFeeReceiptRpt01DataBy" resultMap="ReviewFeeReceiptResult">
+        SELECT  A.EVTNAME,   
+				A.EVTIDNNO, 
+				A.EVTBRDATE,
+				A.EVTAGE, 
+				B.REAPNO,   
+				B.APSEQ,    
+				B.RECOSDATE,
+				B.REFEES,   
+				B.NONREFEES,
+				B.REAMTPAY, 
+				B.HOSID,    
+				B.BENIDNNO, 
+				B.BENNAME,  
+				B.BENBRDATE,
+				B.BENEVTREL, 
+				B.TEL1,      
+				B.TEL2,      
+				B.COMMZIP,   
+				B.COMMADDR,  
+				B.PAYTYP, 
+				B.BANKNAME, 
+				B.PAYBANKID, 
+				B.PAYEEACC,   
+				B.ACCIDN, 
+				B.ACCNAME, 
+				B.ACCREL,    
+				B.GRDIDNNO,  
+				B.GRDNAME,   
+				B.GRDBRDATE, 
+				B.EXEDATE, 
+				B.CRTUSER, 
+				B.UPDUSER, 
+				B.NOTIFYFORM     
+		FROM  BAAPPBASE A, BABCML7 B
+		WHERE (B.APNO = #apNo:VARCHAR#  
+		or   B.REAPNO = #apNo:VARCHAR#)
+		<dynamic prepend="">
+			<isNotEmpty prepend="AND" property="apSeq">
+					  B.APSEQ = #apSeq:NUMERIC#
+			</isNotEmpty>
+		</dynamic> 
+		and  B.APNO = A.APNO(+)
+		and  B.PROCSTAT = '00'
+		and  A.SEQNO = '0000'
+    </select>
+    <!-- ] -->
+    
+    <!-- [ -->
+    <select id="getReviewFeeReceiptRpt02DataBy" resultMap="ReviewFeeReceiptRpt02Result">
+    	SELECT DISTINCT 
+    		   A.APNO,
+    		   A.APSEQ,           
+	    	   A.REAPNO,        
+	    	   A.BENNAME,     
+	    	   A.COMMADDR,   
+	    	   A.NOTIFYFORM,   
+	    	   A.REAMTPAY,     
+	    	   A.REFEES,       
+	    	   A.NONREFEES, 
+	    	   A.PAYDATE, 
+	    	   A.COMMZIP, 
+	    	   A.COMMADDR, 
+	    	   B.EVTNAME,   
+			   B.EVTIDNNO, 
+			   B.EVTBRDATE 		
+	    FROM BABCML7 A, BAAPPBASE B 
+		WHERE (A.APNO = #apNo:VARCHAR# or A.REAPNO = #apNo:VARCHAR#)
+		  <dynamic prepend="">
+			<isNotEmpty prepend="AND" property="apSeq">
+					  A.APSEQ = #apSeq:NUMERIC#
+			</isNotEmpty>
+			<isEmpty prepend="AND" property="apSeq">
+					  A.APSEQ = (Select max(C.APSEQ) 
+                 		 FROM BABCML7 C
+                 		 WHERE (C.APNO= #apNo:VARCHAR# or C.REAPNO = #apNo:VARCHAR#))
+			</isEmpty>
+		  </dynamic>
+  		  and A.PROCSTAT='50'
+  		  and A.APNO = B.APNO(+)
+    </select>
+    <!-- ] -->
+    
+    <!-- [ -->
+    <select id="getReviewFeeReceiptRpt03DataBy" resultMap="ReviewFeeReceiptResult">
+        SELECT  A.EVTNAME,   
+				A.EVTIDNNO, 
+				A.EVTBRDATE,
+				A.EVTAGE, 
+				B.REAPNO,   
+				B.APSEQ, 
+				B.NOTIFYFORM,    
+				B.RECOSDATE,
+				B.REFEES,   
+				B.NONREFEES,
+				B.REAMTPAY, 
+				B.HOSID,    
+				B.BENIDNNO, 
+				B.BENNAME,  
+				B.BENBRDATE,
+				B.BENEVTREL, 
+				B.TEL1,      
+				B.TEL2,      
+				B.COMMZIP,   
+				B.COMMADDR,  
+				B.PAYTYP, 
+				B.BANKNAME, 
+				B.PAYBANKID, 
+				B.PAYEEACC,   
+				B.ACCIDN, 
+				B.ACCNAME, 
+				B.ACCREL,    
+				B.GRDIDNNO,  
+				B.GRDNAME,   
+				B.GRDBRDATE, 
+				B.EXEDATE, 
+				B.CRTUSER, 
+				B.UPDUSER    
+		FROM  BAAPPBASE A, BABCML7 B
+		WHERE (B.APNO = #apNo:VARCHAR#  
+		or   B.REAPNO = #apNo:VARCHAR#)
+		<dynamic prepend="">
+			<isNotEmpty prepend="AND" property="apSeq">
+					  B.APSEQ = #apSeq:NUMERIC#
+			</isNotEmpty>
+		</dynamic> 
+		and  B.APNO = A.APNO(+)
+		and  B.PROCSTAT = '50'
+		and  A.SEQNO = '0000' 
+		order by B.APSEQ 
+    </select>
+    <!-- ] -->
+    <!-- ReviewFeeReceipt End -->
+
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <select id="getReviewFeeReceiptApSeqForInsertBy" resultClass="java.lang.Integer">
+        SELECT NVL(MAX(APSEQ), 0)+1 
+        FROM   BABCML7 
+        WHERE  REAPNO = #reApNo:VARCHAR#
+    </select>
+    
+    <select id="getReviewFeeReceiptListForUpdateBy" resultMap="BABCML7Result">
+        SELECT B.REAPNO,
+               B.APSEQ,
+               B.APNO,
+               B.PROCSTAT,
+               B.INREDATE,
+               B.REASCODE,
+               B.HOSID,
+               B.RECOSDATE,
+               B.RENUM,
+               B.REHPSTAY,
+               B.REFEES,
+               B.NONREFEES,
+               B.REAMTPAY,
+               B.NOTIFYFORM,
+               B.BENIDNNO,
+               B.BENNAME,
+               B.BENBRDATE,
+               B.BENSEX,
+               B.BENNATIONTYP,
+               B.BENNATIONCODE,
+               B.BENEVTREL,
+               B.TEL1,
+               B.TEL2,
+               B.COMMTYP,
+               B.COMMZIP,
+               B.COMMADDR,
+               B.PAYTYP,
+               B.BANKNAME,
+               B.PAYBANKID,
+               B.BRANCHID,
+               B.PAYEEACC,
+               B.ACCIDN,
+               B.ACCNAME,
+               B.ACCREL,
+               B.MITRATE,
+               B.GRDIDNNO,
+               B.GRDNAME,
+               B.GRDBRDATE,
+               B.MEXCLVL,
+               B.REALEXCLVL,
+               B.CHKDATE,
+               B.CHKMAN,
+               B.RECHKDATE,
+               B.RECHKMAN,
+               B.EXEDATE,
+               B.EXEMAN,
+               B.PROMOTEUSER,
+               B.CHKSTAT,
+               B.RECHKSTAT,
+               B.CONMK,
+               B.CONDATE,
+               B.CONMAN,
+               B.REJMK,
+               B.DRDATE,
+               B.DRNO,
+               B.PAYDATE,
+               B.RPAYDATE,
+               B.RTDATE,
+               B.REPDATE,
+               B.STEXPNDMK,
+               B.STEXPNDREASON,
+               B.STEXPNDDATE,
+               B.BUREAUACC,
+               B.CRTUSER,
+               B.CRTTIME,
+               B.UPDUSER,
+               B.UPDTIME  
+        FROM   BAAPPBASE A, BABCML7 B
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="reApNo">
+                    (B.APNO = #reApNo:VARCHAR# OR B.REAPNO = #reApNo:VARCHAR#)
+                </isNotEmpty>
+                AND
+                A.APNO = B.APNO AND
+                A.SEQNO = '0000' AND
+                B.PROCSTAT = '00'
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY B.APSEQ
+    </select>
+    
+    <select id="getReviewFeeReceiptDataForUpdateBy" resultMap="BABCML7Result">
+        SELECT A.REAPNO,
+               A.APSEQ,
+               A.APNO,
+               A.PROCSTAT,
+               A.INREDATE,
+               A.REASCODE,
+               A.HOSID,
+               A.RECOSDATE,
+               A.RENUM,
+               A.REHPSTAY,
+               A.REFEES,
+               A.NONREFEES,
+               A.REAMTPAY,
+               A.NOTIFYFORM,
+               A.BENIDNNO,
+               A.BENNAME,
+               A.BENBRDATE,
+               A.BENSEX,
+               A.BENNATIONTYP,
+               A.BENNATIONCODE,
+               A.BENEVTREL,
+               A.TEL1,
+               A.TEL2,
+               A.COMMTYP,
+               A.COMMZIP,
+               A.COMMADDR,
+               A.PAYTYP,
+               A.BANKNAME,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.ACCIDN,
+               A.ACCNAME,
+               A.ACCREL,
+               A.MITRATE,
+               A.GRDIDNNO,
+               A.GRDNAME,
+               A.GRDBRDATE,
+               A.MEXCLVL,
+               A.REALEXCLVL,
+               A.CHKDATE,
+               A.CHKMAN,
+               A.RECHKDATE,
+               A.RECHKMAN,
+               A.EXEDATE,
+               A.EXEMAN,
+               A.PROMOTEUSER,
+               A.CHKSTAT,
+               A.RECHKSTAT,
+               A.CONMK,
+               A.CONDATE,
+               A.CONMAN,
+               A.REJMK,
+               A.DRDATE,
+               A.DRNO,
+               A.PAYDATE,
+               A.RPAYDATE,
+               A.RTDATE,
+               A.REPDATE,
+               A.STEXPNDMK,
+               A.STEXPNDREASON,
+               A.STEXPNDDATE,
+               A.BUREAUACC,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME  
+        FROM   BABCML7 A
+        WHERE  A.REAPNO = #reApNo:VARCHAR# AND
+               A.APSEQ = #apSeq:NUMERIC#
+    </select>
+    
+    <insert id="insertReviewFeeReceiptData">
+        INSERT INTO BABCML7
+        (
+            REAPNO, 
+            APSEQ, 
+            APNO, 
+            PROCSTAT, 
+            INREDATE, 
+            REASCODE, 
+            HOSID, 
+            RECOSDATE, 
+            RENUM, 
+            REHPSTAY, 
+            REFEES, 
+            NONREFEES, 
+            REAMTPAY, 
+            NOTIFYFORM, 
+            BENIDNNO, 
+            BENNAME, 
+            BENBRDATE, 
+            BENSEX, 
+            BENNATIONTYP, 
+            BENNATIONCODE, 
+            BENEVTREL, 
+            TEL1, 
+            TEL2, 
+            COMMTYP, 
+            COMMZIP, 
+            COMMADDR, 
+            PAYTYP, 
+            BANKNAME, 
+            PAYBANKID, 
+            BRANCHID, 
+            PAYEEACC, 
+            ACCNAME,  
+            CRTUSER, 
+            CRTTIME
+        ) 
+        VALUES
+        (
+            #reApNo:VARCHAR#,
+            #apSeq:NUMERIC#,
+            #apNo:VARCHAR#,
+            '00',
+            #inreDate:VARCHAR#,
+            #reasCode:VARCHAR#,
+            #hosId:VARCHAR#,
+            #recosDate:VARCHAR#,
+            #reNum:NUMERIC#,
+            #rehpStay:NUMERIC#,
+            #reFees:NUMERIC#,
+            #nonreFees:NUMERIC#,
+            #reAmtPay:NUMERIC#,
+            #notifyForm:VARCHAR#,
+            #benIdnNo:VARCHAR#,
+            #benName:VARCHAR#,
+            #benBrDate:VARCHAR#,
+            #benSex:VARCHAR#,
+            #benNationTyp:VARCHAR#,
+            #benNationCode:VARCHAR#,
+            #benEvtRel:VARCHAR#,
+            #tel1:VARCHAR#,
+            #tel2:VARCHAR#,
+            #commTyp:VARCHAR#,
+            #commZip:VARCHAR#,
+            #commAddr:VARCHAR#,
+            #payTyp:VARCHAR#,
+            #bankName:VARCHAR#,
+            #payBankId:VARCHAR#,
+            #branchId:VARCHAR#,
+            #payeeAcc:VARCHAR#,
+            #accName:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#
+        )
+    </insert>
+    
+    <update id="updateReviewFeeReceiptData">
+        UPDATE BABCML7 SET 
+               INREDATE = #inreDate:VARCHAR#, 
+               REASCODE = #reasCode:VARCHAR#, 
+               HOSID = #hosId:VARCHAR#, 
+               RECOSDATE = #recosDate:VARCHAR#, 
+               RENUM = #reNum:NUMERIC#, 
+               REHPSTAY = #rehpStay:NUMERIC#, 
+               REFEES = #reFees:NUMERIC#, 
+               NONREFEES = #nonreFees:NUMERIC#, 
+               REAMTPAY = #reAmtPay:NUMERIC#, 
+               NOTIFYFORM = #notifyForm:VARCHAR#, 
+               BENIDNNO = #benIdnNo:VARCHAR#, 
+               BENNAME = #benName:VARCHAR#, 
+               BENBRDATE = #benBrDate:VARCHAR#, 
+               BENSEX = #benSex:VARCHAR#, 
+               BENNATIONTYP = #benNationTyp:VARCHAR#, 
+               BENNATIONCODE = #benNationCode:VARCHAR#, 
+               BENEVTREL = #benEvtRel:VARCHAR#, 
+               TEL1 = #tel1:VARCHAR#, 
+               TEL2 = #tel2:VARCHAR#, 
+               COMMTYP = #commTyp:VARCHAR#, 
+               COMMZIP = #commZip:VARCHAR#, 
+               COMMADDR = #commAddr:VARCHAR#,
+               PAYTYP = #payTyp:VARCHAR#,
+               BANKNAME = #bankName:VARCHAR#, 
+               PAYBANKID = #payBankId:VARCHAR#, 
+               BRANCHID = #branchId:VARCHAR#, 
+               PAYEEACC = #payeeAcc:VARCHAR#, 
+               ACCNAME = #accName:VARCHAR#,  
+               UPDUSER = #updUser:VARCHAR#, 
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  REAPNO = #reApNo:VARCHAR# AND
+               APSEQ = #apSeq:NUMERIC#
+    </update>
+    
+    <update id="deleteReviewFeeReceiptData">
+        UPDATE BABCML7 SET 
+               PROCSTAT = '99'
+        WHERE  REAPNO = #reApNo:VARCHAR# AND
+               APSEQ = #apSeq:NUMERIC#
+    </update>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+    
+    <!-- Review Fee Review -->
+    <!-- [ -->
+    <select id="getReviewFeeReviewListBy" resultMap="ReviewFeeReviewListResult">
+        SELECT B.REAPNO,
+               B.APSEQ,
+               B.APNO,
+               B.PROCSTAT,
+               B.INREDATE,
+               B.REASCODE,
+               B.HOSID,
+               B.RECOSDATE,
+               B.RENUM,
+               B.REHPSTAY,
+               B.REFEES,
+               B.NONREFEES,
+               B.REAMTPAY,
+               B.NOTIFYFORM,
+               B.BENIDNNO,
+               B.BENNAME,
+               B.BENBRDATE,
+               B.BENSEX,
+               B.BENNATIONTYP,
+               B.BENNATIONCODE,
+               B.BENEVTREL,
+               B.TEL1,
+               B.TEL2,
+               B.COMMTYP,
+               B.COMMZIP,
+               B.COMMADDR,
+               B.PAYTYP,
+               B.BANKNAME,
+               B.PAYBANKID,
+               B.BRANCHID,
+               B.PAYEEACC,
+               B.ACCIDN,
+               B.ACCNAME,
+               B.ACCREL,
+               B.MITRATE,
+               B.GRDIDNNO,
+               B.GRDNAME,
+               B.GRDBRDATE,
+               B.MEXCLVL,
+               B.REALEXCLVL,
+               B.CHKDATE,
+               B.CHKMAN,
+               B.RECHKDATE,
+               B.RECHKMAN,
+               B.EXEDATE,
+               B.EXEMAN,
+               B.PROMOTEUSER,
+               B.CHKSTAT,
+               B.RECHKSTAT,
+               B.CONMK,
+               B.CONDATE,
+               B.CONMAN,
+               B.REJMK,
+               B.DRDATE,
+               B.DRNO,
+               B.PAYDATE,
+               B.RPAYDATE,
+               B.RTDATE,
+               B.REPDATE,
+               B.STEXPNDMK,
+               B.STEXPNDREASON,
+               B.STEXPNDDATE,
+               B.BUREAUACC,
+               B.CRTUSER,
+               B.CRTTIME,
+               B.UPDUSER,
+               B.UPDTIME,
+               C.PARAMNAME AS REASNAME,
+               D.HPSNAM AS HOSNAME,
+               E.PARAMNAME AS BENEVTRELNAME,
+               F.CNAME AS BENNATIONNAME,
+               G.PARAMNAME AS PAYTYPNAME  
+        FROM   BAAPPBASE A, BABCML7 B, BAPARAM C, BCPHP D, BAPARAM E, BACOUNTRY F, BAPARAM G
+        WHERE  (B.APNO = #reApNo:VARCHAR# OR B.REAPNO = #reApNo:VARCHAR#) AND
+               A.APNO = B.APNO AND
+               A.SEQNO = '0000' AND
+               B.PROCSTAT = '00' AND 
+               B.REASCODE = C.PARAMCODE (+) AND
+               C.PARAMUSEMK (+) ='Y' AND
+               C.PARAMGROUP (+) = 'REASCODE' AND
+               B.HOSID = D.HPCODE (+) AND
+               B.BENEVTREL = E.PARAMCODE (+) AND
+               E.PARAMUSEMK (+) ='Y' AND
+               E.PARAMGROUP (+) = 'RELATION' AND
+               B.BENNATIONCODE = LPAD(F.COUNTRY_ID (+), 3, '0') AND
+               B.PAYTYP = G.PARAMCODE (+) AND
+               G.PARAMUSEMK (+) ='Y' AND
+               G.PARAMGROUP (+) = 'PAYTYPE'
+        ORDER BY B.APSEQ
+    </select>
+    
+    <select id="getReviewFeeReviewDataForUpdateBy" resultMap="BABCML7Result">
+        SELECT A.REAPNO,
+               A.APSEQ,
+               A.APNO,
+               A.PROCSTAT,
+               A.INREDATE,
+               A.REASCODE,
+               A.HOSID,
+               A.RECOSDATE,
+               A.RENUM,
+               A.REHPSTAY,
+               A.REFEES,
+               A.NONREFEES,
+               A.REAMTPAY,
+               A.NOTIFYFORM,
+               A.BENIDNNO,
+               A.BENNAME,
+               A.BENBRDATE,
+               A.BENSEX,
+               A.BENNATIONTYP,
+               A.BENNATIONCODE,
+               A.BENEVTREL,
+               A.TEL1,
+               A.TEL2,
+               A.COMMTYP,
+               A.COMMZIP,
+               A.COMMADDR,
+               A.PAYTYP,
+               A.BANKNAME,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.ACCIDN,
+               A.ACCNAME,
+               A.ACCREL,
+               A.MITRATE,
+               A.GRDIDNNO,
+               A.GRDNAME,
+               A.GRDBRDATE,
+               A.MEXCLVL,
+               A.REALEXCLVL,
+               A.CHKDATE,
+               A.CHKMAN,
+               A.RECHKDATE,
+               A.RECHKMAN,
+               A.EXEDATE,
+               A.EXEMAN,
+               A.PROMOTEUSER,
+               A.CHKSTAT,
+               A.RECHKSTAT,
+               A.CONMK,
+               A.CONDATE,
+               A.CONMAN,
+               A.REJMK,
+               A.DRDATE,
+               A.DRNO,
+               A.PAYDATE,
+               A.RPAYDATE,
+               A.RTDATE,
+               A.REPDATE,
+               A.STEXPNDMK,
+               A.STEXPNDREASON,
+               A.STEXPNDDATE,
+               A.BUREAUACC,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME  
+        FROM   BABCML7 A
+        WHERE  A.REAPNO = #reApNo:VARCHAR# AND
+               A.APSEQ = #apSeq:NUMERIC#
+    </select>
+    
+    <update id="updateReviewFeeReviewData">
+        UPDATE BABCML7 SET 
+               PROCSTAT = '20',
+               CHKDATE = #chkDate:VARCHAR#,
+               CHKMAN = #chkMan:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  REAPNO = #reApNo:VARCHAR# AND
+               APSEQ = #apSeq:NUMERIC# AND
+               PROCSTAT = '00'
+    </update>
+    <!-- ] -->
+    <!-- Review Fee Review -->
+    
+    <!-- Review Fee Decision -->
+    <!-- [ -->
+    <select id="getReviewFeeDecisionListBy" resultMap="ReviewFeeDecisionListResult">
+        SELECT B.REAPNO,
+               B.APSEQ,
+               B.APNO,
+               B.PROCSTAT,
+               B.INREDATE,
+               B.REASCODE,
+               B.HOSID,
+               B.RECOSDATE,
+               B.RENUM,
+               B.REHPSTAY,
+               B.REFEES,
+               B.NONREFEES,
+               B.REAMTPAY,
+               B.NOTIFYFORM,
+               B.BENIDNNO,
+               B.BENNAME,
+               B.BENBRDATE,
+               B.BENSEX,
+               B.BENNATIONTYP,
+               B.BENNATIONCODE,
+               B.BENEVTREL,
+               B.TEL1,
+               B.TEL2,
+               B.COMMTYP,
+               B.COMMZIP,
+               B.COMMADDR,
+               B.PAYTYP,
+               B.BANKNAME,
+               B.PAYBANKID,
+               B.BRANCHID,
+               B.PAYEEACC,
+               B.ACCIDN,
+               B.ACCNAME,
+               B.ACCREL,
+               B.MITRATE,
+               B.GRDIDNNO,
+               B.GRDNAME,
+               B.GRDBRDATE,
+               B.MEXCLVL,
+               B.REALEXCLVL,
+               B.CHKDATE,
+               B.CHKMAN,
+               B.RECHKDATE,
+               B.RECHKMAN,
+               B.EXEDATE,
+               B.EXEMAN,
+               B.PROMOTEUSER,
+               B.CHKSTAT,
+               B.RECHKSTAT,
+               B.CONMK,
+               B.CONDATE,
+               B.CONMAN,
+               B.REJMK,
+               B.DRDATE,
+               B.DRNO,
+               B.PAYDATE,
+               B.RPAYDATE,
+               B.RTDATE,
+               B.REPDATE,
+               B.STEXPNDMK,
+               B.STEXPNDREASON,
+               B.STEXPNDDATE,
+               B.BUREAUACC,
+               B.CRTUSER,
+               B.CRTTIME,
+               B.UPDUSER,
+               B.UPDTIME,
+               C.PARAMNAME AS REASNAME,
+               D.HPSNAM AS HOSNAME,
+               E.PARAMNAME AS BENEVTRELNAME,
+               F.CNAME AS BENNATIONNAME,
+               G.PARAMNAME AS PAYTYPNAME  
+        FROM   BAAPPBASE A, BABCML7 B, BAPARAM C, BCPHP D, BAPARAM E, BACOUNTRY F, BAPARAM G
+        WHERE  (B.APNO = #reApNo:VARCHAR# OR B.REAPNO = #reApNo:VARCHAR#) AND
+               A.APNO = B.APNO AND
+               A.SEQNO = '0000' AND
+               B.PROCSTAT = '20' AND 
+               B.REASCODE = C.PARAMCODE (+) AND
+               C.PARAMUSEMK (+) ='Y' AND
+               C.PARAMGROUP (+) = 'REASCODE' AND
+               B.HOSID = D.HPCODE (+) AND
+               B.BENEVTREL = E.PARAMCODE (+) AND
+               E.PARAMUSEMK (+) ='Y' AND
+               E.PARAMGROUP (+) = 'RELATION' AND
+               B.BENNATIONCODE = LPAD(F.COUNTRY_ID (+), 3, '0') AND
+               B.PAYTYP = G.PARAMCODE (+) AND
+               G.PARAMUSEMK (+) ='Y' AND
+               G.PARAMGROUP (+) = 'PAYTYPE'
+        ORDER BY B.APSEQ
+    </select>
+    
+    <select id="getReviewFeeDecisionDataForUpdateBy" resultMap="BABCML7Result">
+        SELECT A.REAPNO,
+               A.APSEQ,
+               A.APNO,
+               A.PROCSTAT,
+               A.INREDATE,
+               A.REASCODE,
+               A.HOSID,
+               A.RECOSDATE,
+               A.RENUM,
+               A.REHPSTAY,
+               A.REFEES,
+               A.NONREFEES,
+               A.REAMTPAY,
+               A.NOTIFYFORM,
+               A.BENIDNNO,
+               A.BENNAME,
+               A.BENBRDATE,
+               A.BENSEX,
+               A.BENNATIONTYP,
+               A.BENNATIONCODE,
+               A.BENEVTREL,
+               A.TEL1,
+               A.TEL2,
+               A.COMMTYP,
+               A.COMMZIP,
+               A.COMMADDR,
+               A.PAYTYP,
+               A.BANKNAME,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.ACCIDN,
+               A.ACCNAME,
+               A.ACCREL,
+               A.MITRATE,
+               A.GRDIDNNO,
+               A.GRDNAME,
+               A.GRDBRDATE,
+               A.MEXCLVL,
+               A.REALEXCLVL,
+               A.CHKDATE,
+               A.CHKMAN,
+               A.RECHKDATE,
+               A.RECHKMAN,
+               A.EXEDATE,
+               A.EXEMAN,
+               A.PROMOTEUSER,
+               A.CHKSTAT,
+               A.RECHKSTAT,
+               A.CONMK,
+               A.CONDATE,
+               A.CONMAN,
+               A.REJMK,
+               A.DRDATE,
+               A.DRNO,
+               A.PAYDATE,
+               A.RPAYDATE,
+               A.RTDATE,
+               A.REPDATE,
+               A.STEXPNDMK,
+               A.STEXPNDREASON,
+               A.STEXPNDDATE,
+               A.BUREAUACC,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME  
+        FROM   BABCML7 A
+        WHERE  A.REAPNO = #reApNo:VARCHAR# AND
+               A.APSEQ = #apSeq:NUMERIC#
+    </select>
+
+    <update id="updateReviewFeeDecisionData">
+        UPDATE BABCML7 SET 
+               PROCSTAT = #procStat:VARCHAR#,
+               EXEDATE = #exeDate:VARCHAR#,
+               EXEMAN = #exeMan:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  REAPNO = #reApNo:VARCHAR# AND
+               APSEQ = #apSeq:NUMERIC#
+    </update>
+    <!-- ] -->
+    <!-- Review Fee Decision -->
+    
+    <select id="selectReFeesMasterDataForDisabledPaymentQuery" resultMap="ReFeesMasterDataForDisabledPaymentQueryResult">
+        SELECT REAPNO               
+              ,APSEQ                
+              ,APNO                 
+              ,INREDATE             
+              ,RECOSDATE            
+              ,REFEES               
+              ,NONREFEES            
+              ,REAMTPAY             
+              ,PAYDATE              
+          FROM BABCML7              
+         WHERE APNO = #apNo:VARCHAR#
+         ORDER BY APSEQ             
+    </select>
+    
+    <select id="selectReFeesDetailDataForDisabledPaymentQuery" resultMap="ReFeesDetailDataForDisabledPaymentQueryResult">
+        SELECT REAPNO                                                               
+              ,APSEQ                                                                
+              ,APNO                                                                 
+              ,PROCSTAT                                                             
+              ,INREDATE                                                             
+              ,(SELECT PARAMNAME FROM BAPARAM
+                 WHERE PARAMGROUP = 'REASCODE' 
+                   AND PARAMCODE = REASCODE) AS REASCODE                            
+              ,HOSID                                                                
+              ,RECOSDATE                                                            
+              ,RENUM                                                                
+              ,REHPSTAY                                                             
+              ,REFEES                                                               
+              ,NONREFEES                                                            
+              ,REAMTPAY                                                             
+              ,NOTIFYFORM                                                           
+              ,BENIDNNO                                                             
+              ,BENNAME                                                              
+              ,BENBRDATE                                                            
+              ,BENSEX                                                               
+              ,BENNATIONTYP                                                         
+              ,BENNATIONCODE                                                        
+              ,(SELECT NVL(CNAME, '') FROM BACOUNTRY 
+                 WHERE LPAD(COUNTRY_ID, 3, '0') = BENNATIONCODE) AS BENNATIONNAME
+              ,BENEVTREL
+              ,TEL1                                                                 
+              ,TEL2                                                                 
+              ,COMMTYP                                                              
+              ,COMMZIP                                                              
+              ,COMMADDR                                                             
+              ,PAYTYP                                                               
+              ,BANKNAME                                                             
+              ,PAYBANKID                                                            
+              ,BRANCHID                                                             
+              ,PAYEEACC                                                             
+              ,ACCNAME
+              ,ACCREL                                                              
+              ,(SELECT PARAMNAME FROM BAPARAM
+                 WHERE PARAMGROUP = 'RECHKLVL' 
+                   AND PARAMCODE = REALEXCLVL) AS REALEXCLVL                        
+              ,CHKDATE                                                              
+              ,CHKMAN                                                               
+              ,RECHKDATE                                                            
+              ,RECHKMAN                                                             
+              ,EXEDATE                                                              
+              ,EXEMAN                                                               
+              ,CHKSTAT                                                              
+              ,RECHKSTAT                                                            
+              ,PAYDATE                                                              
+              ,RPAYDATE                                                             
+              ,RTDATE                                                               
+              ,REPDATE                                                              
+              ,(SELECT PARAMNAME FROM BAPARAM
+                 WHERE PARAMGROUP = 'STEXPNDREASON' 
+                   AND PARAMCODE = STEXPNDREASON) AS STEXPNDREASON                  
+              ,STEXPNDDATE                                                          
+          FROM BABCML7
+         WHERE REAPNO = #reApNo:VARCHAR#
+           AND APSEQ = #apSeq:VARCHAR#
+           AND APNO = #apNo:VARCHAR#        
+    </select>
+</sqlMap>

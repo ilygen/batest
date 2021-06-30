@@ -1,0 +1,598 @@
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<!--
+    $Id: validator-rules.xml 481833 2006-12-03 17:32:52Z niallp $
+    
+    This file contains the default Struts Validator pluggable validator
+    definitions.  It is contained in struts-core.jar, and should be 
+    referenced in the struts-config.xml under the plug-in element
+    for the ValidatorPlugIn.
+    
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" 
+    value="/org/apache/struts/validator/validator-rules.xml,
+    /WEB-INF/validation.xml"/>
+    </plug-in>
+    
+    These are the default error messages associated with
+    each validator defined in this file.  They should be
+    added to your projects ApplicationResources.properties
+    file or you can associate new ones by modifying the
+    pluggable validators msg attributes in this file.
+    
+    # Struts Validator Error Messages
+    errors.required={0} is required.
+    errors.minlength={0} can not be less than {1} characters.
+    errors.maxlength={0} can not be greater than {1} characters.
+    errors.invalid={0} is invalid.
+    
+    errors.byte={0} must be a byte.
+    errors.short={0} must be a short.
+    errors.integer={0} must be an integer.
+    errors.long={0} must be a long.
+    errors.float={0} must be a float.
+    errors.double={0} must be a double.
+    
+    errors.date={0} is not a date.
+    errors.range={0} is not in the range {1} through {2}.
+    errors.creditcard={0} is an invalid credit card number.
+    errors.email={0} is an invalid e-mail address.
+    
+    Note: Starting in Struts 1.2.0 the default javascript definitions have
+    been consolidated to commons-validator. The default can be overridden
+    by supplying a <javascript> element with a CDATA section, just as
+    in struts 1.1.
+    
+-->
+
+<form-validation>
+
+    <global>
+
+        <validator name="required" classname="org.apache.struts.validator.FieldChecks" method="validateRequired"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            msg="errors.required" />
+
+        <validator name="requiredif" classname="org.apache.struts.validator.FieldChecks" method="validateRequiredIf"
+            methodParams="java.lang.Object,
+                               org.apache.commons.validator.ValidatorAction,
+                               org.apache.commons.validator.Field,
+                               org.apache.struts.action.ActionMessages,
+                               org.apache.commons.validator.Validator,
+                               javax.servlet.http.HttpServletRequest"
+            msg="errors.required" />
+
+        <validator name="validwhen" msg="errors.required" classname="org.apache.struts.validator.validwhen.ValidWhen"
+            method="validateValidWhen"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest" />
+
+
+        <validator name="minlength" classname="org.apache.struts.validator.FieldChecks" method="validateMinLength"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.minlength" jsFunction="org.apache.commons.validator.javascript.validateMinLength" />
+
+
+        <validator name="maxlength" classname="org.apache.struts.validator.FieldChecks" method="validateMaxLength"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.maxlength" jsFunction="org.apache.commons.validator.javascript.validateMaxLength" />
+
+
+        <validator name="mask" classname="org.apache.struts.validator.FieldChecks" method="validateMask"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.invalid" />
+
+
+        <validator name="byte" classname="org.apache.struts.validator.FieldChecks" method="validateByte"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.byte" jsFunctionName="ByteValidations" />
+
+
+        <validator name="short" classname="org.apache.struts.validator.FieldChecks" method="validateShort"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.short" jsFunctionName="ShortValidations" />
+
+
+        <validator name="integer" classname="org.apache.struts.validator.FieldChecks" method="validateInteger"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.integer" jsFunctionName="IntegerValidations" />
+
+
+        <validator name="long" classname="org.apache.struts.validator.FieldChecks" method="validateLong"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.long" />
+
+
+        <validator name="float" classname="org.apache.struts.validator.FieldChecks" method="validateFloat"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.float" jsFunctionName="FloatValidations" />
+
+        <validator name="double" classname="org.apache.struts.validator.FieldChecks" method="validateDouble"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.double" />
+
+
+        <validator name="byteLocale" classname="org.apache.struts.validator.FieldChecks" method="validateByteLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.byte" />
+
+
+        <validator name="shortLocale" classname="org.apache.struts.validator.FieldChecks" method="validateShortLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.short" />
+
+
+        <validator name="integerLocale" classname="org.apache.struts.validator.FieldChecks" method="validateIntegerLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.integer" />
+
+
+        <validator name="longLocale" classname="org.apache.struts.validator.FieldChecks" method="validateLongLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.long" />
+
+
+        <validator name="floatLocale" classname="org.apache.struts.validator.FieldChecks" method="validateFloatLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.float" />
+
+        <validator name="doubleLocale" classname="org.apache.struts.validator.FieldChecks" method="validateDoubleLocale"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.double" />
+
+
+        <validator name="date" classname="org.apache.struts.validator.FieldChecks" method="validateDate"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.date" jsFunctionName="DateValidations" />
+
+
+        <validator name="intRange" classname="org.apache.struts.validator.FieldChecks" method="validateIntRange"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="integer" msg="errors.range" />
+
+        <validator name="longRange" classname="org.apache.struts.validator.FieldChecks" method="validateLongRange"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="long" msg="errors.range" />
+
+
+        <validator name="floatRange" classname="org.apache.struts.validator.FieldChecks" method="validateFloatRange"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="float" msg="errors.range" />
+
+        <validator name="doubleRange" classname="org.apache.struts.validator.FieldChecks" method="validateDoubleRange"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="double" msg="errors.range" />
+
+
+        <validator name="creditCard" classname="org.apache.struts.validator.FieldChecks" method="validateCreditCard"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.creditcard" />
+
+
+        <validator name="email" classname="org.apache.struts.validator.FieldChecks" method="validateEmail"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.email" />
+
+        <validator name="url" classname="org.apache.struts.validator.FieldChecks" method="validateUrl"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.url" />
+
+        <validator name="chineseDate" classname="tw.gov.bli.ba.framework.struts.validator.DateValidator" method="validateChineseDate"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.date">
+            <javascript>
+                <![CDATA[
+                    function validateChineseDate(form) 
+                    {
+                        var isValid = true;
+                        var focusField = null;
+                        var i = 0;
+                        var fields = new Array();
+                        var oDate = eval('new ' + jcv_retrieveFormName(form) +  '_chineseDate()');
+                        for (x in oDate) 
+                        {
+                            var field = form[oDate[x][0]];
+
+                            if ((field.type == 'text' ||
+                                 field.type == 'textarea') &&
+                                 (field.value.length > 0)) 
+                            {
+                                var iValue = field.value;                   
+                                var pDateType=iValue.length;
+                                
+                                var bBeforeROC = false;
+                                var sROCFieldName = oDate[x][2]('ROCFieldName');
+                                if (sROCFieldName != null)
+                                {
+                                    var ROCField = document.getElementsByName(sROCFieldName)[0];
+                                    if (ROCField != null && ROCField.checked)
+                                        bBeforeROC = true;
+                                }
+                                                                
+                                if ( (iValue.replace(/[-.]/gi,'')).length!=7 || (isNaN(iValue)) || (parseNumber(iValue.substr(0,(pDateType-4))) == 0) )
+                                {
+                                    if (i == 0) 
+                                    {
+                                        focusField = field;
+                                    }
+                                    fields[i++] = oDate[x][1];
+                                    isValid = false;
+                                }
+                                else
+                                {
+                                    if (parseNumber(iValue) < 0) {
+                                        bBeforeROC = true;
+                                        iValue = iValue.replace(/-/gi,'');
+                                        pDateType=iValue.length;
+                                    }
+                                                                    
+                                    nDay=parseNumber(iValue.substr((pDateType-2),2));
+                                    // nMon=parseNumber(iValue.substr((pDateType-4),2))-1;
+                                    nMon=parseNumber(iValue.substr((pDateType-4),2));
+
+                                    if (pDateType==7)
+                                    {
+                                        if (bBeforeROC)
+                                            nYear = 1912 - parseNumber(iValue.substr(0,(pDateType-4)));
+                                        else
+                                            nYear = parseNumber(iValue.substr(0,(pDateType-4))) + 1911;
+                                    }
+                                    else 
+                                    {
+                                        nYear = parseNumber(iValue.substr(0,(pDateType-4)));
+                                    }
+
+                                    if (!jcv_isValidDate(nDay, nMon, nYear)) {
+                                        if (i == 0) 
+                                        {
+                                            focusField = field;
+                                        }
+                                        fields[i++] = oDate[x][1];
+                                        isValid = false;
+                                    }
+                                    
+                                    /*
+                                    var sDate = new Date(Date.UTC(nYear, nMon, nDay, 0, 0, 0));
+                                        
+                                    if(!((sDate.getUTCFullYear()==nYear)&&(sDate.getMonth()==nMon)&&(sDate.getDate()==nDay)))
+                                    {
+                                        if (i == 0) 
+                                        {
+                                            focusField = field;
+                                        }
+                                        fields[i++] = oDate[x][1];
+                                        isValid = false;
+                                    }
+                                    */
+                                }
+                            }
+                        }
+                        if (fields.length > 0) 
+                        {
+                            jcv_handleErrors(fields, focusField);
+                        }
+                        return isValid;
+                    }
+                ]]>
+            </javascript>
+        </validator>
+
+        <validator name="notAfterToday" classname="tw.gov.bli.ba.framework.struts.validator.DateValidator" method="validateNotAfterToday"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.date.notAfterToday">
+            <javascript>
+                <![CDATA[
+                    function validateNotAfterToday(form) 
+                    {
+                        var isValid = true;
+                        var focusField = null;
+                        var i = 0;
+                        var fields = new Array();
+                        var oDate = eval('new ' + jcv_retrieveFormName(form) +  '_notAfterToday()');
+                        for (x in oDate) 
+                        {
+                            var field = form[oDate[x][0]];
+
+                            if ((field.type == 'text' ||
+                                 field.type == 'textarea') &&
+                                 (field.value.length > 0)) 
+                            {
+                                var iValue = field.value;                   
+                                var pDateType=iValue.length;
+                                                                
+                                if (((iValue.length!=7)&&(iValue.length!=8)) || (isNaN(parseNumber(iValue))))
+                                {
+                                    if (i == 0) 
+                                    {
+                                        focusField = field;
+                                    }
+                                    fields[i++] = oDate[x][1];
+                                    isValid = false;
+                                }
+                                else
+                                {
+                                    sDay = leftPad(parseNumber(iValue.substr((pDateType-2),2)), 2, "0");
+                                    sMon = leftPad((parseNumber(iValue.substr((pDateType-4),2))-1), 2, "0");
+                                    sYear = leftPad((parseNumber(iValue.substr(0,(pDateType-4))) + 1911), 4, "0");
+                                    sInputDate = "" + sYear + sMon + sDay;
+
+                                    var sDate = new Date();
+                                    var sToday = "" + leftPad(sDate.getUTCFullYear(), 4, "0") + leftPad(sDate.getMonth(), 2, "0") + leftPad(sDate.getDate(), 2, "0");
+                                        
+                                    if(!(parseNumber(sToday) >=  parseNumber(sInputDate)))
+                                    {
+                                        if (i == 0) 
+                                        {
+                                            focusField = field;
+                                        }
+                                        fields[i++] = oDate[x][1];
+                                        isValid = false;
+                                    }
+                                }
+                            }
+                        }
+                        if (fields.length > 0) 
+                        {
+                            jcv_handleErrors(fields, focusField);
+                        }
+                        return isValid;
+                    }
+                ]]>
+            </javascript>
+        </validator>
+
+        <validator name="idNo" classname="tw.gov.bli.ba.framework.struts.validator.IdNoValidator" method="validateIdNo"
+            methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+            depends="" msg="errors.idNo">
+            <javascript>
+                <![CDATA[
+                    function validateIdNo(form) 
+                    {
+                        var isValid = true;
+                        var focusField = null;
+                        var i = 0;
+                        var fields = new Array();
+                        
+                        var pass = 0;
+                        var num = new Array(11);
+                        var sum = 0;
+                        var table = new Array(10,11,12,13,14,15,16,17,18,34,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33);
+                        
+                        var oIdNo = eval('new ' + jcv_retrieveFormName(form) +  '_idNo()');
+                        
+                        for (x in oIdNo) 
+                        {
+                            var field = form[oIdNo[x][0]];
+                            
+                            if ((field.type == 'text' ||
+                                 field.type == 'textarea') &&
+                                 (field.value.length > 0)) 
+                            {
+                                var iValue = field.value;
+                                iValue = iValue.toUpperCase();
+
+                                if(iValue.length!=10)
+                                {}
+                                else if(iValue.charCodeAt(0)<"A".charCodeAt(0)||iValue.charCodeAt(0)>"Z".charCodeAt(0))
+                                {}
+                                else if(iValue.charCodeAt(1)!="1".charCodeAt(0)&&iValue.charCodeAt(1)!="2".charCodeAt(0))
+                                {}
+                                else
+                                {
+                                    for(p=2;p<10;p++)
+                                    {
+                                        if(iValue.charCodeAt(p)<"0".charCodeAt(0)||iValue.charCodeAt(p)>"9".charCodeAt(0))
+                                            break;
+                                        else
+                                            pass++;
+                                    }
+                                }
+                                if(pass!=8)
+                                {
+                                    if (i == 0) 
+                                    {
+                                        focusField = field;
+                                    }
+                                    fields[i++] = oIdNo[x][1];
+                                    isValid = false;
+                                }
+                                else
+                                {
+                                    num[1]=table[iValue.charCodeAt(0)-65]%10;
+                                    num[0]=(table[iValue.charCodeAt(0)-65]-num[1])/10;
+                                    for(p=1;p<10;p++)
+                                        num[p+1]=iValue.charCodeAt(p)-48;
+                                    for(p=1;p<9;p++)
+                                        num[p]=num[p]*(10-p);
+                                    for(p=0;p<11;p++)
+                                        sum+=num[p];
+                                    if(sum%10==0)
+                                       isValid = true;
+                                    else
+                                    {
+                                        if (i == 0) 
+                                        {
+                                            focusField = field;
+                                        }
+                                        fields[i++] = oIdNo[x][1];
+                                        isValid = false;
+                                    }
+                                }
+                            }
+                        }
+                        if (fields.length > 0) 
+                        {
+                            jcv_handleErrors(fields, focusField);
+                        }
+                        return isValid;
+                    }
+                ]]>
+            </javascript>
+        </validator>
+        <!--
+            This simply allows struts to include the validateUtilities into a page, it should
+            not be used as a validation rule.
+        -->
+        <validator name="includeJavaScriptUtilities" classname="" method="" methodParams="" depends="" msg=""
+            jsFunction="org.apache.commons.validator.javascript.validateUtilities" />
+
+    </global>
+
+</form-validation>

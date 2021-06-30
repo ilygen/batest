@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Executive Support Maint : basu0d010a.jsp -->
+        <form name="ExecutiveSupportMaintForm">
+           <field property="apNo1" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.executive.executiveSupportMaint.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+       <!-- Executive Support Maint : basu0d011a.jsp -->
+        <form name="ExecutiveSupportMaintAddForm">
+            <field property="slrpNo1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.slDate" />
+            </field>
+            <field property="caseTyp" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.caseTyp" />
+            </field>
+            <field property="sddMk" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.sddMk" />
+            </field>
+            <field property="finishDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.finishDate" />
+            </field>
+            <field property="slrelate1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="hpNo" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.hpNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^\d{0,10}?$</var-value>
+                </var>
+            </field>
+            <field property="injser" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.injser" />
+            </field>
+            <field property="letterType" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.letterType" />
+            </field>
+            <field property="proDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.proDate" />
+            </field>
+            <field property="ndomk1" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.ndomk1" />
+            </field>
+            <field property="closDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.closDate" />
+            </field>
+            <field property="unitNo" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.unitNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^\d{0,8}?$</var-value>
+                </var>
+            </field>
+        </form>
+         <!-- Executive Support Maint : basu0d012c.jsp -->
+        <form name="ExecutiveSupportMaintListForm">
+        </form>
+        <!-- Executive Support Maint : basu0d013c.jsp -->
+        <form name="ExecutiveSupportMaintModifyForm">
+            <field property="slrpNo1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrpNo5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.rpNo5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.rpNo5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${RPNO5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.slDate" />
+            </field>
+            <field property="caseTyp" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.caseTyp" />
+            </field>
+            <field property="sddMk" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.sddMk" />
+            </field>
+            <field property="finishDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.finishDate" />
+            </field>
+            <field property="slrelate1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="slrelate5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.slrelate5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.slrelate5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${SLRELATE5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo1" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo2" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo3" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo4" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="closeNo5" depends="integer,minlength" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.executive.closeNo5" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.closeNo5" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${CLOSENO5_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="hpNo" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.hpNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^\d{0,10}?$</var-value>
+                </var>
+            </field>
+            <field property="injser" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.injser" />
+            </field>
+            <field property="letterType" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.letterType" />
+            </field>
+            <field property="proDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.proDate" />
+            </field>
+            <field property="ndomk1" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.ndomk1" />
+            </field>
+            <field property="closDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.closDate" />
+            </field>
+            <field property="unitNo" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.unitNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^\d{0,8}?$</var-value>
+                </var>
+            </field>
+        </form>
+        <!-- Executive Support close : basu0d020d.jsp -->
+        <form name="ExecutiveSupportCloseForm">
+            <field property="apNo1" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.executive.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.executive.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <!--
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.executive.executiveSupportMaint.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.executive.executiveSupportMaint.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            -->
+        </form>
+        <!-- Executive Support Close : basu0d021d.jsp -->
+        <form name="ExecutiveSupportCloseListForm">
+        </form>
+    </formset>
+</form-validation>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Review Fee Receipt : bare0d010a.jsp bare0d011a.jsp bare0d012c.jsp bare0d013c.jsp -->
+        <form name="ReviewFeeReceiptForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="inreDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.inreDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.reviewFee.receipt.inreDate" />
+            </field>
+            <field property="reasCode" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.reasCode" />
+            </field>
+            <field property="hosId" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.hosId" />
+            </field>
+            <field property="recosDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.recosDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.reviewFee.receipt.recosDate" />
+            </field>
+            <field property="reNum" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.receipt.reNum" />
+            </field>
+            <field property="rehpStay" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.receipt.rehpStay" />
+            </field>
+            <field property="reFees" depends="required,integer" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.reFees" />
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.receipt.reFees" />
+            </field>
+            <field property="nonreFees" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.receipt.nonreFees" />
+            </field>
+            <field property="benEvtRel" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.benEvtRel" />
+            </field>
+            <field property="notifyForm" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.notifyForm" />
+            </field>
+            <field property="benName" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.benName" />
+            </field>
+            <field property="benIdnNo" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.benIdnNo" />
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.receipt.benIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="benBrDate" depends="required,chineseDate,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.benBrDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.reviewFee.receipt.benBrDate" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" name="notAfterToday" key="label.reviewFee.receipt.benBrDate" />
+            </field>
+            <field property="benNationTyp" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.benNationTyp" />
+            </field>
+            <field property="payTyp" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.payTyp" />
+            </field>
+            <field property="accountNo1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.receipt.accountNo1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="accountNo2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.receipt.accountNo2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="commTyp" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.receipt.commTyp" />
+            </field>
+        </form>
+
+        <!-- Review Fee Review : bare0d020a.jsp bare0d021a.jsp bare0d022a.jsp -->
+        <form name="ReviewFeeReviewForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Review Fee Decision : bare0d030a.jsp bare0d031a.jsp bare0d032a.jsp -->
+        <form name="ReviewFeeDecisionForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.reviewFee.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.reviewFee.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.reviewFee.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+    </formset>
+</form-validation>

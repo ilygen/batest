@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAUSEREMAIL">
+
+    <typeAlias alias="Bauseremail" type="tw.gov.bli.ba.domain.Bauseremail" />
+    
+    <resultMap id="BAUSEREMAILResult" class="Bauseremail">
+        <result column="PAYCODE"    property="payCode"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="USERNAME"   property="userName"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EMAILADDR"  property="emailAddr"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <select id="selectBauseremailDataListBy" resultMap="BAUSEREMAILResult">
+               SELECT PAYCODE,  
+                      USERNAME,  
+                      EMAILADDR  
+                 FROM BAUSEREMAIL
+                WHERE PAYCODE = 'P'
+    </select>
+    
+     <select id="selectBaMediaUserEmailDataListBy" resultMap="BAUSEREMAILResult">
+               SELECT PAYCODE,  
+                      USERNAME,  
+                      EMAILADDR  
+                 FROM BAUSEREMAIL
+                WHERE PAYCODE = #payCode:VARCAHR#
+    </select>
+  
+</sqlMap>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd" >
+<sqlMapConfig>
+
+    <settings useStatementNamespaces="true" cacheModelsEnabled="true" enhancementEnabled="true" maxSessions="64" maxTransactions="32"
+        maxRequests="512" />
+        
+    <!-- for BA System Begin -->
+    <!-- [ -->
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCHK.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCSLVL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPARAM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAINSPECT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASEForAnnuityAcceptDataTransfer.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACOUNTRY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CVLDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NPBANKLIST.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BCBPF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NPPOSTLIST.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPLOG.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPANDOMK.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANOTIFY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BADAPR.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACHKFILE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BASENIMAINT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPACUT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAEXALIST.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CIPT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACUTREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/LNM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/LNMD.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D330.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D340.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PBBMSA.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CAUB.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAONCEPAY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAISSUDATE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BIREF.xml" />
+    <!--<sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAALLOCATE.xml" />-->
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NBAPPBASE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NBDAPR.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAUNACPREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAUNACPDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABATCHREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF09.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF29.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BCCMF01.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BCCMF42.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BADUPEIDN.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAGIVETMPDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYRPTRECORD.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAGIVEDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPFLBAC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BARXF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBARF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAPAYKIND.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF08.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/MAADMREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/KCAF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D020.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPEXPAND.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAFAMILY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABCML7.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF06.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF07.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF13.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAFAMILYTEMP.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACHKCONTRL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAREGIVEDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BASTUDTERM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABAN.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACRIINJ.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CIPG.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACPIDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACPIREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACOLUMNREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACOMPELNOPAY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAARCLIST.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYRPTSUM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYRPTACCOUNT.xml" />        
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CIPB.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABASICAMT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PFPCCKY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAAVGMON.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAIRR.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BARPTLOG.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAACPDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPASIGN.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NBEXCEP.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BARECHECK.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BASTUDNOTIFY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALETTERCODE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAONLINEJOB.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAUSEREMAIL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABATCHJOB.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABATCHJOBDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NPCODE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BARVCONFIRM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BARVCASE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPROCEDURE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPROCEDUREDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPROCEDUREDATA.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENT.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENTDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENTSTAGEDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENTASSIGNDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENTREMOTE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAYMENTREMOTEDTL.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BCCMF45.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PFPCCKYUSERREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAFAILURELIST.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PFPFM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PFPFD.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAUNQUALIFIEDNOTICE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAWAGEREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/SDHOLIDAY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMARGINAMTNOTIFY.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAHANDICAPTERM.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANSF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPATTFILE.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMFILEFTPRECORD.xml" />
+
+    <!-- ] -->
+    <!-- End for BA System -->
+
+    <!-- for Common Framework Begin -->
+    <!-- [ -->
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/SYSFUNC.xml" />
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/LOGIN.xml" />
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/PORTAL_LOG.xml" />
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/MMACCESSLG.xml" />
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/MMQUERYLOG.xml" />
+    <sqlMap resource="tw/gov/bli/common/dao/sqlmap/MMAPLOG.xml" />
+    <!-- ] -->
+    <!-- End for Common Framework -->
+
+</sqlMapConfig>
+

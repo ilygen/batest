@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAFAMILY">
+	
+	<typeAlias alias="Bafamily" type="tw.gov.bli.ba.domain.Bafamily" />
+	
+	<resultMap id="BAFAMILYResult" class="Bafamily">
+        <result column="BAFAMILYID"          property="bafamilyId"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="BAAPPBASEID"         property="baappbaseId"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="APNO"                property="apNo"                     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"               property="seqNo"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPDATE"          property="famAppDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMIDNNO"            property="famIdnNo"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNAME"             property="famName"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMBRDATE"           property="famBrDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMSEX"              property="famSex"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONTYP"        property="famNationTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONCODE"       property="famNationCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMEVTREL"           property="famEvtRel"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMDIEDATE"          property="famDieDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RELATCHGDATE"        property="relatChgDate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISECHILDMK"        property="raiseChildMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"          property="handIcapMk"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOMEMK"         property="monIncomeMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOME"           property="monIncome"                jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="MARRYDATE"           property="marryDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DIVORCEDATE"         property="divorceDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPPLYMK"         property="abanApplyMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPSYM"           property="abanApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTMK"         property="interDictMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"       property="interDictDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REPEALINTERDICTDATE" property="repealInterDictDate"		 jdbcType="VARCHAR"		 javaType="java.lang.String" nullValue="" />
+        <result column="ADOPTDATE"           property="adoPtDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"     property="benMissingSdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGEDATE"     property="benMissingEdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONSDATE"         property="prisonSdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONEDATE"         property="prisonEdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDMK"              property="studMk"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDSDATE"           property="studSdate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"           property="studEdate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CLOSEDATE"           property="closeDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"          property="closeCause"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DELMK"               property="delMk"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"             property="crtUser"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"             property="crtTime"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"             property="updUser"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"             property="updTime"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKYM"            property="idnChkYm"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKNOTE"          property="idnChkNote"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELMK"            property="compelMk"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABLEAPSYM"           property="ableApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SCHOOLCODE"          property="schoolCode"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+	
+	<resultMap id="ReviewRpt01FamilyListResult" class="Bafamily">
+        <result column="FAMNAME"            property="famName"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="FAMAPPDATE"         property="famAppDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="FAMIDNNO"           property="famIdnNo"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="FAMBRDATE"          property="famBrDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="FAMEVTREL"          property="famEvtRel"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MARRYDATE"          property="marryDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="DIVORCEDATE"        property="divorceDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOMEMK"        property="monIncomeMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOME"          property="monIncome"                jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="STUDMK"             property="studMk"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="ADOPTDATE"          property="adoPtDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="RAISECHILDMK"       property="raiseChildMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="ABANAPSYM"          property="abanApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="RELATCHGDATE"       property="relatChgDate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="BENMISSINGSDATE"    property="benMissingSdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="BENMISSINGEDATE"    property="benMissingEdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PRISONSDATE"        property="prisonSdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PRISONEDATE"        property="prisonEdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="INTERDICTDATE"      property="interDictDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="FAMDIEDATE"         property="famDieDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+    </resultMap>
+    
+    <!-- Disabled CheckMark Level Adjust -->
+    <!-- [ -->
+    <resultMap id="DisabledCheckMarkLevelAdjustFamListResult" class="Bafamily">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />    
+        <result column="SEQNO"          property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FAMIDNNO"       property="famIdnNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FAMNAME"        property="famName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FAMEVTREL"      property="famEvtRel"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FAMDIEDATE"     property="famDieDate"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Disabled CheckMark Level Adjust -->
+    
+    <resultMap id="DisabledFamDataListResult" class="Bafamily">
+        <result column="BAFAMILYID"         property="bafamilyId"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="SEQNO"              property="seqNo"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="FAMEVTREL"          property="famEvtRel"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMNAME"            property="famName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
+        <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+    </resultMap>
+    <resultMap id="DependantDataUpdateQuery" class="Bafamily">
+    	<result column="BAFAMILYID"          property="bafamilyId"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="BAAPPBASEID"         property="baappbaseId"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="APNO"                property="apNo"                     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"               property="seqNo"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMIDNNO"            property="famIdnNo"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNAME"             property="famName"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMBRDATE"           property="famBrDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMEVTREL"           property="famEvtRel"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DELMK"               property="delMk"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKYM"            property="idnChkYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKNOTE"          property="idnChkNote"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <!-- Field not in BAFAMILY -->
+        <result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTBRDATE"		  property="evtBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="APPDATE"          property="appDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTDIEDATE"       property="evtDieDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DisableReviewRpt01" class="Bafamily">
+    	<result column="BAAPPBASEID"         property="baappbaseId"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="APNO"                property="apNo"                     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"               property="seqNo"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPDATE"          property="famAppDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMIDNNO"            property="famIdnNo"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNAME"             property="famName"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMBRDATE"           property="famBrDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMSEX"              property="famSex"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMEVTREL"           property="famEvtRel"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMDIEDATE"          property="famDieDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RELATCHGDATE"        property="relatChgDate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISECHILDMK"        property="raiseChildMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOMEMK"         property="monIncomeMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOME"           property="monIncome"                jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="MARRYDATE"           property="marryDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DIVORCEDATE"         property="divorceDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTMK"         property="interDictMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"       property="interDictDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ADOPTDATE"           property="adoPtDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"     property="benMissingSdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGEDATE"     property="benMissingEdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONSDATE"         property="prisonSdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONEDATE"         property="prisonEdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDMK"              property="studMk"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDSDATE"           property="studSdate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"           property="studEdate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPSYM"           property="abanApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"          property="handIcapMk"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="FAMNATIONTYP"        property="famNationTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONCODE"       property="famNationCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="CLOSEDATE"           property="closeDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"          property="closeCause"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKYM"            property="idnChkYm"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REPEALINTERDICTDATE" property="repealInterDictDate"		 jdbcType="VARCHAR"		 javaType="java.lang.String" nullValue="" />
+        <result column="ABLEAPSYM"           property="ableApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SCHOOLCODE"          property="schoolCode"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+    </resultMap>
+    
+    <resultMap id="FamilyDataForDisabledPaymentQueryResult" class="Bafamily">
+        <result column="APNO"                property="apNo"                     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"               property="seqNo"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPDATE"          property="famAppDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMIDNNO"            property="famIdnNo"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNAME"             property="famName"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMBRDATE"           property="famBrDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMSEX"              property="famSex"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONTYP"        property="famNationTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONCODE"       property="famNationCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMNATIONNAME"       property="famNationName"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMEVTREL"           property="famEvtRel"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMDIEDATE"          property="famDieDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RELATCHGDATE"        property="relatChgDate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISECHILDMK"        property="raiseChildMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"          property="handIcapMk"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOMEMK"         property="monIncomeMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOME"           property="monIncome"                jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="MARRYDATE"           property="marryDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DIVORCEDATE"         property="divorceDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPPLYMK"         property="abanApplyMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPSYM"           property="abanApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTMK"         property="interDictMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"       property="interDictDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"       property="interDictDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REPEALINTERDICTDATE" property="repealInterDictDate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"     property="benMissingSdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGEDATE"     property="benMissingEdate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONSDATE"         property="prisonSdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONEDATE"         property="prisonEdate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CLOSEDATE"           property="closeDate"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"          property="closeCause"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKYM"            property="idnChkYm"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABLEAPSYM"           property="ableApsYm"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SCHOOLCODE"          property="schoolCode"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt29FamNameResult" class="Bafamily">
+        <result column="FAMNAME"        property="famName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <select id="selectDataBy" resultMap="BAFAMILYResult">
+        SELECT BAFAMILYID,
+               BAAPPBASEID,
+               APNO,
+               SEQNO,
+               FAMAPPDATE,
+               FAMIDNNO,
+               FAMNAME,
+               FAMBRDATE,
+               FAMSEX,
+               FAMNATIONTYP,
+               FAMNATIONCODE,
+               FAMEVTREL,
+               FAMDIEDATE,
+               RELATCHGDATE,
+               RAISECHILDMK,
+               HANDICAPMK,
+               MONINCOMEMK,
+               MONINCOME,
+               MARRYDATE,
+               DIVORCEDATE,
+               ABANAPPLYMK,
+               ABANAPSYM,
+               INTERDICTMK,
+               INTERDICTDATE,
+               ADOPTDATE,
+               BENMISSINGSDATE,
+               BENMISSINGEDATE,
+               PRISONSDATE,
+               PRISONEDATE,
+               STUDMK,
+               STUDSDATE,
+               STUDEDATE,
+               CLOSEDATE,
+               CLOSECAUSE,
+               DELMK,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME, 
+               IDNCHKYM, 
+               IDNCHKNOTE, 
+               REPEALINTERDICTDATE,
+               COMPELMK,
+               ABLEAPSYM,
+               SCHOOLCODE  
+          FROM BAFAMILY
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="bafamilyId">
+                    BAFAMILYID = #bafamilyId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="baappbaseId">
+                    BAAPPBASEID = #baappbaseId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="apNo">
+                    APNO = #apNo:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+         ORDER BY APNO, SEQNO       
+    </select>
+	
+	<select id="selectReviewRpt01FamilyListBy" resultMap="ReviewRpt01FamilyListResult">
+        SELECT FAMNAME,        
+               FAMAPPDATE,     
+               FAMIDNNO,        
+               FAMBRDATE,      
+               FAMEVTREL,      
+               MARRYDATE,      
+               DIVORCEDATE,    
+               MONINCOMEMK,    
+               MONINCOME,      
+               STUDMK,         
+               ADOPTDATE,      
+               RAISECHILDMK,     
+               ABANAPSYM,      
+               RELATCHGDATE,   
+               BENMISSINGSDATE,
+               BENMISSINGEDATE,
+               PRISONSDATE,    
+               PRISONEDATE,    
+               INTERDICTDATE,  
+               FAMDIEDATE      
+          FROM BAFAMILY
+         WHERE APNO = #apNo:VARCHAR#
+           AND BAAPPBASEID = #baappbaseId:NUMERIC#
+           <![CDATA[
+           AND SEQNO <> '0000'
+           ]]>
+         ORDER BY SEQNO  	
+	</select>
+    
+    <!-- Disabled CheckMark Level Adjust -->
+    <!-- [ -->
+    <select id="getDisabledCheckMarkLevelAdjustFamListBy" resultMap="DisabledCheckMarkLevelAdjustFamListResult">
+        <![CDATA[
+        SELECT A.APNO,
+               A.SEQNO,
+               A.FAMIDNNO,
+               A.FAMNAME,
+               A.FAMEVTREL,
+               A.FAMDIEDATE 
+        FROM BAFAMILY A 
+        WHERE A.APNO = #apNo:VARCHAR# AND
+              (A.DELMK <> 'D' OR A.DELMK IS NULL) 
+        ORDER BY A.SEQNO
+        ]]>
+    </select>
+    <!-- ] -->
+    <!-- Disabled CheckMark Level Adjust -->
+    
+    <!-- DisabledAnnuityReceipt Begin -->
+    <!-- [ -->
+    <insert id="insertDataForDisabledAnnuityReceipt">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="bafamilyId" >
+            SELECT BAFAMILYID.NEXTVAL AS BAFAMILYID FROM DUAL
+        </selectKey>
+        INSERT INTO BAFAMILY
+        (
+            BAFAMILYID,
+            BAAPPBASEID,
+            APNO,
+            SEQNO,
+            FAMAPPDATE,
+            FAMIDNNO,
+            FAMNAME,
+            FAMBRDATE,
+            FAMSEX,
+            FAMNATIONTYP,
+            FAMNATIONCODE,
+            FAMEVTREL,
+            MONINCOMEMK,
+            MONINCOME,
+            RAISECHILDMK,
+            MARRYDATE,
+            INTERDICTMK,
+            HANDICAPMK,
+            STUDMK,
+            CRTUSER,
+            CRTTIME
+        )
+        VALUES
+        (
+            #bafamilyId:NUMERIC#,
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #famAppDate:VARCHAR#,
+            #famIdnNo:VARCHAR#,
+            #famName:VARCHAR#,
+            #famBrDate:VARCHAR#,
+            #famSex:VARCHAR#,
+            #famNationTyp:VARCHAR#,
+            #famNationCode:VARCHAR#,
+            #famEvtRel:VARCHAR#,
+            #monIncomeMk:VARCHAR#,
+            #monIncome:NUMERIC#,
+            #raiseChildMk:VARCHAR#,
+            #marryDate:VARCHAR#,
+            #interDictMk:VARCHAR#,
+            #handIcapMk:VARCHAR#,
+            #studMk:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#
+        )
+    </insert>
+
+    <update id="updateDataForDisabledAnnuityReceipt">
+        UPDATE BAFAMILY SET
+               FAMAPPDATE = #famAppDate:VARCHAR#,
+               FAMIDNNO = #famIdnNo:VARCHAR#,
+               FAMNAME = #famName:VARCHAR#,
+               FAMBRDATE = #famBrDate:VARCHAR#,
+               FAMSEX = #famSex:VARCHAR#,
+               FAMNATIONTYP = #famNationTyp:VARCHAR#,
+               FAMNATIONCODE = #famNationCode:VARCHAR#,
+               FAMEVTREL = #famEvtRel:VARCHAR#,
+               MONINCOMEMK = #monIncomeMk:VARCHAR#,
+               MONINCOME = #monIncome:NUMERIC#,
+               RAISECHILDMK = #raiseChildMk:VARCHAR#,
+               MARRYDATE = #marryDate:VARCHAR#,
+               INTERDICTMK = #interDictMk:VARCHAR#,
+               HANDICAPMK = #handIcapMk:VARCHAR#,
+               STUDMK = #studMk:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE BAFAMILYID = #bafamilyId:NUMERIC#
+    </update>
+    <!-- ] -->
+    <!-- DisabledAnnuityReceipt End -->
+    
+    <delete id="deleteDataByBafamilyId">
+        DELETE FROM BAFAMILY
+         WHERE BAFAMILYID = #bafamilyId:NUMERIC#
+    </delete>
+    
+    <delete id="deleteDataByBaappbaseId">
+        DELETE FROM BAFAMILY
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+    </delete>
+    
+    <select id="selectDataByBaappbaseIdByLog" resultMap="BAFAMILYResult">
+        SELECT BAFAMILYID,
+               BAAPPBASEID,
+               APNO,
+               SEQNO,
+               FAMAPPDATE,
+               FAMIDNNO,
+               FAMNAME,
+               FAMBRDATE,
+               FAMSEX,
+               FAMNATIONTYP,
+               FAMNATIONCODE,
+               FAMEVTREL,
+               FAMDIEDATE,
+               RELATCHGDATE,
+               RAISECHILDMK,
+               HANDICAPMK,
+               MONINCOMEMK,
+               MONINCOME,
+               MARRYDATE,
+               DIVORCEDATE,
+               ABANAPPLYMK,
+               ABANAPSYM,
+               INTERDICTMK,
+               INTERDICTDATE,
+               ADOPTDATE,
+               BENMISSINGSDATE,
+               BENMISSINGEDATE,
+               PRISONSDATE,
+               PRISONEDATE,
+               STUDMK,
+               STUDSDATE,
+               STUDEDATE,
+               CLOSEDATE,
+               CLOSECAUSE,
+               DELMK,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME, 
+               IDNCHKYM, 
+               IDNCHKNOTE, 
+               REPEALINTERDICTDATE,
+               COMPELMK,
+               ABLEAPSYM,
+               SCHOOLCODE   
+          FROM BAFAMILY
+          WHERE BAAPPBASEID = #baappbaseId:NUMERIC#       
+    </select>
+	
+    
+    <select id="selectExistDataForAnnuityReceiptBy" resultClass="java.math.BigDecimal">
+        SELECT BAFAMILYID
+          FROM BAFAMILY
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+           AND FAMIDNNO = #famIdnNo:VARCHAR#
+           AND FAMBRDATE = #famBrDate:VARCHAR#
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1=0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    <isEmpty property="eqType">
+                        SEQNO = #seqNo:VARCHAR#
+                    </isEmpty>
+                    <isNotEmpty property="eqType">
+                        <isEqual property="eqType" compareValue="lt">
+                        <![CDATA[  SEQNO < #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="le">
+                        <![CDATA[  SEQNO <= #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="eq">
+                        <![CDATA[  SEQNO = #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="ge">
+                        <![CDATA[  SEQNO >= #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="gt">
+                        <![CDATA[  SEQNO > #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="ne">
+                        <![CDATA[  SEQNO != #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                    </isNotEmpty>                  
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectNewSeqNo" resultClass="java.lang.String">
+        SELECT LPAD(NVL(MAX(SEQNO),0)+1,2,'0')
+          FROM BAFAMILY
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+           AND APNO = #apNo:VARCHAR#
+    </select>
+    
+    <select id="selectDisabledFamDataListBy" resultMap="DisabledFamDataListResult">
+        SELECT BAFAMILYID,
+               SEQNO,
+               FAMEVTREL, 
+               FAMNAME,   
+               FAMIDNNO,
+               FAMBRDATE,  
+               STUDMK,    
+               MONINCOME, 
+               HANDICAPMK
+          FROM BAFAMILY
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+           AND APNO = #apNo:VARCHAR#    
+    </select>
+    
+    <select id="selectDependantDataListBy" resultMap="DependantDataUpdateQuery">
+    	SELECT A.BAFAMILYID,
+			   A.SEQNO, 
+			   A.APNO,
+			   A.FAMNAME, 
+			   A.FAMIDNNO, 
+			   A.FAMBRDATE, 
+			   A.FAMEVTREL, 
+			   B.APPDATE,
+			   B.EVTNAME, 
+			   B.EVTIDNNO,
+			   B.EVTBRDATE,
+			   A.DELMK, 
+			   B.BAAPPBASEID, 
+			   B.EVTDIEDATE, 
+			   B.EVTJOBDATE, 
+			   A.IDNCHKNOTE, 
+			   A.IDNCHKYM    
+	    FROM BAFAMILY A, BAAPPBASE B
+	   WHERE A.APNO = B.APNO 
+		AND B.SEQNO = '0000' 
+		AND (A.DELMK LIKE ' %' OR A.DELMK is null) 
+		<dynamic prepend="">
+				<isNotParameterPresent>
+                	1 = 0
+            	</isNotParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+        </dynamic> 
+		AND SUBSTR(A.APNO, 1, 1) = 'K'
+        AND B.PROCSTAT IN ('01', '10', '11', '12', '20')
+    </select>
+    
+    <select id="getDependantDataCount" resultClass="java.lang.Integer">
+     	<![CDATA[ 
+        SELECT  Count(*) as DENPENDANTCOUNT
+          FROM  BAFAMILY  
+		  WHERE  (NVL(TRIM(DELMK),' ')<>'D')  
+		  AND APNO = #apNo:VARCHAR# 
+          AND FAMIDNNO = #famIdnNo:VARCHAR# 
+          AND (((NVL(TRIM(FAMDIEDATE),' ')=' ' OR FAMDIEDATE is null) AND (NVL(TRIM(CLOSEDATE),' ')=' ' OR CLOSEDATE is null))
+     	  OR (NVL(TRIM(FAMDIEDATE),' ')<>' ' OR FAMDIEDATE is not null)) 
+     	  ]]>
+     	  <dynamic prepend="">
+				<isNotParameterPresent>
+                	1 = 0
+            	</isNotParameterPresent>
+               <isNotEmpty prepend="AND" property="bafamilyId">
+               <![CDATA[ 
+                    BAFAMILYID <> #bafamilyId:NUMERIC#
+                ]]>
+                </isNotEmpty>
+         </dynamic> 
+     	   
+      
+    </select>
+    
+    <select id="getEvtDataCount" resultClass="java.lang.Integer">
+    <![CDATA[
+    	SELECT  Count(*) as DENPENDANTCOUNT
+          FROM  BAFAMILY A,  BAAPPBASE B
+		  WHERE A.APNO = B.APNO 
+		  AND B.SEQNO = '0000' 
+		  AND (NVL(TRIM(A.DELMK),' ')<>'D') 
+		  AND A.APNO = #apNo:VARCHAR#
+          AND B.EVTIDNNO = #famIdnNo:VARCHAR# 
+     ]]>
+     
+      <dynamic prepend="">
+				<isNotParameterPresent>
+                	1 = 0
+            	</isNotParameterPresent>
+               <isNotEmpty prepend="AND" property="bafamilyId">
+               <![CDATA[ 
+                    BAFAMILYID <> #bafamilyId:NUMERIC#
+                ]]>
+                </isNotEmpty>
+         </dynamic> 
+    </select>
+    
+    <select id="getDependantSeqNoCount" resultClass="java.lang.Integer">
+        SELECT Max(A.SEQNO) as Q1
+          FROM BAFAMILY A, BAAPPBASE B  
+         WHERE A.APNO = B.APNO 
+         AND B.SEQNO = '0000' 
+         AND A.APNO = #apNo:VARCHAR#
+    </select>
+    
+    <insert id="insertData">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="bafamilyId" >
+            SELECT BAFAMILYID.NEXTVAL AS BAFAMILYID FROM DUAL
+        </selectKey> 
+        insert  into  BAFAMILY  
+        (
+            BAFAMILYID, 
+	    	BAAPPBASEID,  
+            APNO,         
+            SEQNO,        
+            FAMAPPDATE,          
+            FAMIDNNO,       
+            FAMNAME,      
+            FAMBRDATE,      
+            FAMSEX,
+            FAMNATIONTYP,
+            FAMNATIONCODE,      
+            FAMEVTREL, 
+            FAMDIEDATE,  
+            RELATCHGDATE, 
+		    RAISECHILDMK, 
+		    HANDICAPMK, 
+		    MONINCOMEMK, 
+		    MONINCOME, 
+		    MARRYDATE, 
+		    DIVORCEDATE, 
+		    ABANAPPLYMK, 
+		    ABANAPSYM, 
+		    INTERDICTMK, 
+		    INTERDICTDATE,
+		    REPEALINTERDICTDATE, 
+		    ADOPTDATE, 
+		    BENMISSINGSDATE, 
+		    BENMISSINGEDATE, 
+		    PRISONSDATE, 
+		    PRISONEDATE, 
+		    STUDMK, 
+		    STUDSDATE, 
+		    STUDEDATE, 
+		    CLOSEDATE, 
+		    CLOSECAUSE, 
+		    DELMK, 
+		    CRTUSER, 
+		    CRTTIME, 
+		    UPDUSER, 
+		    UPDTIME, 
+		    IDNCHKYM,
+		    COMPELMK,
+		    ABLEAPSYM,
+		    SCHOOLCODE
+        )
+        values
+        (
+	    	#bafamilyId:NUMERIC#,
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #famAppDate:VARCHAR#,
+            #famIdnNo:VARCHAR#,
+            #famName:VARCHAR#,
+            #famBrDate:VARCHAR#,
+            #famSex:VARCHAR#,
+            #famNationTyp:VARCHAR#,
+            #famNationCode:VARCHAR#,
+            #famEvtRel:VARCHAR#,
+            #famDieDate:VARCHAR#,
+            #relatChgDate:VARCHAR#,
+            #raiseChildMk:VARCHAR#,
+            #handIcapMk:VARCHAR#,
+            #monIncomeMk:VARCHAR#,
+            #monIncome:VARCHAR#,
+            #marryDate:VARCHAR#,
+            #divorceDate:VARCHAR#,
+            #abanApplyMk:VARCHAR#,
+            #abanApsYm:VARCHAR#,
+            #interDictMk:VARCHAR#,
+            #interDictDate:VARCHAR#, 
+            #repealInterDictDate:VARCHAR#, 
+            #adoPtDate:VARCHAR#,
+            #benMissingSdate:VARCHAR#,
+            #benMissingEdate:VARCHAR#,
+            #prisonSdate:VARCHAR#,
+            #prisonEdate:VARCHAR#,
+            #studMk:VARCHAR#,
+            #studSdate:VARCHAR#,
+            #studEdate:VARCHAR#,
+            #closeDate:VARCHAR#,
+            #closeCause:VARCHAR#,
+            #delMk:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#, 
+            #idnChkYm:VARCHAR#,
+            #compelMk:VARCHAR#,
+            #ableApsYm:VARCHAR#,
+            #schoolCode:VARCHAR#
+        )    
+    </insert>
+    
+    <select id="selectDependantDataUpdateForUpdateDataBy" resultMap="BAFAMILYResult">
+    	SELECT BAFAMILYID,
+               BAAPPBASEID,
+               APNO,
+               SEQNO,
+               FAMAPPDATE,
+               FAMIDNNO,
+               FAMNAME,
+               FAMBRDATE,
+               FAMSEX,
+               FAMNATIONTYP,
+               FAMNATIONCODE,
+               FAMEVTREL,
+               FAMDIEDATE,
+               RELATCHGDATE,
+               RAISECHILDMK,
+               HANDICAPMK,
+               MONINCOMEMK,
+               MONINCOME,
+               MARRYDATE,
+               DIVORCEDATE,
+               ABANAPPLYMK,
+               ABANAPSYM,
+               INTERDICTMK,
+               INTERDICTDATE,
+               ADOPTDATE,
+               BENMISSINGSDATE,
+               BENMISSINGEDATE,
+               PRISONSDATE,
+               PRISONEDATE,
+               STUDMK,
+               STUDSDATE,
+               STUDEDATE,
+               CLOSEDATE,
+               CLOSECAUSE,
+               DELMK,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME, 
+               IDNCHKYM, 
+               IDNCHKNOTE, 
+               REPEALINTERDICTDATE,
+               COMPELMK,
+               ABLEAPSYM,
+               SCHOOLCODE
+          FROM BAFAMILY 
+         <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="bafamilyId">
+                    BAFAMILYID = #bafamilyId:NUMERIC#
+                </isNotEmpty>
+          	</isParameterPresent>
+         </dynamic>
+    </select>
+    
+    <select id="selectDisableReviewRptListBy" resultMap="DisableReviewRpt01">
+    	SELECT  A.BAAPPBASEID, 
+				A.APNO, 
+				A.SEQNO, 
+				A.FAMAPPDATE, 
+				A.FAMIDNNO, 
+				A.FAMNAME, 
+				A.FAMBRDATE, 
+				A.FAMSEX, 
+				A.FAMEVTREL, 
+				A.FAMDIEDATE, 
+				A.RELATCHGDATE, 
+				A.RAISECHILDMK, 
+				A.MONINCOMEMK, 
+				A.MONINCOME, 
+				A.MARRYDATE, 
+				A.DIVORCEDATE, 
+				A.INTERDICTMK, 
+				A.INTERDICTDATE, 
+				A.ADOPTDATE, 
+				A.BENMISSINGSDATE, 
+				A.BENMISSINGEDATE, 
+				A.PRISONSDATE, 
+				A.PRISONEDATE, 
+				A.STUDMK, 
+				A.STUDSDATE, 
+				A.STUDEDATE, 
+				A.ABANAPSYM, 
+				A.HANDICAPMK, 
+				A.FAMNATIONTYP, 
+				A.FAMNATIONCODE, 
+				A.CLOSEDATE, 
+				A.CLOSECAUSE, 
+				A.IDNCHKYM, 
+				A.REPEALINTERDICTDATE,
+				A.ABLEAPSYM,
+				A.SCHOOLCODE       
+		FROM 	BAFAMILY A 
+		WHERE 	A.APNO = #apNo:VARCHAR# 
+		AND 	A.BAAPPBASEID = #baappbaseId:NUMERIC#
+		<![CDATA[
+        AND 	A.SEQNO <> '0000' 
+        AND (DELMK <> 'D' OR DELMK IS NULL)
+        ]]>
+        Order by A.SEQNO, A.FAMAPPDATE
+    </select>
+    
+    <select id="getDisableReviewRpt01BafamilyByCount" resultClass="java.lang.Integer">
+        SELECT COUNT(*) 
+		FROM BAFAMILY  
+	    WHERE APNO= #apNo:VARCHAR# 
+		AND TRIM(DELMK) is null 
+	</select>
+    
+     <update id="updateDataForDependant">
+     	UPDATE BAFAMILY SET
+	        FAMAPPDATE=#famAppDate:VARCHAR#,                 
+	        FAMIDNNO=#famIdnNo:VARCHAR#,       
+	        FAMNAME=#famName:VARCHAR#,        
+	        FAMBRDATE=#famBrDate:VARCHAR#,      
+	        FAMSEX=#famSex:VARCHAR#,         
+	        FAMNATIONTYP=#famNationTyp:VARCHAR#,   
+	        FAMNATIONCODE=#famNationCode:VARCHAR#,  
+	        FAMEVTREL=#famEvtRel:VARCHAR#,      
+	        FAMDIEDATE=#famDieDate:VARCHAR#,     
+	        RELATCHGDATE=#relatChgDate:VARCHAR#,   
+		    RAISECHILDMK=#raiseChildMk:VARCHAR#,   
+		    HANDICAPMK=#handIcapMk:VARCHAR#,     
+		    MONINCOMEMK=#monIncomeMk:VARCHAR#,    
+		    MONINCOME=#monIncome:VARCHAR#,      
+		    MARRYDATE=#marryDate:VARCHAR#,      
+		    DIVORCEDATE=#divorceDate:VARCHAR#,    
+		    ABANAPPLYMK=#abanApplyMk:VARCHAR#,    
+		    ABANAPSYM=#abanApsYm:VARCHAR#,      
+		    INTERDICTMK=#interDictMk:VARCHAR#,    
+		    INTERDICTDATE=#interDictDate:VARCHAR#, 
+		    REPEALINTERDICTDATE=#repealInterDictDate:VARCHAR#,  
+		    ADOPTDATE=#adoPtDate:VARCHAR#,      
+		    BENMISSINGSDATE=#benMissingSdate:VARCHAR#,
+		    BENMISSINGEDATE=#benMissingEdate:VARCHAR#,
+		    PRISONSDATE=#prisonSdate:VARCHAR#,    
+		    PRISONEDATE=#prisonEdate:VARCHAR#,    
+		    STUDMK=#studMk:VARCHAR#,         
+		    STUDSDATE=#studSdate:VARCHAR#,      
+		    STUDEDATE=#studEdate:VARCHAR#,      
+		    CLOSEDATE=DECODE(TRIM(#closeCause:VARCHAR#),NULL,'',#closeDate:VARCHAR#),
+		    CLOSECAUSE=#closeCause:VARCHAR#,        
+		    UPDUSER=#updUser:VARCHAR#,        
+		    UPDTIME=#updTime:VARCHAR#, 
+		    IDNCHKNOTE=#idnChkNote:VARCHAR#, 
+		    IDNCHKYM=#idnChkYm:VARCHAR#,
+		    COMPELMK=#compelMk:VARCHAR#,
+		    ABLEAPSYM=#ableApsYm:VARCHAR#,
+		    SCHOOLCODE=DECODE(TRIM(#studMk:VARCHAR#),NULL,'',#schoolCode:VARCHAR#)
+		WHERE BAFAMILYID = #bafamilyId:NUMERIC#
+     </update>
+     
+     <delete id="deleteDataForDependant">
+        delete from BAFAMILY t 
+        WHERE BAFAMILYID = #bafamilyId:NUMERIC#
+     </delete>
+    
+     <select id="selectFamilyDataForDisabledPaymentQuery" resultMap="FamilyDataForDisabledPaymentQueryResult">
+        SELECT APNO              
+              ,SEQNO             
+              ,FAMAPPDATE        
+              ,FAMIDNNO          
+              ,FAMNAME           
+              ,FAMBRDATE         
+              ,FAMSEX            
+              ,FAMNATIONTYP
+              ,FAMNATIONCODE 
+              ,(SELECT NVL(CNAME, '') FROM BACOUNTRY WHERE LPAD(COUNTRY_ID, 3, '0') = FAMNATIONCODE) as FAMNATIONNAME     
+              ,FAMEVTREL         
+              ,FAMDIEDATE        
+              ,RELATCHGDATE      
+              ,RAISECHILDMK      
+              ,HANDICAPMK        
+              ,MONINCOMEMK       
+              ,MONINCOME         
+              ,MARRYDATE         
+              ,DIVORCEDATE       
+              ,ABANAPPLYMK       
+              ,ABANAPSYM         
+              ,INTERDICTMK       
+              ,INTERDICTDATE
+              ,REPEALINTERDICTDATE     
+              ,ADOPTDATE         
+              ,BENMISSINGSDATE   
+              ,BENMISSINGEDATE   
+              ,PRISONSDATE       
+              ,PRISONEDATE       
+              ,CLOSEDATE         
+              ,(SELECT PARAMNAME FROM BAPARAM
+                 WHERE PARAMGROUP = 'FAMCLOSECAUSE' 
+                   AND PARAMCODE = CLOSECAUSE) AS CLOSECAUSE
+              ,IDNCHKYM
+              ,ABLEAPSYM
+              ,SCHOOLCODE
+          FROM BAFAMILY
+         WHERE APNO = #apNo:VARCHAR#
+           <![CDATA[
+           AND (DELMK <> 'D' OR DELMK IS NULL)
+           ]]>
+         ORDER BY BAFAMILYID     
+     </select>
+     
+     <select id="selectFamNameForMonthlyRpt29By" resultMap="MonthlyRpt29FamNameResult">
+        Select Distinct t.FAMNAME from BAFAMILY t
+         Where t.APNO = #apNo:VARCHAR#
+           And t.FAMEVTREL = '4'
+           And t.SEQNO in (Select A.SEQNO From BAFAMQUAL A, BAFAMILY E
+                            Where A.APNO = #apNo:VARCHAR#
+                              AND A.ISSUYM = (Select Max(B.ISSUYM) From BAFAMQUAL B
+                                               Where B.APNO = #apNo:VARCHAR# )
+                              AND A.PAYYM  = (Select Max(C.PAYYM) From BAFAMQUAL C
+                                               Where C.APNO = #apNo:VARCHAR#
+                                                 And C.ISSUYM = A.ISSUYM )            
+                              And A.VERISEQ = (Select Max(To_Number(D.VERISEQ)) From BAFAMQUAL D
+                                                Where D.APNO = #apNo:VARCHAR#
+                                                  AND D.ISSUYM = A.ISSUYM
+                                                  AND D.PAYYM = A.PAYYM )   
+                              AND A.QUALMK = 'Y'
+                              <isEqual prepend="" property="sA114RptMk" compareValue="1">
+                              AND (A.QUALLIST NOT LIKE '%42%' OR A.QUALLIST IS NULL)      
+                              </isEqual>
+                              <isEqual prepend="" property="sA114RptMk" compareValue="2">
+                              AND (A.QUALLIST LIKE '%42%' OR A.QUALLIST IS NULL)      
+                              </isEqual>                                                                
+                              AND A.APNO = E.APNO
+                              AND A.SEQNO = E.SEQNO
+                              <![CDATA[
+                              AND A.ISSUYM >= (SELECT substr(to_char(add_months(to_date(fambrdate,'yyyymmdd'),12*20),'yyyymmdd'),1,6)
+                                ]]>
+                                                 FROM BAFAMILY
+                                                 WHERE APNO = #apNo:VARCHAR#
+                                                   AND SEQNO = A.SEQNO))
+           AND t.CLOSEDATE IS NULL
+           <isEqual prepend="" property="sA114RptMk" compareValue="2">
+           AND (t.SCHOOLCODE IS NULL OR TRIM(t.SCHOOLCODE) = '')
+           </isEqual>
+     </select>
+     
+     <select id="getPayeeCount" resultClass="java.math.BigDecimal">
+       SELECT COUNT(SEQNO) AS PAYEECOUNT
+         from BAFAMILY 
+        WHERE APNO = #apNo:VARCHAR#
+          AND FAMEVTREL IN ('2', '3', '4', '5', '6', '7')
+    </select>            
+     
+</sqlMap>

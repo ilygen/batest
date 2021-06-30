@@ -1,0 +1,3414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYRPTRECORD">
+
+    <typeAlias alias="Bapayrptrecord" type="tw.gov.bli.ba.domain.Bapayrptrecord" />
+    
+    <resultMap id="BAPAYRPTRECORDResult" class="Bapayrptrecord">
+        <result column="RPTTYP"         property="rptTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cprnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"          property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYCODE"        property="payCode"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYKIND"        property="payKind"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"        property="caseTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="TATYP"          property="taTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDS"         property="benIds"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYAMT"         property="payAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="RPTNOTE"        property="rptNote"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="DLINEDATE"      property="dlineDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DLINESEQNO"     property="dlineSeqNo"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PROCTIME"       property="procTime"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMMZIP"        property="commZip"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMMADDR"       property="commAddr"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMMTEL"        property="commTel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HJMK"           property="hjMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OTHERAPNO1"     property="otherApNo1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OTHERSEQNO1"    property="otherSeqNo1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DATAKD"         property="dataKd"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENEVTREL"      property="benEvtRel"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACCIDN"         property="accIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACCNAME"        property="accName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPID1"        property="compId1"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPNAME1"      property="compName1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPID2"        property="compId2"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPNAME2"      property="compName2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <!-- MonthlyRpt 09 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt09Result" class="Bapayrptrecord">
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYAMT"         property="payAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  />
+        <result column="DLINEDATE"      property="dlineDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 09 End -->
+    
+    <!-- MonthlyRpt 10 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt10RptType1Result" class="Bapayrptrecord">
+        <result column="APNO"            property="apNo"          jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYBANKID"       property="payBankId"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BRANCHID"        property="branchId"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYEEACC"        property="payEeacc"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="ISSUYM"          property="issuYm"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYYM"           property="payYm"         jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENIDN"          property="benIdn"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENNAME"         property="benName"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+        <result column="CHKDATE"         property="chkDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYDATE"         property="payDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYTYP"          property="payTyp"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="RPTPAGE"         property="rptPage"       jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="BENEVTREL"       property="benEvtRel"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME2"       property="compName2"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="CPRNDATE"        property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <!-- Field not in BAPAYRPTRECORD -->
+        <result column="ACCOUNTNO"       property="accountNo"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYTYPNAME"      property="payTypName"    jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt10RptType1PayAmtResult" class="Bapayrptrecord">
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt10RptType2Result" class="Bapayrptrecord">
+        <result column="PAYBANKID"       property="payBankId"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BRANCHID"        property="branchId"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYEEACC"        property="payEeacc"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+        <result column="APNO"            property="apNo"          jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="ISSUYM"          property="issuYm"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYYM"           property="payYm"         jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENIDN"          property="benIdn"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENNAME"         property="benName"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYDATE"         property="payDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENEVTREL"       property="benEvtRel"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME2"       property="compName2"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" /> 
+        <result column="PAYTYP"          property="payTyp"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />       
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt10RptType2PayAmtResult" class="Bapayrptrecord">
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt10RptType3Result" class="Bapayrptrecord">
+        <result column="APNO"            property="apNo"          jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="ISSUYM"          property="issuYm"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYYM"           property="payYm"         jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENIDN"          property="benIdn"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENNAME"         property="benName"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+        <result column="CHKDATE"         property="chkDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYDATE"         property="payDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYTYP"          property="payTyp"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="RPTPAGE"         property="rptPage"       jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="BENEVTREL"       property="benEvtRel"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME2"       property="compName2"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <!-- Field not in BAPAYRPTRECORD -->
+        <result column="ACCOUNTNO"       property="accountNo"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYTYPNAME"      property="payTypName"    jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMMZIP"          property="commZip"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMMADDR"         property="commAddr"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 10 End -->
+    
+    <!-- MonthlyRpt 04 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt04Result" class="Bapayrptrecord">
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt04CompenAmtDetailResult" class="Bapayrptrecord">
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="COMPID1"        property="compId1"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="COMPNAME1"      property="compName1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 04 End -->
+    
+    <!-- MonthlyRpt 11 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt11Result" class="Bapayrptrecord">
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 11 End -->
+    
+    <!-- MonthlyRpt 13 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt13Result" class="Bapayrptrecord">
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    <!-- ] -->
+    
+    <!-- MonthlyRpt 13 End -->
+    
+    <!-- MonthlyRpt 08 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt08Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <resultMap id="MonthlyRptK08Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+    </resultMap>  
+    <resultMap id="MonthlyRptS08Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+    </resultMap>  
+    <!-- ] -->
+    <!-- MonthlyRpt 08 End -->
+    
+    <!-- MonthlyRpt 12 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt12Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNOLASTDIGIT"  property="apNoLastDigit"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"         property="adWkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="NACHGMK"        property="naChgMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+   		<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />    
+   </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 12 End -->
+    
+    <!-- MonthlyRpt 14 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt14Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="NLWKMK"         property="nlWkMk"        	jdbcType="VARCHAR"  	javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"         property="adWkMk"        	jdbcType="VARCHAR"  	javaType="java.lang.String" nullValue="" />
+        <result column="NACHGMK"        property="naChgMk"       	jdbcType="VARCHAR"  	javaType="java.lang.String" nullValue="" />
+        <result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />    
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 14 End -->
+    
+    <!-- MonthlyRpt 15 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt15Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />     
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 15 End -->
+    
+    <!-- MonthlyRpt 17 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt17Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="COMMTEL"        property="commTel"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="OTHERAPNO1"     property="otherApNo1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="OTHERSEQNO1"    property="otherSeqNo1"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="HJMK"           property="hjMk"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATAKD"         property="dataKd"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <!-- Field not in BAPAYRPTRECORD -->
+        <result column="DATATYP"        property="dataTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BLIPAYEEACC"    property="bliPayeeAcc"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 17 End -->
+    
+    <!-- MonthlyRpt 18 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt18Result" class="Bapayrptrecord">
+        <result column="OTHERAPNO1"     property="otherApNo1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 18 End -->
+    
+    <!-- MonthlyRpt 19 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt19Result" class="Bapayrptrecord">
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    <!-- ] -->
+    
+    <!-- MonthlyRpt 20 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt20Result" class="Bapayrptrecord">
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="UNACPAMT"       property="unacpAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+    </resultMap>
+    <!-- ] -->
+ 
+    <!-- MonthlyRpt 21 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt21Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"			property="seqNo"			jdbcType="VARCHAR"	    javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"		property="benName" 			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="UNACPAMT"       property="unacpAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+    	<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 21 End -->
+    
+    <!-- MonthlyRpt 22 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt22Result" class="Bapayrptrecord">
+       	<result column="RPTTYP"         property="rptTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 22 End -->
+    
+     <!-- MonthlyRpt 23 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt23Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMMZIP"        property="commZip"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMMADDR"       property="commAddr"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ACCNAME"        property="accName"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYAMT"         property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+    	<result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 21 End -->
+    
+    <!-- MonthlyRpt 24 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt24Result" class="Bapayrptrecord">
+        <result column="APNO"            property="apNo"          jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENNAME"         property="benName"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BENIDN"          property="benIdn"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+        <result column="ISSUYM"          property="issuYm"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYYM"           property="payYm"         jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYDATE"         property="payDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME2"       property="compName2"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYTYP"          property="payTyp"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYBANKID"       property="payBankId"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BRANCHID"        property="branchId"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYEEACC"        property="payEeacc"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />  
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+<!--
+        <result column="BENEVTREL"       property="benEvtRel"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+-->        
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt24PayAmtResult" class="Bapayrptrecord">
+        <result column="COMPNAME1"       property="compName1"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYAMT"          property="payAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal"  />
+        <result column="PAYTYP"          property="payTyp"        jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYBANKID"       property="payBankId"     jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="BRANCHID"        property="branchId"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="PAYEEACC"        property="payEeacc"      jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 24 End -->
+    
+    <!-- MonthlyRpt 26 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt26Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+    	<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="APNOLASTDIGIT"  property="apNoLastDigit"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 26 End -->
+    
+    <!-- MonthlyRpt 28 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt28Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+    	<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 28 End -->
+    
+    <!-- MonthlyRpt 33 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt33Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYACCOUNT"     property="payAccount"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="EVTNAME"        property="evtName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- MonthlyRpt 33 End -->
+    
+ 	<!-- OtherRpt 07 Begin -->
+    <!-- [ -->
+    <resultMap id="OtherRpt07Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"			property="seqNo"			jdbcType="VARCHAR"	    javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"		property="benName" 			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="UNACPAMT"       property="unacpAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+    	<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    <!-- [ -->
+    <!-- OtherRpt 07 End -->
+    
+    <!-- OtherRpt 09 Begin -->
+    <!-- [ -->
+    <resultMap id="OtherRpt09Result" class="Bapayrptrecord">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"			property="seqNo"			jdbcType="VARCHAR"	    javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"		property="benName" 			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="UNACPAMT"       property="unacpAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+    	<result column="RPTROWS"        property="rptRows"        	jdbcType="VARCHAR"  	javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"       	jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    <!-- [ -->
+    <!-- OtherRpt 09 End -->
+    
+    <resultMap id="ForRptsumResult" class="Bapayrptrecord">
+        <result column="RPTTYP"         property="rptTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CPRNDATE"       property="cPrnDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"        property="chkDate"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"       property="issueAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MITRATE"        property="mitRate"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAAMT"      property="otheraAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERBAMT"      property="otherbAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OFFSETAMT"      property="offsetAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />    
+        <result column="COMPENAMT"      property="compenAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INHERITORAMT"   property="inherItorAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ITRTTAX"        property="itrtTax"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="OTHERAMT"       property="otherAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="APNOAMT"        property="apNoAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="DATAAMT"        property="dataAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYAMT"         property="payAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"        property="caseTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"         property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"         property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"        property="naChgMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STS"            property="sts"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"			property="seqNo"			jdbcType="VARCHAR"	    javaType="java.lang.String" nullValue="" />
+    </resultMap>    
+    
+    <!-- MonthlyRpt 09 Begin -->
+    
+    <resultMap id="ForKRptaccountResult" class="Bapayrptrecord">
+        <result column="ISSUEAMTA"       property="issueAmtA"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ISSUEAMTB"       property="issueAmtB"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYAMTA"         property="payAmtA"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYAMTB"         property="payAmtB"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="NLWKMK"          property="nlWkMk"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATAAMT"         property="dataAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CHKDATE"         property="chkDate"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUTYP"         property="issuTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="RPTTYP"          property="rptTyp"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"        property="cPrnDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"          property="issuYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"          property="payTyp"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="STS"             property="sts"               jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO"            property="apNo"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APSEQNO"		 property="apSeqNo"			  jdbcType="VARCHAR"	  javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <!-- [ -->
+    <select id="getMonthlyRpt09DataBy" resultMap="MonthlyRpt09Result">
+        SELECT A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               A.BENIDN,
+               A.PAYAMT,
+               A.DLINEDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '2' 
+        	   AND A.ISSUYM = #issuYm:VARCHAR# 
+               AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# 
+               AND CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY A.BRANCHID
+    </select>
+    <select id="getMonthlyRptK09DataBy" resultMap="MonthlyRpt09Result">
+        SELECT A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               A.BENIDN,
+               A.PAYAMT,
+               A.DLINEDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '2' 
+        	   AND A.ISSUYM = #issuYm:VARCHAR# 
+               AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# 
+               AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>               
+        ORDER BY A.BRANCHID
+    </select>
+    <select id="getMonthlyRptS09DataBy" resultMap="MonthlyRpt09Result">
+        SELECT A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               A.BENIDN,
+               A.PAYAMT,
+               A.DLINEDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '2' 
+        	   AND A.ISSUYM = #issuYm:VARCHAR# 
+               AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# 
+               AND CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY A.BRANCHID
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 09 End -->
+    
+    <!-- MonthlyRpt 10 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt10RptType1DataBy" resultMap="MonthlyRpt10RptType1Result">
+    <![CDATA[
+        SELECT A.APNO,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               (nvl(PAYBANKID,'   ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                nvl(BRANCHID,'    ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                PAYEEACC) AS ACCOUNTNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.CHKDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.RPTPAGE,
+               A.BENEVTREL,
+               A.COMPNAME1,
+               B.PARAMNAME AS PAYTYPNAME,
+               A.COMPNAME2,
+               A.CPRNDATE
+        FROM   BAPAYRPTRECORD A, BAPARAM B
+        WHERE  A.RPTTYP = '3' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               A.PAYTYP = B.PARAMCODE (+) AND
+               A.PAYTYP <> '4' AND 
+               B.PARAMGROUP (+) = 'PAYTYPE' AND
+               B.PARAMUSEMK (+) = 'Y'
+    ]]>               
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       (
+	                        <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+	                       OR TRIM(BENEVTREL) IS NULL
+						   )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="" property="orderBy">
+	                       ORDER BY 
+	                       <iterate  property="orderBy"  open="" close="" conjunction="," >
+                               #orderBy[]#
+                           </iterate>                    
+	               </isNotEmpty>         	                               
+	           </isParameterPresent>
+	       </dynamic>  
+    </select>
+    
+    <select id="getMonthlyRptK10RptType1DataBy" resultMap="MonthlyRpt10RptType1Result">
+    <![CDATA[
+        SELECT A.APNO,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               (nvl(PAYBANKID,'   ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                nvl(BRANCHID,'    ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                PAYEEACC) AS ACCOUNTNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.CHKDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.RPTPAGE,
+               A.BENEVTREL,
+               A.COMPNAME1,
+               B.PARAMNAME AS PAYTYPNAME,
+               A.COMPNAME2,
+               A.CPRNDATE
+        FROM   BAPAYRPTRECORD A, BAPARAM B
+        WHERE  A.RPTTYP = '3' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               A.PAYTYP = B.PARAMCODE (+) AND
+               A.PAYTYP <> '4' AND 
+               B.PARAMGROUP (+) = 'PAYTYPE' AND
+               B.PARAMUSEMK (+) = 'Y'
+    ]]>
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>                   
+        ORDER BY A.PAYTYP, A.APNO, A.SEQNO, A.ISSUYM, A.PAYYM
+
+    </select>
+    
+    <select id="getMonthlyRptS10RptType1DataBy" resultMap="MonthlyRpt10RptType1Result">
+    <![CDATA[
+        SELECT A.APNO,
+               A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               (nvl(PAYBANKID,'   ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                nvl(BRANCHID,'    ')||deCode(nvl(BRANCHID,' '),' ',deCode(nvl(PAYEEACC,' '),' ','','-'),'-')||
+                PAYEEACC) AS ACCOUNTNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.CHKDATE,
+               A.PAYDATE,
+               A.PAYTYP,
+               A.RPTPAGE,
+               A.BENEVTREL,
+               A.COMPNAME1,
+               B.PARAMNAME AS PAYTYPNAME,
+               A.COMPNAME2,
+               A.CPRNDATE
+        FROM   BAPAYRPTRECORD A, BAPARAM B
+        WHERE  A.RPTTYP = '3' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               A.PAYTYP = B.PARAMCODE (+) AND
+               A.PAYTYP <> '4' AND 
+               B.PARAMGROUP (+) = 'PAYTYPE' AND
+               B.PARAMUSEMK (+) = 'Y'
+        ORDER BY A.PAYTYP, A.APNO, A.SEQNO, A.ISSUYM, A.PAYYM
+    ]]>
+    </select>        
+    
+    <select id="getMonthlyRpt10RptType1PayAmtDataBy" resultMap="MonthlyRpt10RptType1PayAmtResult">
+    <![CDATA[
+        SELECT COMPNAME1,
+               NVL(SUM(PAYAMT),0) AS PAYAMT
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '3' AND 
+               BENEVTREL = 'Z' AND 
+               ISSUYM = #issuYm:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# 
+        GROUP BY BENEVTREL, PAYTYP, COMPNAME1, ISSUYM
+    ]]>
+    </select>
+    
+    <select id="getMonthlyRpt10RptType2DataBy" resultMap="MonthlyRpt10RptType2Result">
+    <![CDATA[
+        SELECT A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.PAYDATE,
+               A.BENEVTREL,
+               A.COMPNAME1, 
+               A.COMPNAME2,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '4' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#
+    ]]>               
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                        (
+	                        <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+	                       OR TRIM(BENEVTREL) IS NULL
+						   )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="" property="orderBy">
+					       ORDER BY 
+	                       <iterate  property="orderBy"  open="" close="" conjunction="," >
+                               #orderBy[]#
+                           </iterate>                    
+	               </isNotEmpty>         	                               
+	           </isParameterPresent>
+	       </dynamic>        
+    </select>
+    
+    <select id="getMonthlyRptK10RptType2DataBy" resultMap="MonthlyRpt10RptType2Result">
+    <![CDATA[
+        SELECT A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.PAYDATE,
+               A.BENEVTREL,
+               A.COMPNAME1, 
+               A.COMPNAME2,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '4' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND 
+               A.CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#
+    ]]>               
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>               
+        ORDER BY A.PAYTYP, A.APNO, A.SEQNO, A.ISSUYM, A.PAYYM
+
+    </select>
+    
+    <select id="getMonthlyRptS10RptType2DataBy" resultMap="MonthlyRpt10RptType2Result">
+    <![CDATA[
+        SELECT A.PAYBANKID,
+               A.BRANCHID,
+               A.PAYEEACC,
+               A.BENNAME,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.BENIDN,
+               A.PAYDATE,
+               A.BENEVTREL,
+               A.COMPNAME1, 
+               A.COMPNAME2,
+               A.PAYTYP,
+               A.CPRNDATE 
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '4' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#
+        ORDER BY A.PAYTYP, A.APNO, A.SEQNO, A.ISSUYM, A.PAYYM
+    ]]>
+    </select>        
+    
+    <select id="getMonthlyRpt10RptType2PayAmtDataBy" resultMap="MonthlyRpt10RptType2PayAmtResult">
+    <![CDATA[
+        SELECT COMPNAME1,
+               NVL(SUM(PAYAMT),0) AS PAYAMT
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '4' AND 
+               BENEVTREL = 'Z' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR#
+        GROUP BY BENEVTREL, COMPNAME1, ISSUYM
+    ]]>
+    </select>
+    
+     <select id="getMonthlyRpt10RptType3DataBy" resultMap="MonthlyRpt10RptType3Result">
+     <![CDATA[
+     	SELECT A.APNO                                                       
+		      ,(nvl(A.PAYBANKID,'   ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		        nvl(A.BRANCHID,'    ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		        A.PAYEEACC) AS ACCOUNTNO                                    
+		      ,A.ISSUYM                                                     
+		      ,A.PAYYM                                                      
+		      ,A.BENIDN                                                     
+		      ,A.BENNAME                                                    
+		      ,NVL(A.PAYAMT, 0) AS PAYAMT                                   
+		      ,A.CHKDATE                                                    
+		      ,A.PAYDATE                                                    
+		      ,A.PAYTYP                                                     
+		      ,'' AS PAYTYPNAME                                     
+		      ,A.RPTPAGE                                                    
+		      ,A.BENEVTREL                                                  
+		      ,A.COMPNAME1                                                  
+		      ,A.COMPNAME2                                                 
+		      ,B.COMMZIP                                                    
+		      ,B.COMMADDR  
+		      ,A.CPRNDATE                                                
+		  FROM BAPAYRPTRECORD A,BAAPPBASE B
+		 WHERE A.APNO = B.APNO
+		   AND A.SEQNO = B.SEQNO
+		   AND A.RPTTYP = '3' 
+		   AND A.ISSUYM = #issuYm:VARCHAR# 
+		   AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# 
+		   AND A.CHKDATE = #chkDate:VARCHAR#  
+		   AND A.PAYTYP = '4'
+     ]]>		   
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       A.BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                        (
+	                        <isEqual property="eqType" compareValue="in">
+                               A.BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               A.BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+	                       OR TRIM(A.BENEVTREL) IS NULL
+						   )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="" property="orderBy">
+	                       ORDER BY
+	                       <iterate  property="orderBy"  open="" close="" conjunction="," >
+                               #orderBy[]#
+                           </iterate>                     
+	               </isNotEmpty>         	                               
+	           </isParameterPresent>
+	       </dynamic>   
+
+
+    </select>
+    
+     <select id="getMonthlyRptK10RptType3DataBy" resultMap="MonthlyRpt10RptType3Result">
+      <![CDATA[ 
+		SELECT A.APNO                                                       
+		        ,(nvl(A.PAYBANKID,'   ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		          nvl(A.BRANCHID,'    ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		         A.PAYEEACC) AS ACCOUNTNO                                    
+		        ,A.ISSUYM                                                     
+		        ,A.PAYYM                                                      
+		        ,A.BENIDN                                                     
+		        ,A.BENNAME                                                    
+		        ,NVL(A.PAYAMT, 0) AS PAYAMT                                   
+		        ,A.CHKDATE                                                    
+		        ,A.PAYDATE                                                    
+		        ,A.PAYTYP                                                     
+		        ,'' AS PAYTYPNAME                                     
+		        ,A.RPTPAGE                                                    
+		        ,A.BENEVTREL                                                  
+		        ,A.COMPNAME1                                                  
+		        ,A.COMPNAME2                                                 
+		        ,B.COMMZIP                                                    
+		        ,B.COMMADDR
+		        ,A.CPRNDATE                                                  
+		    FROM BAPAYRPTRECORD A,BAAPPBASE B
+		   WHERE A.APNO = B.APNO
+		     AND A.SEQNO = B.SEQNO
+		     AND A.PAYKIND = B.PAYKIND
+		     AND A.RPTTYP = '3' 
+		     AND A.ISSUYM = #issuYm:VARCHAR# 
+		     AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#  
+		     AND A.CHKDATE = #chkDate:VARCHAR#   
+		     AND A.PAYTYP = '4' ]]> 
+		     <dynamic prepend="">
+			 	<isNotParameterPresent>
+			     	AND 1 = 0
+			    </isNotParameterPresent>
+			    <isParameterPresent>
+			     	<isNotEmpty prepend="AND" property="paySeqNo">
+			        	A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+			    	</isNotEmpty>                
+			 	</isParameterPresent>
+			 </dynamic>            
+		UNION
+		 <![CDATA[ 
+		 SELECT A.APNO                                                       
+		        ,(nvl(A.PAYBANKID,'   ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		          nvl(A.BRANCHID,'    ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		         A.PAYEEACC) AS ACCOUNTNO                                    
+		        ,A.ISSUYM                                                     
+		        ,A.PAYYM                                                      
+		        ,A.BENIDN                                                     
+		        ,A.BENNAME                                                    
+		        ,NVL(A.PAYAMT, 0) AS PAYAMT                                   
+		        ,A.CHKDATE                                                    
+		        ,A.PAYDATE                                                    
+		        ,A.PAYTYP                                                     
+		        ,'' AS PAYTYPNAME                                     
+		        ,A.RPTPAGE                                                    
+		        ,A.BENEVTREL                                                  
+		        ,A.COMPNAME1                                                  
+		        ,A.COMPNAME2                                                 
+		        ,B.COMMZIP                                                    
+		        ,B.COMMADDR
+		        ,A.CPRNDATE                                                  
+		    FROM BAPAYRPTRECORD A,BAAPPBASE B
+		   WHERE A.APNO = B.APNO
+		     AND A.SEQNO = B.SEQNO
+		     AND B.PAYKIND = '37' 
+		     AND A.RPTTYP = '3' 
+		     AND A.ISSUYM =  #issuYm:VARCHAR# 
+		     AND SUBSTR(A.APNO, 1, 1) =#payCode:VARCHAR#  
+		     AND A.CHKDATE = #chkDate:VARCHAR#  
+		     AND A.PAYTYP =  '4']]> 
+		     <dynamic prepend="">
+			  	<isNotParameterPresent>
+			     AND 1 = 0
+			  	</isNotParameterPresent>
+			  	<isParameterPresent>
+			    	<isNotEmpty prepend="AND" property="paySeqNo">
+			      		 A.PAYSEQNO = #paySeqNo:VARCHAR#                     
+			   		 </isNotEmpty>                
+			  	</isParameterPresent>
+		     </dynamic>
+    </select>
+    
+     <select id="getMonthlyRptS10RptType3DataBy" resultMap="MonthlyRpt10RptType3Result">
+     <![CDATA[
+     	SELECT A.APNO                                                       
+		      ,(nvl(A.PAYBANKID,'   ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		        nvl(A.BRANCHID,'    ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
+		        A.PAYEEACC) AS ACCOUNTNO                                    
+		      ,A.ISSUYM                                                     
+		      ,A.PAYYM                                                      
+		      ,A.BENIDN                                                     
+		      ,A.BENNAME                                                    
+		      ,NVL(A.PAYAMT, 0) AS PAYAMT                                   
+		      ,A.CHKDATE                                                    
+		      ,A.PAYDATE                                                    
+		      ,A.PAYTYP                                                     
+		      ,'' AS PAYTYPNAME                                     
+		      ,A.RPTPAGE                                                    
+		      ,A.BENEVTREL                                                  
+		      ,A.COMPNAME1                                                  
+		      ,A.COMPNAME2                                                 
+		      ,B.COMMZIP                                                    
+		      ,B.COMMADDR
+		      ,A.CPRNDATE                                                  
+		  FROM BAPAYRPTRECORD A,BAAPPBASE B
+		 WHERE A.APNO = B.APNO
+		   AND A.SEQNO = B.SEQNO
+		   AND A.RPTTYP = '3' 
+		   AND A.ISSUYM = #issuYm:VARCHAR# 
+		   AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# 
+		   AND A.CHKDATE = #chkDate:VARCHAR#  
+		   AND A.PAYTYP = '4'
+		 ORDER BY A.PAYTYP, A.APNO, A.SEQNO, A.ISSUYM, A.PAYYM
+
+     ]]>
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 10 End -->
+    
+    <!-- MonthlyRpt 04 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                    
+              ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT      
+              ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT      
+              ,NVL(SUM(MITRATE),0) AS MITRATE         
+              ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT       
+              ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+              ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate>
+	                   </isNotEmpty>                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+    </select>
+    
+    <select id="selectMonthlyRptK04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                    
+              ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT      
+              ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT      
+              ,NVL(SUM(MITRATE),0) AS MITRATE         
+              ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT       
+              ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+              ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate>
+	                   </isNotEmpty>                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+    </select>
+    
+    <select id="selectMonthlyRptS04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                    
+              ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT      
+              ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT      
+              ,NVL(SUM(MITRATE),0) AS MITRATE         
+              ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT       
+              ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+              ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate>
+	                   </isNotEmpty>                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+    </select>        
+    
+    <select id="selectMonthlyRpt04ReportCompenAmtDetail" resultMap="MonthlyRpt04CompenAmtDetailResult">
+        SELECT DECODE(BENEVTREL, '1', NVL(SUM(COMPENAMT),0), 'Z', NVL(SUM(ISSUEAMT),0)) AS COMPENAMT
+               ,COMPID1
+               ,COMPNAME1
+          FROM BAPAYRPTRECORD
+         WHERE RPTTYP = '1'
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%'
+           AND PAYTYP = #payTyp:VARCHAR#
+           AND COMPID1 IS NOT NULL
+           AND BENEVTREL = #benEvtRel:VARCHAR# 
+         GROUP BY COMPID1,COMPNAME1,BENEVTREL
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 04 End -->
+    
+    <!-- MonthlyRpt 11 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt11Report" resultMap="MonthlyRpt11Result">
+        <![CDATA[
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                    
+              ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT      
+              ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT      
+              ,NVL(SUM(MITRATE),0) AS MITRATE         
+              ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT       
+              ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+              ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '5'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+        ]]>                                   
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 11 End -->
+    
+    <!-- MonthlyRpt 13 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt13Report" resultMap="MonthlyRpt13Result">
+        <![CDATA[
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                    
+              ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT      
+              ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT      
+              ,NVL(SUM(MITRATE),0) AS MITRATE         
+              ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT       
+              ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+              ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '6'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+        ]]>                                   
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 13 End -->
+    
+    <!-- MonthlyRpt 08 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt08Report" resultMap="MonthlyRpt08Result">
+    <![CDATA[
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,CPRNDATE 
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '1'
+          AND BENEVTREL NOT IN ('F','N','Z')
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%' 
+          AND CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY ISSUTYP,PAYTYP,PAYYM,APNO,SEQNO
+    ]]>
+    </select>
+    <select id="selectMonthlyRptK08Report" resultMap="MonthlyRptK08Result">
+    <![CDATA[
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK       
+              ,CPRNDATE       
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '1'
+          AND BENEVTREL NOT IN ('F','N','Z')
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND PAYSEQNO = #paySeqNo:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%' 
+          AND CHKDATE = #chkDate:VARCHAR# 
+    ]]>
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                       ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	             
+	           </isParameterPresent>	           
+	       </dynamic>              
+        ORDER BY NACHGMK, NLWKMK, ADWKMK, ISSUTYP,PAYTYP,PAYYM,APNO,SEQNO
+
+    </select>
+    <select id="selectMonthlyRptS08Report" resultMap="MonthlyRptS08Result">
+    <![CDATA[
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK 
+              ,CPRNDATE              
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '1'
+          AND BENEVTREL NOT IN ('F','N','Z')
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%' 
+          AND CHKDATE = #chkDate:VARCHAR# 
+    ]]>          
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	             
+	           </isParameterPresent>	           
+	       </dynamic>       
+        ORDER BY PAYTYP, NLWKMK, ADWKMK, NACHGMK, APNO, PAYYM, SEQNO
+
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 08 End -->
+    
+    <!-- MonthlyRpt 12 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt12Report" resultMap="MonthlyRpt12Result">
+    <![CDATA[
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,CPRNDATE
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,SUBSTR(APNO, LENGTH(APNO), 1) AS APNOLASTDIGIT
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,RPTROWS
+              ,RPTPAGE
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '5'
+          AND ISSUYM = #issuYm:VARCHAR# 
+          AND CHKDATE = #chkDate:VARCHAR# 
+          AND APNO LIKE #apNo:VARCHAR#||'%'
+        ORDER BY RPTPAGE, RPTROWS, PAYTYP,APNOLASTDIGIT,PAYYM
+    ]]>
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 12 End -->
+    
+    <!-- MonthlyRpt 14 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt14Report" resultMap="MonthlyRpt14Result">
+    <![CDATA[
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,CPRNDATE
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,RPTROWS
+              ,RPTPAGE
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '6'
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%' 
+          AND CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY RPTPAGE, RPTROWS, ISSUTYP,PAYTYP,PAYYM
+    ]]>
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 14 End -->
+    
+    <!-- MonthlyRpt 15 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt15Report" resultMap="MonthlyRpt15Result">
+
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE                
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '8'
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%'
+          AND CHKDATE = #chkDate:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>		                               
+	           </isParameterPresent>
+	           <isEqual property="apNo" compareValue="S">
+					ORDER BY ISSUTYP, NLWKMK, ADWKMK, NACHGMK, APNO, PAYYM, SEQNO
+			   </isEqual> 
+	          <isNotEqual property="apNo" compareValue="S">
+					ORDER BY RPTPAGE, RPTROWS, NACHGMK, NLWKMK, ADWKMK, ISSUTYP,PAYTYP,PAYYM	
+			  </isNotEqual> 
+	       </dynamic> 
+    </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 15 End -->
+    
+    <!-- MonthlyRpt 17 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt17DataBy" resultMap="MonthlyRpt17Result">
+        SELECT APNO,
+               PAYYM,
+               PAYDATE,
+               BENNAME,
+               BENIDN,
+               NVL(ISSUEAMT, 0) AS ISSUEAMT,
+               COMMTEL,
+               OTHERAPNO1,
+               OTHERSEQNO1,
+               HJMK,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK,
+               deCode(DATAKD, '1', '1', '2', '1', '9', '2', 'B', '1', ' ') AS DATATYP,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'DATAKD' AND 
+                       PARAMCODE = DATAKD
+               ) AS DATAKD,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'BLIPAYEEACC' AND 
+                       PARAMCODE = DATAKD
+               ) AS BLIPAYEEACC
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '10' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY DATAKD, ISSUTYP, PAYTYP, APNO, OTHERAPNO1, PAYYM
+    </select>
+    <select id="getMonthlyRptK17DataBy" resultMap="MonthlyRpt17Result">
+        SELECT APNO,
+               PAYYM,
+               PAYDATE,
+               BENNAME,
+               BENIDN,
+               NVL(ISSUEAMT, 0) AS ISSUEAMT,
+               COMMTEL,
+               OTHERAPNO1,
+               OTHERSEQNO1,
+               HJMK,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK,
+               deCode(DATAKD, '1', '1', '2', '1', '9', '2', 'B', '1', ' ') AS DATATYP,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'DATAKD' AND 
+                       PARAMCODE = DATAKD
+               ) AS DATAKD,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'BLIPAYEEACC' AND 
+                       PARAMCODE = DATAKD
+               ) AS BLIPAYEEACC
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '10' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>               
+        ORDER BY DATAKD, ISSUTYP, PAYTYP, APNO, OTHERAPNO1, PAYYM
+    </select>
+    <select id="getMonthlyRptS17DataBy" resultMap="MonthlyRpt17Result">
+        SELECT APNO,
+               PAYYM,
+               PAYDATE,
+               BENNAME,
+               BENIDN,
+               NVL(ISSUEAMT, 0) AS ISSUEAMT,
+               COMMTEL,
+               OTHERAPNO1,
+               OTHERSEQNO1,
+               HJMK,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK,
+               deCode(DATAKD, '1', '1', '2', '1', '9', '2', 'B', '1', ' ') AS DATATYP,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'DATAKD' AND 
+                       PARAMCODE = DATAKD
+               ) AS DATAKD,
+               (SELECT PARAMNAME
+                FROM   BAPARAM 
+                WHERE  PARAMGROUP = 'BLIPAYEEACC' AND 
+                       PARAMCODE = DATAKD
+               ) AS BLIPAYEEACC
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '10' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# 
+        ORDER BY DATAKD, ISSUTYP, PAYTYP, APNO, OTHERAPNO1, PAYYM
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 17 End -->
+    
+    <!-- MonthlyRpt 18 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt18DataBy" resultMap="MonthlyRpt18Result">
+        SELECT OTHERAPNO1,
+               PAYDATE,
+               BENNAME,
+               NVL(SUM(ISSUEAMT),0) AS ISSUEAMT,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '9' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               DATAKD = '9'
+        GROUP BY OTHERAPNO1, PAYDATE, BENNAME, ISSUTYP, PAYTYP, CPRNDATE, NLWKMK, ADWKMK, NACHGMK
+        ORDER BY ISSUTYP, PAYTYP, OTHERAPNO1
+    </select>
+    <select id="getMonthlyRptK18DataBy" resultMap="MonthlyRpt18Result">
+        SELECT OTHERAPNO1,
+               PAYDATE,
+               BENNAME,
+               NVL(SUM(ISSUEAMT),0) AS ISSUEAMT,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '9' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               DATAKD = '9'
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>               
+        GROUP BY OTHERAPNO1, PAYDATE, BENNAME, ISSUTYP, PAYTYP, CPRNDATE, NLWKMK, ADWKMK, NACHGMK
+        ORDER BY ISSUTYP, PAYTYP, OTHERAPNO1
+    </select>
+    <select id="getMonthlyRptS18DataBy" resultMap="MonthlyRpt18Result">
+        SELECT OTHERAPNO1,
+               PAYDATE,
+               BENNAME,
+               NVL(SUM(ISSUEAMT),0) AS ISSUEAMT,
+               ISSUTYP,
+               PAYTYP,
+               CPRNDATE,
+               NVL(TRIM(NLWKMK), '') AS NLWKMK,                       
+               NVL(TRIM(ADWKMK), '') AS ADWKMK,
+               NACHGMK
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '9' AND 
+               ISSUYM = #issuYm:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR# AND 
+               DATAKD = '9'
+        GROUP BY OTHERAPNO1, PAYDATE, BENNAME, ISSUTYP, PAYTYP, CPRNDATE, NLWKMK, ADWKMK, NACHGMK
+        ORDER BY ISSUTYP, PAYTYP, OTHERAPNO1
+    </select>        
+    <!-- ] -->
+    <!-- MonthlyRpt 18 End -->
+    
+    <!-- MonthlyRpt 19 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt19DataBy" resultMap="MonthlyRpt19Result">    
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                     
+              ,NVL(SUM(ISSUEAMT),0) ISSUEAMT
+              ,NVL(SUM(OTHERAAMT),0) OTHERAAMT        
+              ,NVL(SUM(OTHERBAMT),0) OTHERBAMT       
+              ,NVL(SUM(MITRATE),0) MITRATE
+              ,NVL(SUM(OFFSETAMT),0) OFFSETAMT
+              ,NVL(SUM(COMPENAMT),0) COMPENAMT        
+              ,NVL(SUM(INHERITORAMT),0) INHERITORAMT
+              ,NVL(SUM(ITRTTAX),0) ITRTTAX
+              ,NVL(SUM(OTHERAMT),0) OTHERAMT
+              ,ISSUTYP                      
+              ,PAYTYP                       
+              ,CHKDATE                      
+          FROM BAPAYRPTRECORD               
+         WHERE RPTTYP = '8'                 
+           AND ISSUYM = #issuYm:VARCHAR#         
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+        <![CDATA[ 
+           AND ISSUTYP <> 'F' 
+        ]]>
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE    
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE    
+    </select>     
+    <!-- ] -->
+    <!-- MonthlyRpt 19 End -->
+    
+    <!-- MonthlyRpt 20 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt20DataBy" resultMap="MonthlyRpt20Result">    
+        SELECT COUNT(DISTINCT APNO) AS APNOAMT        
+              ,COUNT(*) AS DATAAMT                   
+              ,NVL(SUM(ISSUEAMT),0) ISSUEAMT 
+              ,NVL(SUM(UNACPAMT),0) UNACPAMT 
+              ,CHKDATE                       
+          FROM BAPAYRPTRECORD                
+         WHERE RPTTYP = '7'                  
+           AND ISSUYM = #issuYm:VARCHAR#         
+           AND APNO LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR#  
+         GROUP BY PAYTYP,ISSUTYP,CHKDATE     
+         ORDER BY PAYTYP,ISSUTYP,CHKDATE       
+    </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 20 End --> 
+    
+    <!-- MonthlyRpt 21 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt21Report" resultMap="MonthlyRpt21Result">
+  
+        SELECT APNO
+        	  ,SEQNO 
+        	  ,BENNAME 
+              ,ISSUYM
+              ,PAYYM
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(UNACPAMT,0) AS UNACPAMT
+              ,CHKDATE
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE            
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '7'
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%' 
+          AND CHKDATE = #chkDate:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>            
+        ORDER BY NLWKMK, ADWKMK, NACHGMK, APNO, PAYYM, SEQNO
+
+    </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 21 End -->
+    
+    <!-- MonthlyRpt 22 Beegin -->
+    <select id="selectMonthlyRpt22Report" resultMap="MonthlyRpt22Result">
+		SELECT RPTTYP                                      
+		  FROM BAPAYRPTRECORD
+		 WHERE ISSUYM = #issuYm:VARCHAR#
+		   AND CHKDATE  = #chkDate:VARCHAR#
+		   AND APNO LIKE #apNo:VARCHAR#||'%'
+		 GROUP BY RPTTYP
+		 ORDER BY TO_NUMBER(RPTTYP)
+    </select>
+    
+    <select id="selectMonthlyRpt22ReportPaytyp" resultClass="java.lang.Integer">
+		SELECT COUNT(*) AS DATACOUNT                                    
+  			FROM BAPAYRPTRECORD
+		 WHERE ISSUYM = #issuYm:VARCHAR#
+		   AND CHKDATE  = #chkDate:VARCHAR#
+		   AND APNO LIKE #apNo:VARCHAR#||'%'
+		   AND RPTTYP = '3'
+		 <dynamic prepend="">
+		   <isEmpty prepend="AND" property="eqType">
+		     PAYTYP='4'
+		   </isEmpty>
+		   <isNotEmpty prepend="AND" property="eqType">
+		       <isEqual property="eqType" compareValue="lt">
+               <![CDATA[  PAYTYP < '4'  ]]>
+               </isEqual>
+               <isEqual property="eqType" compareValue="le">
+               <![CDATA[  PAYTYP <= '4'  ]]>
+               </isEqual>
+               <isEqual property="eqType" compareValue="eq">
+               <![CDATA[  PAYTYP = '4'  ]]>
+               </isEqual>
+               <isEqual property="eqType" compareValue="ge">
+               <![CDATA[  PAYTYP >= '4'  ]]>
+               </isEqual>
+               <isEqual property="eqType" compareValue="gt">
+               <![CDATA[  PAYTYP > '4'  ]]>
+               </isEqual>
+               <isEqual property="eqType" compareValue="ne">
+               <![CDATA[  PAYTYP != '4'  ]]>
+               </isEqual>
+		   </isNotEmpty>      
+		 </dynamic> 
+    </select>
+    <!-- MonthlyRpt 22 End -->
+    
+    <!-- MonthlyRpt 23 Beegin -->
+    <select id="selectMonthlyRpt23Report" resultMap="MonthlyRpt23Result">
+		SELECT t1.APNO                                           
+      		  ,t1.ISSUYM                                                 
+       		  ,t1.PAYYM                                                  
+      		  ,nvl(trim(t1.ACCNAME),t3.ACCNAME) as ACCNAME               
+      		  ,t1.PAYAMT                                                  
+      		  ,t2.COMMZIP                                                
+      		  ,t2.COMMADDR                                              
+  		FROM BAPAYRPTRECORD t1,BAAPPBASE t2,BADAPR t3
+		 WHERE t1.APNO = t2.APNO
+		   AND t1.SEQNO = t2.SEQNO
+		   AND t2.APNO = t3.APNO
+		   AND t2.SEQNO = t3.SEQNO
+		   AND t1.APNO = t3.APNO
+		   AND t1.SEQNO = t3.SEQNO
+		   AND t1.ISSUYM = t3.ISSUYM
+		   AND t1.PAYYM = t3.PAYYM
+		   AND t3.MTESTMK = 'F' 
+		   AND t3.PAYKIND not in ('34','44','54')
+		   AND t1.RPTTYP = '3'
+		   AND t1.ISSUYM = #issuYm:VARCHAR# 
+		   AND t1.CHKDATE = #chkDate:VARCHAR#  
+		   AND t1.APNO LIKE #apNo:VARCHAR#||'%' 
+		   AND t1.PAYTYP = '4'
+		 ORDER BY t1.APNO,t1.SEQNO,t1.PAYYM
+    </select>
+    <select id="selectMonthlyRptK23Report" resultMap="MonthlyRpt23Result">
+		SELECT t1.APNO                                           
+      		  ,t1.ISSUYM                                                 
+       		  ,t1.PAYYM                                                  
+      		  ,nvl(trim(t1.ACCNAME),t3.ACCNAME) as ACCNAME               
+      		  ,t1.PAYAMT                                                  
+      		  ,t2.COMMZIP                                                
+      		  ,t2.COMMADDR                                              
+  		FROM BAPAYRPTRECORD t1,BAAPPBASE t2,BADAPR t3
+		 WHERE t1.APNO = t2.APNO
+		   AND t1.SEQNO = t2.SEQNO
+		   AND t2.APNO = t3.APNO
+		   AND t2.SEQNO = t3.SEQNO
+		   AND t1.APNO = t3.APNO
+		   AND t1.SEQNO = t3.SEQNO
+		   AND t1.ISSUYM = t3.ISSUYM
+		   AND t1.PAYYM = t3.PAYYM
+		   AND t3.MTESTMK = 'F' 
+		   AND t3.PAYKIND not in ('34','44','54')
+		   AND t1.RPTTYP = '3'
+		   AND t1.ISSUYM = #issuYm:VARCHAR# 
+		   AND t1.CHKDATE = #chkDate:VARCHAR#  
+		   AND t1.APNO LIKE #apNo:VARCHAR#||'%' 
+		   AND t1.PAYTYP = '4'
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       t1.PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic>		   
+		 ORDER BY t1.APNO,t1.SEQNO,t1.PAYYM
+    </select>
+    <select id="selectMonthlyRptS23Report" resultMap="MonthlyRpt23Result">
+		SELECT t1.APNO                                           
+      		  ,t1.ISSUYM                                                 
+       		  ,t1.PAYYM                                                  
+      		  ,nvl(trim(t1.ACCNAME),t3.ACCNAME) as ACCNAME               
+      		  ,t1.PAYAMT                                                  
+      		  ,t2.COMMZIP                                                
+      		  ,t2.COMMADDR                                              
+  		FROM BAPAYRPTRECORD t1,BAAPPBASE t2,BADAPR t3
+		 WHERE t1.APNO = t2.APNO
+		   AND t1.SEQNO = t2.SEQNO
+		   AND t2.APNO = t3.APNO
+		   AND t2.SEQNO = t3.SEQNO
+		   AND t1.APNO = t3.APNO
+		   AND t1.SEQNO = t3.SEQNO
+		   AND t1.ISSUYM = t3.ISSUYM
+		   AND t1.PAYYM = t3.PAYYM
+		   AND t3.MTESTMK = 'F' 
+		   AND t3.PAYKIND not in ('34','44','54')
+		   AND t1.RPTTYP = '3'
+		   AND t1.ISSUYM = #issuYm:VARCHAR# 
+		   AND t1.CHKDATE = #chkDate:VARCHAR#  
+		   AND t1.APNO LIKE #apNo:VARCHAR#||'%' 
+		   AND t1.PAYTYP = '4'
+		 ORDER BY t1.APNO,t1.SEQNO,t1.PAYYM
+    </select>        
+    <!-- MonthlyRpt 23 End -->
+    
+    <!-- MonthlyRpt 24 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt24DataBy" resultMap="MonthlyRpt24Result">
+    <![CDATA[
+        SELECT A.APNO,
+               A.BENNAME,
+               A.BENIDN,
+               NVL(A.PAYAMT, 0) AS PAYAMT,
+               A.ISSUYM,
+               A.PAYYM,
+               A.PAYDATE,
+               A.COMPNAME2,
+               A.COMPNAME1,
+               A.PAYTYP,
+               A.PAYBANKID,  
+               A.BRANCHID,  
+               A.PAYEEACC,
+               A.CPRNDATE   
+        FROM   BAPAYRPTRECORD A
+        WHERE  A.RPTTYP = '11' AND
+               A.ISSUYM = #issuYm:VARCHAR# AND 
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#
+        ORDER BY A.PAYTYP, A.COMPNAME1, A.PAYBANKID, A.BRANCHID, A.PAYEEACC, A.APNO, A.SEQNO
+    ]]>
+    </select>
+    
+    <select id="getMonthlyRpt24PayAmtDataBy" resultMap="MonthlyRpt24PayAmtResult">
+    <![CDATA[
+        SELECT COMPNAME1,
+               NVL(SUM(PAYAMT),0) AS PAYAMT,
+               PAYTYP,  
+               PAYBANKID,  
+               BRANCHID,  
+               PAYEEACC 
+        FROM   BAPAYRPTRECORD
+        WHERE  RPTTYP = '11' AND  
+               ISSUYM = #issuYm:VARCHAR# AND
+               CHKDATE = #chkDate:VARCHAR# AND 
+               SUBSTR(APNO, 1, 1) = #payCode:VARCHAR#
+        GROUP BY PAYTYP, COMPNAME1, PAYBANKID, BRANCHID, PAYEEACC
+    ]]>
+    </select>
+    
+    <!-- ] -->
+    <!-- MonthlyRpt 24 End -->
+    
+    <!-- MonthlyRpt 26 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt26DataBy" resultMap="MonthlyRpt26Result">
+        SELECT APNO
+              ,PAYYM
+              ,ISSUYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,CPRNDATE
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,RPTROWS
+              ,RPTPAGE
+              ,SUBSTR(APNO, LENGTH(APNO), 1) AS APNOLASTDIGIT  
+         FROM BAPAYRPTRECORD
+        WHERE RPTTYP = #rptTyp:VARCHAR#   
+          AND APNO = #apNo:VARCHAR#
+          AND CHKDATE = #chkDate:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+       <dynamic prepend="">
+       <isNotParameterPresent>
+             AND 1 = 0
+         </isNotParameterPresent>
+         <isParameterPresent>
+             <isNotEmpty prepend="AND" property="paySeqNo">
+                     PAYSEQNO = #paySeqNo:VARCHAR#
+             </isNotEmpty>
+         </isParameterPresent>
+       </dynamic>             
+        ORDER BY RPTPAGE, RPTROWS, NACHGMK, NLWKMK, ADWKMK, ISSUTYP,PAYTYP,PAYYM  
+   </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 26 End -->
+    
+     <!-- MonthlyRpt 28 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt28DataBy" resultMap="MonthlyRpt28Result">
+        SELECT APNO
+              ,PAYYM
+              ,ISSUYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,CPRNDATE
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK      
+              ,RPTROWS
+              ,RPTPAGE          
+         FROM BAPAYRPTRECORD
+        WHERE RPTTYP = #rptTyp:VARCHAR#   
+          AND APNO = #apNo:VARCHAR#
+          AND CHKDATE = #chkDate:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+       <dynamic prepend="">
+       <isNotParameterPresent>
+             AND 1 = 0
+         </isNotParameterPresent>
+         <isParameterPresent>
+             <isNotEmpty prepend="AND" property="paySeqNo">
+                     PAYSEQNO = #paySeqNo:VARCHAR#
+             </isNotEmpty>
+         </isParameterPresent>
+       </dynamic>             
+        ORDER BY RPTPAGE, RPTROWS, NACHGMK, NLWKMK, ADWKMK, ISSUTYP,PAYTYP,PAYYM  
+   </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 28 End -->
+
+    <!-- MonthlyRpt 33 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt33Report" resultMap="MonthlyRpt33Result">
+
+        SELECT APNO
+              ,PAYYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE
+              ,EVTNAME
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '19'
+          AND ISSUYM = #issuYm:VARCHAR#
+          AND APNO LIKE #apNo:VARCHAR#||'%'
+          AND CHKDATE = #chkDate:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>		                               
+	           </isParameterPresent>
+	           <isEqual property="apNo" compareValue="S">
+					ORDER BY RPTPAGE, RPTROWS, NACHGMK, NLWKMK, ADWKMK, PAYTYP, ISSUTYP, APNO, PAYYM	
+			   </isEqual> 
+	          <isNotEqual property="apNo" compareValue="S">
+					ORDER BY RPTPAGE, RPTROWS, NACHGMK, NLWKMK, ADWKMK, ISSUTYP,PAYTYP,PAYYM	
+			  </isNotEqual> 
+	       </dynamic> 
+    </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 33 End -->
+
+    <select id="selectOtherRpt07DataBy" resultMap="OtherRpt07Result">
+        SELECT APNO
+        	  ,SEQNO 
+        	  ,BENNAME 
+              ,ISSUYM
+              ,PAYYM
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(UNACPAMT,0) AS UNACPAMT
+              ,CHKDATE
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE            
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '16'
+          AND PAYDATE = #procYm:VARCHAR#
+          AND APNO LIKE #payCode:VARCHAR#||'%' 
+          AND RPTNOTE IS NULL
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>            
+        ORDER BY RPTPAGE ,RPTROWS ,NACHGMK, NLWKMK, ADWKMK, APNO, SEQNO, ISSUYM, PAYYM
+    </select>    
+    <!-- ] -->
+    <!-- MonthlyRpt 21 End -->
+    
+    <select id="selectOtherRptComp07DataBy" resultMap="OtherRpt07Result">
+        SELECT APNO
+        	  ,SEQNO 
+        	  ,BENNAME 
+              ,ISSUYM
+              ,PAYYM
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(UNACPAMT,0) AS UNACPAMT
+              ,CHKDATE
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE            
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '16'
+          AND CHKDATE = #demDate:VARCHAR#
+          AND APNO LIKE #payCode:VARCHAR#||'%' 
+          AND RPTNOTE IS NOT NULL
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>            
+        ORDER BY RPTPAGE ,RPTROWS ,NACHGMK, NLWKMK, ADWKMK, APNO, SEQNO, ISSUYM, PAYYM
+    </select>    
+    
+    <update id="updateOtherRpt07DataBy">
+       UPDATE BAPAYRPTRECORD 
+        SET RPTNOTE = '1'
+        WHERE RPTTYP = '16'            
+         AND PAYDATE = #procYm:VARCHAR#
+          AND APNO LIKE #payCode:VARCHAR#||'%'
+         AND RPTNOTE IS NULL 
+          <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	  ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                              	 
+	           </isParameterPresent>
+	       </dynamic>            
+    </update> 
+    
+    <select id="selectOtherRpt09DataBy" resultMap="OtherRpt09Result">
+        SELECT APNO
+        	  ,SEQNO 
+        	  ,BENNAME 
+              ,ISSUYM	
+              ,PAYYM
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(UNACPAMT,0) AS UNACPAMT
+              ,CHKDATE
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE            
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '17'
+          AND PAYDATE = #deadYy:VARCHAR#
+          AND APNO LIKE (#payCode:VARCHAR#||'%') 
+          AND RPTNOTE IS NULL
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>            
+        ORDER BY RPTPAGE ,RPTROWS ,NACHGMK, NLWKMK, ADWKMK, APNO, SEQNO, ISSUYM, PAYYM
+
+    </select>    
+    			
+    <select id="selectOtherRptComp09DataBy" resultMap="OtherRpt09Result">
+        SELECT APNO
+        	  ,SEQNO 
+        	  ,BENNAME 
+              ,ISSUYM
+              ,PAYYM
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(UNACPAMT,0) AS UNACPAMT
+              ,CHKDATE
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,CPRNDATE
+              ,RPTROWS
+              ,RPTPAGE            
+        FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '17'
+          AND CHKDATE = #bDebtDate:VARCHAR#
+          AND APNO LIKE (#payCode:VARCHAR#||'%') 
+          AND RPTNOTE IS NOT NULL
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>            
+        ORDER BY RPTPAGE ,RPTROWS ,NACHGMK, NLWKMK, ADWKMK, APNO, SEQNO, ISSUYM, PAYYM
+
+    </select> 
+    
+    <update id="updateOtherRpt09DataBy" >
+        UPDATE BAPAYRPTRECORD 
+        SET RPTNOTE = '1'
+        WHERE RPTTYP = '17'
+          AND PAYDATE = #deadYy:VARCHAR#
+          AND APNO LIKE (#payCode:VARCHAR#||'%')
+          AND RPTNOTE IS NULL
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic> 
+    </update>
+    <!-- ] -->
+    <!-- MonthlyRpt 21 End -->
+    
+	<insert id="insertDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTRECORD  
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYDATE
+            ,CHKDATE
+            ,APNO
+            ,SEQNO
+            ,PAYCODE
+            ,PAYKIND
+            ,ISSUTYP
+            ,ISSUYM
+            ,PAYYM
+            ,BENIDS
+            ,BENIDN
+            ,BENNAME
+            ,PAYBANKID
+            ,BRANCHID
+            ,PAYEEACC
+            ,ISSUEAMT
+            ,PROCTIME
+            ,PAYSEQNO
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,CASETYP
+            ,PAYTYP
+            ,STS
+        )
+        values
+        (
+            '18'
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,#payDate:VARCHAR#
+            ,#chkDate:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#issuTyp:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#benIds:VARCHAR#
+            ,#benIdn:VARCHAR#
+            ,#benName:VARCHAR#
+            ,#payBankId:VARCHAR#
+            ,#branchId:VARCHAR#
+            ,#payEeacc:VARCHAR#
+            ,#issueAmt:NUMERIC#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,''
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#caseTyp:VARCHAR#
+            ,#payTyp:VARCHAR#
+            ,#sts:VARCHAR#
+        )    
+    </insert>
+    
+	<insert id="insertDataForPaymentReceiveData">
+        
+        insert  into  BAPAYRPTRECORD  
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYDATE
+            ,CHKDATE
+            ,APNO
+            ,SEQNO
+            ,PAYCODE
+            ,PAYKIND
+            ,ISSUTYP
+            ,ISSUYM
+            ,PAYYM
+            ,BENIDS
+            ,BENIDN
+            ,BENNAME
+            ,PAYBANKID
+            ,BRANCHID
+            ,PAYEEACC
+            ,ISSUEAMT
+            ,PROCTIME
+            ,PAYSEQNO
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,CASETYP
+            ,PAYTYP
+            ,STS
+            ,RPTROWS
+        )
+        values
+        (
+            '18'
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,#payDate:VARCHAR#
+            ,#chkDate:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#issuTyp:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#benIds:VARCHAR#
+            ,#benIdn:VARCHAR#
+            ,#benName:VARCHAR#
+            ,#payBankId:VARCHAR#
+            ,#branchId:VARCHAR#
+            ,#payEeacc:VARCHAR#
+            ,#issueAmt:NUMERIC#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,''
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#caseTyp:VARCHAR#
+            ,#payTyp:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#rptRows:VARCHAR#
+        )    
+    </insert>
+        
+    <insert id="insertKDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTRECORD  
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYDATE
+            ,CHKDATE
+            ,APNO
+            ,SEQNO
+            ,PAYCODE
+            ,PAYKIND
+            ,ISSUTYP
+            ,ISSUYM
+            ,PAYYM
+            ,BENIDS
+            ,BENIDN
+            ,BENNAME
+            ,PAYBANKID
+            ,BRANCHID
+            ,PAYEEACC
+            ,ISSUEAMT
+            ,PROCTIME
+            ,PAYSEQNO
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,CASETYP
+            ,PAYTYP
+            ,STS
+        )
+        values
+        (
+            '18'
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,#payDate:VARCHAR#
+            ,#chkDate:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#issuTyp:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#benIds:VARCHAR#
+            ,#benIdn:VARCHAR#
+            ,#benName:VARCHAR#
+            ,#payBankId:VARCHAR#
+            ,#branchId:VARCHAR#
+            ,#payEeacc:VARCHAR#
+            ,#issueAmt:NUMERIC#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,''
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#caseTyp:VARCHAR#
+            ,#payTyp:VARCHAR#
+            ,#sts:VARCHAR#
+        )    
+    </insert>
+    
+	<insert id="insertSDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTRECORD  
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYDATE
+            ,CHKDATE
+            ,APNO
+            ,SEQNO
+            ,PAYCODE
+            ,PAYKIND
+            ,ISSUTYP
+            ,ISSUYM
+            ,PAYYM
+            ,BENIDS
+            ,BENIDN
+            ,BENNAME
+            ,PAYBANKID
+            ,BRANCHID
+            ,PAYEEACC
+            ,ISSUEAMT
+            ,PROCTIME
+            ,PAYSEQNO
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,CASETYP
+            ,PAYTYP
+            ,STS
+        )
+        values
+        (
+            '18'
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,#payDate:VARCHAR#
+            ,#chkDate:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#issuTyp:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#benIds:VARCHAR#
+            ,#benIdn:VARCHAR#
+            ,#benName:VARCHAR#
+            ,#payBankId:VARCHAR#
+            ,#branchId:VARCHAR#
+            ,#payEeacc:VARCHAR#
+            ,#issueAmt:NUMERIC#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,''
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#caseTyp:VARCHAR#
+            ,#payTyp:VARCHAR#
+            ,#sts:VARCHAR#
+        )    
+    </insert>
+
+    <select id="selectBapayrptrecordDataForRptsumBy" resultMap="ForRptsumResult">
+    SELECT APNOAMT,
+           DATAAMT,
+           ISSUEAMT,
+           OTHERAAMT,
+           OTHERBAMT,
+           MITRATE,
+           OFFSETAMT,
+           COMPENAMT,
+           INHERITORAMT,
+           ITRTTAX,
+           OTHERAMT,
+           ISSUTYP,
+           CHKDATE,
+           CPRNDATE,
+           RPTTYP,
+           (ISSUEAMT - OTHERAAMT - OTHERBAMT - MITRATE - OFFSETAMT - COMPENAMT -
+            INHERITORAMT - ITRTTAX - OTHERAMT) AS PAYAMT,
+           ISSUYM,
+           CASETYP,
+           PAYTYP,
+           NLWKMK,
+           ADWKMK,
+           NACHGMK,
+           STS,
+           APNO,
+           SEQNO
+      FROM
+      (SELECT  COUNT(DISTINCT APNO) AS APNOAMT
+                   ,COUNT(*) AS DATAAMT
+                   ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+                   ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT
+                   ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT
+                   ,NVL(SUM(MITRATE),0) AS MITRATE
+                   ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT
+                   ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+                   ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+                   ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+                   ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+                   ,ISSUTYP
+                   ,CHKDATE
+                   ,CPRNDATE
+                   ,RPTTYP
+                   ,ISSUYM
+                   ,CASETYP
+                   ,PAYTYP
+                   ,NLWKMK
+                   ,ADWKMK
+                   ,NACHGMK
+                   ,STS
+                   ,APNO
+                   ,SEQNO
+              FROM BAPAYRPTRECORD
+             WHERE RPTTYP = '18'
+               AND APNO LIKE (#payCode:VARCHAR# || '%')
+               AND CHKDATE = #chkDate:VARCHAR#
+               AND ISSUTYP IN ('G')
+             GROUP BY PAYTYP,CASETYP, APNO, SEQNO, NACHGMK, NLWKMK, ADWKMK,ISSUTYP,ISSUYM, CHKDATE, CPRNDATE, RPTTYP,STS
+             ORDER BY PAYTYP,CASETYP,NACHGMK, NLWKMK, ADWKMK,ISSUTYP,ISSUYM, CHKDATE, CPRNDATE, RPTTYP,STS)
+    </select>
+    
+    <select id="selectBapayrptrecordDataToRptsumForPaymentReceiveBy" resultMap="ForRptsumResult">
+    SELECT APNOAMT,
+           DATAAMT,
+           ISSUEAMT,
+           OTHERAAMT,
+           OTHERBAMT,
+           MITRATE,
+           OFFSETAMT,
+           COMPENAMT,
+           INHERITORAMT,
+           ITRTTAX,
+           OTHERAMT,
+           ISSUTYP,
+           CHKDATE,
+           CPRNDATE,
+           RPTTYP,
+           (ISSUEAMT - OTHERAAMT - OTHERBAMT - MITRATE - OFFSETAMT - COMPENAMT -
+            INHERITORAMT - ITRTTAX - OTHERAMT) AS PAYAMT,
+           ISSUYM,
+           CASETYP,
+           PAYTYP,
+           NLWKMK,
+           ADWKMK,
+           NACHGMK,
+           STS,
+           APNO,
+           SEQNO
+      FROM
+      (SELECT  COUNT(DISTINCT APNO) AS APNOAMT
+                   ,COUNT(*) AS DATAAMT
+                   ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+                   ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT
+                   ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT
+                   ,NVL(SUM(MITRATE),0) AS MITRATE
+                   ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT
+                   ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+                   ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+                   ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+                   ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+                   ,ISSUTYP
+                   ,CHKDATE
+                   ,CPRNDATE
+                   ,RPTTYP
+                   ,ISSUYM
+                   ,CASETYP
+                   ,PAYTYP
+                   ,NLWKMK
+                   ,ADWKMK
+                   ,NACHGMK
+                   ,STS
+                   ,APNO
+                   ,SEQNO
+              FROM BAPAYRPTRECORD
+             WHERE RPTTYP = '18'
+               AND APNO LIKE (#payCode:VARCHAR# || '%')
+               AND APNO = #apNo:VARCHAR#
+               AND ISSUTYP IN ('E')
+               AND RPTROWS = 'N'
+             GROUP BY PAYTYP,CASETYP, APNO, SEQNO, NACHGMK, NLWKMK, ADWKMK,ISSUTYP,ISSUYM, CHKDATE, CPRNDATE, RPTTYP,STS
+             ORDER BY PAYTYP,CASETYP,NACHGMK, NLWKMK, ADWKMK,ISSUTYP,ISSUYM, CHKDATE, CPRNDATE, RPTTYP,STS)
+    </select>
+
+    <select id="selectKBapayrptrecordDataForRptsumBy" resultMap="ForRptsumResult">
+    SELECT APNOAMT,
+           DATAAMT,
+           ISSUEAMT,
+           OTHERAAMT,
+           OTHERBAMT,
+           MITRATE,
+           OFFSETAMT,
+           COMPENAMT,
+           INHERITORAMT,
+           ITRTTAX,
+           OTHERAMT,
+           ISSUTYP,
+           CHKDATE,
+           CPRNDATE,
+           RPTTYP,
+           (ISSUEAMT - OTHERAAMT - OTHERBAMT - MITRATE - OFFSETAMT - COMPENAMT -
+            INHERITORAMT - ITRTTAX - OTHERAMT) AS PAYAMT,
+           ISSUYM,
+           CASETYP,
+           PAYTYP,
+           NLWKMK,
+           ADWKMK,
+           NACHGMK,
+           STS,
+           APNO,
+           SEQNO
+      FROM
+      (SELECT  COUNT(DISTINCT APNO) AS APNOAMT
+                   ,COUNT(*) AS DATAAMT
+                   ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+                   ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT
+                   ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT
+                   ,NVL(SUM(MITRATE),0) AS MITRATE
+                   ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT
+                   ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+                   ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+                   ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+                   ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+                   ,ISSUTYP
+                   ,CHKDATE
+                   ,NLWKMK
+                   ,ADWKMK
+                   ,NACHGMK
+                   ,CPRNDATE
+                   ,RPTTYP
+                   ,ISSUYM
+                   ,CASETYP
+                   ,PAYTYP
+                   ,STS
+                   ,APNO
+                   ,SEQNO
+              FROM BAPAYRPTRECORD
+             WHERE RPTTYP = '18'
+               AND APNO LIKE (#payCode:VARCHAR# || '%')
+               AND CHKDATE = #chkDate:VARCHAR#
+               AND ISSUTYP IN ('G')
+             GROUP BY PAYTYP,CASETYP,ISSUTYP,ISSUYM, APNO, SEQNO, CHKDATE, NLWKMK, ADWKMK, NACHGMK, CPRNDATE, RPTTYP, STS
+             ORDER BY PAYTYP,CASETYP,ISSUTYP,ISSUYM, CHKDATE, NLWKMK, ADWKMK, NACHGMK, CPRNDATE, RPTTYP, STS)
+    </select>
+    
+    <select id="selectSBapayrptrecordDataForRptsumBy" resultMap="ForRptsumResult">
+    SELECT APNOAMT,
+           DATAAMT,
+           ISSUEAMT,
+           OTHERAAMT,
+           OTHERBAMT,
+           MITRATE,
+           OFFSETAMT,
+           COMPENAMT,
+           INHERITORAMT,
+           ITRTTAX,
+           OTHERAMT,
+           ISSUTYP,
+           CHKDATE,
+           CPRNDATE,
+           RPTTYP,
+           (ISSUEAMT - OTHERAAMT - OTHERBAMT - MITRATE - OFFSETAMT - COMPENAMT -
+            INHERITORAMT - ITRTTAX - OTHERAMT) AS PAYAMT,
+           ISSUYM,
+           CASETYP,
+           PAYTYP,
+           NLWKMK,
+           ADWKMK,
+           NACHGMK,
+           STS,
+           APNO,
+           SEQNO
+      FROM
+      (SELECT  COUNT(DISTINCT APNO) AS APNOAMT
+                   ,COUNT(*) AS DATAAMT
+                   ,NVL(SUM(ISSUEAMT),0) AS ISSUEAMT
+                   ,NVL(SUM(OTHERAAMT),0) AS OTHERAAMT
+                   ,NVL(SUM(OTHERBAMT),0) AS OTHERBAMT
+                   ,NVL(SUM(MITRATE),0) AS MITRATE
+                   ,NVL(SUM(OFFSETAMT),0) AS OFFSETAMT
+                   ,NVL(SUM(COMPENAMT),0) AS COMPENAMT
+                   ,NVL(SUM(INHERITORAMT),0) AS INHERITORAMT
+                   ,NVL(SUM(ITRTTAX),0) AS ITRTTAX
+                   ,NVL(SUM(OTHERAMT),0) AS OTHERAMT
+                   ,ISSUTYP
+                   ,CHKDATE
+                   ,NLWKMK
+                   ,ADWKMK
+                   ,NACHGMK
+                   ,CPRNDATE
+                   ,RPTTYP
+                   ,ISSUYM
+                   ,CASETYP
+                   ,PAYTYP
+                   ,STS
+                   ,APNO
+                   ,SEQNO
+              FROM BAPAYRPTRECORD
+             WHERE RPTTYP = '18'
+               AND APNO LIKE (#payCode:VARCHAR# || '%')
+               AND CHKDATE = #chkDate:VARCHAR#
+               AND ISSUTYP IN ('G')
+             GROUP BY PAYTYP,CASETYP,ISSUTYP,ISSUYM, APNO, SEQNO, CHKDATE, NLWKMK, ADWKMK, NACHGMK, CPRNDATE, RPTTYP, STS
+             ORDER BY PAYTYP,CASETYP,ISSUTYP,ISSUYM, CHKDATE, NLWKMK, ADWKMK, NACHGMK, CPRNDATE, RPTTYP, STS)
+    </select>
+
+    <select id="getBatchPaymentReceiveDataBy" resultMap="MonthlyRpt26Result">
+        SELECT APNO
+              ,PAYYM
+              ,ISSUYM
+              ,BENIDN
+              ,BENNAME
+              ,PAYTYP
+              ,CPRNDATE
+              ,NVL(ISSUEAMT,0) AS ISSUEAMT
+              ,NVL(OTHERAAMT,0) AS OTHERAAMT
+              ,NVL(OTHERBAMT,0) AS OTHERBAMT
+              ,NVL(MITRATE,0) AS MITRATE
+              ,NVL(OFFSETAMT,0) AS OFFSETAMT
+              ,NVL(COMPENAMT,0) AS COMPENAMT
+              ,NVL(INHERITORAMT,0) AS INHERITORAMT
+              ,NVL(ITRTTAX,0) AS ITRTTAX
+              ,NVL(OTHERAMT,0) AS OTHERAMT
+              ,ISSUTYP
+              ,deCode(PAYTYP,'A',BENIDN,PAYBANKID||'-'||BRANCHID||'-'||PAYEEACC) AS PAYACCOUNT
+              ,NVL(PAYBANKID,'') AS PAYBANKID
+              ,NVL(BRANCHID,'') AS BRANCHID
+              ,NVL(PAYEEACC,'') AS PAYEEACC
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK  
+              ,RPTROWS
+              ,RPTPAGE
+              ,SUBSTR(APNO, LENGTH(APNO), 1) AS APNOLASTDIGIT              
+         FROM BAPAYRPTRECORD
+        WHERE RPTTYP = #rptTyp:VARCHAR#   
+          AND APNO like (#payCode:VARCHAR# || '%')
+          AND CHKDATE = #chkDate:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>		                               
+	           </isParameterPresent>
+	       </dynamic> 
+        ORDER BY RPTPAGE, RPTROWS, ISSUYM, NACHGMK, NLWKMK, ADWKMK, ISSUTYP, PAYTYP, PAYYM  
+   </select>
+   
+   <select id="selectKBapayrptrecordDataForRptaccountBy" resultMap="ForKRptaccountResult">
+       SELECT NVL(SUM(Decode(PAYKIND,'37',0,ISSUEAMT)), 0) AS ISSUEAMTA, 
+              NVL(SUM(Decode(PAYKIND,'37',ISSUEAMT,0)), 0) AS ISSUEAMTB, 
+              NVL(SUM(Decode(PAYKIND,'37',0,ISSUEAMT)), 0) AS PAYAMTA,
+              NVL(SUM(Decode(PAYKIND,'37',ISSUEAMT,0)), 0) AS PAYAMTB,
+              NLWKMK,
+              ADWKMK,
+              NACHGMK,
+              NVL(COUNT(*), 0) AS DATAAMT,
+              CHKDATE,
+              ISSUTYP,
+              RPTTYP,
+              CPRNDATE,
+              ISSUYM,
+              PAYTYP,
+              STS,
+              APNO,
+              SEQNO AS APSEQNO
+         FROM BAPAYRPTRECORD
+        WHERE RPTTYP = '18'              
+          AND PAYCODE = #payCode:VARCHAR#
+          AND CHKDATE = #chkDate:VARCHAR#  
+          AND ISSUTYP IN ('G')     
+        GROUP BY PAYTYP,ISSUTYP,ISSUYM, APNO, SEQNO, CHKDATE, NLWKMK, ADWKMK, NACHGMK, CPRNDATE, RPTTYP, STS
+        ORDER BY ISSUTYP,CHKDATE, NLWKMK, ADWKMK, NACHGMK
+    </select>
+    
+    <update id="updateForPfmPfd" >
+        update BAPAYRPTRECORD t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.RPTROWS  = #v_lcnt:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.APNO = #apNo:VARCHAR#
+           and t.SEQNO = #seqNo:VARCHAR#
+           and t.ISSUYM = #issuYm:VARCHAR#
+           and t.PAYYM = #payYm:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+    </update>
+    
+    <update id="updateForPfmPfdK" >
+        update BAPAYRPTRECORD t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.RPTROWS  = #v_lcnt:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.APNO = #apNo:VARCHAR#
+           and t.SEQNO = #seqNo:VARCHAR#
+           and t.ISSUYM = #issuYm:VARCHAR#
+           and t.PAYYM = #payYm:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+    </update>
+    
+    <update id="updateForPfmPfdS" >
+        update BAPAYRPTRECORD t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.RPTROWS  = #v_lcnt:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.APNO = #apNo:VARCHAR#
+           and t.SEQNO = #seqNo:VARCHAR#
+           and t.ISSUYM = #issuYm:VARCHAR#
+           and t.PAYYM = #payYm:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+    </update>
+    
+    <update id="updateTempMk">    
+		UPDATE BAPAYRPTRECORD t
+           SET t.RPTROWS = ''
+         WHERE t.RPTTYP = '18'
+           AND t.PAYCODE = #payCode:VARCHAR#
+           AND t.APNO = #apNo:VARCHAR#
+           AND t.ISSUTYP = 'E'
+           AND t.RPTROWS = 'N'
+    </update>
+        
+</sqlMap>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAPPATTFILE">
+
+    <typeAlias alias="Baappattfile" type="tw.gov.bli.ba.domain.Baappattfile" />
+
+    <resultMap id="selectFile" class="Baappattfile">
+        <result column="attFile"          property="attFile"         jdbcType="BLOB" />
+    </resultMap>
+
+    <select id="selectFile" resultMap="selectFile">
+        SELECT ATTFILE
+          FROM BAAPPATTFILE
+         WHERE APNO = #apNo:VARCHAR#
+           AND PROCTIME = (SELECT MAX(PROCTIME) FROM BAAPPATTFILE WHERE APNO = #apNo:VARCHAR#)
+    </select>
+
+</sqlMap>

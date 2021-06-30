@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CVLDTL">
+
+    <typeAlias alias="Cvldtl" type="tw.gov.bli.ba.domain.Cvldtl" />
+
+    <resultMap id="CVLDTLResult" class="Cvldtl">
+        <result column="NPIDS"     property="npIds"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="APAREA"    property="apArea"    jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="IDN"       property="idn"       jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="EBDATE"    property="ebDate"    jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="NAME"      property="name"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HAREA"     property="harea"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HZIP"      property="hzip"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HADDR"     property="haddr"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="CADDR"     property="caddr"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="TRANSMK"   property="transMk"   jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="SPECCODE"  property="specCode"  jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="SPECDATE"  property="specDate"  jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="OLIVCODE"  property="olivCode"  jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="INDATE"    property="inDate"    jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="NEB"       property="neb"       jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="NEBC"      property="nebc"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+        <result column="ACNT"      property="acnt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />                                                                         
+        <result column="VCNT"      property="vcnt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />                                                                         
+        <result column="NCNT"      property="ncnt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />                                                                         
+        <result column="MSG01"     property="msg01"     jdbcType="VARCHAR"   javaType="java.lang.String"      />                                                                          
+        <result column="UPDDT"     property="updDt"     jdbcType="DATE"      javaType="java.sql.Date"        />                                                                          
+        <result column="CZIP"      property="czip"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />    
+    </resultMap>
+
+    <resultMap id="personalResult" class="Cvldtl">
+        <result column="NPIDS"     property="npIds"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="NAME"      property="name"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HZIP"      property="hzip"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HADDR"     property="haddr"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />                                                                          
+    </resultMap>
+
+    <resultMap id="personalResultForBAIQ0D012Q" class="Cvldtl">
+        <result column="NPIDS"     property="npIds"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="NAME"      property="name"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HZIP"      property="hzip"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HADDR"     property="haddr"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="RMP_NAME"     property="rmp_Name"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+    </resultMap>
+    
+    <!-- Added By LouisChange 20200311 begin -->
+    <resultMap id="personalResultForBAIQ0D012Q01" class="Cvldtl">
+        <result column="NPIDS"     property="npIds"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="NAME"      property="name"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HZIP"      property="hzip"      jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="HADDR"     property="haddr"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="RMP_NAME"     property="rmp_Name"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+        <result column="OLIVCODE"     property="olivCode"     jdbcType="VARCHAR"   javaType="java.lang.String"      nullValue="" />
+    </resultMap>
+    <!-- Added By LouisChange 20200311 end -->
+
+     <parameterMap id="infoResult" class="java.util.HashMap" >
+        <parameter property="p_npids"       jdbcType="VARCHAR"      javaType="java.lang.String"     mode="IN" />
+        <parameter property="p_addrdiff"    jdbcType="VARCHAR"      javaType="java.lang.String"     mode="INOUT" />
+        <parameter property="p_zipcode"     jdbcType="VARCHAR"      javaType="java.lang.String"     mode="OUT" />
+        <parameter property="p_hsncode"     jdbcType="VARCHAR"      javaType="java.lang.String"     mode="OUT" />
+        <parameter property="p_addr"        jdbcType="VARCHAR"      javaType="java.lang.String"     mode="OUT" />
+    </parameterMap>
+    
+    <select id="selectDataBy" resultMap="personalResult">
+        Select  t.NPIDS, t.NAME, t.HZIP, t.HADDR from  CVLDTL t
+        WHERE t.IDN = #idn:VARCHAR#
+          AND t.EBDATE = #ebDate:VARCHAR#
+    </select>    
+    
+    <select id="selectHaddrBy" resultMap="personalResultForBAIQ0D012Q">
+             Select NPIDS,
+                    NAME,
+                    HZIP,
+                    HADDR,
+                    RMP_NAME
+               From CVLDTL
+              WHERE NPIDS = UPPER(#evtIds:VARCHAR#)
+    </select>
+    
+    <select id="selectZipCodeData" resultClass="java.lang.String">
+             Select HZIP 
+               From CVLDTL
+              WHERE HADDR LIKE #addr:VARCHAR#||'%'
+                AND ROWNUM = 1
+    </select>
+    
+    <!-- Added By LouisChange 20200311 begin -->
+    <select id="selectRmpNameBy" resultMap="personalResultForBAIQ0D012Q01">
+             Select t.NPIDS,
+                    t.NAME,
+                    t.HZIP,
+                    t.HADDR,
+                    t.RMP_NAME,
+                    t.OLIVCODE
+               From CVLDTL t
+              WHERE t.IDN = #idn:VARCHAR#
+                AND t.EBDATE = #ebDate:VARCHAR#
+    </select>
+    <!-- Added By LouisChange 20200311 end -->
+    
+    <procedure id="selectInfoBy" parameterMap="infoResult" >
+        <![CDATA[
+        { ? = call NPS.GET_CURR_ADDR(?,?) }
+        ]]>
+    </procedure>
+ 
+</sqlMap>

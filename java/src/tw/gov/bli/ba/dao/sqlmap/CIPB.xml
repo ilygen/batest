@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CIPB">
+
+    <typeAlias alias="Cipb" type="tw.gov.bli.ba.domain.Cipb" />
+    
+    <parameterMap id="DoCipbParam" class="java.util.HashMap" >
+        <parameter property="v_i_apno"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqno"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_appDate"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_famidnno"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_evtjobdate"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+
+    <resultMap id="OldAgeReviewRpt01OnceAvgAmtResult" class="Cipb">        
+        <result column="AVGWG"              property="avgWg"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="NITRMY"             property="nitrmY"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="NITRMM"             property="nitrmM"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="OLDTY"              property="oldTY"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="OLDTD"              property="oldTD"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <procedure id="doCipb" parameterMap="DoCipbParam" >
+       <![CDATA[
+        { call PKG_BA_getCIData.sp_BA_Get_CIPB(?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+	<select id="getAvgWg" resultClass="java.math.BigDecimal">
+       SELECT AVGWG 
+         FROM CIPB 
+        WHERE INTYP = 'L' 
+          AND APNO = #apNo:VARCHAR# 
+          AND SEQNO = #seqNo:VARCHAR#
+		  <isNotEmpty prepend="" property="type">              
+          		<isEqual prepend="AND" property="type" compareValue="1">
+					IDN = #idnNo:VARCHAR#
+                </isEqual>
+                <isEqual prepend="AND" property="type" compareValue="2">
+           			IDN like #idnNo:VARCHAR# || '%'
+                </isEqual>
+          </isNotEmpty>
+	</select>
+	
+    <select id="selectOldAgeReviewRpt01OnceAvgAmt" resultMap="OldAgeReviewRpt01OnceAvgAmtResult">
+       SELECT AVGWG,
+              NITRMY,
+              NITRMM,
+              OLDTY,
+              OLDTD
+         FROM CIPB
+        WHERE INTYP = 'L'
+          AND APNO  = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+          AND IDN like #idn:VARCHAR#||'%'
+    </select>   
+
+    <select id="qryCipbFmkList" resultClass="Cipb">
+		SELECT DISTINCT T.FMK AS CIPBFMK
+		  FROM CI.CIPB T
+    </select>   
+</sqlMap>

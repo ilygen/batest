@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="KCAF">
+
+    <typeAlias alias="Kcaf" type="tw.gov.bli.ba.domain.Kcaf" />
+
+    <resultMap id="KcafResult" class="Kcaf">
+        <result column="INTYP"            property="inTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BIDN"             property="BIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BBRDTE"           property="BBrDte"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BNAME"            property="BName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PRODTE"           property="proDte"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROTIM"           property="proTim"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AIDN"             property="AIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ABRDTE"           property="ABrDte"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ANAME"            property="AName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MVCD"             property="mvcd"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MLDTE"            property="mlDte"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="STAFF"            property="staff"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="EvtKcafListResult" class="Kcaf">
+        <result column="BIDN"             property="BIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BBRDTE"           property="BBrDte"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BNAME"            property="BName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PRODTE"           property="proDte"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectByBIdnoAndBBrDte" resultMap="EvtKcafListResult">
+         Select BIDN,      
+                BBRDTE,     
+                BNAME,
+                PDTE AS "PRODTE"       
+           From CIKCAF
+          <![CDATA[
+          Where (TRIM(FTYP) is null or FTYP = 'L')
+          ]]>  
+            And AIDN like #aIdn:VARCHAR# || '%'
+            And ABRDTE = #aBrDte:VARCHAR#
+    </select>
+
+</sqlMap>

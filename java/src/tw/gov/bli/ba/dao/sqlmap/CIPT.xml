@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CIPT">
+
+    <typeAlias alias="Cipt" type="tw.gov.bli.ba.domain.Cipt" />
+    <resultMap id="CIPTResult" class="Cipt">
+        <result column="INTYP"         property="inTyp"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="IDN"           property="idn"           jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="UNO"           property="uno"           jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="UNOCK"         property="unoCk"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="SEQNO"         property="seqNo"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />        
+        <result column="TXCD"          property="txcd"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EFDTE"         property="efDte"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="WAGE"          property="wage"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DEPT"          property="dept"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="BSMN"          property="bsmn"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="STAFF"         property="staff"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="SIDMK"         property="sidMk"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="TSMK"          property="tsMk"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="NRPMK"         property="nrpMk"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="FILL"          property="fill"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="PRODTE"        property="proDte"        jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01ChangeListResult" class="Cipt">
+        <result column="UNO"           property="uno"           jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />               
+        <result column="TXCD"          property="txcd"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EFDTE"         property="efDte"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="WAGE"          property="wage"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DEPT"          property="dept"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01ChangeListResult" class="Cipt">
+        <result column="UNO"           property="uno"           jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />               
+        <result column="TXCD"          property="txcd"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EFDTE"         property="efDte"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+        <result column="WAGE"          property="wage"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DEPT"          property="dept"          jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <select id="selectTxcdDataBy" resultMap="CIPTResult">
+        SELECT A.INTYP,  
+               SUBSTR(A.IDN, 1, 10) AS IDN,     
+               A.UNO,     
+               A.UNOCK, 
+               A.SEQNO, 
+               A.TXCD,    
+               A.EFDTE, 
+               A.WAGE,    
+               A.DEPT,    
+               A.BSMN,    
+               A.STAFF, 
+               A.SIDMK, 
+               A.TSMK,    
+               A.NRPMK, 
+               A.FILL,    
+               DECODE (A.TXCD,'2',A.EFDTE,'') AS PRODTE
+          FROM CIPT A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idn">
+                    A.IDN = RPAD(#idn:VARCHAR#, 11, '0')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="inTyp">
+                    A.INTYP = #inTyp:VARCHAR#
+                </isNotEmpty>                                   
+            </isParameterPresent>
+        </dynamic>
+        AND A.APNO  = #apNo:VARCHAR#
+        AND A.SEQNO = #seqNo:VARCHAR#
+        ORDER BY SEQNO,EFDTE	  
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01ChangeListBy" resultMap="OldAgeReviewRpt01ChangeListResult">
+        SELECT A.UNO,  
+               A.TXCD,     
+               A.WAGE,     
+               A.DEPT, 
+               A.EFDTE
+        FROM CIPT A
+        WHERE 
+        A.INTYP = 'L' 
+        AND A.APNO  = #apNo:VARCHAR#
+        AND A.SEQNO = #seqNo:VARCHAR#
+        AND A.IDN like #idn:VARCHAR# || '%'
+        ORDER BY A.EFDTE, A.UNO
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+     <select id="selectDataBy" resultMap="CIPTResult">
+        SELECT A.INTYP, 
+               A.IDN, 
+               TRIM(A.UNO) AS UNO, 
+               A.UNOCK, 
+               A.SEQNO, 
+               A.TXCD, 
+               A.EFDTE, 
+               A.WAGE, 
+               A.DEPT, 
+               A.BSMN, 
+               A.STAFF, 
+               A.SIDMK, 
+               A.TSMK, 
+               A.NRPMK, 
+               A.FILL, 
+               A.PRODTE 
+        FROM   CIPT A
+        WHERE  A.INTYP = #inTyp:VARCHAR# 
+          AND  A.APNO  = #apNo:VARCHAR#
+          AND  A.APSEQNO = #seqNo:VARCHAR#
+          AND  A.IDN like #idn:VARCHAR# || '%'
+	     <isNotEmpty prepend="AND" property="uno">
+	               TRIM(A.UNO) = #uno:VARCHAR#
+	     </isNotEmpty>
+        Order By  A.UNO,A.EFDTE,A.SEQNO
+    </select>
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01ChangeListBy" resultMap="SurvivorReviewRpt01ChangeListResult">
+        SELECT A.UNO,  
+               A.TXCD,     
+               A.WAGE,     
+               A.DEPT, 
+               A.EFDTE
+         FROM CIPT A
+        WHERE A.INTYP = 'S' 
+          AND A.APNO  = #apNo:VARCHAR#
+          AND A.SEQNO = #seqNo:VARCHAR#
+          AND A.IDN like #idn:VARCHAR# || '%'
+        ORDER BY A.EFDTE, A.UNO
+    </select>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+</sqlMap>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BIREF">
+
+    <typeAlias alias="Biref" type="tw.gov.bli.ba.domain.Biref" />
+
+    <resultMap id="BIREFResult" class="Biref">
+        <result column="PAYTYP"     property="payTyp"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APNO"       property="apNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="STANO"      property="staNo"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="IDENO"      property="ideNo"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="IDNO"       property="idNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="BRTH"       property="brth"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NAME"       property="name"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TDTE"       property="tdte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="UBNO"       property="ubno"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EPYEAR"     property="epYear"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="EPDAY"      property="epDay"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="APDTE"      property="apDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PWAGE"      property="pwage"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="CHKDAY"     property="chkDay"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="CHKAMT"     property="chkAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="SYMDTE"     property="symDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TYMDTE"     property="tymDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS01"     property="ckRs01"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS02"     property="ckRs02"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS03"     property="ckRs03"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS04"     property="ckRs04"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS05"     property="ckRs05"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS06"     property="ckRs06"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS07"     property="ckRs07"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS08"     property="ckRs08"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS09"     property="ckRs09"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CKRS10"     property="ckRs10"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CHKDTE"     property="chkDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NPYDTE"     property="npyDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NDCMRK"     property="ndcMrk"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="SAVDT1"     property="savDt1"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="STS1"       property="sts1"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TELNO1"     property="telNo1"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TELNO2"     property="telNo2"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="POST"       property="post"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ADDRES"     property="addres"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYWAY"     property="payWay"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="BNKALL"     property="bnkall"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="BNKBRN"     property="bnkBrn"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="HJNO"       property="hjNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NETAMT"     property="netAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="PAYDTE"     property="payDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="RTDTE"      property="rtDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="REPDTE"     property="repDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="RPDTE"      property="rpDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="RPAMT"      property="rpAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="RBDTE"      property="rbDte"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="RBAMT"      property="rbAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />          
+        <result column="APRDTE"     property="aprDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NUBNO"      property="nubno"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NEWKDT"     property="newkDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="IDEDTE"     property="ideDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="RDEDTE"     property="rdeDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="OFFCD"      property="offCd"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="HTDAY"      property="htDay"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="OTHAMT"     property="othAmt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TRUBNO"     property="trUbno"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="LVDTE"      property="lvDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="RSDTE"      property="rsDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="REDTE"      property="reDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TRTYP"      property="trTyp"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="LVCD"       property="lvcd"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EMPST"      property="empSt"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="UEMPCD"     property="uempCd"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ARDTE"      property="arDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>
+    
+    <resultMap id="UnEmpDataResult" class="Biref">
+        <result column="APNO"       property="apNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="SYMDTE"     property="symDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="TYMDTE"     property="tymDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="APDTE"      property="apDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="NAME"       property="name"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="TDTE"       property="tdte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="CHKAMT"     property="chkAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />         
+        <result column="CHKDTE"     property="chkDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="PAYDTE"     property="payDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="NPYDTE"     property="npyDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="APRDTE"     property="aprDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NDCMRK"     property="ndcMrk"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="SAVDT1"     property="savDt1"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01JoblessPayListResult" class="Biref">
+        <result column="APNO"       property="apNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="SYMDTE"     property="symDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="TYMDTE"     property="tymDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="APDTE"      property="apDte"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="NAME"       property="name"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="TDTE"       property="tdte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="CHKAMT"     property="chkAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  />         
+        <result column="CHKDTE"     property="chkDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="PAYDTE"     property="payDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="NPYDTE"     property="npyDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="APRDTE"     property="aprDte"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NDCMRK"     property="ndcMrk"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="SAVDT1"     property="savDt1"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="selectUnEmpDataBy" resultMap="UnEmpDataResult">
+        SELECT T.APNO AS APNO,       
+               T.SYMDTE AS SYMDTE,     
+               T.TYMDTE AS TYMDTE,     
+               TO_CHAR(T.APDTE, 'YYYYMMDD') AS APDTE,      
+               T.NAME AS NAME,       
+               TO_CHAR(T.TDTE01, 'YYYYMMDD') AS TDTE,       
+               T.CHKAMT AS CHKAMT,     
+               TO_CHAR(T.CHKDTE, 'YYYYMMDD') AS CHKDTE,     
+               TO_CHAR(T.PAYDTE, 'YYYYMMDD') AS PAYDTE,     
+               TO_CHAR(T.NPYDTE, 'YYYYMMDD') AS NPYDTE,
+               TO_CHAR(T.APRDTE, 'YYYYMMDD') AS APRDTE, 
+               T.NDCMRK AS NDCMRK,
+               TO_CHAR(T.SAVDT1, 'YYYYMMDD') AS SAVDT1      
+          FROM BJREF T                     
+         WHERE T.IDNO = #idNo:VARCHAR#      
+           AND T.BRTH = #brth:VARCHAR#       
+           AND T.PAYTYP='71'           
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01JoblessPayListBy" resultMap="OldAgeReviewRpt01JoblessPayListResult">
+        SELECT A.APNO AS APNO,       
+               A.SYMDTE AS SYMDTE,     
+               A.TYMDTE AS TYMDTE,     
+               TO_CHAR(A.APDTE, 'YYYYMMDD') AS APDTE,      
+               A.NAME AS NAME,       
+               TO_CHAR(A.TDTE01, 'YYYYMMDD') AS TDTE,       
+               A.CHKAMT AS CHKAMT,     
+               TO_CHAR(A.CHKDTE, 'YYYYMMDD') AS CHKDTE,     
+               TO_CHAR(A.PAYDTE, 'YYYYMMDD') AS PAYDTE,     
+               TO_CHAR(A.NPYDTE, 'YYYYMMDD') AS NPYDTE,
+               TO_CHAR(A.APRDTE, 'YYYYMMDD') AS APRDTE, 
+               A.NDCMRK AS NDCMRK,
+               TO_CHAR(A.SAVDT1, 'YYYYMMDD') AS SAVDT1
+        FROM   BJREF A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.IDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                 <!--  20091109 給付處取消出生日期條件
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                -->
+                AND A.PAYTYP = '71'
+                AND A.APDTE = TO_DATE((SELECT MAX(TO_CHAR(B.APDTE, 'YYYYMMDD')) FROM BJREF B
+                               WHERE B.PAYTYP = '71'
+                                     <isNotEmpty prepend="AND" property="evtIdnNo">
+                                         B.IDNO = #evtIdnNo:VARCHAR#
+                                     </isNotEmpty>
+                              ),'YYYY/MM/DD')
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    
+    <select id="getDisableReviewRpt01JoblessPayListBy" resultMap="OldAgeReviewRpt01JoblessPayListResult">
+        SELECT A.APNO AS APNO,       
+               A.SYMDTE AS SYMDTE,     
+               A.TYMDTE AS TYMDTE,     
+               TO_CHAR(A.APDTE, 'YYYYMMDD') AS APDTE,      
+               A.NAME AS NAME,       
+               TO_CHAR(A.TDTE01, 'YYYYMMDD') AS TDTE,       
+               A.CHKAMT AS CHKAMT,     
+               TO_CHAR(A.CHKDTE, 'YYYYMMDD') AS CHKDTE,     
+               TO_CHAR(A.PAYDTE, 'YYYYMMDD') AS PAYDTE,     
+               TO_CHAR(A.NPYDTE, 'YYYYMMDD') AS NPYDTE,
+               TO_CHAR(A.APRDTE, 'YYYYMMDD') AS APRDTE, 
+               A.NDCMRK AS NDCMRK,
+               TO_CHAR(A.SAVDT1, 'YYYYMMDD') AS SAVDT1
+        FROM   BJREF A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.IDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                and A.PAYTYP IN ('71','72')
+            </isParameterPresent>
+        </dynamic>
+    </select>
+
+    <select id="getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy" resultMap="OldAgeReviewRpt01JoblessPayListResult">
+        SELECT A.APNO AS APNO,       
+               A.SYMDTE AS SYMDTE,     
+               A.TYMDTE AS TYMDTE,     
+               TO_CHAR(A.APDTE, 'YYYYMMDD') AS APDTE,      
+               A.NAME AS NAME,       
+               TO_CHAR(A.TDTE01, 'YYYYMMDD') AS TDTE,       
+               A.CHKAMT AS CHKAMT,     
+               TO_CHAR(A.CHKDTE, 'YYYYMMDD') AS CHKDTE,     
+               TO_CHAR(A.PAYDTE, 'YYYYMMDD') AS PAYDTE,     
+               TO_CHAR(A.NPYDTE, 'YYYYMMDD') AS NPYDTE,
+               TO_CHAR(A.APRDTE, 'YYYYMMDD') AS APRDTE, 
+               A.NDCMRK AS NDCMRK,
+               TO_CHAR(A.SAVDT1, 'YYYYMMDD') AS SAVDT1
+        FROM   BJREF A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.IDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                and A.PAYTYP IN ('75')
+            </isParameterPresent>
+        </dynamic>
+    </select>
+
+    <!-- DisableReviewRpt 01 End -->
+    
+</sqlMap>

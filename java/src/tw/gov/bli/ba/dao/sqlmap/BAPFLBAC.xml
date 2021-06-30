@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPFLBAC">
+
+    <typeAlias alias="Bapflbac" type="tw.gov.bli.ba.domain.Bapflbac" />
+
+    <resultMap id="BAPFLBACResult" class="Bapflbac">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INSDK"          property="insdK"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUKIND"       property="issuKind"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRCHKDATE"      property="brChkDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRMK"           property="brMk"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRNOTE"         property="brNote"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BLIACCOUNT"     property="bliAccount"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENTYP"         property="benTyp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDS"         property="benIds"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUTYP"        property="issuTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCIDN"         property="accIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCNAME"        property="accName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCSEQNO"       property="accSeqNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMZIP"        property="commZip"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMADDR"       property="commAddr"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMTEL"        property="commTel"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRADDR"         property="brAddr"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REMITAMT"       property="remitAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECHKMAN"       property="reChkMan"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RECHKDATE"      property="reChkDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACTTITLEAPCODE" property="actTitleApCode"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPRNDATE"       property="cprnDate"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RPTPAGE"        property="rptPage"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RPTROWS"        property="rptRows"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROCUSER"       property="procUser"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROCDEPTID"     property="procDeptId"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROCIP"         property="procIp"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <!-- MonthlyRpt 16 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt16Result" class="Bapflbac">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYDATE"        property="payDate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REMITAMT"       property="remitAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BRNOTE"         property="brNote"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRCHKDATE"      property="brChkDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENIDN"         property="benIdn"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BENNAME"        property="benName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMZIP"        property="commZip"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMADDR"       property="commAddr"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMMTEL"        property="commTel"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <parameterMap id="UpdateDeathRepayParam" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_oriIssuYm"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_payYm"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_afPayDate"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_issuKind"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_o_procMsgCode"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+        <parameter property="v_o_procMsg"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+    </parameterMap>
+    
+    <parameterMap id="UpdateDeathRepayRefundment" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_oriIssuYm"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_payYm"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_brChkDate"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_issuKind"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_o_procMsgCode"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+        <parameter property="v_o_procMsg"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+    </parameterMap>
+    
+    <!-- ] -->
+    <!-- MonthlyRpt 10 End -->
+    
+    <!-- OldAgePaymentReceive Begin -->
+    <resultMap id="RemittanceReceiveDataListResult" class="Bapflbac">
+        <result column="APNO"           property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ORIISSUYM"      property="oriIssuYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRCHKDATE"      property="brChkDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REMITAMT"       property="remitAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ISSUKIND"       property="issuKind"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRNOTE"         property="brNote"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TRANSACTIONID"  property="transActionId"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TRANSACTIONSEQ" property="transActionSeq"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INSKD"          property="insKd"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <parameterMap id="DoExpSingleRec" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_issuYm"         jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_payYm"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_paydate"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_o_procMsgCode"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+        <parameter property="v_o_procMsg"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+    </parameterMap>
+    
+    <parameterMap id="DoExpCancelSingleRec" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_oriIssuYm"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_payYm"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_brChkDate"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_o_procMsgCode"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+        <parameter property="v_o_procMsg"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+    </parameterMap>
+    
+    <parameterMap id="DoRtnCashRpt" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_acpDate"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+    
+    <parameterMap id="DoRtnRefundmentRpt" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_acpDate"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+    
+    <parameterMap id="DoCancelRtnCashRpt" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_cancelDate"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+    
+    <parameterMap id="DoCancelRtnRefundmentRpt" class="java.util.HashMap" >
+        <parameter property="v_i_apNo"           jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_seqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_cancelDate"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+    <!-- OldAgePaymentReceive End -->
+    
+    <!-- OtherRpt02 Begin -->
+    <resultMap id="OtherRpt02DataListResult" class="Bapflbac">
+    	<result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="SEQNO"          property="seqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- OtherRpt02 End -->
+
+    <!-- OtherRpt03 Begin -->
+    <resultMap id="OtherRpt03DataListResult" class="Bapflbac">
+    	<result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    	<result column="ORIISSUYM"      property="oriIssuYm"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    	<result column="PAYYM"          property="payYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="SEQNO"          property="seqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="BRCHKDATE"      property="brChkDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="REMITAMT"       property="remitAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    <!-- OtherRpt03 End -->
+    
+    <!-- MonthlyRpt 16 Begin -->
+    <!-- [ -->
+    <select id="getMonthlyRpt16DataBy" resultMap="MonthlyRpt16Result">
+        SELECT A.APNO,
+               A.PAYDATE,
+               A.REMITAMT,
+               ( SELECT B.PARAMNAME 
+                 FROM   BAPARAM B 
+                 WHERE  B.PARAMGROUP = 'MFILERESTAT' AND 
+                        B.PARAMCODE = A.BRNOTE
+               ) AS BRNOTE,
+               A.BRCHKDATE,
+               A.BENIDN,
+               A.BENNAME,
+               A.COMMZIP,
+               A.COMMADDR,
+               A.COMMTEL
+        FROM   BAPFLBAC A
+        WHERE  SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR# AND
+               A.ISSUYM = #issuYm:VARCHAR# AND 
+               A.BRCHKDATE = #chkDate:VARCHAR#  
+               <![CDATA[
+               AND A.BRNOTE <> '04' 
+               ]]>
+               <dynamic prepend="">
+                   <isNotEmpty prepend="AND" property="apNo">
+                       A.APNO = #apNo:VARCHAR#
+                   </isNotEmpty>
+                   <isNotEmpty prepend="AND" property="benIdn">
+                       A.BENIDN = #benIdn:VARCHAR#
+                   </isNotEmpty>
+               </dynamic>
+               AND A.APNO NOT IN (SELECT T2.APNO      
+                                    FROM BADAPR T2 
+                                   WHERE T2.APNO = A.APNO
+                                     AND T2.SEQNO = A.SEQNO
+                                     AND T2.ISSUYM = A.ORIISSUYM
+                                     AND T2.PAYYM = A.PAYYM
+                                     <![CDATA[
+                                     AND (NVL(TRIM(T2.STEXPNDREASON),' ') <> ' ' AND T2.STEXPNDREASON IS NOT NULL))
+                                     ]]>
+    </select>
+    <!-- ] -->
+    <!-- MonthlyRpt 16 End -->
+    
+    <update id="updateBapflbacDeathRepayForQryData_2">
+           UPDATE BAPFLBAC T
+              SET T.BRMK = '2',
+                  T.AFMK = '4',
+                  T.UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+            WHERE T.APNO = #apNo:VARCHAR#       
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+              AND T.BRMK = '3'
+              AND T.AFMK = '3'
+              AND T.ISSUKIND = #issuKind:VARCHAR#
+    </update>
+    
+    <update id="updateBapflbacDeathRepayForQryData_4">
+           UPDATE BAPFLBAC T
+              SET T.BRMK = '2',
+                  T.AFMK = '4',
+                  T.UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+            WHERE T.APNO = #apNo:VARCHAR#       
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.ORIISSUYM = #issuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+              AND T.BRMK = '3'
+              AND T.AFMK = '3'
+    </update>
+
+    <procedure id="UpdateDeathRepayParam" parameterMap="UpdateDeathRepayParam" >
+       <![CDATA[
+        { call PKG_BA_ProcCashier.sp_BA_expDeathRepayRec(?,?,?,?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+    <procedure id="UpdateDeathRepayRefundment" parameterMap="UpdateDeathRepayRefundment" >
+       <![CDATA[
+        { call PKG_BA_ProcCashier.sp_BA_deathRepayRefundment(?,?,?,?,?,?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="DoExpSingleRec" parameterMap="DoExpSingleRec" >
+       <![CDATA[
+        { call PKG_BA_ProcCashier.sp_BA_expSingleRec(?,?,?,?,?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="DoExpCancelSingleRec" parameterMap="DoExpCancelSingleRec" >
+       <![CDATA[
+        { call PKG_BA_ProcCashier.sp_BA_expCancelSingleRec(?,?,?,?,?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="doRtnCashRpt" parameterMap="DoRtnCashRpt" >
+       <![CDATA[
+        { call PKG_BA_GenACPDTLRpt.sp_BA_RtnCashRpt(?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="doRtnRefundmentRpt" parameterMap="DoRtnRefundmentRpt" >
+       <![CDATA[
+        { call PKG_BA_GenACPDTLRpt.sp_BA_RtnRefundmentRpt(?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="doCancelRtnCashRpt" parameterMap="DoCancelRtnCashRpt" >
+       <![CDATA[
+        { call PKG_BA_GenACPDTLRpt.sp_BA_CancelRtnCashRpt(?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <procedure id="doCancelRtnRefundmentRpt" parameterMap="DoCancelRtnRefundmentRpt" >
+       <![CDATA[
+        { call PKG_BA_GenACPDTLRpt.sp_BA_CancelRtnRefundmentRpt(?,?,?) }
+       ]]>     
+    </procedure>
+    
+    <insert id="insertBapflbacDataForDeathRepay">
+           INSERT INTO BAPFLBAC (APNO
+                               ,SEQNO
+                               ,PAYDATE
+                               ,BRISSUYM
+                               ,ORIISSUYM
+                               ,ISSUYM
+                               ,PAYYM
+                               ,INSDK
+                               ,ISSUKIND
+                               ,BRCHKDATE
+                               ,AFMK
+                               ,BRMK
+                               ,BRNOTE
+                               ,BLIACCOUNT
+                               ,BENTYP
+                               ,BENIDS
+                               ,BENIDN
+                               ,BENNAME
+                               ,ISSUTYP
+                               ,PAYTYP
+                               ,PAYBANKID
+                               ,BRANCHID
+                               ,PAYEEACC
+                               ,ACCIDN
+                               ,ACCNAME
+                               ,ACCSEQNO
+                               ,COMMZIP
+                               ,COMMADDR
+                               ,BRADDR
+                               ,COMMTEL
+                               ,REMITAMT
+                               ,ACTTITLEAPCODE
+                               ,CPRNDATE
+                               ,RPTPAGE
+                               ,RPTROWS                               
+                               ,RECHKMAN
+                               ,RECHKDATE
+                               ,CONFIRMMAN
+                               ,CONFIRMDATE
+                               ,CONFIRMRECDATE
+                               ,PROCUSER
+                               ,PROCDEPTID
+                               ,PROCIP
+                               ,UPDTIME)
+                         SELECT T1.APNO
+                               ,T1.SEQNO
+                               ,T1.PAYDATE
+                               ,T1.BRISSUYM
+                               ,T1.ORIISSUYM
+                               ,TO_CHAR(SYSDATE,'YYYYMM')
+                               ,T1.PAYYM
+                               ,T1.INSDK
+                               ,T1.ISSUKIND
+                               ,TO_CHAR(SYSDATE,'YYYYMMDD')
+                               ,'3'
+                               ,'3'
+                               ,T1.BRNOTE
+                               ,'0053'
+                               ,T1.BENTYP
+                               ,T1.BENIDS
+                               ,T1.BENIDN
+                               ,T1.BENNAME
+                               ,T1.ISSUTYP
+                               ,T1.PAYTYP
+                               ,T1.PAYBANKID
+                               ,T1.BRANCHID
+                               ,T1.PAYEEACC
+                               ,T1.ACCIDN
+                               ,T1.ACCNAME
+                               ,T1.ACCSEQNO
+                               ,T1.COMMZIP
+                               ,T1.COMMADDR
+                               ,T1.BRADDR
+                               ,T1.COMMTEL
+                               ,#remitAmt:NUMERIC#
+                               ,T1.ACTTITLEAPCODE
+                               ,T1.CPRNDATE
+                               ,T1.RPTPAGE
+                               ,T1.RPTROWS
+                               ,#procUser:VARCHAR#
+                               ,to_Char(Sysdate,'YYYYMMDD')
+                               ,#procUser:VARCHAR#
+                               ,to_Char(Sysdate,'YYYYMMDD')
+                               ,to_Char(Sysdate,'YYYYMMDD')
+                               ,#procUser:VARCHAR#
+                               ,#procDeptId:VARCHAR#
+                               ,#procIp:VARCHAR#
+                               ,to_Char(Sysdate,'YYYYMMDDHH24MISS')
+                          FROM BAPFLBAC T1
+                         WHERE T1.APNO      = #apNo:VARCHAR#
+                           AND T1.SEQNO     = #seqNo:VARCHAR#
+                           AND T1.ORIISSUYM = #oriIssuYm:VARCHAR#
+                           AND T1.PAYYM     = #payYm:VARCHAR#
+                           AND T1.BRMK      = '2'
+                           AND T1.AFMK      = '4'
+                           AND (T1.REPAYSEQNO = T1.SEQNO 
+                             OR NVL(TRIM(T1.REPAYSEQNO),' ') = ' ')
+                           AND T1.ISSUKIND = #issuKind:VARCHAR# 
+                           AND ROWNUM = 1
+    </insert>
+    
+    <insert id="insertBapflbacDataForDeathRepay2">
+           INSERT INTO BAPFLBAC ( APNO
+                                 ,SEQNO
+                                 ,PAYDATE
+                                 ,BRISSUYM
+                                 ,ORIISSUYM
+                                 ,ISSUYM
+                                 ,PAYYM
+                                 ,INSDK
+                                 ,ISSUKIND
+                                 ,BRCHKDATE
+                                 ,AFMK
+                                 ,BRMK
+                                 ,BRNOTE
+                                 ,BLIACCOUNT
+                                 ,BENTYP
+                                 ,BENIDS
+                                 ,BENIDN
+                                 ,BENNAME
+                                 ,ISSUTYP
+                                 ,PAYTYP
+                                 ,PAYBANKID
+                                 ,BRANCHID
+                                 ,PAYEEACC
+                                 ,ACCIDN
+                                 ,ACCNAME
+                                 ,ACCSEQNO
+                                 ,COMMZIP
+                                 ,COMMADDR
+                                 ,BRADDR
+                                 ,COMMTEL
+                                 ,REPAYSEQNO
+                                 ,REMITAMT
+                                 ,ACTTITLEAPCODE
+                                 ,CPRNDATE
+                                 ,RPTPAGE
+                                 ,RPTROWS                                 
+                                 ,RECHKMAN
+                                 ,RECHKDATE
+                                 ,CONFIRMMAN
+                                 ,CONFIRMDATE
+                                 ,CONFIRMRECDATE
+                                 ,PROCUSER
+                                 ,PROCDEPTID
+                                 ,PROCIP
+                                 ,UPDTIME)
+                           SELECT T1.APNO
+                                 ,T2.SEQNO
+                                 ,T1.PAYDATE
+                                 ,T1.BRISSUYM
+                                 ,T1.ORIISSUYM
+                                 ,TO_CHAR(SYSDATE,'YYYYMM')
+                                 ,T1.PAYYM
+                                 ,T1.INSDK
+                                 ,T1.ISSUKIND
+                                 ,TO_CHAR(SYSDATE,'YYYYMMDD')
+                                 ,'3'
+                                 ,'3'
+                                 ,T1.BRNOTE
+                                 ,T1.BLIACCOUNT
+                                 ,T1.BENTYP
+                                 ,T2.BENIDS
+                                 ,T2.BENIDNNO
+                                 ,T2.BENNAME
+                                 ,T1.ISSUTYP
+                                 ,T2.PAYTYP
+                                 ,T2.PAYBANKID
+                                 ,T2.BRANCHID
+                                 ,T2.PAYEEACC
+                                 ,T2.ACCIDN
+                                 ,T2.ACCNAME
+                                 ,T2.ACCSEQNO
+                                 ,T2.COMMZIP
+                                 ,T2.COMMADDR
+                                 ,T2.BRADDR
+                                 ,T2.COMMTEL
+                                 ,#seqNo:VARCHAR#
+                                 ,#avgNum:NUMERIC#
+                                 ,T1.ACTTITLEAPCODE
+                                 ,T1.CPRNDATE
+                                 ,T1.RPTPAGE
+                                 ,T1.RPTROWS
+                                 ,#procUser:VARCHAR#
+                                 ,to_Char(Sysdate,'YYYYMMDD')
+                                 ,#procUser:VARCHAR#
+                                 ,to_Char(Sysdate,'YYYYMMDD')
+                                 ,to_Char(Sysdate,'YYYYMMDD')
+                                 ,#procUser:VARCHAR#
+                                 ,#procDeptId:VARCHAR#
+                                 ,#procIp:VARCHAR#
+                                 ,to_Char(Sysdate,'YYYYMMDDHH24MISS')
+                            FROM BAPFLBAC T1
+                               ,(SELECT A.APNO
+                                       ,A.SEQNO
+                                       ,A.BAAPPBASEID 
+                                       ,A.BENNAME
+                                       ,A.BENIDS
+                                       ,A.BENIDNNO
+                                       ,A.BENEVTREL 
+                                       ,A.PAYTYP
+                                       ,A.BANKNAME
+                                       ,A.PAYBANKID
+                                       ,A.BRANCHID
+                                       ,A.PAYEEACC
+                                       ,A.ACCIDN
+                                       ,A.ACCNAME
+                                       ,A.ACCSEQNO
+                                       ,A.COMMZIP
+                                       ,A.COMMADDR
+                                       ,A.COMMADDR AS BRADDR
+                                       ,A.TEL1 AS COMMTEL
+                                   FROM BAAPPBASE A
+                                  WHERE A.APNO = #apNo:VARCHAR#
+                                    AND A.SEQNO = #heirSeqNo:VARCHAR#
+                                    <![CDATA[
+                                    AND NVL(TRIM(A.CASEMK),' ') <> 'D'
+                                    ]]>
+                                ) T2
+                           WHERE T1.APNO = T2.APNO
+                             AND T1.APNO = #apNo:VARCHAR#
+                             AND T1.SEQNO = #seqNo:VARCHAR#
+                             AND T1.ORIISSUYM = #oriIssuYm:VARCHAR#
+                             AND T1.PAYYM = #payYm:VARCHAR#
+                             AND T1.BRMK = '2'
+                             AND T1.AFMK = '4'
+                             AND (T1.REPAYSEQNO = T1.SEQNO 
+                              OR NVL(TRIM(T1.REPAYSEQNO),' ') = ' ')
+                             AND T1.ISSUKIND = #issuKind:VARCHAR# 
+                             AND ROWNUM = 1
+    </insert>
+    
+    <!-- OldAgePaymentReceive Begin -->
+    <select id="selectRemittanceReceiveDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+                         TT1.SEQNO,
+                         TT1.ORIISSUYM,
+                         TT1.PAYYM,     
+                         TT1.BRCHKDATE, 
+                         TT1.REMITAMT, 
+                         TT1.ISSUKIND,
+                         TT1.BRNOTE,
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD         
+                    FROM BAPFLBAC TT1,BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '3' 
+                     AND TT2.MK = '1'
+                     AND TT1.ISSUKIND IN ('45')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectDisabledRemittanceReceiveDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+                         TT1.SEQNO,
+                         TT1.ORIISSUYM,
+                         TT1.PAYYM,     
+                         TT1.BRCHKDATE, 
+                         TT1.REMITAMT, 
+                         TT1.ISSUKIND,
+                         TT1.BRNOTE,
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD         
+                    FROM BAPFLBAC TT1,BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '3' 
+                     AND TT2.MK = '1'
+                     AND TT1.ISSUKIND IN ('35')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectSurvivorRemittanceReceiveDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+                         TT1.SEQNO,
+                         TT1.ORIISSUYM,
+                         TT1.PAYYM,     
+                         TT1.BRCHKDATE, 
+                         TT1.REMITAMT, 
+                         TT1.ISSUKIND,
+                         TT1.BRNOTE,
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD         
+                    FROM BAPFLBAC TT1,BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '3' 
+                     AND TT2.MK = '1'
+                     AND TT1.ISSUKIND IN ('55')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectRemittanceReceivedDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+       			         TT1.SEQNO,
+       			         TT1.ORIISSUYM,      
+       			         TT1.PAYYM,          
+       			         TT1.BRCHKDATE,       
+       		        	 TT1.REMITAMT,       
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD
+                    FROM BAPFLBAC TT1, BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '4' 
+                     AND TT2.MK = '4'
+                     AND TT1.ISSUKIND IN ('45')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectDisabledRemittanceReceivedDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+       			         TT1.SEQNO,
+       			         TT1.ORIISSUYM,      
+       			         TT1.PAYYM,          
+       			         TT1.BRCHKDATE,       
+       		        	 TT1.REMITAMT,       
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD
+                    FROM BAPFLBAC TT1, BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '4' 
+                     AND TT2.MK = '4'
+                     AND TT1.ISSUKIND IN ('35')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectSurvivorRemittanceReceivedDataListBy" resultMap="RemittanceReceiveDataListResult">
+                  SELECT TT1.APNO,
+       			         TT1.SEQNO,
+       			         TT1.ORIISSUYM,      
+       			         TT1.PAYYM,          
+       			         TT1.BRCHKDATE,       
+       		        	 TT1.REMITAMT,       
+                         TT2.TRANSACTIONID,
+                         TT2.TRANSACTIONSEQ,
+                         TT2.INSKD
+                    FROM BAPFLBAC TT1, BAREGIVEDTL TT2
+                   WHERE TT1.APNO = TT2.APNO
+                     AND TT1.SEQNO = TT2.SEQNO 
+                     AND TT1.ORIISSUYM = TT2.ORIISSUYM
+                     AND TT1.PAYYM = TT2.PAYYM 
+                     AND TT1.AFMK = '4' 
+                     AND TT2.MK = '4'
+                     AND TT1.ISSUKIND IN ('55')
+                     AND TT1.APNO = #apNo:VARCHAR#
+                     AND TT1.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <update id="updateBapflbacForPaymentReceive">
+           UPDATE BAPFLBAC T SET
+                  T.AFMK = '4',
+                  T.REMITAMT = #remitAmt:NUMERIC#,
+                  T.UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS'),
+                  T.PROCUSER = #procUser:VARCHAR#,
+                  T.PROCDEPTID = #procDeptId:VARCHAR#,
+                  T.PROCIP = #procIp:VARCHAR#
+            WHERE T.APNO = #apNo:VARCHAR#
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.AFMK = '1' 
+              AND T.ISSUKIND IN (#issuKind:VARCHAR#)
+              AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+    </update>
+    
+    <update id="updateBapflbacForCancelReceive">
+             UPDATE BAPFLBAC SET
+                    AFMK = '3',
+                    REMITAMT = #remitAmt:NUMERIC#,
+                    UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS'),
+                    T.PROCUSER = #procUser:VARCHAR#,
+                    T.PROCDEPTID = #procDeptId:VARCHAR#,
+                    T.PROCIP = #procIp:VARCHAR#
+              WHERE APNO = #apNo:VARCHAR#
+                AND SEQNO = #seqNo:VARCHAR#
+                AND ORIISSUYM = #oriIssuYm:VARCHAR#
+                AND PAYYM = #payYm:VARCHAR#
+    </update>
+    <!-- OldAgePaymentReceive End -->
+    
+    <!-- OtherRpt02 Begin -->
+    <select id="selectOtherRpt02DataListBy" resultMap="OtherRpt02DataListResult">
+            SELECT APNO, SEQNO 
+            FROM (
+                SELECT A.APNO,                 
+                       A.SEQNO              
+          FROM (SELECT A.APNO,
+                       A.SEQNO
+                  FROM BAUNACPDTL A
+                 WHERE A.APNO LIKE #payCode:VARCHAR# || '%'
+                   AND A.RECREM >0 
+                 GROUP BY A.APNO, A.SEQNO) A,
+               (SELECT T1.APNO,
+                       T1.SEQNO,
+                       T1.BRCHKDATE,
+                       T1.REMITAMT
+                  FROM BAPFLBAC T1, BAREGIVEDTL T2
+                 WHERE T1.APNO = T2.APNO
+                   AND T1.SEQNO = T2.SEQNO 
+                   AND T1.ORIISSUYM = T2.ORIISSUYM
+                   AND T1.PAYYM = T2.PAYYM 
+                   AND T2.AFMK = '1' 
+                   AND T2.MK = '1'
+                   <![CDATA[
+                   AND T1.BRNOTE <> '04') B
+                   ]]>
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+         UNION
+        SELECT A.APNO,                 
+               A.SEQNO               
+          FROM (SELECT A.APNO,
+                       A.SEQNO 
+                  FROM BAUNACPDTL A
+                 WHERE A.APNO LIKE #payCode:VARCHAR# || '%'
+                   AND A.RECREM > 0 
+                 GROUP BY A.APNO,A.SEQNO) A,
+               BAPFLBAC B
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+           AND B.BRNOTE = '04'
+           AND (B.APNO||B.SEQNO||B.PAYYM||B.REMITAMT) IN (SELECT (C.APNO||C.SEQNO||C.PAYYM||C.RECAMT)
+          FROM BAUNACPDTL C
+         WHERE C.APNO LIKE #payCode:VARCHAR# || '%'
+           AND C.TYPEMK = 'C'
+           AND C.RECREM > 0))
+           GROUP BY APNO, SEQNO    
+    </select>
+    <!-- OtherRpt02 End -->
+    
+    <!-- OtherRpt03 Begin -->
+    <select id="selectOtherRpt03DataListBy" resultMap="OtherRpt03DataListResult">
+            SELECT A.APNO,            
+                   A.ORIISSUYM,             
+                   A.PAYYM,                 
+                   A.SEQNO,                
+                   A.BRCHKDATE,            
+                   A.REMITAMT             
+              FROM BAPFLBAC A
+             WHERE A.APNO LIKE #payCode:VARCHAR# || '%'
+               AND NVL(TRIM(A.STEXPNDRECMK),'X') = 'N'
+               AND A.BRNOTE = '04'
+               AND (A.APNO, A.SEQNO, A.PAYYM, A.REMITAMT) 
+                    NOT IN (SELECT B.APNO, B.SEQNO, B.PAYYM, B.RECAMT
+                   FROM BAUNACPDTL B
+                  WHERE B.APNO LIKE #payCode:VARCHAR# || '%'
+                    AND B.TYPEMK = 'C')
+    </select>
+    <!-- OtherRpt03 End -->
+</sqlMap>

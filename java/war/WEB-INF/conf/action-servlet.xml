@@ -1,0 +1,1505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- Login -->
+    <bean name="/login" class="tw.gov.bli.ba.framework.actions.LoginAction">
+        <property name="loginService" ref="loginService" />
+    </bean>
+
+    <!-- Menu Dispatch -->
+    <bean
+        name="/enterReplacementRatioMaint,/enterDisabledReplacementRatioMaint,/enterSurvivorReplacementRatioMaint,/enterAvgAmtMonMaint,/enterDisabledBasicAmtMaint,/enterSurvivorBasicAmtMaint,/enterBasicAmtMaint,/enterStopPaymentProcess,/enterPayeeDataUpdate,/enterAdviceMaint,/enterExecutiveSupportQuery,/enterDecisionLevelMaint,/enterCheckMarkMaint,/enterCpiDtlMaint,/enterCpiRecMaint,/enterExecutiveSupportMaint,/enterUpdateLogQuery,/enterPreviewConditionMaint,/enterOldAgeAnnuityReceipt,/enterCheckMarkLevelQuery,/enterExecutiveSupportClose,/enterInheritorRegister,/enterSurvivorCloseStatusAlteration,/enterOldAgeCloseStatusAlteration,/enterDisabledCloseStatusAlteration,/enterCommunicationDataUpdate,/enterPaymentDataUpdate,/enterApplicationDataUpdate,/enterDisabledApplicationDataUpdate,/enterSurvivorApplicationDataUpdate,/enterOldAgeReviewRpt01,/enterOldAgeReviewRpt02,/enterOldAgeReviewRpt04,/enterDataUpdateRpt05,/enterMonthlyRpt01,/enterMonthlyRpt02,/enterMonthlyRpt03,/enterMonthlyRpt04,/enterMonthlyRpt05,/enterMonthlyRpt06,/enterMonthlyRpt07,/enterMonthlyRpt08,/enterMonthlyRpt09,/enterMonthlyRpt10,/enterMonthlyRpt11,/enterMonthlyRpt12,/enterMonthlyRpt13,/enterMonthlyRpt14,/enterMonthlyRpt15,/enterMonthlyRpt16,/enterMonthlyRpt17,/enterMonthlyRpt18,/enterMonthlyRpt21,/enterMonthlyRpt22,/enterMonthlyRpt23,/enterMonthlyRpt24,/enterMonthlyRpt25,/enterMonthlyRpt26,/enterMonthlyRpt27,/enterMonthlyRpt28,/enterMonthlyRpt29,/enterMonthlyRpt30,/enterMonthlyRpt31,/enterMonthlyRpt32,/enterMonthlyRpt33,/enterDataUpdateRpt04,/enterDeductItemMaint,/enterPaymentReview,/enterPaymentDecision,/enterPaymentQuery,/enterDecisionRpt01,/enterDecisionRpt02,/enterDecisionRpt03,/enterAuditRpt01,/enterReceivableQuery,/enterUpdatePaidMarkBJ,/enterReturnWriteOffBJ,/enterTrans2OverdueReceivableBJ,/enterReceivableAdjustBJ,/enterDisabledAnnuityReceipt,/enterSurvivorAnnuityReceipt,/enterPaymentQuerySimplify,/enterMonthlyRpt19,/enterMonthlyRpt20,/enterDisabledCheckMarkLevelAdjust,/enterSurvivorCheckMarkLevelAdjust,/enterReviewFeeReceiptRpt01,/enterReviewFeeReceiptRpt02,/enterReviewFeeReceiptRpt03,/enterDependantDataUpdateQuery,/enterDisabledPaymentReview,/enterSurvivorPaymentReview,/enterDisabledPaymentDecision,/enterReviewFeeReceipt,/enterReviewFeeReview,/enterReviewFeeDecision,/enterSurvivorPaymentDecision,/enterOtherRpt02,/enterOtherRpt03,/enterOtherRpt04,/enterOtherRpt05,/enterMonthL,/enterMonthK,/enterMonthS,/enterOldMediaOnline,/enterDisabledMediaOnline,/enterSurvivorMediaOnline,/MonthlyBatchRpt,/enterOtherRpt06,/enterOtherRpt07,/enterOtherRpt08,/enterOtherRpt09,/enterOtherRpt10,/enterOtherRpt11,/enterOtherRpt12,/enterCheckJobRpt,/enterCheckJob,/enterMonthlyBatchRpt,/enterSetProcedure,/enterRunProcedure,/enterQryProcedure,/enterPaymentProcess.do,/enterPaymentPrint.do,/enterPaymentQuery.do,/enterBatchPaymentReceive,/enterResetPaymentParameter,/enterAnnuityAcceptDataTransfer,/enterOldAgeAnnuityPayment,/enterDisabledAnnuityPayment,/enterSurvivorAnnuityPayment,/enterAnnuityStatistics,/enterExecStatistics,/enterCheckExec"
+        class="tw.gov.bli.ba.MenuDispatchAction">
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- Preview Condition Maint -->
+    <!-- [ -->
+    <!-- bapa0x040f.jsp -->
+    <bean name="/previewConditionMaintQuery" class="tw.gov.bli.ba.maint.actions.PreviewConditionMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- bapa0x042c.jsp -->
+    <bean name="/previewConditionMaintForOldAgeAnnuity" class="tw.gov.bli.ba.maint.actions.PreviewConditionMaintForOldAgeAnnuityAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- bapa0x050f.jsp -->
+    <bean name="/deductItemMaintQuery" class="tw.gov.bli.ba.maint.actions.DeductItemMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- bapa0x051a.jsp -->
+    <bean name="/deductItemMaintDetail" class="tw.gov.bli.ba.maint.actions.DeductItemMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- Update Log Query -->
+    <!-- [ -->
+    <!-- baiq0d030q.jsp -->
+    <bean name="/updateLogQuery" class="tw.gov.bli.ba.query.actions.UpdateLogQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Executive Support Query -->
+    <!-- [ -->
+    <!-- baiq0d050q.jsp -->
+    <bean name="/executiveSupportQueryQuery" class="tw.gov.bli.ba.query.actions.ExecutiveSupportQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- baiq0d051q.jsp -->
+    <bean name="/executiveSupportQueryList" class="tw.gov.bli.ba.query.actions.ExecutiveSupportQueryListAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+
+    <!-- Preview Condition Receipt -->
+    <!-- [ -->
+    <!-- baap0d010c.jsp -->
+    <bean name="/oldAgeAnnuityReceipt" class="tw.gov.bli.ba.receipt.actions.OldAgeAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d011c.jsp -->
+    <bean name="/oldAgeAnnuityReceiptInsert" class="tw.gov.bli.ba.receipt.actions.OldAgeAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d012a.jsp -->
+    <bean name="/oldAgeAnnuityReceiptList" class="tw.gov.bli.ba.receipt.actions.OldAgeAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d013a.jsp -->
+    <bean name="/oldAgeAnnuityReceiptModify" class="tw.gov.bli.ba.receipt.actions.OldAgeAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Disadled Annuity Receipt -->
+    <!-- [ -->
+    <!-- baap0d020a.jsp -->
+    <bean name="/disabledAnnuityReceipt" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d021a.jsp -->
+    <bean name="/disabledAnnuityReceiptInsert" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <bean name="/disabledAnnuityReceiptInsertFam" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d022c.jsp -->
+    <bean name="/disabledAnnuityReceiptList" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d023c.jsp -->
+    <bean name="/disabledAnnuityReceiptModify" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <bean name="/disabledAnnuityReceiptModifyFam" class="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Survivor Annuity Receipt -->
+    <!-- [ -->
+    <!-- baap0d030c.jsp -->
+    <bean name="/survivorAnnuityReceiptQuery" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d031c.jsp -->
+    <bean name="/survivorAnnuityReceiptInsert" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <bean name="/survivorAnnuityReceiptInsertBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d032a.jsp -->
+    <bean name="/survivorAnnuityReceiptList" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d033a.jsp -->
+    <bean name="/survivorAnnuityReceiptModify" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <bean name="/survivorAnnuityReceiptModifyBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Executive Support Maint -->
+    <!-- [ -->
+    <!-- basu0d010a.jsp -->
+    <bean name="/executiveSupportMaint" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportMaintAction">
+        <property name="executiveService" ref="executiveService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- basu0d011a.jsp -->
+    <bean name="/executiveSupportMaintAdd" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportMaintAddAction">
+        <property name="executiveService" ref="executiveService" />
+    </bean>
+
+    <!-- basu0d012c.jsp -->
+    <bean name="/executiveSupportMaintList" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportMaintListAction">
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="executiveService" ref="executiveService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- basu0d013c.jsp -->
+    <bean name="/executiveSupportMaintModify" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportMaintModifyAction">
+        <property name="executiveService" ref="executiveService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Preview Condition Update -->
+
+    <!-- Communication Data Update -->
+    <!-- [ -->
+    <!-- bamo0d010c.jsp -->
+    <bean name="/communicationDataUpdateQuery" class="tw.gov.bli.ba.update.actions.CommunicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+
+    <!-- bamo0d011c.jsp -->
+    <bean name="/communicationDataUpdate" class="tw.gov.bli.ba.update.actions.CommunicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Payment Data Update -->
+    <!-- [ -->
+    <!-- bamo0d020c.jsp -->
+    <bean name="/paymentDataUpdateQuery" class="tw.gov.bli.ba.update.actions.PaymentDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d021c.jsp -->
+    <bean name="/paymentDataUpdate" class="tw.gov.bli.ba.update.actions.PaymentDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Application Data Update -->
+    <!-- [ -->
+    <!-- bamo0d030c.jsp -->
+    <bean name="/applicationDataUpdateQuery" class="tw.gov.bli.ba.update.actions.ApplicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- bamo0d031c.jsp -->
+    <bean name="/applicationDataUpdate" class="tw.gov.bli.ba.update.actions.ApplicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <!-- bamo0d130c.jsp bamo0d131c.jsp bamo0d133c.jsp -->
+    <bean name="/disabledApplicationDataUpdate" class="tw.gov.bli.ba.update.actions.DisabledApplicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Survivor Application Data Update -->
+    <!-- [ -->
+    <!-- bamo0d230c.jsp bamo0d231c.jsp bamo0d233c.jsp -->
+    <bean name="/survivorApplicationDataUpdate" class="tw.gov.bli.ba.update.actions.SurvivorApplicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Payee Data Update -->
+    <!-- [ -->
+    <!-- bamo0d080c.jsp -->
+    <bean name="/payeeDataUpdateQuery" class="tw.gov.bli.ba.update.actions.PayeeDataUpdateQueryAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d082c.jsp -->
+    <bean name="/payeeDataUpdateList" class="tw.gov.bli.ba.update.actions.PayeeDataUpdateListAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d081a.jsp,bamo0d083c.jsp -->
+    <bean name="/payeeDataUpdateDetail" class="tw.gov.bli.ba.update.actions.PayeeDataUpdateDetailAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- DisabledPayee Data Update -->
+    <!-- [ -->
+    <!-- bamo0d180c.jsp -->
+    <bean name="/disabledPayeeDataUpdateQuery" class="tw.gov.bli.ba.update.actions.DisabledPayeeDataUpdateQueryAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d182c.jsp -->
+    <bean name="/disabledPayeeDataUpdateList" class="tw.gov.bli.ba.update.actions.DisabledPayeeDataUpdateListAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+
+    <!-- bamo0d181a.jsp -->
+    <bean name="/disabledPayeeDataUpdateDetail" class="tw.gov.bli.ba.update.actions.DisabledPayeeDataUpdateDetailAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- SurvivorPayee Data Update -->
+    <!-- [ -->
+
+    <!-- bamo0d280c.jsp -->
+    <bean name="/survivorPayeeDataUpdateQuery" class="tw.gov.bli.ba.update.actions.SurvivorPayeeDataUpdateQueryAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d282c.jsp -->
+    <bean name="/survivorPayeeDataUpdateList" class="tw.gov.bli.ba.update.actions.SurvivorPayeeDataUpdateListAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+
+    <!-- bamo0d281a.jsp -->
+    <bean name="/survivorPayeeDataUpdateDetail" class="tw.gov.bli.ba.update.actions.SurvivorPayeeDataUpdateDetailAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bamo0d286c.jsp -->
+    <bean name="/survivorPayeeDataUpdateStudTerm" class="tw.gov.bli.ba.update.actions.SurvivorPayeeDataUpdateStudTermAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->    
+
+    <!-- bamo0d289c01.jsp -->
+    <bean name="/survivorPayeeDataUpdateHandicapTerm" class="tw.gov.bli.ba.update.actions.SurvivorPayeeDataUpdateHandicapTermAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->    
+    
+    <!-- Owes Data Update -->
+    <!-- [ -->
+    <!-- bamo0d022n.jsp -->
+    <bean name="/owesDataUpdate" class="tw.gov.bli.ba.update.actions.OwesDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- OnceAmt Data Update -->
+    <!-- [ -->
+    <!-- bamo0d032c.jsp -->
+    <bean name="/onceAmtDataUpdate" class="tw.gov.bli.ba.update.actions.OnceAmtDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Check Mark Maint -->
+    <!-- [ -->
+    <!-- bapa0x010f.jsp -->
+    <bean name="/checkMarkMaintQuery" class="tw.gov.bli.ba.maint.actions.CheckMarkMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bapa0x012c.jsp -->
+    <bean name="/checkMarkMaintList" class="tw.gov.bli.ba.maint.actions.CheckMarkMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- bapa0x011a.jsp,bapa0x013c.jsp -->
+    <bean name="/checkMarkMaintDetail" class="tw.gov.bli.ba.maint.actions.CheckMarkMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Advice Maint -->
+    <!-- [ -->
+    <!-- bapa0x020f.jsp -->
+    <bean name="/adviceMaintQuery" class="tw.gov.bli.ba.maint.actions.AdviceMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bapa0x022c.jsp -->
+    <bean name="/adviceMaintList" class="tw.gov.bli.ba.maint.actions.AdviceMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- bapa0x021a.jsp,bapa0x023c.jsp -->
+    <bean name="/adviceMaintDetail" class="tw.gov.bli.ba.maint.actions.AdviceMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Decision Level Maint -->
+    <!-- [ -->
+    <!-- bapa0x030f.jsp -->
+    <bean name="/decisionLevelMaintQuery" class="tw.gov.bli.ba.maint.actions.DecisionLevelMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bapa0x032c.jsp -->
+    <bean name="/decisionLevelMaintList" class="tw.gov.bli.ba.maint.actions.DecisionLevelMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+
+    <!-- bapa0x031a.jsp,bapa0x033c.jsp -->
+    <bean name="/decisionLevelMaintDetail" class="tw.gov.bli.ba.maint.actions.DecisionLevelMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- ] -->
+
+
+    <!-- Cpi Dtl Maint -->
+    <!-- [ -->
+    <!-- bapa0x060f.jsp -->
+    <bean name="/cpiDtlMaintQuery" class="tw.gov.bli.ba.maint.actions.CpiDtlMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- bapa0x061c.jsp -->
+    <bean name="/cpiDtlMaintList" class="tw.gov.bli.ba.maint.actions.CpiDtlMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x062a.jsp -->
+    <bean name="/cpiDtlMaintDetail" class="tw.gov.bli.ba.maint.actions.CpiDtlMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->
+    
+    
+    <!-- Cpi Rec Maint -->
+    <!-- [ -->
+    <!-- bapa0x070f.jsp -->
+    <bean name="/cpiRecMaintQuery" class="tw.gov.bli.ba.maint.actions.CpiRecMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- bapa0x071c.jsp -->
+    <bean name="/cpiRecMaintList" class="tw.gov.bli.ba.maint.actions.CpiRecMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x072a.jsp -->
+    <bean name="/cpiRecMaintDetail" class="tw.gov.bli.ba.maint.actions.CpiRecMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->    
+    
+    <!-- Basic Amt Maint -->
+    <!-- [ -->
+    <!-- bapa0x080qf.jsp -->
+    <bean name="/basicAmtMaintQuery" class="tw.gov.bli.ba.maint.actions.BasicAmtMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x081f.jsp -->
+    <bean name="/basicAmtMaintList" class="tw.gov.bli.ba.maint.actions.BasicAmtMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>   
+    <!-- bapa0x082a.jsp -->
+    <bean name="/basicAmtMaintDetail" class="tw.gov.bli.ba.maint.actions.BasicAmtMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean> 
+    <!-- ] -->
+    
+    <!-- Disabled Basic Amt Maint -->
+    <!-- [ -->
+    <!-- bapa0x090q.jsp -->
+    <bean name="/disabledBasicAmtMaintQuery" class="tw.gov.bli.ba.maint.actions.DisabledBasicAmtMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x091f.jsp -->
+    <bean name="/disabledBasicAmtMaintList" class="tw.gov.bli.ba.maint.actions.DisabledBasicAmtMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>   
+    <!-- bapa0x092a.jsp -->
+    <bean name="/disabledBasicAmtMaintDetail" class="tw.gov.bli.ba.maint.actions.DisabledBasicAmtMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean> 
+    <!-- ] -->
+    
+    <!-- Survivor Basic Amt Maint -->
+    <!-- [ -->
+    <!-- bapa0x100q.jsp -->
+    <bean name="/survivorBasicAmtMaintQuery" class="tw.gov.bli.ba.maint.actions.SurvivorBasicAmtMaintQueryAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x101f.jsp -->
+    <bean name="/survivorBasicAmtMaintList" class="tw.gov.bli.ba.maint.actions.SurvivorBasicAmtMaintListAction">
+        <property name="maintService" ref="maintService" />
+    </bean>   
+    <!-- bapa0x102a.jsp -->
+    <bean name="/survivorBasicAmtMaintDetail" class="tw.gov.bli.ba.maint.actions.SurvivorBasicAmtMaintDetailAction">
+        <property name="maintService" ref="maintService" />
+    </bean> 
+    <!-- ] -->
+    
+    <!-- AvgAmtMon Maint -->
+    <!-- [ -->
+    <!-- bapa0x110q.jsp -->
+    <bean name="/avgAmtMonMaintQuery" class="tw.gov.bli.ba.maint.actions.AvgAmtMonMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x111f.jsp -->
+    <bean name="/avgAmtMonMaintList" class="tw.gov.bli.ba.maint.actions.AvgAmtMonMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x112a.jsp,bapa0x113c.jsp -->
+    <bean name="/avgAmtMonMaintDetail" class="tw.gov.bli.ba.maint.actions.AvgAmtMonMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->
+    
+    <!-- ReplacementRatio Maint -->
+    <!-- [ -->
+    <!-- bapa0x120q.jsp -->
+    <bean name="/replacementRatioMaintQuery" class="tw.gov.bli.ba.maint.actions.ReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x121f.jsp -->
+    <bean name="/replacementRatioMaintList" class="tw.gov.bli.ba.maint.actions.ReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x122a.jsp,bapa0x123c.jsp -->
+    <bean name="/replacementRatioMaintDetail" class="tw.gov.bli.ba.maint.actions.ReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->
+    
+    <!-- DisabledReplacementRatio Maint -->
+    <!-- [ -->
+    <!-- bapa0x130q.jsp -->
+    <bean name="/disabledReplacementRatioMaintQuery" class="tw.gov.bli.ba.maint.actions.DisabledReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x131f.jsp -->
+    <bean name="/disabledReplacementRatioMaintList" class="tw.gov.bli.ba.maint.actions.DisabledReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x132a.jsp,bapa0x133c.jsp -->
+    <bean name="/disabledReplacementRatioMaintDetail" class="tw.gov.bli.ba.maint.actions.DisabledReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->
+    
+    <!-- SurvivorReplacementRatio Maint -->
+    <!-- [ -->
+    <!-- bapa0x140q.jsp -->
+    <bean name="/survivorReplacementRatioMaintQuery" class="tw.gov.bli.ba.maint.actions.SurvivorReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>
+    <!-- bapa0x141f.jsp -->
+    <bean name="/survivorReplacementRatioMaintList" class="tw.gov.bli.ba.maint.actions.SurvivorReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>    
+    <!-- bapa0x142a.jsp,bapa0x123c.jsp -->
+    <bean name="/survivorReplacementRatioMaintDetail" class="tw.gov.bli.ba.maint.actions.SurvivorReplacementRatioMaintAction">
+        <property name="maintService" ref="maintService" />
+    </bean>        
+    <!-- ] -->
+    
+    <!-- ResetPaymentParameter Maint -->
+    <!-- [ -->
+    <!-- bapa0x150q.jsp, bapa0x151c.jsp -->
+    <bean name="/resetPaymentParameter" class="tw.gov.bli.ba.maint.actions.ResetPaymentParameterAction">
+        <property name="maintService" ref="maintService" />
+        <property name="updateService" ref="updateService" />
+    </bean>       
+    <!-- ] -->
+    
+    <!-- AnnuityAcceptDataTransfer Query -->
+    <!-- [ -->
+    <!-- bapa0x160q.jsp -->
+    <bean name="/annuityAcceptDataTransfer" class="tw.gov.bli.ba.maint.actions.AnnuityAcceptDataTransferAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Check Mark Level Query -->
+    <!-- [ -->
+    <!-- baiq0d040q.jsp -->
+    <bean name="/checkMarkLevelQuery" class="tw.gov.bli.ba.query.actions.CheckMarkLevelQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Executive Support Maint -->
+    <!-- [ -->
+    <!-- basu0d020d.jsp -->
+    <bean name="/executiveSupportClose" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportCloseAction">
+        <property name="executiveService" ref="executiveService" />
+    </bean>
+    <!-- basu0d021d.jsp -->
+    <bean name="/executiveSupportCloseList" class="tw.gov.bli.ba.executive.actions.ExecutiveSupportCloseListAction">
+        <property name="executiveService" ref="executiveService" />
+        <property name="reviewService" ref="reviewService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Preview Condition Update -->
+    <!-- [ -->
+    <!-- bamo0d010c.jsp -->
+    <bean name="/communicatinDataUpdate" class="tw.gov.bli.ba.update.actions.CommunicationDataUpdateAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Inheritor Register -->
+    <!-- [ -->
+    <!-- bamo0d050a.jsp -->
+    <bean name="/inheritorRegister" class="tw.gov.bli.ba.update.actions.InheritorRegisterAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- OldAge Close Status Alteration -->
+    <!-- [ -->
+    <!-- bamo0d110c.jsp -->
+    <bean name="/oldAgeCloseStatusAlteration" class="tw.gov.bli.ba.update.actions.OldAgeCloseStatusAlterationAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Disabled Close Status Alteration -->
+    <!-- [ -->
+    <!-- bamo0d210c.jsp -->
+    <bean name="/disabledCloseStatusAlteration" class="tw.gov.bli.ba.update.actions.DisabledCloseStatusAlterationAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Survivor Close Status Alteration -->
+    <!-- [ -->
+    <!-- bamo0d310c.jsp -->
+    <bean name="/survivorCloseStatusAlteration" class="tw.gov.bli.ba.update.actions.SurvivorCloseStatusAlterationAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Check Mark Level Adjust  -->
+    <!-- [ -->
+    <!-- bamo0d060c.jsp -->
+    <bean name="/checkMarkLevelAdjust" class="tw.gov.bli.ba.update.actions.CheckMarkLevelAdjustAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Stop Payment Process -->
+    <!-- [ -->
+    <!-- bamo0d040n.jsp -->
+    <bean name="/stopPaymentProcessQuery" class="tw.gov.bli.ba.update.actions.StopPaymentProcessQueryAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+
+    <!-- bamo0d041n.jsp -->
+    <bean name="/stopPaymentProcessDetail" class="tw.gov.bli.ba.update.actions.StopPaymentProcessDetailAction">
+        <property name="updateService" ref="updateService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Old Age Review Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d010l.jsp -->
+    <bean name="/printOldAgeReviewRpt01" class="tw.gov.bli.ba.rpt.actions.OldAgeReviewRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Old Age Review Rpt 02 -->
+    <!-- [ -->
+    <!-- balp0d020l.jsp -->
+    <bean name="/printOldAgeReviewRpt02" class="tw.gov.bli.ba.rpt.actions.OldAgeReviewRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Old Age Review Rpt 04 -->
+    <!-- [ -->
+    <!-- balp0d040l.jsp -->
+    <bean name="/printOldAgeReviewRpt04" class="tw.gov.bli.ba.rpt.actions.OldAgeReviewRpt04Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Data Update Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d110l.jsp -->
+    <bean name="/printDataUpdateRpt01" class="tw.gov.bli.ba.rpt.actions.DataUpdateRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Data Update Rpt 02 -->
+    <!-- [ -->
+    <!-- balp0d120l.jsp -->
+    <bean name="/printDataUpdateRpt02" class="tw.gov.bli.ba.rpt.actions.DataUpdateRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Data Update Rpt 03 -->
+    <!-- [ -->
+    <!-- balp0d130l.jsp -->
+    <bean name="/printDataUpdateRpt03" class="tw.gov.bli.ba.rpt.actions.DataUpdateRpt03Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Data Update Rpt 04 -->
+    <!-- [ -->
+    <!-- balp0d140l.jsp -->
+    <bean name="/printDataUpdateRpt04" class="tw.gov.bli.ba.rpt.actions.DataUpdateRpt04Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Data Update Rpt 05 -->
+    <!-- [ -->
+    <!-- balp0d150l.jsp -->
+    <bean name="/printDataUpdateRpt05" class="tw.gov.bli.ba.rpt.actions.DataUpdateRpt05Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Decision Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d210l.jsp -->
+    <bean name="/printDecisionRpt01" class="tw.gov.bli.ba.rpt.actions.DecisionRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Decision Rpt 02 -->
+    <!-- [ -->
+    <!-- balp0d220l.jsp -->
+    <bean name="/printDecisionRpt02" class="tw.gov.bli.ba.rpt.actions.DecisionRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Decision Rpt 03 -->
+    <!-- [ -->
+    <!-- balp0d230l.jsp -->
+    <bean name="/printDecisionRpt03" class="tw.gov.bli.ba.rpt.actions.DecisionRpt03Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Audit Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d420l.jsp -->
+    <bean name="/printAuditRpt01" class="tw.gov.bli.ba.rpt.actions.AuditRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d310l.jsp -->
+    <bean name="/printMonthlyRpt01" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 02 -->
+    <!-- [ -->
+    <!-- balp0d320l.jsp -->
+    <bean name="/printMonthlyRpt02" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 03 -->
+    <!-- [ -->
+    <!-- balp0d330l.jsp -->
+    <bean name="/printMonthlyRpt03" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt03Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 04 -->
+    <!-- [ -->
+    <!-- balp0d340l.jsp -->
+    <bean name="/printMonthlyRpt04" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt04Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 05 -->
+    <!-- [ -->
+    <!-- balp0d350l.jsp -->
+    <bean name="/printMonthlyRpt05" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt05Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 06 -->
+    <!-- [ -->
+    <!-- balp0d360l.jsp -->
+    <bean name="/printMonthlyRpt06" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt06Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 07 -->
+    <!-- [ -->
+    <!-- balp0d370l.jsp -->
+    <bean name="/printMonthlyRpt07" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt07Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 08 -->
+    <!-- [ -->
+    <!-- balp0d380l.jsp -->
+    <bean name="/printMonthlyRpt08" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt08Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 09 -->
+    <!-- [ -->
+    <!-- balp0d390l.jsp -->
+    <bean name="/printMonthlyRpt09" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt09Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 10 -->
+    <!-- [ -->
+    <!-- balp0d3a0l.jsp -->
+    <bean name="/printMonthlyRpt10" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt10Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 11 -->
+    <!-- [ -->
+    <!-- balp0d3b0l.jsp -->
+    <bean name="/printMonthlyRpt11" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt11Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 12 -->
+    <!-- [ -->
+    <!-- balp0d380l.jsp -->
+    <bean name="/printMonthlyRpt12" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt12Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 13 -->
+    <!-- [ -->
+    <!-- balp0d3d0l.jsp -->
+    <bean name="/printMonthlyRpt13" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt13Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 14 -->
+    <!-- [ -->
+    <!-- balp0d380l.jsp -->
+    <bean name="/printMonthlyRpt14" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt14Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 15 -->
+    <!-- [ -->
+    <!-- balp0d380l.jsp -->
+    <bean name="/printMonthlyRpt15" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt15Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 16 -->
+    <!-- [ -->
+    <!-- balp0d3g0l.jsp -->
+    <bean name="/printMonthlyRpt16" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt16Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 17 -->
+    <!-- [ -->
+    <!-- balp0d3h0l.jsp -->
+    <bean name="/printMonthlyRpt17" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt17Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 18 -->
+    <!-- [ -->
+    <!-- balp0d3i0l.jsp -->
+    <bean name="/printMonthlyRpt18" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt18Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 19 -->
+    <!-- [ -->
+    <!-- balp0d3d0l.jsp -->
+    <bean name="/printMonthlyRpt19" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt19Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 20 -->
+    <!-- [ -->
+    <!-- balp0d3d0l.jsp -->
+    <bean name="/printMonthlyRpt20" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt20Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 21 -->
+    <!-- [ -->
+    <!-- balp0d3l0l.jsp -->
+    <bean name="/printMonthlyRpt21" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt21Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 22 -->
+    <!-- [ -->
+    <!-- balp0d3ml0l.jsp -->
+    <bean name="/printMonthlyRpt22" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt22Action">
+        <property name="rptService" ref="rptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 22 -->
+    <!-- [ -->
+    <!-- balp0d3ml0l.jsp -->
+    <bean name="/printMonthlyRpt23" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt23Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Monthly Rpt 24 -->
+    <!-- [ -->
+    <!-- balp0d3o0l.jsp -->
+    <bean name="/printMonthlyRpt24" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt24Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 25 -->
+    <!-- [ -->
+    <!-- balp0d610l.jsp -->
+    <bean name="/printMonthlyRpt25" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt25Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 26 -->
+    <!-- [ -->
+    <!-- balp0d620l.jsp -->
+    <bean name="/printMonthlyRpt26" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt26Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 27 -->
+    <!-- [ -->
+    <!-- balp0d630l.jsp -->
+    <bean name="/printMonthlyRpt27" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt27Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 28 -->
+    <!-- [ -->
+    <!-- balp0d640l.jsp -->
+    <bean name="/printMonthlyRpt28" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt28Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 29 -->
+    <!-- [ -->
+    <!-- balp0d3p0l.jsp -->
+    <bean name="/printMonthlyRpt29" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt29Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 30 -->
+    <!-- [ -->
+    <!-- balp0d3s0l.jsp -->
+    <bean name="/printMonthlyRpt30" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt30Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 31 -->
+    <!-- [ -->
+    <!-- balp0d3t0l.jsp -->
+    <bean name="/printMonthlyRpt31" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt31Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 32 -->
+    <!-- [ -->
+    <!-- balp0d3u0l.jsp -->
+    <bean name="/printMonthlyRpt32" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt32Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Monthly Rpt 33 -->
+    <!-- [ -->
+    <!-- balp0d3v0l.jsp -->
+    <bean name="/printMonthlyRpt33" class="tw.gov.bli.ba.rpt.actions.MonthlyRpt33Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- MonthlyBatch Rpt -->
+    <!-- [ -->
+    <!-- balp0d3r0l.jsp -->
+    <bean name="/printMonthlyBatchRpt" class="tw.gov.bli.ba.rpt.actions.MonthlyBatchRptAction">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Batch Payment Receive -->
+    <!-- [ -->
+    <!-- balp0d690l.jsp -->
+    <bean name="/batchPaymentReceive" class="tw.gov.bli.ba.rpt.actions.BatchPaymentReceiveAction">
+        <property name="rptService" ref="rptService" />
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->     
+
+    <!-- Other Rpt 01 -->
+    <!-- [ -->
+    <!-- balp0d510l.jsp -->
+    <bean name="/printOtherRpt01" class="tw.gov.bli.ba.rpt.actions.OtherRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Other Rpt 02 -->
+    <!-- [ -->
+    <!-- balp0d520l.jsp -->
+    <bean name="/printOtherRpt02" class="tw.gov.bli.ba.rpt.actions.OtherRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Other Rpt 03 -->
+    <!-- [ -->
+    <!-- balp0d530l.jsp -->
+    <bean name="/printOtherRpt03" class="tw.gov.bli.ba.rpt.actions.OtherRpt03Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Other Rpt 04 -->
+    <!-- [ -->
+    <!-- balp0d540l.jsp -->
+    <bean name="/printOtherRpt04" class="tw.gov.bli.ba.rpt.actions.OtherRpt04Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Other Rpt 05 -->
+    <!-- [ -->
+    <!-- balp0d3q0l.jsp -->
+    <bean name="/printOtherRpt05" class="tw.gov.bli.ba.rpt.actions.OtherRpt05Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+ 	<!-- Other Rpt 06 -->
+    <!-- [ -->
+    <!-- balp0d650l.jsp -->
+    <bean name="/printOtherRpt06" class="tw.gov.bli.ba.rpt.actions.OtherRpt06Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+	<!-- Other Rpt 07 -->
+    <!-- [ -->
+    <!-- balp0d660l.jsp -->
+    <bean name="/printOtherRpt07" class="tw.gov.bli.ba.rpt.actions.OtherRpt07Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+	<!-- Other Rpt 08 -->
+    <!-- [ -->
+    <!-- balp0d670l.jsp -->
+    <bean name="/printOtherRpt08" class="tw.gov.bli.ba.rpt.actions.OtherRpt08Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- Other Rpt 09 -->
+    <!-- [ -->
+    <!-- balp0d670l.jsp-->
+    <bean name="/printOtherRpt09" class="tw.gov.bli.ba.rpt.actions.OtherRpt09Action">
+        <property name="rptService" ref="rptService" />
+    </bean> 
+    <!-- ] -->
+    
+    <!-- Other Rpt 10 -->
+    <!-- [ -->
+    <!-- balp0d550l.jsp-->
+    <bean name="/printOtherRpt10" class="tw.gov.bli.ba.rpt.actions.OtherRpt10Action">
+        <property name="rptService" ref="rptService" />
+    </bean> 
+    <!-- ] -->
+    
+    <!-- Other Rpt 11 -->
+    <!-- [ -->
+    <!-- balp0d560l.jsp-->
+    <bean name="/printOtherRpt11" class="tw.gov.bli.ba.rpt.actions.OtherRpt11Action">
+        <property name="rptService" ref="rptService" />
+    </bean> 
+    <!-- ] --> 
+    
+    <!-- Other Rpt 12 -->
+    <!-- [ -->
+    <!-- balp0d570l.jsp-->
+    <bean name="/printOtherRpt12" class="tw.gov.bli.ba.rpt.actions.OtherRpt12Action">
+        <property name="rptService" ref="rptService" />
+    </bean> 
+    <!-- ] --> 
+    
+    <!-- Payment Review -->
+    <!-- [ -->
+    
+    <!-- baco0d010a.jsp -->
+    <bean name="/paymentReview" class="tw.gov.bli.ba.review.actions.PaymentReviewAction">
+        <property name="reviewService" ref="reviewService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Disabled Payment Review -->
+    <!-- [ -->
+    <!-- baco0d110a.jsp -->
+    <bean name="/disabledPaymentReview" class="tw.gov.bli.ba.review.actions.DisabledPaymentReviewAction">
+        <property name="reviewService" ref="reviewService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Survivor Payment Review -->
+    <!-- [ -->
+    <!-- baco0d110a.jsp -->
+    <bean name="/survivorPaymentReview" class="tw.gov.bli.ba.review.actions.SurvivorPaymentReviewAction">
+        <property name="reviewService" ref="reviewService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Payment Decision -->
+    <!-- [ -->
+    <!-- barc0d010a.jsp -->
+    <bean name="/paymentDecision" class="tw.gov.bli.ba.decision.actions.PaymentDecisionAction">
+        <property name="decisionService" ref="decisionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Disabled Payment Decision -->
+    <!-- [ -->
+    <!-- barc0d110a.jsp -->
+    <bean name="/disabledPaymentDecision" class="tw.gov.bli.ba.decision.actions.DisabledPaymentDecisionAction">
+        <property name="decisionService" ref="decisionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Survivor Payment Decision -->
+    <!-- [ -->
+    <!-- barc0d210a.jsp -->
+    <bean name="/survivorPaymentDecision" class="tw.gov.bli.ba.decision.actions.SurvivorPaymentDecisionAction">
+        <property name="decisionService" ref="decisionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Payment Query -->
+    <!-- [ -->
+    <!-- baiq0d010q.jsp -->
+    <bean name="/paymentQuery" class="tw.gov.bli.ba.query.actions.PaymentQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Payment Query Simplify-->
+    <!-- [ -->
+    <!-- baiq0d060q.jsp -->
+    <bean name="/paymentQuerySimplify" class="tw.gov.bli.ba.query.actions.PaymentQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Receivable Query -->
+    <!-- [ -->
+    <!-- baiq0d020q.jsp -->
+    <bean name="/receivableQuery" class="tw.gov.bli.ba.query.actions.ReceivableQueryAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- UpdatePaidMark BJ -->
+    <!-- [ -->
+    <!-- baba0m010x.jsp -->
+    <bean name="/updatePaidMarkBJ" class="tw.gov.bli.ba.bj.actions.UpdatePaidMarkBJAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m012x.jsp -->
+    <bean name="/updatePaidMarkBJDetail" class="tw.gov.bli.ba.bj.actions.UpdatePaidMarkBJDetailAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- ReturnWriteOff BJ -->
+    <!-- [ -->
+    <!-- baba0m020x.jsp -->
+    <bean name="/returnWriteOffBJ" class="tw.gov.bli.ba.bj.actions.ReturnWriteOffBJAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Trans2OverdueReceivable BJ -->
+    <!-- [ -->
+    <!-- baba0m030x.jsp -->
+    <bean name="/trans2OverdueReceivableBJ" class="tw.gov.bli.ba.bj.actions.Trans2OverdueReceivableBJAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- ReceivableAdjust BJ -->
+    <!-- [ -->
+    <!-- baba0m030x.jsp -->
+    <bean name="/receivableAdjustBJ" class="tw.gov.bli.ba.bj.actions.ReceivableAdjustBJAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Disabled CheckMark Level Adjust -->
+    <!-- [ -->
+    <!-- bamo0d160c.jsp bamo0d161c.jsp -->
+    <bean name="/disabledCheckMarkLevelAdjust" class="tw.gov.bli.ba.update.actions.DisabledCheckMarkLevelAdjustAction">
+        <property name="updateService" ref="updateService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Survivor CheckMark Level Adjust -->
+    <!-- [ -->
+    <!-- bamo0d260c.jsp bamo0d261c.jsp -->
+    <bean name="/survivorCheckMarkLevelAdjust" class="tw.gov.bli.ba.update.actions.SurvivorCheckMarkLevelAdjustAction">
+        <property name="updateService" ref="updateService" />
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <!-- bare0d010a.jsp bare0d011a.jsp bare0d012c.jsp bare0d013c.jsp -->
+    <bean name="/reviewFeeReceipt" class="tw.gov.bli.ba.reviewfee.actions.ReviewFeeReceiptAction">
+        <property name="reviewFeeService" ref="reviewFeeService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Review -->
+    <!-- [ -->
+    <!-- bare0d020a.jsp bare0d021a.jsp bare0d022a.jsp -->
+    <bean name="/reviewFeeReview" class="tw.gov.bli.ba.reviewfee.actions.ReviewFeeReviewAction">
+        <property name="reviewFeeService" ref="reviewFeeService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Decision -->
+    <!-- [ -->
+    <!-- bare0d030a.jsp bare0d031a.jsp bare0d032a.jsp -->
+    <bean name="/reviewFeeDecision" class="tw.gov.bli.ba.reviewfee.actions.ReviewFeeDecisionAction">
+        <property name="reviewFeeService" ref="reviewFeeService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Receipt Rpt 01 -->
+    <!-- [ -->
+    <!-- bare0d040l.jsp -->
+    <bean name="/printReviewFeeReceiptRpt01" class="tw.gov.bli.ba.rpt.actions.ReviewFeeReceiptRpt01Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Receipt Rpt 02 -->
+    <!-- [ -->
+    <!-- bare0d041l.jsp -->
+    <bean name="/printReviewFeeReceiptRpt02" class="tw.gov.bli.ba.rpt.actions.ReviewFeeReceiptRpt02Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Review Fee Receipt Rpt 03 -->
+    <!-- [ -->
+    <!-- bare0d042l.jsp -->
+    <bean name="/printReviewFeeReceiptRpt03" class="tw.gov.bli.ba.rpt.actions.ReviewFeeReceiptRpt03Action">
+        <property name="rptService" ref="rptService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- Dependant Data Update -->
+    <!-- [ -->
+    <!-- bamo0d070c.jsp -->
+    <bean name="/dependantDataUpdateQuery" class="tw.gov.bli.ba.update.actions.DependantDataUpdateQueryAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d072c.jsp -->
+    <bean name="/dependantDataUpdateList" class="tw.gov.bli.ba.update.actions.DependantDataUpdateListAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d071a.jsp,bamo0d073c.jsp -->
+    <bean name="/depedantDataUpdateDetail" class="tw.gov.bli.ba.update.actions.DependantDataUpdateDetailAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bamo0d074c.jsp -->
+    <bean name="/dependantDataUpdateStudTerm" class="tw.gov.bli.ba.update.actions.DependantDataUpdateStudTermAction">
+        <property name="updateService" ref="updateService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bamo0d090c.jsp,bamo0d091c.jsp -->
+    <bean name="/oldAgeDeathRepay" class="tw.gov.bli.ba.update.actions.OldAgeDeathRepayAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    
+    <!-- bamo0d092c.jsp -->
+    <bean name="/payeeDataUpdateListForOldAgeDeathRepay" class="tw.gov.bli.ba.update.actions.PayeeDataUpdateListForOldAgeDeathRepayAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+
+    <!-- bamo0d093a.jsp,bamo0d094c.jsp -->
+    <bean name="/payeeDataUpdateDetailForOldAgeDeathRepay" class="tw.gov.bli.ba.update.actions.PayeeDataUpdateDetailForOldAgeDeathRepayAction">
+        <property name="updateService" ref="updateService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    
+    <!-- bamo0d100c.jsp,bamo0d101c.jsp,bamo0d102c.jsp -->
+    <bean name="/oldAgePaymentReceive" class="tw.gov.bli.ba.update.actions.OldAgePaymentReceiveAction">
+        <property name="updateService" ref="updateService" />
+        <property name="pfxx0w040Service" ref="pfxx0w040Service" />
+    </bean>
+    
+    <!-- bamo0d200c.jsp,bamo0d201c.jsp,bamo0d202c.jsp -->
+    <bean name="/disabledPaymentReceive" class="tw.gov.bli.ba.update.actions.DisabledPaymentReceiveAction">
+        <property name="updateService" ref="updateService" />
+        <property name="pfxx0w040Service" ref="pfxx0w040Service" />
+    </bean>
+    
+    <!-- bamo0d300c.jsp,bamo0d301c.jsp,bamo0d302c.jsp -->
+    <bean name="/survivorPaymentReceive" class="tw.gov.bli.ba.update.actions.SurvivorPaymentReceiveAction">
+        <property name="updateService" ref="updateService" />
+        <property name="pfxx0w040Service" ref="pfxx0w040Service" />
+    </bean>
+    
+    <!-- baba0m170x.jsp -->
+    <bean name="/prodOldMediaOnline" class="tw.gov.bli.ba.bj.actions.OldMediaOnlineAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    
+    <!-- baba0m180x.jsp -->
+    <bean name="/prodDisabledMediaOnline" class="tw.gov.bli.ba.bj.actions.DisabledMediaOnlineAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    
+    <!-- baba0m190x.jsp -->
+    <bean name="/prodSurvivorMediaOnline" class="tw.gov.bli.ba.bj.actions.SurvivorMediaOnlineAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    <!-- baba0m170x.jsp -->
+    <bean name="/prodOldMediaBatch" class="tw.gov.bli.ba.bj.actions.OldMediaBatchAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    
+    <!-- baba0m180x.jsp -->
+    <bean name="/prodDisabledMediaBatch" class="tw.gov.bli.ba.bj.actions.DisabledMediaBatchAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    
+    <!-- baba0m190x.jsp -->
+    <bean name="/prodSurvivorMediaBatch" class="tw.gov.bli.ba.bj.actions.SurvivorMediaBatchAction">
+        <property name="bjService" ref="bjService" />
+        <property name="ftpDbClient" ref="ftpDbClient" />
+    </bean>
+    <!-- bj Month -->
+    <!-- [ -->
+    <!-- baba0m110x.jsp -->
+    <bean name="/monthL" class="tw.gov.bli.ba.bj.actions.MonthLAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m120x.jsp -->
+    <bean name="/monthK" class="tw.gov.bli.ba.bj.actions.MonthKAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m130x.jsp -->
+    <bean name="/monthS" class="tw.gov.bli.ba.bj.actions.MonthSAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bj MonthCheck -->
+    <!-- [ -->
+    <!-- baba0m110x.jsp -->
+    <bean name="/monthCheckL" class="tw.gov.bli.ba.bj.actions.MonthCheckLAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m120x.jsp -->
+    <bean name="/monthCheckK" class="tw.gov.bli.ba.bj.actions.MonthCheckKAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m130x.jsp -->
+    <bean name="/monthCheckS" class="tw.gov.bli.ba.bj.actions.MonthCheckSAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bj MonthBatch -->
+    <!-- [ -->
+    <!-- baba0m050x.jsp -->
+    <bean name="/monthBatchL" class="tw.gov.bli.ba.bj.actions.MonthBatchLAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m060x.jsp -->
+    <bean name="/monthBatchK" class="tw.gov.bli.ba.bj.actions.MonthBatchKAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m070x.jsp -->
+    <bean name="/monthBatchS" class="tw.gov.bli.ba.bj.actions.MonthBatchSAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+    
+    <!-- bj CheckJob -->
+    <!-- [ -->
+    <!-- baba0m200x.jsp -->
+    <bean name="/checkJobRpt" class="tw.gov.bli.ba.bj.actions.CheckJobRptAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- baba0m210x.jsp,baba0m211c.jsp -->
+    <bean name="/checkJob" class="tw.gov.bli.ba.bj.actions.CheckJobAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    <!-- ] -->
+
+    <!-- baba0m230x.jsp -->
+    <bean name="/runProcedure" class="tw.gov.bli.ba.bj.actions.RunProcedureAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+
+    <!-- baba0m240x.jsp -->
+    <bean name="/qryProcedure" class="tw.gov.bli.ba.bj.actions.QryProcedureAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+    <!-- baba0x220x.jsp -->
+    <bean name="/checkExec" class="tw.gov.bli.ba.bj.actions.CheckExecAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+    <bean name="/paymentProcessList" class="tw.gov.bli.ba.payment.actions.PaymentProcessAction">
+        <property name="paymentService" ref="paymentService" />
+        <property name="queryService" ref="queryService" />
+    </bean>
+    
+    <bean name="/paymentReprint" class="tw.gov.bli.ba.payment.actions.PaymentReprintAction">
+        <property name="paymentService" ref="paymentService" />
+        <property name="queryService" ref="queryService" />
+    </bean>
+    
+     <bean name="/paymentProgressQuery" class="tw.gov.bli.ba.payment.actions.PaymentProgressQueryAction">
+        <property name="paymentService" ref="paymentService" />
+    </bean>
+    
+    <bean name="/oldAgePayment" class="tw.gov.bli.ba.bj.actions.OldAgePaymentAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+    <bean name="/disabledPayment" class="tw.gov.bli.ba.bj.actions.DisabledPaymentAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+    <bean name="/survivorPayment" class="tw.gov.bli.ba.bj.actions.SurvivorPaymentAction">
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+    <bean name="/annuityStatistics" class="tw.gov.bli.ba.query.actions.AnnuityStatisticsAction">
+        <property name="queryService" ref="queryService" />
+    </bean>
+    
+    <bean name="/execStatistics" class="tw.gov.bli.ba.bj.actions.ExecStatisticsAction">
+        <property name="bjService" ref="bjService" />
+     </bean>
+</beans>

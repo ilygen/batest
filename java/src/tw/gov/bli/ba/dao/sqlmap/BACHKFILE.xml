@@ -1,0 +1,1667 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACHKFILE">
+
+    <typeAlias alias="Bachkfile" type="tw.gov.bli.ba.domain.Bachkfile" />
+
+    <resultMap id="BACHKFILEResult" class="Bachkfile">
+        <result column="BACHKFILEID"    property="baChkFileId"    jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="BAAPPBASEID"    property="baappbaseId"    jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"           jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="SEQNO"          property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="ISSUYM"         property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKTYP"         property="chkTyp"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODE"        property="chkCode"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPRE"     property="chkCodePre"     jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    
+    <resultMap id="chkFileCaseResult" class="tw.gov.bli.ba.update.cases.ChkFileCase">
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKFILENAME"    property="chkFileName"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILEDESC"    property="chkFileDesc"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILECODE"    property="chkFileCode"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />               
+    </resultMap>
+    
+    <!-- Extend for Check Mark Level Adjust -->
+    <!-- [ -->
+    <resultMap id="chkFileResultForCheckMarkLevelAdjust" class="Bachkfile" extends="BACHKFILEResult">
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENBRDATE"        property="benBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENEVTREL"        property="benEvtRel"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"     javaType="java.lang.String" nullValue="" />
+   		<result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+   		<result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    
+    <resultMap id="chkFileResult" class="Bachkfile">
+        <result column="SEQNO"          property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="ISSUYM"         property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>        
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />               
+    </resultMap>
+    
+    <resultMap id="BenChkDataResult" class="Bachkfile">
+        <result column="SEQNO"          property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="ISSUYM"         property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>        
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01ChkfileDataResult" class="Bachkfile">
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"	    nullValue="" />
+        <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt01ChkfileDescResult" class="Bachkfile">
+        <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPOST"     property="chkCodePost"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- Disabled CheckMark Level Adjust -->
+    <!-- [ -->
+    <resultMap id="DisabledCheckMarkLevelAdjustBenDetailDataResult" class="Bachkfile">
+        <result column="BACHKFILEID"    property="baChkFileId"  jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODE"        property="chkCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPRE"     property="chkCodePre"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPOST"    property="chkCodePost"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYVALUE"       property="keyValue"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Fields not in BACHKFILE -->
+        <result column="MAXMK"          property="maxMk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALISYM"        property="valisYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALIEYM"        property="valieYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DisabledCheckMarkLevelAdjustFamDetailDataResult" class="Bachkfile">
+        <result column="BACHKFILEID"    property="baChkFileId"  jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODE"        property="chkCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPRE"     property="chkCodePre"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPOST"    property="chkCodePost"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYVALUE"       property="keyValue"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Fields not in BACHKFILE -->
+        <result column="MAXMK"          property="maxMk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALISYM"        property="valisYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALIEYM"        property="valieYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Disabled CheckMark Level Adjust -->
+    
+    <!-- Survivor CheckMark Level Adjust -->
+    <!-- [ -->
+    <resultMap id="SurvivorCheckMarkLevelAdjustBenDetailDataResult" class="Bachkfile">
+        <result column="BACHKFILEID"    property="baChkFileId"  jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"          property="payYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODE"        property="chkCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPRE"     property="chkCodePre"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPOST"    property="chkCodePost"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KEYVALUE"       property="keyValue"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <!-- Fields not in BACHKFILE -->
+        <result column="MAXMK"          property="maxMk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALISYM"        property="valisYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="VALIEYM"        property="valieYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Survivor CheckMark Level Adjust -->
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <resultMap id="DisabledApplicationDataUpdateCheckFileResult" class="Bachkfile">
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKFILENAME"    property="chkFileName"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILEDESC"    property="chkFileDesc"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILECODE"    property="chkFileCode"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />               
+    </resultMap>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Survivor Application Data Update -->
+    <!-- [ -->
+    <resultMap id="SurvivorApplicationDataUpdateCheckFileResult" class="Bachkfile">
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKFILENAME"    property="chkFileName"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILEDESC"    property="chkFileDesc"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
+        <result column="CHKFILECODE"    property="chkFileCode"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />               
+    </resultMap>
+    <!-- ] -->
+    <!-- Survivor Application Data Update -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="DisableReviewRpt01ChkfileDataResult" class="Bachkfile">
+        <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"	    nullValue="" />
+        <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPRE"     property="chkCodePre"   	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"    	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DisableReviewRpt01ChkfileDescDataResult" class="Bachkfile">
+        <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKCODEPRE"     property="chkCodePre"   	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHKRESULT"      property="chkResult"    	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- DisableReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01ChkfileDataResult" class="Bachkfile">
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODE"        property="chkCode"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPRE"     property="chkCodePre"     jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <resultMap id="ChkFileForSurvivorPaymentReviewResult" class="Bachkfile">
+        <result column="SEQNO"          property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="ISSUYM"         property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>        
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    
+    <!-- SurvivorPayeeDataUpdate -->
+    <!-- [ -->
+    <resultMap id="SurvivorPayeeDataCheckMarkResult" class="Bachkfile">
+    	<result column="SEQNO"          property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    	<result column="ISSUYM"         property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODE"        property="chkCode"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    <!-- ] -->
+    
+    <!-- SurvivorPayeeDataUpdate -->
+    <!-- [ -->
+    <resultMap id="ChkCodeForRpt29Result" class="Bachkfile">
+    	<result column="CHKCODE"          property="chkCode"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+    </resultMap>
+    <!-- ] -->
+
+    <select id="selectChkListBy" resultMap="chkFileCaseResult">
+        SELECT A.PAYYM,
+               A.CHKCODE||'-'||A.CHKCODEPOST AS CHKFILENAME,
+               A.CHKCODE||'-'||A.CHKRESULT AS CHKFILEDESC,
+               A.CHKCODE AS CHKFILECODE
+          FROM BACHKFILE A, 
+               (SELECT X.BAAPPBASEID,
+                       X.ISSUYM
+                  FROM BAAPPBASE X                     
+                 WHERE X.BAAPPBASEID = #baappbaseId:NUMERIC#
+                )B
+          WHERE A.BAAPPBASEID = B.BAAPPBASEID
+            AND A.ISSUYM = B.ISSUYM
+          ORDER BY A.ISSUYM, A.PAYYM, A.CHKCODE
+    </select> 
+    
+    <select id="selectChkListForCheckMarkLevelAdjust" resultMap="chkFileResultForCheckMarkLevelAdjust">
+        Select  T1.BACHKFILEID,
+                T1.BAAPPBASEID,
+                T2.APNO,
+                T1.SEQNO,
+                T1.ISSUYM,
+                T1.PAYYM,
+                T1.CHKTYP,
+                T1.CHKCODE,
+                T1.CHKCODEPRE,
+                T1.CHKCODEPOST,
+                T1.CHKRESULT,
+                T2.BENNAME,
+                T2.BENBRDATE,
+                T2.BENEVTREL,
+                T2.BENIDNNO, 
+                T2.EVTJOBDATE, 
+                T2.PROCSTAT, 
+                T2.CASETYP 
+        from  (Select  TT1.BACHKFILEID
+                      ,TT1.BAAPPBASEID
+                      ,TT1.SEQNO
+                      ,TT1.ISSUYM
+                      ,TT1.PAYYM
+                      ,TT1.CHKCODE
+                      ,TT1.CHKCODEPRE
+                      ,TT1.CHKCODEPOST
+                      ,TT1.CHKRESULT
+                      ,TT1.CHKTYP
+                from  BACHKFILE  TT1
+               where  TT1.APNO = #apNo:VARCHAR#
+                 and  TT1.ISSUYM= 
+                         (Select  MAX(TT3.ISSUYM)  
+                            from  BACHKFILE  TT3
+                           where  TT3.APNO = #apNo:VARCHAR# )
+                          )  T1 ,
+               (Select  TT2.BAAPPBASEID
+                       ,TT2.APPDATE
+                       ,TT2.APNO
+                       ,TT2.EVTNAME
+                       ,TT2.EVTBRDATE
+                       ,TT2.EVTIDNNO
+                       ,TT2.BENIDNNO
+                       ,TT2.BENNAME
+                       ,TT2.BENBRDATE
+                       ,TT2.BENEVTREL
+                       ,TT2.EVTJOBDATE
+                       ,TT2.PROCSTAT 
+                	   ,TT2.CASETYP 
+                 from  BAAPPBASE  TT2
+                where  TT2.APNO = #apNo:VARCHAR#
+                  and  TT2.BENPAYMK='1'
+                )  T2
+         where  T1.BAAPPBASEID = T2.BAAPPBASEID
+           and  T2.APNO = #apNo:VARCHAR#
+         <isEqual  property="orderBy"  compareValue="1">
+                    order  by PAYYM,SEQNO,CHKCODE
+         </isEqual>
+         <isEqual  property="orderBy"  compareValue="2">
+                    order  by SEQNO,PAYYM,CHKCODE
+         </isEqual>
+         <isEqual  property="orderBy"  compareValue="3">
+                    order  by CHKCODE,PAYYM,SEQNO
+         </isEqual>
+    </select>
+    
+    <select id="selectReviewEvtChkListForOldAge" resultMap="chkFileResult">
+		SELECT B.SEQNO,
+		       B.ISSUYM,
+		       B.PAYYM,
+		       B.CHKCODEPOST,
+		       B.CHKRESULT    
+		  FROM (SELECT X.APNO,
+		               X.SEQNO,
+		               X.ISSUYM
+		          FROM BAAPPBASE X
+		         WHERE X.APNO = #apNo:VARCHAR#
+		           AND X.SEQNO = '0000'
+		           AND X.BENPAYMK='1') A,
+		       (SELECT DISTINCT 
+		               Y.APNO,
+		               Y.SEQNO,
+		               Y.ISSUYM,
+		               Y.PAYYM,
+		               Y.CHKCODE,
+		              (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+		              (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+		          FROM BACHKFILE Y
+		         WHERE Y.APNO = #apNo:VARCHAR#
+		           AND Y.SEQNO = '0000') B
+		 WHERE A.APNO = B.APNO
+		   AND A.SEQNO = B.SEQNO
+		   AND A.ISSUYM = B.ISSUYM
+		 ORDER BY B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+    </select>
+    
+    <select id="selectReviewBenChkListForOldAge" resultMap="chkFileResult">
+		SELECT B.SEQNO,
+		       B.ISSUYM,
+		       B.PAYYM,
+		       B.CHKCODEPOST,
+		       B.CHKRESULT    
+		  FROM (SELECT X.APNO,
+		               X.SEQNO,
+		               X.ISSUYM
+		          FROM BAAPPBASE X
+		         WHERE X.APNO = #apNo:VARCHAR#
+		           <![CDATA[  
+                   AND X.SEQNO <> '0000'
+                   ]]>
+		           AND X.BENPAYMK='1') A,
+		       (SELECT DISTINCT 
+		               Y.APNO,
+		               Y.SEQNO,
+		               Y.ISSUYM,
+		               Y.PAYYM,
+		               Y.CHKCODE,
+		              (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+		              (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+		          FROM BACHKFILE Y
+		         WHERE Y.APNO = #apNo:VARCHAR#
+		           <![CDATA[
+                   AND Y.SEQNO <> '0000'
+                   ]]>) B
+		 WHERE A.APNO = B.APNO
+		   AND A.SEQNO = B.SEQNO
+		   AND A.ISSUYM = B.ISSUYM
+		 ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+    </select>
+    
+    <select id="selectReviewEvtChkListForDisabled" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.SEQNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR# 
+                   AND X.SEQNO = '0000') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR# 
+                   AND Y.SEQNO = '0000'
+                   AND Y.CHKTYP <> 'C') B
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO, B.ISSUYM, B.PAYYM, B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewBenChkListForDisabled" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#
+                   AND X.SEQNO = '0000') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR#
+                   AND Y.CHKTYP <> 'C') B,
+               (SELECT Z.APNO,
+                       Z.SEQNO
+                  FROM BAFAMILY Z
+                 WHERE Z.APNO = #apNo:VARCHAR#
+                   AND (Z.DELMK <> 'D' OR Z.DELMK IS NULL)) C 
+         WHERE A.APNO = B.APNO
+           AND A.APNO = C.APNO
+           AND B.APNO = C.APNO
+           AND B.SEQNO = C.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewOtherChkListForDisabled" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#
+                   AND X.SEQNO = '0000') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR# 
+                   AND Y.CHKTYP = 'C') B,
+               (SELECT Z.APNO,
+                       Z.SEQNO
+                  FROM BAFAMILY Z
+                 WHERE Z.APNO = #apNo:VARCHAR#
+                   AND (Z.DELMK <> 'D' OR Z.DELMK IS NULL)) C 
+         WHERE A.APNO = B.APNO
+           AND A.APNO = C.APNO
+           AND B.APNO = C.APNO
+           AND B.SEQNO = C.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewEvtChkListForSurvivor" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.SEQNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#  
+                   AND X.SEQNO = '0000') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR#  
+                   AND Y.SEQNO = '0000'
+                   AND Y.CHKTYP <> 'C') B
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO, B.ISSUYM, B.PAYYM, B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewBenChkListForSurvivor" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.SEQNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#
+                   AND X.SEQNO <> '0000'
+                   AND X.BENPAYMK='1') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR#
+                   AND Y.SEQNO <> '0000'
+                   AND Y.CHKTYP <> 'C'
+                   ) B
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewOtherChkListForSurvivor" resultMap="chkFileResult">
+        <![CDATA[
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.SEQNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#
+                   AND X.SEQNO <> '0000'
+                   AND X.BENPAYMK='1') A,
+               (SELECT DISTINCT 
+                       Y.APNO,
+                       Y.SEQNO,
+                       Y.ISSUYM,
+                       Y.PAYYM,
+                       Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR#
+                   AND Y.SEQNO <> '0000'
+                   AND Y.CHKTYP = 'C'
+                   ) B
+         WHERE A.APNO = B.APNO
+           AND A.SEQNO = B.SEQNO
+           AND A.ISSUYM = B.ISSUYM
+         ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+         ]]>
+    </select>
+    
+    <select id="selectReviewChkListBy" resultMap="chkFileResult">
+        SELECT B.SEQNO,
+               B.ISSUYM,
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT
+          FROM (SELECT X.APNO,
+                       X.SEQNO,
+                       X.ISSUYM
+                  FROM BAAPPBASE X
+                 WHERE X.APNO = #apNo:VARCHAR#
+                   AND X.SEQNO = #seqNo:VARCHAR# )A,
+               (SELECT DISTINCT Y.BAAPPBASEID,
+                       Y.APNO,
+		               Y.SEQNO,
+		               Y.ISSUYM,
+		               Y.PAYYM,
+		               Y.CHKCODE,
+                      (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+                      (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE Y
+                 WHERE Y.APNO = #apNo:VARCHAR#
+                 <isEqual  property="chkTyp"  compareValue="A">
+                   AND Y.SEQNO = #seqNo:VARCHAR#
+                 </isEqual>
+                 <isNotEqual  property="chkTyp"  compareValue="A">
+	                <isParameterPresent>
+		                <isNotEmpty prepend="AND" property="familySeqNo">
+		                    Y.SEQNO = #familySeqNo:VARCHAR#
+		                </isNotEmpty>
+		            </isParameterPresent>
+                 </isNotEqual>
+                 <isNotEqual  property="chkTyp"  compareValue="C">
+                 	<![CDATA[
+                   		AND Y.CHKTYP <> 'C')B
+                   ]]>
+                 </isNotEqual>
+                 <isEqual  property="chkTyp"  compareValue="C">
+                   AND Y.CHKTYP = #chkTyp:VARCHAR#)B
+                 </isEqual>
+                <isNotEqual  property="chkTyp"  compareValue="A">
+                    ,(SELECT Z.APNO,
+		                     Z.SEQNO
+		                FROM BAFAMILY Z
+		               WHERE Z.APNO = #apNo:VARCHAR#
+		                 <![CDATA[
+                         AND (Z.DELMK <> 'D' OR Z.DELMK IS NULL)
+                         ]]>
+	                    <isParameterPresent>
+	                        <isNotEmpty prepend="AND" property="familySeqNo">
+	                            Z.SEQNO = #familySeqNo:VARCHAR#
+	                        </isNotEmpty>
+	                    </isParameterPresent>
+		               ) C
+                </isNotEqual>
+         WHERE A.APNO = B.APNO
+		   AND A.ISSUYM = B.ISSUYM
+		<isEqual property="chkTyp"  compareValue="A">
+            AND A.SEQNO = B.SEQNO
+		</isEqual>   
+        <isNotEqual property="chkTyp"  compareValue="A">
+            AND A.APNO = C.APNO
+            AND B.APNO = C.APNO
+            AND B.SEQNO = C.SEQNO
+        </isNotEqual>
+		 ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+    </select>
+    
+    <select id="selectBenChkDataBy" resultMap="BenChkDataResult">
+        SELECT A.SEQNO,
+               B.ISSUYM, 
+               B.PAYYM,
+               B.CHKCODEPOST,
+               B.CHKRESULT                             
+          FROM (SELECT BAAPPBASEID,                         
+                       SEQNO,                         
+                       ISSUYM,                         
+                       BENPAYMK                         
+                  FROM BAAPPBASE                           
+                 WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = #seqNo:VARCHAR#                  
+                   AND PROCSTAT  IN  ('10','11','12')) A,             
+               (SELECT BAAPPBASEID,                         
+                       SEQNO,                         
+                       ISSUYM,                         
+                       PAYYM,
+                       CHKCODE,                 
+                       (CHKCODE||'-'||CHKCODEPOST) AS CHKCODEPOST,                         
+                       (CHKCODE||'-'||CHKRESULT) AS CHKRESULT
+                  FROM BACHKFILE                          
+                 WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = #seqNo:VARCHAR#) B                         
+         WHERE A.BAAPPBASEID = B.BAAPPBASEID                         
+           AND A.ISSUYM = B.ISSUYM                         
+           AND A.SEQNO = B.SEQNO                         
+           AND A.BENPAYMK = '1'                         
+         ORDER BY B.ISSUYM, B.PAYYM, B.CHKCODE
+    </select>  
+    
+    <update id="updateChkCodePost">
+         Update  BACHKFILE  Set
+                 CHKCODEPOST = #chkCodePost:VARCHAR#
+          where  BACHKFILEID = #baChkFileId:NUMERIC#       
+    </update>
+    
+    <select id="selectChkCodePostByLog" resultMap="BACHKFILEResult">
+		SELECT BACHKFILEID,
+			   BAAPPBASEID,
+			   APNO,     
+			   SEQNO,     
+			   ISSUYM,    
+			   PAYYM,     
+			   CHKTYP,    
+			   CHKCODE, 
+			   CHKCODEPRE,
+			   CHKCODEPOST,
+			   CHKRESULT 
+		FROM BACHKFILE 
+		WHERE BACHKFILEID = #baChkFileId:NUMERIC#			  
+	</select>
+    
+    <select id="countForCheckMarkLevelAdjust" resultClass="java.math.BigDecimal">
+         Select  Count(*)  
+          from  BACHKFILE  
+         where  APNO = #apNo:VARCHAR#
+           and  CHKCODEPOST   in  ('E', 'O')
+           and  ISSUYM= 
+                     (Select  MAX(ISSUYM)  
+                        from  BACHKFILE 
+                       where  APNO = #apNo:VARCHAR# )  
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01ChkfileDataBy" resultMap="OldAgeReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+    <select id="getOldAgeReviewRpt01BenChkfileDataBy" resultMap="OldAgeReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+    <select id="getOldAgeReviewRpt01ChkfileDescBy" resultMap="OldAgeReviewRpt01ChkfileDescResult">
+        SELECT DISTINCT A.CHKCODE,
+                        A.CHKCODEPOST,
+                        CASE
+                          WHEN A.CHKCODE = 'UK' THEN
+                           A.CHKRESULT || A.KEYVALUE
+                          ELSE
+                           A.CHKRESULT
+                        END AS CHKRESULT
+        FROM BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.CHKCODE
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="selectBenChkDataForPaymentQueryBy" resultMap="BenChkDataResult">
+        SELECT T1.SEQNO,                                     
+               T2.PAYYM,                                     
+               T2.ISSUYM,                                    
+               T2.CHKRESULT,                                 
+               T2.CHKCODEPOST                                
+          FROM (SELECT BAAPPBASEID,                          
+                       SEQNO,                                
+                       ISSUYM,                               
+                       BENPAYMK                             
+                  FROM BAAPPBASE                             
+                 WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = #seqNo:VARCHAR# ) T1,                 
+               (SELECT BAAPPBASEID,                          
+                       SEQNO,                                
+                       ISSUYM,                               
+                       PAYYM,                                
+                       (CHKCODE||'-'||CHKCODEPOST) AS CHKCODEPOST,                          
+                       (CHKCODE||'-'||CHKRESULT) AS CHKRESULT,
+                       CHKCODE
+                  FROM BACHKFILE                             
+                 WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = #seqNo:VARCHAR#                     
+                <dynamic prepend="">                    
+                    <isParameterPresent>
+                        <isNotEmpty prepend="" property="startYm">              
+                            <isNotEmpty prepend="" property="endYm">
+		                        <isEqual prepend="AND" property="qryCond" compareValue="ISSUYM">
+		                            <![CDATA[
+		                            ISSUYM >= #startYm:VARCHAR#
+		                            AND ISSUYM <= #endYm:VARCHAR#
+		                            ]]>
+		                        </isEqual>
+		                        <isEqual prepend="AND" property="qryCond" compareValue="PAYYM">
+		                            <![CDATA[
+		                            PAYYM >= #startYm:VARCHAR#
+		                            AND PAYYM <= #endYm:VARCHAR#
+		                            ]]>
+		                        </isEqual>                                  
+                            </isNotEmpty>
+                        </isNotEmpty>                                 
+                    </isParameterPresent>
+                </dynamic> ) T2                       
+          WHERE T1.BAAPPBASEID=T2.BAAPPBASEID                
+            AND T1.ISSUYM=T2.ISSUYM                          
+            AND T1.SEQNO=T2.SEQNO                            
+            AND T1.BENPAYMK='1'                              
+            <dynamic prepend="">                
+                <isParameterPresent>
+                    <isEqual prepend="" property="qryCond" compareValue="ISSUYM">
+                        ORDER BY T1.SEQNO, T2.ISSUYM DESC, T2.PAYYM DESC, T2.CHKCODE
+                    </isEqual>
+                    <isEqual prepend="" property="qryCond" compareValue="PAYYM">
+                        ORDER BY T1.SEQNO, T2.PAYYM DESC, T2.ISSUYM DESC, T2.CHKCODE         
+                    </isEqual>
+                </isParameterPresent>
+            </dynamic>                                   
+    </select>
+    
+    <select id="selectForRptReplace" resultClass="java.lang.String">
+          Select DISTINCT CHKRESULT  
+            From BACHKFILE 
+           Where APNO = #apNo:VARCHAR#
+             And SEQNO = #seqNo:VARCHAR#
+             And ISSUYM = #issuYm:VARCHAR#
+             And CHKCODE = 'LR'
+    </select>
+    
+    <select id="selectForRptReplaceA137" resultClass="java.lang.String">
+          Select DISTINCT CHKRESULT  
+            From BACHKFILE 
+           Where APNO = #apNo:VARCHAR#
+             And SEQNO = #seqNo:VARCHAR#
+             And ISSUYM = #issuYm:VARCHAR#
+             And CHKCODE = 'LQ'
+    </select>    
+    
+    <select id="selectForPayeeDataUpdateQ1" resultClass="java.lang.Integer">
+          Select count(*) as Q1  
+            From BACHKFILE 
+           Where APNO = #apNo:VARCHAR#
+             And SEQNO = '0000'
+             And ISSUYM = #issuYm:VARCHAR#
+             And CHKCODE in ('W1','WH','WJ')
+    </select>
+    
+    <select id="displayIdnChkYearMonth" resultClass="java.lang.Integer">
+          Select count(*) as Q1  
+            From BACHKFILE 
+           Where APNO = #apNo:VARCHAR#
+             And SEQNO = #seqNo:VARCHAR#
+             And ISSUYM = #issuYm:VARCHAR#
+             And CHKCODE in ('W1','WH','WJ')
+    </select>
+    
+    <select id="displayDigamyDate" resultClass="java.lang.Integer">
+          Select count(*) as Q1  
+            From BACHKFILE 
+           Where APNO = #apNo:VARCHAR#
+             And SEQNO = #seqNo:VARCHAR#
+             And ISSUYM = #issuYm:VARCHAR#
+             And CHKCODE in ('5G')
+    </select>
+    
+    <delete id="deleteBachkfileData">
+        DELETE FROM BACHKFILE
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    SEQNO like #seqNo:VARCHAR#||'%'
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+    
+    <select id="selectBachkfileDataByLog" resultMap="BACHKFILEResult">
+        SELECT BACHKFILEID, 
+				BAAPPBASEID, 
+				APNO,       
+				SEQNO,      
+				ISSUYM,     
+				PAYYM,      
+				CHKTYP,     
+				CHKCODE,    
+				CHKCODEPRE, 
+				CHKCODEPOST, 
+				CHKRESULT 
+		 FROM BACHKFILE  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    SEQNO like #seqNo:VARCHAR#||'%'
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select> 
+    <!-- DisableReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getDisableReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE, 
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+    <select id="getDisableReviewRpt01ChkfileDataBy" resultMap="OldAgeReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE,  
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+    <select id="getDisableReviewRpt01ChkfileDescBy" resultMap="OldAgeReviewRpt01ChkfileDescResult">
+        SELECT DISTINCT A.CHKCODE,
+                        A.CHKCODEPOST,
+                        CASE
+                          WHEN A.CHKCODE = 'UK' THEN
+                           A.CHKRESULT || A.KEYVALUE
+                          ELSE
+                           A.CHKRESULT
+                        END AS CHKRESULT
+        FROM BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty> 
+                 AND A.PAYYM = ( SELECT MAX(B.PAYYM) FROM BACHKFILE B
+                             WHERE B.SEQNO = '0000'
+                 
+		                <isNotEmpty prepend="" property="apNo">
+		                    <isNotEmpty prepend="AND" property="issuYm">
+                                      B.APNO = #apNo:VARCHAR# AND 
+                                      B.ISSUYM = #issuYm:VARCHAR# 
+		                    </isNotEmpty>
+		                </isNotEmpty>     
+   				    And B.CHKCODE = A.CHKCODE)
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.CHKCODE
+    </select>
+    
+    <select id="getDisableReviewRpt01FamChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE, 
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+                <isEmpty prepend="AND" property="eqType">
+                    A.CHKTYP = 'C'
+                </isEmpty>
+                <isNotEmpty prepend="AND" property="eqType">
+                    <isEqual property="eqType" compareValue="lt">
+                    <![CDATA[  A.CHKTYP < 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="le">
+                    <![CDATA[  A.CHKTYP <= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="eq">
+                    <![CDATA[  A.CHKTYP = 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ge">
+                    <![CDATA[  A.CHKTYP >= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="gt">
+                    <![CDATA[  A.CHKTYP > 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ne">
+                    <![CDATA[  A.CHKTYP != 'C'  ]]>
+                    </isEqual>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+    <select id="getDisableReviewRpt01FamChkfileDescDataBy" resultMap="DisableReviewRpt01ChkfileDescDataResult">
+        SELECT DISTINCT 
+               A.CHKCODE, 
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+                <isEmpty prepend="AND" property="eqType">
+                    A.CHKTYP = 'C'
+                </isEmpty>
+                <isNotEmpty prepend="AND" property="eqType">
+                    <isEqual property="eqType" compareValue="lt">
+                    <![CDATA[  A.CHKTYP < 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="le">
+                    <![CDATA[  A.CHKTYP <= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="eq">
+                    <![CDATA[  A.CHKTYP = 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ge">
+                    <![CDATA[  A.CHKTYP >= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="gt">
+                    <![CDATA[  A.CHKTYP > 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ne">
+                    <![CDATA[  A.CHKTYP != 'C'  ]]>
+                    </isEqual>
+                </isNotEmpty>
+				AND A.PAYYM = ( SELECT MAX(B.PAYYM) FROM BACHKFILE B
+                WHERE   
+                 <![CDATA[
+                    LENGTH(B.SEQNO) = '2'
+                  ]]> 
+                  <isEmpty prepend="AND" property="eqType">
+                   B.CHKTYP = 'C'
+                  </isEmpty>
+                  <isNotEmpty prepend="AND" property="eqType">
+                       <isEqual property="eqType" compareValue="lt">
+                       <![CDATA[  B.CHKTYP < 'C'  ]]>
+                       </isEqual>
+                       <isEqual property="eqType" compareValue="le">
+                       <![CDATA[  B.CHKTYP <= 'C'  ]]>
+                       </isEqual>
+                       <isEqual property="eqType" compareValue="eq">
+                       <![CDATA[  B.CHKTYP = 'C'  ]]>
+                       </isEqual>
+                       <isEqual property="eqType" compareValue="ge">
+                       <![CDATA[  B.CHKTYP >= 'C'  ]]>
+                       </isEqual>
+                       <isEqual property="eqType" compareValue="gt">
+                       <![CDATA[  B.CHKTYP > 'C'  ]]>
+                       </isEqual>
+                       <isEqual property="eqType" compareValue="ne">
+                       <![CDATA[  B.CHKTYP != 'C'  ]]>
+                       </isEqual>
+                  </isNotEmpty>
+		                <isNotEmpty prepend="" property="apNo">
+		                    <isNotEmpty prepend="AND" property="issuYm">
+                                      B.APNO = #apNo:VARCHAR# AND 
+                                      B.ISSUYM = #issuYm:VARCHAR# 
+		                    </isNotEmpty>
+		                </isNotEmpty>     
+   				    And B.CHKCODE = A.CHKCODE)
+            </isParameterPresent>
+        </dynamic>
+        AND  LENGTH(A.SEQNO) = '2'
+        ORDER BY A.CHKCODE
+    </select>
+    <!-- ] -->
+    <!-- DisableReviewRpt 01 End -->
+    
+    <!-- Disabled CheckMark Level Adjust -->
+    <!-- [ -->
+    <select id="getDisabledCheckMarkLevelAdjustBenDetailDataBy" resultMap="DisabledCheckMarkLevelAdjustBenDetailDataResult">
+        SELECT TA.BACHKFILEID,
+               TA.APNO,
+               TA.SEQNO,
+               TA.ISSUYM,
+               TA.PAYYM,
+               TA.CHKCODE,
+               TA.CHKCODEPRE,
+               TA.CHKCODEPOST,
+               TA.CHKRESULT,
+               TA.KEYVALUE,
+               TA.MAXMK,
+               TB.VALISYM,
+               TB.VALIEYM 
+        FROM
+        (
+            SELECT T1.*,
+                   CASE T1.PAYYM 
+                       WHEN T2.MAXPAYYM THEN '1' 
+                       ELSE '0' 
+                   END "MAXMK" 
+            FROM   BACHKFILE T1,
+            (   
+                SELECT T2.CHKCODE,
+                       MAX(T2.PAYYM) MAXPAYYM 
+                FROM   BACHKFILE T2 
+                WHERE  T2.APNO = #apNo:VARCHAR# AND
+                       T2.SEQNO = #seqNo:VARCHAR#
+                GROUP BY T2.CHKCODE
+            ) T2 
+            WHERE  T1.APNO = #apNo:VARCHAR# AND
+                   T1.SEQNO = #seqNo:VARCHAR# AND
+                   T1.CHKCODE = T2.CHKCODE AND
+                   T1.CHKCODEPRE = 'O' And
+                   T1.ISSUYM = ( SELECT T5.ISSUYM
+                                 FROM BAAPPBASE T5
+                                 WHERE T5.APNO = #apNo:VARCHAR# AND 
+                                       T5.SEQNO= #seqNo:VARCHAR#
+                               )
+        ) TA,
+        ( 
+            SELECT T3.* 
+            FROM   BACHKCONTRL T3 
+            WHERE  T3.APNO = #apNo:VARCHAR# AND
+                   T3.SEQNO = #seqNo:VARCHAR# AND
+                   T3.ISSUYM = ( SELECT MAX(T31.ISSUYM) 
+                                 FROM   BACHKCONTRL T31 
+                                 WHERE  T31.APNO = #apNo:VARCHAR# AND
+                                        T31.SEQNO = #seqNo:VARCHAR#
+                               ) AND
+                   T3.CONTRLTYP = '0'
+        ) TB 
+        WHERE TA.CHKCODE = TB.CHKCODE(+) 
+          And TA.PAYYM = TB.PAYYM (+)
+        ORDER BY PAYYM DESC, CHKCODE
+    </select>
+    
+    <select id="getDisabledCheckMarkLevelAdjustFamDetailDataBy" resultMap="DisabledCheckMarkLevelAdjustFamDetailDataResult">
+        SELECT TA.BACHKFILEID,
+               TA.APNO,
+               TA.SEQNO,
+               TA.ISSUYM,
+               TA.PAYYM,
+               TA.CHKCODE,
+               TA.CHKCODEPRE,
+               TA.CHKCODEPOST,
+               TA.CHKRESULT,
+               TA.KEYVALUE,
+               TA.MAXMK,
+               TB.VALISYM,
+               TB.VALIEYM 
+        FROM
+        (
+            SELECT T1.*,
+                   CASE T1.PAYYM 
+                       WHEN T2.MAXPAYYM THEN '1' 
+                       ELSE '0' 
+                   END "MAXMK" 
+            FROM   BACHKFILE T1,
+            (
+                SELECT T2.CHKCODE,
+                       MAX(T2.PAYYM) MAXPAYYM 
+                FROM   BACHKFILE T2 
+                WHERE  T2.APNO = #apNo:VARCHAR# AND
+                       T2.SEQNO = #seqNo:VARCHAR# 
+                GROUP BY T2.CHKCODE
+            ) T2 
+            WHERE  T1.APNO = #apNo:VARCHAR# AND
+                   T1.SEQNO = #seqNo:VARCHAR# AND
+                   T1.CHKCODE = T2.CHKCODE AND
+                   T1.CHKCODEPRE = 'O' And 
+                   T1.ISSUYM = ( SELECT T5.ISSUYM
+                                 FROM BAAPPBASE T5
+                                 WHERE T5.APNO = #apNo:VARCHAR# AND 
+                                       T5.SEQNO= '0000'
+                               )
+        ) TA,
+        (
+            SELECT T3.* 
+            FROM   BACHKCONTRL T3 
+            WHERE  T3.APNO = #apNo:VARCHAR# AND
+                   T3.SEQNO = #seqNo:VARCHAR# AND
+                   T3.ISSUYM = ( SELECT MAX(T31.ISSUYM) 
+                                 FROM   BACHKCONTRL T31 
+                                 WHERE  T31.APNO = #apNo:VARCHAR# AND
+                                        T31.SEQNO = #seqNo:VARCHAR#
+                               ) AND
+                   T3.CONTRLTYP = '1'
+        ) TB 
+        WHERE TA.CHKCODE = TB.CHKCODE(+) 
+          And TA.PAYYM = TB.PAYYM (+)
+        ORDER BY PAYYM DESC, CHKCODE
+    </select>
+    <!-- ] -->
+    <!-- Disabled CheckMark Level Adjust -->
+    
+    <!-- Survivor CheckMark Level Adjust -->
+    <!-- [ -->
+    <select id="getSurvivorCheckMarkLevelAdjustBenDetailDataBy" resultMap="SurvivorCheckMarkLevelAdjustBenDetailDataResult">
+        SELECT TA.BACHKFILEID,
+               TA.APNO,
+               TA.SEQNO,
+               TA.ISSUYM,
+               TA.PAYYM,
+               TA.CHKCODE,
+               TA.CHKCODEPRE,
+               TA.CHKCODEPOST,
+               TA.CHKRESULT,
+               TA.KEYVALUE,
+               TA.MAXMK,
+               TB.VALISYM,
+               TB.VALIEYM 
+        FROM
+        (
+            SELECT T1.*,
+                   CASE T1.PAYYM 
+                       WHEN T2.MAXPAYYM THEN '1' 
+                       ELSE '0' 
+                   END "MAXMK" 
+            FROM   BACHKFILE T1,
+            (   
+                SELECT T2.CHKCODE,
+                       MAX(T2.PAYYM) MAXPAYYM 
+                FROM   BACHKFILE T2 
+                WHERE  T2.APNO = #apNo:VARCHAR# AND
+                       T2.SEQNO = #seqNo:VARCHAR#
+                GROUP BY T2.CHKCODE
+            ) T2 
+            WHERE  T1.APNO = #apNo:VARCHAR# AND
+                   T1.SEQNO = #seqNo:VARCHAR# AND
+                   T1.CHKCODE = T2.CHKCODE AND
+                   T1.CHKCODEPRE = 'O' And
+                   T1.ISSUYM = ( SELECT T5.ISSUYM
+                                 FROM BAAPPBASE T5
+                                 WHERE T5.APNO = #apNo:VARCHAR# AND 
+                                       T5.SEQNO= #seqNo:VARCHAR#
+                               )
+        ) TA,
+        ( 
+            SELECT T3.* 
+            FROM   BACHKCONTRL T3 
+            WHERE  T3.APNO = #apNo:VARCHAR# AND
+                   T3.SEQNO = #seqNo:VARCHAR# AND
+                   T3.ISSUYM = ( SELECT MAX(T31.ISSUYM) 
+                                 FROM   BACHKCONTRL T31 
+                                 WHERE  T31.APNO = #apNo:VARCHAR# AND
+                                        T31.SEQNO = #seqNo:VARCHAR#
+                               ) AND
+                   T3.CONTRLTYP = '0'
+        ) TB 
+        WHERE TA.CHKCODE = TB.CHKCODE(+) 
+          And TA.PAYYM = TB.PAYYM (+)
+        ORDER BY PAYYM DESC, CHKCODE
+    </select> 
+    <!-- ] -->
+    <!-- Survivor CheckMark Level Adjust -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01ChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
+	    SELECT A.PAYYM,                   
+	           A.CHKCODE,                 
+	           A.CHKCODEPRE,              
+	           A.CHKRESULT                
+	      FROM BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYYM, A.CHKCODE 
+    </select>
+    <select id="getSurvivorReviewRpt01BenChkfileDescDataBy" resultMap="DisableReviewRpt01ChkfileDescDataResult">
+        SELECT DISTINCT 
+               A.CHKCODE, 
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+                <isEmpty prepend="AND" property="eqType">
+                    A.CHKTYP = 'C'
+                </isEmpty>
+                <isNotEmpty prepend="AND" property="eqType">
+                    <isEqual property="eqType" compareValue="lt">
+                    <![CDATA[  A.CHKTYP < 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="le">
+                    <![CDATA[  A.CHKTYP <= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="eq">
+                    <![CDATA[  A.CHKTYP = 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ge">
+                    <![CDATA[  A.CHKTYP >= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="gt">
+                    <![CDATA[  A.CHKTYP > 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ne">
+                    <![CDATA[  A.CHKTYP != 'C'  ]]>
+                    </isEqual>
+                </isNotEmpty>
+                AND A.PAYYM = ( SELECT MAX(B.PAYYM) FROM BACHKFILE B
+                             WHERE   
+                 
+                  <![CDATA[
+                    LENGTH(B.SEQNO) = '4'
+                    AND B.SEQNO <> '0000'
+                  ]]> 
+                  <isEmpty prepend="AND" property="eqType">
+                      B.CHKTYP = 'C'
+                  </isEmpty>
+                  <isNotEmpty prepend="AND" property="eqType">
+                      <isEqual property="eqType" compareValue="lt">
+                      <![CDATA[  B.CHKTYP < 'C'  ]]>
+                      </isEqual>
+                      <isEqual property="eqType" compareValue="le">
+                      <![CDATA[  B.CHKTYP <= 'C'  ]]>
+                      </isEqual>
+                      <isEqual property="eqType" compareValue="eq">
+                      <![CDATA[  B.CHKTYP = 'C'  ]]>
+                      </isEqual>
+                      <isEqual property="eqType" compareValue="ge">
+                      <![CDATA[  B.CHKTYP >= 'C'  ]]>
+                      </isEqual>
+                      <isEqual property="eqType" compareValue="gt">
+                      <![CDATA[  B.CHKTYP > 'C'  ]]>
+                      </isEqual>
+                      <isEqual property="eqType" compareValue="ne">
+                      <![CDATA[  B.CHKTYP != 'C'  ]]>
+                      </isEqual>
+                  </isNotEmpty>
+		                <isNotEmpty prepend="" property="apNo">
+		                    <isNotEmpty prepend="AND" property="issuYm">
+                                      B.APNO = #apNo:VARCHAR# AND 
+                                      B.ISSUYM = #issuYm:VARCHAR# 
+		                    </isNotEmpty>
+		                </isNotEmpty>     
+   				    And B.CHKCODE = A.CHKCODE)
+            </isParameterPresent>
+        </dynamic>
+         <![CDATA[
+		  AND A.SEQNO <> '0000'
+         ]]>
+        AND  LENGTH(A.SEQNO) = '4'
+        ORDER BY A.CHKCODE
+    </select>
+    
+    <select id="getSurvivorReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
+        SELECT A.PAYYM,
+               A.CHKCODE, 
+               A.CHKCODEPRE, 
+               A.CHKRESULT 
+        FROM   BACHKFILE A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+                <isEmpty prepend="AND" property="eqType">
+                    A.CHKTYP = 'C'
+                </isEmpty>
+                <isNotEmpty prepend="AND" property="eqType">
+                    <isEqual property="eqType" compareValue="lt">
+                    <![CDATA[  A.CHKTYP < 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="le">
+                    <![CDATA[  A.CHKTYP <= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="eq">
+                    <![CDATA[  A.CHKTYP = 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ge">
+                    <![CDATA[  A.CHKTYP >= 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="gt">
+                    <![CDATA[  A.CHKTYP > 'C'  ]]>
+                    </isEqual>
+                    <isEqual property="eqType" compareValue="ne">
+                    <![CDATA[  A.CHKTYP != 'C'  ]]>
+                    </isEqual>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        <![CDATA[
+		  AND A.SEQNO <> '0000'
+         ]]>
+        ORDER BY A.PAYYM, A.CHKCODE
+    </select>
+    
+     <select id="getSurvivorReviewRpt01ChkfileDescBy" resultMap="OldAgeReviewRpt01ChkfileDescResult">
+        SELECT DISTINCT A.CHKCODE,
+                        A.CHKCODEPOST,
+                        CASE
+                          WHEN A.CHKCODE = 'UK' THEN
+                           A.CHKRESULT || A.KEYVALUE
+                          ELSE
+                           A.CHKRESULT
+                        END AS CHKRESULT
+        FROM BACHKFILE A
+        WHERE SEQNO='0000'
+        <dynamic>
+            
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.CHKCODE
+    </select>
+    
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <select id="getDisabledApplicationDataUpdateCheckFileListBy" resultMap="DisabledApplicationDataUpdateCheckFileResult">
+        SELECT A.PAYYM,
+               A.CHKCODE||'-'||A.CHKCODEPOST AS CHKFILENAME,
+               A.CHKCODE||'-'||A.CHKRESULT   AS CHKFILEDESC,
+               A.CHKCODE                     AS CHKFILECODE 
+        FROM   BACHKFILE A,
+               (
+                   SELECT X.BAAPPBASEID,
+                          X.ISSUYM 
+                   FROM   BAAPPBASE X 
+                   WHERE  X.BAAPPBASEID = #baappbaseId:NUMERIC#
+               ) B 
+        WHERE  A.BAAPPBASEID = B.BAAPPBASEID AND
+               A.ISSUYM = B.ISSUYM AND
+               A.CHKTYP = 'A' AND
+               A.SEQNO = '0000'
+        ORDER BY A.ISSUYM, A.PAYYM, A.CHKCODE
+    </select>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Survivor Application Data Update -->
+    <!-- [ -->
+    <select id="getSurvivorApplicationDataUpdateCheckFileListBy" resultMap="SurvivorApplicationDataUpdateCheckFileResult">
+        SELECT A.PAYYM,
+               A.CHKCODE||'-'||A.CHKCODEPOST AS CHKFILENAME,
+               A.CHKCODE||'-'||A.CHKRESULT   AS CHKFILEDESC,
+               A.CHKCODE                     AS CHKFILECODE 
+        FROM   BACHKFILE A,
+               (
+                   SELECT X.BAAPPBASEID,
+                          X.ISSUYM 
+                   FROM   BAAPPBASE X 
+                   WHERE  X.BAAPPBASEID = #baappbaseId:NUMERIC# 
+               ) B 
+        WHERE  A.BAAPPBASEID = B.BAAPPBASEID AND
+               A.ISSUYM = B.ISSUYM AND
+               A.CHKTYP = 'A'
+        ORDER BY A.ISSUYM, A.PAYYM, A.CHKCODE
+    </select>
+    <!-- ] -->
+    <!-- Survivor Application Data Update -->
+    
+    <select id="selectChkFileForSurvivorPaymentReview" resultMap="ChkFileForSurvivorPaymentReviewResult">
+        SELECT B.SEQNO,
+		       B.ISSUYM,
+		       B.PAYYM,
+		       B.CHKCODEPOST,
+		       B.CHKRESULT    
+		  FROM (SELECT X.APNO,
+		               X.SEQNO,
+		               X.ISSUYM
+		          FROM BAAPPBASE X
+		         WHERE X.APNO = #apNo:VARCHAR# 
+		           <![CDATA[
+		           AND X.SEQNO <> '0000'
+                   ]]>
+                   <isNotEmpty prepend="AND" property="familySeqNo">
+                       X.SEQNO = #familySeqNo:VARCHAR#
+                   </isNotEmpty>
+		           AND X.BENPAYMK='1') A,
+		       (SELECT DISTINCT 
+		               Y.APNO,
+		               Y.SEQNO,
+		               Y.ISSUYM,
+		               Y.PAYYM,
+		               Y.CHKCODE,
+		              (Y.CHKCODE||'-'||Y.CHKCODEPOST) AS CHKCODEPOST,
+		              (Y.CHKCODE||'-'||Y.CHKRESULT) AS CHKRESULT
+		          FROM BACHKFILE Y
+		         WHERE Y.APNO = #apNo:VARCHAR# 
+		           <![CDATA[
+		           AND Y.SEQNO <> '0000'
+                   ]]>
+                   <isNotEmpty prepend="AND" property="familySeqNo">
+                       Y.SEQNO = #familySeqNo:VARCHAR#
+                   </isNotEmpty>
+                   <isNotEqual prepend="AND" property="chkTyp" compareValue="C">
+                       <![CDATA[
+                       Y.CHKTYP <> 'C'
+                       ]]>
+                   </isNotEqual>
+                   <isEqual prepend="AND" property="chkTyp" compareValue="C">
+                       Y.CHKTYP = #chkTyp:VARCHAR#
+                   </isEqual>
+		           ) B
+		 WHERE A.APNO = B.APNO
+		   AND A.SEQNO = B.SEQNO
+		   AND A.ISSUYM = B.ISSUYM
+		 ORDER BY B.SEQNO,B.ISSUYM,B.PAYYM,B.CHKCODEPOST
+    </select>
+    
+    <select id="getSurvivorPayeeQualifyCheckMark" resultMap="SurvivorPayeeDataCheckMarkResult">
+    	<![CDATA[
+        SELECT DISTINCT T.SEQNO, T.ISSUYM, T.PAYYM, T.CHKCODE, T.CHKRESULT, T.CHKCODEPOST
+  			FROM BACHKFILE T
+ 			WHERE T.APNO = #apNo:VARCHAR#
+   				AND T.SEQNO = #seqNo:VARCHAR#
+   				AND T.CHKTYP = 'C'
+   				AND T.ISSUYM = (SELECT T1.ISSUYM
+                     			FROM BAAPPBASE T1
+                    			WHERE T1.APNO = #apNo:VARCHAR#
+                      			AND T1.SEQNO = #seqNo:VARCHAR#)
+ 			ORDER BY T.PAYYM DESC, T.CHKCODE
+ 		]]>
+    </select>
+    
+    <select id="getSurvivorPayeeCheckMark" resultMap="SurvivorPayeeDataCheckMarkResult">
+    	<![CDATA[
+        SELECT DISTINCT T.SEQNO, T.ISSUYM, T.PAYYM, T.CHKCODE, T.CHKRESULT, T.CHKCODEPOST
+  			FROM BACHKFILE T
+ 			WHERE T.APNO = #apNo:VARCHAR#
+   				AND T.SEQNO = #seqNo:VARCHAR#
+   				AND T.CHKTYP <> 'C'
+   				AND T.ISSUYM = (SELECT T1.ISSUYM
+                     			FROM BAAPPBASE T1
+                    			WHERE T1.APNO = #apNo:VARCHAR#
+                      			AND T1.SEQNO = #seqNo:VARCHAR#)
+ 			ORDER BY T.PAYYM DESC, T.CHKCODE
+ 		]]>
+    </select> 
+    
+    <select id="selectDataCount2ForDependant" resultClass="java.lang.Integer">
+         SELECT COUNT(*)
+          FROM BACHKFILE
+         WHERE APNO = #apNo:VARCHAR# 
+           AND SEQNO = #seqNo:VARCHAR# 
+           AND ISSUYM = #issuYm:VARCHAR# 
+           AND CHKCODE IN ('W1','WH','WJ') 
+    </select>
+    
+    <select id="selectChkCodeForRpt29By" resultMap="ChkCodeForRpt29Result">
+        SELECT Distinct T.CHKCODE 
+          FROM BACHKFILE T
+         WHERE T.APNO =   #apNo:VARCHAR# 
+           AND T.SEQNO =  #seqNo:VARCHAR# 
+           AND T.ISSUYM = #issuYm:VARCHAR# 
+           AND T.PAYYM =  #payYm:VARCHAR# 
+           AND T.CHKTYP = 'C'  
+        Order by T.CHKCODE 
+    </select>
+
+	<select id="selectInsuranceSalaryForRptReplace" resultClass="java.lang.String">
+		SELECT NVL(TRIM(SUBSTR(A.CHKRESULT,INSTR(A.CHKRESULT,'1-勞就保:')+6,LENGTH(A.CHKRESULT))),'0') AS CHKRESULT
+		  FROM BACHKFILE A
+		 WHERE A.APNO = #apNo:VARCHAR#
+		   AND A.SEQNO = #seqNo:VARCHAR#
+		   AND A.ISSUYM = #issuYm:VARCHAR#
+ 		   AND A.PAYYM = (SELECT MAX(B.PAYYM) FROM BACHKFILE B
+		                   WHERE B.SEQNO = '0000'
+		                     AND B.APNO = #apNo:VARCHAR#
+		                     AND B.ISSUYM = #issuYm:VARCHAR#
+		                     AND B.CHKCODE = A.CHKCODE)
+		   AND A.CHKCODE = '12'
+           AND A.CHKRESULT like '%1-勞就保%'
+		 ORDER BY A.CHKCODE
+	</select>
+    
+</sqlMap>

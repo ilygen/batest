@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF13">
+
+    <typeAlias alias="Bbcmf13" type="tw.gov.bli.ba.domain.Bbcmf13" />
+
+    <select id="selectBbcmf13CountBy" resultClass="java.lang.Integer">
+        SELECT COUNT(*) AS ROWCOUNT FROM BCCMF13
+         WHERE (TRIM(BCCMF13.CTCODE) = #hpNo:VARCHAR#
+            OR TRIM(BCCMF13.CTNAME) = trim(#hpSnam:VARCHAR#))
+           AND CTPAYTYP like ('%31%')       
+    </select>
+</sqlMap>

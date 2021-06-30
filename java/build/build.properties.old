@@ -1,0 +1,6 @@
+#common config
+app.name=BaWeb
+oc4j.binding.module=BaWeb
+deploy.dir=D:/Work/Doc/\u52de\u4fdd\u5e74\u91d1/\u6e2c\u8a66\u5340/\u904e\u7248
+oc4j.home=C:/Java/jdevj2eebase1013/j2ee/home
+tempdeploy.dir=X:/war/test/

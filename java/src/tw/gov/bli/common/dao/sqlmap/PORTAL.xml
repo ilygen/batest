@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PORTAL">
+
+    <typeAlias alias="PortalSysfunc" type="tw.gov.bli.common.domain.SystemFunction" />
+
+    <resultMap id="PORTALResult" class="PortalSysfunc">
+        <result column="ITEM_ID"        property="itemId"       jdbcType="VARCHAR"      javaType="java.lang.String"  />
+        <result column="ITEM_NAME"      property="itemName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <typeAlias alias="CasUser" type="tw.gov.bli.common.domain.CasUser" />
+
+    <resultMap id="CasUserResult" class="CasUser">
+        <result column="USER_ID"        property="userId"       jdbcType="VARCHAR"      javaType="java.lang.String"  />
+        <result column="USER_NAME"      property="userName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EMP_ID"         property="empId"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DEPT_ID"        property="deptId"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <select id="selectCasSysFuncBySystemId" parameterClass="java.lang.String" resultMap="PORTALResult">
+        (
+            SELECT A.FUNC_ID AS ITEM_ID, 
+                   A.ITEM_NAME
+            FROM   table(get_ba_items) A
+            WHERE  A.FUNC_ID = #itemId#
+        )
+    </select>
+    
+    <select id="selectCasUserItem" resultClass="java.lang.String">
+        <![CDATA[
+        SELECT FUNC_ID AS ITEM_ID 
+        FROM   TABLE ( USER_MENU_ITEM( #userId# , #systemId# ) ) 
+        WHERE  IS_DISABLED IS NULL OR
+               IS_DISABLED <> 'Y' 
+        ORDER  BY FUNC_ID
+        ]]>
+    </select>
+    
+    <select id="selectCasUser" resultMap="CasUserResult">
+        SELECT A.USER_ID, 
+               A.USER_NAME,
+               A.EMP_ID,
+               A.DEPT_ID
+        FROM   USERS A 
+        WHERE  A.USER_ID = #userId#
+    </select> 
+
+</sqlMap>

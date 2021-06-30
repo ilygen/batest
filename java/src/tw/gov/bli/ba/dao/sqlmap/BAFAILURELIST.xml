@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAFAILURELIST">
+
+    <typeAlias alias="Bafailurelist" type="tw.gov.bli.ba.domain.Bafailurelist" />
+    
+    <resultMap id="FailureListResult" class="Bafailurelist">
+        <result column="TEMPHANDLENO"          property="tempHandleNo"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DIVSEQ"                property="divSeq"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AVAILABLE_MONEY"       property="available_Money"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REMARK"                property="remark"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <select id="selectBafailureListDataBy" resultMap="FailureListResult">
+                  SELECT A.TEMPHANDLENO, 
+                         A.DIVSEQ, 
+                         A.AVAILABLE_MONEY, 
+                         A.REMARK
+                    FROM BAFAILURELIST A
+                   WHERE A.PAYCODE LIKE #payCode:VARCHAR# || '%'
+                     AND A.CHKDATE = #chkDate:VARCHAR#
+                   ORDER BY TEMPHANDLENO, DIVSEQ
+    </select>
+    
+	<insert id="insertDataForFailureListData">
+        
+        insert  into  BAFAILURELIST
+        (
+             PAYCODE
+            ,CHKDATE
+            ,TEMPHANDLENO
+            ,DIVSEQ
+            ,AVAILABLE_MONEY
+            ,REMARK
+            ,CRTUSER
+            ,CRTTIME
+        )
+        values
+        (
+             #payCode:VARCHAR#
+            ,#chkDate:VARCHAR#
+            ,#tempHandleNo:VARCHAR#
+            ,#divSeq:VARCHAR#
+            ,#available_Money:VARCHAR#
+            ,#remark:VARCHAR#
+            ,#crtUser:VARCHAR#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+        )    
+    </insert>
+    
+</sqlMap>

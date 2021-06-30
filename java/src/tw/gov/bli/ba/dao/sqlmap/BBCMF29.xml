@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF29">
+
+    <typeAlias alias="Bbcmf29" type="tw.gov.bli.ba.domain.Bbcmf29" />
+
+    <resultMap id="BBCMF29Result" class="Bbcmf29">                                                                        
+        <result column="IDNO"      property="idNo"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="BRDTE"     property="brDte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PBNAME"    property="pbName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>   
+
+    <select id="checkIdnoExist" resultClass="java.lang.String">
+         SELECT t.IDNO FROM BCCMF29 t
+          WHERE t.IDNO = #idNo:VARCHAR#
+            AND t.BRDTE  =  #brDte:VARCHAR#                    
+    </select>
+</sqlMap>

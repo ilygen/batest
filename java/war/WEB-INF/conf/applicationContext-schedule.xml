@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="quartzProperties">
+        <props>
+            <prop key="org.quartz.scheduler.rmi.export">false</prop>
+            <prop key="org.quartz.scheduler.rmi.proxy">false</prop>
+            <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+            <prop key="org.quartz.threadPool.threadCount">10</prop>
+            <prop key="org.quartz.threadPool.threadPriority">5</prop>
+            <prop key="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread">true</prop>
+            <prop key="org.quartz.jobStore.useProperties">true</prop>
+            <prop key="org.quartz.jobStore.class">org.quartz.impl.jdbcjobstore.JobStoreCMT</prop>
+            <prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>
+            <prop key="org.quartz.jobStore.driverDelegateClass">org.quartz.impl.jdbcjobstore.StdJDBCDelegate</prop>
+        	<prop key="org.quartz.scheduler.classLoadHelper.class">org.quartz.simpl.CascadingClassLoadHelper</prop>
+        	<prop key="org.quartz.scheduler.instanceName">BaQrtz</prop>
+        	<prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+        </props>
+    	</property>
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+        <property name="autoStartup" value="true" />
+    </bean>
+    
+     <!-- IMPORTANT: All Directory Value must Begin and End with '/' -->
+    <bean id="ftpClient" class="tw.gov.bli.ba.bj.helper.FtpHelper">
+        <!-- for Develop -->
+        
+        <property name="controlEncoding" value="${ftpClient.controlEncoding}" />
+        <property name="serverAddress" value="${ftpClient.serverAddress}" />
+        <property name="serverPort" value="${ftpClient.serverPort}" />
+        <property name="userId" value="${ftpClient.userId}" />
+        <property name="userPass" value="${ftpClient.userPass}" />
+        <property name="dirForRecordFile" value="${ftpClient.dirForRecordFile}" />
+        <property name="dirForDataFile" value="${ftpClient.dirForDataFile}" />
+        <property name="dirForRecordFileBackup" value="${ftpClient.dirForRecordFileBackup}" />
+        <property name="dirForDataFileBackup" value="${ftpClient.dirForDataFileBackup}" />
+        <property name="txtFileEncoding" value="${ftpClient.txtFileEncoding}" />
+        <property name="procRecordFileNamePrefix" value="${ftpClient.procRecordFileNamePrefix}" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>${ftpClient.paidMarkFileNamePrefix_1}</value>
+                <value>${ftpClient.paidMarkFileNamePrefix_2}</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>${ftpClient.writeOffFileNamePrefix}</value>
+            </list>
+        </property>
+        
+        
+        <!-- for Develop Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.64.24.143" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="badeftp" />
+        <property name="userPass" value="badeftp" />
+        <property name="dirForRecordFile" value="/badeftp/NPME/" />
+        <property name="dirForDataFile" value="/badeftp/" />
+        <property name="dirForRecordFileBackup" value="/badeftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/badeftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+         
+        <!-- for Testing Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.64.24.144" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="bateftp" />
+        <property name="userPass" value="bateftp" />
+        <property name="dirForRecordFile" value="/bateftp/NPME/" />
+        <property name="dirForDataFile" value="/bateftp/" />
+        <property name="dirForRecordFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+        
+        <!-- for Offical Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.64.24.144" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="baonftp" />
+        <property name="userPass" value="baonftp" />
+        <property name="dirForRecordFile" value="/baonftp/NPME/" />
+        <property name="dirForDataFile" value="/baonftp/" />
+        <property name="dirForRecordFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+    </bean>
+    
+    <!-- IMPORTANT: All Directory Value must Begin and End with '/' -->
+    <bean id="ftpDbClient" class="tw.gov.bli.ba.bj.helper.FtpDbHelper">
+        <!-- for Local & Develop Release -->
+        
+        <property name="controlEncoding" value="${ftpDbClient.controlEncoding}" />
+        <property name="serverAddress" value="${ftpDbClient.serverAddress}" />
+        <property name="serverPort" value="${ftpDbClient.serverPort}" />
+        <property name="userId" value="${ftpDbClient.userId}" />
+        <property name="userPass" value="${ftpDbClient.userPass}" />
+        <property name="dirForRecordFileMedia" value="${ftpDbClient.dirForRecordFileMedia}" />
+        <property name="dirForRecordFile" value="${ftpDbClient.dirForRecordFile}" />
+        <property name="dirForDataFile" value="${ftpDbClient.dirForDataFile}" />
+        <property name="dirForRecordFileBackup" value="${ftpDbClient.dirForRecordFileBackup}" />
+        <property name="dirForDataFileBackup" value="${ftpDbClient.dirForDataFileBackup}" />
+        <property name="txtFileEncoding" value="${ftpDbClient.txtFileEncoding}" />
+        <property name="procRecordFileNamePrefix" value="${ftpDbClient.procRecordFileNamePrefix}" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>${ftpDbClient.paidMarkFileNamePrefix_1}</value>
+                <value>${ftpDbClient.paidMarkFileNamePrefix_2}</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>${ftpDbClient.writeOffFileNamePrefix}</value>
+            </list>
+        </property>
+        
+        
+        <!-- for Develop Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.64.24.143" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="indeftp" />
+        <property name="userPass" value="**indeftp" />
+        <property name="dirForRecordFileMedia" value="/crystal/EXCHANGE/" />
+        <property name="dirForRecordFile" value="/badeftp/NPME/" />
+        <property name="dirForDataFile" value="/badeftp/" />
+        <property name="dirForRecordFileBackup" value="/badeftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/badeftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+         
+        <!-- for Testing Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.68.10.14" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="bateftp" />
+        <property name="userPass" value="bateftp" />
+        <property name="dirForRecordFileMedia" value="/crystal/EXCHANGE/" />
+        <property name="dirForRecordFile" value="/bateftp/NPME/" />
+        <property name="dirForDataFile" value="/bateftp/" />
+        <property name="dirForRecordFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+        
+        <!-- for Offical Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.68.2.13" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="baonftp" />
+        <property name="userPass" value="baonftp" />
+        <property name="dirForRecordFileMedia" value="/crystal/EXCHANGE/" />
+        <property name="dirForRecordFile" value="/baonftp/NPME/" />
+        <property name="dirForDataFile" value="/baonftp/" />
+        <property name="dirForRecordFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+    </bean>
+    
+    <bean id="ftpApClient" class="tw.gov.bli.ba.bj.helper.FtpApHelper">
+        <!-- for Local & Develop Release -->
+        
+        <property name="controlEncoding" value="${ftpApClient.controlEncoding}" />
+        <property name="serverAddress" value="${ftpApClient.serverAddress}" />
+        <property name="serverPort" value="${ftpApClient.serverPort}" />
+        <property name="userId" value="${ftpApClient.userId}" />
+        <property name="userPass" value="${ftpApClient.userPass}" />
+        <property name="dirForRecordFile" value="${ftpApClient.dirForRecordFile}" />
+        <property name="dirForDataFile" value="${ftpApClient.dirForDataFile}" />
+        <property name="dirForRecordFileBackup" value="${ftpApClient.dirForRecordFileBackup}" />
+        <property name="dirForDataFileBackup" value="${ftpApClient.dirForDataFileBackup}" />
+        <property name="txtFileEncoding" value="${ftpApClient.txtFileEncoding}" />
+        <property name="procRecordFileNamePrefix" value="${ftpApClient.procRecordFileNamePrefix}" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>${ftpApClient.paidMarkFileNamePrefix_1}</value>
+                <value>${ftpApClient.paidMarkFileNamePrefix_2}</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>${ftpApClient.writeOffFileNamePrefix}</value>
+            </list>
+        </property>
+
+        <!-- for Testing Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.68.9.12" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="ba" />
+        <property name="userPass" value="chttestba" />
+        <property name="dirForRecordFile" value="/bateftp/NPME/" />
+        <property name="dirForDataFile" value="/bateftp/" />
+        <property name="dirForRecordFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/bateftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+        
+        <!-- for Offical Release -->
+        <!--
+        <property name="controlEncoding" value="MS950" />
+        <property name="serverAddress" value="10.68.1.12" />
+        <property name="serverPort" value="21" />
+        <property name="userId" value="ba" />
+        <property name="userPass" value="chtonba" />
+        <property name="dirForRecordFile" value="/baonftp/NPME/" />
+        <property name="dirForDataFile" value="/baonftp/" />
+        <property name="dirForRecordFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="dirForDataFileBackup" value="/baonftp/NPME/NPMEDONE/" />
+        <property name="txtFileEncoding" value="MS950" />
+        <property name="procRecordFileNamePrefix" value="BAME" />
+        <property name="paidMarkFileNamePrefix">
+            <list>
+                <value>BL1</value>
+                <value>BLA</value>
+            </list>
+        </property>
+        <property name="writeOffFileNamePrefix">
+            <list>
+                <value>WO</value>
+            </list>
+        </property>
+        -->
+    </bean>
+
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleProcRecordTxtTrigger" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="simpleProcRecordTxtTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="procRecordTxtJobDetail" />
+        <property name="startDelay" value="300000" />
+        <property name="repeatInterval" value="1800000" />
+    </bean>
+
+    <bean id="procRecordTxtJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="procRecordTxtJob" />
+        <property name="targetMethod" value="process" />
+        <property name="concurrent" value="false" />
+    </bean>
+
+    <bean id="procRecordTxtJob" class="tw.gov.bli.ba.bj.job.ProcRecordTxtJob">
+        <property name="ftpClient" ref="ftpClient" />
+        <property name="bjService" ref="bjService" />
+    </bean>
+    
+</beans>

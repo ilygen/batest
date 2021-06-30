@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPARAM">
+
+    <typeAlias alias="Baparam" type="tw.gov.bli.ba.domain.Baparam" />
+
+    <resultMap id="BAPARAMResult" class="Baparam">
+        <result column="PARAMTYP"       property="paramTyp"     jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="PARAMGROUP"     property="paramGroup"   jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="PARAMCODE"      property="paramCode"    jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="PARAMSEQ"       property="paramSeq"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAMNAME"      property="paramName"    jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="PARAMDESC"      property="paramDesc"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAMUSEMK"     property="paramUseMk"   jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="UPDUSER"        property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OptionListResult" class="Baparam">
+        <result column="PARAMCODE"      property="paramCode"    jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="PARAMNAME"      property="paramName"    jdbcType="VARCHAR"      javaType="java.lang.String" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectDataByLetter" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y' AND A.PARAMCODE not in ('21') 
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectParamNameBy" resultClass="java.lang.String">
+        SELECT A.PARAMNAME
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PARAMSEQ
+    </select>
+
+     <select id="selectOptionListBy" resultMap="OptionListResult">
+        SELECT A.PARAMCODE, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME              
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+          ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectOldOptionListBy" resultMap="OptionListResult">
+        SELECT A.PARAMCODE, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME              
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        AND A.PARAMGROUP = 'APITEM'
+        AND A.PARAMCODE in ('1', '2', '3' ,'6')
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectOptionListByUpdate" resultMap="OptionListResult">
+        SELECT A.PARAMCODE, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME              
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR# 
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        		AND PARAMCODE not in ('4','A')  
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectRelationOptionList" resultMap="OptionListResult">
+           <![CDATA[
+           Select  PARAMCODE,
+                   (PARAMCODE||'-'||PARAMNAME)  AS PARAMNAME
+             from  BAPARAM
+            where  PARAMUSEMK ='Y'
+              and  PARAMGROUP = 'RELATION' 
+              and  ((PARAMCODE >= '2'  and  PARAMCODE <= '7') OR PARAMCODE = 'O')
+       order  by   PARAMSEQ
+       ]]>
+     </select>
+     
+     <select id="selectDisabledPayeeRelationOptionList" resultMap="OptionListResult">
+           <![CDATA[
+           SELECT  PARAMCODE,
+                   (PARAMCODE||'-'||PARAMNAME)  AS PARAMNAME
+             FROM  BAPARAM
+            WHERE  PARAMUSEMK ='Y'
+              AND  PARAMGROUP = 'RELATION' 
+              AND  PARAMCODE in ('1', '2', '3', '4', '5', '6', '7', 'O') 
+       	ORDER  BY   PARAMSEQ
+       ]]>
+     </select>
+     
+     <select id="selectPayeeRelationOptionList" resultMap="OptionListResult">
+           <![CDATA[
+           Select PARAMCODE,(PARAMCODE||'-'||PARAMNAME)  AS PARAMNAME
+             from BAPARAM
+            where PARAMGROUP = 'RELATION' 
+              and PARAMUSEMK ='Y'
+              and PARAMCODE not in ('1','F','N')
+           order by PARAMSEQ 
+            ]]>
+     </select>
+     
+     <select id="selectPayeeRelationOptionList2" resultMap="OptionListResult">
+           Select PARAMCODE,(PARAMCODE||'-'||PARAMNAME)  AS PARAMNAME
+             from BAPARAM
+            where PARAMGROUP = 'RELATION' 
+              and PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="typeOne">
+                    PARAMCODE not in ('1','F','N','2','3','4','5','6','7')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="typeTwo">
+                    PARAMCODE not in ('1','F','N')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="typeThree">
+                    PARAMCODE not in ('1','F','N','Z')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="typeFour">
+                    PARAMCODE not in ('1','F','N','Z','2','3','4','5','6','7')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="typeFive">
+                    PARAMCODE not in ('1','F','N','Z','C','E','O')
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="relationStatus">
+                    PARAMCODE not in ('Z')
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+           order by PARAMSEQ 
+     </select>
+     
+     <select id="selectBenNameOptionList" resultMap="OptionListResult">
+           
+           Select SEQNO as PARAMCODE,(BENIDNNO||'-'||BENNAME) as PARAMNAME
+             from BAAPPBASE
+            where BENPAYMK = '1'
+              and BENEVTREL in ('1','2','3','4','5','6','7')
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="baappbaseId">
+                <![CDATA[    BAAPPBASEID <> #baappbaseId:NUMERIC#   ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+     </select>
+     
+    <select id="selectReliefOptionListBy" resultMap="OptionListResult">
+        SELECT A.PARAMCODE, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME              
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="reliefKind">
+                    A.PARAMGROUP = ('RELIEFKIND'||#reliefKind:VARCHAR#)
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectDependantRelationOptionList" resultMap="OptionListResult">
+           <![CDATA[
+           SELECT  PARAMCODE,
+                   (PARAMCODE||'-'||PARAMNAME)  AS PARAMNAME
+             FROM  BAPARAM
+            WHERE  PARAMUSEMK ='Y'
+              AND  PARAMGROUP = 'RELATION' 
+              AND  PARAMCODE in ('2', '3', '4', '5', '6', '7') 
+       	ORDER  BY   PARAMSEQ
+       ]]>
+     </select>
+    
+     <select id="selectDepandantCloseOptionList" resultMap="OptionListResult">
+     	SELECT PARAMCODE, PARAMNAME
+		  FROM BAPARAM
+		 WHERE PARAMGROUP = 'FAMCLOSECAUSE'
+      ORDER BY PARAMSEQ
+     </select>
+     
+     <!-- Survivor Application Data Update -->
+     <!-- [ -->
+     <select id="selectSurvivorApplicationDataUpdateApItemList" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y' AND
+               A.PARAMGROUP = 'APITEM' AND
+               A.PARAMCODE in ('4', '5', '7', '8', '9')
+        ORDER BY A.PARAMSEQ
+    </select>
+    <!-- ] -->
+    <!-- Survivor Application Data Update -->
+    
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <select id="selectReviewFeeReceiptRelationList" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y' AND
+               A.PARAMGROUP = 'RELATION' AND
+               A.PARAMCODE in ('1', '2', '3', '4', '5', '6', '7')
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="selectReviewFeeReceiptPayTypeList" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y' AND
+               A.PARAMGROUP = 'PAYTYPE'
+        ORDER BY A.PARAMSEQ
+    </select>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+
+	<select id="selectDataByBaban" resultMap="BAPARAMResult">
+        SELECT A.PARAMTYP, 
+               A.PARAMGROUP, 
+               A.PARAMCODE, 
+               A.PARAMSEQ, 
+               (A.PARAMCODE||'-'||A.PARAMNAME) AS PARAMNAME,
+               A.PARAMDESC, 
+               A.PARAMUSEMK, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPARAM A
+        WHERE  A.PARAMUSEMK ='Y' AND A.PARAMCODE='17'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="paramTyp">
+                    A.PARAMTYP = #paramTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramGroup">
+                    A.PARAMGROUP = #paramGroup:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paramCode">
+                    A.PARAMCODE = #paramCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PARAMSEQ
+    </select>
+    
+    <select id="getParamNameData" resultClass="java.lang.String">
+    	SELECT PARAMNAME
+		  FROM BAPARAM
+		 WHERE PARAMGROUP = 'MITRATE' 
+		   AND PARAMCODE = #paramCode:VARCHAR#
+    </select>
+    
+    <select id="getParamNameForDeathRepayData" resultClass="java.lang.String">
+    	SELECT PARAMNAME
+          FROM BAPARAM 
+         WHERE PARAMGROUP = 'MFILERESTAT' 
+           AND PARAMCODE = #paramCode:VARCHAR#
+           AND PARAMUSEMK = 'Y'
+    </select>
+    
+    <select id="getParamNameForKRECHKRESULT" resultClass="java.lang.String">
+	    SELECT PARAMNAME
+	      FROM BAPARAM
+	     WHERE PARAMGROUP LIKE 'KRECHKRESULT%' 
+    	   AND PARAMCODE = #paramCode:VARCHAR#
+    </select>
+    
+    <select id="selectParamNameForPfmPfdBy" resultClass="java.lang.String">
+        select t.PARAMNAME
+          from BAPARAM t
+         where t.PARAMGROUP = 'PFMRECHKDEPT'
+           and t.PARAMCODE = #paramCode:VARCHAR#
+    </select>
+
+</sqlMap>

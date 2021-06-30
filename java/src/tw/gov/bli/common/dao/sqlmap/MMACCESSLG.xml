@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MMACCESSLG">
+
+    <typeAlias alias="Mmaccesslg" type="tw.gov.bli.common.domain.Mmaccesslg" />
+
+    <resultMap id="MMACCESSLGResult" class="Mmaccesslg">
+        <result column="ACSTIME"            property="acsTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNAME"             property="apName"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PSNO"               property="psNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DEPTID"             property="deptId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TRNSID"             property="trnsId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TERMID"             property="termId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="STYPE"              property="stype"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UNO"                property="uno"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="YM"                 property="ym"               jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDNO"               property="idNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROPOSER"           property="proposer"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROC"               property="proc"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APNO"               property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVIDNO"             property="evIdNo"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EVBRTH"             property="evBrth"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SCRNO"              property="scrNo"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="QMK"                property="qmk"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACCTYPE"            property="accType"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SNO"                property="sno"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />        
+        <result column="SYS_ID"             property="sysId"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />       
+    </resultMap>
+
+    <insert id="insertData">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="sno">
+            SELECT MMACCESSLG_ID.NEXTVAL AS MMACCESSLG_ID FROM DUAL
+        </selectKey>
+        INSERT INTO MMACCESSLG
+        (
+            ACSTIME, 
+            APNAME, 
+            PSNO, 
+            DEPTID, 
+            TRNSID, 
+            TERMID, 
+            STYPE, 
+            UNO, 
+            YM, 
+            IDNO, 
+            PROPOSER, 
+            PROC, 
+            APNO, 
+            EVIDNO, 
+            EVBRTH, 
+            SCRNO, 
+            QMK, 
+            ACCTYPE, 
+            SNO, 
+            SYS_ID
+        ) 
+        VALUES
+        (
+            #acsTime:VARCHAR#, 
+            #apName:VARCHAR#, 
+            #psNo:VARCHAR#, 
+            #deptId:VARCHAR#, 
+            #trnsId:VARCHAR#, 
+            #termId:VARCHAR#, 
+            #stype:VARCHAR#, 
+            #uno:VARCHAR#, 
+            #ym:VARCHAR#, 
+            #idNo:VARCHAR#, 
+            #proposer:VARCHAR#, 
+            #proc:VARCHAR#, 
+            #apNo:VARCHAR#, 
+            #evIdNo:VARCHAR#, 
+            #evBrth:VARCHAR#, 
+            #scrNo:VARCHAR#, 
+            #qmk:VARCHAR#, 
+            #accType:VARCHAR#, 
+            #sno#, 
+            #sysId:NUMERIC#
+        )
+    </insert>
+
+</sqlMap>

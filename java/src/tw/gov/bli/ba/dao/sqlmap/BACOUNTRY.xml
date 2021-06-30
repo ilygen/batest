@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACOUNTRY">
+
+    <typeAlias alias="Bacountry" type="tw.gov.bli.ba.domain.Bacountry" />
+
+    <resultMap id="BACOUNTRYResult" class="Bacountry">
+        <result column="COUNTRY_ID"  property="countryId"  jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="CNAME"       property="cname"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>    
+    
+    <select id="selectData" resultMap="BACOUNTRYResult">
+        Select lpad(COUNTRY_ID,3,'0') COUNTRY_ID, (lpad(COUNTRY_ID,3,'0')||':'||CNAME) as CNAME  
+        from  BACOUNTRY
+        WHERE 
+        <![CDATA[
+			COUNTRY_ID <> '0' 
+ 		]]>
+        <dynamic>
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="countryId">
+                    A.COUNTRY_ID = #countryId:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="cname">
+                    A.CNAME = #cname:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+	        order by to_number(COUNTRY_ID)
+       
+    </select>
+    
+     <select id="selectCNameData" resultClass="java.lang.String">
+        Select CNAME
+        from  BACOUNTRY
+        WHERE COUNTRY_ID = #countryId:VARCHAR#
+    </select>
+</sqlMap>

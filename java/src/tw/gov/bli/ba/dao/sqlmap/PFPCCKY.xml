@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PFPCCKY">
+
+    <typeAlias alias="Pfpccky" type="tw.gov.bli.ba.domain.Pfpccky" />
+
+    <resultMap id="CashReceiveDataListResult" class="Pfpccky">
+        <result column="INSKD"                 property="insKd"                 jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BLI_ACCOUNT_CODE"      property="bli_Account_Code"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BOOKEDBOOK"            property="bookedBook"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BKACCOUNTDT"           property="bkAccountDt"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BATCHNO"               property="batchNo"               jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SERIALNO"              property="serialNo"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CASH_AMT"              property="cash_Amt"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DIVSEQ"                property="divSeq"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INDEX_NO"              property="index_No"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MOVETOCODE"            property="moveToCode"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TEMPHANDLENO"          property="tempHandleNo"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREPRNO"          property="affairrePrno"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREDEPT"          property="affairredept"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREDATE"          property="affairredate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AVAILABLE_MONEY"       property="available_Money"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AFFAIRRECOUNT"         property="affairreCount"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECM"                  property="recm"                  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CAMFIELD"              property="camField"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DIVMRK"                property="divMrk"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DIVAMOUNT"             property="divAmount"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="TOTALMONEY"            property="totalMoney"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="TEMPPAYDTE"            property="tempPayDte"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OtherRpt02CashSourceDataListResult" class="Pfpccky">
+       <result column="BKACCOUNTDT"           property="bkAccountDt"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+       <result column="CASH_AMT"              property="cash_Amt"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+       <result column="SOURCE"                property="source"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BatchPaymentReceiveDataListResult" class="Pfpccky">
+        <result column="INSKD"                 property="insKd"                 jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BLI_ACCOUNT_CODE"      property="bli_Account_Code"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BOOKEDBOOK"            property="bookedBook"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BKACCOUNTDT"           property="bkAccountDt"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BATCHNO"               property="batchNo"               jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SERIALNO"              property="serialNo"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CASH_AMT"              property="cash_Amt"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DIVSEQ"                property="divSeq"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INDEX_NO"              property="index_No"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MOVETOCODE"            property="moveToCode"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TEMPHANDLENO"          property="tempHandleNo"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREPRNO"          property="affairrePrno"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREDEPT"          property="affairredept"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFFAIRREDATE"          property="affairredate"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AVAILABLE_MONEY"       property="available_Money"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AFFAIRRECOUNT"         property="affairreCount"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECM"                  property="recm"                  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CAMFIELD"              property="camField"              jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"                property="issuYm"                jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYM"                 property="payYm"                 jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"                 property="seqNo"                 jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>    
+    
+   <!-- OldAgePaymentReceive Begin -->
+    <select id="selectCashReceiveDataListBy" resultMap="CashReceiveDataListResult">
+SELECT A.INSKD,
+       A.BLI_ACCOUNT_CODE,
+       A.BOOKEDBOOK,
+       TO_CHAR(A.BKACCOUNTDT, 'YYYYMMDD') AS BKACCOUNTDT,
+       A.BATCHNO,
+       A.SERIALNO,
+       A.CASH_AMT,
+       A.DIVSEQ,
+       A.INDEX_NO,
+       A.MOVETOCODE,
+       A.TEMPHANDLENO,
+       A.AFFAIRREPRNO,
+       A.AFFAIRREDEPT,
+       A.AFFAIRREDATE,
+       A.AVAILABLE_MONEY,
+       A.AFFAIRRECOUNT,
+       A.RECM,
+       A.CAMFIELD,
+       B.DIVMRK,
+       B.DIVAMOUNT,
+       CASE B.DIVMRK
+         WHEN 'Y' THEN
+          A.DIVAMOUNT
+         ELSE
+          A.CASH_AMT       
+       END "TOTALMONEY",
+       B.TEMPPAYDTE
+  FROM (SELECT A.INSKD,
+               A.BLI_ACCOUNT_CODE,
+               A.BOOKEDBOOK,
+               A.BKACCOUNTDT,
+               A.BATCHNO,
+               A.SERIALNO,
+               A.CASH_AMT,
+               A.DIVSEQ,
+               A.INDEX_NO,
+               A.MOVETOCODE,
+               A.TEMPHANDLENO,
+               A.AFFAIRREPRNO,
+               A.AFFAIRREDEPT,
+               A.AFFAIRREDATE,
+               A.AVAILABLE_MONEY,
+               A.AFFAIRRECOUNT,
+               A.RECM,
+               A.CAMFIELD,
+               A.DIVAMOUNT
+          FROM PFPCCKY A
+         WHERE A.TEMPHANDLENO LIKE #payCode:VARCHAR# || '%'
+           AND A.TEMPHANDLENO = #apNo:VARCHAR#
+           AND A.INSKD = '1'
+           AND A.PRINTNOTECODE = 'Y'
+           AND A.AVAILABLE_MONEY > 0
+           AND LENGTH(A.TEMPHANDLENO) = 12) A,
+       (SELECT DIVMRK,
+               DIVAMOUNT,
+               INSKD,
+               BLI_ACCOUNT_CODE,
+               BOOKEDBOOK,
+               BKACCOUNTDT,
+               BATCHNO,
+               SERIALNO,
+               CASH_AMT,
+               INDEX_NO,
+               TEMPHANDLENO,
+               TEMPPAYDTE
+          FROM PFPCCKY
+         WHERE (INSKD, BLI_ACCOUNT_CODE, BOOKEDBOOK, BKACCOUNTDT, BATCHNO,
+                SERIALNO, CASH_AMT, INDEX_NO) IN
+               (SELECT DISTINCT INSKD,
+                                BLI_ACCOUNT_CODE,
+                                BOOKEDBOOK,
+                                BKACCOUNTDT,
+                                BATCHNO,
+                                SERIALNO,
+                                CASH_AMT,
+                                INDEX_NO
+                  FROM PFPCCKY
+                 WHERE TEMPHANDLENO LIKE #payCode:VARCHAR# || '%'
+                   AND TEMPHANDLENO = #apNo:VARCHAR#
+                   AND INSKD = '1'
+                   AND PRINTNOTECODE = 'Y'
+                   AND AVAILABLE_MONEY > 0
+                   AND LENGTH(TEMPHANDLENO) = 12)
+           AND TEMPHANDLENO IS NULL) B
+ WHERE A.INSKD = B.INSKD(+)
+   AND A.BLI_ACCOUNT_CODE = B.BLI_ACCOUNT_CODE(+)
+   AND A.BOOKEDBOOK = B.BOOKEDBOOK(+)
+   AND A.BKACCOUNTDT = B.BKACCOUNTDT(+)
+   AND A.BATCHNO = B.BATCHNO(+)
+   AND A.SERIALNO = B.SERIALNO(+)
+   AND A.CASH_AMT = B.CASH_AMT(+)
+   AND A.INDEX_NO = B.INDEX_NO(+)
+ ORDER BY BKACCOUNTDT, SERIALNO, INDEX_NO, DIVSEQ
+    </select>
+    <!-- OldAgePaymentReceive End -->
+    
+    <!-- OtherRpt02 Begin -->
+    <select id="selectOtherRpt02CashSourceDataListBy" resultMap="OtherRpt02CashSourceDataListResult">
+            SELECT TO_CHAR(B.BKACCOUNTDT,'YYYYMMDD') AS BKACCOUNTDT,    
+  		           B.CASH_AMT,                         
+  	     	       B.Per_Unit_Name AS SOURCE
+    	      FROM PFPCCKY B
+ 	 	     WHERE B.TEMPHANDLENO = #apNo:VARCHAR#
+               AND B.INSKD='1'
+               AND B.printnotecode = 'Y'
+               AND B.available_money > 0
+               AND LENGTH(B.TEMPHANDLENO)=12
+             ORDER BY B.BKACCOUNTDT
+    </select>
+    <!-- OtherRpt02 End -->
+    
+    <!-- BatchPaymentReceive Begin -->
+    <select id="selectBatchPaymentReceiveDataListBy" resultMap="BatchPaymentReceiveDataListResult">
+			SELECT  A.INSKD              
+			       ,A.BLI_ACCOUNT_CODE   
+			       ,A.BOOKEDBOOK        
+			       ,TO_CHAR(A.BKACCOUNTDT, 'YYYYMMDD') AS BKACCOUNTDT
+			       ,A.BATCHNO           
+			       ,A.SERIALNO         
+			       ,A.CASH_AMT         
+			       ,A.DIVSEQ            
+			       ,A.INDEX_NO         
+			       ,A.MOVETOCODE        
+			       ,A.TEMPHANDLENO
+			       ,A.AFFAIRREPRNO
+			       ,A.AFFAIRREDEPT
+			       ,A.AFFAIRREDATE   
+			       ,A.AVAILABLE_MONEY
+			       ,A.AFFAIRRECOUNT  
+			       ,A.RECM
+			       ,A.CAMFIELD
+			       ,'' AS ISSUYM
+			       ,'' AS PAYYM
+			       ,'' AS SEQNO
+			   FROM PFPCCKY A, BAAPPBASE B
+			  WHERE B.APNO = A.TEMPHANDLENO
+			    AND A.TEMPHANDLENO LIKE #payCode:VARCHAR# || '%'
+			    AND B.SEQNO = '0000'
+			    AND TO_CHAR(A.BKACCOUNTDT, 'YYYYMMDD') = #chkDate:VARCHAR#
+			    AND A.INSKD='1'
+			    AND A.PRINTNOTECODE = 'Y'
+			    AND A.AVAILABLE_MONEY > 0
+			    AND LENGTH(A.TEMPHANDLENO) = 12
+			  ORDER BY BLI_ACCOUNT_CODE
+    </select>
+    
+    <select id="selectBatchPaymentReceiveDataMasterListBy" resultMap="BatchPaymentReceiveDataListResult">
+	Select T1.INSKD,
+           T1.BLI_ACCOUNT_CODE,
+           T1.BOOKEDBOOK,
+           T1.BKACCOUNTDT,
+           T1.BATCHNO,
+           T1.SERIALNO,
+           T1.CASH_AMT,
+           T1.DIVSEQ,
+           T1.INDEX_NO,
+           T1.MOVETOCODE,
+           T1.TEMPHANDLENO,
+           T1.AFFAIRREPRNO,
+           T1.AFFAIRREDEPT,
+           T1.AFFAIRREDATE,
+           T1.AVAILABLE_MONEY,
+           T1.AFFAIRRECOUNT,
+           T1.RECM,
+           T1.CAMFIELD,
+           C1.ISSUYM,   
+           C1.PAYYM,  
+           C1.SEQNO
+      From ( SELECT DISTINCT A.INSKD              
+			       ,A.BLI_ACCOUNT_CODE   
+			       ,A.BOOKEDBOOK        
+			       ,TO_CHAR(A.BKACCOUNTDT, 'YYYYMMDD') AS BKACCOUNTDT
+			       ,A.BATCHNO           
+			       ,A.SERIALNO         
+			       ,A.CASH_AMT         
+			       ,A.DIVSEQ            
+			       ,A.INDEX_NO         
+			       ,A.MOVETOCODE        
+			       ,A.TEMPHANDLENO
+			       ,A.AFFAIRREPRNO
+			       ,A.AFFAIRREDEPT
+			       ,A.AFFAIRREDATE   
+			       ,A.AVAILABLE_MONEY
+			       ,A.AFFAIRRECOUNT  
+			       ,A.RECM
+			       ,A.CAMFIELD
+                   ,A.BARCODE2
+			   FROM PFPCCKY A, BAAPPBASE B
+			  WHERE B.APNO = A.TEMPHANDLENO
+                AND (INSKD, BLI_ACCOUNT_CODE, BOOKEDBOOK, BKACCOUNTDT, BATCHNO, SERIALNO,
+                     CASH_AMT, INDEX_NO) IN
+                    (SELECT DISTINCT INSKD,
+                                     BLI_ACCOUNT_CODE,
+                                     BOOKEDBOOK,
+                                     BKACCOUNTDT,
+                                     BATCHNO,
+                                     SERIALNO,
+                                     CASH_AMT,
+                                     INDEX_NO
+                       FROM PFPCCKY
+                      WHERE TEMPRVACCOUNTMARK = '6'
+                        AND TEMPPAYDTE = #chkDate:VARCHAR#)
+			    AND A.TEMPHANDLENO LIKE #payCode:VARCHAR# || '%'
+			    
+           		<isEqual property="payCode" compareValue="L">
+               		AND B.SEQNO = '0000'
+           		</isEqual>
+           		<isEqual property="payCode" compareValue="K">
+               		AND B.SEQNO = '0000'
+           		</isEqual>           
+           		<isEqual property="payCode" compareValue="S">
+           			<![CDATA[
+               		AND B.SEQNO <> '0000'
+               		]]>
+           		</isEqual>
+           		
+			    AND A.INSKD='1'
+			    AND A.PRINTNOTECODE = 'Y'
+			    AND A.AVAILABLE_MONEY > 0
+			    AND LENGTH(A.TEMPHANDLENO) = 12) T1,
+           BAUNACPDTL C1,
+           BAPAYMENTDTL C2,
+           BAPAYMENTREMOTEDTL C3
+     WHERE C3.BARCODE2 = T1.BARCODE2
+       And SUBSTR(C3.BARCODE2, 2, 13) || '00' = C2.PAYMENTNO
+       and C3.DIVSEQ = C2.WRITEOFFSEQNO
+       and C1.APNO = C2.APNO
+       and C1.SEQNO = C2.SEQNO
+       and C1.ISSUYM = C2.ISSUYM
+       and C1.PAYYM = C2.PAYYM
+       and C1.RECAMT = C2.RECAMT
+       and C2.WRITEOFFSEQNO IS NOT NULL
+       and C3.DIVSEQ = T1.DIVSEQ
+     ORDER BY TEMPHANDLENO, DIVSEQ, BLI_ACCOUNT_CODE
+    </select>
+    
+    <select id="selectBatchPaymentReceiveDataDetailListBy" resultMap="BatchPaymentReceiveDataListResult">
+			SELECT  A.INSKD              
+			       ,A.BLI_ACCOUNT_CODE   
+			       ,A.BOOKEDBOOK        
+			       ,TO_CHAR(A.BKACCOUNTDT, 'YYYYMMDD') AS BKACCOUNTDT
+			       ,A.BATCHNO           
+			       ,A.SERIALNO         
+			       ,A.CASH_AMT         
+			       ,A.DIVSEQ            
+			       ,A.INDEX_NO         
+			       ,A.MOVETOCODE        
+			       ,A.TEMPHANDLENO
+			       ,A.AFFAIRREPRNO
+			       ,A.AFFAIRREDEPT
+			       ,A.AFFAIRREDATE   
+			       ,A.AVAILABLE_MONEY
+			       ,A.AFFAIRRECOUNT  
+			       ,A.RECM
+			       ,A.CAMFIELD
+			       ,'' AS ISSUYM
+			       ,'' AS PAYYM
+			       ,'' AS SEQNO
+			   FROM PFPCCKY A, BAAPPBASE B
+			  WHERE B.APNO = A.TEMPHANDLENO
+                AND (INSKD, BLI_ACCOUNT_CODE, BOOKEDBOOK, BKACCOUNTDT, BATCHNO, SERIALNO,
+                     CASH_AMT, INDEX_NO) IN
+                    (SELECT DISTINCT INSKD,
+                                     BLI_ACCOUNT_CODE,
+                                     BOOKEDBOOK,
+                                     BKACCOUNTDT,
+                                     BATCHNO,
+                                     SERIALNO,
+                                     CASH_AMT,
+                                     INDEX_NO
+                       FROM PFPCCKY
+                      WHERE TEMPRVACCOUNTMARK = '6'
+                        AND TEMPPAYDTE = #chkDate:VARCHAR#)
+			    AND A.TEMPHANDLENO LIKE #payCode:VARCHAR# || '%'
+			    
+           		<isEqual property="payCode" compareValue="L">
+               		AND B.SEQNO = '0000'
+           		</isEqual>
+           		<isEqual property="payCode" compareValue="K">
+               		AND B.SEQNO = '0000'
+           		</isEqual>           
+           		<isEqual property="payCode" compareValue="S">
+           			<![CDATA[
+               		AND B.SEQNO <> '0000'
+               		]]>
+           		</isEqual>		    
+			    
+			    AND A.INSKD='1'
+			    AND A.PRINTNOTECODE = 'Y'
+			    AND A.AVAILABLE_MONEY > 0
+			    AND LENGTH(A.TEMPHANDLENO) = 12
+			  ORDER BY TEMPHANDLENO, DIVSEQ, BLI_ACCOUNT_CODE
+    </select>
+    <!-- BatchPaymentReceive End -->    
+    
+</sqlMap>

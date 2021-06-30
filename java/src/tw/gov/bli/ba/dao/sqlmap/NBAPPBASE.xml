@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="NBAPPBASE">
+
+    <typeAlias alias="Nbappbase" type="tw.gov.bli.ba.domain.Nbappbase" />
+
+    <resultMap id="NBAPPBASEResult" class="Nbappbase">
+       <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="APPDATE"          property="appDate"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTIDS"           property="evtIds"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTEEBIRT"        property="evteeBirt"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTEENAME"        property="evteeName"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTSEX"           property="evtSex"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="EVTIDENT"         property="evtIdent"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="DIEDATE"          property="dieDate"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENIDS"           property="benIds"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENEENAME"        property="beneeName"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENEEBIRT"        property="beneeBirt"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENSEX"           property="benSex"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BENEVTREL"        property="benEvtRel"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="COMMTEL"          property="commTel"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="MOBILE"           property="mobile"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="COMMTYPE"         property="commType"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="COMMZIP"          property="commZip"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="COMMADDR"         property="commAddr"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="PAYTYPE"          property="payType"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="PAYBANKID"        property="payBankId"       jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="BRANCHID"         property="branchId"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="PAYEEACC"         property="payEeacc"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="ACCIDN"           property="accIdn"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="ACCNAME"          property="accName"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="ACCREL"           property="accRel"          jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="GRDIDNNO"         property="grdIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="GRDNAME"          property="grdName"         jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="GRDBIRTH"         property="grdBirth"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="HANDICAPDT"       property="handIcApDt"      jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+       <result column="DIADABDT"         property="diaDabDt"        jdbcType="VARCHAR"  javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    
+    <resultMap id="NpPayDataResult" class="Nbappbase">
+        <result column="APPDATE"       property="appDate"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APNO"          property="apNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUYM"        property="issuYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYM"         property="payYm"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTEENAME"     property="evteeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTDT"         property="evtDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUEAMT"      property="issueAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />           
+        <result column="MANCHKFLG"     property="manChkFlg"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CHKDT"         property="chkDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APLPAYDATE"    property="aplPayDate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01NpPayListResult" class="Nbappbase">
+        <result column="APPDATE"       property="appDate"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APNO"          property="apNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUYM"        property="issuYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYM"         property="payYm"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTEENAME"     property="evteeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTDT"         property="evtDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUEAMT"      property="issueAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />           
+        <result column="MANCHKFLG"     property="manChkFlg"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ACCEPTMARK"    property="acceptMark"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="CLOSEREASON"    property="closeReason"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+		<result column="CLOSEDT"    property="closeDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>    
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="DisableReviewRpt01NpDisPayListResult" class="Nbappbase">
+        <result column="APPDATE"       property="appDate"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APNO"          property="apNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUYM"        property="issuYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYM"         property="payYm"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYME"         property="payYme"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYMS"         property="payYms"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTEENAME"     property="evteeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTDT"         property="evtDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUEAMT"      property="issueAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />           
+        <result column="MANCHKFLG"     property="manChkFlg"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ACCEPTMARK"    property="acceptMark"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="HANDICAPDT"    property="handIcApDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CLOSEREASON"    property="closeReason"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+		<result column="CLOSEDT"    property="closeDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>    
+    <!-- [ -->
+    <!-- DisableReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01NpPayListResult" class="Nbappbase">
+        <result column="APPDATE"       property="appDate"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APNO"          property="apNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUYM"        property="issuYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYM"         property="payYm"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="PAYYME"         property="payYme"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYMS"         property="payYms"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />  
+        <result column="EVTEENAME"     property="evteeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="EVTDT"         property="evtDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUEAMT"      property="issueAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />           
+        <result column="MANCHKFLG"     property="manChkFlg"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ACCEPTMARK"    property="acceptMark"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="HANDICAPDT"    property="handIcApDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="CLOSEREASON"    property="closeReason"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+		<result column="CLOSEDT"    property="closeDt"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>    
+    <!-- [ -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <resultMap id="PaymentQueryDisabledNpDataResult" class="Nbappbase">
+	    <result column="APNO"         property="apNo"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="PAYYMS"       property="payYms"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+		<result column="LABMERGE"     property="labMerge"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="DABLEVEL"     property="dabLevel"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="DABTYPE"      property="dabType"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="DABPART"      property="dabPart"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="MANCHKFLG"    property="manChkFlg"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="VALSENI"      property="valSeni"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+		<result column="VALSENID"     property="valSenid"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+		<result column="ISSUYM"       property="issuYm"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>
+    
+    <resultMap id="DisabledReviewRpt01NpData38Result" class="Nbappbase">
+        <result column="APNO"         property="apNo"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ISSUYM"       property="issuYm"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="VALSENI"      property="valSeni"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+        <result column="VALSENID"     property="valSenid"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="DisabledReviewRpt01NpData36Result" class="Nbappbase">
+        <result column="APNO"         property="apNo"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="DABLEVEL"     property="dabLevel"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="DABTYPE"      property="dabType"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+		<result column="DABPART"      property="dabPart"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="VALSENI"      property="valSeni"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+        <result column="VALSENID"     property="valSenid"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+        <result column="ISSUYM"       property="issuYm"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>
+    
+     <select id="selectDataBy" resultMap="NBAPPBASEResult">
+        SELECT t.APNO,
+               t.APPDATE,
+               t.EVTIDS,
+               t.EVTIDNNO,
+               t.EVTEEBIRT,
+               t.EVTEENAME,
+               t.EVTSEX,
+               t.EVTIDENT,
+               t.DIEDATE,
+               t.BENIDS,
+               t.BENIDNNO,
+               t.BENEENAME,
+               t.BENEEBIRT,
+               t.BENSEX,
+               t.BENEVTREL,
+               t.COMMTEL,
+               t.MOBILE,
+               t.COMMTYPE,
+               t.COMMZIP,
+               t.COMMADDR,
+               t.PAYTYPE,
+               t.PAYBANKID,
+               t.BRANCHID,
+               t.PAYEEACC,
+               t.ACCIDN,
+               t.ACCNAME,
+               t.ACCREL,
+               t.GRDIDNNO,
+               t.GRDNAME,
+               t.GRDBIRTH,
+               t.HANDICAPDT,
+               t.DIADABDT
+          FROM NBAPPBASE t
+         WHERE t.APNO = #apNo:VARCHAR#
+           AND t.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectNpPayDataBy" resultMap="NpPayDataResult">
+        SELECT X.APPDATE,  
+               X.APNO,     
+               X.ISSUYM,
+               X.PAYYM,    
+               X.EVTEENAME,
+               X.EVTDT,    
+               X.ISSUEAMT, 
+               X.MANCHKFLG,
+               Y.CHKDT,    
+               Y.APLPAYDATE
+          FROM (SELECT APPDATE,  
+                       APNO,
+                       ISSUYM,     
+                       PAYYM,    
+                       EVTEENAME,
+                       EVTDT,    
+                       ISSUEAMT, 
+                       MANCHKFLG               
+                  FROM NBAPPBASE
+                 WHERE EVTIDS = #evtIds:VARCHAR#
+                   AND SEQNO = '0000') X,
+               (SELECT APNO,
+                       ISSUYM,
+                       PAYYM,                                         
+                       CHKDT,                                   
+                       DECODE(APLPAYFLG,'3',APLPAYDATE,' ') AS APLPAYDATE
+                  FROM NBDAPR
+                 WHERE BENIDS = #evtIds:VARCHAR#
+                   AND SEQNO = '0000') Y
+          WHERE X.APNO = Y.APNO
+            AND X.ISSUYM = Y.ISSUYM
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01NpPayListBy" resultMap="OldAgeReviewRpt01NpPayListResult">
+        SELECT A.APPDATE,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.EVTEENAME,
+               A.EVTDT,
+               A.ISSUEAMT,
+               A.ACCEPTMARK,
+               A.MANCHKFLG, 
+               A.CLOSEDT, 
+       		   A.CLOSEREASON 
+        FROM   NBAPPBASE A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <![CDATA[
+                    A.EVTIDS = #evtIds:VARCHAR#
+                    AND ROWNUM <= 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.ISSUYM, A.PAYYM
+    </select>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01NpPayListBy" resultMap="SurvivorReviewRpt01NpPayListResult">
+        SELECT A.APPDATE,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.PAYYMS, 
+               A.PAYYME, 
+               A.EVTEENAME,
+               A.EVTDT,
+               A.ISSUEAMT,
+               A.ACCEPTMARK,
+               A.MANCHKFLG, 
+               A.CLOSEDT, 
+               A.CLOSEREASON, 
+               A.HANDICAPDT, 
+               A.CLOSEREASON, 
+			   A.CLOSEDT  
+        FROM   NBAPPBASE A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <![CDATA[
+                    A.EVTIDS = #evtIds:VARCHAR#
+                    AND SUBSTR(A.APNO,1,1) <> 'C'
+                    AND SUBSTR(A.APNO,1,1) <> 'D'
+                    AND A.SEQNO = '0000'
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.APPDATE, A.ISSUYM, A.PAYYM
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01NpDidePayListBy" resultMap="SurvivorReviewRpt01NpPayListResult">
+        SELECT A.APPDATE,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.PAYYMS, 
+               A.PAYYME,  
+	       	   A.HANDICAPDT, 
+               A.EVTEENAME,
+               A.EVTDT,
+               A.ISSUEAMT,
+               A.ACCEPTMARK,
+               A.MANCHKFLG, 
+               A.CLOSEDT, 
+               A.CLOSEREASON 
+        FROM   NBAPPBASE A 
+       WHERE A.EVTIDS = #evtIds:VARCHAR#
+         AND SUBSTR(A.APNO,1,1) = #apNoTyp:VARCHAR#
+         AND A.SEQNO = '0000'
+       ORDER BY A.APPDATE, A.ISSUYM, A.PAYYM
+    </select>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    	<select id="getDisableReviewRpt01NpPayListBy" resultMap="OldAgeReviewRpt01NpPayListResult">
+        SELECT A.APPDATE,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM,
+               A.EVTEENAME,
+               A.EVTDT,
+               A.ISSUEAMT,
+               A.ACCEPTMARK,
+               A.MANCHKFLG, 
+               A.CLOSEDT, 
+               A.CLOSEREASON 
+        FROM   NBAPPBASE A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <![CDATA[
+                    A.EVTIDS = #evtIds:VARCHAR#
+                    AND SUBSTR(A.APNO,1,1) <> 'B'
+                    AND A.SEQNO = '0000'
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.APPDATE, A.ISSUYM, A.PAYYM
+    </select>
+    
+     <select id="selectDisableReviewRpt01NpDisPayListBy" resultMap="DisableReviewRpt01NpDisPayListResult">
+        SELECT A.APPDATE,
+               A.APNO,
+               A.ISSUYM,
+               A.PAYYM, 
+               A.PAYYMS,
+               A.PAYYME, 
+	           A.HANDICAPDT, 
+               A.EVTEENAME,
+               A.EVTDT,
+               A.ISSUEAMT,
+               A.ACCEPTMARK,
+               A.MANCHKFLG, 
+               A.CLOSEDT, 
+               A.CLOSEREASON 
+        FROM   NBAPPBASE A 
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <![CDATA[
+                    A.EVTIDS = #evtIds:VARCHAR#
+                    AND SUBSTR(A.APNO,1,1) = 'B'
+                    AND A.SEQNO = '0000'
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.APPDATE, A.ISSUYM, A.PAYYM
+    </select>
+    <!-- DisableReviewRpt 01 End -->
+    
+    <select id="selectLabmergeByApNo" resultClass="java.lang.String">
+        SELECT LABMERGE FROM NBAPPBASE 
+         WHERE APNO = #apNo:VARCHAR# 
+           AND SEQNO = '0000'
+    </select>
+    
+    <select id="selectPaymentQueryDisabledNpDataBy" resultMap="PaymentQueryDisabledNpDataResult">
+		SELECT T1.APNO,
+		       T1.PAYYMS,
+		       T1.LABMERGE,
+		       T1.DABLEVEL,
+		       T1.DABTYPE,
+		       T1.DABPART,
+		       T1.MANCHKFLG,
+		       ( SELECT VALSENI FROM NBDAPR 
+		          WHERE APNO = #apNo:VARCHAR# 
+		            AND SEQNO = '0000'
+		            AND ISSUYM = T1.ISSUYM            
+		            AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+		                             FROM NBDAPR 
+		                            WHERE APNO = #apNo:VARCHAR# 
+		                              AND SEQNO = '0000'
+		                              AND ISSUYM = T1.ISSUYM)
+		            AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+		                           FROM NBDAPR 
+		                          WHERE APNO = #apNo:VARCHAR# 
+		                            AND SEQNO = '0000'
+		                            AND ISSUYM = T1.ISSUYM)
+		       )VALSENI,
+		       ( SELECT VALSENID FROM NBDAPR 
+		          WHERE APNO = #apNo:VARCHAR# 
+		            AND SEQNO = '0000'
+		            AND ISSUYM = T1.ISSUYM            
+		            AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+		                             FROM NBDAPR 
+		                            WHERE APNO = #apNo:VARCHAR# 
+		                              AND SEQNO = '0000'
+		                              AND ISSUYM = T1.ISSUYM)
+		            AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+		                           FROM NBDAPR 
+		                          WHERE APNO = #apNo:VARCHAR# 
+		                            AND SEQNO = '0000'
+		                            AND ISSUYM = T1.ISSUYM)
+		       )VALSENID,
+		       T1.ISSUYM
+		  FROM NBAPPBASE T1
+		 WHERE APNO = #apNo:VARCHAR# 
+           AND SEQNO = '0000'
+    </select>
+    
+    <select id="selectDisabledReviewRpt01NpData38By" resultMap="DisabledReviewRpt01NpData38Result">
+		SELECT T1.APNO,
+                 ( SELECT VALSENI FROM NBDAPR 
+                   WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = '0000'
+                   AND ISSUYM = T1.ISSUYM            
+                   AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+                   FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                    AND SEQNO = '0000'
+                    AND ISSUYM = T1.ISSUYM)
+                   AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+                  FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                  AND SEQNO = '0000'
+                     AND ISSUYM = T1.ISSUYM)
+                  )VALSENI,
+                  ( SELECT VALSENID FROM NBDAPR 
+                   WHERE APNO = #apNo:VARCHAR#
+                   AND SEQNO = '0000'
+                   AND ISSUYM = T1.ISSUYM            
+                   AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+                   FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                    AND SEQNO = '0000'
+                    AND ISSUYM = T1.ISSUYM)
+                   AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+                  FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                  AND SEQNO = '0000'
+                     AND ISSUYM = T1.ISSUYM)
+                  )VALSENID,   
+                T1.ISSUYM
+          FROM NBAPPBASE T1
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000'
+    </select>
+    
+    <select id="selectDisabledReviewRpt01NpData36By" resultMap="DisabledReviewRpt01NpData36Result">
+		SELECT T1.APNO,       
+               T1.DABLEVEL,   
+               T1.DABTYPE,   
+               T1.DABPART,   
+               ( SELECT VALSENI FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                    AND SEQNO = '0000'
+                    AND ISSUYM = T1.ISSUYM            
+                    AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+                                     FROM NBDAPR 
+                                    WHERE APNO = #apNo:VARCHAR#
+                                      AND SEQNO = '0000'
+                                      AND ISSUYM = T1.ISSUYM)
+                                      AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+                                     FROM NBDAPR 
+                                    WHERE APNO = #apNo:VARCHAR#
+                                      AND SEQNO = '0000'
+                                      AND ISSUYM = T1.ISSUYM)
+                )VALSENI,
+                ( SELECT VALSENID FROM NBDAPR 
+                  WHERE APNO = #apNo:VARCHAR#
+                    AND SEQNO = '0000'
+                    AND ISSUYM = T1.ISSUYM            
+                    AND VERISEQ = (SELECT MAX(TO_NUMBER(VERISEQ))
+                                     FROM NBDAPR 
+                                    WHERE APNO = #apNo:VARCHAR#
+                                      AND SEQNO = '0000'
+                                      AND ISSUYM = T1.ISSUYM)
+                                      AND PAYYM = (SELECT MAX(TO_NUMBER(PAYYM))
+                                     FROM NBDAPR 
+                                    WHERE APNO = #apNo:VARCHAR#
+                                      AND SEQNO = '0000'
+                                      AND ISSUYM = T1.ISSUYM)
+                )VALSENID,
+                T1.ISSUYM
+         FROM NBAPPBASE T1
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = '0000'
+    </select>
+</sqlMap>

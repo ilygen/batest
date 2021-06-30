@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Preview Condition Maint : bapa0x040f.jsp -->
+        <form name="PreviewConditionMaintQueryForm">
+            <field property="payKind" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.payKind" />
+            </field>
+        </form>
+        
+        <!-- Preview Condition Maint : bapa0x042c.jsp -->
+        <form name="PreviewConditionMaintDetailForOldAgeAnnuityForm">
+            <field property="binsurSeni" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.binsurSeni" />
+            </field>
+            <field property="einsurSeni" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.einsurSeni" />
+            </field>
+            <field property="bissueAmt" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.bissueAmt" />
+            </field>
+            <field property="eissueAmt" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.eissueAmt" />
+            </field>
+            <field property="bcondition" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.bcondition" />
+            </field>
+            <field property="econdition" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.econdition" />
+            </field>
+            <field property="range" depends="required,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.range" />
+            </field>
+            <field property="sampleVolume" depends="required,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.sampleVolume" />
+            </field>
+            <field property="limitAmount" depends="required,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.oldAgeAnnuity.limitAmount" />
+            </field>
+        </form>
+        
+        <!-- Preview Condition Maint : bapa0x050f.jsp -->
+        <form name="DeductItemMaintQueryForm">
+            <field property="payKind" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.maint.previewCondition.payKind" />
+            </field>
+        </form>
+        
+        <!-- Check Mark Maint : bapa0x010f.jsp -->
+        <form name="CheckMarkMaintQueryForm">
+
+        </form>
+        
+        <!-- Check Mark Maint : bapa0x012c.jsp -->
+        <form name="CheckMarkMaintListForm">
+
+        </form>
+        
+        <!-- Check Mark Maint : bapa0x013c.jsp -->
+        <form name="CheckMarkMaintDetailForm">
+
+        </form>        
+        
+        <!-- Advice Maint : bapa0x020f.jsp -->
+        <form name="AdviceMaintQueryForm">
+
+        </form>
+        
+        <!-- Advice Maint : bapa0x022c.jsp -->
+        <form name="AdviceMaintListForm">
+
+        </form>
+        
+        <!-- Advice Maint : bapa0x023c.jsp -->
+        <form name="AdviceMaintDetailForm">
+
+        </form>
+        
+        <!-- Decision Level Maint : bapa0x030f.jsp -->
+        <form name="DecisionLevelMaintQueryForm">
+
+        </form>
+        
+        <!-- Decision Level Maint : bapa0x032c.jsp -->
+        <form name="DecisionLevelMaintListForm">
+
+        </form>
+        
+        <!-- Decision Level Maint : bapa0x031a.jsp -->
+        <form name="DecisionLevelMaintDetailForm">
+
+        </form>
+        
+        <!-- Cpi Dtl Maint : bapa0x060f.jsp -->
+        <form name="CpiDtlMaintQueryForm">
+        <field property="adjYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlAdjYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- Cpi Dtl Maint : bapa0x061c.jsp -->
+        <form name="CpiDtlMaintListForm">
+
+        </form>   
+        
+        <!-- Cpi Dtl Maint : bapa0x062a.jsp -->
+        <form name="CpiDtlMaintDetailForm">
+        <field property="adjYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlAdjYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+         <field property="cpiYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlCpiYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+         <field property="cpiYearE" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlCpiYearE" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+         <field property="cpiB" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlCpiB" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_5_2_MASK}</var-value>
+                </var>
+         </field>
+         <field property="cpiE" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlCpiE" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_5_2_MASK}</var-value>
+                </var>
+         </field>
+        </form>                
+        
+        <!-- Cpi Rec Maint : bapa0x070f.jsp -->
+        <form name="CpiRecMaintQueryForm">
+        <field property="adjYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiDtlAdjYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- Cpi Rec Maint : bapa0x071c.jsp -->
+        <form name="CpiRecMaintListForm">
+
+        </form>   
+        
+        <!-- Cpi Rec Maint : bapa0x072a.jsp -->
+        <form name="CpiRecMaintDetailForm">
+        <field property="adjYmB" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.adjYmB" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- Basic Amt Maint : bapa0x080q.jsp bapa0x090q.jsp bapa0x100q.jsp-->
+        <form name="BasicAmtMaintQueryForm">
+        <field property="payYmB" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.payYmB" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- Basic Amt Maint : bapa0x081f.jsp bapa0x091f.jsp bapa0x101f.jsp-->
+        <form name="BasicAmtMaintListForm">
+
+        </form>                                
+        
+        <!-- Basic Amt Maint : bapa0x082a.jsp bapa0x092a.jsp bapa0x102a.jsp-->
+        <form name="BasicAmtMaintDetailForm">
+        <field property="cpiYear1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiYear1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+        <field property="cpiYear2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.cpiYear2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+        <field property="payYmE" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.payYmE" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+        </field>
+        <field property="cpiNdex1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" key="label.maint.basicamtCpiNdex1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_5_2_MASK}</var-value>
+                </var>
+         </field>
+         <field property="cpiNdex2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" key="label.maint.basicamtCpiNdex2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_5_2_MASK}</var-value>
+                </var>
+         </field>
+         <field property="growThrate" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" key="label.maint.basicamtGrowThrate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_5_2_MASK}</var-value>
+                </var>
+         </field>
+        </form>   
+        
+        <!-- AvgAmtMon Maint : bapa0x110q.jsp -->
+        <form name="AvgAmtMonMaintQueryForm">
+        <field property="effYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.year.mask" />
+                <arg bundle="baMsg" key="label.maint.avgAmtEffYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- AvgAmtMon Maint : bapa0x111f.jsp -->
+        <form name="AvgAmtMonMaintListForm">
+
+        </form>   
+        
+        <!-- AvgAmtMon Maint : bapa0x112a.jsp,bapa0x113c.jsp -->
+        <form name="AvgAmtMonMaintDetailForm">
+        <field property="effYear" depends="required,mask" page="1">
+              <msg bundle="baMsg" name="required" key="errors.required" />
+              <msg bundle="baMsg" name="mask" key="errors.date.year.mask" />
+              <arg bundle="baMsg" key="label.maint.avgAmtEffYear" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${YEAR_MASK}</var-value>
+              </var>
+        </field>
+        <field property="appMonth" depends="required,mask" page="1">
+              <msg bundle="baMsg" name="required" key="errors.required" />
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.avgAmtAppMonth" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        </form>                
+
+        <!-- ReplacementRatio Maint : bapa0x120q.jsp -->
+        <form name="ReplacementRatioMaintQueryForm">
+        <field property="effYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.avgAmtEffYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- ReplacementRatio Maint : bapa0x121f.jsp -->
+        <form name="ReplacementRatioMaintListForm">
+
+        </form>   
+        
+        <!-- ReplacementRatio Maint : bapa0x122a.jsp,bapa0x123c.jsp -->
+        <form name="ReplacementRatioMaintDetailForm">
+        <field property="effYm" depends="mask,required" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+              <msg bundle="baMsg" name="required" key="errors.required" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioEffYm" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${YEAR_MONTH_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg3" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg3" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg4" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg4" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeA1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeA1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeA2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeA2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeB1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeB1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeB2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeB2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeC1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeC1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeC2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeC2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeD1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeD1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeD2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeD2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        </form>         
+        
+        <!-- DisabledReplacementRatio Maint : bapa0x130q.jsp -->
+        <form name="DisabledReplacementRatioMaintQueryForm">
+        <field property="effYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.avgAmtEffYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- DisabledReplacementRatio Maint : bapa0x131f.jsp -->
+        <form name="DisabledReplacementRatioMaintListForm">
+
+        </form>   
+        
+        <!-- DisabledReplacementRatio Maint : bapa0x132a.jsp,bapa0x133c.jsp -->
+        <form name="DisabledReplacementRatioMaintDetailForm">
+        <field property="effYm" depends="mask,required" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+              <msg bundle="baMsg" name="required" key="errors.required" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioEffYm" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${YEAR_MONTH_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg3" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg3" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg4" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg4" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeA2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeA2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeB2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeB2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeC2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeC2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeD2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeD2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        </form>        
+        
+        <!-- SurvivorReplacementRatio Maint : bapa0x140q.jsp -->
+        <form name="SurvivorReplacementRatioMaintQueryForm">
+        <field property="effYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.maint.avgAmtEffYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+         </field>
+        </form>    
+        
+        <!-- SurvivorReplacementRatio Maint : bapa0x141f.jsp -->
+        <form name="SurvivorReplacementRatioMaintListForm">
+
+        </form>   
+        
+        <!-- SurvivorReplacementRatio Maint : bapa0x142a.jsp,bapa0x143c.jsp -->
+        <form name="SurvivorReplacementRatioMaintDetailForm">
+        <field property="effYm" depends="mask,required" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+              <msg bundle="baMsg" name="required" key="errors.required" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioEffYm" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${YEAR_MONTH_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg1" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg1" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg2" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg3" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg3" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="insAvg4" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.integer" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioInsAvg4" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeA2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeA2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeB2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeB2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeC2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeC2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        <field property="irrTypeD2" depends="mask" page="1">
+              <msg bundle="baMsg" name="mask" key="errors.double" />
+              <arg bundle="baMsg" key="label.maint.replacementRatioIrrTypeD2ForDS" />
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>${NUMBER_8_4_MASK}</var-value>
+              </var>
+        </field>
+        </form>          
+    </formset>
+</form-validation>

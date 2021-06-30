@@ -1,0 +1,2145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Old Age Review Rpt 01 : balp0d010l.jsp -->
+        <form name="OldAgeReviewRpt01Form">
+            <field property="apNo1Begin" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1Begin" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1Begin" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1Begin" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2Begin" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2Begin" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2Begin" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2Begin" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3Begin" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3Begin" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3Begin" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3Begin" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4Begin" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4Begin" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4Begin" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4Begin" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo1End" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1End" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1End" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1End" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2End" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2End" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2End" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2End" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3End" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3End" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3End" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3End" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4End" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4End" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4End" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4End" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Old Age Review Rpt 02 : balp0d020l.jsp -->
+        <form name="OldAgeReviewRpt02Form">
+            <field property="prtTyp" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.prtTyp" />
+            </field>
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="chkMan" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.chkMan" />
+            </field>
+            <field property="chkDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.oldAgeReviewRpt02.chkDate" />
+            </field>
+            <field property="packDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.packDate" />
+            </field>
+            <field property="pageNo" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.rpt.pageNo" />
+            </field>
+        </form>
+        
+        <!-- Old Age Review Rpt 04 : balp0d040l.jsp -->
+        <form name="OldAgeReviewRpt04Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Data Update Rpt 01 : balp0d110l.jsp -->
+        <form name="DataUpdateRpt01Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Data Update Rpt 02 : balp0d120l.jsp -->
+        <form name="DataUpdateRpt02Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Data Update Rpt 03 : balp0d130l.jsp -->
+        <form name="DataUpdateRpt03Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Data Update Rpt 04 : balp0d140l.jsp -->
+        <form name="DataUpdateRpt04Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Data Update Rpt 05 : balp0d150l.jsp -->
+        <form name="DataUpdateRpt05Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Decision Rpt 01 : balp0d210l.jsp -->
+        <form name="DecisionRpt01Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="decisionSdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.decisionSdate" />
+            </field>
+            <field property="decisionEdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.decisionEdate" />
+            </field> 
+        </form>
+        
+        <!-- Decision Rpt 02 : balp0d220l.jsp -->
+        <form name="DecisionRpt02Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="decisionDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.decisionDate" />
+            </field>
+            <field property="pageBegin" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.decision.pageBegin" />
+            </field>
+            <field property="pageEnd" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.decision.pageEnd" />
+            </field>
+        </form>
+        
+        <!-- Decision Rpt 03 : balp0d230l.jsp -->
+        <form name="DecisionRpt03Form">
+            <field property="decisionDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.decisionDate" />
+            </field>
+        </form>
+        
+        <!-- Audit Rpt 01 : balp0d420l.jsp -->
+        <form name="AuditRpt01Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="endYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.endYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.endYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="prtTyp" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.prtTyp420" />
+            </field>
+        </form>
+
+        <!-- Monthly Rpt 01 : balp0d310l.jsp -->
+        <form name="MonthlyRpt01Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Monthly Rpt 02 : balp0d320l.jsp -->
+        <form name="MonthlyRpt02Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="mtestMk" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.mtestMk" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- MonthlyBatch Rpt : balp0d3r0l.jsp -->
+        <form name="MonthlyBatchRptForm">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="mtestMk" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.mtestMk" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 03 : balp0d330l.jsp -->
+        <form name="MonthlyRpt03Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Monthly Rpt 04 : balp0d340l.jsp -->
+        <form name="MonthlyRpt04Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+
+        <!-- Monthly Rpt 05 : balp0d350l.jsp -->
+        <form name="MonthlyRpt05Form">
+            <!--<field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field> -->
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+             <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+           <!-- <field property="proDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.proDate" />
+            </field> -->
+        </form>
+        
+        <!-- Monthly Rpt 06 : balp0d360l.jsp -->
+        <form name="MonthlyRpt06Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 07 : balp0d370l.jsp -->
+        <form name="MonthlyRpt07Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 08 : balp0d380l.jsp -->
+        <form name="MonthlyRpt08Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 09 : balp0d390l.jsp -->
+        <form name="MonthlyRpt09Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 10 : balp0d3a0l.jsp -->
+        <form name="MonthlyRpt10Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+            <field property="reportType" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.reportType" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 11 : balp0d3b0l.jsp -->
+        <form name="MonthlyRpt11Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 12 : balp0d3c0l.jsp -->
+        <form name="MonthlyRpt12Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 13 : balp0d3d0l.jsp -->
+        <form name="MonthlyRpt13Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 14 : balp0d3e0l.jsp -->
+        <form name="MonthlyRpt14Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 15 : balp0d3f0l.jsp -->
+        <form name="MonthlyRpt15Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 16 : balp0d3g0l.jsp -->
+        <form name="MonthlyRpt16Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+            <field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="benIdn" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" position="0" key="label.rpt.benIdn" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 17 : balp0d3h0l.jsp -->
+        <form name="MonthlyRpt17Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 18 : balp0d3i0l.jsp -->
+        <form name="MonthlyRpt18Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 19 : balp0d3j0l.jsp -->
+        <form name="MonthlyRpt19Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 20 : balp0d3k0l.jsp -->
+        <form name="MonthlyRpt20Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 21 : balp0d3l0l.jsp -->
+        <form name="MonthlyRpt21Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 22 : balp0d3m0l.jsp -->
+        <form name="MonthlyRpt22Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 23 : balp0d3n0l.jsp -->
+        <form name="MonthlyRpt23Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+
+        <!-- Monthly Rpt 24 : balp0d3o0l.jsp -->
+        <form name="MonthlyRpt24Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.issuYm" />
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 25 : balp0d610l.jsp -->
+        <form name="MonthlyRpt25Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.rptChkDateR" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 26 : balp0d620l.jsp -->
+        <form name="MonthlyRpt26Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.rptChkDateR" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 27 : balp0d630l.jsp -->
+        <form name="MonthlyRpt27Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.rptChkDateC" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 28 : balp0d640l.jsp -->
+        <form name="MonthlyRpt28Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.rptChkDateC" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 29 : balp0d3p0l.jsp -->
+        <form name="MonthlyRpt29Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="rptKind" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.rptKind" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 30 : balp0d3s0l.jsp -->
+        <form name="MonthlyRpt30Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="rptKind" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.rptKind" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 31 : balp0d3t0l.jsp -->
+        <form name="MonthlyRpt31Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="rptKind" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.rptKind" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 32 : balp0d3u0l.jsp -->
+        <form name="MonthlyRpt32Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Monthly Rpt 33 : balp0d3v0l.jsp -->
+        <form name="MonthlyRpt33Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="chineseDate" key="errors.date" />
+            	<arg bundle="baMsg" key="label.rpt.chkDate" />
+            </field>
+        </form>
+        
+        <!-- Other Rpt 01 : balp0d510l.jsp -->
+        <form name="OtherRpt01Form">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+       <!-- Other Rpt 02 : balp0d520l.jsp -->
+        <form name="OtherRpt02Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+        </form>
+        
+        <!-- Other Rpt 03 : balp0d530l.jsp -->
+        <form name="OtherRpt03Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+        </form>
+        
+        <!--  Other Rpt 04 : balp0d540l.jsp -->
+        <form name="OtherRpt04Form">
+            <field property="crtDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.crtDate" />
+            </field>
+        </form>
+        
+         <!--  Other Rpt 05 : balp0d3q0l.jsp -->
+        <form name="OtherRpt05Form">
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+		<!-- Other Rpt 05 -->
+        <form name="OtherRpt06Form">
+        	<field property="procYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.rpt.procYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+           
+        </form>    
+        <form name="OtherRpt07Form">
+        	<field property="procYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" key="label.rpt.procYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            
+        </form>    
+        <form name="OtherRpt08Form">
+        	<field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            
+            <field property="deadYy" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.deadYy" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="OtherRpt09Form">
+        	<field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="deadYy" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.deadYy" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+            
+        </form>	 
+        
+        <!--  Other Rpt 10 : balp0d550l.jsp -->
+        <form name="OtherRpt10Form">
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Other Rpt 11 : balp0d560l.jsp -->
+        <form name="OtherRpt11Form">
+            <field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="issuYm" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.rpt.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Other Rpt 12 : balp0d570l.jsp -->
+        <form name="OtherRpt12Form">
+
+        </form>
+        
+        <!-- Review Fee Receipt Rpt 01 : bare0d040l.jsp -->
+        <form name="ReviewFeeReceiptRpt01Form">
+        	<field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apSeq" depends="mask" page="1">
+            	<msg bundle="baMsg" name="mask" key="errors.apNo.integer"/>
+	            <var>
+	            	<var-name>mask</var-name>
+	            	<var-value>${NUMBER_MASK}</var-value>
+	            </var>
+            </field>
+        </form>
+        
+        <!-- Review Fee Receipt Rpt 02 : bare0d041l.jsp -->
+        <form name="ReviewFeeReceiptRpt02Form">
+        	<field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apSeq" depends="mask" page="1">
+            	<msg bundle="baMsg" name="mask" key="errors.apNo.integer"/>
+	            <var>
+	            	<var-name>mask</var-name>
+	            	<var-value>${NUMBER_MASK}</var-value>
+	            </var>
+            </field>
+        </form>
+        
+        <!-- Review Fee Receipt Rpt 03 : bare0d042l.jsp -->
+        <form name="ReviewFeeReceiptRpt03Form">
+        	<field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.rpt.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.rpt.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.rpt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apSeq" depends="mask" page="1">
+            	<msg bundle="baMsg" name="mask" key="errors.apNo.integer"/>
+	            <var>
+	            	<var-name>mask</var-name>
+	            	<var-value>${NUMBER_MASK}</var-value>
+	            </var>
+            </field>
+        </form>
+        
+        <!-- Batch Payment Receive : balp0d690l.jsp -->
+        <form name="BatchPaymentReceiveForm">
+            <field property="reportType" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.rpt.batchPaymentReceive.reportType" />
+            </field>
+                    
+            <field property="payCode" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.rpt.payCode" />
+            </field>
+
+            <field property="chkDate" depends="required,chineseDate" page="1">
+            	<msg bundle="baMsg" name="required" key="errors.required" />
+            	<arg bundle="baMsg" name="required" key="label.rpt.batchPaymentReceive.chkDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.rpt.batchPaymentReceive.chkDate" />
+            </field>
+        </form>        
+        
+    </formset>
+</form-validation>

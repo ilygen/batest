@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LNMD">
+
+    <typeAlias alias="Lnmd" type="tw.gov.bli.ba.domain.Lnmd" />
+
+    <resultMap id="LNMDResult" class="Lnmd">
+        <result column="IDN_AA"     property="idn_Aa"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRDTE_AA"   property="brdte_Aa"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NAME_AA"    property="name_Aa"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="PBMK"       property="pbmk"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="UNO"        property="uno"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDN_BB"     property="idn_Bb"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRDTE_BB"   property="brdte_Bb"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NAME_BB"    property="name_Bb"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RCVNO"      property="rcvNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="YEAR"       property="year"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AMT1"       property="amt1"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AMT2"       property="amt2"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AMT3"       property="amt3"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AMT4"       property="amt4"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="GDATE"      property="gdate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EFDATE"     property="efdate"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="KNO"        property="kno"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UDATE"      property="udate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RATE"       property="tare"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="BANK"       property="bank"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FILERR_14"  property="filerr_14"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+    
+    <!-- DataUpdateRpt 04 Begin -->
+    <!-- [ -->
+    <select id="selectDataUpdateRpt04DataBy" resultMap="LNMDResult">
+        SELECT A.IDN_AA, 
+               A.BRDTE_AA, 
+               A.NAME_AA, 
+               A.PBMK, 
+               A.UNO, 
+               A.IDN_BB, 
+               A.BRDTE_BB, 
+               A.NAME_BB, 
+               A.RCVNO, 
+               A.YEAR, 
+               A.AMT1, 
+               A.AMT2, 
+               A.AMT3, 
+               A.AMT4, 
+               A.GDATE, 
+               A.EFDATE, 
+               A.KNO, 
+               A.UDATE, 
+               A.RATE, 
+               A.BANK, 
+               A.FILERR_14
+        FROM   MBLNMD A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idn_Bb">
+                    A.IDN_AA = #idn_Bb:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="brdte_Bb">
+                    A.BRDTE_AA = #brdte_Bb:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- ] -->
+	<!-- DataUpdateRpt 04 End -->
+     
+    
+     
+</sqlMap>

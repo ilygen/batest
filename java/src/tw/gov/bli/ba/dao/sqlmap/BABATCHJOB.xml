@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABATCHJOB">
+
+    <typeAlias alias="Babatchjob" type="tw.gov.bli.ba.domain.Babatchjob" />
+    
+    <resultMap id="BABATCHJOBData" class="Babatchjob">
+        <result column="ISSUYM"           property="issuYm"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="CHKDATE"          property="chkDate"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PAYCODE"          property="payCode"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />        
+        <result column="PROCEMPNO"        property="procEmpNo"         jdbcType="VARCHAR"      javaType="java.lang.String" 		nullValue="" />
+        <result column="PROCDEPTID"       property="procDeptId"        jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCIP"           property="procIp"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PAYSEQNO"         property="paySeqNo"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCTYPE"         property="procType"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+   		<result column="STATUS"           property="status"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+   		<result column="FILENAME"         property="fileName"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+   </resultMap>
+    <resultMap id="BABATCHJOBSTATUSData" class="Babatchjob">
+        <result column="ISSUYM"           property="issuYm"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="CHKDATE"          property="chkDate"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PAYCODE"          property="payCode"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />        
+        <result column="STATUS"        	  property="status"            jdbcType="VARCHAR"      javaType="java.lang.String" 		nullValue="" />
+        <result column="BAJOBID"      	  property="baJobId"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+    </resultMap>
+    
+	<parameterMap id="genBaPayFileParam" class="java.util.HashMap" >
+       	<parameter property="v_i_issutyp"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_issuym"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_chkdate"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_paycode"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_mtestmk"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_procempno"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    	<parameter property="v_i_procdeptid"   jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_procip"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_payseqno"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_i_proctype"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    	<parameter property="v_i_bajobid"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+    </parameterMap>
+    <parameterMap id="callSpBansfParam" class="java.util.HashMap" >
+       	<parameter property="v_i_issuym"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_jobid"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_o_rtncode"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="OUT" />
+        <parameter property="v_o_rtnflag"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="OUT" />
+    </parameterMap>
+        
+    <resultMap id="BABATCHJOBResult" class="Babatchjob">
+        <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"        property="chkDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCTYPE"       property="procType"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"         property="status"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCBEGTIME"    property="procBegTime"  jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="FILENAME"       property="fileName"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYSEQNO"       property="paySeqNo"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="DTEFLAG"        property="dteFlag"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BABATCHJOBRPT10"     class="Babatchjob">
+        <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"         property="status"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+   </resultMap>
+   
+    <resultMap id="PROCEDUREPROGRESSData" class="Babatchjob">
+        <result column="PROCBEGTIME"      property="procBegTime"       jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCENDTIME"      property="procEndTime"       jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCEDURE_NAME"   property="procedureName"     jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />        
+        <result column="STATUS"        	  property="status"            jdbcType="VARCHAR"      javaType="java.lang.String" 		nullValue="" />
+        <result column="BAJOBID"      	  property="baJobId"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="FLAGMSG"          property="flagMsg"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+    </resultMap>   
+    
+    <select id="selectBatchJobStatus" resultClass="java.lang.Integer">
+		SELECT  COUNT(*)
+		  FROM  BABATCHJOB
+		  WHERE ISSUYM = #issuYm:VARCHAR#
+	       AND CHKDATE=  #chkDate:VARCHAR#
+ 		   AND PAYCODE =  #payCode:VARCHAR#
+		   AND PROCTYPE = #procType:VARCHAR#
+    </select>
+    
+    <select id="selectBatchJobDisabledStatus" resultClass="java.lang.Integer">
+		SELECT  COUNT(*)
+		  FROM  BABATCHJOB
+		  WHERE ISSUYM = #issuYm:VARCHAR#
+	       AND  CHKDATE=  #chkDate:VARCHAR#
+ 		   AND  PAYCODE =  #payCode:VARCHAR#
+ 		   AND  PAYSEQNO =  #paySeqNo:VARCHAR#
+		   AND  PROCTYPE = #procType:VARCHAR#
+    </select>
+    
+    <insert id="insertBaBatchRec">
+        INSERT INTO BABATCHJOB
+        (
+            BAJOBID,
+            ISSUYM,
+            CHKDATE,
+            PAYCODE,
+            PROCEMPNO,
+            PROCDEPTID,
+            PROCIP,
+            PROCBEGTIME,
+            PROCTYPE,
+            STATUS,
+            PAYSEQNO,
+            FILENAME
+        ) 
+        VALUES
+        (
+            #baJobId:VARCHAR#, 
+            #issuYm:VARCHAR#, 
+            #chkDate:VARCHAR#,
+            #payCode:VARCHAR#,
+            #procEmpNo:VARCHAR#,
+            #procDeptId:VARCHAR#, 
+            #procIp:VARCHAR#, 
+            #procBegTime:VARCHAR#, 
+            #procType:VARCHAR#, 
+            #status:VARCHAR#,
+            #paySeqNo:VARCHAR#,
+            #fileName:VARCHAR#
+        )
+        
+    </insert>
+    <update id="updateBaBatchJobStatusBegTime">
+        UPDATE BABATCHJOB SET 
+        	   PROCBEGTIME = #procBegTime:VARCHAR#
+              ,STATUS = #status:VARCHAR#
+         WHERE BAJOBID = #baJobId:VARCHAR#
+    </update>
+    <update id="updateBaBatchJobStatusEndTime">
+        UPDATE BABATCHJOB SET 
+        	   PROCENDTIME = #procEndTime:VARCHAR#
+              ,PROCTYPE = #procType:VARCHAR#
+              ,STATUS = #status:VARCHAR#
+         WHERE BAJOBID = #baJobId:VARCHAR#
+    </update>
+    
+    <select id="selectBaBatchJobData" resultMap="BABATCHJOBData">
+        SELECT ISSUYM,
+        	   CHKDATE,
+        	   PAYCODE,
+        	   PROCEMPNO,
+        	   PROCDEPTID,
+        	   PROCIP,
+        	   PAYSEQNO,
+        	   PROCTYPE,
+        	   STATUS,
+        	   FILENAME
+        FROM   BABATCHJOB 
+        WHERE  BAJOBID = #bajobId:VARCHAR#
+     </select>
+     
+    <procedure id="genBaPayFile" parameterMap="genBaPayFileParam" >
+       <![CDATA[
+        { call sp_BA_GENBAPAYFILE(?,?,?,?,?,?,?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+    <procedure id="callSpBansf" parameterMap="callSpBansfParam" >
+       <![CDATA[
+        { call PG_BANSF_01.Sp_Bansf(?,?,?,?) }
+       ]]>
+    </procedure>
+    
+     <select id="selectNowProgressSteps" resultMap="BABATCHJOBSTATUSData">
+        SELECT ISSUYM,
+       		   CHKDATE, 
+       		   PAYCODE, 
+       		   STATUS,
+       		   BAJOBID
+  		FROM BABATCHJOB
+ 		WHERE PROCTYPE = #procType:VARCHAR#
+   		  AND ISSUYM =   #issuYm:VARCHAR#
+   		  AND CHKDATE =  #chkDate:VARCHAR#
+   		  AND PAYCODE =  #payCode:VARCHAR# 
+   		  AND PAYSEQNO = #paySeqNo:VARCHAR#
+     </select>
+     
+         
+     <select id="selectCountCheckForBjMonthBatchBy" resultClass="java.math.BigDecimal">
+        Select Count(*) From BABATCHJOB t
+                 Where t.ISSUYM = #issuYm:VARCHAR#
+                   And t.PAYCODE = #payCode:VARCHAR#
+                   And t.PROCTYPE = #procType:VARCHAR#
+                   <![CDATA[
+                   And t.STATUS <> 'N'   
+                   ]]>
+    </select>
+    
+    <select id="selectCountCheckForBjMonthBatchKBy" resultClass="java.math.BigDecimal">
+        Select Count(*) From BABATCHJOB t
+                 Where t.ISSUYM = #issuYm:VARCHAR#
+                   And t.PAYCODE = #payCode:VARCHAR#
+                   And t.PROCTYPE = #procType:VARCHAR#
+                   <![CDATA[
+                   And t.STATUS <> 'N'   
+                   ]]>
+                   And t.PAYSEQNO = #paySeqNo:VARCHAR#
+    </select>
+    
+    <select id="selectMonthBatchQueryDataListBy" resultMap="BABATCHJOBResult">
+                Select t.BAJOBID,
+                       t.ISSUYM,
+                       t.CHKDATE,
+                       t.PAYCODE,
+                       t.PROCTYPE,
+                       t.STATUS,
+                       t.PROCBEGTIME,
+                       t.FILENAME,
+                       t.PAYSEQNO,
+                       (Select Count(*) 
+                          From BABATCHJOB t1
+                         Where t1.BAJOBID = t.BAJOBID
+                           And Rownum = 1
+                       ) As "DTEFLAG"  
+                  From BABATCHJOB t
+                 Where t.PAYCODE = #payCode:VARCHAR#
+                  <dynamic prepend="">
+                      <isNotParameterPresent>
+                       1 = 0
+                      </isNotParameterPresent>
+                      <isParameterPresent>
+                      <isNotEmpty prepend="AND" property="issuYm">
+                       t.ISSUYM = #issuYm:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="baJobIdDate">
+                       t.BAJOBID LIKE '%' || #baJobIdDate:VARCHAR# || '%'
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="procType">
+                       t.PROCTYPE = #procType:VARCHAR#
+                     </isNotEmpty>
+                     </isParameterPresent>
+                 </dynamic>
+                Order By t.PROCBEGTIME DESC
+    </select>
+    
+    
+    <select id="selectScheduleBatchJobStatus" resultMap="BABATCHJOBRPT10">
+                Select STATUS,
+                	   BAJOBID
+                  From BABATCHJOB t
+                 Where t.PAYCODE = #payCode:VARCHAR#
+                 <![CDATA[
+                   and t.STATUS <> 'N'
+                   and ROWNUM = '1'
+                 ]]>
+                 <dynamic prepend="">
+                      <isNotParameterPresent>
+                       1 = 0
+                      </isNotParameterPresent>
+                      <isParameterPresent>
+                      <isNotEmpty prepend="AND" property="issuYm">
+                       t.ISSUYM = #issuYm:VARCHAR#
+                      </isNotEmpty>
+                       <isNotEmpty prepend="AND" property="chkDate">
+                       t.CHKDATE = #chkDate:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="procType">
+                       t.PROCTYPE = #procType:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="paySeqNo">
+                       t.PAYSEQNO = #paySeqNo:VARCHAR#
+                      </isNotEmpty>
+                      </isParameterPresent>
+                 </dynamic>
+                
+    </select>
+     <select id="selectMonthBatchKQueryDataListBy" resultMap="BABATCHJOBResult">
+                Select t.BAJOBID,
+                       t.ISSUYM,
+                       t.CHKDATE,
+                       t.PAYCODE,
+                       t.PROCTYPE,
+                       t.STATUS,
+                       t.PROCBEGTIME,
+                       t.FILENAME,
+                       t.PAYSEQNO,
+                       (Select Count(*) 
+                          From BABATCHJOB t1
+                         Where t1.BAJOBID = t.BAJOBID
+                           And Rownum =1
+                       ) As "DTEFLAG"  
+                  From BABATCHJOB t
+                 Where t.PAYCODE = #payCode:VARCHAR#
+                 <dynamic prepend="">
+                      <isNotParameterPresent>
+                       1 = 0
+                      </isNotParameterPresent>
+                      <isParameterPresent>
+                      <isNotEmpty prepend="AND" property="issuYm">
+                       t.ISSUYM = #issuYm:VARCHAR#
+                      </isNotEmpty>
+                       <isNotEmpty prepend="AND" property="baJobIdDate">
+                       t.BAJOBID LIKE '%' || #baJobIdDate:VARCHAR# || '%'
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="procType">
+                       t.PROCTYPE = #procType:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="paySeqNo">
+                       t.PAYSEQNO = #paySeqNo:VARCHAR#
+                      </isNotEmpty>
+                     </isParameterPresent>
+                 </dynamic>
+                Order By t.PROCBEGTIME DESC
+    </select>
+    
+    <insert id="insertBabatchjobDataForMonthBatch">
+        insert  into  BABATCHJOB  
+        (
+            BAJOBID,  
+            ISSUYM,
+            CHKDATE,      
+            PAYCODE,
+            PROCEMPNO,
+            PROCDEPTID,
+            PROCIP,
+            PROCBEGTIME,
+            PROCENDTIME,
+            PROCTYPE,
+            STATUS,
+            PAYSEQNO
+        )
+        values
+        (
+            #baJobId:VARCHAR#,
+            #issuYm:VARCHAR#,
+            #chkDate:VARCHAR#,
+            #payCode:VARCHAR#,
+            #procEmpNo:VARCHAR#,
+            #procDeptId:VARCHAR#,
+            #procIp:VARCHAR#,
+            #procBegTime:VARCHAR#,
+            #procEndTime:VARCHAR#, 
+            #procType:VARCHAR#,
+            #status:VARCHAR#,
+            #paySeqNo:VARCHAR#
+        )    
+    </insert>
+    
+    <insert id="insertBabatchjobDataForMonthBatchK">
+        insert  into  BABATCHJOB  
+        (
+            BAJOBID,  
+            ISSUYM,
+            CHKDATE,      
+            PAYCODE,
+            PROCEMPNO,
+            PROCDEPTID,
+            PROCIP,
+            PROCBEGTIME,
+            PROCENDTIME,
+            PROCTYPE,
+            STATUS,
+            PAYSEQNO
+        )
+        values
+        (
+            #baJobId:VARCHAR#,
+            #issuYm:VARCHAR#,
+            #chkDate:VARCHAR#,
+            #payCode:VARCHAR#,
+            #procEmpNo:VARCHAR#,
+            #procDeptId:VARCHAR#,
+            #procIp:VARCHAR#,
+            #procBegTime:VARCHAR#,
+            #procEndTime:VARCHAR#, 
+            #procType:VARCHAR#,
+            #status:VARCHAR#,
+            #paySeqNo:VARCHAR#
+        )    
+    </insert>
+    
+	<select id="selectProcedureProgressSteps" resultMap="PROCEDUREPROGRESSData">
+    	SELECT A.PROCBEGTIME,
+           	   A.PROCENDTIME, 
+               A.STATUS,
+               A.BAJOBID, 
+               B.PROCEDURE_NAME,
+               C.FLAGMSG
+          FROM BABATCHJOB A, (SELECT DISTINCT PROCEDURE_NAME, BAJOBID FROM BAPROCEDUREDATA) B, BABATCHJOBDTL C
+         WHERE A.BAJOBID = B.BAJOBID
+           AND A.BAJOBID = C.BAJOBID(+)
+           AND A.PROCTYPE = '9'
+           <![CDATA[           
+           AND (SUBSTR(A.BAJOBID,6,8) >= #startDate:VARCHAR#
+   		   AND SUBSTR(A.BAJOBID,6,8) <= #endDate:VARCHAR#)
+             ]]>
+         ORDER BY A.PROCBEGTIME DESC       		   
+	</select>
+		        
+	<select id="selectBatchJob12Status" resultClass="Babatchjob">
+    	SELECT T.ISSUYM
+		      ,T.PROCBEGTIME
+		      ,T.PROCENDTIME
+		      ,T.STATUS
+		      ,T.BAJOBID
+		  FROM BABATCHJOB T 
+		 WHERE T.PROCTYPE = '12'
+		   AND T.ISSUYM = #issuYm:VARCHAR#
+		 ORDER BY t.BAJOBID DESC  
+	</select>	        
+	
+	<select id="doQueryBatchJobStatusforOtherRpt05Action" resultMap="BABATCHJOBRPT10">
+		Select STATUS
+               ,BAJOBID
+		  FROM  BABATCHJOB
+		  WHERE ISSUYM = #issuYm:VARCHAR#
+	       AND PAYCODE = #payCode:VARCHAR#
+ 		   AND FILENAME = #fileName:VARCHAR#
+		   AND STATUS IN ('E', 'R')
+    </select>
+</sqlMap>

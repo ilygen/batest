@@ -1,0 +1,1754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYRPTACCOUNT">
+
+    <typeAlias alias="Bapayrptaccount" type="tw.gov.bli.ba.domain.Bapayrptaccount" />
+    
+    <!-- MonthlyRpt 04 Begin -->
+    <!-- [ -->
+    <resultMap id="MonthlyRpt04Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" /> 
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap> 
+    <!-- [ -->    
+    <!-- MonthlyRpt 04 End -->
+
+    <resultMap id="MonthlyRpt11Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>  
+    
+    <resultMap id="MonthlyRpt13Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>          
+    
+    <resultMap id="MonthlyRpt19Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUTYP"         property="issuTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>     
+    
+    <resultMap id="MonthlyRpt20Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt25Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>    
+    
+    <resultMap id="MonthlyRpt27Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    
+    <resultMap id="MonthlyRpt32Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUTYP"         property="issuTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    
+    <resultMap id="OtherRpt06Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>      
+    <resultMap id="OtherRpt08Result" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="BENEVTREL"       property="benEvtRel"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTSEQ"      property="accountSeq"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="ACCOUNTNO"       property="accountNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTNAME"     property="accountName"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYAMT"          property="payAmt"             jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />  
+        <result column="PAYSEQNO"        property="paySeqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="NACHGMK"         property="naChgMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PROCTIME"        property="procTime"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="RPTPAGE"         property="rptPage"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ERPTPAGE"        property="eRptPage"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap> 
+    
+    <parameterMap id="ExecRpt16TypeParam" class="java.util.HashMap" >
+        <parameter property="v_i_paycode"    jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_procYm"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_payseqno"   jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_i_cprnDt"     jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" /> 
+        <parameter property="v_o_flag"   	 jdbcType="VARCHAR"      javaType="java.lang.String"        mode="INOUT" />
+    </parameterMap>
+    
+    <resultMap id="RpttypeForPfmPfdResult" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+		<result column="ISSUTYP"         property="issuTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="RpttypeForPaymentReceivePfmPfdResult" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+		<result column="ISSUTYP"         property="issuTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="RpttypeForPfmPfdKResult" class="Bapayrptaccount">
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+		<result column="ISSUTYP"         property="issuTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="RpttypeForPfmPfdSResult" class="Bapayrptaccount">
+        <result column="NLWKMK"          property="nlWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"          property="adWkMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+		<result column="ISSUTYP"         property="issuTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYTYP"          property="payTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DataForPfmPfdResult" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+  		<result column="ACTDB"           property="actDb"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACTCR"           property="actCr"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTMEMO"     property="accountMemo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="DATACD"          property="dataCd"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACTTITLEAPCODE"  property="actTitleApCode"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ACCEPTPAYTYPE"   property="acceptPayType"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNO"            property="apNo"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APSEQNO"	     property="apSeqNo"		   	   jdbcType="VARCHAR"	   javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DataForPfmPfdKResult" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+  		<result column="ACTDB"           property="actDb"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACTCR"           property="actCr"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTMEMO"     property="accountMemo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="DATACD"          property="dataCd"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACTTITLEAPCODE"  property="actTitleApCode"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ACCEPTPAYTYPE"   property="acceptPayType"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNO"            property="apNo"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APSEQNO"	     property="apSeqNo"		   	   jdbcType="VARCHAR"	   javaType="java.lang.String" nullValue="" />
+    </resultMap> 
+    
+    <resultMap id="DataForPfmPfdSResult" class="Bapayrptaccount">
+        <result column="RPTTYP"          property="rptTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="PAYCODE"         property="payCode"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ISSUYM"          property="issuYm"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKDATE"         property="chkDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+  		<result column="ACTDB"           property="actDb"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACTCR"           property="actCr"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="ACCOUNTMEMO"     property="accountMemo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="DATACD"          property="dataCd"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACTTITLEAPCODE"  property="actTitleApCode"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="SEQNO"           property="seqNo"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ACCEPTPAYTYPE"   property="acceptPayType"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APNO"            property="apNo"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="APSEQNO"	     property="apSeqNo"		   	   jdbcType="VARCHAR"	   javaType="java.lang.String" nullValue="" />
+    </resultMap> 
+    <!-- MonthlyRpt 04 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE                      
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       (
+	                       <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+                           <isEqual property="eqType" compareValue="notIn">
+	                       OR TRIM(BENEVTREL) IS NULL
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>                
+	           </isParameterPresent>
+	       </dynamic> 
+         ORDER BY PAYTYP,ACCOUNTSEQ,SEQNO    
+    </select>  
+    
+    
+    <select id="selectMonthlyRptK04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           AND PAYSEQNO = #paySeqNo:VARCHAR#           
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       (
+	                        <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+	                       OR TRIM(BENEVTREL) IS NULL
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                       ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>		                               
+	           </isParameterPresent>
+	       </dynamic> 
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO             
+    </select>           
+    
+    <select id="selectMonthlyRptS04Report" resultMap="MonthlyRpt04Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '1'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR#         
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="benEvtRel">
+	                   <isEmpty property="eqType">
+	                       BENEVTREL = #benEvtRel:VARCHAR# 
+	                   </isEmpty>
+	                   <isNotEmpty property="eqType">
+	                       (
+	                        <isEqual property="eqType" compareValue="in">
+                               BENEVTREL in 
+                           </isEqual>
+                           <isEqual property="eqType" compareValue="notIn">
+                               BENEVTREL not in  
+                           </isEqual>
+                           <iterate  property="benEvtRel"  open="(" close=")" conjunction="," >
+                               #benEvtRel[]#
+                           </iterate> 
+	                       OR TRIM(BENEVTREL) IS NULL
+						   )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>		                               
+	           </isParameterPresent>
+	       </dynamic> 
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO             
+    </select>
+    <!-- MonthlyRpt 04 End -->  
+    
+    
+    <select id="selectMonthlyRpt11Report" resultMap="MonthlyRpt11Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                    
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '5'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+         ORDER BY PAYTYP,ACCOUNTSEQ,SEQNO    
+    </select>
+    
+    <select id="selectMonthlyRpt13Report" resultMap="MonthlyRpt13Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE                      
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '6'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+         ORDER BY PAYTYP,ACCOUNTSEQ,SEQNO    
+    </select>                
+    
+    <select id="selectMonthlyRpt19Report" resultMap="MonthlyRpt19Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,ISSUTYP
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE 
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '8'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty> 
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	
+	           </isParameterPresent>
+	       </dynamic>         
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO             
+    </select>         
+    
+    <!-- MonthlyRpt 20 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt20Report" resultMap="MonthlyRpt20Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                     
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '7'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                       ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select>      
+    <!-- MonthlyRpt 20 End -->
+    
+    <!-- MonthlyRpt 25 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt25Report" resultMap="MonthlyRpt25Result">
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE                      
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = #rptTyp:VARCHAR#   
+           AND APNO = #apNo:VARCHAR#
+           AND CHKDATE = #chkDate:VARCHAR#
+           AND APSEQNO = #apSeqNo:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                           
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select>      
+    <!-- MonthlyRpt 25 End -->
+    
+    <!-- MonthlyRpt 27 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt27Report" resultMap="MonthlyRpt27Result">
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE                      
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = #rptTyp:VARCHAR#   
+           AND APNO = #apNo:VARCHAR#
+           AND CHKDATE = #chkDate:VARCHAR#
+           AND APSEQNO = #apSeqNo:VARCHAR#
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>                           
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select>      
+    <!-- MonthlyRpt 27 End -->
+    
+    <select id="selectMonthlyRpt32Report" resultMap="MonthlyRpt32Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,ISSUTYP
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE 
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '19'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CHKDATE = #chkDate:VARCHAR# 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty> 
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	  ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	
+	           </isParameterPresent>
+	       </dynamic>         
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO             
+    </select>
+     
+    <!-- other 06 Begin -->
+    <!-- [ -->
+    <select id="selectOtherRpt06DataBy" resultMap="OtherRpt06Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                     
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '16'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           AND CPRNDATE LIKE #cPrnDate:VARCHAR#||'%' 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                      ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select>      
+    
+    <!-- other 06 Begin -->
+    <!-- [ -->
+    <select id="selectOtherRpt06CompRptBy" resultMap="OtherRpt06Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                     
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '16'                 
+           AND CHKDATE = #chkDate:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	              <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                       ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select>   
+    <!-- other 08 Begin -->
+    <!-- [ -->
+    <select id="selectOtherRpt08DataBy" resultMap="OtherRpt08Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                     
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '17'                 
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND CPRNDATE = #cPrnDate:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="apNo">
+	                       APNO = #apNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select> 
+    
+    <select id="selectOtherRpt08CompRptBy" resultMap="OtherRpt08Result">
+        <![CDATA[
+        ]]>
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NLWKMK                       
+              ,ADWKMK
+              ,NACHGMK
+              ,PROCTIME  
+              ,RPTPAGE
+              ,ERPTPAGE                     
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = '17'                 
+           AND CHKDATE = #chkDate:VARCHAR#
+           AND PAYCODE LIKE #payCode:VARCHAR#||'%' 
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="apNo">
+	                       APNO = #apNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="paySeqNo">
+	                       PAYSEQNO = #paySeqNo:VARCHAR#                     
+	               </isNotEmpty>
+	               <isNotEmpty prepend="AND" property="isNull">
+	                   <isNotEmpty property="isEqual">
+	                   	   ( 
+                           <isEqual property="isEqual" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="isEqual" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNull" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNull" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       ) 
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	                               
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY NACHGMK, NLWKMK, ADWKMK, PAYTYP, ACCOUNTSEQ, SEQNO       
+    </select> 	
+    <!-- MonthlyRpt 20 End --> 
+     <!-- OtherRpt 06 End -->              
+    <procedure id="execRpt16LType" parameterMap="ExecRpt16TypeParam" >
+       <![CDATA[
+        { call PKG_BA_genPayRPTSUMAccount.sp_BA_genPayACCOUNTRPT_16_L(?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+    <procedure id="execRpt16KType" parameterMap="ExecRpt16TypeParam" >
+       <![CDATA[
+        { call PKG_BA_genPayRPTSUMAccount.sp_BA_genPayACCOUNTRPT_16_K(?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+    <procedure id="execRpt16SType" parameterMap="ExecRpt16TypeParam" >
+       <![CDATA[
+        { call PKG_BA_genPayRPTSUMAccount.sp_BA_genPayACCOUNTRPT_16_S(?,?,?,?,?) }
+       ]]>
+    </procedure>
+    
+	<insert id="insertDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTACCOUNT
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYCODE
+            ,ISSUYM
+            ,PAYTYP
+            ,CHKDATE
+            ,BENEVTREL
+            ,ACCOUNTSEQ
+            ,SEQNO
+            ,ACCOUNTNO
+            ,ACCOUNTNAME
+            ,PAYAMT
+            ,PAYSEQNO
+            ,PROCTIME
+            ,ISSUTYP
+            ,ACCOUNTMEMO
+            ,OPPACCOUNTNO
+            ,OPPACCOUNTNAME
+            ,ACTTITLEAPCODE
+            ,DATACD    
+            ,DECIDEAMT
+            ,CASHAMT
+            ,CUTAMT
+            ,ACCEPTPAYTYPE
+            ,CNT
+            ,ACCOUNTTOPFMK
+            ,STS
+            ,APNO
+            ,APSEQNO
+        )
+        values
+        (
+             #rptTyp:VARCHAR#
+            ,#cPrnDate:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#issuYm:VARCHAR#            
+            ,#payTyp:VARCHAR#
+            ,#chkDate:VARCHAR#            
+            ,#benEvtRel:VARCHAR#
+            ,#accountSeq:NUMERIC#
+            ,#seqNo:NUMERIC#
+            ,#accountNo:VARCHAR#
+            ,#accountName:VARCHAR#
+            ,#payAmt:NUMERIC#
+            ,''
+            , to_Char(SYSDATE,'YYYYMMDDHH24MISS')
+            ,#issuTyp:VARCHAR#
+            ,#accountMemo:VARCHAR#
+            ,#oppAccountNo:VARCHAR#
+            ,#oppAccountName:VARCHAR#
+            ,#actTitleApCode:VARCHAR#
+            ,#dataCd:VARCHAR#
+            ,#decideAmt:NUMERIC#
+            ,#cashAmt:NUMERIC#
+            ,#cutAmt:NUMERIC#
+            ,#acceptPayType:VARCHAR#
+            ,#cnt:NUMERIC#
+            ,#accountTopfMk:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#apSeqNo:VARCHAR#
+        )    
+    </insert>
+    
+	<insert id="insertDataForPaymentReceiveData">
+        
+        insert  into  BAPAYRPTACCOUNT
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYCODE
+            ,ISSUYM
+            ,PAYTYP
+            ,CHKDATE
+            ,BENEVTREL
+            ,ACCOUNTSEQ
+            ,SEQNO
+            ,ACCOUNTNO
+            ,ACCOUNTNAME
+            ,PAYAMT
+            ,PAYSEQNO
+            ,PROCTIME
+            ,ISSUTYP
+            ,ACCOUNTMEMO
+            ,OPPACCOUNTNO
+            ,OPPACCOUNTNAME
+            ,ACTTITLEAPCODE
+            ,DATACD    
+            ,DECIDEAMT
+            ,CASHAMT
+            ,CUTAMT
+            ,ACCEPTPAYTYPE
+            ,CNT
+            ,ACCOUNTTOPFMK
+            ,STS
+            ,APNO
+            ,APSEQNO
+        )
+        values
+        (
+             #rptTyp:VARCHAR#
+            ,#cPrnDate:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#issuYm:VARCHAR#            
+            ,#payTyp:VARCHAR#
+            ,#chkDate:VARCHAR#            
+            ,#benEvtRel:VARCHAR#
+            ,#accountSeq:NUMERIC#
+            ,#seqNo:NUMERIC#
+            ,#accountNo:VARCHAR#
+            ,#accountName:VARCHAR#
+            ,#payAmt:NUMERIC#
+            ,''
+            , to_Char(SYSDATE,'YYYYMMDDHH24MISS')
+            ,#issuTyp:VARCHAR#
+            ,'N'
+            ,#oppAccountNo:VARCHAR#
+            ,#oppAccountName:VARCHAR#
+            ,#actTitleApCode:VARCHAR#
+            ,#dataCd:VARCHAR#
+            ,#decideAmt:NUMERIC#
+            ,#cashAmt:NUMERIC#
+            ,#cutAmt:NUMERIC#
+            ,#acceptPayType:VARCHAR#
+            ,#cnt:NUMERIC#
+            ,#accountTopfMk:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#apSeqNo:VARCHAR#
+        )    
+    </insert>
+
+	<insert id="insertKDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTACCOUNT
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYCODE
+            ,ISSUYM
+            ,PAYTYP
+            ,CHKDATE
+            ,BENEVTREL
+            ,ACCOUNTSEQ
+            ,SEQNO
+            ,ACCOUNTNO
+            ,ACCOUNTNAME
+            ,PAYAMT
+            ,PAYSEQNO
+            ,PROCTIME
+            ,ISSUTYP
+            ,ACCOUNTMEMO
+            ,OPPACCOUNTNO
+            ,OPPACCOUNTNAME
+            ,ACTTITLEAPCODE
+            ,DATACD    
+            ,DECIDEAMT
+            ,CASHAMT
+            ,CUTAMT
+            ,ACCEPTPAYTYPE
+            ,CNT
+            ,ACCOUNTTOPFMK
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,STS
+            ,APNO
+            ,APSEQNO
+        )
+        values
+        (
+             #rptTyp:VARCHAR#
+            ,#cPrnDate:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#issuYm:VARCHAR#            
+            ,#payTyp:VARCHAR#
+            ,#chkDate:VARCHAR#            
+            ,#benEvtRel:VARCHAR#
+            ,#accountSeq:NUMERIC#
+            ,#seqNo:NUMERIC#
+            ,#accountNo:VARCHAR#
+            ,#accountName:VARCHAR#
+            ,#payAmt:NUMERIC#
+            ,''
+            , to_Char(SYSDATE,'YYYYMMDDHH24MISS')
+            ,#issuTyp:VARCHAR#
+            ,#accountMemo:VARCHAR#
+            ,#oppAccountNo:VARCHAR#
+            ,#oppAccountName:VARCHAR#
+            ,#actTitleApCode:VARCHAR#
+            ,#dataCd:VARCHAR#
+            ,#decideAmt:NUMERIC#
+            ,#cashAmt:NUMERIC#
+            ,#cutAmt:NUMERIC#
+            ,#acceptPayType:VARCHAR#
+            ,#cnt:NUMERIC#
+            ,#accountTopfMk:VARCHAR#
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#apSeqNo:VARCHAR#
+        )    
+    </insert>
+    
+	<insert id="insertSDataForBatchPaymentReceiveData">
+        
+        insert  into  BAPAYRPTACCOUNT
+        (
+             RPTTYP
+            ,CPRNDATE
+            ,PAYCODE
+            ,ISSUYM
+            ,PAYTYP
+            ,CHKDATE
+            ,BENEVTREL
+            ,ACCOUNTSEQ
+            ,SEQNO
+            ,ACCOUNTNO
+            ,ACCOUNTNAME
+            ,PAYAMT
+            ,PAYSEQNO
+            ,PROCTIME
+            ,ISSUTYP
+            ,ACCOUNTMEMO
+            ,OPPACCOUNTNO
+            ,OPPACCOUNTNAME
+            ,ACTTITLEAPCODE
+            ,DATACD    
+            ,DECIDEAMT
+            ,CASHAMT
+            ,CUTAMT
+            ,ACCEPTPAYTYPE
+            ,CNT
+            ,ACCOUNTTOPFMK
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,STS
+            ,APNO
+            ,APSEQNO
+        )
+        values
+        (
+             #rptTyp:VARCHAR#
+            ,#cPrnDate:VARCHAR#
+            ,#payCode:VARCHAR#
+            ,#issuYm:VARCHAR#            
+            ,#payTyp:VARCHAR#
+            ,#chkDate:VARCHAR#            
+            ,#benEvtRel:VARCHAR#
+            ,#accountSeq:NUMERIC#
+            ,#seqNo:NUMERIC#
+            ,#accountNo:VARCHAR#
+            ,#accountName:VARCHAR#
+            ,#payAmt:NUMERIC#
+            ,''
+            , to_Char(SYSDATE,'YYYYMMDDHH24MISS')
+            ,#issuTyp:VARCHAR#
+            ,#accountMemo:VARCHAR#
+            ,#oppAccountNo:VARCHAR#
+            ,#oppAccountName:VARCHAR#
+            ,#actTitleApCode:VARCHAR#
+            ,#dataCd:VARCHAR#
+            ,#decideAmt:NUMERIC#
+            ,#cashAmt:NUMERIC#
+            ,#cutAmt:NUMERIC#
+            ,#acceptPayType:VARCHAR#
+            ,#cnt:NUMERIC#
+            ,#accountTopfMk:VARCHAR#
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#apSeqNo:VARCHAR#
+        )    
+    </insert>
+
+    <select id="getBatchPaymentReceiveDataBy" resultMap="MonthlyRpt25Result">
+        SELECT RPTTYP,
+               PAYCODE,
+               ISSUYM,
+               PAYTYP,
+               CHKDATE,
+               BENEVTREL,
+               ACCOUNTSEQ,
+               SEQNO,
+               ACCOUNTNO,
+               ACCOUNTNAME,
+               PAYAMT,
+               PAYSEQNO,
+               NLWKMK,
+               ADWKMK,
+               NACHGMK,
+               '' AS PROCTIME,
+               RPTPAGE,
+               ERPTPAGE
+          FROM (SELECT RPTTYP,
+                       PAYCODE,
+                       ISSUYM,
+                       PAYTYP,
+                       CHKDATE,
+                       BENEVTREL,
+                       ACCOUNTSEQ,
+                       SEQNO,
+                       ACCOUNTNO,
+                       ACCOUNTNAME,
+                       SUM(PAYAMT) AS PAYAMT,
+                       '' AS PAYSEQNO,
+                       '' AS NLWKMK,
+                       '' AS ADWKMK,
+                       '' AS NACHGMK,
+                       0 AS RPTPAGE,
+                       0 AS ERPTPAGE
+                  FROM BAPAYRPTACCOUNT
+                 WHERE RPTTYP = #rptTyp:VARCHAR#   
+                   AND PAYCODE = #payCode:VARCHAR#
+                   AND CHKDATE = #chkDate:VARCHAR#
+                   AND ACCOUNTSEQ = 0
+           		<dynamic prepend="">
+	           		<isNotParameterPresent>
+	               		AND 1 = 0
+	           		</isNotParameterPresent>
+	           		<isParameterPresent>
+	               		<isNotEmpty prepend="AND" property="isNullOrNot">
+	                   		<isNotEmpty property="eqOrNot">
+	                   	   		( 
+                                <isEqual property="eqOrNot" compareValue="eq">
+                                <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                                </isEqual>
+                                <isEqual property="eqOrNot" compareValue="ne">
+                                <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                                </isEqual>
+	                            <isEqual property="isNullOrNot" compareValue="isNull">
+	                            OR TRIM(NACHGMK) IS NULL 
+	                            </isEqual>
+	                            <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                            OR TRIM(NACHGMK) IS NOT NULL 
+	                            </isEqual>
+	                            ) 
+	                   		</isNotEmpty>                     
+	               		</isNotEmpty>	
+	           		</isParameterPresent>
+	       		</dynamic>
+                 GROUP BY RPTTYP, PAYCODE, ISSUYM, PAYTYP, CHKDATE, BENEVTREL, ACCOUNTSEQ, SEQNO, ACCOUNTNO, ACCOUNTNAME, PAYSEQNO,
+                          NLWKMK, ADWKMK, NACHGMK, RPTPAGE, ERPTPAGE) T1
+         UNION
+        SELECT RPTTYP        
+              ,PAYCODE                    
+              ,ISSUYM
+              ,PAYTYP      
+              ,CHKDATE      
+              ,BENEVTREL         
+              ,ACCOUNTSEQ       
+              ,SEQNO
+              ,ACCOUNTNO
+              ,ACCOUNTNAME
+              ,PAYAMT
+              ,PAYSEQNO                      
+              ,NVL(TRIM(NLWKMK), '') AS NLWKMK                       
+              ,NVL(TRIM(ADWKMK), '') AS ADWKMK
+              ,NACHGMK
+              ,PROCTIME
+              ,RPTPAGE
+              ,ERPTPAGE                      
+          FROM BAPAYRPTACCOUNT           
+         WHERE RPTTYP = #rptTyp:VARCHAR#   
+           AND PAYCODE = #payCode:VARCHAR#
+           AND CHKDATE = #chkDate:VARCHAR#
+           <![CDATA[
+           AND ACCOUNTSEQ <> 0
+           ]]>
+           <dynamic prepend="">
+	           <isNotParameterPresent>
+	               AND 1 = 0
+	           </isNotParameterPresent>
+	           <isParameterPresent>
+	               <isNotEmpty prepend="AND" property="isNullOrNot">
+	                   <isNotEmpty property="eqOrNot">
+	                   	   ( 
+                           <isEqual property="eqOrNot" compareValue="eq">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') = ' '  ]]>
+                           </isEqual>
+                           <isEqual property="eqOrNot" compareValue="ne">
+                           <![CDATA[  NVL(TRIM(NACHGMK),' ') != ' '  ]]>
+                           </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNull">
+	                       OR TRIM(NACHGMK) IS NULL 
+	                       </isEqual>
+	                       <isEqual property="isNullOrNot" compareValue="isNotNull">
+	                       OR TRIM(NACHGMK) IS NOT NULL 
+	                       </isEqual>
+	                       )
+	                   </isNotEmpty>                     
+	               </isNotEmpty>	
+	           </isParameterPresent>
+	       </dynamic>
+         ORDER BY ACCOUNTSEQ, NACHGMK, NLWKMK, ADWKMK, PAYTYP, SEQNO       
+    </select>      
+
+    <select id="selectRpttypeForPfmPfdBy" resultMap="RpttypeForPfmPfdResult">
+        <![CDATA[
+        ]]>
+        
+        select t.RPTTYP, 
+               t.ISSUTYP, 
+               t.paycode, 
+               t.paytyp, 
+               t.issuym
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+         group by t.RPTTYP, t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+         order by t.RPTTYP, t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+    </select>
+    
+    <select id="selectRpttypeForPaymentReceivePfmPfdBy" resultMap="RpttypeForPaymentReceivePfmPfdResult">
+        <![CDATA[
+        ]]>
+        
+        select t.RPTTYP, 
+               t.ISSUTYP, 
+               t.paycode, 
+               t.paytyp, 
+               t.issuym,
+               t.CHKDATE
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.APNO = #apNo:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+           and t.issutyp = 'E'
+           and t.accountmemo = 'N'
+         group by t.RPTTYP, t.ISSUTYP, t.paycode, t.paytyp, t.issuym, t.CHKDATE
+         order by t.RPTTYP, t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+    </select>
+    
+    <select id="selectRpttypeForPfmPfdKBy" resultMap="RpttypeForPfmPfdKResult">
+        <![CDATA[
+        ]]>
+        
+        select t.NLWKMK,
+               t.ADWKMK,
+               t.RPTTYP, 
+               t.ISSUTYP, 
+               t.paycode, 
+               t.paytyp, 
+               t.issuym
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+         group by t.NLWKMK,t.ADWKMK,t.RPTTYP,t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+         order by t.NLWKMK,t.ADWKMK,t.RPTTYP,t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+    </select>
+    
+    <select id="selectRpttypeForPfmPfdSBy" resultMap="RpttypeForPfmPfdSResult">
+        <![CDATA[
+        ]]>
+        
+        select t.NLWKMK,
+               t.ADWKMK,
+               t.RPTTYP, 
+               t.ISSUTYP, 
+               t.paycode, 
+               t.paytyp, 
+               t.issuym
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+           and t.NACHGMK is null
+         group by t.NLWKMK,t.ADWKMK,t.RPTTYP,t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+         order by t.NLWKMK,t.ADWKMK,t.RPTTYP,t.ISSUTYP, t.paycode, t.paytyp, t.issuym
+    </select>
+    
+    <select id="selectDataForPfmPfdBy" resultMap="DataForPfmPfdResult">
+        <![CDATA[
+        ]]>
+        
+        select t.RPTTYP,
+               t.PAYCODE,
+               t.ISSUYM,
+               t.CHKDATE,
+               deCode(t.ACCOUNTSEQ, '0', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTDB,
+               deCode(t.ACCOUNTSEQ, '1', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTCR,
+               t.ACCOUNTMEMO,
+               t.DATACD,
+               t.ACTTITLEAPCODE,
+               t.SEQNO,
+               t.ACCEPTPAYTYPE,
+               t.APNO,
+               t.APSEQNO
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+           and t.ISSUYM = #issuYm:VARCHAR#
+           and t.PAYTYP = #payTyp:VARCHAR#
+         order by to_Number(t.SEQNO)
+    </select>
+    
+    <select id="selectDataForPfmPfdKBy" resultMap="DataForPfmPfdKResult">
+        <![CDATA[
+        ]]>
+        
+        select t.RPTTYP,
+               t.PAYCODE,
+               t.ISSUYM,
+               t.CHKDATE,
+               deCode(t.ACCOUNTSEQ, '0', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTDB,
+               deCode(t.ACCOUNTSEQ, '1', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTCR,
+               t.ACCOUNTMEMO,
+               t.DATACD,
+               t.ACTTITLEAPCODE,
+               t.SEQNO,
+               t.ACCEPTPAYTYPE,
+               t.APNO,
+               t.APSEQNO
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.ISSUYM = #issuYm:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+           and t.PAYTYP = #payTyp:VARCHAR#
+         order by t.NLWKMK, t.ADWKMK, t.PAYTYP, t.ACCOUNTSEQ, to_Number(t.SEQNO)
+    </select>
+    
+    <select id="selectDataForPfmPfdSBy" resultMap="DataForPfmPfdSResult">
+        <![CDATA[
+        ]]>
+        
+        select t.RPTTYP,
+               t.PAYCODE,
+               t.ISSUYM,
+               t.CHKDATE,
+               deCode(t.ACCOUNTSEQ, '0', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTDB,
+               deCode(t.ACCOUNTSEQ, '1', t.ACCOUNTNO, t.OPPACCOUNTNO) as ACTCR,
+               t.ACCOUNTMEMO,
+               t.DATACD,
+               t.ACTTITLEAPCODE,
+               t.SEQNO,
+               t.ACCEPTPAYTYPE,
+               t.APNO,
+               t.APSEQNO
+          from BAPAYRPTACCOUNT t
+         where t.RPTTYP = '18'
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and t.ACCOUNTTOPFMK = 'Y'
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and t.ISSUTYP = #issuTyp:VARCHAR#
+         order by t.NLWKMK, t.ADWKMK, t.PAYTYP, t.ACCOUNTSEQ, to_Number(t.SEQNO)
+    </select>
+    
+    <update id="updateForPfmPfd">    
+        update BAPAYRPTACCOUNT t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.ISSUYM = #issuYm:VARCHAR# 
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR# 
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR# 
+    </update>
+    
+    <update id="updateForPfmPfdK">    
+        update BAPAYRPTACCOUNT t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.ISSUYM = #issuYm:VARCHAR# 
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR#
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR# 
+    </update>
+    
+    <update id="updateForPfmPfdS">    
+        update BAPAYRPTACCOUNT t
+           set t.RPTPAGE  = #v_cprnpage:VARCHAR#,
+               t.PROCTIME = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.RPTTYP = '18'
+           and t.ISSUYM = #issuYm:VARCHAR# 
+           and t.PAYCODE = #payCode:VARCHAR#
+           and t.CHKDATE = #chkDate:VARCHAR# 
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           and (t.RPTPAGE is null or NVL(trim(t.RPTPAGE), ' ') = ' ' or NVL(trim(t.RPTPAGE), 0) = 0)
+           and t.ISSUTYP = #issuTyp:VARCHAR# 
+    </update>
+    
+    <update id="updateErptpageForPfmPfd">    
+		UPDATE BAPAYRPTACCOUNT t
+           SET t.ERPTPAGE = #v_cprnpage:VARCHAR#
+         WHERE t.RPTTYP = '18'
+           AND t.ISSUYM = #issuYm:VARCHAR# 
+           AND t.PAYCODE = #payCode:VARCHAR#
+           AND t.CHKDATE = #chkDate:VARCHAR# 
+           AND t.CPRNDATE = #v_i_cprndt:VARCHAR# 
+           AND t.ISSUTYP = #issuTyp:VARCHAR#   
+		   
+    </update>
+    
+    <update id="updateTempMk">    
+		UPDATE BAPAYRPTACCOUNT t
+           SET t.ACCOUNTMEMO = ''
+         WHERE t.RPTTYP = '18'
+           AND t.PAYCODE = #payCode:VARCHAR#
+           AND t.APNO = #apNo:VARCHAR#
+           AND t.ISSUTYP = 'E'
+           AND t.ACCOUNTMEMO = 'N'
+    </update>
+    
+    <update id="updateErptpageForPfmPfdK">    
+		UPDATE BAPAYRPTACCOUNT t
+           SET t.ERPTPAGE = #v_cprnpage:VARCHAR#
+         WHERE t.RPTTYP = '18'
+           AND t.ISSUYM = #issuYm:VARCHAR# 
+           AND t.PAYCODE = #payCode:VARCHAR#
+           AND t.CHKDATE = #chkDate:VARCHAR# 
+           AND t.CPRNDATE = #v_i_cprndt:VARCHAR#
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           AND t.ISSUTYP = #issuTyp:VARCHAR#   
+		   
+    </update>
+    
+    <update id="updateErptpageForPfmPfdS">    
+		UPDATE BAPAYRPTACCOUNT t
+           SET t.ERPTPAGE = #v_cprnpage:VARCHAR#
+         WHERE t.RPTTYP = '18'
+           AND t.ISSUYM = #issuYm:VARCHAR# 
+           AND t.PAYCODE = #payCode:VARCHAR#
+           AND t.CHKDATE = #chkDate:VARCHAR# 
+           AND t.CPRNDATE = #v_i_cprndt:VARCHAR#
+           and NVL(t.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+           and NVL(t.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+           and t.NACHGMK is null
+           AND t.ISSUTYP = #issuTyp:VARCHAR#   
+		   
+    </update>
+
+</sqlMap>   

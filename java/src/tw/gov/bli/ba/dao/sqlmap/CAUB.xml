@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CAUB">
+
+    <typeAlias alias="Caub" type="tw.gov.bli.ba.domain.Caub" />
+
+    <resultMap id="PayeeDataUpdateResult" class="Caub">
+        <result column="UNAME"          property="uname"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CZPCD"          property="czpcd"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CADDR"          property="caddr"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TEL"            property="tel"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01UnitDataResult" class="Caub">
+        <result column="PRSNO_B"        property="prsnoB"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="UBNO"           property="ubNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UNAME"          property="uname"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ENAME"          property="ename"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+
+    <select id="selectCaubName" resultClass="java.lang.String">
+        select UNAME     
+        From CAUB 
+        Where UBNO=#ubNo:VARCHAR#
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01UnitDataBy" resultMap="OldAgeReviewRpt01UnitDataResult">
+    <![CDATA[
+        SELECT A.PRSNO_B,
+               A.UBNO,
+               A.UNAME,
+               A.ENAME
+        FROM   CAUB A
+        WHERE  A.UBNO = #ubNo:VARCHAR# AND
+               ROWNUM <= 1
+    ]]>
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="getPayeeDataUpdateCaubDataBy" resultMap="PayeeDataUpdateResult">
+    <![CDATA[
+        SELECT A.UNAME,
+               A.CZPCD,
+               A.CADDR,
+               A.TEL
+        FROM   CAUB A
+        WHERE  A.UBNO = #ubNo:VARCHAR# 
+    ]]>
+    </select>
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getDisableReviewRpt01UnitDataBy" resultMap="OldAgeReviewRpt01UnitDataResult">
+    <![CDATA[
+        SELECT A.PRSNO_B,
+               A.UBNO,
+               A.UNAME,
+               A.ENAME
+        FROM   CAUB A
+        WHERE  A.UBNO = #ubNo:VARCHAR# AND
+               ROWNUM <= 1
+    ]]>
+    </select>
+    <!-- ] -->
+    <!-- DisableReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getSurvivorReviewRpt01UnitDataBy" resultMap="OldAgeReviewRpt01UnitDataResult">
+    <![CDATA[
+        SELECT A.PRSNO_B,
+               A.UBNO,
+               A.UNAME,
+               A.ENAME
+        FROM   CAUB A
+        WHERE  A.UBNO = #ubNo:VARCHAR# AND
+               ROWNUM <= 1
+    ]]>
+    </select>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->    
+    
+    <!-- AnnuityStatistics Begin -->
+    <!-- [ -->
+    <select id="qryUbTypeList" resultClass="Caub">
+		SELECT DISTINCT T.UBTYPE AS UBTYPE
+		  FROM CAUB T
+	</select>
+    <!-- ] -->
+    <!-- AnnuityStatistics End -->    
+</sqlMap>

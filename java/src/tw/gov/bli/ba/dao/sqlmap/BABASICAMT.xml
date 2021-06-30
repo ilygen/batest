@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABASICAMT">
+
+    <typeAlias alias="Babasicamt" type="tw.gov.bli.ba.domain.Babasicamt" />
+
+    <resultMap id="BABASICAMTResult" class="Babasicamt">
+        <result column="PAYCODE"        property="payCode"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEAR1"       property="cpiYear1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEAR2"       property="cpiYear2"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX1"       property="cpiNdex1"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="CPINDEX2"       property="cpiNdex2"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="GROWTHRATE"     property="growThrate"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="BASICAMT"       property="basicAmt"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="PAYYMB"         property="payYmB"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYME"         property="payYmE"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REQRPNO"        property="reqRpno"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"       property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUDESC"       property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER"           property="user"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE"           property="date"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SYSDATE"        property="sysDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="selectSingleForUpdateDataResult" class="Babasicamt">
+        <result column="CPIYEAR1"       property="cpiYear1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEAR2"       property="cpiYear2"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX1"       property="cpiNdex1"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="CPINDEX2"       property="cpiNdex2"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />        
+        <result column="GROWTHRATE"     property="growThrate"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="BASICAMT"       property="basicAmt"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal"   />
+        <result column="PAYYMB"         property="payYmB"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYYME"         property="payYmE"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REQRPNO"        property="reqRpno"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"       property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUDESC"       property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER"           property="user"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE"           property="date"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SYSDATE"        property="sysDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BabasicamtForBaReportReplaceUtility" class="Babasicamt">
+        <result column="PAYYMB"        property="payYmB"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""  />
+        <result column="PAYYME"        property="payYmE"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""  />
+        <result column="BASICAMT"      property="basicAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+
+    <select id="selectData" resultMap="BABASICAMTResult">
+        SELECT  PAYCODE,
+                CPIYEAR1,
+                CPIYEAR2,
+                CPINDEX1,
+                CPINDEX2,
+                GROWTHRATE,
+                BASICAMT,
+                PAYYMB,
+                PAYYME,
+                REQRPNO,
+                ISSURPNO,
+                ISSUDESC,
+                CRTUSER,
+                CRTTIME,
+                UPDUSER,
+                UPDTIME,
+                NVL(UPDUSER,CRTUSER) AS  "USER",
+                NVL(UPDTIME,CRTTIME) AS  "DATE",
+                (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+         FROM   BABASICAMT
+         WHERE  PAYCODE = #payCode:VARCHAR#
+            <dynamic prepend="">
+            <isNotParameterPresent>
+               AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payYmB">
+                <![CDATA[
+                 PAYYMB <= #payYmB:VARCHAR#
+                 ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+            </dynamic>
+            order by PAYYMB DESC
+    </select>
+    
+    <select id="checkPayYmEValue" resultMap="BABASICAMTResult">
+        SELECT PAYCODE,
+               CPIYEAR1,
+               CPIYEAR2,
+               CPINDEX1,
+               CPINDEX2,
+               GROWTHRATE,
+               BASICAMT,
+               PAYYMB,
+               PAYYME,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME,
+               NVL(UPDUSER,CRTUSER) AS  "USER",
+               NVL(UPDTIME,CRTTIME) AS  "DATE",
+               (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+         FROM  BABASICAMT 
+         WHERE PAYCODE = #payCode:VARCHAR#
+         AND   PAYYMB = (SELECT MAX(PAYYMB) FROM BABASICAMT
+                         where PAYCODE = #payCode:VARCHAR#)
+    </select>
+    
+    <insert id="insertData">
+        INSERT INTO BABASICAMT
+        ( 
+            PAYCODE,            
+            CPIYEAR1,
+            CPINDEX1,
+            CPIYEAR2,
+            CPINDEX2,
+            GROWTHRATE,
+            BASICAMT,
+            PAYYMB,
+            PAYYME,
+            REQRPNO,
+            ISSURPNO,
+            ISSUDESC,
+            CRTUSER,
+            CRTTIME
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #cpiYear1:VARCHAR#,
+            #cpiNdex1:VARCHAR#,
+            #cpiYear2:VARCHAR#,
+            #cpiNdex2:VARCHAR#,
+            #growThrate:VARCHAR#,
+            #basicAmt:VARCHAR#,
+            #payYmB:VARCHAR#,
+            #payYmE:VARCHAR#,
+            #reqRpno:VARCHAR#,
+            #issuRpno:VARCHAR#,
+            #issuDesc:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#
+        )     
+    </insert>
+    
+    <update id="updateData">
+        Update  BABASICAMT  Set   
+                CPINDEX1    =  #cpiNdex1:VARCHAR#,
+                CPINDEX2    =  #cpiNdex2:VARCHAR#,
+                GROWTHRATE  =  #growThrate:VARCHAR#,
+                BASICAMT    =  #basicAmt:VARCHAR#,
+                PAYYME      =  #payYmE:VARCHAR#,
+                REQRPNO     =  #reqRpno:VARCHAR#,
+                ISSURPNO    =  #issuRpno:VARCHAR#,
+                ISSUDESC    =  #issuDesc:VARCHAR#,
+                UPDUSER     =  #crtUser:VARCHAR#,
+                UPDTIME     =  #crtTime:VARCHAR#
+         Where  PAYCODE     =  #payCode:VARCHAR#
+         AND    CPIYEAR1    =  #cpiYear1:VARCHAR#
+         AND    CPIYEAR2    =  #cpiYear2:VARCHAR#
+    </update>
+    
+    <delete id="deleteData">
+        delete from BABASICAMT
+        WHERE  PAYCODE = #payCode:VARCHAR#
+        AND    CPIYEAR1    =  #cpiYear1:VARCHAR#
+        AND    CPIYEAR2    =  #cpiYear2:VARCHAR#
+    </delete>
+    
+    <select id="selectSingleForUpdateData" resultMap="selectSingleForUpdateDataResult">
+        Select  CPIYEAR1,
+                CPIYEAR2,
+                CPINDEX1,
+                CPINDEX2,
+                GROWTHRATE,
+                BASICAMT,
+                PAYYMB,
+                PAYYME,
+                REQRPNO,
+                ISSURPNO,
+                ISSUDESC,
+                CRTUSER,
+                CRTTIME,
+                NVL(UPDUSER,CRTUSER) AS  "USER",
+                SUBSTR(NVL(UPDTIME,CRTTIME),1,8) AS "DATE",
+                (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+        from    BABASICAMT
+        WHERE   PAYCODE = #payCode:VARCHAR#
+        AND     PAYYMB  = #payYmB:VARCHAR#
+    </select>
+    
+    <select id="selectSingleForCheckSaveData" resultMap="selectSingleForUpdateDataResult">
+        Select  CPIYEAR1,
+                CPIYEAR2,
+                CPINDEX1,
+                CPINDEX2,
+                GROWTHRATE,
+                BASICAMT,
+                PAYYMB,
+                PAYYME,
+                REQRPNO,
+                ISSURPNO,
+                ISSUDESC,
+                CRTUSER,
+                CRTTIME,
+                NVL(UPDUSER,CRTUSER) AS  "USER",
+                SUBSTR(NVL(UPDTIME,CRTTIME),1,8) AS "DATE",
+                (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+         from   BABASICAMT
+         WHERE  PAYCODE  = #payCode:VARCHAR#
+         AND    CPIYEAR1 = #cpiYear1:VARCHAR#
+         AND    CPIYEAR2 = #cpiYear2:VARCHAR#
+    </select>
+    
+    <select id="selectBasicAmtBy" resultMap="BabasicamtForBaReportReplaceUtility">
+        select t.PAYYMB,
+               NVL(t.PAYYME,'999912') as PAYYME,
+               t.BASICAMT
+          from BABASICAMT t
+         where PAYCODE = #payCode:VARCHAR#
+         order by PAYYMB
+    </select>
+    
+    <select id="selectBasicAmtForPaymentQuery" resultClass="java.math.BigDecimal">
+        <![CDATA[
+        SELECT A.BASICAMT
+          FROM (select PAYCODE, BASICAMT, PAYYMB, NVL(PAYYME,'999999') AS PAYYME 
+          from BABASICAMT) A
+         WHERE #payYm:VARCHAR# >= A.PAYYMB 
+           AND #payYm:VARCHAR# <= A.PAYYME
+           AND A.PAYCODE = #payCode:VARCHAR#
+           AND A.PAYYME = (SELECT MAX(B.PAYYME)
+          FROM (select PAYCODE, BASICAMT, PAYYMB, NVL(PAYYME,'999999') AS PAYYME 
+                     from BABASICAMT) B
+                    WHERE #payYm:VARCHAR# >= B.PAYYMB 
+                      AND #payYm:VARCHAR# <= B.PAYYME
+                      AND B.PAYCODE = #payCode:VARCHAR#)
+   		]]>
+    </select>
+    
+</sqlMap>

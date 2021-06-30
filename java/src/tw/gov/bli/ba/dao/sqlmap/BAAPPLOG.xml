@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAPPLOG">
+
+    <typeAlias alias="Baapplog" type="tw.gov.bli.ba.domain.Baapplog" />
+
+    <resultMap id="BAAPPLOGResult" class="Baapplog">
+        <result column="BAAPPBASEID"  property="baappbaseId"  jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="STATUS"       property="status"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPCOL"        property="upCol"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="BVALUE"       property="bvalue"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="AVALUE"       property="avalue"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    
+    <!-- Upload Log Query Begin -->
+    <!-- [ -->
+    <resultMap id="UpdateLogQueryResult" class="Baapplog">
+        <result column="BAAPPBASEID"  property="baappbaseId"  jdbcType="NUMERIC"   javaType="java.math.BigDecimal"  nullValue="0" />
+        <result column="STATUS"       property="status"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPCOL"        property="upCol"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="BVALUE"       property="bvalue"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="AVALUE"       property="avalue"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <!-- Fields not in BAAPPLOG -->
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="BENIDNNO"     property="benIdnNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+    </resultMap>
+    <!-- ] -->
+    <!-- Upload Log Query End -->
+     
+    <!-- Upload Log Query Begin -->
+    <!-- [ -->
+    <select id="selectLogListBy" resultMap="UpdateLogQueryResult">
+        <![CDATA[
+        SELECT T1.BAAPPBASEID,
+               T1.STATUS,
+               T1.UPDTIME,
+               T1.UPDUSER,
+               T1.UPCOL,
+               T1.BVALUE,
+               T1.AVALUE,
+               T2.APNO,
+               T2.BENIDNNO,
+               T2.SEQNO
+        FROM   (SELECT X.BAAPPBASEID,               
+                       X.STATUS,                    
+                       X.UPDTIME,                   
+                       X.UPDUSER,                   
+                       X.UPCOL,                     
+                       X.BVALUE,                    
+                       X.AVALUE                     
+                FROM   BAAPPLOG X
+                WHERE  SUBSTR(X.UPDTIME,1,8) >= #updateDateBegin:VARCHAR# AND 
+                       SUBSTR(X.UPDTIME,1,8) <= #updateDateEnd:VARCHAR#
+               ) T1,
+               (SELECT Y.BAAPPBASEID,
+                       Y.APNO,                      
+                       Y.BENIDNNO,
+                       Y.EVTIDNNO,
+                       Y.SEQNO                      
+                FROM   BAAPPBASE Y
+                WHERE  SUBSTR(Y.APNO, 1, 1) = #payCode:VARCHAR#
+               ) T2
+        WHERE  T1.BAAPPBASEID = T2.BAAPPBASEID
+        ]]>
+        <dynamic prepend="">
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    T2.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="updUser">
+                    T1.UPDUSER = #updUser:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="benIdnNo">
+                    (T2.BENIDNNO = #benIdnNo:VARCHAR# OR T2.EVTIDNNO = #benIdnNo:VARCHAR#)
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY T1.UPDTIME DESC, T1.BAAPPBASEID
+    </select>
+    <!-- ] -->
+    <!-- Upload Log Query End -->
+    
+    <insert id="insertData">
+        Insert  into  BAAPPLOG
+        (
+            BAAPPBASEID,
+			STATUS,
+			UPDTIME,
+			UPDUSER,
+			UPCOL,
+			BVALUE,
+			AVALUE        
+        )
+        Values
+        (
+            #baappbaseId:NUMERIC#,
+            #status:VARCHAR#,
+            #updTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #upCol:VARCHAR#,
+            #bvalue:VARCHAR#,
+            #avalue:VARCHAR#
+        )        
+    </insert>
+    
+    <insert id="insertLogForCompPayment">
+		INSERT INTO BAAPPLOG 
+		(
+		    BAAPPBASEID,
+		    STATUS,
+		    UPDTIME,
+		    UPDUSER,
+		    UPCOL,
+		    BVALUE,
+		    AVALUE,
+		    APNO,
+		    SEQNO,
+		    ISSUYM,
+		    PAYYM
+		)
+		VALUES
+		(
+		    #baappbaseId:NUMERIC#,
+		    #status:VARCHAR#,
+		    #updTime:VARCHAR#,
+		    #updUser:VARCHAR#,
+		    #upCol:VARCHAR#,
+		    #bvalue:VARCHAR#,
+		    #avalue:VARCHAR#,
+		    #apNo:VARCHAR#,
+		    #seqNo:VARCHAR#,
+		    #issuYm:VARCHAR#,
+		    #payYm:VARCHAR#
+		)
+    </insert>
+</sqlMap>

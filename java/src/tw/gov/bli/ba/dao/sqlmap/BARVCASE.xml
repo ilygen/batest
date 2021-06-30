@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BARVCASE">
+
+    <typeAlias alias="Barvcase" type="tw.gov.bli.ba.domain.Barvcase" />
+    
+    <resultMap id="BARVCASEResult" class="Barvcase">
+        <result column="APNO"           property="apNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MCHKTYP"        property="mchkTyp"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="OLDRATE"        property="oldRate"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BEFISSUEAMT"    property="befIssueAmt"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="PAYKIND"        property="payKind"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LASTISSUEAMT"   property="lastIssueAmt"  jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <select id="selectBarvcaseDataBy" resultMap="BARVCASEResult">
+              SELECT APNO,     
+                     MCHKTYP,      
+                     PAYYM,        
+                     OLDRATE,       
+                     BEFISSUEAMT,  
+                     PAYKIND,       
+                     BENNAME,      
+                     LASTISSUEAMT
+                FROM BARVCASE
+               WHERE PAYCODE = #payCode:VARCAHR#
+                 AND ISSUYM = #issuYm:VARCHAR#
+                 AND RVTYPE = #rvType:VARCHAR#
+    </select>
+
+</sqlMap>

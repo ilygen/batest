@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <aop:config>
+        <aop:pointcut id="servicePointcut" expression="execution(* tw.gov.bli.ba.services..*.*(..)) || execution(* tw.gov.bli.common.services..*.*(..))" />
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="servicePointcut" />
+    </aop:config>
+
+    <!-- for BA System Begin -->
+    <!-- [ -->
+    <!-- Service for Rpt -->
+    <bean id="rptService" class="tw.gov.bli.ba.services.RptService">
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="bachkfileDao" ref="bachkfileDao" />
+        <property name="baexalistDao" ref="baexalistDao" />
+        <property name="lnmDao" ref="lnmDao" />
+        <property name="lnmdDao" ref="lnmdDao" />
+        <property name="balp0d330Dao" ref="balp0d330Dao" />
+        <property name="balp0d340Dao" ref="balp0d340Dao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="banotifyDao" ref="banotifyDao" />
+        <property name="bapaissudateDao" ref="bapaissudateDao" />
+        <property name="baoncepayDao" ref="baoncepayDao" />
+        <property name="birefDao" ref="birefDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="nbdaprDao" ref="nbdaprDao" />
+        <property name="ciptDao" ref="ciptDao" />
+        <property name="caubDao" ref="caubDao" />
+        <property name="badupeidnDao" ref="badupeidnDao" />
+        <property name="bagivetmpdtlDao" ref="bagivetmpdtlDao" />
+        <property name="bapayrptrecordDao" ref="bapayrptrecordDao" />
+        <property name="bapflbacDao" ref="bapflbacDao" />
+        <property name="bbarfDao" ref="bbarfDao" />
+        <property name="barxfDao" ref="barxfDao" />
+        <property name="bapapaykindDao" ref="bapapaykindDao" />
+        <property name="kcafDao" ref="kcafDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="balp0d020Dao" ref="balp0d020Dao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="babcml7Dao" ref="babcml7Dao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="cipbDao" ref="cipbDao" />
+        <property name="cipgDao" ref="cipgDao" />
+        <property name="bastudtermDao" ref="bastudtermDao" />
+        <property name="baunacpdtlDao" ref="baunacpdtlDao" />
+        <property name="bacountryDao" ref="bacountryDao" />
+        <property name="baarclistDao" ref="baarclistDao" />
+        <property name="bapayrptsumDao" ref="bapayrptsumDao" />
+        <property name="bapayrptaccountDao" ref="bapayrptaccountDao" />  
+        <property name="localPfpcckyDao" ref="localPfpcckyDao" />  
+        <property name="bapaavgmonDao" ref="bapaavgmonDao" />
+        <property name="barptlogDao" ref="barptlogDao" />
+        <property name="bapasignDao" ref="bapasignDao" />
+        <property name="bbcmf09Dao" ref="bbcmf09Dao" />
+        <property name="barecheckDao" ref="barecheckDao" />
+        <property name="bapairrDao" ref="bapairrDao" />
+        <property name="babasicamtDao" ref="babasicamtDao" />
+        <property name="bastudnotifyDao" ref="bastudnotifyDao" />
+        <property name="bapandomkDao" ref="bapandomkDao" />
+        <property name="babatchjobDao" ref="babatchjobDao" />
+        <property name="npcodeDao" ref="npcodeDao" />
+        <property name="bafailurelistDao" ref="bafailurelistDao" />
+        <property name="baunqualifiednoticeDao" ref="baunqualifiednoticeDao" />
+        <property name="updateService" ref="updateService" />
+        <property name="sdholidayDao" ref="sdholidayDao" />
+        <property name="bahandicaptermDao" ref="bahandicaptermDao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="baappattfileDao" ref="baappattfileDao" />
+    </bean>
+
+    <!-- Service for Maint -->
+    <bean id="maintService" class="tw.gov.bli.ba.services.MaintService">
+        <property name="bapainspectDao" ref="bapainspectDao" />
+        <property name="bapacutDao" ref="bapacutDao" />
+        <property name="bapadchkDao" ref="bapadchkDao" />
+        <property name="bapadcslvlDao" ref="bapadcslvlDao" />
+        <property name="banotifyDao" ref="banotifyDao" />
+        <property name="bacpidtlDao" ref="bacpidtlDao" />
+        <property name="bacpirecDao" ref="bacpirecDao" />
+        <property name="babasicamtDao" ref="babasicamtDao" />
+        <property name="bapaavgmonDao" ref="bapaavgmonDao" />
+        <property name="bapairrDao" ref="bapairrDao" />
+        <property name="balettercodeDao" ref="balettercodeDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="updateService" ref="updateService" />
+    </bean>
+
+    <!-- Service for Option List -->
+    <bean id="selectOptionService" class="tw.gov.bli.ba.services.SelectOptionService">
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="bacountryDao" ref="bacountryDao" />
+        <property name="bapandomkDao" ref="bapandomkDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="banotifyDao" ref="banotifyDao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="bafamilytempDao" ref="bafamilytempDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="npcodeDao" ref="npcodeDao" />
+        <property name="baprocedureDao" ref="baprocedureDao" />
+    </bean>
+
+    <!-- Service for Query -->
+    <bean id="queryService" class="tw.gov.bli.ba.services.QueryService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+        <property name="bapadchkDao" ref="bapadchkDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="bachkfileDao" ref="bachkfileDao" />
+        <property name="basenimaintDao" ref="basenimaintDao" />
+        <property name="ciptDao" ref="ciptDao" />
+        <property name="baoncepayDao" ref="baoncepayDao" />
+        <property name="baunacprecDao" ref="baunacprecDao" />
+        <property name="baunacpdtlDao" ref="baunacpdtlDao" />
+        <!-- <property name="bapaallocateDao" ref="bapaallocateDao" /> -->
+        <property name="bbcmf09Dao" ref="bbcmf09Dao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="birefDao" ref="birefDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="babcml7Dao" ref="babcml7Dao" />
+        <property name="bastudtermDao" ref="bastudtermDao" />
+        <property name="cipgDao" ref="cipgDao" />
+        <property name="bacpirecDao" ref="bacpirecDao" />
+        <property name="bacompelnopayDao" ref="bacompelnopayDao" />
+        <property name="baarclistDao" ref="baarclistDao" />
+        <property name="nbdaprDao" ref="nbdaprDao" />
+        <property name="bapaavgmonDao" ref="bapaavgmonDao" />
+        <property name="badupeidnDao" ref="badupeidnDao" />
+        <property name="barecheckDao" ref="barecheckDao" />
+        <property name="babasicamtDao" ref="babasicamtDao" />
+        <property name="npcodeDao" ref="npcodeDao" />
+        <property name="baunqualifiednoticeDao" ref="baunqualifiednoticeDao" />
+        <property name="bahandicaptermDao" ref="bahandicaptermDao" />
+        <property name="bansfDao" ref="bansfDao" />
+        <property name="cipbDao" ref="cipbDao" />
+        <property name="caubDao" ref="caubDao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+    </bean>
+
+    <!-- Service for Receipt -->
+    <bean id="receiptService" class="tw.gov.bli.ba.services.ReceiptService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="npbanklistDao" ref="npbanklistDao" />
+        <property name="bcbpfDao" ref="bcbpfDao" />
+        <property name="nppostlistDao" ref="nppostlistDao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+        <!-- <property name="bapaallocateDao" ref="bapaallocateDao" /> -->
+        <property name="bbcmf09Dao" ref="bbcmf09Dao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="bafamilytempDao" ref="bafamilytempDao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="nbexcepDao" ref="nbexcepDao" />
+    </bean>
+
+    <!-- Service for executive -->
+    <bean id="executiveService" class="tw.gov.bli.ba.services.ExecutiveService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="babanDao" ref="babanDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+    </bean>
+
+    <!-- Service for Ajax -->
+    <bean id="receiptAjaxService" class="tw.gov.bli.ba.services.ReceiptAjaxService">
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="bafamilytempDao" ref="bafamilytempDao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+    </bean>
+
+    <bean id="executiveAjaxService" class="tw.gov.bli.ba.services.ExecutiveAjaxService">
+        <property name="bapandomkDao" ref="bapandomkDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="babanDao" ref="babanDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="bbcmf13Dao" ref="bbcmf13Dao" />
+    </bean>
+
+    <bean id="updateAjaxService" class="tw.gov.bli.ba.services.UpdateAjaxService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="npbanklistDao" ref="npbanklistDao" />
+        <property name="bcbpfDao" ref="bcbpfDao" />
+        <property name="npcodeDao" ref="npcodeDao" />
+    </bean>
+    
+    <bean id="reviewAjaxService" class="tw.gov.bli.ba.services.ReviewAjaxService">
+        <property name="reviewService" ref="reviewService"/>
+    </bean>
+    
+    <bean id="decisionAjaxService" class="tw.gov.bli.ba.services.DecisionAjaxService">
+
+    </bean>
+    
+    <bean id="queryAjaxService" class="tw.gov.bli.ba.services.QueryAjaxService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="bccmf01Dao"   ref="bccmf01Dao" />
+        <property name="bccmf42Dao"   ref="bccmf42Dao" />
+    </bean>
+    <bean id="bjAjaxService" class="tw.gov.bli.ba.services.BjAjaxService">
+		<property name="bapaissudateDao" ref="bapaissudateDao" />
+		<property name="baproceduredtlDao" ref="baproceduredtlDao" />
+    </bean>
+    <bean id="maintAjaxService" class="tw.gov.bli.ba.services.MaintAjaxService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="npbanklistDao" ref="npbanklistDao" />
+        <property name="bcbpfDao" ref="bcbpfDao" />
+        <property name="bacpidtlDao" ref="bacpidtlDao" />        
+    </bean>    
+
+    <!-- Service for Update -->
+    <bean id="updateService" class="tw.gov.bli.ba.services.UpdateService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="npbanklistDao" ref="npbanklistDao" />
+        <property name="bcbpfDao" ref="bcbpfDao" />
+        <property name="nppostlistDao" ref="nppostlistDao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="bachkfileDao" ref="bachkfileDao" />
+        <property name="basenimaintDao" ref="basenimaintDao" />
+        <property name="badupeidnDao" ref="badupeidnDao" />
+        <property name="caubDao" ref="caubDao" />
+        <property name="bbcmf08Dao" ref="bbcmf08Dao" />
+        <property name="bafamilyDao" ref="bafamilyDao" />
+        <property name="bachkcontrlDao" ref="bachkcontrlDao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="baregivedtlDao" ref="baregivedtlDao" />
+        <property name="bastudtermDao" ref="bastudtermDao" />
+        <property name="bbcmf06Dao" ref="bbcmf06Dao" />
+        <property name="bacriinjDao" ref="bacriinjDao" />
+        <property name="bacolumnrecDao" ref="bacolumnrecDao" />
+        <property name="bacompelnopayDao" ref="bacompelnopayDao" />
+        <property name="balp0d020Dao" ref="balp0d020Dao" />
+        <property name="cipbDao" ref="cipbDao" />
+        <property name="bapflbacDao" ref="bapflbacDao" />   
+        <property name="bbcmf29Dao" ref="bbcmf29Dao" /> 
+        <property name="baunacpdtlDao" ref="baunacpdtlDao" />
+        <property name="localPfpcckyDao" ref="localPfpcckyDao" />
+        <property name="baacpdtlDao" ref="baacpdtlDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="barecheckDao" ref="barecheckDao" />
+        <property name="bapayrptrecordDao" ref="bapayrptrecordDao" />
+        <property name="bapayrptsumDao" ref="bapayrptsumDao" />
+        <property name="bapayrptaccountDao" ref="bapayrptaccountDao" />
+        <property name="pfxx0w040Service" ref="pfxx0w040Service" />
+        <property name="localPfpcckyuserrecDao" ref="localPfpcckyuserrecDao" />
+        <property name="bafailurelistDao" ref="bafailurelistDao" />
+        <property name="pfpfmDao" ref="pfpfmDao" />
+        <property name="pfpfdDao" ref="pfpfdDao" />
+        <property name="baunqualifiednoticeDao" ref="baunqualifiednoticeDao" />
+        <property name="bamarginamtnotifyDao" ref="bamarginamtnotifyDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="bahandicaptermDao" ref="bahandicaptermDao" />
+    </bean>
+
+    <!-- Service for Review -->
+    <bean id="reviewService" class="tw.gov.bli.ba.services.ReviewService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baexalistDao" ref="baexalistDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="bachkfileDao" ref="bachkfileDao" />
+        <property name="basenimaintDao" ref="basenimaintDao" />
+        <property name="ciptDao" ref="ciptDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="baoncepayDao" ref="baoncepayDao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="birefDao" ref="birefDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="banotifyDao" ref="banotifyDao" />
+        <property name="balp0d020Dao" ref="balp0d020Dao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+    </bean>
+
+    <!-- Service for Decision -->
+    <bean id="decisionService" class="tw.gov.bli.ba.services.DecisionService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baexalistDao" ref="baexalistDao" />
+        <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="bachkfileDao" ref="bachkfileDao" />
+        <property name="basenimaintDao" ref="basenimaintDao" />
+        <property name="ciptDao" ref="ciptDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="baparamDao" ref="baparamDao" />
+        <property name="baoncepayDao" ref="baoncepayDao" />
+        <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="birefDao" ref="birefDao" />
+        <property name="nbappbaseDao" ref="nbappbaseDao" />
+        <property name="banotifyDao" ref="banotifyDao" />
+        <property name="balp0d020Dao" ref="balp0d020Dao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+        <property name="baarclistDao" ref="baarclistDao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+    </bean>
+
+    <!-- Service for Bj -->
+    <bean id="bjService" class="tw.gov.bli.ba.services.BjService">
+        <property name="baunacprecDao" ref="baunacprecDao" />
+        <property name="baunacpdtlDao" ref="baunacpdtlDao" />
+        <property name="babatchrecDao" ref="babatchrecDao" />
+        <property name="bagivedtlDao"  ref="bagivedtlDao" />
+        <property name="ftpClient" 	   ref="ftpClient" />
+        <property name="ftpApClient"   ref="ftpApClient" />
+        <property name="bagivetmpdtlDao" ref="bagivetmpdtlDao" />
+        <property name="babatchjobDao" 	 ref="babatchjobDao" />
+        <property name="babatchjobdtlDao" ref="babatchjobdtlDao" />
+        <property name="mailHelper" 	  ref="mailHelper" />
+        <property name="baonlinejobDao" ref="baonlinejobDao" />
+        <property name="bapaissudateDao" ref="bapaissudateDao" />
+        <property name="badaprDao" ref="badaprDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="bauseremailDao" ref="bauseremailDao" />
+        <property name="barvconfirmDao" ref="barvconfirmDao" />
+        <property name="barvcaseDao" ref="barvcaseDao" />
+        <property name="baprocedureDao" ref="baprocedureDao" />
+        <property name="baproceduredtlDao" ref="baproceduredtlDao" />
+        <property name="baproceduredataDao" ref="baproceduredataDao" />
+        <property name="runprocedurejobDao" ref="runprocedurejobDao" />
+        <property name="baapplogDao" ref="baapplogDao" />
+        <property name="bansfDao" ref="bansfDao" />
+        <property name="bamfileftprecordDao" ref="bamfileftprecordDao" />
+    </bean>
+
+    <!-- Service for Review Fee -->
+    <bean id="reviewFeeService" class="tw.gov.bli.ba.services.ReviewFeeService">
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baappexpandDao" ref="baappexpandDao" />
+        <property name="babcml7Dao" ref="babcml7Dao" />
+        <property name="cvldtlDao" ref="cvldtlDao" />
+        <property name="npbanklistDao" ref="npbanklistDao" />
+        <property name="bcbpfDao" ref="bcbpfDao" />
+        <property name="nppostlistDao" ref="nppostlistDao" />
+    </bean>
+    
+    <bean id="reviewFeeAjaxService" class="tw.gov.bli.ba.services.ReviewFeeAjaxService">
+        <property name="bbcmf07Dao" ref="bbcmf07Dao" />
+    </bean>
+    
+    <bean id="pfxx0w040Service" class="tw.gov.bli.pf.model.service.impl.Pfxx0w040ServiceImpl">
+        <property name="pfpcckyuserrecDao" ref="pfpcckyuserrecDao" />
+        <property name="pfpcckyDao" ref="pfpcckyDao" />
+    </bean>
+
+    <!-- ] -->
+    <!-- End for BA System -->
+
+    <!-- for Common Framework Begin -->
+    <!-- [ -->
+    <bean id="sysfuncService" class="tw.gov.bli.common.services.SysfuncService">
+        <property name="sysfuncDao" ref="sysfuncDao" />
+        <property name="portalDao" ref="portalDao" />
+    </bean>
+
+    <bean id="loginService" class="tw.gov.bli.common.services.LoginService">
+        <property name="developMode" value="false" />
+        <property name="loginDao" ref="loginDao" />
+        <property name="portalLogDao" ref="portalLogDao" />
+        <property name="portalDao" ref="portalDao" />
+    </bean>
+
+    <bean id="loggingService" class="tw.gov.bli.common.services.LoggingService">
+        <property name="portalLogDao" ref="portalLogDao" />
+        <property name="mmaccesslgDao" ref="mmaccesslgDao" />
+        <property name="mmquerylogDao" ref="mmquerylogDao" />
+        <property name="mmaplogDao" ref="mmaplogDao" />
+    </bean>
+    
+     <bean id="paymentService" class="tw.gov.bli.ba.services.PaymentService">
+        <property name="bapaymentDao" ref="bapaymentDao" />
+        <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="baunacpdtlDao" ref="baunacpdtlDao" />
+        <property name="bapaymentdtlDao" ref="bapaymentdtlDao" />
+        <property name="bapaymentstagedtlDao" ref="bapaymentstagedtlDao" />
+        <property name="bapaymentassigndtlDao" ref="bapaymentassigndtlDao" />
+        <property name="bapaymentremoteDao" ref="bapaymentremoteDao"/>
+        <property name="bapaymentremotedtlDao" ref="bapaymentremotedtlDao"/>
+        <property name="bccmf45Dao" ref="bccmf45Dao"/>
+     </bean>
+     
+    <!-- ] -->
+    <!-- End for Common Framework -->
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="NPPOSTLIST">
+
+    <typeAlias alias="Nppostlist" type="tw.gov.bli.ba.domain.Nppostlist" />
+
+    <resultMap id="NPPOSTLISTResult" class="Nppostlist">
+        <result column="POSTID"      property="postId"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="POSTNAME"    property="postName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="POSTBRANCH"  property="postBranch"  jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>    
+    
+    <select id="selectPostNameBy" resultClass="java.lang.String">
+        select  t.POSTNAME
+          from  NPPOSTLIST t
+         where  t.POSTID = #postId:VARCHAR#
+           and  Trim(t.DELFLG) is null
+    </select>
+</sqlMap>

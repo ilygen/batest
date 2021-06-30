@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACRIINJ">
+
+    <typeAlias alias="Bacriinj" type="tw.gov.bli.ba.domain.Bacriinj" />
+
+    <resultMap id="BACRIINJResult" class="Bacriinj">
+        <result column="CRIINJMK"       property="criInJMk"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRIINJNAME"     property="criInJName"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"        property="crtUser"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BACRIINJResult">
+        SELECT A.DATACD AS CRIINJMK, 
+               A.DATANM AS CRIINJNAME, 
+               A.KEYINMAN AS CRTUSER, 
+               TO_CHAR(A.KEYINDATE,'YYYYMMDD') AS CRTTIME, 
+               A.UPPNO AS UPDUSER, 
+               TO_CHAR(A.UPDTE,'YYYYMMDD') AS UPDTIME 
+        FROM   BCCMF06 A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="criInJMk">
+                    A.DATACD = #criInJMk:VARCHAR#
+                </isNotEmpty>
+        And  A.INSKD = '1'
+        And  A.PAYTYP in ('00','31')
+        And  A.DATAKD = '16'                            
+            </isParameterPresent>
+        </dynamic>
+    </select>
+
+</sqlMap>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BANOTIFY">
+
+    <typeAlias alias="Banotify" type="tw.gov.bli.ba.domain.Banotify" />
+
+    <resultMap id="BANOTIFYResult" class="Banotify">
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="AUTHTYP"        property="authTyp"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="AUTHTYPDESC"    property="authTypDesc"  jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="DATATYP"        property="dataTyp"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="DATASEQNO"      property="dataSeqNo"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="DATACONT"       property="dataCont"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="PAYCASE"        property="payCase"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="PAYMK"          property="payMk"        jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="ACTMK"          property="actMk"        jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="AdviceMaintCaseResult" class="tw.gov.bli.ba.maint.cases.AdviceMaintCase" extends="BANOTIFYResult">
+        <!-- extend BANOTIFYResult use in AdviceMaintQuery : AdviceMaint List Page -->        
+        <result column="DATACONTPURPOSE"     property="dataContPurpose"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="DATACONTEXPLAIN"     property="dataContExplain"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BANOTIFYResult">
+        SELECT T.PAYCODE,
+               T.AUTHTYP,
+               T.AUTHTYPDESC,
+               T.DATATYP,
+               T.DATASEQNO,
+               T.DATACONT,
+               T.PAYCASE,
+               T.PAYMK,
+               T.ACTMK,
+               T.CRTUSER,
+               T.CRTTIME,
+               T.UPDUSER,
+               T.UPDTIME
+        FROM BANOTIFY T                   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    T.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    T.AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    T.DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="dataSeqNo">
+                    T.DATASEQNO = #dataSeqNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>  
+        ORDER BY T.DATATYP
+    </select>
+
+    <insert id="insertData">
+        INSERT INTO BANOTIFY 
+        ( 
+            PAYCODE,
+            AUTHTYP,
+            AUTHTYPDESC,
+            DATATYP,
+            DATASEQNO,
+            DATACONT,
+            PAYCASE,
+            PAYMK,
+            ACTMK,
+            CRTUSER,
+            CRTTIME,
+            UPDUSER,
+            UPDTIME
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #authTyp:VARCHAR#,
+            #authTypDesc:VARCHAR#,
+            #dataTyp:VARCHAR#,
+            #dataSeqNo:VARCHAR#,
+            #dataCont:VARCHAR#,
+            #payCase:VARCHAR#,
+            #payMk:VARCHAR#,
+            #actMk:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+        
+    <select id="selectData" resultMap="AdviceMaintCaseResult">
+        SELECT A.PAYCODE,
+               A.AUTHTYP,
+               A.AUTHTYPDESC,
+               A.DATATYP,
+               A.DATASEQNO,
+               A.DATACONT,
+               A.PAYCASE,
+               A.PAYMK,
+               A.ACTMK,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME,
+               A.DATACONT DATACONTPURPOSE,
+               A.DATACONT DATACONTEXPLAIN
+        FROM BANOTIFY A                   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    A.AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    A.DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="dataSeqNo">
+                    A.DATASEQNO = #dataSeqNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>  
+        ORDER BY A.DATATYP
+    </select>
+    
+    <update id="updateData">
+        UPDATE BANOTIFY SET
+               payCode= #payCode:VARCHAR#,
+               authTyp = #authTyp:VARCHAR#,
+               dataTyp = #dataTyp:VARCHAR#,
+               dataSeqNo = #dataSeqNo:VARCHAR#,
+               dataCont = #dataCont:VARCHAR#,
+               payCase = #payCase:VARCHAR#,
+               payMk = #payMk:VARCHAR#,
+               actMk = #actMk:VARCHAR#,
+               crtUser = #crtUser:VARCHAR#,
+               crtTime = #crtTime:VARCHAR#,
+               updUser = #updUser:VARCHAR#,
+               updTime = #updTime:VARCHAR#          
+         <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </update>
+    
+    <select id="selectSingleForUpdateData" resultMap="AdviceMaintCaseResult">
+        SELECT A.PAYCODE,
+               A.AUTHTYP,
+               A.AUTHTYPDESC,
+               A.DATATYP,
+               A.DATASEQNO,
+               A.DATACONT,
+               A.PAYCASE,
+               A.PAYMK,
+               A.ACTMK,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME,
+               A.DATACONT DATACONTPURPOSE,
+               '' DATACONTEXPLAIN
+        FROM BANOTIFY A
+        <dynamic prepend="Where">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    A.AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    A.DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>  
+        ORDER BY A.DATATYP
+    </select>
+
+    <delete id="deleteData" parameterClass="tw.gov.bli.ba.maint.cases.AdviceMaintCase">
+        DELETE FROM BANOTIFY
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+    
+    <select id="selectMonthlyRpt05Report" resultMap="BANOTIFYResult">
+      Select PAYCODE,
+             AUTHTYP,
+             AUTHTYPDESC,
+             DATATYP,
+             DATASEQNO,
+             DATACONT,
+             PAYCASE,
+             PAYMK,
+             ACTMK,
+             CRTUSER,
+             CRTTIME,
+             UPDUSER,
+             UPDTIME        
+        From BANOTIFY
+       Where PAYCODE = #payCode:VARCHAR#
+         And AUTHTYP = #authTyp:VARCHAR#
+         And ACTMK = 'Y' 
+    </select>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01NotifyListBy" resultMap="BANOTIFYResult">
+        SELECT A.PAYCODE, 
+               A.AUTHTYP,
+               A.AUTHTYPDESC, 
+               A.DATATYP, 
+               A.DATASEQNO, 
+               A.DATACONT, 
+               A.PAYCASE, 
+               A.PAYMK, 
+               A.ACTMK, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.CRTUSER, 
+               A.CRTTIME 
+        FROM   BANOTIFY A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    A.AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    A.DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+                AND A.ACTMK = 'Y'
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.DATATYP, A.DATASEQNO
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="getNotifyListForReviewBy" resultMap="BANOTIFYResult">
+        SELECT A.PAYCODE, 
+               A.AUTHTYP,
+               A.AUTHTYPDESC,  
+               A.DATATYP, 
+               A.DATASEQNO, 
+               A.DATACONT, 
+               A.PAYCASE, 
+               A.PAYMK, 
+               A.ACTMK, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.CRTUSER, 
+               A.CRTTIME 
+        FROM   BANOTIFY A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="authTyp">
+                    A.AUTHTYP = #authTyp:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="dataTyp">
+                    A.DATATYP = #dataTyp:VARCHAR#
+                </isNotEmpty>
+                AND A.ACTMK = 'Y'
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.DATATYP, A.DATASEQNO
+    </select>
+    
+    <select id="selectNotifyFormBy" resultClass="java.lang.String">
+        SELECT DISTINCT T.AUTHTYP 
+          FROM BANOTIFY T 
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    T.PAYCODE= SUBSTR(#apNo:VARCHAR#, 1, 1)  
+                </isNotEmpty>                
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY T.AUTHTYP
+    </select>
+</sqlMap>

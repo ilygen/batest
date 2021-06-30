@@ -1,0 +1,2065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Communication Data Update Form : bamo0d010c.jsp -->
+        <!-- [ -->
+        <form name="CommunicationDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="CommunicationDataUpdateForm">
+            <field property="tel1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" position="0" key="label.update.communicationDataUpdate.tel1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" position="0" key="label.update.communicationDataUpdate.tel2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>
+            </field>
+            <field property="commZip" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.alphanum" />
+                <arg bundle="baMsg" position="0" key="label.update.communicationDataUpdate.commZip" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        <!-- ] -->
+
+        <!-- Payment Data Update Form : bamo0d020c.jsp -->
+        <!-- [ -->
+        <form name="PaymentDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="PaymentDataUpdateForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+        </form>
+        <!-- ] -->
+
+        <!-- Application Data Update-->
+        <!-- [ -->
+        <!-- Application Data Update Query Form : bamo0d030c.jsp -->
+        <form name="ApplicationDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.oldAge.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_OLDAGE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.query.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Application Data Update Form  -->
+        <form name="ApplicationDataUpdateForm">
+            <field property="evtNationTpe" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtNationTpe" />
+            </field>
+            <field property="evtNationCode" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtNationCode" />
+            </field>
+            <!-- <field property="evtName" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtName" />                
+                </field> -->
+            <!--  <field property="evtIdnNo" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtIdnNo" />
+                <msg bundle="baMsg" name="mask" key="label.update.applicationDataUpdate.evtIdnNo.notenough" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_MASK}</var-value>
+                </var>
+            </field>-->
+            <field property="evtBrDate" depends="required,notAfterToday" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtBrDate" />
+            </field>
+            <field property="evtJobDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtJobDate" />
+            </field>
+            <field property="evtDieDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.evtDieDate" />
+            </field>
+            <field property="combapMark" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.combapMark" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>
+            </field>
+            <field property="appDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.appDate" />
+            </field>
+            <field property="lsUbno" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.lsUbno" />
+            </field>
+            <field property="apItem" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.apItem" />
+            </field>
+            <field property="notifyForm" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.notifyForm" />
+            </field>
+            <!-- 
+                <field property="dabApNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.dabApNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.update.applicationDataUpdate.dabApNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                <var-name>minlength</var-name>
+                <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                <var-name>mask</var-name>
+                <var-value>${DABAPNO1_TYPE}</var-value>
+                </var>
+                </field>
+                <field property="dabApNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.update.applicationDataUpdate.dabApNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                <var-name>minlength</var-name>
+                <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+                </field>
+                <field property="dabApNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.update.applicationDataUpdate.dabApNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                <var-name>minlength</var-name>
+                <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+                </field>
+                <field property="dabApNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.update.applicationDataUpdate.dabApNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                <var-name>minlength</var-name>
+                <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+                </field>
+            -->
+            <!-- 
+            <field property="closeDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.update.applicationDataUpdate.closeDate" />
+            </field>
+            -->
+        </form>
+        <!-- ] -->
+
+        <!-- Owes Data Update Form : bamo0d022n.jsp -->
+        <form name="OwesDataUpdateForm">
+            <field property="owesMk" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.owesDataUpdate.owesMk" />
+            </field>
+            <field property="owesBdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.owesDataUpdate.owesBdate" />
+            </field>
+            <field property="owesEdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.owesDataUpdate.owesEdate" />
+            </field>
+        </form>
+        <!-- onceAmt Data Update Form : bamo0d032c.jsp -->
+        <form name="OnceAmtDataUpdateForm">
+            <field property="offInsurDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.onceAmtDataUpdate.offInsurDate" />
+            </field>
+            <field property="lawRetireDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.onceAmtDataUpdate.lawRetireDate" />
+            </field>
+            <field property="oldSeniab" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.onceAmtDataUpdate.oldSeniab" />
+            </field>
+            <field property="dabApNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.dabApNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.update.onceAmtDataUpdate.dabApNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${DABAPNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="dabApNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.onceAmtDataUpdate.dabApNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="dabApNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.onceAmtDataUpdate.dabApNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="dabApNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.onceAmtDataUpdate.dabApNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <!-- 
+                <field property="owesBdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.onceAmtDataUpdate.owesBdate" />                
+                </field> 
+                <field property="owesEdate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.onceAmtDataUpdate.owesEdate" />                
+                </field>
+            -->
+        </form>
+
+        <!-- Inheritor Register : bamo0d051a.jsp -->
+        <form name="InheritorRegisterForm">
+            <field property="benName" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.inheritorRegr.benName" />
+            </field>
+            <field property="benBrDate" depends="required,chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.inheritorRegr.benBrDate" />
+            </field>
+            <field property="benIdnNo" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.inheritorRegr.benIdnNo" />
+            </field>
+            <field property="benEvtRel" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.update.inheritorRegr.benEvtRel" />
+            </field>
+            <field property="grdBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.inheritorRegr.grdBrDate" />
+            </field>
+
+        </form>
+
+        <!-- Payee Data Update Form : bamo0d080c.jsp -->
+        <form name="PayeeDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.oldAge.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_OLDAGE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Payee Data Update Form : bamo0d081a.jsp bamo0d083c.jsp-->
+        <form name="PayeeDataUpdateDetailForm">
+            <field property="benBrDate" depends="" page="1">
+               <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" />-->
+                <!--<arg bundle="baMsg" key="label.update.payeeDataUpdate.benBrDate" />-->
+            </field>
+            <field property="appDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.appDate" />
+            </field>
+            <field property="grdBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.grdBrDate" />
+            </field>
+            <field property="idnChkYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+            <field property="idnChkMonth" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkMonth" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="payAccount" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.alphanum" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.payAccount" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="payBankIdBranchId" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.payBankIdBranchId" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>
+            </field>
+            <field property="payEeacc" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.payEeacc" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="commZip" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.commZip" />
+            </field>
+        </form>
+
+        <!-- Payee Data Update Form : bamo0d081a.jsp -->
+        <form name="PayeeDataUpdateListForm">
+
+        </form>
+
+        <!-- OldAge Death Repay : bamo0d090c.jsp -->
+        <form name="OldAgeDeathRepayForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.oldAge.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_OLDAGE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- OldAge Payment Receive : bamo0d100c.jsp -->
+        <form name="OldAgePaymentReceiveForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.oldAge.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_OLDAGE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Disabled Payment Receive : bamo0d200c.jsp -->
+        <form name="DisabledPaymentReceiveForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Survivor Payment Receive : bamo0d300c.jsp -->
+        <form name="SurvivorPaymentReceiveForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- DisabledPayee Data Update Query Form : bamo0d180c.jsp -->
+        <form name="DisabledPayeeDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- DisabledPayee Data Update Form : bamo0d181a.jsp -->
+        <form name="DisabledPayeeDataUpdateDetailForm">
+            <field property="benBrDate" depends="" page="1">
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <!--<arg bundle="baMsg" key="label.update.payeeDataUpdate.benBrDate" /> -->
+            </field>
+            <field property="grdBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.grdBrDate" />
+            </field>
+            <field property="appDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.appDate" />
+            </field>
+            <field property="idnChkYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+            <field property="idnChkMonth" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkMonth" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="commZip" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.commZip" />
+            </field>
+        </form>
+
+        <!-- SurvivorPayee Data Update Query Form : bamo0d280c.jsp -->
+        <form name="SurvivorPayeeDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- SurvivorPayee Data Detail Form : bamo0d281a.jsp -->
+        <form name="SurvivorPayeeDataUpdateDetailForm">
+            <field property="grdBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.grdBrDate" />
+            </field>
+            <field property="assignBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.survivorPayeeDataUpdate.assignBrDate" />
+            </field>
+            <field property="idnChkYear" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+            <field property="idnChkMonth" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.idnChkMonth" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel1" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="tel2" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.tel2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${TEL_MASK}</var-value>
+                </var>
+            </field>
+            <field property="commZip" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.update.payeeDataUpdate.commZip" />
+            </field>
+        </form>
+        
+        <!-- SurvivorPayee Data Update StudTerm Form : bamo0d286c.jsp -->
+        <form name="SurvivorPayeeDataUpdateStudTermForm">
+            <field property="studSdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.studSdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="studEdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.studEdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field> 
+        </form>
+        
+        <!-- SurvivorPayee Data Update Compel Data Form : bamo0d289c.jsp -->
+        <form name="SurvivorPayeeDataUpdateCompelDataForm">
+            <field property="compelSdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.compelSdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="compelEdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.compelEdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field> 
+            <field property="compelDesc" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.dependantDataUpdate.compelDesc" />
+            </field> 
+        </form>
+
+        <!-- Stop Payment Process Form : bamo0d040n.jsp -->
+        <form name="StopPaymentProcessQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.apNo1.type" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="issuYm" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.stopPaymentProcess.issuYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Stop Payment Process Form : bamo0d041n.jsp -->
+        <form name="StopPaymentProcessDetailForm">
+
+        </form>
+
+        <!-- Disabled CheckMark Level Adjust : bamo0d160c.jsp -->
+        <form name="DisabledCheckMarkLevelAdjustForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Survivor CheckMark Level Adjust : bamo0d260c.jsp -->
+        <form name="SurvivorCheckMarkLevelAdjustForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Dependant Data Update Query : bamo0d070c.jsp -->
+        <form name="DependantDataUpdateQueryForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Dependant Data Update List : bamo0d72c.jsp -->
+        <form name="DependantDataUpdateListForm">
+
+        </form>
+
+        <!-- Dependant Data Update Form : bamo0d071a.jsp bamo0d073c.jsp-->
+        <form name="DependantDataUpdateDetailForm">
+            <field property="interDictDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.interDictDate" />
+            </field>
+            <!--
+            <field property="famBrDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.benBrDate" />  
+            </field>
+            -->
+            <field property="famAppDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.famAppDate" />
+            </field>
+            <field property="famDieDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.dieDate" />
+            </field>
+            <field property="relatChgDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.relatChgDate" />
+            </field>
+            <field property="adoPtDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.adoPtDate" />
+            </field>
+            <field property="benMissingSdate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.benMissingSdate" />
+            </field>
+            <field property="benMissingEdate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.benMissingEdate" />
+            </field>
+            <field property="prisonSdate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.prisonSdate" />
+            </field>
+            <field property="prisonEdate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.prisonEdate" />
+            </field>
+            <field property="marryDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependnatDataUpdate.marryDate" />
+            </field>
+            <field property="divorceDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.divorceDate" />
+            </field>
+            <field property="monIncome" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.date" /> 
+                <arg bundle="baMsg" name="integer" key="label.update.dependantDataUpdate.monIncome" />
+            </field>
+             <field property="apleApsYm" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.apleApsYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <!-- Dependant Data Update StudTerm Form : bamo0d074c.jsp -->
+        <form name="DependantDataUpdateStudTermForm">
+            <field property="studSdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.studSdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="studEdate" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.date" />
+                <arg bundle="baMsg" key="label.update.dependantDataUpdate.studEdate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field> 
+        </form>
+
+        <!-- Disabled Application Data Update : bamo0d130c.jsp bamo0d131c.jsp bamo0d133c.jsp -->
+        <form name="DisabledApplicationDataUpdateForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="evtNationTpe" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtNationTpe" />
+            </field>
+            <field property="evtNationCode" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.evtNationCode" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtName" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtName" />
+            </field>
+            <field property="evtIdnNo" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtIdnNo" />
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.evtIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtBrDate" depends="required,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtBrDate" />
+                <!--<msg bundle="baMsg" name="chineseDate" key="errors.date" />-->
+                <!-- <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtBrDate" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" name="notAfterToday" key="label.update.disabled.evtBrDate" />
+            </field>
+            <field property="evtJobDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtJobDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtJobDate" />
+            </field>
+            <field property="evtDieDate" depends="chineseDate" page="2">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtDieDate" />
+            </field>
+            <field property="appDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.appDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.appDate" />
+            </field>
+            <field property="apUbno" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.apUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="lsUbno" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.lsUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInPart1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInPart1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInPart2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInPart2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInPart3" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInPart3" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp3" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp3" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp4" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp4" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp5" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp5" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp6" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp6" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp7" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp7" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp8" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp8" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp9" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp9" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJdp10" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJdp10" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJDP_MASK}</var-value>
+                </var>
+            </field>
+            <field property="hosId" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.hosId" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJnme1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJnme2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme3" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJnme3" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme4" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.criInJnme4" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="rehcYear" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.rehcYear" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MASK}</var-value>
+                </var>
+            </field>
+            <field property="rehcMonth" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.rehcMonth" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="notifyForm" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.notifyForm" />
+            </field>
+            <field property="cutAmt" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.update.disabled.cutAmt" />
+            </field>
+            <field property="ocAccaddAmt" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.update.disabled.ocAccaddAmt" />
+            </field>
+            <field property="deductDay" depends="integer,intRange" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" name="integer" key="label.update.disabled.deductDay" />
+                <msg bundle="baMsg" name="intRange" key="errors.range" />
+                <arg bundle="baMsg" position="0" name="intRange" key="label.update.disabled.deductDay" />
+                <arg name="intRange" position="1" key="${var:min}" resource="false" />
+                <arg name="intRange" position="2" key="${var:max}" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1800</var-value>
+                </var>
+            </field>
+            <field property="choiceYm" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.choiceYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtNationTpe" depends="required" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtNationTpe" />
+            </field>
+            <field property="evtNationCode" depends="mask" page="4">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.evtNationCode" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtName" depends="required" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtName" />
+            </field>
+            <field property="evtIdnNo" depends="required,mask" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtIdnNo" />
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.evtIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtBrDate" depends="required,notAfterToday" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtBrDate" />
+                <!--<msg bundle="baMsg" name="chineseDate" key="errors.date" />-->
+                <!-- <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtBrDate" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" name="notAfterToday" key="label.update.disabled.evtBrDate" />
+            </field>
+            <field property="evtJobDate" depends="required,chineseDate" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evtJobDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtJobDate" />
+            </field>
+            <field property="evtDieDate" depends="chineseDate" page="4">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.evtDieDate" />
+            </field>
+            <field property="appDate" depends="required,chineseDate" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.appDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.disabled.appDate" />
+            </field>
+            <field property="apUbno" depends="mask" page="4">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.apUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="lsUbno" depends="required, mask" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.lsUbno" />
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.lsUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="notifyForm" depends="required" page="4">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.notifyForm" />
+            </field>
+            <field property="choiceYm" depends="mask" page="4">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.choiceYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+            <field property="comReChkYm" depends="mask" page="5">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.update.disabled.comReChkYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+
+        <!-- Survivor Application Data Update : bamo0d230c.jsp bamo0d231c.jsp bamo0d233c.jsp -->
+        <form name="SurvivorApplicationDataUpdateForm">
+            <field property="apNo1" depends="required,minlength,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" name="mask" key="label.update.apNo1" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo2" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo3" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="required,minlength,integer" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />
+                <arg bundle="baMsg" name="integer" key="label.update.apNo4" />
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" name="minlength" position="0" key="label.update.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="evtNationTpe" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evtNationTpe" />
+            </field>
+            <field property="evtNationCode" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.evtNationCode" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtName" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evtName" />
+            </field>
+            <field property="evtIdnNo" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evtIdnNo" />
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.evtIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="evtBrDate" depends="required,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evtBrDate" />
+                <!--<msg bundle="baMsg" name="chineseDate" key="errors.date" />-->
+                <!--<arg bundle="baMsg" name="chineseDate" key="label.update.survivor.evtBrDate" />-->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" name="notAfterToday" key="label.update.survivor.evtBrDate" />
+            </field>
+            <field property="evtDieDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evtDieDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.survivor.evtDieDate" />
+            </field>
+            <field property="judgeDate" depends="chineseDate" page="2">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.survivor.judgeDate" />
+            </field>
+            <field property="appDate" depends="required,chineseDate" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.appDate" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" name="chineseDate" key="label.update.survivor.appDate" />
+            </field>
+            <field property="apUbno" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.apUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="lsUbno" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.lsUbno" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="apItem" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.apItem" />
+            </field>
+            <field property="evAppTyp" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.disabled.evAppTyp" />
+            </field>
+            <field property="evTyp" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.evTyp" />
+            </field>
+            <field property="criInPart1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInPart1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInPart2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInPart2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInPart3" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInPart3" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${ENGNUM_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme1" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInJnme1" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme2" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInJnme2" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme3" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInJnme3" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="criInJnme4" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.format" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.criInJnme4" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${CRIINJNME_MASK}</var-value>
+                </var>
+            </field>
+            <field property="cutAmt" depends="integer" page="2">
+                <msg bundle="baMsg" name="integer" key="errors.date" /> 
+                <arg bundle="baMsg" name="integer" key="label.update.survivor.cutAmt" />
+            </field>
+            <field property="notifyForm" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.update.survivor.notifyForm" />
+            </field>
+            <field property="choiceYm" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.date.yearMonth.mask" />
+                <arg bundle="baMsg" name="mask" key="label.update.survivor.choiceYm" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${YEAR_MONTH_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+
+    </formset>
+</form-validation>

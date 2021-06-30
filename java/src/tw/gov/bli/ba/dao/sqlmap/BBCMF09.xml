@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF09">
+
+    <typeAlias alias="Bbcmf09" type="tw.gov.bli.ba.domain.Bbcmf09" />
+
+    <resultMap id="BBCMF09Result" class="Bbcmf09">                                                                        
+        <result column="PMTYP"     property="pmTyp"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PRPNO"     property="prpNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYTYP"    property="payTyp"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="GROUPMK"   property="groupMk"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="SEQNO"     property="seqNo"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="DATA1"     property="data1"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="DATA2"     property="data2"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL11"     property="tal11"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL12"     property="tal12"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL13"     property="tal13"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL14"     property="tal14"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL15"     property="tal15"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL16"     property="tal16"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TALOE"     property="taloe"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL2X"     property="tal2x"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="NLWKMK"    property="nlwkMk"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL20"     property="tal20"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL21"     property="tal21"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL22"     property="tal22"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL23"     property="tal23"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL24"     property="tal24"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL25"     property="tal25"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL31"     property="tal31"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TAL32"     property="tal32"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="FMDTE"     property="fmDte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="TODTE"     property="toDte"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+    </resultMap>   
+        
+    <resultMap id="ComTelForMonthlyRpt05Result" class="Bbcmf09">   
+        <result column="FNAME"     property="fName"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="SEX"       property="sex"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="DATA2"     property="data2"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>   
+    
+    <select id="selectData2By" resultClass="java.lang.String">
+        <![CDATA[   
+        SELECT DATA2
+          FROM (SELECT DATA2
+                  FROM (SELECT '1' ORDERID
+                              ,DATA2
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(#apNo:VARCHAR#,12,1) IN (TAL11,TAL12,TAL13,TAL14,TAL15))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                         UNION
+                        SELECT '2' ORDERID
+                              ,DATA2
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(TAL20,1,2) <= SUBSTR(#apNo:VARCHAR#,11,2) AND SUBSTR(TAL20,3,2) >= SUBSTR(#apNo:VARCHAR#,11,2))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                         UNION
+                        SELECT '3' ORDERID
+                              ,DATA2
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(#apNo:VARCHAR#,11,2) IN (TAL21,TAL22,TAL23,TAL24,TAL25))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                       )
+                 ORDER BY ORDERID)
+         WHERE ROWNUM=1
+         ]]>
+    </select>
+    
+    <select id="selectPrpNoBy" resultClass="java.lang.String">
+        <![CDATA[
+        SELECT PRPNO
+          FROM (SELECT PRPNO
+                  FROM (SELECT '1' ORDERID
+                              ,PRPNO
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(#apNo:VARCHAR#,12,1) IN (TAL11,TAL12,TAL13,TAL14,TAL15))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                         UNION
+                        SELECT '2' ORDERID
+                              ,PRPNO
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(TAL20,1,2) <= SUBSTR(#apNo:VARCHAR#,11,2) AND SUBSTR(TAL20,3,2) >= SUBSTR(#apNo:VARCHAR#,11,2))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                         UNION
+                        SELECT '3' ORDERID
+                              ,PRPNO
+                          FROM BCCMF09
+                         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                           AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
+                           AND (SUBSTR(#apNo:VARCHAR#,11,2) IN (TAL21,TAL22,TAL23,TAL24,TAL25))
+                           AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                       )
+                 ORDER BY ORDERID)
+         WHERE ROWNUM=1
+        ]]>                                               
+    </select>
+    
+    <select id="selectComTelForMonthlyRpt05By" resultMap="ComTelForMonthlyRpt05Result">
+        SELECT t.FNAME,
+               t.SEX,  
+               t.DATA2 
+          FROM BCCMF09 t 
+           <![CDATA[
+          WHERE NVL(TRIM(t.TAL20), ' ') <> '0099' 
+            AND (t.PAYTYP || t.GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#, 1, 2) || '%') 
+            AND ((SUBSTR(#apNo:VARCHAR#, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR 
+                 (SUBSTR(t.TAL20, 1, 2) <= SUBSTR(#apNo:VARCHAR#, 11, 2) AND 
+                  SUBSTR(t.TAL20, 3, 2) >= SUBSTR(#apNo:VARCHAR#, 11, 2)) OR 
+                 (SUBSTR(#apNo:VARCHAR#, 11, 2) IN (t.TAL21, t.TAL22, t.TAL23, t.TAL24, t.TAL25))) 
+            AND (TRIM(t.STATUS) IS NULL OR t.STATUS <> 'D') 
+            AND ROWNUM = 1
+            ]]>    
+    </select>
+    
+</sqlMap>
