@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAAVGMON">
+
+	<typeAlias alias="Bapaavgmon" type="tw.gov.bli.ba.domain.Bapaavgmon" />
+
+    <resultMap id="BAPAAVGMONForAvgAmtMonMaintResult" class="Bapaavgmon">
+        <result column="EFFYEAR"      property="effYear"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APPMONTH"     property="appMonth"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"      property="crtUser"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="USER"         property="user"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="DATE"         property="date"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+     </resultMap>
+
+	<select id="getBapaavgmonCount" resultClass="java.lang.Integer">
+        SELECT COUNT(*) FROM BAPAAVGMON
+    </select>
+    
+    <select id="getBapaavgmonAppMonth" resultClass="java.lang.String">
+        SELECT APPMONTH FROM BAPAAVGMON 
+        <![CDATA[
+         WHERE EFFYEAR = (SELECT MAX(EFFYEAR) FROM BAPAAVGMON
+                          WHERE EFFYEAR <= TO_CHAR(TO_DATE(#appDate:VARCHAR#, 'YYYYMMDD'),'YYYY'))
+         ]]>
+    </select>
+    
+    <select id="selectBapaavgmonDataListForAvgAmtMonMaintBy" resultMap="BAPAAVGMONForAvgAmtMonMaintResult">
+     SELECT EFFYEAR,
+            APPMONTH,
+            CRTUSER,
+            CRTTIME,
+            UPDUSER,
+            UPDTIME,
+            NVL(UPDUSER,CRTUSER) AS  "USER",
+            Substr(NVL(UPDTIME,CRTTIME),1,8) AS "DATE"
+       FROM BAPAAVGMON
+      <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="effYear">
+                <![CDATA[
+                    EFFYEAR <= #effYear:VARCHAR#
+                ]]>
+                </isNotEmpty>     
+            </isParameterPresent>
+        </dynamic>
+      ORDER BY EFFYEAR DESC
+    </select>
+    
+    <delete id="deleteData">
+     DELETE FROM BAPAAVGMON 
+     WHERE EFFYEAR   =  #effYear:VARCHAR#
+    </delete>    
+    
+    <insert id="insertData">
+        INSERT INTO BAPAAVGMON 
+        ( 
+            EFFYEAR,
+            APPMONTH,
+            CRTUSER,  
+            CRTTIME,   
+            UPDUSER,   
+            UPDTIME   
+        )  
+        VALUES
+        ( 
+            #effYear:VARCHAR#,
+            #appMonth:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+    
+     <update id="updateData">
+        UPDATE BAPAAVGMON SET
+               EFFYEAR  = #effYear:VARCHAR#,
+               APPMONTH = #appMonth:VARCHAR#,
+               UPDUSER  = #updUser:VARCHAR#,
+               UPDTIME  = #updTime:VARCHAR#
+        WHERE  EFFYEAR  = #effYear:VARCHAR#
+    </update>
+    
+</sqlMap>

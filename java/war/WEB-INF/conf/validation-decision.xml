@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Payment Decision : barc0d010a.jsp -->
+        <form name="PaymentDecisionForm">
+            <field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.oldAge.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.decision.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_OLDAGE}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="rptDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.rptDate" />
+            </field>
+            <field property="pageNo" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.decision.pageNo" />
+            </field>            
+        </form>
+        
+        <!-- Disabled Payment Decision : barc0d110a.jsp -->
+        <form name="DisabledPaymentDecisionForm">
+            <field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.disabled.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.decision.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_DISABLED}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="rptDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.rptDate" />
+            </field>
+            <field property="pageNo" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.decision.pageNo" />
+            </field>            
+        </form>
+        
+        <!-- Srvivor Payment Decision : barc0d210a.jsp -->
+        <form name="SurvivorPaymentDecisionForm">
+            <field property="apNo1" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.decision.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.decision.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="rptDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.decision.rptDate" />
+            </field>
+            <field property="pageNo" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.decision.pageNo" />
+            </field>            
+        </form>
+    </formset>
+</form-validation>

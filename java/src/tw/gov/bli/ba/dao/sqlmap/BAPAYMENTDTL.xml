@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENTDTL">
+<typeAlias alias="Bapaymentdtl" type="tw.gov.bli.ba.domain.Bapaymentdtl" />
+	
+	<resultMap id="paymentResult" class="Bapaymentdtl">
+        <result column="PAYMENTNO"      property="paymentNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="APNO"    		property="apno"   			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="SEQNO"        	property="seqNo"        	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTNAME"    property="paymentName"  	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="ISSUYM"        	property="issuYm"       	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYYM"        	property="payYm"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />     
+		<result column="RECAMT"      	property="recAmt"     		jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>                                           
+    	<result column="RECREM"     	property="recRem"     		jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     nullValue="0"/>
+        <result column="PAYAMT"        	property="payAmt"       	jdbcType="NUMERIC"      javaType="java.math.BigDecimal" 	nullValue="0"/>
+        <result column="MAPNOMK"        property="mApnoMk"      	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />     
+        <result column="PAYMENTSEX"     property="paymentSex"      	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />     
+		<result column="WRITEOFFSEQNO"  property="writeoffSeqno"    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />                                           
+    </resultMap>
+	<resultMap id="paymentReprintResult" class="Bapaymentdtl">
+		<result column="CRTTIME"      property="crtTime"        jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="UPDTIME"      property="updTime"   		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTNO"    property="paymentNo"      jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYMENTNAME"  property="paymentName"    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PRTDATE"  	  property="prtDate"	    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="CASENO"    	  property="caseNo"  		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="APNO"         property="apno"       	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYTOTAMT"    property="payTotAmt"     	jdbcType="NUMERIC"      javaType="java.math.BigDecimal" 	nullValue="0" />	
+		<result column="IDN"   		  property="idn"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+		 
+    </resultMap>
+    <resultMap id="unacpdtlData" class="Bapaymentdtl">
+		<result column="WRITEOFFSEQNO"  property="writeoffSeqno"    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="PAYAMT"      	property="payAmt"   		jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     	nullValue="0" />
+        <result column="NLWKMK"    		property="nlwkMk"      		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="ADWKMK"  		property="adwkMk"    		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="BAUNACPDTLID"  	property="baunacpdtlId"	    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="APNO"    	  	property="apno"  			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="SEQNO"         	property="seqNo"       		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="ISSUYM"    		property="issuYm"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+		<result column="PAYYM"   		property="payYm"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+		<result column="STS"  			property="sts"    			jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="UNACPDATE" 		property="unacpDate"	    jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+        <result column="RECAMT"    		property="recAmt"  			jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     	nullValue="0" />
+        <result column="RECREM"    		property="recRem"       	jdbcType="NUMERIC"      javaType="java.math.BigDecimal"     	nullValue="0" />
+        <result column="BENIDS"    		property="benIds"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+		<result column="BENIDNNO"  		property="benIdnNo"     	jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+		<result column="PAYKIND"  		property="payKind"     		jdbcType="VARCHAR"      javaType="java.lang.String"     	nullValue="" />
+	</resultMap>
+	<insert id="insertPaymentData">
+        INSERT INTO BAPAYMENTDTL
+        ( 
+           PAYMENTNO,
+           APNO,
+           SEQNO,
+           PAYMENTNAME,
+           ISSUYM,
+           PAYYM,
+           RECAMT,
+           RECREM,
+           PAYAMT,
+           MAPNOMK,
+           WRITEOFFSEQNO,
+           PAYMENTSEX          
+        )  
+        VALUES
+        ( 
+            #paymentNo:VARCHAR#,
+            #apno:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #paymentName:VARCHAR#,
+            #issuYm:VARCHAR#,
+            #payYm:VARCHAR#,
+            #recAmt:NUMERIC#,
+            #recRem:NUMERIC#,
+            #payAmt:NUMERIC#,
+            #mApnoMk:VARCHAR#,
+            #writeoffSeqno:VARCHAR#,   
+            #paymentSex:VARCHAR#            
+        )     
+    </insert>
+
+	<select id="seletPaymentProcessDetailList" resultMap="paymentResult">
+		SELECT t1.PAYMENTNO,
+	           t1.APNO,
+	           t1.SEQNO,
+	           t1.PAYMENTNAME,
+	           t1.ISSUYM,
+	           t1.PAYYM,
+	           t1.RECAMT,
+	           t1.RECREM,
+	           t1.PAYAMT,
+	           t1.MAPNOMK,
+           	   t1.WRITEOFFSEQNO,
+           	   t1.PAYMENTSEX  
+		  From BAPAYMENTDTL t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+		 ORDER BY t1.PAYYM
+	</select>
+	<select id="seletPaymentReprintList" resultMap="paymentReprintResult">
+		SELECT t1.CRTTIME,
+			   t1.UPDTIME,
+			   t1.PAYMENTNO,
+			   t1.CASENO,
+			   t2.PAYMENTNAME,
+			   t1.PRTDATE,
+			   t1.IDN,
+			   t2.APNO,
+			   t1.PAYTOTAMT 
+		  From BAPAYMENT t1, BAPAYMENTDTL t2
+		 <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idn">
+                    t1.IDN = #idn:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paymentNo">
+                    t1.PAYMENTNO = #paymentNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="caseNo">
+                    t1.CASENO = #caseNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="sequenceNo">
+                    SUBSTR(t1.PAYMENTNO, 9, 5) = #sequenceNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="paymentDate">
+                    t1.CRTTIME LIKE #paymentDate:VARCHAR# || '%'
+                </isNotEmpty>
+                 <isNotEmpty prepend="AND" property="prtDt">
+                    NVL(TRIM(t1.PRTDATE),'') IS NOT NULL
+                </isNotEmpty>
+                <isEmpty prepend="AND" property="prtDt">
+                    NVL(TRIM(t1.PRTDATE),'') IS NULL
+                </isEmpty>
+            </isParameterPresent>
+        </dynamic>
+		   AND t1.PAYMENTNO = t2.PAYMENTNO
+		   AND t1.USEMK = 'Y'
+		   AND MAPNOMK = '1'
+		 ORDER BY SUBSTR(t1.PAYMENTNO,3,15) DESC
+	</select>
+	<delete id="deletePaymentData">
+		DELETE FROM BAPAYMENTDTL
+		WHERE  PAYMENTNO =  #paymentNo:VARCHAR#
+	</delete>
+	<select id="selectUnacpdtlData" resultMap="unacpdtlData">
+		SELECT C.WRITEOFFSEQNO,
+	           C.PAYAMT,
+	           A.NLWKMK,
+	           A.ADWKMK,
+	           A.BAUNACPDTLID, 
+	           A.APNO,    
+	           A.SEQNO,   
+	           A.ISSUYM,   
+	           A.PAYYM,   
+	           A.STS,
+	           A.UNACPDATE,     
+	           A.RECAMT,  
+	           A.RECREM,
+	           A.BENIDS,
+	           A.BENIDNNO,
+	           A.PAYKIND
+	      FROM BAUNACPDTL A, BAPAYMENTDTL C
+	      WHERE C.PAYMENTNO = #paymentNo:VARCHAR#
+	       and A.APNO = C.APNO
+	       and A.SEQNO = C.SEQNO
+	       and A.ISSUYM = C.ISSUYM
+	       and A.PAYYM = C.PAYYM
+	       and A.RECAMT = C.RECAMT
+	       and C.WRITEOFFSEQNO IS NOT NULL
+	       ORDER BY WRITEOFFSEQNO ,STS DESC, ISSUYM, PAYYM, SEQNO
+	</select>
+	
+	<select id="selectPaymentQueryDetailList" resultMap="paymentResult">
+		SELECT t1.PAYMENTNO,
+	           t1.APNO,
+	           t1.SEQNO,
+	           t1.PAYMENTNAME,
+	           t1.ISSUYM,
+	           t1.PAYYM,
+	           t1.RECAMT,
+	           t1.RECREM,
+	           t1.PAYAMT,
+	           t1.MAPNOMK,
+           	   t1.WRITEOFFSEQNO,
+           	   t1.PAYMENTSEX  
+		  From BAPAYMENTDTL t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+		 ORDER BY TO_NUMBER(t1.WRITEOFFSEQNO)
+	</select>		 
+		 
+</sqlMap>

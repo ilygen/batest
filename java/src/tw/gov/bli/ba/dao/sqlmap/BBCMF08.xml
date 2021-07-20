@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF08">
+
+    <typeAlias alias="Bbcmf08" type="tw.gov.bli.ba.domain.Bbcmf08" />
+
+    <resultMap id="BBCMF08Result" class="Bbcmf08">                                                                        
+        <result column="INSKD"      property="inskd"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYTYP"     property="payTyp"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PMTYP"      property="pmTyp"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="GVCD1"      property="gvCd1"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="GVNAME"     property="gvName"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="GVSNAME"    property="gvsName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="ACCSEQ"     property="accSeq"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="GVCD2"      property="gvCd2"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PMDESC"     property="pmDesc"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="STATUS"     property="status"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>   
+    
+    <select id="selectBbcmf08DataBy" resultClass="java.lang.String">
+        SELECT COUNT(*) AS COUNTDATA
+          FROM BCCMF08
+         WHERE GVCD1 = #gvCd1:VARCHAR#
+    </select>
+</sqlMap>

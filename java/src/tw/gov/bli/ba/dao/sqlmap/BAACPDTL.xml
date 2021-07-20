@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAACPDTL">
+	
+	<typeAlias alias="Baacpdtl" type="tw.gov.bli.ba.domain.Baacpdtl" />
+	
+	<resultMap id="BAACPDTLCashReceivedDataResult" class="Baacpdtl" >
+        <result column="INSKDCASH"         property="insKdCash"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BLIACCOUNTCODE"    property="bliAccountCode"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BOOKEDBOOK"        property="bookedBook"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""  />
+        <result column="BKACCOUNTDT"       property="bkAccountDt"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""  />               
+        <result column="BATCHNO"           property="batchNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""  />
+        <result column="SERIALNO"          property="serialNo"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""  />               
+        <result column="CASHAMT"           property="cashAmt"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="DIVSEQ"            property="divSeq"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="INDEXNO"           property="indexNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNO"             property="apNo"              jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+    </resultMap>
+
+    <resultMap id="BaunacpdtlIdForCashReceivedDataResult" class="Baacpdtl" >
+        <result column="BAUNACPDTLID"     property="baunacpdtlId"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BAACPDTLID"       property="baacpdtlId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="RECAMT"           property="recAmt"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0"/>
+    </resultMap>
+    
+    <resultMap id="BAAPPBASOldAgePaymentReceiveDataResult" class="Baacpdtl">
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYKIND"          property="payKind"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUTYP"          property="issuTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDS"           property="benIds"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"        property="payBankId"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"         property="branchId"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"         property="payEeacc"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="NLWKMK"           property="nlWkMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"           property="adWkMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="NACHGMK"          property="naChgMk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="PAYTYP"           property="payTyp"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STS"              property="sts"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BAACPDTLID"       property="baacpdtlId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="BaacpdtlForPfpfdResult" class="Baacpdtl">
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BAACPDTLID"       property="baacpdtlId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="BaacpdtlForPfpfdKResult" class="Baacpdtl">
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BAACPDTLID"       property="baacpdtlId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="NLWKMK"           property="nlWkMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />  
+        <result column="ADWKMK"           property="adWkMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BaacpdtlForPfpfdSResult" class="Baacpdtl">
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BAACPDTLID"       property="baacpdtlId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+	
+	<insert id="insertDataForRemittanceReceiveData">
+        
+        insert  into  BAACPDTL  
+        (
+             BAACPDTLID
+            ,BAUNACPDTLID
+            ,BENIDS
+            ,BENIDNNO
+            ,TYPEMK
+            ,RECAMT
+            ,DISPAYKIND
+            ,APNO
+            ,SEQNO
+            ,ISSUYM
+            ,PAYYM
+            ,TRANSACTIONID
+            ,TRANSACTIONSEQ
+            ,INSKDREGIVE
+            ,ACPDATE
+            ,PROCFUN
+            ,PROCUSER
+            ,PROCTIME
+            ,UPDTIME
+        )
+        values
+        (
+            (to_Char(Sysdate,'YYYYMMDD') || LPAD(to_Char(BAACPDTLID.NEXTVAL),12,'0'))
+            ,#baunacpdtlId:NUMERIC#
+            ,#benIds:VARCHAR#
+            ,#benIdnNo:VARCHAR#
+            ,'D'
+            ,#recAmt:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#transActionId:VARCHAR#
+            ,#transActionSeq:VARCHAR#
+            ,#insKd:VARCHAR#
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,'A'
+            ,#empNo:VARCHAR#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+        )    
+    </insert>
+    
+    <insert id="insertDataForCashReceiveData">
+        
+        insert  into  BAACPDTL  
+        (
+             BAACPDTLID
+            ,BAUNACPDTLID
+            ,BENIDS
+            ,BENIDNNO
+            ,TYPEMK
+            ,RECAMT
+            ,DISPAYKIND
+            ,APNO
+            ,SEQNO
+            ,ISSUYM
+            ,PAYYM
+            ,INSKDCASH
+            ,BLIACCOUNTCODE
+            ,BOOKEDBOOK
+            ,BKACCOUNTDT
+            ,BATCHNO
+            ,SERIALNO
+            ,CASHAMT
+            ,DIVSEQ
+            ,INDEXNO
+            ,ACPDATE
+            ,PROCFUN
+            ,PROCUSER
+            ,PROCTIME
+            ,UPDTIME
+            ,STS
+        )
+        values
+        (
+            (to_Char(Sysdate,'YYYYMMDD') || LPAD(to_Char(BAACPDTLID.NEXTVAL),12,'0'))
+            ,#baunacpdtlId:NUMERIC#
+            ,#benIds:VARCHAR#
+            ,#benIdnNo:VARCHAR#
+            ,'E'
+            ,#recAmt:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#insKd:VARCHAR#
+            ,#bli_Account_Code:VARCHAR#
+            ,#bookedBook:VARCHAR#
+            ,#bkAccountDt:VARCHAR#
+            ,#batchNo:VARCHAR#
+            ,#serialNo:VARCHAR#
+            ,#cash_Amt:VARCHAR#
+            ,#divSeq:VARCHAR#
+            ,#index_No:VARCHAR#
+            ,to_Char(Sysdate,'YYYYMMDD')
+            ,'A'
+            ,#empNo:VARCHAR#
+            ,to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,#sts:VARCHAR#
+        )    
+    </insert>
+
+    <select id="selectCashReceivedDataBy" resultMap="BAACPDTLCashReceivedDataResult">
+    	  SELECT DISTINCT C.INSKDCASH
+                         ,C.BLIACCOUNTCODE
+                         ,C.BOOKEDBOOK
+                         ,C.BKACCOUNTDT
+                         ,C.BATCHNO
+                         ,C.SERIALNO
+                         ,C.CASHAMT
+                         ,C.DIVSEQ
+                         ,C.INDEXNO
+                         ,C.APNO
+                         ,C.SEQNO
+                    FROM BAACPDTL C,       
+                        (SELECT DISTINCT B.INSKD
+                               ,B.BLI_ACCOUNT_CODE 
+                               ,B.BOOKEDBOOK
+                               ,B.BKACCOUNTDT
+                               ,B.BATCHNO
+                               ,B.SERIALNO
+                               ,B.CASH_AMT
+                               ,B.DIVSEQ
+                               ,B.INDEX_NO
+                           FROM BAAPPBASE A, PFPCCKY B
+                          WHERE A.APNO = #apNo:VARCHAR#
+                            AND A.APNO LIKE #payCode:VARCHAR# || '%'
+                            AND A.APNO = B.TEMPHANDLENO
+                            AND (A.CASETYP = '3' OR A.CASETYP = '4')
+                            AND B.INSKD = '1'
+                            AND B.PRINTNOTECODE = 'Y'
+                            AND LENGTH(B.TEMPHANDLENO) = 12) D
+                   WHERE C.APNO = #apNo:VARCHAR#
+                     <![CDATA[
+                     AND C.PROCFUN <> 'D'
+                     ]]>
+                     AND C.TYPEMK = 'E'
+                     AND C.INSKDCASH = D.INSKD
+                     AND C.BLIACCOUNTCODE = D.BLI_ACCOUNT_CODE
+                     AND C.BOOKEDBOOK = D.BOOKEDBOOK
+                     AND C.BKACCOUNTDT = TO_CHAR(D.BKACCOUNTDT,'YYYYMMDD')
+                     AND C.BATCHNO = D.BATCHNO
+                     AND C.SERIALNO = D.SERIALNO
+                     AND C.CASHAMT = D.CASH_AMT
+                     AND C.DIVSEQ = D.DIVSEQ
+                     AND C.INDEXNO = D.INDEX_NO
+                   ORDER BY C.BKACCOUNTDT DESC
+    </select>  
+    
+    <select id="selectBaunacpdtlDataForCashReceivedBy" resultMap="BaunacpdtlIdForCashReceivedDataResult">
+    	     SELECT DISTINCT BAACPDTLID,
+    	            BAUNACPDTLID,
+    	            RECAMT            
+               FROM BAACPDTL C
+              WHERE C.APNO = #apNo:VARCHAR#
+                <![CDATA[
+                AND C.PROCFUN <> 'D'
+                ]]>
+                AND C.INSKDCASH = #insKdCash:VARCHAR#
+                AND C.BLIACCOUNTCODE = #bliAccountCode:VARCHAR#
+                AND C.BOOKEDBOOK = #bookedBook:VARCHAR#
+                AND C.BKACCOUNTDT = #bkAccountDt:VARCHAR#
+                AND C.BATCHNO = #batchNo:VARCHAR#
+                AND C.SERIALNO = #serialNo:VARCHAR#
+                AND C.CASHAMT = #cashAmt:VARCHAR#
+                AND C.DIVSEQ = #divSeq:VARCHAR#
+                AND C.INDEXNO = #indexNo:VARCHAR#
+    </select>  
+    
+    <select id="selectBaunacpdtlIdForCashReceivedDataBy" resultMap="BaunacpdtlIdForCashReceivedDataResult">
+    	     SELECT DISTINCT BAACPDTLID, 
+    	            BAUNACPDTLID,
+    	            RECAMT            
+               FROM BAACPDTL C
+              WHERE C.APNO = #apNo:VARCHAR#
+                <![CDATA[
+                AND C.PROCFUN = 'D'
+                ]]>
+                AND C.INSKDCASH = #insKdCash:VARCHAR#
+                AND C.BLIACCOUNTCODE = #bliAccountCode:VARCHAR#
+                AND C.BOOKEDBOOK = #bookedBook:VARCHAR#
+                AND C.BKACCOUNTDT = #bkAccountDt:VARCHAR#
+                AND C.BATCHNO = #batchNo:VARCHAR#
+                AND C.SERIALNO = #serialNo:VARCHAR#
+                AND C.CASHAMT = #cashAmt:VARCHAR#
+                AND C.DIVSEQ = #divSeq:VARCHAR#
+                AND C.INDEXNO = #indexNo:VARCHAR#
+    </select>  
+    
+    <select id="selectBaunacpdtlDataForRemittanceReceivedBy" resultMap="BaunacpdtlIdForCashReceivedDataResult">
+    	     SELECT DISTINCT BAACPDTLID,
+    	            BAUNACPDTLID,
+    	            RECAMT
+               FROM BAACPDTL
+              WHERE TRANSACTIONID = #transActionId:VARCHAR#
+                AND TRANSACTIONSEQ = #transActionSeq:VARCHAR#
+                AND INSKDREGIVE = #insKd:VARCHAR#
+    </select>  
+    
+    <select id="selectBaunacpdtlIdForRemittanceReceivedBy" resultMap="BaunacpdtlIdForCashReceivedDataResult">
+    	     SELECT DISTINCT BAACPDTLID,
+    	            BAUNACPDTLID, 
+    	            RECAMT
+               FROM BAACPDTL
+              WHERE TRANSACTIONID = #transActionId:VARCHAR#
+                AND TRANSACTIONSEQ = #transActionSeq:VARCHAR#
+                AND INSKDREGIVE = #insKd:VARCHAR#
+    </select>  
+    
+    <update id="updateBaacpdtlForCancelCashReceive">    
+        UPDATE  BAACPDTL SET
+		        PROCFUN = 'D'
+		       ,UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS')
+		       ,CANCELDATE = to_Char(Sysdate,'YYYYMMDD')
+		 WHERE BAUNACPDTLID = #baunacpdtlId:NUMERIC#
+		   AND BAACPDTLID   = #baacpdtlId:NUMERIC#
+    </update>
+    
+	<insert id="insertDataForBatchPaymentReceiveData">
+        
+        insert  into  BAACPDTL  
+        (
+             BAACPDTLID
+            ,BAUNACPDTLID
+            ,BENIDS
+            ,BENIDNNO
+            ,TYPEMK
+            ,RECAMT
+            ,DISPAYKIND
+            ,APNO
+            ,SEQNO
+            ,ISSUYM
+            ,PAYYM
+            ,TRANSACTIONID
+            ,TRANSACTIONSEQ
+            ,INSKDREGIVE
+            ,ACPDATE
+            ,PROCFUN
+            ,PROCUSER
+            ,PROCTIME
+            ,UPDTIME
+            ,NLWKMK
+            ,ADWKMK
+            ,NACHGMK
+            ,STS
+            ,BLIACCOUNTCODE
+            ,BOOKEDBOOK
+            ,BKACCOUNTDT
+            ,BATCHNO
+            ,SERIALNO
+            ,CASHAMT
+            ,DIVSEQ
+            ,INDEXNO
+        )
+        values
+        (
+            (to_Char(Sysdate,'YYYYMMDD') || LPAD(to_Char(BAACPDTLID.NEXTVAL),12,'0'))
+            ,#baunacpdtlId:NUMERIC#
+            ,#benIds:VARCHAR#
+            ,#benIdnNo:VARCHAR#
+            ,#typeMk:VARCHAR#
+            ,#recAmt:VARCHAR#
+            ,#payKind:VARCHAR#
+            ,#apNo:VARCHAR#
+            ,#seqNo:VARCHAR#
+            ,#issuYm:VARCHAR#
+            ,#payYm:VARCHAR#
+            ,#transActionId:VARCHAR#
+            ,#transActionSeq:VARCHAR#
+            ,#insKd:VARCHAR#
+            ,#acpDate:VARCHAR#
+            ,'A'
+            ,#empNo:VARCHAR#
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            , to_Char(Sysdate,'YYYYMMDDHH24MISS')
+            ,#nlWkMk:VARCHAR#
+            ,#adWkMk:VARCHAR#
+            ,#naChgMk:VARCHAR#
+            ,#sts:VARCHAR#
+            ,#bli_Account_Code:VARCHAR#
+            ,#bookedBook:VARCHAR#
+            ,#bkAccountDt:VARCHAR#
+            ,#batchNo:VARCHAR#
+            ,#serialNo:VARCHAR#
+            ,#cash_Amt:VARCHAR#
+            ,#divSeq:VARCHAR#
+            ,#index_No:VARCHAR#
+        )    
+    </insert>
+    
+    <select id="selectBaacpdtlDataBy" resultMap="BAAPPBASOldAgePaymentReceiveDataResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.PAYKIND
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.ISSUTYP
+                  ,t1.BENIDS
+                  ,t1.BENIDNNO
+                  ,t2.BENNAME
+                  ,t2.PAYBANKID
+                  ,t2.BRANCHID
+                  ,t2.PAYEEACC
+                  ,t1.ISSUEAMT
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+                  ,t1.NACHGMK
+                  ,t2.CASETYP
+                  ,t2.PAYTYP
+                  ,t1.STS
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.DISPAYKIND as PAYKIND
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.TYPEMK as ISSUTYP
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.NLWKMK as NLWKMK
+                          ,t11.ADWKMK as ADWKMK
+                          ,t11.NACHGMK as NACHGMK
+                          ,t11.STS
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO = #apNo:VARCHAR#                       
+                       and t11.ACPDATE = #acpDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                          ,t21.PAYBANKID
+                          ,t21.BRANCHID
+                          ,t21.PAYEEACC
+                          ,t21.CASETYP
+                          ,t21.PAYTYP
+                      from BAAPPBASE t21
+                     where t21.APNO = #apNo:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>    
+    
+    <select id="selectBaacpdtlDataForPaymentReceiveBy" resultMap="BAAPPBASOldAgePaymentReceiveDataResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.PAYKIND
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.ISSUTYP
+                  ,t1.BENIDS
+                  ,t1.BENIDNNO
+                  ,t2.BENNAME
+                  ,t2.PAYBANKID
+                  ,t2.BRANCHID
+                  ,t2.PAYEEACC
+                  ,t1.ISSUEAMT
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+                  ,t1.NACHGMK
+                  ,t2.CASETYP
+                  ,t2.PAYTYP
+                  ,t1.STS
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.DISPAYKIND as PAYKIND
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.TYPEMK as ISSUTYP
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.NLWKMK as NLWKMK
+                          ,t11.ADWKMK as ADWKMK
+                          ,t11.NACHGMK as NACHGMK
+                          ,t11.STS
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO = #apNo:VARCHAR#          
+                       and t11.baunacpdtlId = #baunacpdtlId:NUMERIC#
+                       and t11.BLIACCOUNTCODE = #bli_Account_Code:VARCHAR#
+                       and t11.BOOKEDBOOK = #bookedBook:VARCHAR#
+                       and t11.BKACCOUNTDT = #bkAccountDt:VARCHAR#
+                       and t11.BATCHNO = #batchNo:VARCHAR#
+                       and t11.SERIALNO = #serialNo:VARCHAR#
+                       and t11.CASHAMT = #cash_Amt:NUMERIC#
+                       and t11.DIVSEQ = #divSeq:VARCHAR#
+                       and t11.INDEXNO = #index_No:VARCHAR#
+                       and t11.TYPEMK in ('E')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                          ,t21.PAYBANKID
+                          ,t21.BRANCHID
+                          ,t21.PAYEEACC
+                          ,t21.CASETYP
+                          ,t21.PAYTYP
+                      from BAAPPBASE t21
+                     where t21.APNO = #apNo:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+
+    <select id="selectKBaacpdtlDataBy" resultMap="BAAPPBASOldAgePaymentReceiveDataResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.PAYKIND
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.ISSUTYP
+                  ,t1.BENIDS
+                  ,t1.BENIDNNO
+                  ,t2.BENNAME
+                  ,t2.PAYBANKID
+                  ,t2.BRANCHID
+                  ,t2.PAYEEACC
+                  ,t1.ISSUEAMT
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+                  ,t1.NACHGMK
+                  ,t2.CASETYP
+                  ,t2.PAYTYP
+                  ,t1.STS
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.DISPAYKIND as PAYKIND
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.TYPEMK as ISSUTYP
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.NLWKMK as NLWKMK
+                          ,t11.ADWKMK as ADWKMK
+                          ,t11.NACHGMK as NACHGMK
+                          ,t11.STS
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO = #apNo:VARCHAR#                       
+                       and t11.ACPDATE = #acpDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                          ,t21.PAYBANKID
+                          ,t21.BRANCHID
+                          ,t21.PAYEEACC
+                          ,t21.CASETYP
+                          ,t21.PAYTYP
+                      from BAAPPBASE t21
+                     where t21.APNO = #apNo:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+    
+    <select id="selectSBaacpdtlDataBy" resultMap="BAAPPBASOldAgePaymentReceiveDataResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.PAYKIND
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.ISSUTYP
+                  ,t1.BENIDS
+                  ,t1.BENIDNNO
+                  ,t2.BENNAME
+                  ,t2.PAYBANKID
+                  ,t2.BRANCHID
+                  ,t2.PAYEEACC
+                  ,t1.ISSUEAMT
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+                  ,t1.NACHGMK
+                  ,t2.CASETYP
+                  ,t2.PAYTYP
+                  ,t1.STS
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.DISPAYKIND as PAYKIND
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.TYPEMK as ISSUTYP
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.NLWKMK as NLWKMK
+                          ,t11.ADWKMK as ADWKMK
+                          ,t11.NACHGMK as NACHGMK
+                          ,t11.STS
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO = #apNo:VARCHAR#                       
+                       and t11.ACPDATE = #acpDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                          ,t21.PAYBANKID
+                          ,t21.BRANCHID
+                          ,t21.PAYEEACC
+                          ,t21.CASETYP
+                          ,t21.PAYTYP
+                          ,t21.BENEVTREL
+                      from BAAPPBASE t21
+                     where t21.APNO = #apNo:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t2.SEQNO <> '0000'
+                  and t2.BENEVTREL in ('2','3','4','5','6','7')
+    ]]>
+    </select>
+    
+    <update id="updateForPfmPfd">    
+		update BAACPDTL t
+           set t.CPRNPAGE = #v_cprnpage:VARCHAR#,
+               t.RPTROWS  = #v_lcnt:VARCHAR#,
+               t.UPDTIME  = to_Char(SYSDATE, 'YYYYMMDDHH24MISS')
+         where t.BAACPDTLID = #baacpdtlId:VARCHAR#
+    </update>
+    
+    <select id="getDataForPfdResult" resultMap="BaacpdtlForPfpfdResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.ISSUYM
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.BENIDNNO
+                  ,t1.ISSUEAMT
+                  ,t2.BENNAME
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.ISSUYM
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO like #payCode:VARCHAR# || '%'
+                       and t11.ACPDATE = #chkDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                       and t11.APNO = #apNo:VARCHAR#
+                       and t11.SEQNO = #apSeqNo:VARCHAR#
+                       and t11.ISSUYM = #issuYm:VARCHAR#
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                      from BAAPPBASE t21
+                     where t21.APNO like #payCode:VARCHAR# || '%'
+                       and t21.PAYTYP = #payTyp:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDS = t2.BENIDS
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+    
+    <select id="getDataForPaymentReceivePfdResult" resultMap="BaacpdtlForPfpfdResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.ISSUYM
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.BENIDNNO
+                  ,t1.ISSUEAMT
+                  ,t2.BENNAME
+                  ,t1.BAACPDTLID
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.ISSUYM
+                          ,t11.BAACPDTLID
+                      from BAACPDTL t11
+                     where t11.APNO like #payCode:VARCHAR# || '%'
+                       and t11.ACPDATE = #chkDate:VARCHAR#
+                       and t11.TYPEMK in ('E')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                       and t11.APNO = #apNo:VARCHAR#
+                       and t11.SEQNO = #apSeqNo:VARCHAR#
+                       and t11.ISSUYM = #issuYm:VARCHAR#
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                      from BAAPPBASE t21
+                     where t21.APNO like #payCode:VARCHAR# || '%'
+                       and t21.PAYTYP = #payTyp:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDS = t2.BENIDS
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+    
+    <select id="getDataForPfdKResult" resultMap="BaacpdtlForPfpfdKResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.ISSUYM
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.BENIDNNO
+                  ,t1.ISSUEAMT
+                  ,t2.BENNAME
+                  ,t1.BAACPDTLID
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.ISSUYM
+                          ,t11.BAACPDTLID
+                          ,t11.NLWKMK
+                          ,t11.ADWKMK
+                      from BAACPDTL t11
+                     where t11.APNO like #payCode:VARCHAR# || '%'
+                       and t11.ACPDATE = #chkDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                       and t11.APNO = #apNo:VARCHAR#
+                       and t11.SEQNO = #apSeqNo:VARCHAR#
+                       and t11.ISSUYM = #issuYm:VARCHAR#
+                       and NVL(t11.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+                       and NVL(t11.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+                       and t11.NACHGMK is null
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                      from BAAPPBASE t21
+                     where t21.APNO like #payCode:VARCHAR# || '%'
+                       and t21.PAYTYP = #payTyp:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDS = t2.BENIDS
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+    
+    <select id="getDataForPfdSResult" resultMap="BaacpdtlForPfpfdSResult">
+    <![CDATA[
+            select t1.APNO
+                  ,t1.SEQNO
+                  ,t1.ISSUYM
+                  ,t1.PAYYM
+                  ,t1.CHKDATE
+                  ,t1.BENIDNNO
+                  ,t1.ISSUEAMT
+                  ,t2.BENNAME
+                  ,t1.BAACPDTLID
+                  ,t1.NLWKMK
+                  ,t1.ADWKMK
+              from (select t11.APNO
+                          ,t11.SEQNO
+                          ,t11.PAYYM
+                          ,t11.ACPDATE as CHKDATE
+                          ,t11.BENIDS
+                          ,t11.BENIDNNO
+                          ,t11.RECAMT as ISSUEAMT
+                          ,t11.ISSUYM
+                          ,t11.BAACPDTLID
+                          ,t11.NLWKMK
+                          ,t11.ADWKMK
+                      from BAACPDTL t11
+                     where t11.APNO like #payCode:VARCHAR# || '%'
+                       and t11.ACPDATE = #chkDate:VARCHAR#
+                       and t11.TYPEMK in ('G')
+                       and NVL(trim(t11.PROCFUN),' ') <> 'D'
+                       and t11.APNO = #apNo:VARCHAR#
+                       and t11.SEQNO = #apSeqNo:VARCHAR#
+                       and t11.ISSUYM = #issuYm:VARCHAR#
+                       and NVL(t11.NLWKMK,' ') = NVL(#nlWkMk:VARCHAR#,' ')
+                       and NVL(t11.ADWKMK,' ') = NVL(#adWkMk:VARCHAR#,' ')
+                       and t11.NACHGMK is null
+                     ORDER BY t11.BAACPDTLID) t1
+                  ,(select t21.APNO
+                          ,t21.SEQNO
+                          ,t21.BENIDS
+                          ,t21.BENIDNNO
+                          ,t21.BENNAME
+                      from BAAPPBASE t21
+                     where t21.APNO like #payCode:VARCHAR# || '%'
+                       and t21.PAYTYP = #payTyp:VARCHAR#) t2  
+                where t1.APNO = t2.APNO
+                  and t1.SEQNO = t2.SEQNO
+                  and t1.BENIDS = t2.BENIDS
+                  and t1.BENIDNNO = t2.BENIDNNO
+    ]]>
+    </select>
+</sqlMap>

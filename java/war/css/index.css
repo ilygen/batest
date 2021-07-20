@@ -1,0 +1,64 @@
+/* CSS Document */
+body {
+	margin: 0;
+	background-image: url(../images/index_bg.jpg);
+	background-repeat: repeat-x;
+	font: 75% Arial, Tahoma, "²Ó©úÅé";
+	color: #CC0000;
+	text-align : center; 
+}
+.white {
+	color: #FFFFFF;
+	font-size: 95%;
+	height: 20px;
+	line-height: 20px;
+	letter-spacing: 1px;
+}
+.middle {
+	background-image: url(../images/index_bodybg.jpg);
+	height: 230px;
+	width: 768px;
+	vertical-align:middle;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+.link {
+	font-size: 103%;
+	font-weight: bolder;
+	color: #333333;
+	letter-spacing: 80%;
+	line-height: 24px;
+}
+.down {
+	background-image: url(../images/index_down.jpg);
+	background-repeat: no-repeat;
+	height: 52px;
+	line-height: 40px;
+}
+a:link {
+	text-decoration: none;}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	color: #FF0000;
+	text-decoration: none;
+}
+a:active {
+	color: #FFFF00;
+	text-decoration: underline;
+}
+.hr {
+	color: #333333;
+	border-top-width: 1px;
+	border-top-style: dotted;
+	border-top-color: #333333;
+}
+.red {
+	color: #FF0000;
+	font-size: 80%;
+}
+#body {
+	height: 100%;
+	width: 768px;
+	}

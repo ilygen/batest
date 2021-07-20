@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PFPFM">
+
+    <typeAlias alias="Pfpfm" type="tw.gov.bli.ba.domain.Pfpfm" />
+    
+    <select id="selectCprnpage" resultClass="java.lang.Integer">
+    	select NVL(Max(t.CPRNPAGE),100000)+1 AS CPRNPAGE
+          from PFPFM t
+         where t.INSKD = '1'
+           and t.CPRNDT = #cPrnDt:VARCHAR#
+           <![CDATA[
+           and t.CPRNPAGE >= 100000
+           and t.CPRNPAGE <= 150000
+           ]]>
+    </select>  
+    
+    <select id="selectPutfile_page" resultClass="java.lang.Integer">
+    	select NVL(Max(t.PUTFILE_PAGE),0)+1 AS PUTFILE_PAGE
+          from PFPFM t
+         where t.INSKD = '1'
+           and t.CPRNDT = #cPrnDt:VARCHAR#
+           and t.ACCEPT_ISSUE_KIND = #payKind:VARCHAR#
+           <![CDATA[
+           and t.CPRNPAGE >= 100000
+           and t.CPRNPAGE <= 150000
+           ]]>
+    </select>
+    
+    <insert id="insertDataForBatchPaymentReceiveData">
+
+		insert into PFPFM
+		(
+			 INSKD            
+            ,CPRNDT           
+            ,CPRNPAGE         
+            ,WORKTYPE         
+            ,WDCD             
+            ,ACCEPT_ISSUE_KIND
+            ,BANTY            
+            ,ACCOUNTNO        
+            ,BOOKEDBOOK       
+            ,JS_RESOURCE      
+            ,ISSUE_AMT        
+            ,ACCEPT_AMT       
+            ,PFD_CNT          
+            ,RECHKDEPT        
+            ,RECHKSTAFF       
+            ,RCKDATE          
+            ,CONFIRM_DT       
+            ,CONFIRM_PER      
+            ,PAYDTE           
+            ,PUTFILE_PAGE     
+            ,BRANCHCODE       
+
+		)
+		values
+		(
+			'1'
+		   ,#cprnDt:VARCHAR#
+		   ,#cprnPage:NUMERIC#
+		   ,#workType:VARCHAR#
+		   ,'2'
+		   ,#accept_Issue_Kind:VARCHAR#
+		   ,#banTy:VARCHAR#
+		   ,#accountNo:VARCHAR#
+		   ,#bookedBook:VARCHAR#
+		   ,#js_Resource:VARCHAR#
+		   ,#issue_Amt:NUMERIC#
+		   ,#accept_Amt:NUMERIC#
+		   ,#pfd_Cnt:NUMERIC#
+		   ,#rechkDept:VARCHAR#
+		   ,'99999'
+		   ,#rckDate:VARCHAR#
+		   ,#confirm_Dt:VARCHAR#
+		   ,'99999'
+		   ,#payDte:VARCHAR#
+	       ,#putfile_Page:NUMERIC#
+		   ,'1'
+		)
+	</insert>
+</sqlMap>

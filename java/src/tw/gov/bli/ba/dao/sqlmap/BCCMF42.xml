@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BCCMF42">
+
+    <typeAlias alias="Bccmf42" type="tw.gov.bli.ba.domain.Bccmf42" />
+    
+     <resultMap id="BCCMF42Result" class="Bccmf42">
+        <result column="IDN"         property="idn"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PAYTYP"      property="payTyp"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="checkIdnNoExist" resultClass="java.math.BigDecimal">
+          SELECT count(*) 
+            FROM BCCMF42 
+           WHERE INSKD = '1' 
+             AND IDN = #idnNo:VARCHAR#              
+    </select>
+    
+    <select id="selectPayTypBy" resultMap="BCCMF42Result">
+          SELECT IDN,
+                 PAYTYP 
+            FROM BCCMF42 
+           WHERE INSKD = '1' 
+             AND IDN = #idnNo:VARCHAR#              
+    </select>
+</sqlMap>

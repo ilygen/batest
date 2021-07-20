@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAREGIVEDTL">
+
+    <typeAlias alias="Baregivedtl" type="tw.gov.bli.ba.domain.Baregivedtl" />
+
+    <resultMap id="BAREGIVEDTLResult" class="Baregivedtl">
+        <result column="APNO"                property="apNo"                  jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="SEQNO"               property="seqNo"                 jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ORIISSUYM"           property="oriIssuYm"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BRISSUYM"            property="brIssuYm"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUYM"              property="issuYm"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYYM"               property="payYm"                 jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="TRANSACTIONID"       property="transActionId"         jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="INSKD"               property="insKd"                 jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUKIND"            property="issuKind"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="MK"                  property="mk"                    jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BRMK"                property="brMk"                  jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="AFMK"                property="afMk"                  jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="WORKMK"              property="workMk"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="AFCHKDATE"           property="afChkDate"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="AFPAYDATE"           property="afPayDate"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BLIACCOUNT"          property="bliAccount"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENTYP"              property="benTyp"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENIDS"              property="benIds"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENIDN"              property="benIdn"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BENNAME"             property="benName"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUTYP"             property="issuTyp"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYTYP"              property="payTyp"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYBANKID"           property="payBankId"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BRANCHID"            property="branchId"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYEEACC"            property="payEeacc"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACCIDN"              property="accIdn"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACCNAME"             property="accName"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACCSEQNO"            property="accSeqNo"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="COMMZIP"             property="commZip"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="COMMADDR"            property="commAddr"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="COMMTEL"             property="commTel"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="REMITAMT"            property="remitAmt"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECAMT"              property="recAmt"                jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECHKMAN"            property="reChkMan"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RECHKDATE"           property="reChkDate"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EXEDATE"             property="exeDate"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="EXEMAN"              property="exeMan"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACTTITLEAPCODE"      property="actTitleApCode"        jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="CPRNDATE"            property="cprnDate"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RPTPAGE"             property="rptPage"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="RPTROWS"             property="rptRows"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="GENMEDDATE"          property="genmedDate"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PROCUSER"            property="procUser"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PROCDEPTID"          property="procDeptId"            jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PROCIP"              property="procIp"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="UPDTIME"             property="updTime"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />    
+    </resultMap>
+
+    <resultMap id="PayDataForPaymentDataUpdateResult" class="Baregivedtl">
+        <result column="PAYTYP"              property="payTyp"                jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYBANKID"           property="payBankId"             jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="BRANCHID"            property="branchId"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="PAYEEACC"            property="payEeacc"              jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+        <result column="ACCNAME"             property="accName"               jdbcType="VARCHAR"      javaType="java.lang.String"  nullValue="" />
+    </resultMap>    
+    
+    <select id="selectPayDataForPaymentDataUpdate" resultMap="PayDataForPaymentDataUpdateResult">
+        SELECT T.PAYTYP    
+              ,T.PAYBANKID 
+              ,T.BRANCHID  
+              ,T.PAYEEACC  
+              ,T.ACCNAME   
+          FROM BAREGIVEDTL T
+         WHERE T.APNO = #apNo:VARCHAR#
+           AND T.ACCSEQNO = #accSeqNo:VARCHAR#
+           AND T.MK = '2'
+           AND (TRIM(T.AFPAYDATE) IS NULL OR NVL(TRIM(T.AFPAYDATE),' ') = ' ')
+         ORDER BY PAYYM DESC
+    </select>
+    
+    <update id="updateBaregivedtlDeathRepayForQryData_2">
+           UPDATE BAREGIVEDTL T
+              SET T.MK = '4',
+                  T.AFMK = '4',
+                  T.AFCHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.AFPAYDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.RECHKMAN = #procUser:VARCHAR#,
+                  T.RECHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.EXEMAN = #procUser:VARCHAR#,
+                  T.EXEDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.PROCUSER = #procUser:VARCHAR#,
+                  T.PROCDEPTID = #procDeptId:VARCHAR#,
+                  T.PROCIP = #procIp:VARCHAR#,
+                  T.UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+            WHERE T.APNO  = #apNo:VARCHAR#
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+              AND T.MK = '1' 
+              AND T.ISSUKIND = #issuKind:VARCHAR#
+    </update>
+    
+    <update id="updateBaregivedtlDeathRepayForQryData_4">
+           UPDATE BAREGIVEDTL T
+              SET T.MK = '4',
+                  T.AFMK = '4',
+                  T.AFCHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.AFPAYDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.RECHKMAN = #procUser:VARCHAR#,
+                  T.RECHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.EXEMAN = #procUser:VARCHAR#,
+                  T.EXEDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.PROCUSER = #procUser:VARCHAR#,
+                  T.PROCDEPTID = #procDeptId:VARCHAR#,
+                  T.PROCIP = #procIp:VARCHAR#,
+                  T.UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+            WHERE T.APNO  = #apNo:VARCHAR#
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.ORIISSUYM = #issuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+              AND T.MK = '1' 
+              AND T.ISSUKIND = #issuKind:VARCHAR#
+    </update>
+    
+    <select id="selectCheckAfChkDateForCheckBox" resultClass="java.lang.String">
+           SELECT COUNT(*)
+             FROM PFLBACEVENT T
+            WHERE (T.TRANSACTIONID||T.SEQNO) IN (SELECT (T1.TRANSACTIONID||T1.TRANSACTIONSEQ) 
+                  FROM BAREGIVEDTL T1
+                  WHERE T1.APNO = #apNo:VARCHAR#
+                  AND T1.SEQNO = #seqNo:VARCHAR#
+                  AND T1.ORIISSUYM = #oriIssuYm:VARCHAR#
+                  AND T1.PAYYM = #payYm:VARCHAR#
+                  AND T1.AFCHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD')
+                  AND (T1.MK = '4' OR T1.MK = '1'))
+              AND TO_CHAR(T.CHKSDATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+    </select>  
+    
+    <select id="getDataCount2ForQuery" resultClass="java.lang.String">
+        SELECT COUNT(*) DATACOUNT
+        FROM BAREGIVEDTL t
+       WHERE t.APNO  = #apNo:VARCHAR#
+         AND t.SEQNO = #seqNo:VARCHAR#
+         <![CDATA[
+         AND NVL(TRIM(t.REPAYSEQNO),' ') <> ' ' 
+         AND t.REPAYSEQNO IS NOT NULL
+         AND NVL(TRIM(t.REPAYSEQNO),' ') <> t.SEQNO
+         ]]>
+    </select>
+    
+    <select id="getDataCount3ForQuery" resultClass="java.lang.String">
+        SELECT COUNT(*) DATACOUNT
+        FROM BAREGIVEDTL t
+       WHERE t.APNO  = #apNo:VARCHAR# 
+         AND t.SEQNO = #seqNo:VARCHAR#
+         <![CDATA[
+         AND NVL(TRIM(t.REPAYSEQNO),' ') <> ' '
+         AND t.REPAYSEQNO IS NOT NULL
+         AND NVL(TRIM(t.REPAYSEQNO),' ') <> t.SEQNO 
+         ]]>
+         AND t.MK IN ('1','2')
+    </select>
+    
+    <select id="getRemitAmtDataForCheckAvgNum" resultClass="java.math.BigDecimal">
+          SELECT DISTINCT T.REMITAMT
+            FROM BAREGIVEDTL T
+           WHERE T.APNO  =  #apNo:VARCHAR#
+             AND T.SEQNO = #seqNo:VARCHAR#
+             AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+             AND T.PAYYM = #payYm:VARCHAR#
+             AND T.MK = '1'
+             AND T.AFMK = '1'
+    </select>
+    
+    <update id="updateBaregivedtlForPaymentReceive">
+           UPDATE BAREGIVEDTL T
+              SET T.MK = '4',
+                  T.AFMK = '4',
+                  T.WORKMK = 'Y',
+                  T.UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS'),
+                  T.AFPAYDATE = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.ISSUYM = TO_CHAR(SYSDATE,'YYYYMMDD'),
+                  T.PROCUSER = #procUser:VARCHAR#,
+                  T.PROCDEPTID = #procDeptId:VARCHAR#,
+                  T.PROCIP = #procIp:VARCHAR#
+            WHERE T.APNO = #apNo:VARCHAR#
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.AFMK = '1' 
+              AND T.MK = '1'
+              AND T.ISSUKIND IN (#issuKind:VARCHAR#)
+              AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+    </update>
+    
+    <update id="updateBaregivedtlForCancelReceive">
+           UPDATE BAREGIVEDTL T
+              SET T.MK = '1',
+                  T.AFMK = '1',
+                  T.WORKMK = '',
+                  T.UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS'),
+                  T.AFPAYDATE = '',
+                  T.ISSUYM = '',
+                  T.PROCUSER = #procUser:VARCHAR#,
+                  T.PROCDEPTID = #procDeptId:VARCHAR#,
+                  T.PROCIP = #procIp:VARCHAR#
+            WHERE T.APNO = #apNo:VARCHAR#
+              AND T.SEQNO = #seqNo:VARCHAR#
+              AND T.ORIISSUYM = #oriIssuYm:VARCHAR#
+              AND T.PAYYM = #payYm:VARCHAR#
+    </update>
+    
+</sqlMap>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LNM">
+
+    <typeAlias alias="Lnm" type="tw.gov.bli.ba.domain.Lnm" />
+
+    <resultMap id="LNMResult" class="Lnm">
+        <result column="BANKCD"         property="bankCd"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRNO"           property="brNo"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"          property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDN_APLY"       property="idnAply"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRDTE_APLY"     property="brDteAply"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NAME_APLY"      property="nameAply"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PCODE_APLY"     property="pcodeAply"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE_APLY"      property="dateAply"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MONEY_APLY"     property="moneyAply"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="TELNO1"         property="telNo1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TELNO2"         property="telNo2"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ACPTDTE"        property="acptDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDATEDTE"      property="updateDte"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EDMRK"          property="edMrk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BRDTE_LIB"      property="brDteLib"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="NAME_LIB"       property="nameLib"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PCODE_EXM"      property="pcodeExm"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="OK_EXM"         property="okExm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE_EXM"       property="dateExm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MONEY_EXM"      property="moneyExm"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ACCOUNT_PAY"    property="accountPay"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE_PAY"       property="datePay"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MONEY_PAY"      property="moneyPay"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="LOAN_TERM"      property="loanTerm"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="AADEMONEY"      property="aadeMoney"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ADETIMES"       property="adeTimes"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ARINT"          property="arInt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="NRMONEY"        property="nrMoney"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="OWMONEY"        property="owMoney"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="OWINT"          property="owInt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ACHKDTE"        property="achkDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PDATE"          property="pdate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="EMRK"           property="emrk"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="EDATE"          property="edate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MNEQ"           property="mneq"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDN_LIB"        property="idnLib"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CITRM_MRK"      property="citrmMrk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DUP"            property="dup"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FILLER_05"      property="filler05"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+      
+    </resultMap>
+    
+    <!-- DataUpdateRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectDataUpdateRpt01DataBy" resultMap="LNMResult">
+        SELECT A.BANKCD, 
+               A.BRNO, 
+               A.SEQNO, 
+               A.IDN_APLY, 
+               A.BRDTE_APLY, 
+               A.NAME_APLY, 
+               A.PCODE_APLY, 
+               A.DATE_APLY, 
+               A.MONEY_APLY, 
+               A.TELNO1, 
+               A.TELNO2, 
+               A.ACPTDTE, 
+               A.UPDATEDTE, 
+               A.EDMRK, 
+               A.BRDTE_LIB, 
+               A.NAME_LIB, 
+               A.PCODE_EXM, 
+               A.OK_EXM, 
+               A.DATE_EXM, 
+               A.MONEY_EXM, 
+               A.ACCOUNT_PAY, 
+               A.DATE_PAY, 
+               A.MONEY_PAY, 
+               A.LOAN_TERM, 
+               A.AADEMONEY, 
+               A.ADETIMES, 
+               A.ARINT, 
+               A.NRMONEY, 
+               A.OWMONEY, 
+               A.OWINT, 
+               A.ACHKDTE, 
+               A.PDATE, 
+               TO_NUMBER(A.EMRK) AS EMRK, 
+               A.EDATE, 
+               A.MNEQ, 
+               A.IDN_LIB, 
+               A.CITRM_MRK, 
+               A.DUP, 
+               A.FILLER_05 
+        FROM   MBLNM A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idnAply">
+                    (A.IDN_APLY = #idnAply:VARCHAR# or A.IDN_LIB=#idnAply:VARCHAR#) 
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="brDteAply">
+                    A.BRDTE_APLY = #brDteAply:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND ROWNUM <= 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- ] -->
+	<!-- DataUpdateRpt 01 End -->
+     
+    <!-- DataUpdateRpt 02 Begin -->
+    <!-- [ -->
+    <select id="selectDataUpdateRpt02DataBy" resultMap="LNMResult">
+        SELECT A.BANKCD, 
+               A.BRNO, 
+               A.SEQNO, 
+               A.IDN_APLY, 
+               A.BRDTE_APLY, 
+               A.NAME_APLY, 
+               A.PCODE_APLY, 
+               A.DATE_APLY, 
+               A.MONEY_APLY, 
+               A.TELNO1, 
+               A.TELNO2, 
+               A.ACPTDTE, 
+               A.UPDATEDTE, 
+               A.EDMRK, 
+               A.BRDTE_LIB, 
+               A.NAME_LIB, 
+               A.PCODE_EXM, 
+               A.OK_EXM, 
+               A.DATE_EXM, 
+               A.MONEY_EXM, 
+               A.ACCOUNT_PAY, 
+               A.DATE_PAY, 
+               A.MONEY_PAY, 
+               A.LOAN_TERM, 
+               A.AADEMONEY, 
+               A.ADETIMES, 
+               A.ARINT, 
+               A.NRMONEY, 
+               A.OWMONEY, 
+               A.OWINT, 
+               A.ACHKDTE, 
+               A.PDATE, 
+               TO_NUMBER(A.EMRK) AS EMRK, 
+               A.EDATE, 
+               A.MNEQ, 
+               A.IDN_LIB, 
+               A.CITRM_MRK, 
+               A.DUP, 
+               A.FILLER_05 
+        FROM   MBLNM A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idnAply">
+                    A.IDN_APLY = #idnAply:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="brDteAply">
+                    A.BRDTE_APLY = #brDteAply:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND (A.DATE_PAY IS NULL OR A.DATE_PAY = '')
+                AND (A.DATE_EXM IS NOT NULL OR A.DATE_EXM <> '')
+                AND ROWNUM <= 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+     </select>
+     <!-- ] -->
+     <!-- DataUpdateRpt 02 End -->
+     
+</sqlMap>

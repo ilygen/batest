@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BCCMF45">
+
+    <typeAlias alias="Bccmf45" type="tw.gov.bli.ba.domain.Bccmf45" />
+    
+     <resultMap id="BCCMF45Result" class="Bccmf45">
+        <result column="YEAR"         property="year"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RATE"         property="rate"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+
+    <select id="selectYearRateMapData" resultMap="BCCMF45Result">
+          SELECT YEAR,
+          		 RATE 
+            FROM BCCMF45               
+    </select>
+    
+    
+</sqlMap>

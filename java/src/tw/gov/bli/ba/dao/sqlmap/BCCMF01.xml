@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BCCMF01">
+
+    <typeAlias alias="Bccmf01" type="tw.gov.bli.ba.domain.Bccmf01" />
+
+    <select id="selectBccmf01CheckCount" resultClass="java.math.BigDecimal">
+             SELECT COUNT(*)
+               FROM BCCMF01
+              WHERE PRPNO = #prpNo:VARCHAR# 
+                AND INSKD = '1'
+                AND PAYTYP = '00'       
+    </select>
+
+</sqlMap>

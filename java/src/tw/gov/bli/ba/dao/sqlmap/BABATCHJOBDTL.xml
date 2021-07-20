@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABATCHJOBDTL">
+
+    <typeAlias alias="Babatchjobdtl" type="tw.gov.bli.ba.domain.Babatchjobdtl" />
+	
+	<resultMap id="BABATCHJOBDTLResult" class="Babatchjobdtl">
+        <result column="BAJOBDTLID"     property="baJobDtlId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="FLAG"           property="flag"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="FLAGMSG"        property="flagMsg"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="FLAGTIME"       property="flagTime"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BABATCHJOBResult" class="Babatchjobdtl">
+        <result column="FLAG"     property="flag"      jdbcType="VARCHAR"      javaType="java.lang.String"	    nullValue="" />
+        <result column="FLAGMSG"  property="flagMsg"   jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="FLAGTIME" property="flagTime"  jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+    </resultMap>
+    
+  
+    <select id="selectNowProgressStepsDtl" resultMap="BABATCHJOBResult">
+		SELECT FLAG, 
+		       FLAGMSG, 
+		       FLAGTIME
+		  FROM BABATCHJOBDTL
+		 WHERE BAJOBID =  #baJobId:VARCHAR#
+		 ORDER BY FLAGTIME
+	</select>
+    
+     <!-- ] -->
+     <!-- UpdatePaidMarkBJ End -->
+          
+     <select id="selectBabatchjobdtlDataForBjMonthBatchBy" resultMap="BABATCHJOBDTLResult">
+        Select BAJOBDTLID,
+               BAJOBID,
+               FLAG,
+               FLAGMSG,
+               FLAGTIME
+         From BABATCHJOBDTL
+        Where BAJOBID = #baJobId:VARCHAR#
+        order by FLAGTIME
+    </select>
+    
+    <insert id="insertBaBatchJobDtl">
+        INSERT INTO BABATCHJOBDTL
+        (
+            BAJOBDTLID,
+            BAJOBID,
+            FLAGMSG,
+            FLAGTIME
+        ) 
+        VALUES
+        (
+        	BAJOBDTLID.NEXTVAL,
+            #baJobId:VARCHAR#,
+            #flagMsg:VARCHAR#,
+            #flagTime:VARCHAR#
+        )
+        
+    </insert>
+    
+    <insert id="insertData" >
+      INSERT INTO BABATCHJOBDTL
+      (
+             BAJOBDTLID,
+             BAJOBID,
+             FLAG,
+             FLAGMSG,
+             FLAGTIME
+      )
+      VALUES
+      (
+             BAJOBDTLID.NEXTVAL,
+             #baJobId:VARCHAR#,
+             #flag:VARCHAR#,
+             #flagMsg:VARCHAR#,
+             #flagTime:VARCHAR#
+      )
+   </insert>
+</sqlMap>

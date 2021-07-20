@@ -1,0 +1,1835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAPPEXPAND">
+
+	<typeAlias alias="Baappexpand" type="tw.gov.bli.ba.domain.Baappexpand" />
+	
+	<resultMap id="BAAPPEXPANDResult" class="Baappexpand">
+        <result column="BAAPPEXPANDID"      property="baappexpandId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BAAPPBASEID"        property="baappbaseId"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="APNO"               property="apNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"              property="seqNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CANCELMK"           property="cancelMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CANCELYM"           property="cancelYm"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCIDENTMK"       property="ocaccIdentMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRTYPE"             property="prType"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVCODE"             property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART1"         property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART2"         property="criInPart2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART3"         property="criInPart3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIMEDIUM"          property="criMedium"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME1"         property="criInJnme1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME2"         property="criInJnme2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME3"         property="criInJnme3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME4"         property="criInJnme4"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL2"          property="criInJcl2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL3"          property="criInJcl3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP1"          property="criInJdp1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP2"          property="criInJdp2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP3"          property="criInJdp3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP4"          property="criInJdp4"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP5"          property="criInJdp5"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP6"          property="criInJdp6"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP7"          property="criInJdp7"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP8"          property="criInJdp8"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP9"          property="criInJdp9"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP10"         property="criInJdp10"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REHCMK"             property="rehcMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REHCYM"             property="rehcYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSID"              property="hosId"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME1"        property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME2"        property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCADDAMT"        property="ocAccaddAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="PRFMLYMK"           property="prFmlyMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOMEMK"        property="monIncomeMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOME"          property="monIncome"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="FAMAPPMK"           property="famAppMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDMK"             property="studMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MARRYDATE"          property="marryDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DIGAMYDATE"         property="digamyDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPPLYMK"        property="abanApplyMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPSYM"          property="abanApsYm"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABLEAPSYM"          property="ableApsYm"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISECHILDMK"       property="raiseChildMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"         property="handIcapMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTMK"        property="interDictMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"      property="interDictDate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RELATCHGDATE"       property="relatChgDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="JUDGEDATE"          property="judgeDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"    property="benMissingSdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGEDATE"    property="benMissingEdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONSDATE"        property="prisonSdate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONEDATE"        property="prisonEdate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ADOPTDATE"          property="adoPtDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNIDNNO"        property="assignIdnNo"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNNAME"         property="assignName"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNBRDATE"       property="assignBrDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISEEVTMK"         property="raiseEvtMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DEDUCTDAY"          property="deductDay"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CRTUSER"            property="crtUser"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"            property="crtTime"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"            property="updUser"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"            property="updTime"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ADWKMK"             property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVAPPTYP"           property="evAppTyp"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DISQUALMK"          property="disQualMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCHOSID"         property="ocAccHosId"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME1"   property="ocAccDoctorName1" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME2"   property="ocAccDoctorName2" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="MONNOTIFYINGMK"     property="monNotifyingMk"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+	</resultMap>
+	
+	<resultMap id="DisabledBaappexpandListResult" class="Baappexpand">
+		<result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL2"          property="criInJcl2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL3"          property="criInJcl3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP1"          property="criInJdp1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP2"          property="criInJdp2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP3"          property="criInJdp3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP4"          property="criInJdp4"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP5"          property="criInJdp5"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP6"          property="criInJdp6"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP7"          property="criInJdp7"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP8"          property="criInJdp8"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP9"          property="criInJdp9"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP10"         property="criInJdp10"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="CRIINJNME1"         property="criInJnme1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME2"         property="criInJnme2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME3"         property="criInJnme3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME4"         property="criInJnme4"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVCODE"             property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART1"         property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART2"         property="criInPart2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART3"         property="criInPart3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIMEDIUM"          property="criMedium"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSID"              property="hosId"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME1"        property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME2"        property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRTYPE"             property="prType"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCIDENTMK"       property="ocaccIdentMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="JUDGEDATE"          property="judgeDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPMK"           property="famAppMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DEDUCTDAY"          property="deductDay"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="OCACCADDAMT"        property="ocAccaddAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ADWKMK"             property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DISQUALMK"          property="disQualMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCHOSID"         property="ocAccHosId"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME1"   property="ocAccDoctorName1" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME2"   property="ocAccDoctorName2" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONNOTIFYINGMK"     property="monNotifyingMk"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+	</resultMap>
+	
+	<resultMap id="DisabledDataForPaymentReview" class="Baappexpand">
+        <result column="PRTYPE"             property="prType"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIMEDIUM"          property="criMedium"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REHCYM"             property="rehcYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCIDENTMK"       property="ocaccIdentMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVCODE"             property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL2"          property="criInJcl2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL3"          property="criInJcl3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART1"         property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART2"         property="criInPart2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART3"         property="criInPart3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME1"         property="criInJnme1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME2"         property="criInJnme2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME3"         property="criInJnme3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME4"         property="criInJnme4"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP1"          property="criInJdp1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP2"          property="criInJdp2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP3"          property="criInJdp3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP4"          property="criInJdp4"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP5"          property="criInJdp5"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP6"          property="criInJdp6"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP7"          property="criInJdp7"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP8"          property="criInJdp8"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP9"          property="criInJdp9"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP10"         property="criInJdp10"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSID"              property="hosId"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME1"        property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME2"        property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DEDUCTDAY"          property="deductDay"        jdbcType="VARCHAR"      javaType="java.math.BigDecimal" />
+        <result column="JUDGEDATE"          property="judgeDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPMK"           property="famAppMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DISQUALMK"          property="disQualMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCHOSID"         property="ocAccHosId"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME1"   property="ocAccDoctorName1" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME2"   property="ocAccDoctorName2" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVAPPTYP"           property="evAppTyp"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+    </resultMap>
+    
+    <resultMap id="SurvivorBaappexpandDetailResult" class="Baappexpand">
+    	<result column="BAAPPBASEID"        property="baappbaseId"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+		<result column="BAAPPEXPANDID"      property="baappexpandId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal"/>
+        <result column="APNO"          		property="apNo"		        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"          	property="seqNo"        	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOMEMK"        property="monIncomeMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MONINCOME"          property="monIncome"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="MARRYDATE"          property="marryDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DIGAMYDATE"         property="digamyDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"         property="handIcapMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDMK"          	property="studMk"        	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPPLYMK"        property="abanApplyMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABANAPSYM"          property="abanApsYm"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ABLEAPSYM"          property="ableApsYm"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISECHILDMK"       property="raiseChildMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTMK"        property="interDictMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="INTERDICTDATE"      property="interDictDate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REPEALINTERDICTDATE"  property="repealInterdictDate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"    property="benMissingSdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="BENMISSINGEDATE"    property="benMissingEdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONSDATE"        property="prisonSdate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRISONEDATE"        property="prisonEdate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RELATCHGDATE"       property="relatChgDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ADOPTDATE"          property="adoPtDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNIDNNO"        property="assignIdnNo"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNNAME"         property="assignName"    	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNBRDATE"       property="assignBrDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RAISEEVTMK"         property="raiseEvtMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SAVINGMK"           property="savingMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELMK"           property="compelMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SCHOOLCODE"         property="schoolCode"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HANDICAPMK"         property="handIcapMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+	
+	<resultMap id="SurvivorBaappexpandListResult" class="Baappexpand">
+	<result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL2"          property="criInJcl2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL3"          property="criInJcl3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP1"          property="criInJdp1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP2"          property="criInJdp2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP3"          property="criInJdp3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP4"          property="criInJdp4"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP5"          property="criInJdp5"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP6"          property="criInJdp6"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP7"          property="criInJdp7"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP8"          property="criInJdp8"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP9"          property="criInJdp9"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP10"         property="criInJdp10"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="CRIINJNME1"         property="criInJnme1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME2"         property="criInJnme2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME3"         property="criInJnme3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME4"         property="criInJnme4"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVCODE"             property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART1"         property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART2"         property="criInPart2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART3"         property="criInPart3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIMEDIUM"          property="criMedium"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSID"              property="hosId"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME1"        property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME2"        property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PRTYPE"             property="prType"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	    <result column="JUDGEDATE"          property="judgeDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+</resultMap>
+    
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReceiptResult" class="Baappexpand" extends="BAAPPEXPANDResult">
+        <!-- Field not in BAAPPEXPAND -->
+        <result column="EVTYPNAME"          property="evTypName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+    
+    <!-- Review Fee Review -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReviewResult" class="Baappexpand" extends="BAAPPEXPANDResult">
+        <!-- Field not in BAAPPEXPAND -->
+        <result column="EVTYPNAME"          property="evTypName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Review -->
+    
+    <!-- Review Fee Decision -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeDecisionResult" class="Baappexpand" extends="BAAPPEXPANDResult">
+        <!-- Field not in BAAPPEXPAND -->
+        <result column="EVTYPNAME"          property="evTypName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Decision -->
+    
+    <resultMap id="BenDataForSurvivorPaymentQueryResult" class="Baappexpand">
+        <result column="APNO"                  property="apNo"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="SEQNO"                 property="seqNo"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="REHCMK"                property="rehcMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="REHCYM"                property="rehcYm"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="MONINCOMEMK"           property="monIncomeMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="MONINCOME"             property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />              
+        <result column="STUDMK"                property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="MARRYDATE"             property="marryDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="DIGAMYDATE"            property="digamyDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ABANAPSYM"             property="abanApsYm"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="RAISECHILDMK"          property="raiseChildMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="HANDICAPMK"            property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="INTERDICTMK"           property="interDictMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="INTERDICTDATE"         property="interDictDate"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="REPEALINTERDICTDATE"   property="repealInterdictDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENMISSINGSDATE"       property="benMissingSdate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="BENMISSINGEDATE"       property="benMissingEdate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="PRISONSDATE"           property="prisonSdate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="PRISONEDATE"           property="prisonEdate"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="RELATCHGDATE"          property="relatChgDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ADOPTDATE"             property="adoPtDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="JUDGEDATE"             property="judgeDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="RAISEEVTMK"            property="raiseEvtMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ASSIGNIDNNO"           property="assignIdnNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ASSIGNNAME"            property="assignName"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ASSIGNBRDATE"          property="assignBrDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="ABLEAPSYM"             property="ableApsYm"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SAVINGMK"              property="savingMk"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+
+	<resultMap id="WkMkResult" class="Baappexpand">
+        <result column="ADWKMK"             property="adWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NLWKMK"             property="nlWkMk"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+	</resultMap>
+
+	<select id="selectDisableBaappexpandListBy" resultMap="DisabledBaappexpandListResult">
+		 SELECT A.CRIINJCL1,  
+				A.CRIINJCL2,  
+				A.CRIINJCL3,  
+				A.CRIINJDP1,  
+				A.CRIINJDP2,  
+				A.CRIINJDP3,  
+				A.CRIINJDP4,  
+				A.CRIINJDP5,  
+				A.CRIINJDP6,  
+				A.CRIINJDP7,  
+				A.CRIINJDP8,  
+				A.CRIINJDP9,  
+				A.CRIINJDP10, 
+				A.CRIINISSUL, 
+				A.CRIINJNME1, 
+				A.CRIINJNME2, 
+				A.CRIINJNME3, 
+				A.CRIINJNME4,  
+				A.EVTYP,      
+				A.EVCODE,     
+				A.CRIINPART1,  
+				A.CRIINPART2, 
+				A.CRIINPART3,  
+				A.CRIMEDIUM,  
+				A.HOSID,      
+				A.DOCTORNAME1,
+				A.DOCTORNAME2,
+				A.PRTYPE, 
+				A.OCACCIDENTMK, 
+				A.JUDGEDATE, 
+				A.FAMAPPMK, 
+				A.DEDUCTDAY, 
+				A.OCACCADDAMT, 
+				A.ADWKMK,
+				A.DISQUALMK,
+                A.OCACCHOSID,
+                A.OCACCDOCTORNAME1,
+                A.OCACCDOCTORNAME2,
+                A.MONNOTIFYINGMK          
+		   From BAAPPEXPAND A
+		   WHERE A.APNO = #apNo:VARCHAR#
+		     AND A.BAAPPBASEID = #baappbaseId:NUMERIC#
+			 AND A.SEQNO = #seqNo:VARCHAR#
+		   Order by A.BAAPPBASEID, A.SEQNO
+	</select>
+	
+	<select id="selectSurvivorBaappexpandListBy" resultMap="DisabledBaappexpandListResult">
+		 SELECT A.CRIINJCL1,  
+				A.CRIINJCL2,  
+				A.CRIINJCL3,  
+				A.CRIINJDP1,  
+				A.CRIINJDP2,  
+				A.CRIINJDP3,  
+				A.CRIINJDP4,  
+				A.CRIINJDP5,  
+				A.CRIINJDP6,  
+				A.CRIINJDP7,  
+				A.CRIINJDP8,  
+				A.CRIINJDP9,  
+				A.CRIINJDP10, 
+				A.CRIINISSUL, 
+				A.CRIINJNME1, 
+				A.CRIINJNME2, 
+				A.CRIINJNME3, 
+				A.CRIINJNME4,  
+				A.EVTYP,      
+				A.EVCODE,     
+				A.CRIINPART1,  
+				A.CRIINPART2, 
+				A.CRIINPART3,  
+				A.CRIMEDIUM,  
+				A.HOSID,      
+				A.DOCTORNAME1,
+				A.DOCTORNAME2,
+				A.PRTYPE, 
+				A.OCACCIDENTMK, 
+				A.JUDGEDATE, 
+				A.FAMAPPMK, 
+				A.DEDUCTDAY, 
+				A.OCACCADDAMT, 
+				A.ADWKMK,
+				A.DISQUALMK,
+                A.OCACCHOSID,
+                A.OCACCDOCTORNAME1,
+                A.OCACCDOCTORNAME2,
+                A.MONNOTIFYINGMK   				            
+		   From BAAPPEXPAND A
+		   WHERE A.APNO = #apNo:VARCHAR#
+		     AND A.BAAPPBASEID = #baappbaseId:NUMERIC#
+			 AND A.SEQNO = #seqNo:VARCHAR#
+	</select>
+	
+	<select id="selectSurvivorBaappexpandListByEvt" resultMap="DisabledBaappexpandListResult">
+		 SELECT A.CRIINJCL1,  
+				A.CRIINJCL2,  
+				A.CRIINJCL3,  
+				A.CRIINJDP1,  
+				A.CRIINJDP2,  
+				A.CRIINJDP3,  
+				A.CRIINJDP4,  
+				A.CRIINJDP5,  
+				A.CRIINJDP6,  
+				A.CRIINJDP7,  
+				A.CRIINJDP8,  
+				A.CRIINJDP9,  
+				A.CRIINJDP10, 
+				A.CRIINISSUL, 
+				A.CRIINJNME1, 
+				A.CRIINJNME2, 
+				A.CRIINJNME3, 
+				A.CRIINJNME4,  
+				A.EVTYP,      
+				A.EVCODE,     
+				A.CRIINPART1,  
+				A.CRIINPART2, 
+				A.CRIINPART3,  
+				A.CRIMEDIUM,  
+				A.HOSID,      
+				A.DOCTORNAME1,
+				A.DOCTORNAME2,
+				A.PRTYPE, 
+				A.JUDGEDATE, 
+				A.OCACCIDENTMK, 
+				A.FAMAPPMK,
+				A.DEDUCTDAY, 
+				A.OCACCADDAMT, 
+				A.ADWKMK,
+				A.DISQUALMK,
+                A.OCACCHOSID,
+                A.OCACCDOCTORNAME1,
+                A.OCACCDOCTORNAME2,
+                A.MONNOTIFYINGMK 				            
+		   From BAAPPEXPAND A
+		   WHERE A.APNO = #apNo:VARCHAR#
+			 AND A.SEQNO = #seqNo:VARCHAR#
+	</select>
+	
+	<select id="selectDataForSurvivorPayeeDataUpdate" resultMap="SurvivorBaappexpandDetailResult">
+		 SELECT BAAPPBASEID,
+		 		BAAPPEXPANDID,
+            	APNO,
+            	SEQNO,
+            	MONINCOMEMK,
+            	MONINCOME,
+            	MARRYDATE,
+            	DIGAMYDATE,
+            	HANDICAPMK,
+            	STUDMK,
+            	ABANAPPLYMK,
+            	ABANAPSYM,
+            	ABLEAPSYM,
+            	RAISECHILDMK,
+            	INTERDICTMK,
+            	INTERDICTDATE,
+            	REPEALINTERDICTDATE,
+            	BENMISSINGSDATE,
+            	BENMISSINGEDATE,
+            	PRISONSDATE,
+            	PRISONEDATE,
+            	RELATCHGDATE,
+            	ADOPTDATE,
+            	ASSIGNIDNNO,
+            	ASSIGNNAME,
+            	ASSIGNBRDATE,
+            	RAISEEVTMK,
+                SAVINGMK,
+                COMPELMK,
+                SCHOOLCODE,
+                HANDICAPMK
+		   From BAAPPEXPAND A
+		   WHERE A.BAAPPBASEID = #baappbaseId:NUMERIC#
+	</select>
+	
+	<insert id="insertDataForDisabledAnnuityReceipt">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baappexpandId" >
+	        SELECT BAAPPEXPANDID.NEXTVAL AS BAAPPEXPANDID FROM DUAL
+        </selectKey>
+	    INSERT INTO BAAPPEXPAND
+        (
+            BAAPPEXPANDID,
+            BAAPPBASEID,
+            APNO,
+            SEQNO,
+            CRIMEDIUM,
+            EVTYP,
+            EVCODE,
+            CRIINPART1,
+            CRIINPART2,
+            CRIINPART3,
+            CRIINJNME1,
+            CRIINJNME2,
+            CRIINJNME3,
+            CRIINJNME4,
+            CRIINJDP1,
+            CRIINJDP2,
+            CRIINJDP3,
+            CRIINJDP4,
+            CRIINJDP5,
+            CRIINJDP6,
+            CRIINJDP7,
+            CRIINJDP8,
+            CRIINJDP9,
+            CRIINJDP10,
+            HOSID,
+            DOCTORNAME1,
+            DOCTORNAME2,
+            CRTUSER,
+            CRTTIME,
+            HANDICAPMK,
+            EVAPPTYP
+        )
+        VALUES
+        (
+            #baappexpandId:NUMERIC#,
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #criMedium:VARCHAR#,
+            #evTyp:VARCHAR#,
+            #evCode:VARCHAR#,
+            #criInPart1:VARCHAR#,
+            #criInPart2:VARCHAR#,
+            #criInPart3:VARCHAR#,
+            #criInJnme1:VARCHAR#,
+            #criInJnme2:VARCHAR#,
+            #criInJnme3:VARCHAR#,
+            #criInJnme4:VARCHAR#,
+            #criInJdp1:VARCHAR#, 
+            #criInJdp2:VARCHAR#, 
+            #criInJdp3:VARCHAR#, 
+            #criInJdp4:VARCHAR#, 
+            #criInJdp5:VARCHAR#, 
+            #criInJdp6:VARCHAR#, 
+            #criInJdp7:VARCHAR#, 
+            #criInJdp8:VARCHAR#, 
+            #criInJdp9:VARCHAR#, 
+            #criInJdp10:VARCHAR#,
+            #hosId:VARCHAR#,
+            #doctorName1:VARCHAR#,
+            #doctorName2:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #handIcapMk:VARCHAR#,
+            #evAppTyp:VARCHAR#
+        )
+	</insert>
+	
+	<insert id="insertDataForDisabledPayeeDataUpdate">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baappexpandId" >
+            SELECT BAAPPEXPANDID.NEXTVAL AS BAAPPEXPANDID FROM DUAL
+        </selectKey>
+        INSERT INTO BAAPPEXPAND
+        (
+            BAAPPEXPANDID,
+            BAAPPBASEID,
+            APNO,
+            SEQNO,
+            CRTUSER,
+            CRTTIME
+        )
+        VALUES
+        (
+            #baappexpandId:NUMERIC#, 
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #crtUser:VARCHAR#, 
+            #crtTime:VARCHAR#
+        )
+    </insert>
+	
+    <update id="updateDataForDisabledAnnuityReceipt">
+        UPDATE BAAPPEXPAND SET
+               CRIMEDIUM = #criMedium:VARCHAR#,
+               EVTYP = #evTyp:VARCHAR#,
+               EVCODE = #evCode:VARCHAR#,
+               CRIINPART1 = #criInPart1:VARCHAR#,
+               CRIINPART2 = #criInPart2:VARCHAR#,
+               CRIINPART3 = #criInPart3:VARCHAR#,
+               CRIINJNME1 = #criInJnme1:VARCHAR#,
+               CRIINJNME2 = #criInJnme2:VARCHAR#,
+               CRIINJNME3 = #criInJnme3:VARCHAR#,
+               CRIINJNME4 = #criInJnme4:VARCHAR#,
+               CRIINJDP1 = #criInJdp1:VARCHAR#,
+               CRIINJDP2 = #criInJdp2:VARCHAR#,
+               CRIINJDP3 = #criInJdp3:VARCHAR#,
+               CRIINJDP4 = #criInJdp4:VARCHAR#,
+               CRIINJDP5 = #criInJdp5:VARCHAR#,
+               CRIINJDP6 = #criInJdp6:VARCHAR#,
+               CRIINJDP7 = #criInJdp7:VARCHAR#,
+               CRIINJDP8 = #criInJdp8:VARCHAR#,
+               CRIINJDP9 = #criInJdp9:VARCHAR#,
+               CRIINJDP10 = #criInJdp10:VARCHAR#,
+               HOSID = #hosId:VARCHAR#,
+               DOCTORNAME1 = #doctorName1:VARCHAR#,
+               DOCTORNAME2 = #doctorName2:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#,
+               HANDICAPMK = #handIcapMk:VARCHAR#,
+               EVAPPTYP = #evAppTyp:VARCHAR#
+         WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#
+           AND BAAPPBASEID = #baappbaseId:NUMERIC#
+    </update>
+    
+    <update id="updateDataForSurvivorPayeeDataUpdate">
+        UPDATE BAAPPEXPAND SET
+       		MONINCOMEMK = #monIncomeMk:VARCHAR#,
+       		MONINCOME = #monIncome:VARCHAR#,
+       		MARRYDATE = #marryDate:VARCHAR#,
+       		DIGAMYDATE = #digamyDate:VARCHAR#,
+       		HANDICAPMK = #handIcapMk:VARCHAR#,
+       		COMPELMK = #compelMk:VARCHAR#,
+       		STUDMK = #studMk:VARCHAR#,
+       		ABANAPPLYMK = #abanApplyMk: VARCHAR#,
+       		ABANAPSYM = #abanApsYm: VARCHAR#,
+       		ABLEAPSYM = #ableApsYm: VARCHAR#,
+       		RAISECHILDMK = #raiseChildMk: VARCHAR#,
+       		INTERDICTMK = #interDictMk: VARCHAR#,
+       		INTERDICTDATE = #interDictDate: VARCHAR#,
+       		REPEALINTERDICTDATE = #repealInterdictDate: VARCHAR#,
+       		BENMISSINGSDATE = #benMissingSdate: VARCHAR#,
+       		BENMISSINGEDATE = #benMissingEdate: VARCHAR#,
+       		PRISONSDATE = #prisonSdate: VARCHAR#,
+       		PRISONEDATE = #prisonEdate: VARCHAR#,
+       		RELATCHGDATE = #relatChgDate: VARCHAR#,
+       		ADOPTDATE = #adoPtDate: VARCHAR#,
+       		ASSIGNIDNNO = #assignIdnNo:VARCHAR#,
+       		ASSIGNNAME = #assignName: VARCHAR#,
+       		ASSIGNBRDATE = #assignBrDate:VARCHAR#,
+       		RAISEEVTMK = #raiseEvtMk:VARCHAR#,
+       		SAVINGMK = #savingMk:VARCHAR#,
+       		UPDUSER = #updUser: VARCHAR#,
+       		UPDTIME = #updTime: VARCHAR#,
+       		SCHOOLCODE = #schoolCode: VARCHAR#
+		WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#
+    </update>
+    
+    <insert id="insertDataForSurvivorPayeeDataUpdate">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baappexpandId" >
+            SELECT BAAPPEXPANDID.NEXTVAL AS BAAPPEXPANDID FROM DUAL
+        </selectKey>
+        INSERT INTO BAAPPEXPAND
+        (
+            BAAPPEXPANDID,
+            BAAPPBASEID,
+            APNO,
+            SEQNO,
+            MONINCOMEMK,
+            MONINCOME,
+            MARRYDATE,
+            DIGAMYDATE,
+            HANDICAPMK,
+            COMPELMK,
+            STUDMK,
+            ABANAPPLYMK,
+            ABANAPSYM,
+            ABLEAPSYM,
+            RAISECHILDMK,
+            INTERDICTMK,
+            INTERDICTDATE,
+            REPEALINTERDICTDATE,
+            BENMISSINGSDATE,
+            BENMISSINGEDATE,
+            PRISONSDATE,
+            PRISONEDATE,
+            RELATCHGDATE,
+            ADOPTDATE,
+            ASSIGNIDNNO,
+            ASSIGNNAME,
+            ASSIGNBRDATE,
+            RAISEEVTMK,
+            SAVINGMK,
+            CRTUSER,
+            CRTTIME,
+            SCHOOLCODE
+        )
+        VALUES
+        (
+            #baappexpandId:NUMERIC#, 
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#, 
+            #monIncomeMk:VARCHAR#, 
+            #monIncome:NUMERIC#,
+            #marryDate:VARCHAR#,
+            #digamyDate:VARCHAR#, 
+            #handIcapMk:VARCHAR#,
+            #compelMk:VARCHAR#, 
+            #studMk:VARCHAR#, 
+            #abanApplyMk:VARCHAR#, 
+            #abanApsYm:VARCHAR#,
+            #ableApsYm:VARCHAR#,
+            #raiseChildMk:VARCHAR#, 
+            #interDictMk:VARCHAR#, 
+            #interDictDate:VARCHAR#,
+            #repealInterdictDate:VARCHAR#,
+            #benMissingSdate:VARCHAR#, 
+            #benMissingEdate:VARCHAR#, 
+            #prisonSdate:VARCHAR#,
+            #prisonEdate:VARCHAR#, 
+            #relatChgDate:VARCHAR#, 
+            #adoPtDate:VARCHAR#,
+            #assignIdnNo:VARCHAR#, 
+            #assignName:VARCHAR#, 
+            #assignBrDate:VARCHAR#,
+            #raiseEvtMk:VARCHAR#,
+            #savingMk:VARCHAR#,
+            #crtUser:VARCHAR#, 
+            #crtTime:VARCHAR#,
+            #schoolCode:VARCHAR#
+        )
+    </insert>
+    
+    <insert id="insertDataForSurvivorAnnuityReceipt">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baappexpandId" >
+            SELECT BAAPPEXPANDID.NEXTVAL AS BAAPPEXPANDID FROM DUAL
+        </selectKey>
+        INSERT INTO BAAPPEXPAND
+        (
+            BAAPPEXPANDID,
+            BAAPPBASEID,
+            APNO,
+            SEQNO,
+            EVTYP,
+            MONINCOMEMK,
+            MONINCOME,
+            MARRYDATE,
+            INTERDICTMK,
+            HANDICAPMK,
+            STUDMK,
+            CRTUSER,
+            CRTTIME,
+            EVAPPTYP
+        )
+        VALUES
+        (
+            #baappexpandId:NUMERIC#,          
+            #baappbaseId:NUMERIC#,
+            #apNo:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #evTyp:VARCHAR#,
+            #monIncomeMk:VARCHAR#,
+            #monIncome:NUMERIC#,
+            #marryDate:VARCHAR#,
+            #interDictMk:VARCHAR#,
+            #handIcapMk:VARCHAR#,
+            #studMk:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #evAppTyp:VARCHAR#
+        )  
+    </insert>
+    
+    <update id="updateEvtDataForSurvivorAnnuityReceipt">
+        UPDATE BAAPPEXPAND SET
+               EVTYP = #evTyp:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#,
+               EVAPPTYP = #evAppTyp:VARCHAR#
+         WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#
+           AND BAAPPBASEID = #baappbaseId:NUMERIC#
+    </update>
+    
+    <update id="updateBenDataForSurvivorAnnuityReceipt">
+        UPDATE BAAPPEXPAND SET
+               MARRYDATE = #marryDate:VARCHAR#,
+               MONINCOME = #monIncome:NUMERIC#,
+               MONINCOMEMK = #monIncomeMk:NUMERIC#,
+               INTERDICTMK = #interDictMk:VARCHAR#,
+               HANDICAPMK = #handIcapMk:VARCHAR#,
+               STUDMK = #studMk:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+         WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#
+           AND BAAPPBASEID = #baappbaseId:NUMERIC#
+    </update>
+    
+    <delete id="deleteDataByBaappbaseId">
+        DELETE FROM BAAPPEXPAND
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+    </delete>
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <select id="getDisabledApplicationDataUpdateExpandDataBy" resultMap="BAAPPEXPANDResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK,
+               A.EVAPPTYP,
+               A.DISQUALMK,
+               A.OCACCHOSID,
+               A.OCACCDOCTORNAME1,
+               A.OCACCDOCTORNAME2,
+               A.MONNOTIFYINGMK
+        FROM   BAAPPEXPAND A
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.APNO = #apNo:VARCHAR# AND 
+               A.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="getDisabledApplicationDataUpdateListForUpdateBy" resultClass="java.math.BigDecimal">
+        SELECT BAAPPEXPANDID
+        FROM   BAAPPEXPAND
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000' AND
+               BAAPPBASEID = #baappbaseId:NUMERIC#
+    </select>
+    
+    <select id="getDisabledApplicationDataUpdateExpandDataByBaappexpandId" resultMap="BAAPPEXPANDResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK,
+               A.EVAPPTYP,
+               A.DISQUALMK,
+               A.OCACCHOSID,
+               A.OCACCDOCTORNAME1,
+               A.OCACCDOCTORNAME2,
+               A.MONNOTIFYINGMK                
+        FROM   BAAPPEXPAND A
+        WHERE  A.BAAPPEXPANDID = #baappexpandId:NUMERIC#
+    </select>
+    
+    <update id="updateDisabledApplicationDataUpdateData">
+        UPDATE BAAPPEXPAND SET
+               EVAPPTYP = #evAppTyp:VARCHAR#,
+               EVTYP = #evTyp:VARCHAR#,
+               DISQUALMK = #disQualMk:VARCHAR#,
+               EVCODE = #evCode:VARCHAR#,
+               CRIINPART1 = #criInPart1:VARCHAR#,
+               CRIINPART2 = #criInPart2:VARCHAR#,
+               CRIINPART3 = #criInPart3:VARCHAR#,
+               CRIMEDIUM = #criMedium:VARCHAR#,
+               CRIINISSUL = #criInIssul:VARCHAR#,
+               CRIINJDP1 = #criInJdp1:VARCHAR#,
+               CRIINJDP2 = #criInJdp2:VARCHAR#,
+               CRIINJDP3 = #criInJdp3:VARCHAR#,
+               CRIINJDP4 = #criInJdp4:VARCHAR#,
+               CRIINJDP5 = #criInJdp5:VARCHAR#,
+               CRIINJDP6 = #criInJdp6:VARCHAR#,
+               CRIINJDP7 = #criInJdp7:VARCHAR#,
+               CRIINJDP8 = #criInJdp8:VARCHAR#,
+               CRIINJDP9 = #criInJdp9:VARCHAR#,
+               CRIINJDP10 = #criInJdp10:VARCHAR#,
+               HOSID = #hosId:VARCHAR#,
+               DOCTORNAME1 = #doctorName1:VARCHAR#,
+               DOCTORNAME2 = #doctorName2:VARCHAR#,
+               OCACCHOSID = #ocAccHosId:VARCHAR#,
+               OCACCDOCTORNAME1 = #ocAccDoctorName1:VARCHAR#,
+               OCACCDOCTORNAME2 = #ocAccDoctorName2:VARCHAR#,               
+               CRIINJNME1 = #criInJnme1:VARCHAR#,
+               CRIINJNME2 = #criInJnme2:VARCHAR#,
+               CRIINJNME3 = #criInJnme3:VARCHAR#,
+               CRIINJNME4 = #criInJnme4:VARCHAR#,
+               REHCMK = #rehcMk:VARCHAR#,
+               REHCYM = #rehcYm:VARCHAR#,
+               OCACCIDENTMK = #ocaccIdentMk:VARCHAR#,
+               PRTYPE = #prType:VARCHAR#,
+               OCACCADDAMT = #ocAccaddAmt:NUMERIC#,
+               DEDUCTDAY = #deductDay:NUMERIC#,
+               UPDUSER = #updUser:VARCHAR#, 
+               UPDTIME = #updTime:VARCHAR#,
+               MONNOTIFYINGMK = #monNotifyingMk:VARCHAR#
+               <isNotNull property="comnpMk">
+                   ,COMNPMK = #comnpMk:VARCHAR#
+               </isNotNull>
+        WHERE  BAAPPEXPANDID = #baappexpandId:NUMERIC#
+    </update>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Survivor Application Data Update -->
+    <!-- [ -->
+    <select id="getSurvivorApplicationDataUpdateExpandDataBy" resultMap="BAAPPEXPANDResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK,
+               A.EVAPPTYP,
+               A.DISQUALMK,
+               A.OCACCHOSID,
+               A.OCACCDOCTORNAME1,
+               A.OCACCDOCTORNAME2,
+               A.MONNOTIFYINGMK                 
+        FROM   BAAPPEXPAND A
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.APNO = #apNo:VARCHAR# AND 
+               A.SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="getSurvivorApplicationDataUpdateListForUpdateBy" resultClass="java.math.BigDecimal">
+        SELECT BAAPPEXPANDID
+        FROM   BAAPPEXPAND
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000' AND
+               BAAPPBASEID = #baappbaseId:NUMERIC#
+    </select>
+    
+    <select id="getSurvivorApplicationDataUpdateExpandDataByBaappexpandId" resultMap="BAAPPEXPANDResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK,
+               A.EVAPPTYP,
+               A.DISQUALMK,
+			   A.OCACCHOSID,
+               A.OCACCDOCTORNAME1,
+               A.OCACCDOCTORNAME2,
+               A.MONNOTIFYINGMK               
+        FROM   BAAPPEXPAND A
+        WHERE  A.BAAPPEXPANDID = #baappexpandId:NUMERIC#
+    </select>
+    
+    <update id="updateSurvivorApplicationDataUpdateData">
+        UPDATE BAAPPEXPAND SET
+               EVAPPTYP = #evAppTyp:VARCHAR#,
+               EVTYP = #evTyp:VARCHAR#,
+               EVCODE = #evCode:VARCHAR#,
+               CRIINPART1 = #criInPart1:VARCHAR#,
+               CRIINPART2 = #criInPart2:VARCHAR#,
+               CRIINPART3 = #criInPart3:VARCHAR#,
+               CRIMEDIUM = #criMedium:VARCHAR#,
+               CRIINJNME1 = #criInJnme1:VARCHAR#,
+               CRIINJNME2 = #criInJnme2:VARCHAR#,
+               CRIINJNME3 = #criInJnme3:VARCHAR#,
+               CRIINJNME4 = #criInJnme4:VARCHAR#,
+               JUDGEDATE = #judgeDate:VARCHAR#,
+               FAMAPPMK = #famAppMk:VARCHAR#,
+               MONNOTIFYINGMK = #monNotifyingMk:VARCHAR#,
+               PRTYPE = #prType:VARCHAR#,
+               UPDUSER = #updUser:VARCHAR#, 
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  BAAPPEXPANDID = #baappexpandId:NUMERIC#
+    </update>
+    <!-- ] -->
+    <!-- Survivor Application Data Update -->
+    
+    <update id="updateAbleapsYmForDisabledCheckMarkLevelAdjust">
+        Update BAAPPEXPAND set ABLEAPSYM = #ableApsYm:VARCHAR#
+         Where APNO = #apNo:VARCHAR#
+           and SEQNO   = '0000'
+           and BAAPPBASEID = #baappbaseId:NUMERIC#
+    </update>
+    
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <select id="getReviewFeeReceiptHeaderDataForInsertBy" resultMap="ReviewFeeReceiptResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK, 
+               A.MONNOTIFYINGMK,             
+               B.PARAMNAME AS EVTYPNAME 
+        FROM   BAAPPEXPAND A, BAPARAM B
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.EVTYP = B.PARAMCODE (+) AND 
+               B.PARAMGROUP (+) = 'EVTYP' AND 
+               B.PARAMUSEMK (+) = 'Y'
+    </select>
+    
+    <select id="getReviewFeeReceiptHeaderDataForUpdateBy" resultMap="ReviewFeeReceiptResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK, 
+               A.MONNOTIFYINGMK,
+               B.PARAMNAME AS EVTYPNAME 
+        FROM   BAAPPEXPAND A, BAPARAM B
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.EVTYP = B.PARAMCODE (+) AND 
+               B.PARAMGROUP (+) = 'EVTYP' AND 
+               B.PARAMUSEMK (+) = 'Y'
+    </select>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+    
+    <!-- Review Fee Review -->
+    <!-- [ -->
+    <select id="getReviewFeeReviewHeaderDataBy" resultMap="ReviewFeeReviewResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK, 
+               A.MONNOTIFYINGMK,
+               B.PARAMNAME AS EVTYPNAME 
+        FROM   BAAPPEXPAND A, BAPARAM B
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.EVTYP = B.PARAMCODE (+) AND 
+               B.PARAMGROUP (+) = 'EVTYP' AND 
+               B.PARAMUSEMK (+) = 'Y'
+    </select>
+    <!-- ] -->
+    <!-- Review Fee Review -->
+    
+    <!-- Review Fee Decision -->
+    <!-- [ -->
+    <select id="getReviewFeeDecisionHeaderDataBy" resultMap="ReviewFeeDecisionResult">
+        SELECT A.BAAPPEXPANDID, 
+               A.BAAPPBASEID, 
+               A.APNO, 
+               A.SEQNO, 
+               A.CANCELMK, 
+               A.CANCELYM, 
+               A.OCACCIDENTMK, 
+               A.PRTYPE, 
+               A.CRIMEDIUM, 
+               A.EVTYP, 
+               A.EVCODE, 
+               A.CRIINPART1, 
+               A.CRIINPART2, 
+               A.CRIINPART3, 
+               A.CRIINJNME1, 
+               A.CRIINJNME2, 
+               A.CRIINJNME3, 
+               A.CRIINJNME4, 
+               A.CRIINJCL1, 
+               A.CRIINJCL2, 
+               A.CRIINJCL3, 
+               A.CRIINJDP1, 
+               A.CRIINJDP2, 
+               A.CRIINJDP3, 
+               A.CRIINJDP4, 
+               A.CRIINJDP5, 
+               A.CRIINJDP6, 
+               A.CRIINJDP7, 
+               A.CRIINJDP8, 
+               A.CRIINJDP9, 
+               A.CRIINJDP10, 
+               A.CRIINISSUL, 
+               A.REHCMK, 
+               A.REHCYM, 
+               A.HOSID, 
+               A.DOCTORNAME1, 
+               A.DOCTORNAME2, 
+               A.OCACCADDAMT, 
+               A.FAMAPPMK, 
+               A.PRFMLYMK, 
+               A.MONINCOMEMK, 
+               A.MONINCOME, 
+               A.STUDMK, 
+               A.MARRYDATE, 
+               A.DIGAMYDATE, 
+               A.ABANAPPLYMK, 
+               A.ABANAPSYM, 
+               A.ABLEAPSYM, 
+               A.RAISECHILDMK, 
+               A.HANDICAPMK, 
+               A.INTERDICTMK, 
+               A.INTERDICTDATE, 
+               A.BENMISSINGSDATE, 
+               A.BENMISSINGEDATE, 
+               A.PRISONSDATE, 
+               A.PRISONEDATE, 
+               A.RELATCHGDATE, 
+               A.ADOPTDATE, 
+               A.JUDGEDATE, 
+               A.ASSIGNIDNNO, 
+               A.ASSIGNNAME, 
+               A.ASSIGNBRDATE, 
+               A.CRTUSER, 
+               A.CRTTIME, 
+               A.UPDUSER, 
+               A.UPDTIME, 
+               A.RAISEEVTMK,
+               A.DEDUCTDAY, 
+               A.ADWKMK, 
+               A.MONNOTIFYINGMK,
+               B.PARAMNAME AS EVTYPNAME 
+        FROM   BAAPPEXPAND A, BAPARAM B
+        WHERE  A.BAAPPBASEID = #baappbaseId:NUMERIC# AND
+               A.EVTYP = B.PARAMCODE (+) AND 
+               B.PARAMGROUP (+) = 'EVTYP' AND 
+               B.PARAMUSEMK (+) = 'Y'
+    </select>
+    <!-- ] -->
+    <!-- Review Fee Decision -->
+    
+    <select id="selectDisabledDataForPaymentReview" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               DEDUCTDAY,
+               JUDGEDATE,
+               FAMAPPMK,
+               DISQUALMK,
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP         
+          FROM BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000'    
+    </select>
+    
+    <select id="selectDisabledReviewRpt01AnnuityPayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP                
+          FROM BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'K'   
+    </select>
+    
+    <select id="selectDisabledReviewRpt01SurvivorPayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,               
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP
+          FROM BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'S'   
+    </select>
+    
+    <select id="selectBenDataForSurvivorPaymentQuery" resultMap="BenDataForSurvivorPaymentQueryResult">
+        SELECT APNO                   
+              ,SEQNO                  
+              ,REHCMK                 
+              ,REHCYM                 
+              ,MONINCOMEMK            
+              ,MONINCOME              
+              ,STUDMK                 
+              ,MARRYDATE              
+              ,DIGAMYDATE             
+              ,ABANAPSYM              
+              ,RAISECHILDMK           
+              ,HANDICAPMK             
+              ,INTERDICTMK            
+              ,INTERDICTDATE
+              ,REPEALINTERDICTDATE          
+              ,BENMISSINGSDATE        
+              ,BENMISSINGEDATE        
+              ,PRISONSDATE            
+              ,PRISONEDATE            
+              ,RELATCHGDATE           
+              ,ADOPTDATE              
+              ,JUDGEDATE              
+              ,RAISEEVTMK             
+              ,ASSIGNIDNNO            
+              ,ASSIGNNAME             
+              ,ASSIGNBRDATE
+              ,ABLEAPSYM
+              ,SAVINGMK
+          FROM BAAPPEXPAND            
+         WHERE APNO = #apNo:VARCHAR#  
+           AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01AnnuityPayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,               
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP 
+          FROM BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'S'   
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01DisablePayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP 
+          FROM BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'K'   
+    </select>
+    
+    <select id="getAbleapsYmForDisabledCheckMarkLevelAdjust" resultClass="java.lang.String">
+        select ABLEAPSYM  from BAAPPEXPAND 
+         where APNO = #apNo:VARCHAR#
+           and SEQNO   = '0000'
+           and BAAPPBASEID = #baappbaseId:NUMERIC#
+    </select>
+    
+    <select id="selectComnpmkBy" resultClass="java.lang.String">
+	    SELECT COMNPMK FROM BAAPPEXPAND
+	     WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+	       AND APNO = #apNo:VARCHAR#
+	       AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectMonnotifyingmkBy" resultClass="java.lang.String">
+	    SELECT MONNOTIFYINGMK FROM BAAPPEXPAND
+	     WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+	       AND APNO = #apNo:VARCHAR#
+	       AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="getBaappexpandDataForWkMkBy" resultMap="WkMkResult">
+        SELECT NLWKMK,
+               ADWKMK 
+          FROM BAAPPEXPAND
+         WHERE BAAPPBASEID = #baappbaseId:NUMERIC#
+	       AND APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND (SUBSTR(APNO,1,1) = 'S' OR SUBSTR(APNO,1,1) = 'K')
+    </select>
+    
+    <update id="updateCpiBaseYMForResetPaymentParameter">
+        UPDATE BAAPPEXPAND SET
+               CPIBASEYM = '',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+         WHERE APNO = #apNo:VARCHAR#
+    </update>
+    
+    <update id="updateInsAvgAmtAppYearForResetPaymentParameter">
+        UPDATE BAAPPEXPAND SET
+               INSAVGAMTAPPYEAR = '',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+         WHERE APNO = #apNo:VARCHAR#
+    </update>
+</sqlMap>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBCMF07">
+
+	<typeAlias alias="Bbcmf07" type="tw.gov.bli.ba.domain.Bbcmf07" />
+
+    <resultMap id="BBCMF07Result" class="Bbcmf07">
+        <result column="INSKD"       property="insKd"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PMTYP"       property="pmTyp"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HPCODE"      property="hpCode"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HPNAME"      property="hpName"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HPSNAM"      property="hpSnam"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"      property="payTyp"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYAMT"      property="payAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="HOSCTP"      property="hosCtp"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EDUMK"       property="eduMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSGRD"      property="hosGrd"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"      property="status"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <!-- ReviewFeeReceiptRpt Begin -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReceiptDataResult" class="Bbcmf07">
+    	<result column="HPCODE" property="hpCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    	<result column="HPNAME" property="hpName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <!-- ] -->
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <resultMap id="DisabledApplicationDataUpdateResult" class="Bbcmf07">
+        <result column="HPCODE" property="hpCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="HPSNAM" property="hpSnam" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <resultMap id="ReviewFeeReceiptResult" class="Bbcmf07">
+        <result column="HPCODE" property="hpCode" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="HPSNAM" property="hpSnam" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+    
+       
+    <!-- Executive Support -->
+    <!-- [ -->
+    <resultMap id="ExecutiveSupportResult" class="Bbcmf07">
+        <result column="HPNAME"		 property="hpName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="PAYAMT"      property="payAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+    </resultMap>
+    <!-- ] -->
+    <!-- Executive Support -->
+    
+    <!-- ReviewFeeReceiptRpt -->
+    <!-- [ -->
+    <select id="getReviewFeeReceiptHosDataBy" resultMap="ReviewFeeReceiptDataResult">
+        SELECT B.HPCODE,
+               B.HPNAME
+	      FROM BCPHP B
+		  WHERE B.HPCODE = #hpCode:VARCHAR#
+    </select>
+    <!-- ] -->
+    <!-- ReviewFeeReceiptRpt -->
+ 
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <select id="getDisabledApplicationDataUpdateHosDataBy" resultMap="DisabledApplicationDataUpdateResult">
+        SELECT A.HPCODE,
+               A.HPSNAM
+        FROM   BCPHP A
+        WHERE  A.HPCODE = #hpCode:VARCHAR#
+    </select>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Review Fee Receipt -->
+    <!-- [ -->
+    <select id="getReviewFeeReceiptHpDataBy" resultMap="ReviewFeeReceiptResult">
+        SELECT A.HPCODE,
+               A.HPSNAM
+        FROM   BCPHP A
+        WHERE  A.HPCODE = #hpCode:VARCHAR#
+    </select>
+    <!-- ] -->
+    <!-- Review Fee Receipt -->
+    
+    <select id="selectHpSnamBy" resultClass="java.lang.String">
+        SELECT HPSNAM
+          FROM BCPHP
+         WHERE HPCODE = #hpCode:VARCHAR#
+           <![CDATA[ 
+           AND ROWNUM <= 1
+           ]]>    
+    </select>
+    
+     <!-- Executive Support -->
+    <!-- [ -->
+    <select id="getExecutiveSupportHosData" resultMap="ExecutiveSupportResult">
+    	SELECT A.HPNAME, 
+               A.PAYAMT 
+        FROM   BCPHP A
+        WHERE  A.HPCODE = #hpCode:VARCHAR#
+    </select>
+     <!-- ] -->
+    <!-- Executive Support -->
+</sqlMap>

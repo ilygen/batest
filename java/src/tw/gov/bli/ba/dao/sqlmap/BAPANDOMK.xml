@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPANDOMK">
+
+    <typeAlias alias="BAPANDOMK" type="tw.gov.bli.ba.domain.Bapandomk" />
+
+    <resultMap id="BAPANDOMKResult" class="BAPANDOMK">
+        <result column="LETTERTYPE"      property="letterType"    jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="NDOMK"           property="ndomk"         jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="LPAYMK"          property="lpaymk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="KPAYMK"          property="kpaymk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SPAYMK"          property="spaymk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="NDOMKNAME"       property="ndomkName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTUSER"         property="crtUser"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="CRTTIME"         property="crtTime"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="UPDUSER"         property="updUser"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"         property="updTime"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BAPANDOMKResult">
+        Select  LETTERTYPE,  
+                NDOMK, 
+                (NDOMK||'-'||NDOMKNAME) AS NDOMKNAME,
+                LPAYMK,  
+                KPAYMK,  
+                SPAYMK,
+                CRTUSER,
+                CRTTIME,
+                UPDUSER,
+                UPDTIME  
+          From  BAPANDOMK A
+         where A.Lettertype = #letterType:VARCHAR#
+           and A.SYSID='BA' 
+           <isNotEmpty prepend="AND" property="lpaymk">
+               A.LPAYMK = #lpaymk:VARCHAR#
+           </isNotEmpty>
+           <isNotEmpty prepend="AND" property="kpaymk">
+               A.KPAYMK = #kpaymk:VARCHAR#
+           </isNotEmpty>
+           <isNotEmpty prepend="AND" property="spaymk">
+               A.SPAYMK = #spaymk:VARCHAR#
+           </isNotEmpty>
+        Order  By  LETTERTYPE, NDOMK
+    </select>
+    
+    <select id="selectDataForAuditRpt01By" resultClass="java.lang.String">
+        select (NDOMK || '-' || NDOMKNAME) AS NDOMKNAME
+          from BAPANDOMK A
+         where A.SYSID = 'BA'
+           AND A.LETTERTYPE = #letterType:VARCHAR#
+           AND A.NDOMK = #ndomk1:VARCHAR# 
+        <isNotEmpty prepend = "AND" property = "lpaymk"> 
+            A.LPAYMK = #lpaymk:VARCHAR# 
+        </isNotEmpty> 
+        <isNotEmpty prepend = "AND" property = "kpaymk"> 
+            A.KPAYMK = #kpaymk:VARCHAR# 
+        </isNotEmpty> 
+        <isNotEmpty prepend = "AND" property = "spaymk"> 
+            A.SPAYMK = #spaymk:VARCHAR# 
+        </isNotEmpty>
+    </select>
+
+</sqlMap>

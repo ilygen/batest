@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAMFILEFTPRECORD">
+
+    <insert id="insertData">
+        INSERT INTO BAMFILEFTPRECORD (MFILENAME
+                                     ,MFILEDATE
+                                     ,CHKDATE
+                                     ,FTPSEQ
+                                     ,FTPDATERECORD
+                                     ) VALUES (
+                                      #mfileName:VARCHAR#
+                                     ,#mfileDate:VARCHAR#
+                                     ,#chkDate:VARCHAR#
+                                     ,1
+                                     ,TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+                                     )
+    </insert>
+
+    <update id="updateData">
+        UPDATE BAMFILEFTPRECORD T
+           SET FTPSEQ = NVL(T.FTPSEQ,0)+1
+              ,FTPDATERECORD = (T.FTPDATERECORD||','||TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'))
+         WHERE T.MFILENAME = #mfileName:VARCHAR#
+           AND T.MFILEDATE = #mfileDate:VARCHAR#
+           AND T.CHKDATE = #chkDate:VARCHAR#
+    </update>
+</sqlMap>

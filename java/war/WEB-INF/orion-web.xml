@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<orion-web-app>
+
+	<resource-ref-mapping name="jdbc/baDS" location="jdbc/baDS"/>
+    
+	<web-app/>
+
+</orion-web-app>

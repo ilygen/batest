@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACOMPELNOPAY">
+
+	<typeAlias alias="Bacompelnopay" type="tw.gov.bli.ba.domain.Bacompelnopay" />
+	
+	<resultMap id="BACOMPELNOPAYResult" class="Bacompelnopay">
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELNO"     property="compelNo"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="COMPELSDATE"  property="compelSdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELEDATE"  property="compelEdate"  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELDESC"   property="compelDesc"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"      property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+	
+	<resultMap id="CompelNopayDataForSurvivorPaymentQueryResult" class="Bacompelnopay">
+		<result column="COMPELSDATE"        property="compelSdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELEDATE"        property="compelEdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DATACOUNT"          property="dataCount"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+	</resultMap>
+	
+	<resultMap id="CompelNopayDetailDataForSurvivorPaymentQueryResult" class="Bacompelnopay">
+        <result column="COMPELSDATE"        property="compelSdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELEDATE"        property="compelEdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="COMPELDESC"         property="compelDesc"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+    </resultMap>		
+	
+	<select id="selectDataBy" resultMap="BACOMPELNOPAYResult">
+        SELECT APNO,
+               SEQNO,
+               COMPELNO,
+               COMPELSDATE,
+               COMPELEDATE,
+               COMPELDESC,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME
+         FROM BACOMPELNOPAY
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+        ORDER BY COMPELSDATE, COMPELNO   
+	</select>
+	
+    <insert id="insertData">
+        INSERT INTO BACOMPELNOPAY(
+             APNO,
+             SEQNO,
+             COMPELNO,
+             COMPELSDATE,
+             COMPELEDATE,
+             COMPELDESC,
+             CRTUSER,
+             CRTTIME,
+             UPDUSER,
+             UPDTIME
+        )VALUES(
+             #apNo:VARCHAR#,
+             #seqNo:VARCHAR#,
+             #compelNo:VARCHAR#,
+             #compelSdate:VARCHAR#,
+             #compelEdate:VARCHAR#,
+             #compelDesc:VARCHAR#,
+             #crtUser:VARCHAR#,
+             #crtTime:VARCHAR#,
+             #updUser:VARCHAR#,
+             #updTime:VARCHAR#
+        )
+    </insert>
+
+    <update id="updateData">
+        UPDATE BACOMPELNOPAY
+        SET COMPELSDATE = #compelSdate:VARCHAR#,
+            COMPELEDATE = #compelEdate:VARCHAR#,
+            COMPELDESC = #compelDesc:VARCHAR#,
+            UPDUSER = #cpdUser:VARCHAR#,
+            UPDTIME = #updTime:VARCHAR#
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+          AND COMPELNO = #compelNo:VARCHAR#
+     </update>
+
+     <delete id="deleteData">
+         DELETE FROM BACOMPELNOPAY
+           WHERE APNO = #apNo:VARCHAR#
+             AND SEQNO = #seqNo:VARCHAR#
+     </delete>
+     
+	<select id="selectCompelNopayDataForSurvivorPaymentQuery" resultMap="CompelNopayDataForSurvivorPaymentQueryResult">
+        SELECT MIN(COMPELSDATE) AS COMPELSDATE    
+              ,MAX(COMPELEDATE) AS COMPELEDATE    
+              ,COUNT(*) AS DATACOUNT          
+          FROM BACOMPELNOPAY                     
+         WHERE APNO = #apNo:VARCHAR#          
+           AND SEQNO = #seqNo:VARCHAR#        
+	</select> 
+	
+	<select id="selectCompelNopayDetailDataForSurvivorPaymentQuery" resultMap="CompelNopayDetailDataForSurvivorPaymentQueryResult">
+	    SELECT COMPELSDATE
+	          ,COMPELEDATE
+	          ,COMPELDESC
+	      FROM BACOMPELNOPAY
+	     WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+	     ORDER BY COMPELNO
+    </select>	  
+
+</sqlMap>

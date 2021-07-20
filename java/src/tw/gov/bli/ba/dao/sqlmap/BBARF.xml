@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBARF">
+
+     <typeAlias alias="Bbarf" type="tw.gov.bli.ba.domain.Bbarf" />
+   
+     <resultMap id="BBARFResult" class="Bbarf">
+        <result column="APNO"         property="apNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="GVIDNO"       property="gvIdno"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="GVNAME"       property="gvName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="GVSUM"        property="gvSum"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="BGNDTE"       property="bgnDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="CHKAMT"       property="chkAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="PAYAMT"       property="payAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="AMTTOT"       property="amtTot"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="AMTINC"       property="amtInc"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="INTTOT"       property="intTot"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="INTINC"       property="intInc"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="SCATOT"       property="scaTot"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="SCAINC"       property="scaInt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="STATOT"       property="staTot"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="STACNT"       property="staInc"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="STAAMT"       property="staAmt"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="LSTDTE"       property="lstDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="ADJCD"        property="adjcd"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="STS"          property="sts"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="ENDMK"        property="endMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap>    
+    
+    <select id="selectDataBy" resultMap = "BBARFResult">
+         Select  Trim(APNO) as APNO,     
+                  Trim(GVIDNO) as GVIDNO,   
+                  GVNAME,
+                  GVSUM, 
+                  TO_CHAR(BGNDTE, 'YYYYMMDD') As "BGNDTE",
+                  CHKAMT,
+                  PAYAMT,
+                  AMTTOT,
+                  AMTINC,
+                  INTTOT,
+                  INTINC,
+                  SCATOT,
+                  SCAINC,
+                  STATOT,
+                  STACNT,
+                  STAAMT,
+                  TO_CHAR(LSTDTE, 'YYYYMMDD') As "LSTDTE",
+                  ADJCD,
+                  STS,   
+                  ENDMK 
+             From BCARF
+             Where APNO = #apNo:VARCHAR#
+              And (AMTTOT - AMTINC) >0   
+    </select>
+    
+  <select id="selectDataForOnceWriteOff" resultMap = "BBARFResult">
+          Select  Trim(APNO) as APNO,     
+                  Trim(GVIDNO) as GVIDNO,   
+                  GVNAME,
+                  GVSUM, 
+                  TO_CHAR(BGNDTE, 'YYYYMMDD') As "BGNDTE",
+                  CHKAMT,
+                  PAYAMT,
+                  AMTTOT,
+                  AMTINC,
+                  INTTOT,
+                  INTINC,
+                  SCATOT,
+                  SCAINC,
+                  STATOT,
+                  STACNT,
+                  STAAMT,
+                  TO_CHAR(LSTDTE, 'YYYYMMDD') As "LSTDTE",
+                  ADJCD,
+                  STS,   
+                  ENDMK 
+             From BCARF
+            Where GVIDNO = #gvIdno:VARCHAR#
+              And (AMTTOT - AMTINC) >0       
+          union
+          Select  Trim(APNO) as APNO,
+                  Trim(GVIDNO) as GVIDNOs,
+                  GVNAME,
+                  GVSUM,
+                  TO_CHAR(BGNDTE, 'YYYYMMDD') As "BGNDTE",
+                  CHKAMT,
+                  PAYAMT,
+                  AMTTOT,
+                  AMTINC,
+                  INTTOT,
+                  INTINC,
+                  SCATOT,
+                  SCAINC,
+                  STATOT,
+                  STACNT,
+                  STAAMT,
+                  TO_CHAR(LSTDTE, 'YYYYMMDD') As "LSTDTE",
+                  ADJCD,
+                  STS,
+                  ENDMK
+             From BCARF
+            Where APNO IN (SELECT Substr(A.APNO, 1, 12) As "APNO"
+                             FROM BCHEIR A
+                            WHERE A.HEIRIDNO LIKE #gvIdno:VARCHAR# || '%'
+                           Union
+                           SELECT Substr(A.APNO, 1, 12) As "APNO"
+                             FROM (SELECT A.APNO, A.GVIDNO
+                                     FROM BCBEN A, BCARF B
+                                    WHERE A.REL IN ('2', '3', '4', '5', '6', '7')
+                                      AND ((B.AMTTOT - B.AMTINC) > 0)
+                                      AND SUBSTR(A.APNO, 1, 12) = B.APNO
+                                      AND A.INSKD = '1'
+                                   MINUS
+                                   SELECT B.APNO, B.HEIRIDNO FROM BCHEIR B) C,
+                                          BCBEN A,
+                                          BCARF B
+                                    WHERE A.APNO = C.APNO
+                                      AND SUBSTR(A.APNO, 1, 12) = B.APNO
+                                      AND A.GVIDNO = C.GVIDNO
+                                      AND A.GVIDNO LIKE #gvIdno:VARCHAR# || '%'
+                           )   
+              And (AMTTOT - AMTINC) >0       
+  </select>
+    
+</sqlMap>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAARCLIST">
+
+    <typeAlias alias="Baarclist" type="tw.gov.bli.ba.domain.Baarclist" />
+    
+    <resultMap id="BaarclistResult" class="Baarclist">
+        <result column="BAARCLISTNUM"      property="baarclistNum"     jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="PAYCODE"           property="payCode"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="CASETYP"           property="caseTyp"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM"            property="issuYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEBDATE"          property="exeBdate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEEDATE"          property="exeEdate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ARCPG"             property="arcPg"            jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="ARCDATE"           property="arcDate"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="APNO"              property="apNo"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EVTNAME"           property="evtName"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="CHKMAN"            property="chkMan"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEMAN"            property="exeMan"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="DELML"             property="delMl"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="NOTE"              property="note"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEDATE"           property="exeDate"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    
+    <resultMap id="DecisionRpt01Result" class="Baarclist">
+        <result column="BAARCLISTNUM"      property="baarclistNum"     jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="ARCPG"             property="arcPg"            jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <!-- Payment Query [ -->
+    <resultMap id="PaymentQueryIssuYmResult" class="Baarclist">
+        <result column="MAXISSUYM"         property="maxIssuYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="MINISSUYM"         property="minIssuYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+
+    <resultMap id="PaymentQueryResult" class="Baarclist">
+        <result column="CASETYP"           property="caseTyp"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM"            property="issuYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="CHKMAN"            property="chkMan"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEMAN"            property="exeMan"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="EXEDATE"           property="exeDate"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ARCPG"             property="arcPg"            jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="ARCDATE"           property="arcDate"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="DELML"             property="delMl"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    
+    <resultMap id="DecisionRpt03Result" class="Baarclist">
+        <result column="PAYCODE"           property="payCode"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="MINARCPG"          property="minArcPg"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="MAXARCPG"          property="maxArcPg"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="COUNTNUMBER"       property="countNumber"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+    <!-- Payment Query ] -->
+    
+	<update id="updateDataForDecision">
+		Update  BAARCLIST
+           Set  DELML = 'D'
+         Where  APNO = #apNo:VARCHAR#    
+           And  ISSUYM = (select issuym
+                           from baappbase
+                           where apno = #apNo:VARCHAR# 
+                             and seqno = '0000')  
+	</update>
+	
+	<select id="selectMaxBaarclistNumAndArcPg" resultMap="DecisionRpt01Result">
+	    Select  max(BAARCLISTNUM) as BAARCLISTNUM,
+	            max(ARCPG) as ARCPG
+	       From BAARCLIST
+          Where ARCDATE = #arcDate:VARCHAR#
+            and PAYCODE = #payCode:VARCHAR#
+			<isEqual prepend="AND" property="payCode" compareValue="S">
+			<![CDATA[
+				ARCPG <= 900
+			]]>
+			</isEqual>              
+	</select>
+	
+	<select id="selectMaxBaarclistNumAndArcPgForS" resultMap="DecisionRpt01Result">
+	    Select  max(BAARCLISTNUM) as BAARCLISTNUM,
+	            max(ARCPG) as ARCPG
+	       From BAARCLIST
+          Where ARCDATE = #arcDate:VARCHAR#
+            and PAYCODE = #payCode:VARCHAR#
+			<![CDATA[
+			and	ARCPG > 900
+			]]>            
+	</select>	
+
+    <insert id="insertData" >
+        insert  into  BAARCLIST  
+        (    BAARCLISTNUM,
+             PAYCODE,
+             CASETYP,
+             ISSUYM,
+             EXEBDATE,
+             EXEEDATE,
+             ARCPG,
+             ARCDATE,
+             APNO,
+             EVTNAME,
+             CHKMAN,
+             EXEMAN,
+             DELML,
+             NOTE,
+             EXEDATE
+        )
+        values
+        (    #baarclistNum:NUMERIC#,
+             #payCode:VARCHAR#,
+             #caseTyp:VARCHAR#,
+             #issuYm:VARCHAR#,
+             #exeBdate:VARCHAR#,
+             #exeEdate:VARCHAR#,
+             #arcPg:NUMERIC#,
+             #arcDate:VARCHAR#,
+             #apNo:VARCHAR#,
+             #evtName:VARCHAR#,
+             #chkMan:VARCHAR#,
+             #exeMan:VARCHAR#,
+             #delMl:VARCHAR#,
+             #note:VARCHAR#,
+             #exeDate:VARCHAR#
+        )    
+    </insert>
+    
+    <select id="selectDataForDecisionRpt02" resultMap="BaarclistResult">
+        SELECT BAARCLISTNUM,     
+               PAYCODE,          
+               CASETYP,          
+               ISSUYM,           
+               EXEBDATE,          
+               EXEEDATE,         
+               ARCPG,            
+               ARCDATE,          
+               APNO,             
+               EVTNAME,          
+               CHKMAN,           
+               EXEMAN,         
+               DELML,            
+               NOTE,
+               EXEDATE              
+          FROM BAARCLIST
+         WHERE PAYCODE = #payCode:VARCHAR#
+           AND ARCDATE = #arcDate:VARCHAR#
+           <isNotEmpty property="arcPgBegin">
+               <![CDATA[
+               AND ARCPG >= #arcPgBegin:NUMERIC#
+               ]]>
+           </isNotEmpty>
+           <isNotEmpty property="arcPgEnd">
+               <![CDATA[
+               AND ARCPG <= #arcPgEnd:NUMERIC#
+               ]]>
+           </isNotEmpty>
+           <isNotEmpty property="exeMan">
+               AND EXEMAN = #exeMan:VARCHAR#
+           </isNotEmpty>
+           ORDER BY BAARCLISTNUM
+    </select>
+    
+    <select id="selectDataForDecisionRpt03" resultMap="DecisionRpt03Result">
+        SELECT PAYCODE,
+               min(ARCPG) AS MINARCPG,
+               max(ARCPG) AS MAXARCPG,
+               COUNT(*)   AS COUNTNUMBER,
+               DECODE(PAYCODE, 'L','1','K','2','S','3') AS SEQ
+          FROM BAARCLIST
+         WHERE ARCDATE = #arcDate:VARCHAR#
+         <isNotEmpty property="payCode">
+           AND PAYCODE = #payCode:VARCHAR#
+         </isNotEmpty>
+         GROUP BY PAYCODE
+         ORDER BY SEQ
+    </select>
+    
+    <!-- Payment Query [ -->
+    <select id="selectPaymentQueryIssuYm" resultMap="PaymentQueryIssuYmResult">
+        Select Min(ISSUYM) as MINISSUYM,  
+               Max(ISSUYM) as MAXISSUYM   
+          From BAARCLIST
+         Where APNO =  #apNo:VARCHAR#
+    </select>
+    
+    <select id="selectPaymentQueryData" resultMap="PaymentQueryResult">
+       Select CASETYP,     
+              ISSUYM,
+              CHKMAN,
+              EXEMAN,
+              EXEDATE,
+              ARCPG,
+              ARCDATE,
+              DELML
+         From BAARCLIST       
+        Where APNO = #apNo:VARCHAR#
+     Order By ISSUYM
+    </select>
+    <!-- Payment Query ] -->
+</sqlMap>

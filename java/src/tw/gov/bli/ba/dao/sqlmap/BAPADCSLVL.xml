@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPADCSLVL">
+
+    <typeAlias alias="Bapadcslvl" type="tw.gov.bli.ba.domain.Bapadcslvl" />
+
+    <resultMap id="BAPADCSLVLResult" class="Bapadcslvl">
+        <result column="PAYCODE"     property="payCode"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="PAYKIND"     property="payKind"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="RECHKLVL"    property="rechklvl"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="STDAMT"      property="stdAmt"       jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="HICLEVEL"    property="hicLevel"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="NLWKMK"      property="nlwkmk"       jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="ECHKLEVEL"   property="echkLevel"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="OCHKLEVEL"   property="ochkLevel"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="WCHKLEVEL"   property="wchkLevel"    jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CRTUSER"     property="crtUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"     property="crtTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"     property="updUser"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"     property="updTime"      jdbcType="VARCHAR"     javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO BAPADCSLVL 
+        ( 
+            PAYCODE,
+            PAYKIND,
+            RECHKLVL,
+            STDAMT,
+            HICLEVEL,
+            NLWKMK,
+            ECHKLEVEL,
+            OCHKLEVEL,
+            WCHKLEVEL,
+            CRTUSER,
+            CRTTIME,
+            UPDUSER,
+            UPDTIME
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #payKind:VARCHAR#,
+            #rechklvl:VARCHAR#,
+            #stdAmt:VARCHAR#,
+            #hicLevel:VARCHAR#,
+            #nlwkmk:VARCHAR#,
+            #echkLevel:VARCHAR#,
+            #ochkLevel:VARCHAR#,
+            #wchkLevel:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+        
+    <select id="selectData" resultMap="BAPADCSLVLResult">
+        SELECT A.PAYCODE,
+               A.PAYKIND,
+               A.RECHKLVL,
+               A.STDAMT,
+               A.HICLEVEL,
+               A.NLWKMK,
+               A.ECHKLEVEL,
+               A.OCHKLEVEL,
+               A.WCHKLEVEL,
+               A.CRTUSER,
+               A.CRTTIME,
+               A.UPDUSER,
+               A.UPDTIME
+        FROM BAPADCSLVL A        
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="payKind">
+                    A.PAYKIND = #payKind:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="rechklvl">
+                    A.RECHKLVL = #rechklvl:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        Order By A.RECHKLVL    
+    </select>
+    
+    <update id="updateData">
+        UPDATE BAPADCSLVL SET
+               payCode = #payCode:VARCHAR#,
+               payKind = #payKind:VARCHAR#,
+               rechklvl = #rechklvl:VARCHAR#,
+               stdAmt = #stdAmt:VARCHAR#,
+               hicLevel = #hicLevel:VARCHAR#,
+               nlwkmk = #nlwkmk:VARCHAR#,
+               echkLevel = #echkLevel:VARCHAR#,
+               ochkLevel = #ochkLevel:VARCHAR#,
+               wchkLevel = #wchkLevel:VARCHAR#,
+               crtUser = #crtUser:VARCHAR#,
+               crtTime = #crtTime:VARCHAR#,
+               updUser = #updUser:VARCHAR#,
+               updTime = #updTime:VARCHAR#          
+         <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="rechklvl">
+                    RECHKLVL = #rechklvl:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </update>    
+    
+    <delete id="deleteData" parameterClass="Bapadcslvl">
+        DELETE FROM BAPADCSLVL
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payKind">
+                    PAYKIND = #payKind:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="rechklvl">
+                    RECHKLVL = #rechklvl:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+</sqlMap>

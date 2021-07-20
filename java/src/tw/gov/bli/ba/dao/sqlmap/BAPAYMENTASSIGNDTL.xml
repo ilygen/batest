@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENTASSIGNDTL">
+	<typeAlias alias="Bapaymentassigndtl" type="tw.gov.bli.ba.domain.Bapaymentassigndtl" />
+	
+	<resultMap id="paymentResult" class="Bapaymentassigndtl">
+        <result column="PAYMENTNO"     		 property="paymentNo"        	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NOWSTAGE"    		 property="nowStage"   			jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="APNO"        		 property="apno"        		jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM"    		 	 property="issuYm"  			jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"        		 property="payYm"       		jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYAMT"     		 property="payAmt"     			jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />     
+		<result column="PAYINTEREST"     	 property="payInterest"    		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>                                           
+    	<result column="EXECAMT"     	 	 property="execAmt"     		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="PAYMENTNODETAIL"     property="paymentNoDetail"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYMENTDATELINE"     property="paymentDateLine"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    <resultMap id="paymentConfirmResult" class="Bapaymentassigndtl">
+        <result column="NOWSTAGE"    		 property="nowStage"   			jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="PAYAMT"     		 property="payAmt"     			jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  nullValue="0"/>     
+		<result column="PAYINTEREST"     	 property="payInterest"    		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />                                           
+    	<result column="EXECAMT"     	 	 property="execAmt"     		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="PAYMENTNODETAIL"     property="paymentNoDetail"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PAYMENTDATELINE"     property="paymentDateLine"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    <resultMap id="paymentReprintResult" class="Bapaymentassigndtl">
+        <result column="PAYAMT"     		 property="payAmt"     			jdbcType="NUMERIC"      javaType="java.math.BigDecimal"  nullValue="0"/>     
+		<result column="PAYMENTNODETAIL"     property="paymentNoDetail"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    
+	<insert id="insertPaymentData">
+        INSERT INTO BAPAYMENTASSIGNDTL 
+        ( 
+           PAYMENTNO,
+           NOWSTAGE,
+           APNO,
+           ISSUYM,
+           PAYYM,
+           PAYAMT,
+           PAYINTEREST,
+           EXECAMT,
+           PAYMENTNODETAIL,
+           PAYMENTDATELINE,
+           BARCODE1,
+           BARCODE2,
+           BARCODE3
+        )  
+        VALUES
+        ( 
+            #paymentNo:VARCHAR#,
+            #nowStage:NUMERIC#,      
+            #apno:VARCHAR#,     
+            #issuYm:VARCHAR#,
+            #payYm:VARCHAR#,
+            #payAmt:NUMERIC#,
+            #payInterest:NUMERIC#,
+            #execAmt:NUMERIC#,
+            #paymentNoDetail:VARCHAR#,
+            #paymentDateLine:VARCHAR#,
+            #barCode1:VARCHAR#,
+            #barCode2:VARCHAR#,
+            #barCode3:VARCHAR#
+         )     
+    </insert>
+    
+    <select id="seletPaymentStageDetailList" resultMap="paymentResult">
+		SELECT t1.PAYMENTNO,
+	           t1.NOWSTAGE,
+	           t1.APNO,
+	           t1.ISSUYM,
+	           t1.PAYYM,
+	           t1.PAYAMT,
+	           t1.PAYINTEREST,
+	           t1.EXECAMT,
+	           t1.PAYMENTNODETAIL,
+	           t1.PAYMENTDATELINE
+		  From BAPAYMENTASSIGNDTL t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+		 <![CDATA[
+		   AND t1.APNO <> '0'
+		 ]]>
+	</select>
+	<select id="seletPaymentDetailList" resultMap="paymentConfirmResult">
+	SELECT DISTINCT t1.PAYMENTNODETAIL,
+	                t1.NOWSTAGE,
+					SUM(t1.PAYINTEREST) AS PAYINTEREST,
+					SUM(t1.EXECAMT) AS EXECAMT,
+					t1.PAYMENTDATELINE,
+					SUM(t1.PAYAMT) AS PAYAMT
+			   FROM BAPAYMENTASSIGNDTL t1 
+			  WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+			  GROUP BY t1.PAYMENTNODETAIL,t1.NOWSTAGE,t1.PAYMENTDATELINE  
+			  ORDER BY t1.NOWSTAGE
+	
+    </select>
+    <select id="seletPaymentDetail" resultMap="paymentConfirmResult">
+	SELECT DISTINCT t1.PAYMENTNODETAIL,
+	                t1.NOWSTAGE,
+					SUM(t1.PAYINTEREST) AS PAYINTEREST,
+					SUM(t1.EXECAMT) AS EXECAMT,
+					t1.PAYMENTDATELINE,
+					SUM(t1.PAYAMT) AS PAYAMT
+			   FROM BAPAYMENTASSIGNDTL t1 
+			  WHERE t1.PAYMENTNO like (#paymentNo:VARCHAR# || '%')
+			  GROUP BY t1.PAYMENTNODETAIL,t1.NOWSTAGE,t1.PAYMENTDATELINE  
+			  ORDER BY t1.NOWSTAGE
+	
+    </select>
+    <select id="selectPaymentReprintList" resultMap="paymentReprintResult">
+	       SELECT DISTINCT tt2.PAYMENTNODETAIL,
+              	  SUM(decode(tt2.PAYAMT,'',0,tt2.PAYAMT) +decode(tt2.PAYINTEREST,'',0,tt2.PAYINTEREST)  + decode(tt2.EXECAMT,'',0,tt2.EXECAMT)) as PAYAMT
+	          FROM BAPAYMENTASSIGNDTL tt2
+	         WHERE tt2.PAYMENTNO = #paymentNo:VARCHAR#
+	         Group by PAYMENTNODETAIL
+	         Order by tt2.PAYMENTNODETAIL
+	</select>
+    
+    <delete id="deletePaymentData">
+    	DELETE FROM BAPAYMENTASSIGNDTL
+    	WHERE PAYMENTNO = #paymentNo:VARCHAR#
+    </delete>
+    
+    <update id="updatePaymentBarcode">
+    	UPDATE BAPAYMENTASSIGNDTL
+    	  SET  BARCODE1 = #barCode1:VARCHAR#,
+    	  	   BARCODE2 = #barCode2:VARCHAR#,
+    	  	   BARCODE3 = #barCode3:VARCHAR#
+    	 WHERE PAYMENTNODETAIL = #paymentNoDetail:VARCHAR#
+    </update>
+    <select id="selectMaxInterest" resultClass="java.lang.Integer">
+    	SELECT MAX(DISTINCT NOWSTAGE)
+		  FROM BAPAYMENTASSIGNDTL
+		 WHERE PAYMENTNO = #paymentNo:VARCHAR#
+    </select>
+</sqlMap>

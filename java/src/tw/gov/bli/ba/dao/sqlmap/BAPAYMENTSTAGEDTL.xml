@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAYMENTSTAGEDTL">
+<typeAlias alias="Bapaymentstagedtl" type="tw.gov.bli.ba.domain.Bapaymentstagedtl" />
+	<resultMap id="paymentResult" class="Bapaymentstagedtl">
+        <result column="PAYMENTNO"     		 property="paymentNo"        	jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="NOWSTAGE"    		 property="nowStage"   			jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="IRATE"        		 property="iRate"        		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="REPAYAMT"    		 property="rePayAmt"  			jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="ACCAMT"        		 property="accAmt"       		jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="INTERESTBEGDATE"     property="interestBegDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+		<result column="INTERESTENDDATE"     property="interestEndDate"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                                           
+    	<result column="TRYINTEREST"     	 property="tryInterest"     	jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+        <result column="ADJINTEREST"         property="adjInterest"       	jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0"/>
+    </resultMap>
+	<insert id="insertPaymentData">
+        INSERT INTO BAPAYMENTSTAGEDTL
+        ( 
+           PAYMENTNO,
+           NOWSTAGE,
+           IRATE,
+           REPAYAMT,
+           ACCAMT,
+           INTERESTBEGDATE,
+           INTERESTENDDATE,
+           TRYINTEREST,
+           ADJINTEREST
+            
+        )  
+        VALUES
+        ( 
+            #paymentNo:VARCHAR#,
+            #nowStage:NUMERIC#,
+            #iRate:NUMERIC#,
+            #rePayAmt:NUMERIC#,
+            #accAmt:NUMERIC#,
+            #interestBegDate:VARCHAR#,
+            #interestEndDate:VARCHAR#,
+            #tryInterest:NUMERIC#,
+            #adjInterest:NUMERIC# 
+        )     
+    </insert>
+    <select id="seletPaymentStageDetailList" resultMap="paymentResult">
+		SELECT t1.PAYMENTNO,
+	           t1.NOWSTAGE,
+	           t1.IRATE,
+	           t1.REPAYAMT,
+	           t1.ACCAMT,
+	           t1.INTERESTBEGDATE,
+	           t1.INTERESTENDDATE,
+	           t1.TRYINTEREST,
+	           t1.ADJINTEREST 
+		  From BAPAYMENTSTAGEDTL t1
+		 WHERE t1.PAYMENTNO = #paymentNo:VARCHAR#
+		 ORDER BY t1.INTERESTBEGDATE ,t1.NOWSTAGE
+	</select>
+	<delete id="deletePaymentData">
+		DELETE FROM BAPAYMENTSTAGEDTL
+		WHERE PAYMENTNO = #paymentNo:VARCHAR#
+	</delete>
+</sqlMap>

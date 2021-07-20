@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BASENIMAINT">
+
+    <typeAlias alias="Basenimaint" type="tw.gov.bli.ba.domain.Basenimaint" />
+
+    <resultMap id="BASENIMAINTResult" class="Basenimaint">
+        <result column="APNO"        property="apNo"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="SEQNO"       property="seqNo"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="SENITYP"     property="seniTyp"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="EVTIDNNO"    property="evtIdnNo"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="EVTBRDATE"   property="evtBrDate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="EVTNAME"     property="evtName"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UBNO"        property="ubno"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="UBNOCK"      property="ubnoCk"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="OWESBDATE"   property="owesBdate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="OWESEDATE"   property="owesEdate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="OWESMK"      property="owesMk"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="CRTUSER"     property="crtUser"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="CRTTIME"     property="crtTime"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="UPDUSER"     property="updUser"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="UPDTIME"     property="updTime"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>    
+    
+    <select id="selectDataBy" resultMap="BASENIMAINTResult">
+        SELECT  A.APNO,     
+				A.SEQNO,    
+				A.SENITYP,    
+				A.EVTIDNNO,  
+				A.EVTBRDATE,
+				A.EVTNAME,    
+				A.UBNO,     
+				A.UBNOCK,     
+				A.OWESBDATE,
+				A.OWESEDATE,
+				A.OWESMK,     
+				A.CRTUSER,    
+				A.CRTTIME,    
+				A.UPDUSER,    
+				A.UPDTIME    
+        FROM  BASENIMAINT A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    A.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seniTyp">
+                    A.SENITYP = #seniTyp:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.SEQNO
+    </select>
+    
+    <select id="selectSeqNoBy" resultClass="java.lang.String">
+	    SELECT LPAD(TO_CHAR(TO_NUMBER(NVL(MAX(TO_NUMBER(A.SEQNO)),0))+1),2,'0')  
+	      FROM BASENIMAINT A
+	     WHERE A.APNO = #apNo:VARCHAR#
+	       AND A.SENITYP = #seniTyp:VARCHAR#
+    </select>
+    
+    
+    <insert id="insertData">
+        INSERT INTO BASENIMAINT
+        (
+            APNO,     
+            SEQNO,        
+            SENITYP,      
+            EVTIDNNO,     
+            EVTBRDATE,    
+            EVTNAME,      
+            UBNO,         
+            UBNOCK,       
+            OWESBDATE,    
+            OWESEDATE,    
+            OWESMK,       
+            CRTUSER,      
+            CRTTIME 
+        )
+        VALUES
+        (
+            #apNo:VARCHAR#,     
+            #seqNo:VARCHAR#,    
+            #seniTyp:VARCHAR#,  
+            #evtIdnNo:VARCHAR#, 
+            #evtBrDate:VARCHAR#,
+            #evtName:VARCHAR#,  
+            #ubno:VARCHAR#,     
+            #ubnoCk:VARCHAR#,   
+            #owesBdate:VARCHAR#,
+            #owesEdate:VARCHAR#,
+            #owesMk:VARCHAR#,   
+            #crtUser:VARCHAR#,  
+            #crtTime:VARCHAR#        
+        )
+    </insert>
+    
+    <update id="updateData">
+        UPDATE BASENIMAINT SET
+            OWESBDATE = #owesBdate:VARCHAR#,
+            OWESEDATE = #owesEdate:VARCHAR#,
+            OWESMK = #owesMk:VARCHAR#,      
+            UPDUSER = #updUser:VARCHAR#,    
+            UPDTIME = #updTime:VARCHAR#
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#        
+          AND SENITYP = #seniTyp:VARCHAR# 
+    </update>
+    
+    <update id="updateDataForOldSeniab">
+        UPDATE BASENIMAINT SET
+            OLDSENIAB = #oldSeniab:VARCHAR#
+        WHERE APNO = #apNo:VARCHAR#            
+          AND SENITYP = #seniTyp:VARCHAR# 
+    </update>
+    
+    <delete id="deleteData">
+        DELETE FROM BASENIMAINT
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#        
+          AND SENITYP = #seniTyp:VARCHAR#       
+    </delete>
+</sqlMap>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<orion-application 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-application-10_0.xsd"
+    schema-major-version="10"
+    schema-minor-version="0"
+>
+
+<imported-shared-libraries>
+<remove-inherited name="oracle.toplink"></remove-inherited>
+<remove-inherited name="apache.commons.logging"></remove-inherited>
+<remove-inherited name="oracle.jwsdl"></remove-inherited>
+<remove-inherited name="oracle.ws.client"></remove-inherited>
+<remove-inherited name="oracle.ws.core"></remove-inherited>
+<remove-inherited name="oracle.ws.jaxrpc"></remove-inherited>
+<remove-inherited name="oracle.ws.reliability"></remove-inherited>
+<remove-inherited name="oracle.ws.security"></remove-inherited>
+<remove-inherited name="oracle.ws.testpage"></remove-inherited>
+<remove-inherited name="oracle.xml"></remove-inherited>
+<remove-inherited name="oracle.xml.security"></remove-inherited>
+<remove-inherited name="soap"></remove-inherited>
+</imported-shared-libraries>
+   <log>
+   	 <!--  
+   	 <odl path="../log/me/" max-file-size="1000" max-directory-size="10000" />
+   	 -->
+     <file path="../../log/BaCm.log" />
+   </log>
+
+
+    <!-- This is commented out unless jazn-based SSO is used.  The installer or setup
+         disables the comments if required.  -->
+         
+    <!-- %BEGINGOVERNSSO%
+    
+    <jazn provider="XML">
+        <jazn-web-app auth-method="CUSTOM_AUTH"/>
+    </jazn>
+    
+    %ENDGOVERNSSO% -->
+
+</orion-application>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAIRR">
+
+	<typeAlias alias="Bapairr" type="tw.gov.bli.ba.domain.Bapairr" />
+
+    <resultMap id="BAPAIRRForReplacementRatioMaintResult" class="Bapairr">
+        <result column="EFFYM"        property="effYm"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="INSAVG1"      property="insAvg1"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INSAVG2"      property="insAvg2"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INSAVG3"      property="insAvg3"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INSAVG4"      property="insAvg4"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEA1"    property="irrTypeA1"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEB1"    property="irrTypeB1"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEC1"    property="irrTypeC1"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPED1"    property="irrTypeD1"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEA2"    property="irrTypeA2"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEB2"    property="irrTypeB2"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPEC2"    property="irrTypeC2"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="IRRTYPED2"    property="irrTypeD2"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CRTUSER"      property="crtUser"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="USER"         property="user"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DATE"         property="date"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+     </resultMap>
+    
+    <select id="selectBapairrDataForReplacementRatioMaintBy" resultMap="BAPAIRRForReplacementRatioMaintResult">
+                 SELECT EFFYM,   
+                        INSAVG1,   
+                        INSAVG2,    
+                        INSAVG3,    
+                        INSAVG4,    
+                        IRRTYPEA1,   
+                        IRRTYPEA2,  
+                        IRRTYPEB1,  
+                        IRRTYPEB2,  
+                        IRRTYPEC1,  
+                        IRRTYPEC2,  
+                        IRRTYPED1,  
+                        IRRTYPED2,  
+                        CRTUSER,
+                        CRTTIME,
+                        UPDUSER,
+                        UPDTIME,
+                        NVL(UPDUSER,CRTUSER) AS "USER", 
+                        Substr(NVL(UPDTIME,CRTTIME),1,8) AS "DATE"
+                   FROM BAPAIRR     
+                    <dynamic prepend="WHERE">
+                    <isParameterPresent>
+                        <isNotEmpty prepend="AND" property="effYm">
+                        <![CDATA[
+                            EFFYM <= #effYm:VARCHAR#
+                        ]]>
+                        </isNotEmpty>
+                        <isNotEmpty prepend="AND" property="payCode">
+                        <![CDATA[
+                            PAYCODE = #payCode:VARCHAR#
+                        ]]>
+                        </isNotEmpty>
+                    </isParameterPresent>
+                   </dynamic>
+                  ORDER BY EFFYM
+    </select>
+    
+    <delete id="deleteData">
+     DELETE FROM BAPAIRR 
+     WHERE PAYCODE = #payCode:VARCHAR#
+       AND EFFYM = #effYm:VARCHAR#
+    </delete>    
+    
+    <insert id="insertData">
+        INSERT INTO BAPAIRR 
+        ( 
+            PAYCODE,  
+            EFFYM,     
+            INSAVG1,   
+            INSAVG2,    
+            INSAVG3,   
+            INSAVG4, 
+            IRRTYPEA1,  
+            IRRTYPEA2,  
+            IRRTYPEB1,  
+            IRRTYPEB2,  
+            IRRTYPEC1, 
+            IRRTYPEC2,  
+            IRRTYPED1, 
+            IRRTYPED2, 
+            CRTUSER,   
+            CRTTIME, 
+            UPDUSER,  
+            UPDTIME  
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #effYm:VARCHAR#,
+            #insAvg1:NUMERIC#,
+            #insAvg2:NUMERIC#,
+            #insAvg3:NUMERIC#,
+            #insAvg4:NUMERIC#,
+            #irrTypeA1:NUMERIC#,
+            #irrTypeA2:NUMERIC#,
+            #irrTypeB1:NUMERIC#,
+            #irrTypeB2:NUMERIC#,
+            #irrTypeC1:NUMERIC#,
+            #irrTypeC2:NUMERIC#,
+            #irrTypeD1:NUMERIC#,
+            #irrTypeD2:NUMERIC#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+    
+    <insert id="insertDataForDisabledSurvivor">
+        INSERT INTO BAPAIRR 
+        ( 
+            PAYCODE,  
+            EFFYM,     
+            INSAVG1,   
+            INSAVG2,    
+            INSAVG3,   
+            INSAVG4, 
+            IRRTYPEA2,  
+            IRRTYPEB2,  
+            IRRTYPEC2,  
+            IRRTYPED2, 
+            CRTUSER,   
+            CRTTIME, 
+            UPDUSER,  
+            UPDTIME  
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #effYm:VARCHAR#,
+            #insAvg1:NUMERIC#,
+            #insAvg2:NUMERIC#,
+            #insAvg3:NUMERIC#,
+            #insAvg4:NUMERIC#,
+            #irrTypeA2:NUMERIC#,
+            #irrTypeB2:NUMERIC#,
+            #irrTypeC2:NUMERIC#,
+            #irrTypeD2:NUMERIC#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+    
+     <update id="updateData">
+        UPDATE BAPAIRR SET
+               INSAVG1     =  #insAvg1:NUMERIC#,
+               INSAVG2     =  #insAvg2:NUMERIC#,
+               INSAVG3     =  #insAvg3:NUMERIC#,
+               INSAVG4     =  #insAvg4:NUMERIC#,
+               IRRTYPEA1   =  #irrTypeA1:NUMERIC#,
+               IRRTYPEA2   =  #irrTypeA2:NUMERIC#,
+               IRRTYPEB1   =  #irrTypeB1:NUMERIC#,
+               IRRTYPEB2   =  #irrTypeB2:NUMERIC#,
+               IRRTYPEC1   =  #irrTypeC1:NUMERIC#,
+               IRRTYPEC2   =  #irrTypeC2:NUMERIC#,
+               IRRTYPED1   =  #irrTypeD1:NUMERIC#,
+               IRRTYPED2   =  #irrTypeD2:NUMERIC#,
+               UPDUSER     =  #updUser:VARCHAR#,
+               UPDTIME     =  #updTime:VARCHAR#
+         WHERE PAYCODE  =  #payCode:VARCHAR#
+           AND EFFYM    =  #effYm:VARCHAR#
+    </update>
+    
+    <update id="updateDataForDisabledSurvivor">
+        UPDATE BAPAIRR SET
+               INSAVG1     =  #insAvg1:NUMERIC#,
+               INSAVG2     =  #insAvg2:NUMERIC#,
+               INSAVG3     =  #insAvg3:NUMERIC#,
+               INSAVG4     =  #insAvg4:NUMERIC#,
+               IRRTYPEA2   =  #irrTypeA2:NUMERIC#,
+               IRRTYPEB2   =  #irrTypeB2:NUMERIC#,
+               IRRTYPEC2   =  #irrTypeC2:NUMERIC#,
+               IRRTYPED2   =  #irrTypeD2:NUMERIC#,
+               UPDUSER     =  #updUser:VARCHAR#,
+               UPDTIME     =  #updTime:VARCHAR#
+         WHERE PAYCODE  =  #payCode:VARCHAR#
+           AND EFFYM    =  #effYm:VARCHAR#
+    </update>
+    
+</sqlMap>

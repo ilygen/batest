@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.bea.com/ns/weblogic/90" xsi:schemaLocation="http://www.bea.com/ns/weblogic/90">
+	<application-param>
+        <param-name>webapp.encoding.default</param-name>
+        <param-value>UTF-8</param-value>
+    </application-param>
+	<prefer-application-packages>
+		<package-name>org.apache.*</package-name>
+		<package-name>org.springframwork.*</package-name>
+		<package-name>org.aopalliance.*</package-name>
+		<package-name>net.sf.cglib.*</package-name>
+	</prefer-application-packages>
+</weblogic-application> 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPACUT">
+
+    <typeAlias alias="Bapacut" type="tw.gov.bli.ba.domain.Bapacut" />
+
+    <resultMap id="BAPACUTResult" class="Bapacut">
+        <result column="PAYCODE"     property="payCode"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CUTTYP"      property="cutTyp"     jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="PARAMNAME"   property="paramName"   jdbcType="VARCHAR"     javaType="java.lang.String" />
+        <result column="CUTSEQ"      property="cutSeq"      jdbcType="VARCHAR"     javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO BAPACUT 
+        ( 
+            PAYCODE,
+            CUTTYP,
+            CUTSEQ,
+            UPDUSER,
+            UPDTIME
+        )  
+        VALUES
+        ( 
+            #payCode:VARCHAR#,
+            #cutTyp:VARCHAR#,
+            #cutSeq:VARCHAR#,
+            #updUser:VARCHAR#,
+            #updTime:VARCHAR#
+        )     
+    </insert>
+    
+    <delete id="deleteData" parameterClass="java.lang.String">
+        DELETE FROM BAPACUT
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+             	PAYCODE = #payCode:VARCHAR#
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+        
+    <select id="selectDataBy" resultMap="BAPACUTResult">
+        SELECT A.PAYCODE,
+        	   A.CUTTYP,  
+               B.PARAMNAME,  
+               A.CUTSEQ
+        FROM BAPACUT A,BAPARAM B
+        WHERE A.CUTTYP = B.PARAMCODE
+          And B.PARAMGROUP = 'CUTTYP'
+          And B.PARAMTYP = '0'
+          And B.PARAMUSEMK = 'Y'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic> 
+        Order By A.CUTTYP
+     
+    </select>
+    
+</sqlMap>

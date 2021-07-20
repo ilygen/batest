@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+    <formset>
+        <!-- Update Log Query : baiq0d030q.jsp -->
+        <form name="PaymentProcessQueryForm">
+             <field property="idn" depends="required" page="1">
+             	<msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" name="required" key="label.payment.paymentQuery.idn" />
+                <arg bundle="baMsg" name="mask" key="label.payment.paymentQuery.idn" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_MASK}</var-value>
+                </var>
+            </field>
+        </form>
+    	 <!-- Update Log Query : baiq0d030q.jsp -->
+        <form name="PaymentReprintForm">
+            <field property="paymentDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.payment.paymentQuery.paymentDate" />
+            </field>
+        </form>
+       <form name="PaymentProgressQueryForm">
+             <field property="paymentDate" depends="chineseDate" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <arg bundle="baMsg" key="label.payment.paymentQuery.paymentDate" />
+            </field>
+        </form>
+    </formset>
+</form-validation>

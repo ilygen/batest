@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BALP0D330">
+
+    <typeAlias alias="Balp0d330" type="tw.gov.bli.ba.domain.Balp0d330" />
+
+    <resultMap id="BALP0D330Result" class="Balp0d330">
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSUYM"         property="issuYm"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="APCOUNT"        property="apCount"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="QUALIFY1"       property="qualify1"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="QUALIFY2"       property="qualify2"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="QUALIFY3"       property="qualify3"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="QUALIFY4"       property="qualify4"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="QUALIFY5"       property="qualify5"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="NEWCASE1"       property="newCase1"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="NEWCASE2"       property="newCase2"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DISQUALIFY1"    property="disQualify1"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DISQUALIFY2"    property="disQualify2"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CRTUSER"        property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRTTIME"        property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+    
+    <!-- MonthlyRpt 03 Begin -->
+    <!-- [ -->
+    <select id="selectMonthlyRpt03ListBy" resultMap="BALP0D330Result">
+        SELECT A.PAYCODE, 
+               A.ISSUYM, 
+               A.APCOUNT, 
+               A.QUALIFY1, 
+               A.QUALIFY2, 
+               A.QUALIFY3, 
+               A.QUALIFY4, 
+               A.QUALIFY5, 
+               A.NEWCASE1, 
+               A.NEWCASE2, 
+               A.DISQUALIFY1, 
+               A.DISQUALIFY2, 
+               A.CRTUSER, 
+               A.CRTTIME 
+        FROM   BALP0D330 A 
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYmBegin">
+                <![CDATA[
+                    A.ISSUYM >= #issuYmBegin:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYmEnd">
+                <![CDATA[
+                    A.ISSUYM <= #issuYmEnd:VARCHAR#
+                ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.ISSUYM 
+     </select>
+     <!-- ] -->
+     <!-- MonthlyRpt 03 End -->
+
+</sqlMap>

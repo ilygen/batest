@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPAINSPECT">
+
+    <typeAlias alias="Bapainspect" type="tw.gov.bli.ba.domain.Bapainspect" />
+
+    <resultMap id="BAPAINSPECTResult" class="Bapainspect">
+        <result column="PAYCODE"        property="payCode"      jdbcType="VARCHAR"      javaType="java.lang.String" />
+        <result column="BINSURSENI"     property="binsurSeni"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="EINSURSENI"     property="einsurSeni"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BISSUEAMT"      property="bissueAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="EISSUEAMT"      property="eissueAmt"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BCONDITION"     property="bcondition"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ECONDITION"     property="econdition"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CONDITION1"     property="condition1"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CONDITION2"     property="condition2"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CONDITION3"     property="condition3"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CONDITION4"     property="condition4"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ANDORTYP"       property="andOrTyp"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RANGE"          property="range"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="SAMPLEVOLUME"   property="sampleVolume" jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="LIMITAMOUNT"    property="limitAmount"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="PRINTTYP"       property="printTyp"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ENABLE"         property="enable"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDUSER"        property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="UPDTIME"        property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BAPAINSPECTResult">
+        SELECT A.PAYCODE, 
+               A.BINSURSENI, 
+               A.EINSURSENI, 
+               A.BISSUEAMT, 
+               A.EISSUEAMT, 
+               A.BCONDITION, 
+               A.ECONDITION, 
+               A.CONDITION1, 
+               A.CONDITION2, 
+               A.CONDITION3, 
+               A.CONDITION4, 
+               A.ANDORTYP, 
+               A.RANGE, 
+               A.SAMPLEVOLUME, 
+               A.LIMITAMOUNT, 
+               A.PRINTTYP, 
+               A.ENABLE, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BAPAINSPECT A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="payCode">
+                    A.PAYCODE = #payCode:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.PAYCODE
+    </select>
+    
+    <delete id="deleteData" parameterClass="java.lang.String">
+        DELETE FROM BAPAINSPECT
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+             	PAYCODE = #payCode:VARCHAR#
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+
+    <insert id="insertData">
+        INSERT INTO BAPAINSPECT
+        (
+            PAYCODE, 
+            BINSURSENI, 
+            EINSURSENI, 
+            BISSUEAMT, 
+            EISSUEAMT, 
+            BCONDITION, 
+            ECONDITION, 
+            CONDITION1, 
+            CONDITION2, 
+            CONDITION3, 
+            CONDITION4, 
+            ANDORTYP, 
+            RANGE, 
+            SAMPLEVOLUME, 
+            LIMITAMOUNT, 
+            PRINTTYP, 
+            ENABLE, 
+            UPDUSER, 
+            UPDTIME
+        ) 
+        VALUES
+        (
+            #payCode:VARCHAR#, 
+            #binsurSeni:NUMERIC#, 
+            #einsurSeni:NUMERIC#, 
+            #bissueAmt:NUMERIC#, 
+            #eissueAmt:NUMERIC#, 
+            #bcondition:NUMERIC#, 
+            #econdition:NUMERIC#, 
+            #condition1:VARCHAR#, 
+            #condition2:VARCHAR#, 
+            #condition3:VARCHAR#, 
+            #condition4:VARCHAR#, 
+            #andOrTyp:VARCHAR#, 
+            #range:NUMERIC#, 
+            #sampleVolume:NUMERIC#, 
+            #limitAmount:NUMERIC#, 
+            #printTyp:VARCHAR#, 
+            #enable:VARCHAR#, 
+            #updUser:VARCHAR#, 
+            #updTime:VARCHAR#
+        )
+    </insert>
+
+</sqlMap>

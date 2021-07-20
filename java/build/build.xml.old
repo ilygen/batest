@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../" default="init" name="${app.name}">
+    <target name="init">    	
+  		<property file="./build/build.properties"/>		
+   	 	<tstamp>
+    		<format property="sysdate" pattern="yyyyMMdd" locale="tw"/>
+  		</tstamp>	     	    
+	    <property name="xml.dir" value="build/xml"/>
+	    <!--<property name="lib2.dir" value="build_Weblogic/lib"/>-->
+	    <property name="war.dir" value="war/WEB-INF"/>
+	    <property name="build.dir" value="${war.dir}/classes"/>
+		<property name="lib.dir" value="${war.dir}/lib"/>
+		<property name="src.dir" value="src"/>
+		<property name="disc.dir" value="build/${sysdate}"/>				
+	    <path id="master-classpath">	
+	        <pathelement path="${build.dir}"/>
+			<fileset dir="${oc4j.home}/lib">
+	            <include name="*.jar"/>
+	        </fileset>
+			<fileset dir="${lib.dir}">
+	            <include name="*.jar"/>
+	        </fileset>	        
+	    </path>        
+    </target>
+	
+	<target name="build" depends="init" description="Compile main source tree java files" >
+        <echo message="${app.name}: ${ant.file}"/>
+        <!--<antcall target="starteam"/>-->
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>		
+		<copy overwrite="true" todir="${build.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.launch, **/*.java"/>
+            <!--<fileset dir="${src.dir}" excludes="**/*.launch, **/*.java, **/webServiceUrl.properties"/>-->
+        </copy>
+        <!--<copy overwrite="true" todir="${build.dir}/">
+            <fileset dir="${xml.dir}" includes="**/webServiceUrl.properties"/>
+		</copy>            
+        <copy overwrite="true" todir="${war.dir}/conf">
+            <fileset dir="${xml.dir}" includes="**/applicationContext-schedule.xml"/>
+        </copy>-->
+        <javac destdir="${build.dir}" 
+	     			 encoding="UTF-8"
+	       			 debug="true"
+	                 deprecation="false" optimize="false" failonerror="true" fork="yes" memoryMaximumSize="1024m" memoryInitialSize="256m">
+	        <classpath refid="master-classpath"/>
+	    	<src path="${src.dir}"/>
+	    </javac>
+        
+    </target>
+	
+    <!--  Pack the Web Project to .war -->
+    <target depends="build" name="war">
+		<delete dir="${disc.dir}"/>		
+		<mkdir dir="${disc.dir}"/>				
+        <!--<war warfile="${disc.dir}/${app.name}.war" webxml="${xml.dir}/web.xml" >-->
+        <war warfile="${disc.dir}/${app.name}.war" webxml="war/WEB-INF/web.xml" >
+            <fileset dir="war">
+                <exclude name="**/jta.jar" />
+                <exclude name="**/ojdbc14.jar" />
+                <exclude name="**/*.rpt" />
+                <exclude name="**/*.mex" />
+                <exclude name="**/*.bak" />
+                <exclude name="**/.svn" />
+                <exclude name="**/vssver2.scc" />
+                <!--<exclude name="**/jaxrpc.jar" />-->
+            </fileset>
+            <!--<lib dir="${lib2.dir}">
+                <include name="**/*.jar" />
+            </lib>-->
+        </war>
+    </target>
+    <!--  Pack the .war to Enterprise Application Server(.EAR)  -->
+    <target depends="war" name="ear">
+        <ear destfile="${disc.dir}/${app.name}.ear" appxml="${xml.dir}/application.xml">
+            <metainf dir="${xml.dir}" includes="orion-application.xml,weblogic-application.xml" />
+            <fileset dir="${disc.dir}" includes="${app.name}.war"/>
+        </ear>
+        <copy todir="${deploy.dir}/${sysdate}" overwrite="true">
+      		<fileset dir="${disc.dir}">
+                <include name="**/${app.name}.ear"/>
+            </fileset>      		
+    	</copy>
+    	<copy todir="${tempdeploy.dir}" overwrite="true">
+      		<fileset dir="${disc.dir}">
+                <include name="**/${app.name}.ear"/>
+            </fileset>      		
+    	</copy>
+    	<delete dir="${build.dir}"/>
+    	<delete dir="${disc.dir}"/>
+    	<!--
+    	<antcall target="ftp1"/>
+    	<antcall target="ftp2"/>
+    	-->
+    </target>   
+    <!--ftp target need include commons-net-2.0.jar & jakarta-oro-2.0.8.jar--> 
+    <!--<target name="ftp1">
+     	<echo message="server=${ftp.server1} remotedir=${ftp.remotedir} userid=${ftp.userid}"/>
+    	<ftp server="${ftp.server1}"
+	       remotedir="${ftp.remotedir}"
+	       userid="${ftp.userid}"
+	       password="${ftp.password}"
+	       depends="yes">
+	    	<fileset dir="${deploy.dir}/${sysdate}"/>
+  		</ftp>
+    </target>
+    <target name="ftp2">
+    	<echo message="server=${ftp.server2} remotedir=${ftp.remotedir} userid=${ftp.userid}"/>
+    	<ftp server="${ftp.server2}"
+	       remotedir="${ftp.remotedir}"
+	       userid="${ftp.userid}"
+	       password="${ftp.password}"
+	       depends="yes">
+	    	<fileset dir="${deploy.dir}/${sysdate}"/>
+  		</ftp>
+    </target>
+    -->
+    <!--  Check out StartTeam source files  -->
+    <!--<target name="starteam">
+    <stcheckout URL="${starteam.uri}/勞工保險年金給付系統/勞工保險年金給付系統" 
+              username="${starteam.username}"
+              password="${starteam.password}"
+              deleteuncontrolled="false"
+              rootstarteamfolder="/新平台_BA/測試區/java/網頁程式模組/SourceCode"
+              rootlocalfolder="../" 
+              includes="*.java,*.jsp,*.properties,*.css,*.js,*.xml,*.tld"
+              />-->
+	<!--<stcheckout URL="${starteam.uri}/勞工保險年金給付系統/勞工保險年金給付系統" 
+              username="${starteam.username}"
+              password="${starteam.password}"
+              deleteuncontrolled="false"
+              rootstarteamfolder="/040 程式碼/新平台_BA/測試區/java/網頁程式模組/SourceCode"
+              rootlocalfolder="../" 
+              label="BA_UAT_20091111_V1"              
+              />-->
+	<!--</target>
+	-->
+</project>

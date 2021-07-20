@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAUNQUALIFIEDNOTICE">
+
+    <typeAlias alias="Baunqualifiednotice" type="tw.gov.bli.ba.domain.Baunqualifiednotice" />
+    
+    <resultMap id="BaunqualifiednoticeResult" class="Baunqualifiednotice">
+        <result column="BAAPPBASEID"          property="baappbaseId"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="APNO"                 property="apNo"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="CASETYP"              property="caseTyp"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM"               property="issuYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="SEQNO"                property="seqNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="BENIDNNO"             property="benIdnNo"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="BENNAME"              property="benName"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="NOTIFYFORM"           property="notifyForm"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="UNQUALIFIEDCAUSE"     property="unqualifiedCause" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="UNQUALIFIEDCAUSEDESC" property="unqualifiedCauseDesc" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+    </resultMap>
+    
+    <select id="selectDataForPaymentQuery" resultMap="BaunqualifiednoticeResult">
+        SELECT BAAPPBASEID,
+               APNO,
+               CASETYP,
+               ISSUYM,
+               SEQNO,
+               BENIDNNO,
+               BENNAME,
+               UNQUALIFIEDCAUSE,
+               NOTIFYFORM,
+               (SELECT B.PARAMNAME
+                  FROM BAPARAM B
+                 WHERE B.PARAMGROUP = 'UNQUALIFIEDCAUSE'
+                   AND B.PARAMCODE = A.UNQUALIFIEDCAUSE) AS UNQUALIFIEDCAUSEDESC
+          FROM BAUNQUALIFIEDNOTICE A
+         WHERE APNO = #apNo:VARCHAR#
+         ORDER BY BAAPPBASEID
+    </select>
+    
+    <insert id="insertData" >
+        insert  into  BAUNQUALIFIEDNOTICE  
+        (    BAAPPBASEID,
+             SEQNO,
+             CASETYP,
+             ISSUYM,
+             BENIDNNO,
+             BENNAME,
+             UNQUALIFIEDCAUSE,
+             NOTIFYFORM,
+             APNO,
+             CRTUSER,      
+             CRTTIME
+        )
+        values
+        (    #baappbaseId:NUMERIC#,
+             #seqNo:VARCHAR#,
+             #caseTyp:VARCHAR#,
+             #issuYm:VARCHAR#,
+             #benIdnNo:VARCHAR#,
+             #benName:VARCHAR#,
+             #unqualifiedCause:VARCHAR#,
+             #notifyForm:VARCHAR#,
+             #apNo:VARCHAR#,
+             #crtUser:VARCHAR#,
+             #crtTime:VARCHAR#
+        )    
+    </insert>
+
+</sqlMap>

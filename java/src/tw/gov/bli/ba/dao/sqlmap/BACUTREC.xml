@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACUTREC">
+
+    <typeAlias alias="Bacutrec" type="tw.gov.bli.ba.domain.Bacutrec" />
+
+    <resultMap id="BACUTRECResult" class="Bacutrec">
+        <result column="BACUTRECID"    property="bacutrecId"     jdbcType="NUMERIC"     javaType="java.math.BigDecimal"   nullValue="0"/>  
+        <result column="BAAPPBASEID"   property="baappbaseId"    jdbcType="NUMERIC"     javaType="java.math.BigDecimal"   nullValue="0"/>  
+        <result column="APNO"          property="apNo"           jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="SEQNO"         property="seqNo"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CUTRECSEQNO"   property="cutRecSeqNo"    jdbcType="NUMERIC"     javaType="java.math.BigDecimal"   nullValue="0"/>  
+        <result column="DISPAYKIND"    property="disPayKind"     jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="TYPEMK"        property="typeMk"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="ISSUYM"        property="issuYm"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PAYYM"         property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="BENIDS"        property="benIds"         jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="BENIDNNO"      property="benIdnNo"       jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="BENNAME"       property="benName"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>   
+        <result column="BENBRDATE"     property="benBrDate"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>   
+        <result column="RECID"         property="recId"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="DISAMT"        property="disAmt"         jdbcType="NUMERIC"     javaType="java.math.BigDecimal"   nullValue="0"/>  
+        <result column="DISDATE"       property="disDate"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="RECAMT"        property="recAmt"         jdbcType="NUMERIC"     javaType="java.math.BigDecimal"   nullValue="0"/>  
+        <result column="RECDATE"       property="recDate"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PROCSTAT"      property="procStat"       jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PROCMAN"       property="procMan"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="PROCDATE"      property="procDate"       jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>        
+    </resultMap>
+    
+    <select id="selectDataBy" resultMap="BACUTRECResult">
+        SELECT T.BACUTRECID, 
+               T.BAAPPBASEID,
+               T.APNO,       
+               T.SEQNO,      
+               T.CUTRECSEQNO,
+               T.DISPAYKIND, 
+               T.TYPEMK,     
+               T.ISSUYM,     
+               T.PAYYM,      
+               T.BENIDS,     
+               T.BENIDNNO,   
+               T.BENNAME,    
+               T.BENBRDATE,  
+               T.RECID,      
+               T.DISAMT,     
+               T.DISDATE,    
+               T.RECAMT,     
+               T.RECDATE,    
+               T.PROCSTAT,   
+               T.PROCMAN,    
+               T.PROCDATE   
+          FROM BACUTREC T    
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="bacutrecId">
+                    T.BACUTRECID = #bacutrecId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="baappbaseId">
+                    T.BAAPPBASEID = #baappbaseId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="apNo">
+                    T.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    T.SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="procStat">
+                    <isEmpty property="eqType">
+                        T.PROCSTAT = #procStat:VARCHAR# 
+                    </isEmpty>
+                    <isNotEmpty property="eqType">
+                       <isEqual property="eqType" compareValue="in">
+                           T.PROCSTAT in 
+                       </isEqual>
+                        <isEqual property="eqType" compareValue="notIn">
+                           T.PROCSTAT not in  
+                       </isEqual>
+                       <iterate  property="procStat"  open="(" close=")" conjunction="," >
+                           #procStat[]#
+                       </iterate>
+                    </isNotEmpty>                     
+                </isNotEmpty>                
+            </isParameterPresent>
+        </dynamic>
+    </select>    
+</sqlMap>

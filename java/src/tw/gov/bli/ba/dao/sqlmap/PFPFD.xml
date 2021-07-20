@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PFPFD">
+
+	<typeAlias alias="Pfpfd" type="tw.gov.bli.ba.domain.Pfpfd" />
+
+	<insert id="insertDataForBatchPaymentReceiveData">
+
+		insert into PFPFD
+		(
+			INSKD
+		   ,CPRNDT
+		   ,CPRNPAGE
+		   ,LCNT
+		   ,CDETAIL_KEYFIELD
+		   ,PER_UNIT_CD
+		   ,ID_NO
+		   ,PER_UNIT_NAME
+		   ,ACCEPT_PAY_TYPE
+		   ,ACCOUNT_NO
+		   ,DECIDE_AMT
+		   ,CASH_AMT
+		   ,CMEMO
+		   ,CHKSTAFF
+		   ,CHKSDATE
+		   ,OPCFM
+		   ,CNT
+		   ,BLI_ACCOUNT_CODE
+		   ,ACTTITLE_AP_CODE
+		   ,ACTDB
+		   ,ACTCR
+		   ,DATA_CD
+		   ,PUTFILE_PAGE
+		   ,INSURANCED_NAME
+		   ,ACCEPT_ISSUE_CD
+		   ,APNO
+		   ,GVSEQ
+		   ,PAYYM
+		   ,ISSUYM
+		)
+		values
+		(
+			'1'
+		   ,#cprnDt:VARCHAR#
+		   ,#cprnPage:NUMERIC#
+		   ,#lcnt:NUMERIC#
+		   ,#cdetail_Keyfield:VARCHAR#
+		   ,#per_Unit_Cd:VARCHAR#
+		   ,#id_No:VARCHAR#
+		   ,#per_Unit_Name:VARCHAR#
+		   ,#accept_Pay_Type:VARCHAR#
+		   ,#account_No:VARCHAR#
+		   ,#decide_Amt:NUMERIC#
+		   ,#cash_Amt:NUMERIC#
+		   ,#cmemo:VARCHAR#
+		   ,'99999'
+		   ,#chkSdate:VARCHAR#
+		   ,#opcFm:VARCHAR#
+		   ,#cnt:NUMERIC#
+		   ,#bli_Account_Code:VARCHAR#
+		   ,#acttitle_Ap_Code:VARCHAR#
+	       ,#actDb:VARCHAR#
+		   ,#actCr:VARCHAR#
+		   ,#data_Cd:VARCHAR#
+		   ,#putfile_Page:NUMERIC#
+		   ,#insuranced_Name:VARCHAR#
+		   ,#accept_Issue_Cd:VARCHAR#
+		   ,#apNo:VARCHAR#
+		   ,#gvSeq:VARCHAR#
+		   ,#payYm:VARCHAR#
+		   ,#issuYm:VARCHAR#
+		)
+	</insert>
+</sqlMap>

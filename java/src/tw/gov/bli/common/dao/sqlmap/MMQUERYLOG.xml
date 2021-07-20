@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MMQUERYLOG">
+
+    <typeAlias alias="Mmquerylog" type="tw.gov.bli.common.domain.Mmquerylog" />
+
+    <resultMap id="MMQUERYLOGResult" class="Mmquerylog">
+        <result column="TABLENAME"          property="tableName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="QYTIME"             property="qyTime"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PGMNAME"            property="pgmName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PGMCODE"            property="pgmCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DEPTID"             property="deptId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="QUERYMAN"           property="queryMan"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TERMED"             property="termEd"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="QYCODE"             property="qyCode"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="QYCONDITION"        property="qyCondition"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDNO"               property="idNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MEMO"               property="memo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SNO"                property="sno"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />        
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO MMQUERYLOG
+        (
+            TABLENAME, 
+            QYTIME, 
+            PGMNAME, 
+            PGMCODE, 
+            DEPTID, 
+            QUERYMAN, 
+            TERMED, 
+            QYCODE, 
+            QYCONDITION, 
+            IDNO, 
+            MEMO, 
+            SNO
+        ) 
+        VALUES
+        (
+            #tableName:VARCHAR#, 
+            #qyTime:VARCHAR#, 
+            #pgmName:VARCHAR#, 
+            #pgmCode:VARCHAR#, 
+            #deptId:VARCHAR#, 
+            #queryMan:VARCHAR#, 
+            #termEd:VARCHAR#, 
+            #qyCode:VARCHAR#, 
+            #qyCondition:VARCHAR#, 
+            #idNo:VARCHAR#, 
+            #memo:VARCHAR#, 
+            #sno:NUMERIC#
+        )
+    </insert>
+
+</sqlMap>

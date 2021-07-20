@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPROCEDUREDTL">
+
+    <typeAlias alias="Baproceduredtl" type="tw.gov.bli.ba.domain.Baproceduredtl" />
+    
+     <resultMap id="BAPROCEDUREDTLResult" class="Baproceduredtl">
+        <result column="PROCEDURE_NAME"         property="procedureName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAMETER_NAME"      	property="parameterName"      	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAM_DESC"         	property="paramDesc"         	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA_TYPE"      		property="dataType"      		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA_LENGTH"         	property="dataLength"         	jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="IN_OUT"      			property="inOut"      			jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"         			property="seqNo"         		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRE_USER"      			property="creUser"      		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRE_DATETIME"         	property="creDatetime"         	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+    
+     <resultMap id="ParametersNameResult" class="Baproceduredtl">
+        <result column="PARAMETER_NAME"      	property="parameterName"      	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>    
+    
+    <select id="selectParametersBy" resultMap="BAPROCEDUREDTLResult">
+          SELECT procedure_name, 
+                 parameter_name, 
+                 param_desc,     
+                 data_type,      
+                 data_length,    
+                 in_out,         
+                 SEQNO,          
+                 cre_user,       
+                 cre_datetime    
+            FROM BAPROCEDUREDTL
+           WHERE PROCEDURE_NAME = #procName:VARCHAR#
+           ORDER BY SEQNO         
+    </select>
+    
+    <select id="selectParametersNameBy" resultMap="ParametersNameResult">
+          SELECT parameter_name  
+            FROM BAPROCEDUREDTL
+           WHERE PROCEDURE_NAME = #procName:VARCHAR#
+           ORDER BY SEQNO         
+    </select>    
+</sqlMap>

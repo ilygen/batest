@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAFAMILYTEMP">
+	
+	<typeAlias alias="Bafamilytemp" type="tw.gov.bli.ba.domain.Bafamilytemp" />
+	
+	<resultMap id="BAFAMILYTEMPResult" class="Bafamilytemp">
+        <result column="BAFAMILYTEMPID"     property="bafamilytempId"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />              
+        <result column="SEQNO"              property="seqNo"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="FAMAPPDATE"         property="famAppDate"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMNAME"            property="famName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMSEX"             property="famSex"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMNATIONTYP"       property="famNationTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMNATIONCODE"      property="famNationCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMEVTREL"          property="famEvtRel"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="TEL1"               property="tel1"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="TEL2"               property="tel2"                    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="COMMTYP"            property="commTyp"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="COMMZIP"            property="commZip"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="COMMADDR"           property="commAddr"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYTYP"             property="payTyp"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="BANKNAME"           property="bankName"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYBANKID"          property="payBankId"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="BRANCHID"           property="branchId"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="PAYEEACC"           property="payEeacc"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />  
+        <result column="CHKPAYBANKID"       property="chkPayBankId"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="CHKBRANCHID"        property="chkBranchId"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="CHKPAYEEACC"        property="chkPayEeacc"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />      
+        <result column="ACCIDN"             property="accIdn"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="ACCNAME"            property="accName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="ACCREL"             property="accRel"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="ACCSEQNO"           property="accSeqNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MITRATE"            property="mitRate"                 jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
+        <result column="GRDIDNNO"           property="grdIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="GRDNAME"            property="grdName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="GRDBRDATE"          property="grdBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOMEMK"        property="monIncomeMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
+        <result column="RAISECHILDMK"       property="raiseChildMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MARRYDATE"          property="marryDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="INTERDICTMK"        property="interDictMk"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="CRTUSER"            property="crtUser"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="CRTTIME"            property="crtTime"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="MOBILEPHONE"        property="mobilePhone"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	</resultMap>
+	
+	<resultMap id="AnnuityReceiptFamDataListResult" class="Bafamilytemp">
+        <result column="BAFAMILYTEMPID"     property="bafamilytempId"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />              
+        <result column="SEQNO"              property="seqNo"                   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+        <result column="FAMEVTREL"          property="famEvtRel"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMNAME"            property="famName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
+        <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+    </resultMap>
+    
+    <resultMap id="BankDataResult" class="Bafamilytemp">
+        <result column="PAYTYP"         property="payTyp"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BANKNAME"       property="bankName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"      property="payBankId"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"       property="branchId"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"       property="payEeacc"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKPAYBANKID"   property="chkPayBankId"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKBRANCHID"    property="chkBranchId"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CHKPAYEEACC"    property="chkPayEeacc"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACCIDN"         property="accIdn"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACCNAME"        property="accName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BenListResult" class="Bafamilytemp">
+        <result column="BAFAMILYTEMPID" property="bafamilytempId"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />              
+        <result column="ACCSEQNO"       property="accSeqNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ACCNAME"        property="accName"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />        
+    </resultMap>
+    
+	<select id="getSequenceBafamilytempId" resultClass="java.math.BigDecimal">
+        SELECT BAFAMILYTEMPID.NEXTVAL AS BAFAMILYTEMPID FROM DUAL
+    </select>
+	
+	<select id="selectDataBy" resultMap="BAFAMILYTEMPResult">
+        SELECT BAFAMILYTEMPID,
+               SEQNO,
+               FAMAPPDATE,
+               FAMIDNNO,
+               FAMNAME,
+               FAMBRDATE,
+               FAMSEX,
+               FAMNATIONTYP,
+               FAMNATIONCODE,
+               FAMEVTREL,
+               TEL1,
+               TEL2,
+               COMMTYP,
+               COMMZIP,
+               COMMADDR,
+               PAYTYP,
+               BANKNAME,
+               PAYBANKID,
+               BRANCHID,
+               PAYEEACC,
+               CHKPAYBANKID,
+               CHKBRANCHID,
+               CHKPAYEEACC,
+               ACCIDN,
+               ACCNAME,
+               ACCREL,
+               ACCSEQNO,
+               MITRATE,
+               GRDIDNNO,
+               GRDNAME,
+               GRDBRDATE,
+               MONINCOMEMK,
+               MONINCOME,
+               RAISECHILDMK,
+               MARRYDATE,
+               INTERDICTMK,
+               HANDICAPMK,
+               STUDMK,
+               CRTUSER,
+               CRTTIME,
+               MOBILEPHONE      
+          FROM BAFAMILYTEMP
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="bafamilytempId">
+                    BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+         ORDER BY BAFAMILYTEMPID, SEQNO
+	</select>
+	
+	<select id="selectExistDataForAnnuityReceiptBy" resultClass="java.math.BigDecimal">
+		SELECT BAFAMILYTEMPID
+		  FROM BAFAMILYTEMP
+		 WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+		   AND FAMIDNNO = #famIdnNo:VARCHAR#
+		   AND FAMBRDATE = #famBrDate:VARCHAR#
+	    <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1=0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    <isEmpty property="eqType">
+                        SEQNO = #seqNo:VARCHAR#
+                    </isEmpty>
+                    <isNotEmpty property="eqType">
+                        <isEqual property="eqType" compareValue="lt">
+                        <![CDATA[  SEQNO < #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="le">
+                        <![CDATA[  SEQNO <= #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="eq">
+                        <![CDATA[  SEQNO = #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="ge">
+                        <![CDATA[  SEQNO >= #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="gt">
+                        <![CDATA[  SEQNO > #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                        <isEqual property="eqType" compareValue="ne">
+                        <![CDATA[  SEQNO != #seqNo:VARCHAR#  ]]>
+                        </isEqual>
+                    </isNotEmpty>                  
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+	</select>
+	
+	<select id="selectNewSeqNo" resultClass="java.lang.String">
+		SELECT LPAD(NVL(MAX(SEQNO),0)+1,2,'0')
+		  FROM BAFAMILYTEMP
+		 WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+	</select>
+	
+	<!-- DisabledAnnuityReceipt Begin -->
+    <!-- [ -->
+	<insert id="insertDataForDisabledAnnuityReceipt">
+        INSERT INTO BAFAMILYTEMP
+        (
+            BAFAMILYTEMPID,                    
+            SEQNO,                         
+            FAMAPPDATE,                      
+            FAMIDNNO,                             
+            FAMNAME,                      
+            FAMBRDATE,                
+            FAMSEX,                   
+            FAMNATIONTYP,                
+            FAMNATIONCODE,            
+            FAMEVTREL,                  
+            MONINCOMEMK,              
+            MONINCOME,                
+            RAISECHILDMK,                  
+            MARRYDATE,                          
+            INTERDICTMK,                        
+            HANDICAPMK,               
+            STUDMK,                       
+            CRTUSER,                    
+            CRTTIME                   
+        )
+        VALUES
+        (
+            #bafamilytempId:NUMERIC#,
+            #seqNo:VARCHAR#,         
+            #famAppDate:VARCHAR#,    
+            #famIdnNo:VARCHAR#,      
+            #famName:VARCHAR#,       
+            #famBrDate:VARCHAR#,     
+            #famSex:VARCHAR#,        
+            #famNationTyp:VARCHAR#,  
+            #famNationCode:VARCHAR#, 
+            #famEvtRel:VARCHAR#,     
+            #monIncomeMk:VARCHAR#,   
+            #monIncome:VARCHAR#,     
+            #raiseChildMk:VARCHAR#,  
+            #marryDate:VARCHAR#,     
+            #interDictMk:VARCHAR#,   
+            #handIcapMk:VARCHAR#,    
+            #studMk:VARCHAR#,        
+            #crtUser:VARCHAR#,       
+            #crtTime:VARCHAR#        
+        )		
+	</insert>
+	
+	<update id="updateDataForDisabledAnnuityReceipt">
+        UPDATE BAFAMILYTEMP SET 
+               FAMAPPDATE = #famAppDate:VARCHAR#,   
+               FAMIDNNO = #famIdnNo:VARCHAR#,
+               FAMNAME = #famName:VARCHAR#, 
+               FAMBRDATE = #famBrDate:VARCHAR#,
+               FAMSEX = #famSex:VARCHAR#, 
+               FAMNATIONTYP = #famNationTyp:VARCHAR#,
+               FAMNATIONCODE = #famNationCode:VARCHAR#,  
+               FAMEVTREL = #famEvtRel:VARCHAR#,
+               MONINCOMEMK = #monIncomeMk:VARCHAR#, 
+               MONINCOME = #monIncome:VARCHAR#, 
+               RAISECHILDMK = #raiseChildMk:VARCHAR#,  
+               MARRYDATE = #marryDate:VARCHAR#,
+               INTERDICTMK = #interDictMk:VARCHAR#,
+               HANDICAPMK = #handIcapMk:VARCHAR#,
+               STUDMK = #studMk:VARCHAR#
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND SEQNO = #seqNo:VARCHAR#
+	</update>
+	
+	<select id="selectFamDataListForAnnuityReceiptBy" resultMap="AnnuityReceiptFamDataListResult">
+        SELECT BAFAMILYTEMPID,
+	           SEQNO,
+	           FAMEVTREL,    
+	           FAMNAME,      
+	           FAMIDNNO,     
+	           FAMBRDATE,     
+               STUDMK,       
+	           MONINCOME,    
+	           HANDICAPMK    
+	      FROM BAFAMILYTEMP
+	     WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC# 
+	     ORDER BY SEQNO	
+	</select>
+    <!-- ] -->
+	
+    <!-- SurvivorAnnuityReceipt Begin -->
+    <!-- [ -->
+    <insert id="insertDataForSurvivorAnnuityReceipt">
+        INSERT INTO BAFAMILYTEMP
+        (
+            BAFAMILYTEMPID,
+            SEQNO,         
+            FAMAPPDATE,    
+            FAMIDNNO,      
+            FAMNAME,       
+            FAMBRDATE,     
+            FAMSEX,        
+            FAMNATIONTYP,  
+            FAMNATIONCODE, 
+            FAMEVTREL,     
+            TEL1,          
+            TEL2,          
+            COMMTYP,       
+            COMMZIP,       
+            COMMADDR,      
+            PAYTYP,        
+            GRDIDNNO,      
+            GRDNAME,       
+            GRDBRDATE,     
+            ACCREL,        
+            ACCSEQNO,      
+            ACCIDN,        
+            ACCNAME,       
+            BANKNAME,      
+            PAYBANKID,     
+            BRANCHID,      
+            PAYEEACC,   
+            CHKPAYBANKID,     
+            CHKBRANCHID,      
+            CHKPAYEEACC,     
+            MONINCOMEMK,   
+            MONINCOME,     
+            MARRYDATE,     
+            INTERDICTMK,   
+            HANDICAPMK,    
+            STUDMK,        
+            CRTUSER,       
+            CRTTIME,
+            MOBILEPHONE
+        )
+        VALUES
+        (
+            #bafamilytempId:NUMERIC#,
+            #seqNo:VARCHAR#,
+            #famAppDate:VARCHAR#,
+            #famIdnNo:VARCHAR#,
+            #famName:VARCHAR#,
+            #famBrDate:VARCHAR#,
+            #famSex:VARCHAR#,
+            #famNationTyp:VARCHAR#,
+            #famNationCode:VARCHAR#,
+            #famEvtRel:VARCHAR#,
+            #tel1:VARCHAR#,
+            #tel2:VARCHAR#,
+            #commTyp:VARCHAR#,
+            #commZip:VARCHAR#,
+            #commAddr:VARCHAR#,
+            #payTyp:VARCHAR#,
+            #grdIdnNo:VARCHAR#,
+            #grdName:VARCHAR#,
+            #grdBrDate:VARCHAR#,
+            #accRel:VARCHAR#,
+            #accSeqNo:VARCHAR#,
+            #accIdn:VARCHAR#,
+            #accName:VARCHAR#,
+            #bankName:VARCHAR#,
+            #payBankId:VARCHAR#,
+            #branchId:VARCHAR#,
+            #payEeacc:VARCHAR#,
+            #chkPayBankId:VARCHAR#,
+            #chkBranchId:VARCHAR#,
+            #chkPayEeacc:VARCHAR#,
+            #monIncomeMk:VARCHAR#,
+            #monIncome:VARCHAR#,
+            #marryDate:VARCHAR#,
+            #interDictMk:VARCHAR#,
+            #handIcapMk:VARCHAR#,
+            #studMk:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #mobilePhone:VARCHAR#
+        )	
+	</insert>
+	
+	<update id="updateDataForSurvivorAnnuityReceipt">
+        UPDATE BAFAMILYTEMP SET 
+               FAMAPPDATE = #famAppDate:VARCHAR#,
+               FAMIDNNO = #famIdnNo:VARCHAR#,
+               FAMNAME = #famName:VARCHAR#,
+               FAMBRDATE = #famBrDate:VARCHAR#,
+               FAMSEX = #famSex:VARCHAR#,
+               FAMNATIONTYP = #famNationTyp:VARCHAR#,
+               FAMNATIONCODE = #famNationCode:VARCHAR#,
+               FAMEVTREL = #famEvtRel:VARCHAR#,
+               TEL1 = #tel1:VARCHAR#,
+               TEL2 = #tel2:VARCHAR#,
+               COMMTYP = #commTyp:VARCHAR#,
+               COMMZIP = #commZip:VARCHAR#,
+               COMMADDR = #commAddr:VARCHAR#,
+               PAYTYP = #payTyp:VARCHAR#,
+               GRDIDNNO = #grdIdnNo:VARCHAR#,
+               GRDNAME = #grdName:VARCHAR#,
+               GRDBRDATE = #grdBrDate:VARCHAR#,
+               ACCREL = #accRel:VARCHAR#,
+               ACCSEQNO = #accSeqNo:VARCHAR#,
+               ACCIDN = #accIdn:VARCHAR#,
+               ACCNAME = #accName:VARCHAR#,
+               BANKNAME = #bankName:VARCHAR#,
+               PAYBANKID = #payBankId:VARCHAR#,
+               BRANCHID = #branchId:VARCHAR#,
+               PAYEEACC = #payEeacc:VARCHAR#,
+               CHKPAYBANKID = #chkPayBankId:VARCHAR#,
+               CHKBRANCHID = #chkBranchId:VARCHAR#,
+               CHKPAYEEACC = #chkPayEeacc:VARCHAR#,
+               MONINCOMEMK = #monIncomeMk:VARCHAR#,
+               MONINCOME = #monIncome:VARCHAR#,
+               MARRYDATE = #marryDate:VARCHAR#,
+               INTERDICTMK = #interDictMk:VARCHAR#,
+               HANDICAPMK = #handIcapMk:VARCHAR#,
+               STUDMK = #studMk:VARCHAR#,
+               MOBILEPHONE = #mobilePhone:VARCHAR#
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND SEQNO = #seqNo:VARCHAR#
+    </update>
+	<!-- ] -->
+	
+	<delete id="deleteDataBy">
+        DELETE FROM BAFAMILYTEMP 
+        WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1=0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    SEQNO = #seqNo:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </delete>
+    
+    <select id="selectBankDataBy" resultMap="BankDataResult">
+        SELECT PAYTYP,
+               BANKNAME,
+               PAYBANKID,
+               BRANCHID,
+               PAYEEACC,
+               CHKPAYBANKID,
+               CHKBRANCHID,
+               CHKPAYEEACC,
+               ACCIDN,
+               ACCNAME
+          FROM BAFAMILYTEMP
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectBenListBy" resultMap="BenListResult">
+        SELECT BAFAMILYTEMPID,
+               ACCSEQNO,
+               (FAMIDNNO||'-'||FAMNAME) as ACCNAME
+          FROM BAFAMILYTEMP
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND ACCREL = '1'
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1=0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="seqNo">
+                    <![CDATA[
+                    SEQNO <> #seqNo:VARCHAR#
+                    ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectAccSeqNoAmt" resultClass="java.lang.Integer">
+        SELECT COUNT(*)
+          FROM BAFAMILYTEMP 
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND ACCSEQNO = #seqNo:VARCHAR# 
+           AND ACCREL = '3'
+    </select>
+    
+    <update id="updateAccDataForSurvivorAnnuityReceipt">
+        UPDATE BAFAMILYTEMP SET 
+               ACCIDN = #accIdn:VARCHAR#,      
+               ACCNAME = #accName:VARCHAR#,    
+               PAYBANKID = #payBankId:VARCHAR#,
+               BANKNAME = #bankName:VARCHAR#,  
+               BRANCHID = #branchId:VARCHAR#,  
+               PAYEEACC = #payEeacc:VARCHAR#, 
+               CHKPAYBANKID = #chkPayBankId:VARCHAR#,
+               CHKBRANCHID = #chkBranchId:VARCHAR#,  
+               CHKPAYEEACC = #chkPayEeacc:VARCHAR#, 
+               PAYTYP = #payTyp:VARCHAR#  
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+           AND ACCSEQNO = #seqNo:VARCHAR#
+           AND ACCREL = '3'
+    </update>
+    
+    <select id="selectDeleteAfterDataBy" resultMap="BAFAMILYTEMPResult">
+        SELECT BAFAMILYTEMPID,
+               SEQNO,
+               FAMAPPDATE,
+               FAMIDNNO,
+               FAMNAME,
+               FAMBRDATE,
+               FAMSEX,
+               FAMNATIONTYP,
+               FAMNATIONCODE,
+               FAMEVTREL,
+               TEL1,
+               TEL2,
+               COMMTYP,
+               COMMZIP,
+               COMMADDR,
+               PAYTYP,
+               BANKNAME,
+               PAYBANKID,
+               BRANCHID,
+               PAYEEACC,
+               CHKPAYBANKID,
+               CHKBRANCHID,
+               CHKPAYEEACC,
+               ACCIDN,
+               ACCNAME,
+               ACCREL,
+               ACCSEQNO,
+               MITRATE,
+               GRDIDNNO,
+               GRDNAME,
+               GRDBRDATE,
+               MONINCOMEMK,
+               MONINCOME,
+               RAISECHILDMK,
+               MARRYDATE,
+               INTERDICTMK,
+               HANDICAPMK,
+               STUDMK,
+               CRTUSER,
+               CRTTIME,
+               MOBILEPHONE      
+          FROM BAFAMILYTEMP
+           
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="bafamilytempId">
+                    BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="seqNo">
+                <![CDATA[
+                    SEQNO > #seqNo:VARCHAR#
+                     ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+         ORDER BY BAFAMILYTEMPID, SEQNO
+	</select>
+	
+	<update id="updateSeqNoForSurvivorAnnuityReceipt">
+        UPDATE BAFAMILYTEMP SET 
+               SEQNO = #afterSeqNo:VARCHAR#    
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC# 
+           AND SEQNO = #beforeSeqNo:VARCHAR# 
+           
+    </update>
+    
+    <update id="updateAcccSeqNoForSurvivorAnnuityReceipt">
+        UPDATE BAFAMILYTEMP SET     
+               ACCSEQNO = #afterSeqNo:VARCHAR#    
+         WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC# 
+           AND ACCSEQNO = #beforeSeqNo:VARCHAR# 
+    </update>
+	
+</sqlMap>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BCBPF">
+
+    <typeAlias alias="Bcbpf" type="tw.gov.bli.ba.domain.Bcbpf" />
+
+    <resultMap id="BCBPFResult" class="Bcbpf">
+        <result column="BNKALL"        property="bnkAll"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="BNKONO"        property="bnkOno"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="STUSF"         property="stusf"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="BNKNME"        property="bnkNme"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
+        <result column="MODIFYMAN"     property="modifyMan"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="BNKTELNO"      property="bnkTelno"     jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    
+   <select id="selectBankDataBy" resultMap="BCBPFResult">
+        select t.BNKALL,
+               t.BNKONO,
+               t.STUSF,
+               t.BNKNME,
+               t.MODIFYMAN,
+               t.BNKTELNO
+          from BCBPF t
+         where (t. BNKALL || t. BNKONO) = #payBankIdBranchId:VARCHAR#
+    </select>
+    
+    <select id="selectBankNameBy" resultClass="java.lang.String">
+        select  t.BNKNME
+          from  BCBPF t
+         where  (t.BNKALL || t.BNKONO) = #payBankIdBranchId:VARCHAR#
+    </select>
+   
+</sqlMap>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAMARGINAMTNOTIFY">
+
+    <typeAlias alias="Bamarginamtnotify" type="tw.gov.bli.ba.domain.Bamarginamtnotify" />
+    
+    <resultMap id="BamarginamtnotifyResult" class="Bamarginamtnotify">
+        <result column="PROGID"               property="progId"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="APNO"                 property="apNo"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="SEQNO"                property="seqNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM1"              property="issuYm1"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>        
+        <result column="ISSUYM2"              property="issuYm2"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUYM3"              property="issuYm3"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>        
+        <result column="PROCDATE1"            property="procDate1"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="PROCDATE2"            property="procDate2"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="PROCDATE3"            property="procDate3"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUEDATE1"           property="issueDate1"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUEDATE2"           property="issueDate2"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="ISSUEDATE3"           property="issueDate3"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="NOTIFYFORM"           property="notifyForm"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue=""/>
+        <result column="MAADMRECID1"          property="maAdmRecId1"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="MAADMRECID2"          property="maAdmRecId2"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="MAADMRECID3"          property="maAdmRecId3"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+    </resultMap>
+
+	<select id="selectDataForMonthlyRpt13" resultMap="BamarginamtnotifyResult">
+		SELECT PROGID,
+		       APNO,
+		       SEQNO,
+		       ISSUYM1,
+		       ISSUYM2,
+		       ISSUYM3,
+		       PROCDATE1,
+		       PROCDATE2,
+		       PROCDATE3,
+		       ISSUEDATE1,
+		       ISSUEDATE2,
+		       ISSUEDATE3,
+		       NOTIFYFORM,
+		       MAADMRECID1,
+		       MAADMRECID2,
+		       MAADMRECID3
+		  FROM BAMARGINAMTNOTIFY A
+		 WHERE APNO = #apNo:VARCHAR#
+	</select>
+
+	<insert id="insertDataForMonthlyRpt31">
+		insert into BAMARGINAMTNOTIFY
+		( PROGID,
+		  APNO,
+		  SEQNO,
+		  ISSUYM1,
+		  PROCDATE1,
+		  ISSUEDATE1,
+		  NOTIFYFORM,
+		  MAADMRECID1,
+		  CRTUSER,
+		  CRTTIME
+		)
+		values
+		(
+		  #progId:VARCHAR#,
+		  #apNo:VARCHAR#,
+		  #seqNo:VARCHAR#,
+		  #issuYm1:VARCHAR#,
+		  #procDate1:VARCHAR#,
+		  #issueDate1:VARCHAR#,
+		  #notifyForm:VARCHAR#,
+		  #maAdmRecId1:NUMERIC#,
+		  #crtUser:VARCHAR#,
+		  #crtTime:VARCHAR#
+		)
+	</insert>
+
+	<update id="updateDataForMonthlyRpt31U">
+		update BAMARGINAMTNOTIFY
+		   set ISSUYM2 = #issuYm2:VARCHAR#,
+		       PROCDATE2 = #procDate2:VARCHAR#,
+		       ISSUEDATE2 = #issueDate2:VARCHAR#,
+		       MAADMRECID2 = #maAdmRecId2:VARCHAR#
+		 Where APNO = #apNo:VARCHAR#
+		   AND ISSUEDATE1 IS NOT NULL
+           AND ISSUEDATE2 IS NULL
+	</update>
+
+	<update id="updateDataForMonthlyRpt31P">
+		update BAMARGINAMTNOTIFY
+		   set ISSUYM3 = #issuYm3:VARCHAR#,
+		       PROCDATE3 = #procDate3:VARCHAR#,
+		       ISSUEDATE3 = #issueDate3:VARCHAR#,
+		       MAADMRECID3 = #maAdmRecId3:VARCHAR#
+		 Where APNO = #apNo:VARCHAR#
+		   AND ISSUEDATE1 IS NOT NULL
+           AND ISSUEDATE2 IS NOT NULL
+           AND ISSUEDATE3 IS NULL
+	</update>
+
+	<select id="selectRptReplaceForIssueDateL023" resultClass="java.util.HashMap">
+		SELECT ISSUEDATE1,
+		       ISSUEDATE2
+		  FROM BAMARGINAMTNOTIFY A
+		 WHERE APNO = #apNo:VARCHAR#
+	</select>
+</sqlMap>

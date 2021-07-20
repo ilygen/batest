@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BABATCHREC">
+
+    <typeAlias alias="Babatchrec" type="tw.gov.bli.ba.domain.Babatchrec" />
+
+    <resultMap id="BABATCHRECResult" class="Babatchrec">
+        <result column="BABATCHRECID"     property="baBatchRecId"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BATCHTYP"         property="batchTyp"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="SUNIT"            property="sunit"             jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="TATYP"            property="taTyp"             jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PAYDATE"          property="payDate"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />        
+        <result column="DATACOUNT"        property="dataCount"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="STTIME"           property="stTime"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="ENDTIME"          property="endTime"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="EXECUTETIME"      property="executeTime"       jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="FILENAME"         property="fileName"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="UPTYP"            property="upTyp"             jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="UPORGAN"          property="upOrgan"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="UPORGANID"        property="upOrganId"         jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="UPTIME"           property="upTime"            jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="AMOUNT"           property="amount"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="PROCSTAT"         property="procStat"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCFLAG"         property="procFlag"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCMEMO"         property="procMemo"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCUSER"         property="procUser"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="PROCTIME"         property="procTime"          jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" />
+        <result column="UPDTIME"          property="updTime"           jdbcType="VARCHAR"      javaType="java.lang.String"      nullValue="" /> 
+    </resultMap>
+    
+    <!-- UpdatePaidMarkBJ Begin -->
+    <!-- [ -->
+    <select id="selectData" resultMap="BABATCHRECResult">
+        SELECT A.BABATCHRECID, 
+               A.BATCHTYP,
+               (A.SUNIT||'-'||(SELECT BNKNME 
+                               FROM BCBPF 
+                              WHERE BNKALL=A.SUNIT 
+                                AND BNKONO='0000')) AS SUNIT, 
+               A.TATYP, 
+               A.PAYDATE, 
+               A.DATACOUNT, 
+               A.STTIME, 
+               A.ENDTIME, 
+               A.EXECUTETIME, 
+               A.FILENAME, 
+               A.UPTYP,
+               A.UPORGAN,
+               A.UPORGANID,
+               A.UPTIME, 
+               A.AMOUNT, 
+               A.PROCSTAT, 
+               A.PROCFLAG, 
+               A.PROCMEMO, 
+               A.PROCUSER, 
+               A.PROCTIME,
+               A.UPDTIME
+        FROM   BABATCHREC A 
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="upTimeBeg">
+                <![CDATA[
+                    SUBSTR(A.UPTIME,1,8) >= #upTimeBeg:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="upTimeEnd">
+                <![CDATA[
+                    SUBSTR(A.UPTIME,1,8) <= #upTimeEnd:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="batchTyp">
+                <![CDATA[
+                    A.BATCHTYP = #batchTyp:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="baBatchRecId">
+                <![CDATA[
+                    A.BABATCHRECID = #baBatchRecId:VARCHAR#
+                ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        ORDER BY A.BABATCHRECID 
+     </select>
+     <!-- ] -->
+     <!-- UpdatePaidMarkBJ End -->
+
+     <update id="updateData">
+        UPDATE BABATCHREC SET 
+               PROCSTAT = #procStat:VARCHAR#
+              ,STTIME = #stTime:VARCHAR#
+              ,UPDTIME = #updTime:VARCHAR#
+         WHERE BABATCHRECID = #baBatchRecId:NUMERIC#
+           AND BATCHTYP = #batchTyp:VARCHAR#
+    </update>
+    
+    <insert id="insertData">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baBatchRecId">
+            SELECT BABATCHRECID.NEXTVAL AS BABATCHRECID FROM DUAL
+        </selectKey>
+        INSERT INTO BABATCHREC
+        (
+            BABATCHRECID, 
+            BATCHTYP,
+            SUNIT, 
+            TATYP, 
+            PAYDATE,  
+            DATACOUNT, 
+            STTIME, 
+            ENDTIME, 
+            EXECUTETIME, 
+            FILENAME, 
+            UPTYP, 
+            UPORGAN, 
+            UPORGANID, 
+            UPTIME, 
+            AMOUNT, 
+            PROCSTAT, 
+            PROCFLAG,
+            PROCMEMO, 
+            PROCUSER, 
+            PROCTIME, 
+            UPDTIME
+        ) 
+        VALUES
+        (
+            #baBatchRecId#, 
+            #batchTyp:VARCHAR#, 
+            #sunit:VARCHAR#,
+            #taTyp:VARCHAR#,
+            #payDate:VARCHAR#,
+            #dataCount:NUMERIC#, 
+            #stTime:VARCHAR#, 
+            #endTime:VARCHAR#, 
+            #executeTime:VARCHAR#, 
+            #fileName:VARCHAR#, 
+            #upTyp:VARCHAR#, 
+            #upOrgan:VARCHAR#, 
+            #upOrganId:VARCHAR#, 
+            #upTime:VARCHAR#, 
+            #amount:NUMERIC#, 
+            #procStat:VARCHAR#, 
+            #procFlag:VARCHAR#,
+            #procMemo:VARCHAR#, 
+            #procUser:VARCHAR#, 
+            #procTime:VARCHAR#,
+            #updTime:VARCHAR#
+        )
+        
+    </insert>
+    
+    <insert id="insertBaBatchRecTmpData">
+        INSERT INTO BABATCHRECTMP
+        (
+            BABATCHRECID, 
+            DATANO, 
+            DATADESC
+        ) 
+        VALUES
+        (
+            #baBatchRecId:NUMERIC#, 
+            #dataNo:NUMERIC#, 
+            #dataDesc:VARCHAR#
+        )
+        
+    </insert>
+    
+    <update id="updateProcStatDataProFlag1">
+        UPDATE BABATCHREC SET 
+               PROCSTAT = '4'
+              ,PROCFLAG = '0'
+              ,UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHHMISS')
+              ,PROCUSER = #procUser:VARCHAR#
+              ,PROCTIME = TO_CHAR(SYSDATE,'YYYYMMDDHHMISS')
+              ,PROCMEMO = #procMemo:VARCHAR#
+         WHERE BABATCHRECID = #baBatchRecId:NUMERIC#
+           AND BATCHTYP = #batchTyp:VARCHAR#
+    </update>
+    
+    <update id="updateProcStatDataProFlag2">
+        UPDATE BABATCHREC SET 
+               PROCSTAT = '8'
+              ,PROCFLAG = '2'
+              ,UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHHMISS')
+              ,PROCUSER = #procUser:VARCHAR#
+              ,PROCTIME = TO_CHAR(SYSDATE,'YYYYMMDDHHMISS')
+              ,PROCMEMO = #procMemo:VARCHAR#
+         WHERE BABATCHRECID = #baBatchRecId:NUMERIC#
+           AND BATCHTYP = #batchTyp:VARCHAR#
+    </update>
+    
+     <!-- ] -->
+     <!-- UpdatePaidMarkBJ End -->
+</sqlMap>

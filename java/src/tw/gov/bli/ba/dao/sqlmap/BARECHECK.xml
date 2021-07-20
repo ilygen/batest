@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BARECHECK">
+
+    <typeAlias alias="Barecheck" type="tw.gov.bli.ba.domain.Barecheck" />
+
+    <resultMap id="BARECHECKResult" class="Barecheck">
+        <result column="RECHKYM"        property="reChkYm"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISRECHK"        property="isreChk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RECHKSTATUS"    property="reChkStatus"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="RECHKRESULT"    property="reChkResult"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="COMRECHKYM"     property="comReChkYm"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <select id="selectBareCheckDataBy" resultMap="BARECHECKResult">
+        SELECT RECHKYM,      
+               ISRECHK,       
+               RECHKSTATUS,    
+               RECHKRESULT,   
+               COMRECHKYM     
+          FROM BARECHECK
+         WHERE APNO  =  #apNo:VARCHAR#
+           AND SEQNO =  #seqNo:VARCHAR#
+    </select>
+    
+    <update id="updateBareCheckData">
+           UPDATE BARECHECK  
+              SET ISRECHK     = #isreChk:VARCHAR#,
+                  RECHKSTATUS = #reChkStatus:VARCHAR#,
+                  RECHKRESULT = #reChkResult:VARCHAR#,
+                  COMRECHKYM  = #comReChkYm:VARCHAR#,
+                  UPDUSER     = #updUser:VARCHAR#,
+                  UPDTIME     = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+            WHERE APNO    = #apNo:VARCHAR#
+              AND SEQNO   = #seqNo:VARCHAR#
+              AND RECHKYM = #reChkYm:VARCHAR#
+    </update>
+    
+    <delete id="deleteDataForBareCheck">
+       DELETE FROM BARECHECK
+             WHERE APNO    = #apNo:VARCHAR#
+               AND SEQNO   = #seqNo:VARCHAR#
+               AND RECHKYM = #reChkYm:VARCHAR#
+    </delete>
+    
+    <select id="selectBareCheckDataForRpt01By" resultMap="BARECHECKResult">
+        SELECT RECHKYM,
+               ISRECHK,        
+               RECHKSTATUS,  
+               RECHKRESULT,  
+               COMRECHKYM    
+          FROM BARECHECK
+         WHERE APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+           AND COMRECHKYM = (SELECT MAX(COMRECHKYM)
+                               FROM BARECHECK
+                              WHERE APNO  = #apNo:VARCHAR#
+                                AND SEQNO = #seqNo:VARCHAR#
+                                AND COMRECHKYM IS NOT NULL)
+    </select>
+    
+    <select id="selectBareCheckDataCountBy" resultClass="java.lang.Integer">
+   		SELECT COUNT(*) 
+   		  FROM BARECHECK 
+   		 WHERE APNO = #apNo:VARCHAR# 
+   		   AND SEQNO = #seqNo:VARCHAR# 
+   		   AND COMRECHKYM = #comReChkYm:VARCHAR# 
+    </select>
+    
+     <select id="selectMaxReChkYmBy" resultClass="java.lang.String">
+   		SELECT MAX(RECHKYM)
+  	      FROM BARECHECK
+         WHERE APNO = #apNo:VARCHAR# 
+  	       AND SEQNO = #seqNo:VARCHAR#
+  	       AND COMRECHKYM IS NULL		   
+    </select>
+
+</sqlMap>

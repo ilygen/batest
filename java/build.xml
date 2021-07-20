@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BaWeb" basedir="." default="usage">
+    <property name="name" value="BaWeb"/>
+    <property name="src.dir" value="src"/>
+    <property name="war.dir" value="war/WEB-INF"/>
+    <property name="lib.dir" value="${war.dir}/lib"/>
+    <property name="build.dir" value="${war.dir}/classes"/>
+    <property name="xml.dir" value="build/xml"/>
+    <property name="disc.dir" value="disc"/>
+    <path id="master-classpath">
+        <pathelement path="${build.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <!--
+    <fileset dir="/usr/share/tomcat7/.m2/repository/lib/">
+        <include name="*.jar"/>
+    </fileset>
+    -->
+    
+    <target name="usage">
+        <echo message="${name} build file"/>
+        <echo message="-----------------------------------"/>
+        <echo message="Available targets are:"/>
+        <echo message=""/>
+        <echo message="buildDev   --> Build the EAR of Dev"/>
+        <echo message="buildTest  --> Build the EAR of Test"/>
+        <echo message="buildProd  --> Build the Ear of Prod"/>
+    </target>
+    
+    <target description="buildDev" name="buildDev" depends="backupFile,replaceDev,build,war,ear,reverseFile"></target>
+    <target description="buildTest" name="buildTest" depends="backupFile,replaceTest,build,war,ear,reverseFile"></target>
+    <target description="buildProd" name="buildProd" depends="backupFile,replaceProd,build,war,ear,reverseFile"></target>
+    
+    
+    <target name="backupFile">
+        <echo message="backupFile..."/>
+        <copy file="${war.dir}/web.xml" tofile="./web.xml.ori" overwrite="true"/>
+        <copy file="${src.dir}/log4j.properties" tofile="./log4j.properties.ori" overwrite="true"/>
+    </target>
+    
+    <target name="replaceDev">
+        <echo message="replaceDev..."/>
+        <replace encoding="utf-8" file="${war.dir}/web.xml">
+            <replacefilter token="${BliportalRunHostAddress}" value="bliportalde.bli.gov.tw"/>
+            <replacefilter token="${BliapRunHostAddress}" value="bliapbde.bli.gov.tw"/>
+        </replace>
+        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+            <replacefilter token="${rootLogger}" value="DEBUG"/>
+            <replacefilter token="${configuration}" value="DEBUG"/>
+        </replace>
+    </target>
+    
+    <target name="replaceTest">
+        <echo message="replaceTest..."/>
+        <replace encoding="utf-8" file="${war.dir}/web.xml">
+        <replacefilter token="${BliportalRunHostAddress}" value="bliportalte.bli.gov.tw"/>
+        <replacefilter token="${BliapRunHostAddress}" value="bliapbte.bli.gov.tw"/>
+        </replace>
+        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+        <replacefilter token="${rootLogger}" value="INFO"/>
+        <replacefilter token="${configuration}" value="ERROR"/>
+        </replace>
+    </target>
+    
+    <target name="replaceProd">
+        <echo message="replaceProd..."/>
+        <replace encoding="utf-8" file="${war.dir}/web.xml">
+        <replacefilter token="${BliportalRunHostAddress}" value="bliportalon.bli.gov.tw"/>
+        <replacefilter token="${BliapRunHostAddress}" value="bliapbon.bli.gov.tw"/>
+        </replace>
+        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+        <replacefilter token="${rootLogger}" value="INFO"/>
+        <replacefilter token="${configuration}" value="ERROR"/>
+        </replace>
+    </target>
+    
+    <target name="build" description="Compile main source tree java files" >
+        <echo message="${name} is building..."/>
+        <delete dir="${build.dir}"/>
+        <mkdir dir="${build.dir}"/>
+        <copy overwrite="true" todir="${build.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <javac destdir="${build.dir}" 
+               encoding="UTF-8"
+               debug="true"
+               deprecation="false" optimize="false" failonerror="true" fork="yes" memoryMaximumSize="1024m" memoryInitialSize="256m">
+            <classpath refid="master-classpath"/>
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+    
+    <!--  Pack the Web Project to .war -->
+    <target name="war">
+        <delete dir="${disc.dir}"/>
+        <mkdir dir="${disc.dir}"/>
+        <war warfile="${disc.dir}/${name}.war" webxml="${war.dir}/web.xml" >
+            <fileset dir="war">
+                <exclude name="**/jta.jar" />
+                <exclude name="**/ojdbc14.jar" />
+                <exclude name="**/ojdbc6.jar" />
+                <exclude name="**/*.rpt" />
+                <exclude name="**/*.mex" />
+                <exclude name="**/*.bak" />
+                <exclude name="**/.svn" />
+                <exclude name="**/vssver2.scc" />
+            </fileset>
+        </war>
+    </target>
+    
+    <!--  Pack the .war to Enterprise Application Server(.EAR)  -->
+    <target name="ear">
+        <ear destfile="${disc.dir}/${name}.ear" appxml="${xml.dir}/application.xml">
+            <metainf dir="${xml.dir}" includes="orion-application.xml,weblogic-application.xml" />
+            <fileset dir="${disc.dir}" includes="${name}.war"/>
+        </ear>
+    </target>
+    
+    <target name="reverseFile">
+        <echo message="reverseFile..."/>
+        <copy file="./web.xml.ori" tofile="${war.dir}/web.xml" overwrite="true"/>
+        <copy file="./log4j.properties.ori" tofile="${src.dir}/log4j.properties" overwrite="true"/>
+        <delete file="./web.xml.ori"/>
+        <delete file="./log4j.properties.ori"/>
+    </target>
+</project>

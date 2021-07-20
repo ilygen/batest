@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="BAPAWAGEREC">
+
+	<typeAlias alias="Bapawagerec" type="tw.gov.bli.ba.domain.Bapawagerec" />
+
+	<select id="getMinWage" resultClass="java.math.BigDecimal">
+     <![CDATA[
+     
+         Select T.MINWAGE
+           From BAPAWAGEREC T
+          Where NVL(T.Effectymb,'000000') <= #maxPayYm:VARCHAR#
+            And NVL(T.Effectyme,'999999') >= #maxPayYm:VARCHAR#
+    ]]>
+	</select>
+
+</sqlMap>

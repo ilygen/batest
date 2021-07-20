@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BADUPEIDN">
+
+    <typeAlias alias="Badupeidn" type="tw.gov.bli.ba.domain.Badupeidn" />
+    
+    <resultMap id="BADUPEIDNResult" class="Badupeidn">
+        <result column="APNO"       property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="SEQNO"      property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="IDNNO"      property="idnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="NAME"       property="name"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="BRDATE"     property="brDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="SELMK"      property="selMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="UPDUSER"    property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+        <result column="UPDTIME"    property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>   
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01DupeIdnDataResult" class="Badupeidn">  
+        <result column="IDNNO"      property="idnNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="BRDATE"     property="brDate"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+    </resultMap>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01DupeIdnDataResult" class="Badupeidn">  
+        <result column="IDNNO"      property="idnNo"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+        <result column="BRDATE"     property="brDate"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue=""/>
+    </resultMap>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01DupeIdnDataBy" resultMap="OldAgeReviewRpt01DupeIdnDataResult">
+        SELECT A.IDNNO,                          
+               A.BRDATE
+        FROM   BADUPEIDN A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+            <![CDATA[
+	            A.APNO = #apNo:VARCHAR# AND 
+                A.SEQNO = '0000' AND 
+                A.SELMK = '2' AND 
+                ROWNUM <= 1
+            ]]>                 
+            </isParameterPresent>
+        </dynamic>                 
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->  
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01DupeIdnDataBy" resultMap="SurvivorReviewRpt01DupeIdnDataResult">
+        SELECT A.IDNNO,                          
+               A.BRDATE
+          FROM BADUPEIDN A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+            <![CDATA[
+                A.APNO = #apNo:VARCHAR# AND 
+                A.SEQNO = '0000' AND 
+                A.SELMK = '2' AND 
+                ROWNUM <= 1
+            ]]>                 
+            </isParameterPresent>
+        </dynamic>                 
+    </select>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->      
+
+    <select id="selectDataBy" resultMap="BADUPEIDNResult">
+        SELECT T.APNO,                               
+               T.SEQNO,                          
+               T.IDNNO,                          
+               T.NAME,                           
+               T.BRDATE,                         
+               T.SELMK,                       
+               T.UPDUSER,                        
+               T.UPDTIME
+          FROM BADUPEIDN T
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+	            <isNotEmpty prepend="AND" property="apNo">
+	                T.APNO = #apNo:VARCHAR#
+	            </isNotEmpty>
+	            <isNotEmpty prepend="AND" property="seqNo">
+	                T.SEQNO = #seqNo:VARCHAR#
+	            </isNotEmpty>
+	            <isNotEmpty prepend="AND" property="idnNo">
+	                T.IDNNO = #idnNo:VARCHAR#
+	            </isNotEmpty>
+	            <isNotEmpty prepend="AND" property="brDate">
+	                T.BRDATE = #brDate:VARCHAR#
+	            </isNotEmpty>                
+            </isParameterPresent>
+        </dynamic>                 
+    </select>
+    
+    <!-- Disabled Application Data Update -->
+    <!-- [ -->
+    <select id="getDisabledApplicationDataUpdateDupeIdnListBy" resultMap="BADUPEIDNResult">
+        SELECT A.APNO, 
+               A.SEQNO, 
+               A.IDNNO, 
+               A.NAME, 
+               A.BRDATE, 
+               A.SELMK, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BADUPEIDN A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="idnNo">
+                    A.IDNNO LIKE #idnNo:VARCHAR# || '%'
+                </isNotEmpty>          
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <update id="updateDisabledApplicationDataUpdateResetDupeIdnData">
+        UPDATE BADUPEIDN SET
+               SELMK = '1',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000'
+    </update>
+    
+    <update id="updateDisabledApplicationDataUpdateDupeIdnData">
+        UPDATE BADUPEIDN SET
+               SELMK = '2',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000' AND
+               IDNNO = #idnNo:VARCHAR# AND
+               NAME = #name:VARCHAR# AND
+               BRDATE = #brDate:VARCHAR#
+    </update>
+    <!-- ] -->
+    <!-- Disabled Application Data Update -->
+    
+    <!-- Survivor Application Data Update -->
+    <!-- [ -->
+    <select id="getSurvivorApplicationDataUpdateDupeIdnListBy" resultMap="BADUPEIDNResult">
+        SELECT A.APNO, 
+               A.SEQNO, 
+               A.IDNNO, 
+               A.NAME, 
+               A.BRDATE, 
+               A.SELMK, 
+               A.UPDUSER, 
+               A.UPDTIME 
+        FROM   BADUPEIDN A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000'
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="idnNo">
+                    A.IDNNO LIKE #idnNo:VARCHAR# || '%'
+                </isNotEmpty>           
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <update id="updateSurvivorApplicationDataUpdateResetDupeIdnData">
+        UPDATE BADUPEIDN SET
+               SELMK = '1',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000'
+    </update>
+    
+    <update id="updateSurvivorApplicationDataUpdateDupeIdnData">
+        UPDATE BADUPEIDN SET
+               SELMK = '2',
+               UPDUSER = #updUser:VARCHAR#,
+               UPDTIME = #updTime:VARCHAR#
+        WHERE  APNO = #apNo:VARCHAR# AND
+               SEQNO = '0000' AND
+               IDNNO = #idnNo:VARCHAR# AND
+               NAME = #name:VARCHAR# AND
+               BRDATE = #brDate:VARCHAR#
+    </update>
+    <!-- ] -->
+    <!-- Survivor Application Data Update -->
+    
+    <update id="updateData">
+        UPDATE BADUPEIDN SET 
+           SELMK = #selMk:VARCHAR#,
+           UPDUSER = #updUser:VARCHAR#,
+           UPDTIME = #updTime:VARCHAR#
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="idnNo">
+                    IDNNO = #idnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="name">
+                    NAME = #name:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="brDate">
+                    BRDATE = #brDate:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>     
+        </dynamic>           
+    </update>
+    
+    <select id="getNewIdnNoL018" resultClass="java.lang.String">
+       SELECT IDNNO 
+         FROM BADUPEIDN 
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+          AND IDNNO LIKE #idnNo:VARCHAR# || '%' 
+          AND SELMK = '2'
+    </select>
+</sqlMap>

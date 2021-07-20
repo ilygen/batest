@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="NBDAPR">
+
+    <typeAlias alias="Nbdapr" type="tw.gov.bli.ba.domain.Nbdapr" />
+
+    <resultMap id="NBDAPRResult" class="Nbdapr">
+        <result column="CHKDT"         property="chkDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APLPAYDATE"    property="aplPayDate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="MCHKTYPE"	   property="mchkType" 	   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01NpPayDetailDataResult" class="Nbdapr">
+        <result column="CHKDT"         property="chkDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APLPAYDATE"    property="aplPayDate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    <resultMap id="DisabledReviewRpt01NpDataList36And38Result" class="Nbdapr">
+        <result column="ISSUYM"       property="issuYm"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="PAYYM"        property="payYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUEAMT"     property="issueAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="SAGTOTAMT"    property="sagtotAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="ITRTAMT"      property="itrtAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="RECAMT"       property="recAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="SUPAMT"       property="supAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="CUTAMT"       property="cutAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="OTHERAMT"     property="otherAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="APLPAYAMT"    property="aplPayAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="MANCHKFLG"    property="manChkFlg"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01NpPayDetailDataResult" class="Nbdapr">
+        <result column="CHKDT"         property="chkDt"        jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" /> 
+        <result column="APLPAYDATE"    property="aplPayDate"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <resultMap id="PaymentQueryDisabledNpIssuDataResult" class="Nbdapr">
+        <result column="ISSUYM"       property="issuYm"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="PAYYM"        property="payYm"       jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+        <result column="ISSUEAMT"     property="issueAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="SAGTOTAMT"    property="sagtotAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="ITRTAMT"      property="itrtAmt"     jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="RECAMT"       property="recAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="SUPAMT"       property="supAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="CUTAMT"       property="cutAmt"      jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="OTHERAMT"     property="otherAmt"    jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="APLPAYAMT"    property="aplPayAmt"   jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />          
+        <result column="MANCHKFLG"    property="manChkFlg"   jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01NpPayDetailDataBy" resultMap="OldAgeReviewRpt01NpPayDetailDataResult">
+        SELECT A.CHKDT,
+               DECODE(A.APLPAYFLG, '3', A.APLPAYDATE) AS APLPAYDATE
+        FROM   NBDAPR A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="issuYm">
+                    A.ISSUYM = #issuYm:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="payYm">
+                    A.PAYYM = #payYm:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND A.SEQNO = '0000'
+                AND ROWNUM <= 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01NpPayDetailDataBy" resultMap="SurvivorReviewRpt01NpPayDetailDataResult">
+       SELECT A.CHKDT,
+               DECODE(A.APLPAYFLG, '3', A.APLPAYDATE) AS APLPAYDATE
+        FROM   NBDAPR A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                    And ISSUYM =( SELECT MAX(B.ISSUYM) 
+                                FROM NBDAPR B
+                               WHERE B.APNO = #apNo:VARCHAR#
+                                 AND B.SEQNO = '0000'
+                                 AND B.MTESTFLG = 'F' 
+                                 AND Trim(B.APLPAYFLG) Is Not Null )
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="payYm">
+                    A.PAYYM = #payYm:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND A.MTESTFLG='F' 
+                AND A.SEQNO = '0000' 
+                AND Trim(A.APLPAYFLG) Is Not Null
+                AND ROWNUM = 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- [ -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    
+    <select id="getDisableReviewRpt01NpPayDetailDataBy" resultMap="OldAgeReviewRpt01NpPayDetailDataResult">
+        SELECT A.CHKDT,
+               DECODE(A.APLPAYFLG, '3', A.APLPAYDATE) AS APLPAYDATE
+        FROM   NBDAPR A  
+        WHERE 
+         <![CDATA[
+            A.SEQNO = '0000' 
+            And MCHKTYPE = 'F'
+            AND ROWNUM = 1
+         ]]>
+        <dynamic>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#
+                    And ISSUYM = ( SELECT MAX(A.ISSUYM) 
+                                FROM NBDAPR A
+                               WHERE A.APNO = #apNo:VARCHAR#
+                                 AND A.SEQNO = '0000'
+                                 AND A.MCHKTYPE = 'F')
+                </isNotEmpty>
+               
+               
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectDisabledReviewRpt01NpDataList36By" resultMap="DisabledReviewRpt01NpDataList36And38Result">
+        SELECT ISSUYM,   
+               PAYYM,     
+               ISSUEAMT,   
+               SAGTOTAMT,  
+               ITRTAMT,   
+               RECAMT,    
+               SUPAMT,     
+               CUTAMT,     
+               OTHERAMT,   
+               APLPAYAMT,  
+               MANCHKFLG   
+          FROM NBDAPR
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000'
+           AND VERISEQ = ( SELECT MAX(to_Number(B.VERISEQ)) FROM NBDAPR B
+                            WHERE B.APNO = #apNo:VARCHAR# 
+                              AND B.ISSUYM = #issuYm:VARCHAR# )
+           AND ISSUYM = #issuYm:VARCHAR#
+         ORDER BY PAYYM
+    </select>
+    
+    <select id="selectDisabledReviewRpt01NpDataList38By" resultMap="DisabledReviewRpt01NpDataList36And38Result">
+        SELECT ISSUYM,   
+               PAYYM,     
+               ISSUEAMT,   
+               SAGTOTAMT,  
+               ITRTAMT,   
+               RECAMT,    
+               SUPAMT,     
+               CUTAMT,     
+               OTHERAMT,   
+               APLPAYAMT,  
+               MANCHKFLG   
+          FROM NBDAPR
+         WHERE APNO = #mapNo:VARCHAR#
+           AND SEQNO = '0000'
+           AND (ISSUYM, PAYYM) in (SELECT DISTINCT NBISSUYM, NBPAYYM FROM BANBDAPR
+         WHERE APNO = #apNo:VARCHAR#
+           AND ISSUYM = #issuYm:VARCHAR#
+           AND VERISEQ = ( SELECT MAX(to_Number(B.VERISEQ)) 
+          FROM BANBDAPR B
+         WHERE B.APNO = #apNo:VARCHAR#
+           AND B.ISSUYM = #issuYm:VARCHAR# ))
+         ORDER BY PAYYM
+    </select>
+    
+    <!-- DisableReviewRpt 01 End -->
+    
+    <select id="selectPaymentQueryDisabledNpIssuDataBy" resultMap="PaymentQueryDisabledNpIssuDataResult">
+		SELECT ISSUYM,
+		       PAYYM,
+		       ISSUEAMT,
+		       SAGTOTAMT,
+		       ITRTAMT,
+		       RECAMT,
+		       SUPAMT,
+		       CUTAMT,
+		       OTHERAMT,
+		       APLPAYAMT,
+		       MANCHKFLG
+		  FROM NBDAPR
+		 WHERE APNO = #apNo:VARCHAR#
+		   AND SEQNO = '0000'
+		   AND MTESTFLG = 'F'
+		   <isEqual property="qryCond" compareValue="ISSUYM">
+		       <![CDATA[
+		       AND (ISSUYM >= #startYm:VARCHAR#
+               AND ISSUYM <= #endYm:VARCHAR#)
+               ]]>
+		   </isEqual>
+		   <isEqual property="qryCond" compareValue="PAYYM">
+               <![CDATA[
+               AND (PAYYM >= #startYm:VARCHAR#
+               AND PAYYM <= #endYm:VARCHAR#)
+               ]]>
+           </isEqual>
+		ORDER BY ISSUYM DESC, PAYYM DESC
+    </select>
+    
+</sqlMap>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BASTUDTERM">
+
+	<typeAlias alias="Bastudterm" type="tw.gov.bli.ba.domain.Bastudterm" />
+	
+	<resultMap id="BASTUDTERMResult" class="Bastudterm">
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="TERMNO"       property="termNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="STUDSDATE"    property="studSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"    property="studEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTUSER"      property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+	
+	<resultMap id="StudMasterDataForSurvivorPaymentQueryResult" class="Bastudterm">
+		<result column="STUDSDATE"        property="studSdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"        property="studEdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDDATACOUNT"    property="studDataCount"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+	</resultMap>
+	
+	<resultMap id="StudDetailDataForSurvivorPaymentQueryResult" class="Bastudterm">
+        <result column="STUDSDATE"        property="studSdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"        property="studEdate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+    </resultMap>
+
+    <resultMap id="BastudTermListResult" class="Bastudterm">
+        <result column="APNO"         property="apNo"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"        property="seqNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="TERMNO"       property="termNo"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="STUDSDATE"    property="studSdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="STUDEDATE"    property="studEdate"    jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+		<result column="CRTUSER"      property="crtUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"      property="crtTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"      property="updUser"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"      property="updTime"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+	</resultMap>
+
+	<select id="selectStudMasterDataForSurvivorPaymentQuery" resultMap="StudMasterDataForSurvivorPaymentQueryResult">
+        SELECT MIN(STUDSDATE) AS STUDSDATE    
+              ,MAX(STUDEDATE) AS STUDEDATE    
+              ,COUNT(*) AS STUDDATACOUNT          
+          FROM BASTUDTERM                     
+         WHERE APNO = #apNo:VARCHAR#          
+           AND SEQNO = #seqNo:VARCHAR#        
+	</select>
+	
+	<select id="selectStudDetailDataForSurvivorPaymentQuery" resultMap="StudDetailDataForSurvivorPaymentQueryResult">
+	    SELECT STUDSDATE
+	          ,STUDEDATE
+	      FROM BASTUDTERM
+	     WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+	     ORDER BY TERMNO
+    </select>
+
+    <select id="selectStudtermListForSurvivorPayeeDataUpdate" resultMap="BastudTermListResult">
+        SELECT APNO,
+               SEQNO,
+               TERMNO,
+               STUDSDATE,
+               STUDEDATE,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME
+        FROM  BASTUDTERM
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+        ORDER BY STUDSDATE, TERMNO
+    </select>
+    
+     <select id="selectMaxTermNoBy" resultClass="java.math.BigDecimal" >
+       SELECT (max(TERMNO) + 1)
+         from BASTUDTERM 
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+    </select>
+    
+    <select id="selectStudtermListForDependantDataUpdate" resultMap="BastudTermListResult">
+        SELECT APNO,
+               SEQNO,
+               TERMNO,
+               STUDSDATE,
+               STUDEDATE,
+               CRTUSER,
+               CRTTIME,
+               UPDUSER,
+               UPDTIME
+        FROM  BASTUDTERM
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+        ORDER BY STUDSDATE, TERMNO
+    </select>
+
+    <insert id="insertBastudterm">
+        INSERT INTO BASTUDTERM(
+             APNO,
+             SEQNO,
+             TERMNO,
+             STUDSDATE,
+             STUDEDATE,
+             CRTUSER,
+             CRTTIME,
+             UPDUSER,
+             UPDTIME)
+        VALUES (
+             #apNo:VARCHAR#,
+             #seqNo:VARCHAR#,
+             #termNo:VARCHAR#,
+             #studSdate:VARCHAR#,
+             #studEdate:VARCHAR#,
+             #crtUser:VARCHAR#,
+             #crtTime:VARCHAR#,
+             #updUser:VARCHAR#,
+             #updTime:VARCHAR#
+            )
+    </insert>
+
+    <update id="updateBastudterm">
+        UPDATE BASTUDTERM
+        SET STUDSDATE = #studSdate:VARCHAR#,
+            STUDEDATE = #studEdate:VARCHAR#,
+            UPDUSER = #cpdUser:VARCHAR#,
+            UPDTIME = #updTime:VARCHAR#
+        WHERE APNO = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+          AND TERMNO = #termNo:VARCHAR#
+     </update>
+
+     <delete id="deleteBastudterm">
+         DELETE FROM BASTUDTERM
+           WHERE APNO = #apNo:VARCHAR#
+             AND SEQNO = #seqNo:VARCHAR#
+     </delete>
+
+</sqlMap>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="CIPG">
+
+    <typeAlias alias="Cipg" type="tw.gov.bli.ba.domain.Cipg" />
+    
+    <resultMap id="CIPGResult" class="Cipg">
+    	<result column="INTYP"            	property="inTyp"            jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    	<result column="IDN"             	property="idn"            	jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    	<result column="AVGTYP"             property="avgTyp"           jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    	<result column="AVGMYM"             property="avgYm"            jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    	<result column="AVGWG"      		property="avgWg"     		jdbcType="NUMERIC"  	javaType="java.math.BigDecimal" />
+    	<result column="PRODTE"             property="proDte"           jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    	<result column="DWMK"            	property="dwMk"             jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01SixtyMonthAvgAmtDataResult" class="Cipg">
+        <result column="AVGMYM"             property="avgYm"            jdbcType="VARCHAR"      javaType="java.lang.String"         nullValue="" />
+        <result column="AVGWG"              property="avgWg"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="DWMK"            	property="dwMk"             jdbcType="VARCHAR"  	javaType="java.lang.String" 		nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+        
+    <resultMap id="PaymentQuerySixtyMonAvgAmtDataResult" class="Cipg">
+        <result column="AVGMYM"             property="avgYm"            jdbcType="VARCHAR"      javaType="java.lang.String"         nullValue="" />
+        <result column="AVGWG"              property="avgWg"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectOldAgeReviewRpt01SixtyMonthAvgAmtList" resultMap="OldAgeReviewRpt01SixtyMonthAvgAmtDataResult">
+    <![CDATA[
+        SELECT /*+index(CIPGP01)*/ AVGMYM,
+               AVGWG,
+               DWMK
+          FROM CIPG
+         WHERE INTYP = 'L'
+           AND APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+           AND IDN like #idn:VARCHAR#||'%'
+           AND AVGTYP = '1' 
+           AND AVGMYM <> '191101'     	   
+           AND ROWNUM <= #appMonth:VARCHAR#
+         ORDER BY AVGMYM DESC
+    ]]>
+    </select>    
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="selectDisableReviewRpt01AvgWg" resultMap="CIPGResult">
+    	SELECT /*+index(CIPGP01)*/ c.INTYP, 
+    		   c.IDN, 
+    		   c.AVGTYP,
+    		   c.AVGMYM,  
+         	   c.AVGWG, 
+         	   c.PRODTE,
+         	   c.DWMK
+        <![CDATA[   
+    	FROM CIPG c	
+   		WHERE c.INTYP = #inTyp:VARCHAR# 
+   		  AND APNO  = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+     	  AND c.IDN like #evtIdnNo:VARCHAR#||'%' 
+     	  AND c.AVGTYP = #avgTyp:VARCHAR#
+     	  AND c.AVGMYM <> '191101'
+     	  AND c.prodte = (select /*+index(CIPGP01)*/ max(c1.prodte) From CIPG c1
+                         	WHERE c1.INTYP =  #inTyp:VARCHAR# 
+     	                      AND c1.IDN like #evtIdnNo:VARCHAR#||'%'  
+     	                      AND c1.AVGTYP = #avgTyp:VARCHAR#  
+                       )  
+          AND ROWNUM <= #appMonth:VARCHAR#   
+     	ORDER BY c.AVGMYM DESC
+     	]]>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01AvgWg" resultMap="CIPGResult">
+    	SELECT /*+index(CIPGP01)*/ c.INTYP, 
+    		   c.IDN, 
+    		   c.AVGTYP,
+    		   c.AVGMYM,  
+         	   c.AVGWG, 
+         	   c.PRODTE,
+         	   c.DWMK
+        <![CDATA[   
+    	FROM CIPG c	
+   		WHERE c.INTYP = #inTyp:VARCHAR# 
+   		  AND APNO  = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+     	  AND c.IDN like #evtIdnNo:VARCHAR#||'%'  
+     	  AND c.AVGTYP = #avgTyp:VARCHAR#  
+     	  AND c.AVGMYM <> '191101'
+     	  AND c.PRODTE = (select /*+index(CIPGP01)*/ max(c1.prodte) From CIPG c1
+                         	WHERE c1.INTYP =  #inTyp:VARCHAR# 
+     	                      AND c1.IDN like #evtIdnNo:VARCHAR#||'%'  
+     	                      AND c1.AVGTYP = #avgTyp:VARCHAR#  
+                       ) 
+          and ROWNUM <= #appMonth:VARCHAR#  
+     	ORDER BY c.AVGMYM DESC
+  	     ]]>
+    </select>
+    
+    <select id="selectPaymentQuerySixtyMonAvgAmtDataBy" resultMap="PaymentQuerySixtyMonAvgAmtDataResult">
+		SELECT /*+index(CIPGP01)*/ AVGMYM,
+		       AVGWG
+		  FROM CIPG
+		 WHERE INTYP = 'L'
+		   AND APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+		   AND IDN like #idn:VARCHAR#||'%'
+		   AND AVGTYP = #avgTyp:VARCHAR# 
+		   <![CDATA[
+		   AND AVGMYM <> '191101'
+     	   AND PRODTE = (select /*+index(CIPGP01)*/ max(c1.prodte) From CIPG c1
+                         	WHERE c1.INTYP =  'L' 
+     	                      AND c1.IDN like #idn:VARCHAR#||'%'  
+     	                      AND c1.AVGTYP = #avgTyp:VARCHAR#  
+                       )  
+           AND ROWNUM <= #appMonth:VARCHAR#  
+		    ]]>
+		 ORDER BY AVGMYM DESC
+    </select>
+    
+    <select id="selectPaymentQuerySixtyMonAvgAmtDataForOldAgeBy" resultMap="PaymentQuerySixtyMonAvgAmtDataResult">
+        SELECT /*+index(CIPGP01)*/ AVGMYM,
+               AVGWG
+          FROM CIPG
+         WHERE INTYP = 'L'
+           AND APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+           AND IDN like #idn:VARCHAR#||'%'
+           AND AVGTYP = '1'
+           <![CDATA[
+           AND AVGMYM <> '191101'     	   
+           AND ROWNUM <= #appMonth:VARCHAR# 
+            ]]>
+         ORDER BY AVGMYM DESC
+    </select>
+    
+    <select id="getRealAvgMonForOldAge" resultClass="java.lang.String">
+         SELECT COUNT(*)
+           FROM CIPG
+          WHERE INTYP = 'L'
+            AND APNO  = #apNo:VARCHAR#
+            AND SEQNO = #seqNo:VARCHAR#
+            AND IDN like #idn:VARCHAR#||'%'
+            AND AVGTYP = '1'
+            <![CDATA[
+            AND AVGMYM <> '191101'  
+            ]]>   	   
+          ORDER BY AVGMYM DESC
+    </select>
+    
+    <select id="getRealAvgMonBy" resultClass="java.lang.String">
+        SELECT COUNT(*)
+          FROM CIPG
+         WHERE INTYP = 'L'
+           AND APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+           AND IDN like #idn:VARCHAR#||'%'
+           AND AVGTYP = #avgTyp:VARCHAR# 
+           <![CDATA[
+           AND AVGMYM <> '191101'
+            ]]>
+           AND PRODTE = (select max(c1.prodte) From CIPG c1
+                          WHERE c1.INTYP =  'L' 
+         	               AND c1.IDN like #idn:VARCHAR#||'%'  
+         	               AND c1.AVGTYP = #avgTyp:VARCHAR#  )  
+           ORDER BY AVGMYM DESC
+    </select>
+    
+    <select id="getRealAvgMonForDisableReviewRpt01By" resultClass="java.lang.String">
+       SELECT COUNT(*)   
+	     FROM CIPG c	
+	    WHERE c.INTYP = #inTyp:VARCHAR# 
+	      AND APNO  = #apNo:VARCHAR#
+          AND SEQNO = #seqNo:VARCHAR#
+ 	      AND c.IDN like #idn:VARCHAR# || '%' 
+ 	      AND c.AVGTYP = #avgTyp:VARCHAR#
+ 	      <![CDATA[
+ 	      AND c.AVGMYM <> '191101'
+ 	      ]]>
+          AND c.prodte = (select max(c1.prodte) From CIPG c1
+                     	WHERE c1.INTYP =  #inTyp:VARCHAR# 
+ 	                      AND c1.IDN like #idn:VARCHAR# || '%'  
+ 	                      AND c1.AVGTYP = #avgTyp:VARCHAR# )  
+	      ORDER BY c.AVGMYM DESC
+    </select>
+    
+    <select id="getRealAvgMonForSurvivorReviewRpt01By" resultClass="java.lang.String">
+        SELECT COUNT(*)  
+	      FROM CIPG c	
+	     WHERE c.INTYP = #inTyp:VARCHAR# 
+	       AND APNO  = #apNo:VARCHAR#
+           AND SEQNO = #seqNo:VARCHAR#
+ 	       AND c.IDN like #idn:VARCHAR# || '%'  
+ 	       AND c.AVGTYP = #avgTyp:VARCHAR#  
+ 	       <![CDATA[
+ 	       AND c.AVGMYM <> '191101'
+ 	       ]]>
+      	   AND c.PRODTE = (select max(c1.prodte) From CIPG c1
+                     	 WHERE c1.INTYP =  #inTyp:VARCHAR# 
+ 	                     AND c1.IDN like #idn:VARCHAR# || '%'  
+ 	                     AND c1.AVGTYP = #avgTyp:VARCHAR#  ) 
+	     ORDER BY c.AVGMYM DESC
+    </select>
+    
+     <select id="getAvgWageForKS" resultClass="java.math.BigDecimal">
+     <![CDATA[
+         Select NVL(ROUND(Sum(c.AVGWG) / Count(c.AVGWG)), 0) As "AVGWG"
+           From CIPG c
+          Where c.INTYP = 'L'
+            And c.IDN like #idn:VARCHAR# || '%'
+            AND c.APNO = #apNo:VARCHAR#
+            AND c.SEQNO = #seqNo:VARCHAR#
+            And c.AVGTYP = '5'
+            AND c.AVGMYM <> '191101'
+            And c.PRODTE = (select max(c1.PRODTE)
+                              from CIPG c1
+                             Where c1.INTYP = 'L'
+                               And c1.IDN like #idn:VARCHAR# || '%'
+                               AND c1.APNO = #apNo:VARCHAR#
+                               AND c1.SEQNO = #seqNo:VARCHAR#
+                               And c1.AVGTYP = '5')
+    ]]>
+    </select>    
+    
+</sqlMap>

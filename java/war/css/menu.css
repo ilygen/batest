@@ -1,0 +1,99 @@
+.gurtl0onorm
+{
+	color: #ffffff;
+	cursor: hand;
+	text-align: center;
+	border-right-width: 0.04em;
+	border-right-style: solid;
+	border-right-color: #1D5374;
+	padding-top: 0.5em;
+	padding-right: 0.3em;
+	padding-bottom: 0.3em;
+	padding-left: 0.3em;
+	font: bold 0.8em "新細明體", "細明體", "標楷體", Arial, Tahoma;
+}
+.gurtl0oover
+{
+font: bold 0.8em "新細明體", "細明體", "標楷體", Arial, Tahoma;
+	text-decoration: none;
+	color: #FFFF00;
+	cursor: hand;
+	font-weight: bold;
+	text-align: center;
+	border-right-width: 0.04em;
+	border-right-style: solid;
+	border-right-color: #1D5374;
+	padding-top: 0.5em;
+	padding-right: 0.3em;
+	padding-bottom: 0.3em;
+	padding-left: 0.3em;
+}
+.gurtl0oclck
+{
+font: bold 0.8em "新細明體", "細明體", "標楷體", Arial, Tahoma;
+	text-decoration: none;
+	color: #99FFFF;
+	cursor: hand;
+	font-weight: bold;
+	text-align: center;
+	border-right-width: 0.04em;
+	border-right-style: solid;
+	border-right-color: #1D5374;
+	padding-top: 0.55em;
+	padding-right: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 0.35em;
+}
+.gurtl1onorm
+{
+	padding: 0.3em;
+	text-decoration: none;
+	color: #006666;
+	cursor: hand;
+	background-color: #C0D8CB;
+	border-top-width: 0.09em;
+	border-right-width: 0.09em;
+	border-bottom-width: 0.09em;
+	border-left-width: 0.4em;
+	border-style: solid;
+	border-top-color: #009900;
+	border-right-color: #009900;
+	border-bottom-color: #009900;
+	border-left-color: #78B000;
+	font: 0.75em "新細明體", "細明體", "標楷體", Arial, Tahoma;
+	}
+.gurtl1oover
+{
+	color: #FFFFFF;
+	padding: 0.3em;
+	text-decoration: none;
+	background-color: #216288;
+	cursor: hand;
+	border-top-width: 0.09em;
+	border-right-width: 0.09em;
+	border-bottom-width: 0.09em;
+	border-left-width: 0.4em;
+	border-style: solid;
+	border-top-color: #216288;
+	border-right-color: #216288;
+	border-bottom-color: #216288;
+	border-left-color: #638521;
+	font: 0.75em "新細明體", "細明體", "標楷體", Arial, Tahoma;}
+.gurtl1oclck
+{
+	font: 0.75em "新細明體", "細明體", "標楷體", Arial, Tahoma;
+	color: #999999;
+	padding: 0.3em;
+	text-decoration: none;
+	cursor: hand;
+	border-top-width: 0.09em;
+	border-right-width: 0.09em;
+	border-bottom-width: 0.09em;
+	border-left-width: 0.4em;
+	border-style: solid;
+	border-top-color: #216288;
+	border-right-color: #216288;
+	border-bottom-color: #216288;
+	border-left-color: #9BC800;
+	background-color: #C0D8CB;
+}

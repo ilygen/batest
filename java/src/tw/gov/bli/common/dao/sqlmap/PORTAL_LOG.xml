@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PORTAL_LOG">
+
+    <typeAlias alias="PortalLog" type="tw.gov.bli.common.domain.PortalLog" />
+
+    <resultMap id="PORTAL_LOGResult" class="PortalLog">
+        <result column="SYS_ID"             property="sysId"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="LOG_DATETIME"       property="logDateTime"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER_ID"            property="userId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER_IP"            property="userIP"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER_ACTION"        property="userAction"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AP_CODE"            property="apCode"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AP_NAME"            property="apName"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AP_FUNCTION_CODE"   property="apFunctionCode"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AP_FUNCTION_NAME"   property="apFunctionName"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AP_URL"             property="apUrl"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="LOG_DESCRIPT"       property="logDescript"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE_TIME"          property="dateTime"         jdbcType="DATE"         javaType="java.sql.Timestamp" />
+        <result column="TOKEN"              property="token"            jdbcType="VARCHAR"      javaType="java.lang.String" />       
+    </resultMap>
+
+    <insert id="insertData">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="sysId">
+            SELECT PORTAL_ID.NEXTVAL AS PORTAL_ID FROM DUAL
+        </selectKey>
+        INSERT INTO PORTAL_LOG
+        (
+            SYS_ID, 
+            LOG_DATETIME, 
+            USER_ID, 
+            USER_IP, 
+            USER_ACTION, 
+            AP_CODE, 
+            AP_NAME, 
+            AP_FUNCTION_CODE, 
+            AP_FUNCTION_NAME, 
+            AP_URL, 
+            LOG_DESCRIPT, 
+            DATE_TIME, 
+            TOKEN
+        ) 
+        VALUES
+        (
+            #sysId#, 
+            #logDateTime:VARCHAR#, 
+            #userId:VARCHAR#, 
+            #userIP:VARCHAR#, 
+            #userAction:VARCHAR#, 
+            #apCode:VARCHAR#, 
+            #apName:VARCHAR#, 
+            #apFunctionCode:VARCHAR#, 
+            #apFunctionName:VARCHAR#, 
+            #apUrl:VARCHAR#, 
+            #logDescript:VARCHAR#, 
+            #dateTime:DATE#, 
+            #token:VARCHAR#
+        )
+    </insert>
+
+</sqlMap>

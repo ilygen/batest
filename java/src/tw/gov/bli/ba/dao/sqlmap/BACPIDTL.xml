@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BACPIDTL">
+
+    <typeAlias alias="Bacpidtl" type="tw.gov.bli.ba.domain.Bacpidtl" />
+
+    <resultMap id="BACPIDTLResult" class="Bacpidtl">
+        <result column="CPIYEAR"       property="cpiYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX"       property="cpIndex"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ISSUYEAR"      property="issuYear"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJMK"         property="adjMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEARE"      property="cpiYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIB"          property="cpiB"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CPIE"          property="cpiE"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REQRPNO"       property="reqRpno"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"      property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="ISSUDESC"      property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SYSDATE"       property="sysDate"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARS"      property="adjYearS"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARE"      property="adjYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AMOUNT"        property="amount"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="selectSingleForUpdateDataResult" class="Bacpidtl">
+        <result column="CPIYEAR"       property="cpiYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX"       property="cpIndex"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ADJYEAR"       property="adjYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJMK"         property="adjMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEARE"      property="cpiYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIB"          property="cpiB"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CPIE"          property="cpiE"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REQRPNO"       property="reqRpno"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"      property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="ISSUDESC"      property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER"          property="user"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE"          property="date"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SYSDATE"        property="sysDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="selectSingleForCpiDltForCpiRecDataResult" class="Bacpidtl">
+        <result column="ISSUYEAR"      property="issuYear"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX"       property="cpIndex"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CPIYEAR"       property="cpiYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEARE"      property="cpiYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REQRPNO"       property="reqRpno"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"      property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="ISSUDESC"      property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJMK"         property="adjMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARS"      property="adjYearS"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARE"      property="adjYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AMOUNT"        property="amount"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+     <resultMap id="selectInsertDataForCpiRecResult" class="Bacpidtl">
+        <result column="ISSUYEAR"      property="issuYear"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEAR"       property="adjYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX"       property="cpIndex"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CPIYEAR"       property="cpiYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEARE"      property="cpiYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="REQRPNO"       property="reqRpno"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"      property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="ISSUDESC"      property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJMK"         property="adjMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+
+    <resultMap id="selectAdjYearDataResult" class="Bacpidtl">
+        <result column="ADJYEARS"      property="adjYearS"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARE"      property="adjYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AMOUNT"        property="amount"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="selectUpdDelDataResult" class="Bacpidtl">
+        <result column="CPIYEAR"       property="cpiYear"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPINDEX"       property="cpIndex"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="ISSUYEAR"      property="issuYear"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEAR"       property="adjYear"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJMK"         property="adjMk"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIYEARE"      property="cpiYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CPIB"          property="cpiB"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="CPIE"          property="cpiE"            jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REQRPNO"       property="reqRpno"         jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ISSURPNO"      property="issuRpno"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="ISSUDESC"      property="issuDesc"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="USER"          property="user"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE"          property="date"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SYSDATE"       property="sysDate"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="selectDetailUserDataByResult" class="Bacpidtl">
+        <result column="USER"          property="user"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATE"          property="date"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARS"      property="adjYearS"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="ADJYEARE"      property="adjYearE"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AMOUNT"        property="amount"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+
+    <select id="selectDataBy" resultMap="BACPIDTLResult">
+       SELECT  CPIYEAR, 
+               CPINDEX, 
+               ISSUYEAR, 
+               ADJMK,
+               CPIYEARE,
+               CPIB,
+               CPIE,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE",
+               MIN(ADJYEAR) AS ADJYEARS,
+               MAX(ADJYEAR) AS ADJYEARE,
+               COUNT(*) AS AMOUNT 
+        FROM   BACPIDTL
+       <dynamic prepend="WHERE">
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="issuYear">
+                <![CDATA[
+                    ISSUYEAR <= #issuYear:VARCHAR#
+                 ]]>
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        Group By CPIYEAR,CPINDEX,ISSUYEAR,ADJMK,CPIYEARE,CPIB,CPIE,REQRPNO,ISSURPNO,ISSUDESC
+        Order By ISSUYEAR
+    </select>
+    
+    <select id="selectSingleForCheckSaveDataForDtl" resultMap="selectSingleForUpdateDataResult">
+       SELECT  CPIYEAR, 
+               CPINDEX, 
+               ADJYEAR, 
+               ADJMK,
+               CPIYEARE,
+               CPIB,
+               CPIE,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               NVL(UPDUSER,CRTUSER) AS "USER", 
+               SUBSTR(NVL(UPDTIME,CRTTIME),1,8) AS "DATE",
+               (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+        FROM   BACPIDTL
+        WHERE  ISSUYEAR  = #issuYear:VARCHAR#
+          AND  ADJYEAR   = #adjYear:VARCHAR#
+     </select>
+     
+     <select id="selectListForForCpiRec" resultMap="selectSingleForUpdateDataResult">
+       SELECT  CPIYEAR, 
+               CPINDEX, 
+               ADJYEAR, 
+               ADJMK,
+               CPIYEARE,
+               CPIB,
+               CPIE,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               NVL(UPDUSER,CRTUSER) AS "USER", 
+               SUBSTR(NVL(UPDTIME,CRTTIME),1,8) AS "DATE",
+               (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+        FROM   BACPIDTL
+        WHERE  ISSUYEAR   = #issuYear:VARCHAR#
+     </select>
+     
+     <select id="selectSingleForCpiDltForCpiRecData" resultMap="selectSingleForCpiDltForCpiRecDataResult">
+       SELECT  ISSUYEAR,
+               CPINDEX, 
+               CPIYEAR, 
+               CPIYEARE,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               ADJMK,
+               MIN(ADJYEAR) AS ADJYEARS,
+               MAX(ADJYEAR) AS ADJYEARE,
+               COUNT(*) AS AMOUNT
+        FROM   BACPIDTL
+        WHERE  ISSUYEAR  = (select To_char(SysDate, 'YYYY') from dual)
+        GROUP BY ISSUYEAR,CPINDEX,CPIYEAR, CPIYEARE, REQRPNO, ISSURPNO, ISSUDESC, ADJMK
+     </select>
+     
+      <select id="selectInsertDataForCpiRec" resultMap="selectInsertDataForCpiRecResult">
+       SELECT  ISSUYEAR,
+               ADJYEAR,
+               CPINDEX, 
+               CPIYEAR, 
+               CPIYEARE,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC,
+               ADJMK
+        FROM   BACPIDTL
+        WHERE  ISSUYEAR  = #issuYear:VARCHAR#
+     </select>
+
+    <insert id="insertData">
+        INSERT INTO BACPIDTL 
+        ( 
+            ISSUYEAR,
+            ADJYEAR,
+            SEQNO,
+            CPIYEAR, 
+            CPINDEX, 
+            REQRPNO,
+            ISSURPNO,
+            ISSUDESC,
+            CRTUSER,
+            CRTTIME,
+            CPIYEARE,
+            CPIB,
+            CPIE
+        )  
+        VALUES
+        ( 
+            #issuYear:VARCHAR#,
+            #adjYear:VARCHAR#,
+            #seqNo:VARCHAR#,
+            #cpiYear:VARCHAR#,
+            #cpIndex:VARCHAR#,
+            #reqRpno:VARCHAR#,
+            #issuRpno:VARCHAR#,
+            #issuDesc:VARCHAR#,
+            #crtUser:VARCHAR#,
+            #crtTime:VARCHAR#,
+            #cpiYearE:VARCHAR#,
+            #cpiB:VARCHAR#,
+            #cpiE:VARCHAR#
+        )     
+    </insert>
+
+    <update id="updateData">
+        UPDATE BACPIDTL SET
+               CPIYEAR  = #cpiYear:VARCHAR#,
+               CPIYEARE = #cpiYearE:VARCHAR#,
+               CPINDEX  = #cpIndex:VARCHAR#,
+               REQRPNO  = #reqRpno:VARCHAR#,
+               ISSURPNO = #issuRpno:VARCHAR#,
+               ISSUDESC = #issuDesc:VARCHAR#,
+               UPDUSER  = #updUser:VARCHAR#,
+               UPDTIME  = #updTime:VARCHAR#,
+               CPIB     = #cpiB:VARCHAR#,
+               CPIE     = #cpiE:VARCHAR#
+        WHERE  ISSUYEAR  = #issuYear:VARCHAR#
+          AND   ADJYEAR in (SELECT ADJYEAR
+                              FROM BACPIDTL
+                             WHERE ISSUYEAR = #issuYear:VARCHAR#
+                               AND CPIYEAR  = #oldCpiYear:VARCHAR#
+                               AND CPIYEARE = #oldCpiYearE:VARCHAR#
+                               AND CPIB     = #oldCpiB:VARCHAR#
+                               AND CPIE     = #oldCpiE:VARCHAR#
+                               AND CPINDEX  = #oldCpIndex:VARCHAR#)
+    </update>
+    
+     <delete id="deleteData">
+        DELETE from BACPIDTL
+         WHERE ISSUYEAR = #issuYear:VARCHAR#
+           <isEqual property="eqType" compareValue="in">
+               AND ADJYEAR in 
+           </isEqual>
+            <isEqual property="eqType" compareValue="notIn">
+               AND ADJYEAR not in  
+           </isEqual>
+           <iterate  property="adjYear"  open="(" close=")" conjunction="," >
+               #adjYear[]#
+           </iterate>
+           AND CPIYEAR = #cpiYear:VARCHAR#
+           AND CPIYEARE = #cpiYearE:VARCHAR#
+           AND CPIB = #cpiB:VARCHAR#
+           AND CPIE = #cpiE:VARCHAR#
+           AND CPINDEX = #cpIndex:VARCHAR#
+     </delete>      
+
+    <update id="updateAdjMk">
+        UPDATE BACPIDTL SET
+               ADJMK = #adjMk:VARCHAR#      
+        WHERE  ISSUYEAR = #issuYear:VARCHAR# 
+    </update>
+    
+    <select id="selectSeqNoForCpiDtl" resultClass="java.math.BigDecimal">
+        select TO_CHAR(TO_NUMBER(max(SEQNO)) + 1)
+          From BACPIDTL
+         Where ISSUYEAR = #issuYear:VARCHAR# 
+           AND CPIYEAR  = #cpiYear:VARCHAR# 
+           AND CPIYEARE = #cpiYearE:VARCHAR# 
+           AND CPIB = #cpiB:VARCHAR#
+           AND CPIE = #cpiE:VARCHAR#
+           AND CPINDEX = #cpIndex:NUMERIC#
+           AND REQRPNO = #reqRpno:VARCHAR# 
+           AND ISSURPNO = #issuRpno:VARCHAR# 
+           AND ISSUDESC = #issuDesc:VARCHAR# 
+    </select>
+    
+    <select id="selectAdjYearDataBy" resultMap="selectAdjYearDataResult">
+        select MIN(ADJYEAR) AS ADJYEARS,
+               MAX(ADJYEAR) AS ADJYEARE,
+               COUNT(*) AS AMOUNT
+          From BACPIDTL
+         Where ISSUYEAR = #issuYear:VARCHAR# 
+           AND CPIYEAR  = #cpiYear:VARCHAR# 
+           AND CPIYEARE = #cpiYearE:VARCHAR# 
+           AND CPIB = #cpiB:VARCHAR#
+           AND CPIE = #cpiE:VARCHAR#
+           AND CPINDEX = #cpIndex:NUMERIC#
+           AND REQRPNO = #reqRpno:VARCHAR# 
+           AND ISSURPNO = #issuRpno:VARCHAR# 
+           AND ISSUDESC = #issuDesc:VARCHAR# 
+         GROUP BY SEQNO
+         ORDER BY ADJYEARS
+    </select>
+    
+    <select id="selectUpdDelDataBy" resultMap="selectUpdDelDataResult">
+       SELECT CPIYEAR, 
+              CPINDEX, 
+              ISSUYEAR,
+              ADJYEAR, 
+              ADJMK,
+              CPIYEARE,
+              CPIB,
+              CPIE,
+              REQRPNO,
+              ISSURPNO,
+              ISSUDESC,
+              UPDUSER AS "USER", 
+              UPDTIME AS "DATE",
+              (select To_char(SysDate, 'YYYYMM') from dual) AS "SYSDATE"
+         FROM BACPIDTL
+        Where ISSUYEAR = #issuYear:VARCHAR# 
+          AND CPIYEAR  = #cpiYear:VARCHAR# 
+          AND CPIYEARE = #cpiYearE:VARCHAR# 
+          AND CPIB = #cpiB:VARCHAR#
+          AND CPIE = #cpiE:VARCHAR#
+          AND CPINDEX = #cpIndex:NUMERIC#
+          ORDER BY ADJYEAR
+    </select>
+    
+    <select id="selectDetailUserDataBy" resultMap="selectDetailUserDataByResult">
+       select MIN(A.ADJYEAR) AS ADJYEARS,
+              MAX(A.ADJYEAR) AS ADJYEARE,
+              COUNT(*) AS AMOUNT,
+              NVL(A.UPDUSER, A.CRTUSER) AS "USER",
+              NVL(A.UPDTIME, A.CRTTIME) AS "DATE"
+         from (SELECT UPDUSER,
+               CRTUSER,
+               SUBSTR(UPDTIME, 1, 8) AS UPDTIME,
+               SUBSTR(CRTTIME, 1, 8) AS CRTTIME,
+               adjyear,
+               cpiyear,
+               cpindex,
+               cpiyeare,
+               cpib,
+               cpie,
+               ADJMK,
+               REQRPNO,
+               ISSURPNO,
+               ISSUDESC 
+         FROM BACPIDTL
+        Where ISSUYEAR = #issuYear:VARCHAR# 
+          AND CPIYEAR  = #cpiYear:VARCHAR# 
+          AND CPIYEARE = #cpiYearE:VARCHAR# 
+          AND CPIB = #cpiB:VARCHAR#
+          AND CPIE = #cpiE:VARCHAR#
+          AND CPINDEX = #cpIndex:NUMERIC#) A
+          GROUP BY cpiyear, cpindex, cpiyeare, cpib, cpie, ADJMK, REQRPNO, ISSURPNO, ISSUDESC, UPDUSER, CRTUSER, UPDTIME, CRTTIME
+          order by ADJYEARS
+    </select>
+
+</sqlMap>

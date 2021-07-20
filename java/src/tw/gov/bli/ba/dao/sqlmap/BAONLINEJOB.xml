@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAONLINEJOB">
+
+    <typeAlias alias="Baonlinejob" type="tw.gov.bli.ba.domain.Baonlinejob" />
+    
+    <resultMap id="BAONLINEJOBResult" class="Baonlinejob">
+        <result column="BAONLINEJOBID"    property="baonlinejobId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MANCHKMK"         property="manchkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCTYPE"         property="procType"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"           property="status"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADJISSUYMMK"      property="adjIssuYmMk"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="MonthQueryDateResult" class="Baonlinejob">
+        <result column="BAONLINEJOBID"    property="baonlinejobId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADJISSUYMMK"      property="adjIssuYmMk"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MANCHKMK"         property="manchkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCTYPE"         property="procType"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"           property="status"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="MonthCheckQueryDateResult" class="Baonlinejob">
+        <result column="BAONLINEJOBID"    property="baonlinejobId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MANCHKMK"         property="manchkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCTYPE"         property="procType"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ADJISSUYMMK"      property="adjIssuYmMk"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"           property="status"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+
+    <select id="selectCountCheckForBjMonthBy" resultClass="java.math.BigDecimal">
+        Select count(A.APNO)
+          From BAONLINEJOB A
+         Where A.APNO LIKE #payCode:VARCHAR# || '%'
+           And A.PROCTYPE = '2'
+           And A.STATUS = '0'       
+           And A.CHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD')
+           <![CDATA[
+           And (A.CASEMK <> 'D' or A.CASEMK is null)
+           ]]>
+           And rownum = 1
+    </select>
+    
+    <select id="selectCountCheckForBjMonthCheckBy" resultClass="java.math.BigDecimal">
+        Select count(t.APNO)
+          From BAONLINEJOB t
+         Where t.APNO = #apNo:VARCHAR#
+           <![CDATA[
+           And (t.PROCTYPE <> '2' or t.PROCTYPE is null)
+           And (t.STATUS <> 'E' or t.STATUS is null)     
+           And (t.CASEMK <> 'D' or t.CASEMK is null)
+           ]]>
+    </select>
+    
+    <select id="selectMonthDataListBy" resultMap="BAONLINEJOBResult">
+                Select A.BAONLINEJOBID,
+                       A.APNO,      
+                       B.EVTNAME,   
+                       B.EVTIDNNO,
+                       A.ISSUYM,  
+                       B.CASETYP,  
+                       B.PROCSTAT, 
+                       B.MANCHKMK,
+                       A.PROCTYPE, 
+                       A.STATUS,
+                       A.ADJISSUYMMK   
+                  From (Select A1.BAONLINEJOBID, 
+                               A1.APNO,
+                               A1.ISSUYM,
+                               A1.STATUS,
+                               A1.PROCTYPE,
+                               A1.ADJISSUYMMK
+                          From BAONLINEJOB A1
+                         Where A1.APNO LIKE #payCode:VARCHAR# || '%'
+                           And A1.ISSUYM = #issuYm:VARCHAR#
+                           And A1.PROCTYPE = '1' 
+                           And A1.STATUS = '0'
+                           <![CDATA[
+                           And Trim(A1.CASEMK) Is Null
+                           ]]>
+                           And A1.ADJISSUYMMK = 'Y'
+                        ) A,
+                       (Select B1.APNO,
+                               B1.EVTNAME,       
+                               B1.EVTIDNNO, 
+                               B1.CASETYP,     
+                               B1.PROCSTAT,
+                               B1.MANCHKMK
+                          From BAAPPBASE B1
+                         Where B1.APNO IN (Select B2.APNO 
+                                             From BAONLINEJOB B2
+                                            Where B2.APNO LIKE #payCode:VARCHAR# || '%'
+                                              And B2.ISSUYM = #issuYm:VARCHAR#
+                                              And B2.PROCTYPE = '1' 
+                                              And B2.STATUS = '0'
+                                              <![CDATA[
+                                              And Trim(B2.CASEMK) Is Null
+                                              ]]>
+                                          )  
+                           And B1.SEQNO = '0000'
+                           And B1.PROCSTAT = '40'                
+                        ) B
+                  Where A.APNO = B.APNO 
+                  Order By A.APNO
+    </select>
+    
+    <select id="selectMonthQueryDataListBy" resultMap="MonthQueryDateResult">
+                Select A.BAONLINEJOBID,
+                       A.APNO,    
+                       B.EVTNAME,  
+                       B.EVTIDNNO, 
+                       A.ISSUYM,   
+                       A.CHKDATE,   
+                       A.ADJISSUYMMK,
+                       B.CASETYP,  
+                       B.PROCSTAT, 
+                       B.MANCHKMK,  
+                       A.PROCTYPE,  
+                       A.STATUS     
+                  From (Select A1.BAONLINEJOBID, 
+                               A1.APNO,
+                               A1.ISSUYM,
+                               A1.CHKDATE,
+                               A1.ADJISSUYMMK,
+                               A1.STATUS,
+                               A1.PROCTYPE
+                          From BAONLINEJOB A1
+                         Where A1.APNO LIKE #payCode:VARCHAR# || '%'
+                           And A1.ISSUYM = #issuYm:VARCHAR#
+                            <dynamic prepend="">
+                               <isNotParameterPresent>
+                                 AND 1 = 0
+                               </isNotParameterPresent>
+                             <isParameterPresent>                  
+                               <isNotEmpty prepend="AND" property="chkDate">              
+                                  A1.CHKDATE = #chkDate:VARCHAR#
+                               </isNotEmpty>  
+                             </isParameterPresent>
+                            </dynamic>
+                           And A1.PROCTYPE = '2' 
+                           <![CDATA[
+                           And Trim(A1.CASEMK) Is Null
+                           ]]>
+                        ) A,
+                       (Select B1.APNO,
+                               B1.EVTNAME,       
+                               B1.EVTIDNNO, 
+                               B1.CASETYP,     
+                               B1.PROCSTAT,
+                               B1.MANCHKMK
+                          From BAAPPBASE B1
+                         Where B1.APNO IN (Select B2.APNO 
+                                             From BAONLINEJOB B2
+                                            Where B2.APNO LIKE #payCode:VARCHAR# || '%'
+                                              And B2.ISSUYM = #issuYm:VARCHAR#
+                                              <dynamic prepend="">
+                                                 <isNotParameterPresent>
+                                                   AND 1 = 0
+                                                 </isNotParameterPresent>
+                                                 <isParameterPresent>                  
+                                               <isNotEmpty prepend="AND" property="chkDate">              
+                                                   B2.CHKDATE = #chkDate:VARCHAR#
+                                               </isNotEmpty>  
+                                                 </isParameterPresent>
+                                              </dynamic>
+                                              And B2.PROCTYPE = '2' 
+                                              <![CDATA[
+                                              And Trim(B2.CASEMK) Is Null
+                                              ]]>
+                                          )  
+                           And B1.SEQNO = '0000'                
+                        ) B
+                  Where A.APNO = B.APNO 
+                  Order By A.APNO
+    </select>
+    
+    <select id="selectMonthApprovedDataListBy" resultMap="MonthQueryDateResult">
+                Select A.BAONLINEJOBID,
+                       A.APNO,    
+                       B.EVTNAME,  
+                       B.EVTIDNNO, 
+                       A.ISSUYM,   
+                       A.CHKDATE,   
+                       A.ADJISSUYMMK,
+                       B.CASETYP,  
+                       B.PROCSTAT, 
+                       B.MANCHKMK,  
+                       A.PROCTYPE,  
+                       A.STATUS     
+                  From (Select A1.BAONLINEJOBID, 
+                               A1.APNO,
+                               A1.ISSUYM,
+                               A1.CHKDATE,
+                               A1.ADJISSUYMMK,
+                               A1.STATUS,
+                               A1.PROCTYPE
+                          From BAONLINEJOB A1
+                         Where A1.APNO = #apNo:VARCHAR#
+                           And A1.ISSUYM = #issuYm:VARCHAR#    
+                           And A1.CHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD')
+                           And A1.PROCTYPE = '2' 
+                           <![CDATA[
+                           And Trim(A1.CASEMK) Is Null
+                           ]]>
+                        ) A,
+                       (Select B1.APNO,
+                               B1.EVTNAME,       
+                               B1.EVTIDNNO, 
+                               B1.CASETYP,     
+                               B1.PROCSTAT,
+                               B1.MANCHKMK
+                          From BAAPPBASE B1
+                         Where B1.APNO IN (Select B2.APNO 
+                                             From BAONLINEJOB B2
+                                            Where B2.APNO = #apNo:VARCHAR#
+                                              And B2.ISSUYM = #issuYm:VARCHAR#    
+                                              And B2.CHKDATE = TO_CHAR(SYSDATE,'YYYYMMDD')
+                                              And B2.PROCTYPE = '2' 
+                                              <![CDATA[
+                                              And Trim(B2.CASEMK) Is Null
+                                              ]]>
+                                          )  
+                           And B1.SEQNO = '0000'                
+                        ) B
+                  Where A.APNO = B.APNO 
+                  Order By A.APNO
+    </select>
+    
+    <update id="updateBaonlinejobDataForMonth">    
+        UPDATE BAONLINEJOB SET
+               ISSUYM = #issuYm:VARCHAR#,
+               CHKDATE = #chkDate:VARCHAR#,
+               PROCTYPE = #procType:VARCHAR#,
+               STATUS = #status:VARCHAR#,
+               PROCTIME = #procTime:VARCHAR#, 
+               PROCEMPNO = #procEmpNo:VARCHAR#,
+               PROCDEPTID = #procDepId:VARCHAR#,
+               PROCIP = #procIp:VARCHAR#
+         WHERE BAONLINEJOBID = #baonlinejobId:VARCHAR#
+           AND APNO = #apNo:VARCHAR#
+    </update>
+    
+    <update id="updateBaonlinejobDataForMonthCheck">    
+        UPDATE BAONLINEJOB SET
+               ISSUYM = #issuYm:VARCHAR#,
+               ADJISSUYMMK = #adjIssuYmMk:VARCHAR#,
+               STATUS = #status:VARCHAR#,
+               PROCTIME = #procTime:VARCHAR#, 
+               PROCEMPNO = #procEmpNo:VARCHAR#,
+               PROCDEPTID = #procDepId:VARCHAR#,
+               PROCIP = #procIp:VARCHAR#
+         WHERE BAONLINEJOBID = #baonlinejobId:VARCHAR#
+           AND APNO = #apNo:VARCHAR#
+    </update>
+    
+    <update id="updateBaonlinejobDataForMonthDelete">    
+        UPDATE BAONLINEJOB SET
+               PROCTIME = #procTime:VARCHAR#, 
+               PROCEMPNO = #procEmpNo:VARCHAR#,
+               PROCDEPTID = #procDepId:VARCHAR#,
+               PROCIP = #procIp:VARCHAR#,
+               CASEMK = #caseMk:VARCHAR#
+         WHERE BAONLINEJOBID = #baonlinejobId:VARCHAR#
+           AND APNO = #apNo:VARCHAR#
+    </update>
+    
+    <select id="selectMonthCheckQueryDataListBy" resultMap="MonthCheckQueryDateResult">
+                Select A.BAONLINEJOBID,
+                       A.APNO,    
+                       B.EVTNAME,  
+                       B.EVTIDNNO, 
+                       A.ISSUYM,   
+                       B.CASETYP,  
+                       B.PROCSTAT, 
+                       B.MANCHKMK,
+                       A.ADJISSUYMMK,  
+                       A.PROCTYPE,  
+                       A.STATUS     
+                  From (Select A1.BAONLINEJOBID, 
+                               A1.APNO,
+                               A1.ISSUYM,
+                               A1.CHKDATE,
+                               A1.ADJISSUYMMK,
+                               A1.STATUS,
+                               A1.PROCTYPE
+                          From BAONLINEJOB A1
+                         Where A1.APNO LIKE #payCode:VARCHAR# || '%'
+                           And A1.PROCTYPE = '1' 
+                           <![CDATA[
+                           And (A1.CASEMK <> 'D' or A1.CASEMK is null)
+                           ]]>
+                        ) A,
+                       (Select B1.APNO,
+                               B1.EVTNAME,       
+                               B1.EVTIDNNO, 
+                               B1.CASETYP,     
+                               B1.PROCSTAT,
+                               B1.MANCHKMK
+                          From BAAPPBASE B1
+                         Where B1.APNO IN (Select B2.APNO 
+                                             From BAONLINEJOB B2
+                                            Where B2.APNO LIKE #payCode:VARCHAR# || '%'
+                                              And B2.PROCTYPE = '1' 
+                                              <![CDATA[
+                                              And (B2.CASEMK <> 'D' or B2.CASEMK is null)
+                                              ]]>
+                                          )  
+                           And B1.SEQNO = '0000'                
+                        ) B
+                  Where A.APNO = B.APNO 
+                    <dynamic prepend="">
+                    <isNotParameterPresent>
+                        AND 1 = 0
+                    </isNotParameterPresent>
+                    <isParameterPresent>                  
+                        <isNotEmpty prepend="AND" property="issuYm">              
+                            A.ISSUYM = #issuYm:VARCHAR#
+                        </isNotEmpty>  
+                    </isParameterPresent>
+                </dynamic>
+                  Order By A.APNO
+    </select>
+    
+     <select id="selectMonthCheckApprovedDataListBy" resultMap="MonthCheckQueryDateResult">
+                Select A.BAONLINEJOBID,
+                       A.APNO,    
+                       B.EVTNAME,  
+                       B.EVTIDNNO, 
+                       A.ISSUYM,   
+                       B.CASETYP,  
+                       B.PROCSTAT, 
+                       B.MANCHKMK,
+                       A.ADJISSUYMMK,  
+                       A.PROCTYPE,  
+                       A.STATUS     
+                  From (Select A1.BAONLINEJOBID, 
+                               A1.APNO,
+                               A1.ISSUYM,
+                               A1.CHKDATE,
+                               A1.ADJISSUYMMK,
+                               A1.STATUS,
+                               A1.PROCTYPE
+                          From BAONLINEJOB A1
+                         Where A1.APNO = #apNo:VARCHAR#
+                           And A1.PROCTYPE = '1' 
+                           <![CDATA[
+                           And (A1.CASEMK <> 'D' or A1.CASEMK is null)
+                           ]]>
+                        ) A,
+                       (Select B1.APNO,
+                               B1.EVTNAME,       
+                               B1.EVTIDNNO, 
+                               B1.CASETYP,     
+                               B1.PROCSTAT,
+                               B1.MANCHKMK
+                          From BAAPPBASE B1
+                         Where B1.APNO IN (Select B2.APNO 
+                                             From BAONLINEJOB B2
+                                            Where B2.APNO = #apNo:VARCHAR#
+                                              And B2.PROCTYPE = '1' 
+                                              <![CDATA[
+                                              And (B2.CASEMK <> 'D' or B2.CASEMK is null)
+                                              ]]>
+                                          )  
+                           And B1.SEQNO = '0000'                
+                        ) B
+                  Where A.APNO = B.APNO 
+                    <dynamic prepend="">
+                    <isNotParameterPresent>
+                        AND 1 = 0
+                    </isNotParameterPresent>
+                    <isParameterPresent>                  
+                        <isNotEmpty prepend="AND" property="issuYm">              
+                            A.ISSUYM = #issuYm:VARCHAR#
+                        </isNotEmpty>  
+                    </isParameterPresent>
+                </dynamic>
+                  Order By A.APNO
+    </select>
+    
+    <insert id="insertBaonlinejobDataForMonthCheck">
+        <selectKey resultClass="java.math.BigDecimal" keyProperty="baonlinejobId" >
+            SELECT BAONLINEJOBID.NEXTVAL AS BAONLINEJOBID FROM DUAL
+        </selectKey> 
+        insert  into  BAONLINEJOB  
+        (
+            BAONLINEJOBID,  
+            ISSUYM,
+            APNO,      
+            CHKDATE,
+            ADJISSUYMMK,
+            PROCTYPE,
+            STATUS,
+            PROCTIME,
+            PROCEMPNO,
+            PROCDEPTID,
+            PROCIP,
+            CASEMK
+        )
+        values
+        (
+            #baonlinejobId:NUMERIC#,
+            #issuYm:VARCHAR#,
+            #apNo:VARCHAR#,
+            #chkDate:VARCHAR#,
+            #adjIssuYmMk:VARCHAR#,
+            #procType:VARCHAR#,
+            #status:VARCHAR#,
+            #procTime:VARCHAR#, 
+            #procEmpNo:VARCHAR#,
+            #procDepId:VARCHAR#,
+            #procIp:VARCHAR#,
+            #caseMk:VARCHAR#
+        )    
+    </insert>
+
+</sqlMap>

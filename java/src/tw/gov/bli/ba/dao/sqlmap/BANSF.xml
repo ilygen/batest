@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BANSF">
+
+    <typeAlias alias="Bansf" type="tw.gov.bli.ba.domain.Bansf" />
+
+    <select id="qryRptType1X" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.ISSUYM
+		 ORDER BY T.ISSUYM
+    </select>
+
+    <select id="qryRptType1X1" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,NVL(MAX(T.PAMTS),0) AS MAXPAYAMT
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1   
+		 GROUP BY T.ISSUYM
+		 ORDER BY T.ISSUYM
+    </select>
+    
+    <select id="qryRptType1X2" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,NVL(MIN(T.PAMTS),0) AS MINPAYAMT
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1
+		   AND (T.MCHKTYP <> '3' AND T.MCHKTYP <> '5') 
+		   ]]>
+		   AND T.PAMTS > 0  
+		 GROUP BY T.ISSUYM
+		 ORDER BY T.ISSUYM
+    </select>
+    
+    <select id="qryRptType1S" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.SEX AS SEX
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.ISSUYM,T.SEX
+		 ORDER BY T.ISSUYM,T.SEX
+    </select>
+    
+    <select id="qryRptType1U" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.UBTYPE AS UBTYPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.ISSUYM,T.UBTYPE
+		 ORDER BY T.ISSUYM,T.UBTYPE
+    </select>
+    
+    <select id="qryRptType1N" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+		 ORDER BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+    </select>
+    
+    <select id="qryRptType1N1" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		      ,NVL(SUM(T.PAMTS),0) AS HINPAYS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.PAYNO IN ('37','57')
+		 GROUP BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+		 ORDER BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+    </select>
+    
+    <select id="qryRptType1C" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.CIPBFMK AS CIPBFMK
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+<!-- 		   AND T.CIPBFMK = #cipbFMk:VARCHAR# -->
+		 GROUP BY T.ISSUYM,T.CIPBFMK
+		 ORDER BY T.ISSUYM,T.CIPBFMK
+    </select>
+    
+    <select id="qryRptType1C1" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.CIPBFMK AS CIPBFMK
+		      ,NVL(SUM(T.PAMTS),0) AS HINPAYS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+<!-- 		   AND T.CIPBFMK = #cipbFMk:VARCHAR# -->
+		   AND T.PAYNO IN ('37','57')
+		 GROUP BY T.ISSUYM,T.CIPBFMK
+		 ORDER BY T.ISSUYM,T.CIPBFMK
+    </select>
+    
+    <select id="qryRptType1E" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE) AS EVTYPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		      ,NVL(SUM(T.PAMTS),0) AS PAMTS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+		 ORDER BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+    </select>
+    
+    <select id="qryRptType1E1" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE) AS EVTYPE
+		      ,NVL(SUM(T.PAMTS),0) AS HINPAYS
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.PAYNO IN ('37','57')
+		 GROUP BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+		 ORDER BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+    </select>
+    
+    <select id="qryRptType2X" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1   
+		 GROUP BY T.ISSUYM
+		 ORDER BY T.ISSUYM
+    </select>
+    
+    <select id="qryRptType2S" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.SEX AS SEX
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1   
+		 GROUP BY T.ISSUYM,T.SEX
+		 ORDER BY T.ISSUYM,T.SEX
+    </select>
+    
+    <select id="qryRptType2U" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.UBTYPE AS UBTYPE
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1 
+		 GROUP BY T.ISSUYM,T.UBTYPE
+		 ORDER BY T.ISSUYM,T.UBTYPE
+    </select>
+    
+    <select id="qryRptType2N" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1   
+		 GROUP BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+		 ORDER BY T.ISSUYM,DECODE(T.EVTNATIONTPE,'Y','2','1')
+    </select>
+    
+    <select id="qryRptType2C" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,T.CIPBFMK AS CIPBFMK
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1
+		 GROUP BY T.ISSUYM,T.CIPBFMK
+		 ORDER BY T.ISSUYM,T.CIPBFMK
+    </select>
+    
+    <select id="qryRptType2E" resultClass="Bansf">
+		SELECT T.ISSUYM AS ISSUYM
+		      ,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE) AS EVTYPE
+		      ,NVL(ROUND(SUM(T.PAMTS)/SUM(T.PAYCNT),0),0) AS AVGPAYAMT
+		      ,NVL(ROUND(AVG(T.PWAGE),2),0) AS AVGPWAGE
+		      ,NVL(ROUND(AVG(T.NITRMY+ROUND((T.NITRMY/12),2)),2),0.00) AS AVGNITRM
+		      ,NVL(ROUND(AVG(T.AGE),2),0.00) AS AVGAGE
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		   AND T.SEQNO = '0000'
+		   AND T.PAYCNT = 1   
+		 GROUP BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+		 ORDER BY T.ISSUYM,DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+    </select>
+    
+    <select id="queryReport3DataXData" resultClass="Bansf">
+		SELECT NVL(A.PAYCNT,0) AS PAYCNT
+		      ,NVL(ROUND(NVL(A.PAYCNT,0)/ NULLIF(NVL(B.PAYCNT,0),0),4)* 100, 0.00) AS CNTRATIO
+		FROM (SELECT NVL(SUM(T.PAYCNT),0) AS PAYCNT
+				 FROM BANSF T
+				WHERE T.PAYKIND = #payKind:VARCHAR#
+				<![CDATA[
+				  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+				  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+				 ]]>
+				 <isEqual property="qrytype" compareValue="C">
+					  <![CDATA[
+				  AND T.PAMTS >= #paramStart:VARCHAR# 
+				  AND T.PAMTS <= #paramEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="D">
+					  <![CDATA[
+				  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+				  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+				  ]]> 
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="E">
+					   <![CDATA[
+				  AND T.PWAGE >= #paramStart:VARCHAR# 
+				  AND T.PWAGE <= #paramEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="F">
+					   <![CDATA[
+				 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+				 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>) A,
+			  (SELECT NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+				  FROM BANSF B1
+				 WHERE B1.PAYKIND =  #payKind:VARCHAR#
+				 <![CDATA[
+				  AND B1.ISSUYM >= #paymentYmStart:VARCHAR# 
+				  AND B1.ISSUYM <= #paymentYmEnd:VARCHAR# 
+				 ]]>
+				 <isEqual property="qrytype" compareValue="C">
+					  <![CDATA[
+				  AND B1.PAMTS >= #totParamStart:VARCHAR# 
+				  AND B1.PAMTS <= #totParamEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="D">
+					  <![CDATA[
+				  AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+				  AND B1.OLDEXTRARATE <= #totParamEnd:VARCHAR# 
+				  ]]> 
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="E">
+					   <![CDATA[
+				  AND B1.PWAGE >= #totParamStart:VARCHAR# 
+				  AND B1.PWAGE <= #totParamEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>
+				  <isEqual property="qrytype" compareValue="F">
+					   <![CDATA[
+				 AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+				 AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=  #totParamEnd:VARCHAR# 
+				  ]]>
+				  </isEqual>
+				  ) B
+    </select>
+    
+    <select id="queryReport3DataSData" resultClass="Bansf">
+		SELECT  B.SEX AS SEX
+		       ,NVL(A.PAYCNT,0) AS PAYCNT
+		       ,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4)* 100,0.00) AS CNTRATIO
+		FROM (SELECT T.SEX AS SEX
+              ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+	 		 FROM BANSF T
+	 		WHERE T.PAYKIND = #payKind:VARCHAR#
+	 		<![CDATA[
+	   		  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+	   		  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+	   		 ]]>
+		     <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		  AND T.PAMTS >= #paramStart:VARCHAR# 
+	 		  AND T.PAMTS <= #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+	 		  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		  AND T.PWAGE >= #paramStart:VARCHAR# 
+	 		  AND T.PWAGE <= #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+	 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual> 
+	          GROUP BY T.SEX
+        	  ORDER BY T.SEX)A,
+          (SELECT B1.SEX AS SEX
+              ,NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+	          FROM BANSF B1
+	         WHERE B1.PAYKIND =  #payKind:VARCHAR#
+	         <![CDATA[
+	           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+	           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR#  ]]>
+	 		   <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		   AND B1.PAMTS >= #totParamStart:VARCHAR# 
+	 		   AND B1.PAMTS <=  #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		   AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+	 		   AND B1.OLDEXTRARATE <=  #totParamEnd:VARCHAR#
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		   AND B1.PWAGE >= #totParamStart:VARCHAR# 
+	 		   AND B1.PWAGE <= #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=   #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual> 
+	         GROUP BY B1.SEX
+	         ORDER BY B1.SEX) B
+	        WHERE A.SEX (+)= B.SEX
+			ORDER BY B.SEX
+    </select>
+    
+    <select id="queryReport3DataUData" resultClass="Bansf">
+		SELECT  B.UBTYPE AS UBTYPE
+		       ,NVL(A.PAYCNT,0) AS PAYCNT
+		       ,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4)* 100,0.00) AS CNTRATIO
+		FROM (SELECT T.UBTYPE AS UBTYPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+		  FROM BANSF T
+ 		WHERE T.PAYKIND = #payKind:VARCHAR#
+ 		<![CDATA[
+   		  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+   		  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+   		 ]]>
+   		 <isNotEmpty property="ubType" prepend="AND">
+               T.UBTYPE in 
+              <iterate  property="ubType"  open="(" close=")" conjunction="," >
+                      #ubType[]#
+              </iterate>
+         </isNotEmpty>
+	 	 <isEqual property="qrytype" compareValue="C">
+              <![CDATA[
+ 		  AND T.PAMTS >= #paramStart:VARCHAR# 
+ 		  AND T.PAMTS <= #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual>
+          <isEqual property="qrytype" compareValue="D">
+              <![CDATA[
+ 		  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+ 		  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+ 		  ]]> 
+          </isEqual>
+          <isEqual property="qrytype" compareValue="E">
+               <![CDATA[
+ 		  AND T.PWAGE >= #paramStart:VARCHAR# 
+ 		  AND T.PWAGE <= #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual>
+          <isEqual property="qrytype" compareValue="F">
+               <![CDATA[
+ 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+ 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual> 
+          GROUP BY T.UBTYPE
+ 		  ORDER BY T.UBTYPE) A,
+ 		  (SELECT B1.UBTYPE AS UBTYPE
+              ,NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+	          FROM BANSF B1
+	         WHERE B1.PAYKIND =  #payKind:VARCHAR#
+	         <![CDATA[
+	           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+	           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR# 
+	         ]]>
+	         <isNotEmpty property="ubType" prepend="AND">
+               B1.UBTYPE in 
+              <iterate  property="ubType"  open="(" close=")" conjunction="," >
+                      #ubType[]#
+              </iterate>
+         	</isNotEmpty>
+	          <![CDATA[
+	           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+	           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR#  ]]>
+	 		   <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		   AND B1.PAMTS >= #totParamStart:VARCHAR# 
+	 		   AND B1.PAMTS <=  #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		   AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+	 		   AND B1.OLDEXTRARATE <=  #totParamEnd:VARCHAR#
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		   AND B1.PWAGE >= #totParamStart:VARCHAR# 
+	 		   AND B1.PWAGE <= #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=   #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	         GROUP BY B1.UBTYPE
+	         ORDER BY B1.UBTYPE) B
+	        WHERE A.UBTYPE (+)= B.UBTYPE
+			ORDER BY B.UBTYPE
+ 		  
+    </select>
+    
+    
+    <select id="queryReport3DataNData" resultClass="Bansf">
+		SELECT  B.EVTNATIONTPE AS EVTNATIONTPE
+		       ,NVL(A.PAYCNT,0) AS PAYCNT
+		       ,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4)* 100,0.00) AS CNTRATIO
+		FROM (SELECT DECODE(T.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+			  FROM BANSF T
+	 		WHERE T.PAYKIND = #payKind:VARCHAR#
+	 		<![CDATA[
+	   		  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+	   		  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+	   		 ]]>
+		 	 <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		  AND T.PAMTS >= #paramStart:VARCHAR# 
+	 		  AND T.PAMTS <= #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+	 		  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		  AND T.PWAGE >= #paramStart:VARCHAR# 
+	 		  AND T.PWAGE <= #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+	 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+	 		  ]]>
+	          </isEqual> 
+	         GROUP BY DECODE(T.EVTNATIONTPE,'Y','2','1')
+			 ORDER BY DECODE(T.EVTNATIONTPE,'Y','2','1')) A,
+		 (SELECT DECODE(B1.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+              ,NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+	          FROM BANSF B1
+	         WHERE B1.PAYKIND =  #payKind:VARCHAR#
+	         <![CDATA[
+	           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+	           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR# 
+	         ]]>
+	 		   <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		   AND B1.PAMTS >= #totParamStart:VARCHAR# 
+	 		   AND B1.PAMTS <=  #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		   AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+	 		   AND B1.OLDEXTRARATE <=  #totParamEnd:VARCHAR#
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		   AND B1.PWAGE >= #totParamStart:VARCHAR# 
+	 		   AND B1.PWAGE <= #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=   #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	         GROUP BY DECODE(B1.EVTNATIONTPE,'Y','2','1')
+			 ORDER BY DECODE(B1.EVTNATIONTPE,'Y','2','1')) B
+			WHERE A.EVTNATIONTPE (+)= B.EVTNATIONTPE
+			ORDER BY B.EVTNATIONTPE
+			 
+		 
+    </select>
+    
+    <select id="queryReport3DataCData" resultClass="Bansf">
+    	SELECT  DECODE(B.CIPBFMK, 'NULL', NULL, B.CIPBFMK) AS CIPBFMK
+		       ,NVL(A.PAYCNT,0) AS PAYCNT
+		       ,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4)* 100,0.00) AS CNTRATIO
+		FROM (SELECT NVL(T.CIPBFMK,'NULL') AS CIPBFMK
+			 ,NVL(SUM(T.PAYCNT),0) AS PAYCNT
+			  FROM BANSF T
+	 		WHERE T.PAYKIND = #payKind:VARCHAR#
+	 		<![CDATA[
+	   		  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+	   		  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+   		 ]]>
+   		 <isNotEmpty property="cipbFmk" prepend="AND">
+               T.CIPBFMK in 
+              <iterate  property="cipbFmk"  open="(" close=")" conjunction="," >
+                      #cipbFmk[]#
+              </iterate>
+         </isNotEmpty>
+	 	 <isEqual property="qrytype" compareValue="C">
+              <![CDATA[
+ 		  AND T.PAMTS >= #paramStart:VARCHAR# 
+ 		  AND T.PAMTS <= #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual>
+          <isEqual property="qrytype" compareValue="D">
+              <![CDATA[
+ 		  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+ 		  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+ 		  ]]> 
+          </isEqual>
+          <isEqual property="qrytype" compareValue="E">
+               <![CDATA[
+ 		  AND T.PWAGE >= #paramStart:VARCHAR# 
+ 		  AND T.PWAGE <= #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual>
+          <isEqual property="qrytype" compareValue="F">
+               <![CDATA[
+ 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+ 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+ 		  ]]>
+          </isEqual> 
+          GROUP BY T.CIPBFMK
+		  ORDER BY T.CIPBFMK) A,
+		   (SELECT NVL(B1.CIPBFMK,'NULL') AS CIPBFMK
+              ,NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+	          FROM BANSF B1
+	         WHERE B1.PAYKIND =  #payKind:VARCHAR#
+	          <isNotEmpty property="cipbFmk" prepend="AND">
+	               B1.CIPBFMK in 
+	              <iterate  property="cipbFmk"  open="(" close=")" conjunction="," >
+	                      #cipbFmk[]#
+	              </iterate>
+	         </isNotEmpty>
+	         <![CDATA[
+	           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+	           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR# 
+	         ]]>
+	 		   <isEqual property="qrytype" compareValue="C">
+	              <![CDATA[
+	 		   AND B1.PAMTS >= #totParamStart:VARCHAR# 
+	 		   AND B1.PAMTS <=  #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="D">
+	              <![CDATA[
+	 		   AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+	 		   AND B1.OLDEXTRARATE <=  #totParamEnd:VARCHAR#
+	 		  ]]> 
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="E">
+	               <![CDATA[
+	 		   AND B1.PWAGE >= #totParamStart:VARCHAR# 
+	 		   AND B1.PWAGE <= #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	          <isEqual property="qrytype" compareValue="F">
+	               <![CDATA[
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+	 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=   #totParamEnd:VARCHAR#
+	 		  ]]>
+	          </isEqual>
+	         GROUP BY B1.CIPBFMK
+			 ORDER BY B1.CIPBFMK) B
+			 WHERE A.CIPBFMK (+)= B.CIPBFMK
+			 ORDER BY B.CIPBFMK
+		  
+
+    </select>
+    
+    <select id="queryReport3DataEData" resultClass="Bansf">
+   		 SELECT  B.EVTYPE AS EVTYPE
+		       ,NVL(A.PAYCNT,0) AS PAYCNT
+		       ,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4)* 100,0.00) AS CNTRATIO
+		FROM (SELECT DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE) AS EVTYPE
+		      ,NVL(SUM(T.PAYCNT),0) AS PAYCNT		      
+				  FROM BANSF T
+		 		WHERE T.PAYKIND = #payKind:VARCHAR#
+		 		<![CDATA[
+		   		  AND T.ISSUYM >= #paymentYmStart:VARCHAR# 
+		   		  AND T.ISSUYM <= #paymentYmEnd:VARCHAR# 
+		   		 ]]>
+			 	 <isEqual property="qrytype" compareValue="C">
+		              <![CDATA[
+		 		  AND T.PAMTS >= #paramStart:VARCHAR# 
+		 		  AND T.PAMTS <= #paramEnd:VARCHAR# 
+		 		  ]]>
+		          </isEqual>
+		          <isEqual property="qrytype" compareValue="D">
+		              <![CDATA[
+		 		  AND T.OLDEXTRARATE >= #paramStart:VARCHAR# 
+		 		  AND T.OLDEXTRARATE <= #paramEnd:VARCHAR# 
+		 		  ]]> 
+		          </isEqual>
+		          <isEqual property="qrytype" compareValue="E">
+		               <![CDATA[
+		 		  AND T.PWAGE >= #paramStart:VARCHAR# 
+		 		  AND T.PWAGE <= #paramEnd:VARCHAR# 
+		 		  ]]>
+		          </isEqual>
+		          <isEqual property="qrytype" compareValue="F">
+		               <![CDATA[
+		 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) >=  #paramStart:VARCHAR# 
+		 		 AND (T.NITRMY+ROUND((T.NITRMY/12),2)) <=  #paramEnd:VARCHAR# 
+		 		  ]]>
+		          </isEqual> 
+		         GROUP BY DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)
+		 		 ORDER BY DECODE(T.EVTYPE,'1','1','2','1','3','3','4','3',T.EVTYPE)) A,
+		 		 (SELECT DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE) AS EVTYPE
+		              ,NVL(SUM(B1.PAYCNT),0) AS PAYCNT
+			          FROM BANSF B1
+			         WHERE B1.PAYKIND =  #payKind:VARCHAR#
+			         <![CDATA[
+			           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+			           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR# 
+			         ]]>
+			          <![CDATA[
+			           AND B1.ISSUYM >= #paymentYmStart:VARCHAR#  
+			           AND B1.ISSUYM <= #paymentYmEnd:VARCHAR#  ]]>
+			 		   <isEqual property="qrytype" compareValue="C">
+			              <![CDATA[
+			 		   AND B1.PAMTS >= #totParamStart:VARCHAR# 
+			 		   AND B1.PAMTS <=  #totParamEnd:VARCHAR#
+			 		  ]]>
+			          </isEqual>
+			          <isEqual property="qrytype" compareValue="D">
+			              <![CDATA[
+			 		   AND B1.OLDEXTRARATE >= #totParamStart:VARCHAR# 
+			 		   AND B1.OLDEXTRARATE <=  #totParamEnd:VARCHAR#
+			 		  ]]> 
+			          </isEqual>
+			          <isEqual property="qrytype" compareValue="E">
+			               <![CDATA[
+			 		   AND B1.PWAGE >= #totParamStart:VARCHAR# 
+			 		   AND B1.PWAGE <= #totParamEnd:VARCHAR#
+			 		  ]]>
+			          </isEqual>
+			          <isEqual property="qrytype" compareValue="F">
+			               <![CDATA[
+			 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) >=  #totParamStart:VARCHAR# 
+			 		  AND (B1.NITRMY+ROUND((B1.NITRMY/12),2)) <=   #totParamEnd:VARCHAR#
+			 		  ]]>
+			          </isEqual>
+			         GROUP BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)
+					 ORDER BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)) B
+			 WHERE A.EVTYPE (+)= B.EVTYPE
+			 ORDER BY B.EVTYPE
+
+    </select>
+    
+    <select id="qryRptType4XA" resultClass="Bansf">
+		SELECT T.AGETYPE AS GROUPALIAS
+		      ,SUM(T.PAYCNT) AS PAYCNT
+		      ,ROUND(RATIO_TO_REPORT(SUM(T.PAYCNT)) OVER(),4) * 100 AS CNTRATIO
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.AGETYPE
+		 ORDER BY T.AGETYPE
+    </select>
+    
+    <select id="qryRptType4XW" resultClass="Bansf">
+		SELECT T.WAGE AS GROUPALIAS
+		      ,SUM(T.PAYCNT) AS PAYCNT
+		      ,ROUND(RATIO_TO_REPORT(SUM(T.PAYCNT)) OVER(),4) * 100 AS CNTRATIO
+		  FROM BANSF T
+		 WHERE T.PAYKIND = #payKind:VARCHAR#
+		   <![CDATA[
+		   AND T.ISSUYM >= #paymentYMStart:VARCHAR# AND T.ISSUYM <= #paymentYMEnd:VARCHAR#
+		   ]]>
+		 GROUP BY T.WAGE
+		 ORDER BY T.WAGE
+    </select>
+    
+    <select id="qryRptType4SA" resultClass="Bansf">
+        SELECT A.GROUPALIAS AS GROUPALIAS
+	          ,B.SEX AS SEX
+	          ,NVL(A.PAYCNT,0) AS PAYCNT
+	          ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+			  FROM (SELECT A1.AGETYPE AS GROUPALIAS
+			              ,A1.SEX AS SEX
+			              ,SUM(A1.PAYCNT) AS PAYCNT
+			          FROM BANSF A1
+			         WHERE A1.PAYKIND = #payKind:VARCHAR#
+			           <![CDATA[
+			           AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+			           ]]>
+			         GROUP BY A1.AGETYPE,A1.SEX
+			         ORDER BY A1.AGETYPE,A1.SEX) A,
+			       (SELECT B1.SEX AS SEX
+			              ,SUM(B1.PAYCNT) AS PAYCNT
+			          FROM BANSF B1
+			         WHERE B1.PAYKIND = #payKind:VARCHAR#
+			           <![CDATA[
+			           AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+			           ]]>
+			         GROUP BY B1.SEX
+			         ORDER BY B1.SEX) B
+        WHERE A.SEX (+)= B.SEX
+        ORDER BY A.GROUPALIAS,B.SEX
+    </select>
+    
+    <select id="qryRptType4SW" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.SEX AS SEX
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.WAGE AS GROUPALIAS
+		              ,A1.SEX AS SEX
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.WAGE,A1.SEX
+		         ORDER BY A1.WAGE,A1.SEX) A,
+		       (SELECT B1.SEX AS SEX
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY B1.SEX
+		         ORDER BY B1.SEX) B
+		 WHERE A.SEX (+)= B.SEX
+		 ORDER BY A.GROUPALIAS,B.SEX
+    </select>
+    
+    <select id="qryRptType4UA" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.UBTYPE AS UBTYPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.AGETYPE AS GROUPALIAS
+		              ,A1.UBTYPE AS UBTYPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.AGETYPE,A1.UBTYPE
+		         ORDER BY A1.AGETYPE,A1.UBTYPE) A,
+		       (SELECT B1.UBTYPE AS UBTYPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY B1.UBTYPE
+		         ORDER BY B1.UBTYPE) B
+		 WHERE A.UBTYPE (+)= B.UBTYPE
+		 ORDER BY A.GROUPALIAS,B.UBTYPE
+    </select>
+    
+    <select id="qryRptType4UW" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.UBTYPE AS UBTYPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.WAGE AS GROUPALIAS
+		              ,A1.UBTYPE AS UBTYPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.WAGE,A1.UBTYPE
+		         ORDER BY A1.WAGE,A1.UBTYPE) A,
+		       (SELECT B1.UBTYPE AS UBTYPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY B1.UBTYPE
+		         ORDER BY B1.UBTYPE) B
+		 WHERE A.UBTYPE (+)= B.UBTYPE
+		 ORDER BY A.GROUPALIAS,B.UBTYPE
+    </select>
+    
+    <select id="qryRptType4NA" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.EVTNATIONTPE AS EVTNATIONTPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.AGETYPE AS GROUPALIAS
+		              ,DECODE(A1.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.AGETYPE,DECODE(A1.EVTNATIONTPE,'Y','2','1')
+		         ORDER BY A1.AGETYPE,DECODE(A1.EVTNATIONTPE,'Y','2','1')) A,
+		       (SELECT DECODE(B1.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY DECODE(B1.EVTNATIONTPE,'Y','2','1')
+		         ORDER BY DECODE(B1.EVTNATIONTPE,'Y','2','1')) B
+		 WHERE A.EVTNATIONTPE (+)= B.EVTNATIONTPE
+		 ORDER BY A.GROUPALIAS,B.EVTNATIONTPE
+    </select>
+    
+    <select id="qryRptType4NW" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.EVTNATIONTPE AS EVTNATIONTPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.WAGE AS GROUPALIAS
+		              ,DECODE(A1.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.WAGE,DECODE(A1.EVTNATIONTPE,'Y','2','1')
+		         ORDER BY A1.WAGE,DECODE(A1.EVTNATIONTPE,'Y','2','1')) A,
+		       (SELECT DECODE(B1.EVTNATIONTPE,'Y','2','1') AS EVTNATIONTPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY DECODE(B1.EVTNATIONTPE,'Y','2','1')
+		         ORDER BY DECODE(B1.EVTNATIONTPE,'Y','2','1')) B
+		 WHERE A.EVTNATIONTPE (+)= B.EVTNATIONTPE
+		 ORDER BY A.GROUPALIAS,B.EVTNATIONTPE
+    </select>
+    
+    <select id="qryRptType4CA" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,DECODE(B.CIPBFMK,'NULL',NULL,B.CIPBFMK) AS CIPBFMK
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.AGETYPE AS GROUPALIAS
+		              ,NVL(A1.CIPBFMK,'NULL') AS CIPBFMK
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.AGETYPE,A1.CIPBFMK
+		         ORDER BY A1.AGETYPE,A1.CIPBFMK) A,
+		       (SELECT NVL(B1.CIPBFMK,'NULL') AS CIPBFMK
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY B1.CIPBFMK
+		         ORDER BY B1.CIPBFMK) B
+		 WHERE A.CIPBFMK (+)= B.CIPBFMK
+		 ORDER BY A.GROUPALIAS,B.CIPBFMK
+    </select>
+    
+    <select id="qryRptType4CW" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,DECODE(B.CIPBFMK,'NULL',NULL,B.CIPBFMK) AS CIPBFMK
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.WAGE AS GROUPALIAS
+		              ,NVL(A1.CIPBFMK,'NULL') AS CIPBFMK
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.WAGE,A1.CIPBFMK
+		         ORDER BY A1.WAGE,A1.CIPBFMK) A,
+		       (SELECT NVL(B1.CIPBFMK,'NULL') AS CIPBFMK
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY B1.CIPBFMK
+		         ORDER BY B1.CIPBFMK) B
+		 WHERE A.CIPBFMK (+)= B.CIPBFMK
+		 ORDER BY A.GROUPALIAS,B.CIPBFMK
+    </select>
+    
+    <select id="qryRptType4EA" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.EVTYPE AS EVTYPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.AGETYPE AS GROUPALIAS
+		              ,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE) AS EVTYPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.AGETYPE,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE)
+		         ORDER BY A1.AGETYPE,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE)) A,
+		       (SELECT DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE) AS EVTYPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)
+		         ORDER BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)) B
+		 WHERE A.EVTYPE (+)= B.EVTYPE
+		 ORDER BY A.GROUPALIAS,B.EVTYPE
+    </select>
+    
+    <select id="qryRptType4EW" resultClass="Bansf">
+		SELECT A.GROUPALIAS AS GROUPALIAS
+		      ,B.EVTYPE AS EVTYPE
+		      ,NVL(A.PAYCNT,0) AS PAYCNT
+		      ,DECODE(NVL(B.PAYCNT,0),0,0,NVL(ROUND(NVL(A.PAYCNT,0)/NVL(B.PAYCNT,0),4),0.00)) * 100 AS CNTRATIO
+		  FROM (SELECT A1.WAGE AS GROUPALIAS
+		              ,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE) AS EVTYPE
+		              ,SUM(A1.PAYCNT) AS PAYCNT
+		          FROM BANSF A1
+			     WHERE A1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND A1.ISSUYM >= #paymentYMStart:VARCHAR# AND A1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY A1.WAGE,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE)
+		         ORDER BY A1.WAGE,DECODE(A1.EVTYPE,'1','1','2','1','3','3','4','3',A1.EVTYPE)) A,
+		       (SELECT DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE) AS EVTYPE
+		              ,SUM(B1.PAYCNT) AS PAYCNT
+		          FROM BANSF B1
+			     WHERE B1.PAYKIND = #payKind:VARCHAR#
+				   <![CDATA[
+				   AND B1.ISSUYM >= #paymentYMStart:VARCHAR# AND B1.ISSUYM <= #paymentYMEnd:VARCHAR#
+				   ]]>
+		         GROUP BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)
+		         ORDER BY DECODE(B1.EVTYPE,'1','1','2','1','3','3','4','3',B1.EVTYPE)) B
+		 WHERE A.EVTYPE (+)= B.EVTYPE
+		 ORDER BY A.GROUPALIAS,B.EVTYPE
+    </select>
+    <select id="selectStatisticsReportData" resultClass="Bansf">
+			SELECT T.ISSUYM
+			      ,T.PAYNO
+			      ,T.FIRSTPAY
+			      ,T.EVTYPE
+			      ,T.ADWKMK
+			      ,SUM(T.PAYCNT) PAYCNT
+			      ,SUM(T.PAMTS) PAMTS
+			  FROM BANSF T
+			  WHERE (T.PAYNO IN ('45', '48') AND SUBSTR(T.PAYDATE, 1, 6) = #issuYm:VARCHAR# )
+    			OR (T.PAYNO NOT IN ('45', '48') AND T.ISSUYM = #issuYm:VARCHAR# )
+			 GROUP BY T.PAYNO, T.ISSUYM, T.FIRSTPAY, T.EVTYPE, T.ADWKMK
+ 			 ORDER BY T.PAYNO, T.ISSUYM, T.FIRSTPAY, T.EVTYPE, T.ADWKMK
+    </select>
+</sqlMap>
+    

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MMAPLOG">
+
+    <typeAlias alias="Mmaplog" type="tw.gov.bli.common.domain.Mmaplog" />
+
+    <resultMap id="MMAPLOGResult" class="Mmaplog">
+        <result column="TABLENAME"          property="tableName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PKFIELD"            property="pkField"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHGTIME"            property="chgTime"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PGMNAME"            property="pgmName"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PGMCODE"            property="pgmCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DEPTID"             property="deptId"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MODIFYMAN"          property="modifyMan"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="TERMED"             property="termEd"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CHGCODE"            property="chgCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="FIELD"              property="field"            jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BEFIMG"             property="befImg"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="AFTIMG"             property="aftImg"           jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="IDNO"               property="idNo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="MEMO"               property="memo"             jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SNO"                property="sno"              jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />      
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO MMAPLOG
+        (
+            TABLENAME, 
+            PKFIELD, 
+            CHGTIME, 
+            PGMNAME, 
+            PGMCODE, 
+            DEPTID, 
+            MODIFYMAN, 
+            TERMED, 
+            CHGCODE, 
+            FIELD, 
+            BEFIMG, 
+            AFTIMG, 
+            IDNO, 
+            MEMO, 
+            SNO
+        ) 
+        VALUES
+        (
+            #tableName:VARCHAR#, 
+            #pkField:VARCHAR#, 
+            #chgTime:VARCHAR#, 
+            #pgmName:VARCHAR#, 
+            #pgmCode:VARCHAR#, 
+            #deptId:VARCHAR#, 
+            #modifyMan:VARCHAR#, 
+            #termEd:VARCHAR#, 
+            #chgCode:VARCHAR#, 
+            #field:VARCHAR#, 
+            #befImg:VARCHAR#, 
+            #aftImg:VARCHAR#, 
+            #idNo:VARCHAR#, 
+            #memo:VARCHAR#, 
+            #sno:NUMERIC#
+        )
+    </insert>
+
+</sqlMap>

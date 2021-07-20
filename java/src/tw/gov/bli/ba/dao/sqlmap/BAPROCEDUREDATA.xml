@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPROCEDUREDATA">
+
+    <typeAlias alias="Baproceduredata" type="tw.gov.bli.ba.domain.Baproceduredata" />
+    
+     <resultMap id="BAPROCEDUREDATAResult" class="Baproceduredata">
+        <result column="BAJOBID"         		property="baJobId"         		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PROCEDURE_NAME"         property="procedureName"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAMETER_NAME"      	property="parameterName"      	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PARAM_VALUE"         	property="paramValue"         	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="SEQNO"         			property="seqNo"         		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRE_USER"      			property="creUser"      		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="CRE_DATETIME"         	property="creDatetime"         	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="IN_OUT"      			property="inOut"      		    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="DATA_TYPE"         	    property="dataType"         	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+    </resultMap>
+          
+    <select id="selectProcedureDataBy" resultMap="BAPROCEDUREDATAResult">
+          SELECT A.BAJOBID,
+          		 A.PROCEDURE_NAME, 
+                 A.PARAMETER_NAME, 
+                 A.PARAM_VALUE,     
+				 A.SEQNO,          
+                 A.CRE_USER,       
+                 A.CRE_DATETIME,
+                 B.IN_OUT, 
+                 B.DATA_TYPE    
+            FROM BAPROCEDUREDATA A, BAPROCEDUREDTL B
+           WHERE A.procedure_name = B.procedure_name
+             AND (to_number(a.seqno) ) = b.seqno
+             AND A.BAJOBID = #baJobId:VARCHAR#
+           ORDER BY A.SEQNO         
+    </select>
+    
+    <insert id="insertProcedureData">
+        INSERT INTO BAPROCEDUREDATA
+        (
+            BAJOBID,
+			PROCEDURE_NAME,
+			SEQNO,
+			PARAMETER_NAME,
+			PARAM_VALUE,
+			CRE_USER,
+			CRE_DATETIME
+        ) 
+        VALUES
+        (
+            #baJobId:VARCHAR#, 
+            #procedureName:VARCHAR#, 
+            #seqNo:VARCHAR#,
+            #parameterName:VARCHAR#,
+            #paramValue:VARCHAR#,
+            #creUser:VARCHAR#,
+            #creDatetime:VARCHAR#
+        )        
+    </insert>
+                
+</sqlMap>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:jaxws="http://cxf.apache.org/jaxws"   
+    xmlns:cxf="http://cxf.apache.org/core"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+     	 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+        http://cxf.apache.org/jaxws   
+        http://cxf.apache.org/schemas/jaxws.xsd   
+        http://cxf.apache.org/core   
+        http://cxf.apache.org/schemas/core.xsd">  
+      
+    <import resource="classpath:META-INF/cxf/cxf.xml" />  
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />  
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> 
+
+	<bean id="paymentCashWebService"
+		class="tw.gov.bli.ba.payment.webservice.PaymentCashWebserviceImpl">
+		<property name="paymentService" ref="paymentService" />
+	</bean>
+	
+	<jaxws:server id="paymentCXFWebService"
+		serviceClass="tw.gov.bli.ba.payment.webservice.PaymentCashWebservice"
+		address="/mtRemoteService">
+		<jaxws:serviceBean>
+			<ref bean="paymentCashWebService" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+		<bean id="paymentStatusWebService"
+		class="tw.gov.bli.ba.payment.webservice.PaymentStatusWebserviceImpl">
+		<property name="paymentService" ref="paymentService" />
+	</bean>
+	
+	<jaxws:server id="paymentStatusCXFWebService"
+		serviceClass="tw.gov.bli.ba.payment.webservice.PaymentStatusWebservice"
+		address="/mtstsRemoteService">
+		<jaxws:serviceBean>
+			<ref bean="paymentStatusWebService" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+	<bean id="paymentPrintWebService"
+		class="tw.gov.bli.ba.payment.webservice.PaymentPrintWebserviceImpl">
+		<property name="paymentService" ref="paymentService" />
+		<property name="queryService" ref="queryService" />
+	</bean>
+	
+	<jaxws:server id="paymentPrintCXFWebService"
+		serviceClass="tw.gov.bli.ba.payment.webservice.PaymentPrintWebservice"
+		address="/paymentPrintService">
+		<jaxws:serviceBean>
+			<ref bean="paymentPrintWebService" />
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+</beans>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAUNACPREC">
+
+    <typeAlias alias="Baunacprec" type="tw.gov.bli.ba.domain.Baunacprec" />
+    <resultMap id="BAUNACPRECResult" class="Baunacprec">
+        <result column="BAUNACPRECID"   property="baunacprecId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="UNACPRECNO"     property="unacpRecNo"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"          property="seqNo"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RECKIND"        property="recKind"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"          property="payYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDS"         property="benIds"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"       property="benIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENBRDATE"      property="benBrDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UNACPDESC"      property="unacpDesc"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UNACPDATE"      property="unacpDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RECAMT"         property="recAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="SERCNT"         property="serCnt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="SERAMT"         property="serAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="WOAMT"          property="woAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REALRECAMT"     property="realRecAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECREM"         property="recRem"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="INTAMT"         property="intAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECDATE"        property="recDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="APLPAYDATE"     property="aplPayDate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PROCMK"         property="procMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PROCMKDATE"     property="procMkDate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PROCSTAT"       property="procStat"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PROCMAN"        property="procMan"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="PROCDATE"       property="procDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTIDS"         property="evtIds"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTIDNNO"       property="evtIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTNAME"        property="evtName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTBRDATE"      property="evtBrDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+    </resultMap>    
+        
+    <resultMap id="ReceivableDataResult" class="Baunacprec">
+        <result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RECKIND"        property="recKind"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"       property="evtIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTNAME"        property="evtName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTBRDATE"      property="evtBrDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="BENIDNNO"       property="benIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"        property="benName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENBRDATE"      property="benBrDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="UNACPDATE"      property="unacpDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"       property="procStat"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="RECAMT"         property="recAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="WOAMT"          property="woAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="REALRECAMT"     property="realRecAmt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECREM"         property="recRem"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />                        
+    </resultMap>
+    
+    <resultMap id="Trans2OverdueReceivableResult" class="Baunacprec">
+        <result column="BAUNACPRECID"   property="baunacprecId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"        property="evtName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="EVTIDNNO"       property="evtIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="UNACPDATE"      property="unacpDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RECAMT"         property="recAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="WOAMT"          property="woAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="RECREM"         property="recRem"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="ReceivableAdjMasterResult" class="Baunacprec">                                                                 
+        <result column="BAUNACPRECID"   property="baunacprecId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="RECKIND"        property="recKind"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"       property="benIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="BENNAME"        property="benName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="APLPAYDATE"     property="aplPayDate"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="ISSUYM"         property="issuYm"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="PAYYM"          property="payYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="RECAMT"         property="recAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" /> 
+        <result column="WOAMT"          property="woAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" /> 
+        <result column="BEFBENNAME"     property="befBenName"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="BEFBENIDNNO"    property="befBenIdnNo"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>     
+    </resultMap>    
+       
+    <resultMap id="ReceivableAdjDetailResult" class="Baunacprec">                                                                 
+        <result column="BAUNACPRECID"   property="baunacprecId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="APNO"           property="apNo"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"       property="benIdnNo"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="BENNAME"        property="benName"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="RECKIND"        property="recKind"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"         property="issuYm"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="PAYYM"          property="payYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="RECAMT"         property="recAmt"          jdbcType="NUMERIC"      javaType="java.math.BigDecimal" /> 
+        <result column="WOAMT"          property="woAmt"           jdbcType="NUMERIC"      javaType="java.math.BigDecimal" /> 
+        <result column="BEFBENNAME"     property="befBenName"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/> 
+        <result column="BEFBENIDNNO"    property="befBenIdnNo"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="BEFRECKIND"     property="befRecKind"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="BEFISSUYM"      property="befIssuYm"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>
+        <result column="BEFPAYYM"       property="befPayYm"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue=""/>     
+        <result column="BEFRECAMT"      property="befRecAmt"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BEFWOAMT"       property="befWoAmt"        jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />     
+    </resultMap>
+    
+    <select id="selectReceivableDataBy" resultMap="ReceivableDataResult">
+        SELECT T.APNO,                                         
+               T.RECKIND,                                      
+               T.EVTIDNNO,                                     
+               T.EVTNAME,                                      
+               T.EVTBRDATE,                                    
+               T.BENIDNNO,                                     
+               T.BENNAME,                                      
+               T.BENBRDATE,                                    
+               T.UNACPDATE,                                    
+               T.PROCSTAT,                                     
+               SUM(T.RECAMT) AS RECAMT,                                  
+               SUM(T.WOAMT) AS WOAMT,                                   
+               SUM(T.REALRECAMT) AS REALRECAMT,                              
+               SUM(T.RECREM) AS RECREM
+          FROM BAUNACPREC T              
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    T.APNO = #apNo:VARCAHR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="benIdnNo">
+                    T.BENIDNNO = #benIdnNo:VARCHAR#  
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="unacpSdate">
+                    T.UNACPDATE >= #unacpSdate:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="unacpEdate">
+                    <![CDATA[
+                    T.UNACPDATE <= #unacpEdate:VARCHAR#
+                    ]]> 
+                </isNotEmpty>            
+            </isParameterPresent>
+        </dynamic>
+         GROUP BY T.UNACPRECNO,T.APNO,T.RECKIND,T.EVTIDNNO,    
+                  T.EVTNAME,T.EVTBRDATE,T.BENIDNNO,T.BENNAME,  
+                  T.BENBRDATE,T.UNACPDATE,T.PROCSTAT           
+         ORDER BY T.UNACPRECNO,T.APNO,T.RECKIND                  
+    </select>
+    
+    <select id="selectTrans2OverdueReceivableDataBy" resultMap="Trans2OverdueReceivableResult">
+        SELECT T.BAUNACPRECID,                       
+               T.APNO,                               
+               T.EVTNAME,                            
+               T.EVTIDNNO,                           
+               T.UNACPDATE,                          
+               T.RECAMT,                             
+               T.WOAMT,                              
+               T.RECREM                              
+          FROM BAUNACPREC T   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>                
+                <isNotEmpty prepend="AND" property="unacpSdate">
+                    T.UNACPDATE >= #unacpSdate:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="unacpEdate">
+                    <![CDATA[
+                    T.UNACPDATE <= #unacpEdate:VARCHAR#
+                    ]]> 
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="recKind">
+                    T.RECKIND = #recKind:VARCHAR#
+                </isNotEmpty>                           
+            </isParameterPresent>
+        </dynamic>  
+        ORDER BY T.APNO, T.UNACPDATE
+    </select>
+    
+    <select id="selectTotalAmtBy" resultClass="java.math.BigDecimal">
+        SELECT COUNT(*)                      
+          FROM BAUNACPREC T
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>                
+                <isNotEmpty prepend="AND" property="unacpSdate">
+                    T.UNACPDATE >= #unacpSdate:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="unacpEdate">
+                    <![CDATA[
+                    T.UNACPDATE <= #unacpEdate:VARCHAR#
+                    ]]> 
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="recKind">
+                    T.RECKIND = #recKind:VARCHAR#
+                </isNotEmpty>                           
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSumRecAmtBy" resultClass="java.math.BigDecimal">
+        SELECT SUM(T.RECAMT)  
+          FROM BAUNACPREC T  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>                
+                <isNotEmpty prepend="AND" property="unacpSdate">
+                    T.UNACPDATE >= #unacpSdate:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="unacpEdate">
+                    <![CDATA[
+                    T.UNACPDATE <= #unacpEdate:VARCHAR#
+                    ]]> 
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="recKind">
+                    T.RECKIND = #recKind:VARCHAR#
+                </isNotEmpty>                           
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <update id="updateRecKind">
+        UPDATE BAUNACPREC SET 
+               RECKIND = #recKind:VARCHAR#
+         WHERE BAUNACPRECID = #baunacprecId:NUMERIC#
+    </update>
+    
+    <select id="selectReceivableAdjMasterDataBy" resultMap="ReceivableAdjMasterResult">
+        SELECT A.BAUNACPRECID,                         
+               A.APNO,                                 
+               A.RECKIND,                              
+               A.BENIDNNO,                             
+               A.BENNAME,                              
+               A.APLPAYDATE,                           
+               A.ISSUYM,                               
+               A.PAYYM,                                
+               A.RECAMT,                               
+               A.WOAMT,                                
+               B.BEFBENNAME,                           
+               B.BEFBENIDNNO                           
+          FROM BAUNACPREC A,                           
+               BAOLADJMST B                            
+         WHERE A.BAUNACPRECID = B.BAUNACPRECID         
+           AND A.APNO = B.APNO 
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>                
+                <isNotEmpty prepend="AND" property="benIdnNo">
+                    A.BENIDNNO = #benIdnNo:VARCHAR#
+                </isNotEmpty>                
+                <isNotEmpty prepend="AND" property="recKind">
+                    A.RECKIND = #recKind:VARCHAR# 
+                </isNotEmpty>                
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR#         
+                </isNotEmpty>             
+            </isParameterPresent>
+        </dynamic>   
+    </select>
+    
+    <select id="selectReceivableAdjDetailDataBy" resultMap="ReceivableAdjDetailResult">
+        SELECT A.BAUNACPRECID,                    
+               A.APNO,                            
+               A.BENIDNNO,                        
+               A.BENNAME,                         
+               A.RECKIND,                         
+               A.ISSUYM,                          
+               A.PAYYM,                           
+               A.RECAMT,                          
+               A.WOAMT,                           
+               B.BEFBENNAME,                      
+               B.BEFBENIDNNO,                     
+               B.BEFRECKIND,                      
+               B.BEFISSUYM,                       
+               B.BEFPAYYM,                        
+               B.BEFRECAMT,                       
+               B.BEFWOAMT                         
+          FROM BAUNACPREC A,                      
+               BAOLADJMST B                       
+         WHERE A.BAUNACPRECID = B.BAUNACPRECID    
+           AND A.APNO = B.APNO                    
+        <dynamic prepend="">
+            <isNotParameterPresent>
+                AND 1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>                
+                <isNotEmpty prepend="AND" property="baunacprecId">
+                    A.BAUNACPRECID = #baunacprecId:NUMERIC#  
+                </isNotEmpty>                                
+            </isParameterPresent>
+        </dynamic>                   
+    </select>
+    
+    <update id="updateForReceivableAdj">
+        UPDATE BAUNACPREC SET 
+               PROCSTAT = #procStat:VARCHAR#,                             
+               PROCMAN = #procMan:VARCHAR#,              
+               PROCDATE = #procDate:VARCHAR#                      
+         WHERE BAUNACPRECID = #baunacprecId:NUMERIC#
+    </update>
+</sqlMap>

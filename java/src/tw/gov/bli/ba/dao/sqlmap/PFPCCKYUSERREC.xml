@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PFPCCKYUSERREC">
+
+    <typeAlias alias="Pfpcckyuserrec" type="tw.gov.bli.ba.domain.Pfpcckyuserrec" />
+    
+    <select id="selectExpid" resultClass="java.lang.Integer">
+    	SELECT NVL(t.EXPID, 0) AS EXPID
+		  FROM PFPCCKYUSERREC t
+		 WHERE t.INSKD = #sInskd:VARCHAR#
+		   AND t.BLI_ACCOUNT_CODE = #sBliAccountCode:VARCHAR#
+		   AND t.BOOKEDBOOK = #sBookedbook:VARCHAR#
+	  	   AND t.BKACCOUNTDT = TO_DATE(#sBkaccountdt:VARCHAR#,'YYYYMMDD')
+		   AND t.BATCHNO = #lBatchno:NUMERIC#
+		   AND t.SERIALNO = #lSerialno:NUMERIC#
+		   AND t.CASH_AMT = #lCashAmt:NUMERIC#
+		   AND t.DIVSEQ = #lDivseq:NUMERIC#
+		   AND t.INDEX_NO = #lIndexNo:NUMERIC#
+    </select>  
+</sqlMap>

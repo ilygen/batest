@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAPASIGN">
+
+   <select id="selectManager" resultClass="java.lang.String">
+          select signname
+            from (select decode(deputemk,
+                                     'Y',
+                           #proxyManager:VARCHAR# || signname,
+                           #manager:VARCHAR# || signname) as signname
+                  from bapasign
+                  <![CDATA[
+                 where #aplpayDate:VARCHAR# >= startdate
+                   and #aplpayDate:VARCHAR# <= decode(trim(enddate),
+                                                         null,
+                                                         #aplpayDate:VARCHAR#,
+                                                         enddate)
+                  ]]>
+                order by startdate desc)
+          where rownum = 1
+   </select>
+
+    
+</sqlMap>
