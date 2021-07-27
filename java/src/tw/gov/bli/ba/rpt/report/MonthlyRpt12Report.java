@@ -293,8 +293,6 @@ public class MonthlyRpt12Report extends ReportBase {
             Integer seqNo = 1;
             // 計算每頁筆數
             Integer rowCount = 0;
-            // 累計金額起始
-            Integer rowBeg = 0;
 
             for (int i = 0; i < caseData.size(); i++) { // 受理案件資料
                 MonthlyRpt12Case monthlyRpt12Case = caseData.get(i);
@@ -316,13 +314,6 @@ public class MonthlyRpt12Report extends ReportBase {
 
                         // 取得表頭
                         table = getHeader(true, monthlyRpt12Case.getIssuTypStr(), monthlyRpt12Case.getPayTypStr(), monthlyRpt12Case.getPayYm(), monthlyRpt12Case.getPayTyp(), map, payCode, monthlyRpt12Case.getcPrnDateStr(),monthlyRpt12Case.getNaChgMk(), monthlyRpt12Case.getNlWkMk(), monthlyRpt12Case.getAdWkMk(), monthlyRpt12Case.getIsNaChgMk(), monthlyRpt12Case.getRptPage());
-
-                        // if (!(monthlyRpt12Case.getIssuTyp()).equals(issuTyp) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
-                        if (!(monthlyRpt12Case.getApNoLastDigit()).equals(apNoLastDigit) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
-                            // 序號歸零
-                            seqNo = 1;
-                            rowBeg = i;
-                        }
 
                         rowCount = 0;
                     }
