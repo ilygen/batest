@@ -1708,7 +1708,7 @@
           AND ISSUYM = #issuYm:VARCHAR# 
           AND CHKDATE = #chkDate:VARCHAR# 
           AND APNO LIKE #apNo:VARCHAR#||'%'
-        ORDER BY RPTPAGE, RPTROWS, PAYTYP,APNOLASTDIGIT,PAYYM
+        ORDER BY RPTPAGE, TO_NUMBER(RPTROWS), PAYTYP,APNOLASTDIGIT,PAYYM
     ]]>
     </select>
     <!-- ] -->
