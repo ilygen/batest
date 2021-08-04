@@ -6,8 +6,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.io.FileOutputStream;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
 import tw.gov.bli.common.helper.SpringHelper;
@@ -31,6 +33,8 @@ import com.lowagie.text.pdf.PdfWriter;
  * @author swim
  */
 public class MonthlyRpt12Report extends ReportBase {
+	
+	private Map<String, Object> previousTotalMap = new HashMap<>();
 
     public MonthlyRpt12Report() throws Exception {
         super();
@@ -178,7 +182,7 @@ public class MonthlyRpt12Report extends ReportBase {
         return table;
     }
 
-    public void addFooter(Table table, String DeptName, List<MonthlyRpt12Case> amtList, Integer rowCount, List<MonthlyRpt12Case> caseList, String issuTyp, String payTyp, Integer rowBeg, Integer rowEnd) throws Exception {
+    public void addFooter(Table table, List<MonthlyRpt12Case> amtList, Integer rowCount) throws Exception {
         Integer sumIssueAmt = 0;
         Integer sumOtheraAmt = 0;
         Integer sumOtherbAmt = 0;
@@ -212,21 +216,26 @@ public class MonthlyRpt12Report extends ReportBase {
             sumItrtTax += amtData.getItrtTax().intValue();
             sumOtherAmt += amtData.getOtherAmt().intValue();
         }
-        // 總累計
-        for (int j = rowBeg; j < rowEnd; j++) {
-            MonthlyRpt12Case caseData = caseList.get(j);
-            if (caseData.getIssuTyp().equals(issuTyp) && caseData.getPayTyp().equals(payTyp)) {
-                allIssueAmt += caseData.getIssueAmt().intValue();
-                allOtheraAmt += caseData.getOtheraAmt().intValue();
-                allOtherbAmt += caseData.getOtherbAmt().intValue();
-                allMitRate += caseData.getMitRate().intValue();
-                allOffsetAmt += caseData.getOffsetAmt().intValue();
-                allCompenAmt += caseData.getCompenAmt().intValue();
-                allInherItorAmt += caseData.getInherItorAmt().intValue();
-                allItrtTax += caseData.getItrtTax().intValue();
-                allOtherAmt += caseData.getOtherAmt().intValue();
-            }
-        }
+        // 本頁總累計
+    	allIssueAmt = sumIssueAmt + MapUtils.getInteger(previousTotalMap, "allIssueAmt", 0);
+        allOtheraAmt = sumOtheraAmt + MapUtils.getInteger(previousTotalMap, "allOtheraAmt", 0);
+        allOtherbAmt = sumOtherbAmt + MapUtils.getInteger(previousTotalMap, "allOtherbAmt", 0);
+        allMitRate = sumMitRate + MapUtils.getInteger(previousTotalMap, "allMitRate", 0);
+        allOffsetAmt = sumOffsetAmt + MapUtils.getInteger(previousTotalMap, "allOffsetAmt", 0);
+        allCompenAmt = sumCompenAmt + MapUtils.getInteger(previousTotalMap, "allCompenAmt", 0);
+        allInherItorAmt = sumInherItorAmt + MapUtils.getInteger(previousTotalMap, "allInherItorAmt", 0);
+        allItrtTax = sumItrtTax + MapUtils.getInteger(previousTotalMap, "allItrtTax", 0);
+        allOtherAmt = sumOtherAmt + MapUtils.getInteger(previousTotalMap, "allOtherAmt", 0);
+        // 記錄前一頁總累計金額
+        previousTotalMap.put("allIssueAmt", allIssueAmt);
+        previousTotalMap.put("allOtheraAmt", allOtheraAmt);
+        previousTotalMap.put("allOtherbAmt", allOtherbAmt);
+        previousTotalMap.put("allMitRate", allMitRate);
+        previousTotalMap.put("allOffsetAmt", allOffsetAmt);
+        previousTotalMap.put("allCompenAmt", allCompenAmt);
+        previousTotalMap.put("allInherItorAmt", allInherItorAmt);
+        previousTotalMap.put("allItrtTax", allItrtTax);
+        previousTotalMap.put("allOtherAmt", allOtherAmt);
 
         // 清空暫存
         amtList.clear();
@@ -276,6 +285,7 @@ public class MonthlyRpt12Report extends ReportBase {
             String payTyp = null; // 給付方式
             String deptName = null; // 部門名稱
             String apNoLastDigit = null; // 受理編號的最後一碼
+            BigDecimal pageNum = null; // 頁次
 
             List<MonthlyRpt12Case> amtList = new ArrayList<MonthlyRpt12Case>();
 
@@ -283,37 +293,27 @@ public class MonthlyRpt12Report extends ReportBase {
             Integer seqNo = 1;
             // 計算每頁筆數
             Integer rowCount = 0;
-            // 累計金額起始
-            Integer rowBeg = 0;
 
             for (int i = 0; i < caseData.size(); i++) { // 受理案件資料
                 MonthlyRpt12Case monthlyRpt12Case = caseData.get(i);
-                BigDecimal pageNum = monthlyRpt12Case.getRptPage();
                 
                 if (i == 0) {
                 	// 取得表頭
-                    table = getHeader(true,  monthlyRpt12Case.getIssuTypStr(), monthlyRpt12Case.getPayTypStr(), monthlyRpt12Case.getPayYm(), monthlyRpt12Case.getPayTyp(), map, payCode, monthlyRpt12Case.getcPrnDateStr(),monthlyRpt12Case.getNaChgMk(), monthlyRpt12Case.getNlWkMk(), monthlyRpt12Case.getAdWkMk(), monthlyRpt12Case.getIsNaChgMk(),pageNum);
+                    table = getHeader(true,  monthlyRpt12Case.getIssuTypStr(), monthlyRpt12Case.getPayTypStr(), monthlyRpt12Case.getPayYm(), monthlyRpt12Case.getPayTyp(), map, payCode, monthlyRpt12Case.getcPrnDateStr(),monthlyRpt12Case.getNaChgMk(), monthlyRpt12Case.getNlWkMk(), monthlyRpt12Case.getAdWkMk(), monthlyRpt12Case.getIsNaChgMk(), monthlyRpt12Case.getRptPage());
                 }
                 else {
                     // if(((rowCount) % 20 == 0) || !(monthlyRpt12Case.getIssuTyp()).equals(issuTyp) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)){
-                    if (((rowCount) % 20 == 0) || !(monthlyRpt12Case.getApNoLastDigit()).equals(apNoLastDigit) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
+                    if (((rowCount) % 20 == 0) || (monthlyRpt12Case.getRptPage().compareTo(pageNum) != 0) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
                         // 不滿20筆補空白行
                         if (rowCount % 20 > 0)
                             addEmptyRow(table, 20 - (rowCount % 20));
 
                         // 加入表尾
-                        addFooter(table, monthlyRpt12Case.getDeptNameString(), amtList, rowCount, caseData, issuTyp, payTyp, rowBeg, i);
+                        addFooter(table, amtList, rowCount);
                         document.add(table);
 
                         // 取得表頭
-                        table = getHeader(true, monthlyRpt12Case.getIssuTypStr(), monthlyRpt12Case.getPayTypStr(), monthlyRpt12Case.getPayYm(), monthlyRpt12Case.getPayTyp(), map, payCode, monthlyRpt12Case.getcPrnDateStr(),monthlyRpt12Case.getNaChgMk(), monthlyRpt12Case.getNlWkMk(), monthlyRpt12Case.getAdWkMk(), monthlyRpt12Case.getIsNaChgMk(), pageNum);
-
-                        // if (!(monthlyRpt12Case.getIssuTyp()).equals(issuTyp) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
-                        if (!(monthlyRpt12Case.getApNoLastDigit()).equals(apNoLastDigit) || !(monthlyRpt12Case.getPayTyp()).equals(payTyp)) {
-                            // 序號歸零
-                            seqNo = 1;
-                            rowBeg = i;
-                        }
+                        table = getHeader(true, monthlyRpt12Case.getIssuTypStr(), monthlyRpt12Case.getPayTypStr(), monthlyRpt12Case.getPayYm(), monthlyRpt12Case.getPayTyp(), map, payCode, monthlyRpt12Case.getcPrnDateStr(),monthlyRpt12Case.getNaChgMk(), monthlyRpt12Case.getNlWkMk(), monthlyRpt12Case.getAdWkMk(), monthlyRpt12Case.getIsNaChgMk(), monthlyRpt12Case.getRptPage());
 
                         rowCount = 0;
                     }
@@ -326,6 +326,8 @@ public class MonthlyRpt12Report extends ReportBase {
                 deptName = monthlyRpt12Case.getDeptNameString();
                 // 受理編號的最後一碼
                 apNoLastDigit = monthlyRpt12Case.getApNoLastDigit();
+                // 頁次
+                pageNum = monthlyRpt12Case.getRptPage();
 
                 // 序號
                 addColumn(table, 3, 1, Integer.toString(seqNo), fontCh9, 1, CENTER);
@@ -379,7 +381,7 @@ public class MonthlyRpt12Report extends ReportBase {
                 addEmptyRow(table, 20 - (rowCount % 20));
 
             // 加入表尾
-            addFooter(table, deptName, amtList, rowCount, caseData, issuTyp, payTyp, rowBeg, caseData.size());
+            addFooter(table, amtList, rowCount);
             /*
              * if (!writer.fitsPage(table)) // 超過一頁所能顯示的行數 { // 刪除造成換頁的該筆資料 (一筆有一行) table.deleteLastRow(); table.deleteLastRow(); table.deleteLastRow(); table.deleteLastRow(); //table.deleteLastRow(); // 不滿20筆補空白行 if(rowCount % 20 > 0)
              * addEmptyRow(table, 20 - (rowCount % 20)); // 加入表尾 addFooter(table, deptName, amtList, rowCount, caseData, issuTyp, payTyp, rowBeg, caseData.size()); document.add(table); } else { document.add(table); }
