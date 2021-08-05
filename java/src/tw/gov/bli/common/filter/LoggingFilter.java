@@ -1,6 +1,7 @@
 package tw.gov.bli.common.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,9 +10,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import tw.gov.bli.common.helper.EnvFacadeHelper;
 import tw.gov.bli.common.util.FrameworkLogUtil;
 
@@ -39,25 +42,28 @@ import tw.gov.bli.common.util.FrameworkLogUtil;
  *      &lt;filter-name&gt;LoggingFilter&lt;/filter-name&gt;
  *      &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
  *  &lt;/filter-mapping&gt;
- * </pre></code>
- * <code>&lt;param-name&gt;undefineUrlLogging&lt;/param-name&gt;</code> 用來設定是否紀錄未定義之 URL
+ * </pre></code> <code>&lt;param-name&gt;undefineUrlLogging&lt;/param-name&gt;</code> 用來設定是否紀錄未定義之 URL
  * 
  * @author Goston
  */
 public class LoggingFilter implements Filter {
     private static Log log = LogFactory.getLog(LoggingFilter.class);
 
-    private static final String UNDEFINE_URL_LOGGING = "undefineUrlLogging"; // 是否 Log 未定義之 URL 的操作 - <init-param> 之 <param-name>
+    private static final String UNDEFINE_URL_LOGGING = "undefineUrlLogging"; // 是否 Log 未定義之 URL 的操作 - <init-param> 之
+                                                                             // <param-name>
 
     private boolean undefineUrlLogging = true; // 是否 Log 未定義之 URL 的操作
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
         // 紀錄 Portal Log, 至於是否紀錄在 doPortalLog 會判斷
         FrameworkLogUtil.doPortalLog(req);
-
+        //20210514針對網站弱點Cookie加入SameSite屬性和設定上HSTS標籤至標頭檔上
+        res.setHeader("Set-Cookie", "SameSite=Lax");
+        res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
         chain.doFilter(request, response);
     }
 
@@ -71,8 +77,7 @@ public class LoggingFilter implements Filter {
         if (StringUtils.equalsIgnoreCase(sUndefineUrlLogging, "false")) {
             undefineUrlLogging = false;
             EnvFacadeHelper.setUndefineUrlLogging(false);
-        }
-        else {
+        } else {
             undefineUrlLogging = true;
             EnvFacadeHelper.setUndefineUrlLogging(true);
         }

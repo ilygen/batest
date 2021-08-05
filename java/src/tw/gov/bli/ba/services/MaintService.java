@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import tw.gov.bli.ba.dao.BaappbaseDao;
 import tw.gov.bli.ba.dao.BaappexpandDao;
 import tw.gov.bli.ba.dao.BabasicamtDao;
@@ -224,6 +226,11 @@ public class MaintService {
             bapadchkData.setChkTyp("A");
             bapadchkData.setUpdUser(userData.getEmpNo()); // 異動者代號
             bapadchkData.setUpdTime(DateUtility.getNowWestDateTime(true)); // 異動日期時間
+            
+            //20210513修改滲透測試跨站腳本攻擊(XSS)
+            bapadchkData.setChkCondesc(StringEscapeUtils.escapeHtml(detailData.getChkCondesc()));
+            bapadchkData.setChkDesc(StringEscapeUtils.escapeHtml(detailData.getChkDesc()));
+            
 
             bapadchkDao.insertData(bapadchkData);
         }
