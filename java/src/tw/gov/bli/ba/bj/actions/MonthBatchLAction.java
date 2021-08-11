@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -303,8 +304,14 @@ public class MonthBatchLAction extends BaseDispatchAction {
                 log.debug("批次處理 - 批次月處理作業 - 老年年金批次月處理作業 - 資料頁面  MonthBatchLAction.doDownLoad() 完成 ... ");
                 return mapping.findForward(FORWARD_QUERY_LIST_FAIL);
 
-            }
-            else {
+            } else {
+            	Pattern pattern = Pattern.compile("[\\/:\"*?<>|]");
+        		boolean hasInvalidStr = pattern.matcher(fileName).find();
+        		if(hasInvalidStr) {
+        			saveMessages(session, DatabaseMessageHelper.getNoResultMessage());
+        			log.debug("批次處理 - 批次月處理作業 - 老年年金批次月處理作業 - 資料頁面  MonthBatchLAction.doDownLoad() 完成 ... ");
+                    return mapping.findForward(FORWARD_QUERY_LIST_FAIL);
+        		}
 
                 ByteArrayOutputStream baoOutput = new ByteArrayOutputStream();
 
