@@ -21981,4 +21981,13 @@ SELECT IDNNO
 		 ORDER BY T1.APNO,T2.PAYYM,T1.SEQNO
     </select>
     
+    <update id="updateCasemkByApnoAndSeqno">
+        UPDATE BAAPPBASE SET
+            CASEMK = 'D',
+            UPDUSER = #updUser:VARCHAR#,
+            UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+         WHERE APNO = #apno:VARCHAR#
+           AND SEQNO LIKE #seqno:VARCHAR# || '%'
+    </update>
+    
 </sqlMap>

@@ -2682,4 +2682,11 @@ public interface BaappbaseDao {
      * @param issuYm 核定年月
      */
     public List<Baappbase> qryAddManPayListForSurvivor(String apNo, String issuYm);
+    
+    /**
+     * 依傳入條件更新 CASEMK(案件註記)欄位
+     * @param apno
+     * @param seqno
+     */
+    public int updateCasemkByApnoAndSeqno(String apno, String seqno, String updUser);
 }

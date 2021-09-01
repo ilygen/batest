@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.orm.ibatis.SqlMapClientCallback;
@@ -5099,4 +5100,20 @@ public class BaappbaseDaoImpl extends SqlMapClientDaoSupport implements Baappbas
     	map.put("issuYm", issuYm);
     	return getSqlMapClientTemplate().queryForList("BAAPPBASE.qryAddManPayListForSurvivor", map);
     }
+
+	@Override
+	@DaoFieldList("APNO,SEQNO")
+	public int updateCasemkByApnoAndSeqno(String apno, String seqno, String updUser) {
+		Map<String, Object> map = new HashMap<>();
+		if (StringUtils.isNotBlank(apno)) {
+			map.put("apno", apno);
+		}
+		if (StringUtils.isNotBlank(seqno)) {
+			map.put("seqno", seqno);
+		}
+		if (StringUtils.isNotBlank(updUser)) {
+			map.put("updUser", updUser);
+		}
+		return getSqlMapClientTemplate().update("BAAPPBASE.updateCasemkByApnoAndSeqno", map);
+	}
 }

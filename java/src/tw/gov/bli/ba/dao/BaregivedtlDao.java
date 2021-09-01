@@ -76,6 +76,13 @@ public interface BaregivedtlDao {
      */
     public void updateBaregivedtlForCancelReceive(Baregivedtl baregivedtl);
     
-    
+    /**
+     * 更新 改匯檔(<code>BAREGIVEDTL</code>) 將 AFMK 修改為 D
+     * 
+     * @param apno
+     * @param seqno
+     * @return
+     */
+    public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
     
 }

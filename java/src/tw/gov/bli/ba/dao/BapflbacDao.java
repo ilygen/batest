@@ -7,6 +7,7 @@ import java.util.List;
 import tw.gov.bli.ba.domain.Badapr;
 import tw.gov.bli.ba.domain.Bapflbac;
 import tw.gov.bli.ba.domain.Baunacpdtl;
+import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.common.annotation.DaoFieldList;
 
 /**
@@ -227,4 +228,21 @@ public interface BapflbacDao {
      * @return 內含 <code>Bapflbac</code> 物件的 List
      */
     public List<Bapflbac> selectOtherRpt02DataListBy(String payCode);
+    
+    /**
+     * 依受理編號及受款人序查詢資料筆數
+     * @param apno 受理編號
+     * @param seqno 受款人序
+     * @return
+     */
+    public Integer selectDataCountByApnoAndSeqno(String apno, String seqno);
+    
+    /**
+     * 更新退匯檔(<code>BAPFLBAC</code>) 將 AFMK 修改為 D
+     * 
+     * @param apno
+     * @param seqno
+     * @return
+     */
+    public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
 }

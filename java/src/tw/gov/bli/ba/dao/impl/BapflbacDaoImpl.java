@@ -3,12 +3,15 @@ package tw.gov.bli.ba.dao.impl;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import tw.gov.bli.ba.dao.BapflbacDao;
 import tw.gov.bli.ba.domain.Badapr;
 import tw.gov.bli.ba.domain.Bapflbac;
 import tw.gov.bli.ba.domain.Baunacpdtl;
+import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.common.annotation.DaoFieldList;
 import tw.gov.bli.common.annotation.DaoTable;
 
@@ -481,4 +484,35 @@ public class BapflbacDaoImpl extends SqlMapClientDaoSupport implements BapflbacD
         
         return getSqlMapClientTemplate().queryForList("BAPFLBAC.selectOtherRpt02DataListBy", map);
     }
+
+	@Override
+	@DaoFieldList("APNO,SEQNO")
+	public Integer selectDataCountByApnoAndSeqno(String apno, String seqno) {
+		Map<String, Object> map = new HashMap<>();
+		if (StringUtils.isNotBlank(apno)) {
+			map.put("apno", apno);
+		}
+		if (StringUtils.isNotBlank(seqno)) {
+			map.put("seqno", seqno);
+		}
+		return (Integer) getSqlMapClientTemplate().queryForObject("BAPFLBAC.selectDataCountByApnoAndSeqno", map);
+	}
+
+	@Override
+	@DaoFieldList("APNO,SEQNO")
+	public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean) {
+		Map<String, Object> map = new HashMap<>();
+		if (StringUtils.isNotBlank(apno)) {
+			map.put("apno", apno);
+		}
+		if (StringUtils.isNotBlank(seqno)) {
+			map.put("seqno", seqno);
+		}
+		if (userBean != null) {
+			map.put("procDeptId", userBean.getDeptId());
+			map.put("procUser", userBean.getEmpNo());
+			map.put("procIp", userBean.getLoginIP());
+		}
+		return getSqlMapClientTemplate().update("BAPFLBAC.updateAfmkByApnoAndSeqno", map);
+	}
 }
