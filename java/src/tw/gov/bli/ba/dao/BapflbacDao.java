@@ -244,5 +244,5 @@ public interface BapflbacDao {
      * @param seqno
      * @return
      */
-    public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
+    public int updateBrmkAndAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
 }

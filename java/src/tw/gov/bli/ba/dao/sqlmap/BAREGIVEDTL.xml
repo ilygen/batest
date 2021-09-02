@@ -206,8 +206,10 @@
               AND T.PAYYM = #payYm:VARCHAR#
     </update>
     
-    <update id="updateAfmkByApnoAndSeqno">
+    <update id="updateMkAndBrmkAndAfmkByApnoAndSeqno">
         UPDATE BAREGIVEDTL SET
+        	MK = 'D',
+        	BRMK = 'D',
             AFMK = 'D',
             PROCUSER = #procUser:VARCHAR#,
             PROCDEPTID = #procDeptId:VARCHAR#,

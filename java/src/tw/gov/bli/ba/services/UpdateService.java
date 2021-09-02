@@ -7815,10 +7815,10 @@ public class UpdateService {
             if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
             	// BAAPPBASE.CASEMK 改為 D
             	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2), userData.getEmpNo());
-            	// BAPFLBAC.AFMK 改為 D
-            	bapflbacDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
-            	// BAREGIVEDTL.AFMK 改為 D
-            	baregivedtlDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
             } else {
             	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
             }
@@ -7833,10 +7833,10 @@ public class UpdateService {
             if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
             	// BAAPPBASE.CASEMK 改為 D
             	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3), userData.getEmpNo());
-            	// BAPFLBAC.AFMK 改為 D
-            	bapflbacDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
-            	// BAREGIVEDTL.AFMK 改為 D
-            	baregivedtlDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
             } else {
             	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3));
             }
@@ -7851,10 +7851,10 @@ public class UpdateService {
             if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
             	// BAAPPBASE.CASEMK 改為 D
             	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData.getEmpNo());
-            	// BAPFLBAC.AFMK 改為 D
-            	bapflbacDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
-            	// BAREGIVEDTL.AFMK 改為 D
-            	baregivedtlDao.updateAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
             } else {
             	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), caseData.getSeqNo());
             }

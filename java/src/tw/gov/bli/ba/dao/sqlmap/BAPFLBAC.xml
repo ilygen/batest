@@ -762,8 +762,9 @@
     	   AND SEQNO = #seqno:VARCHAR#
     </select>
     
-    <update id="updateAfmkByApnoAndSeqno">
+    <update id="updateBrmkAndAfmkByApnoAndSeqno">
         UPDATE BAPFLBAC SET
+        	BRMK = 'D',
             AFMK = 'D',
             PROCUSER = #procUser:VARCHAR#,
             PROCDEPTID = #procDeptId:VARCHAR#,

@@ -152,7 +152,7 @@ public class BaregivedtlDaoImpl extends SqlMapClientDaoSupport implements Baregi
 
 	@Override
 	@DaoFieldList("APNO,SEQNO")
-	public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean) {
+	public int updateMkAndBrmkAndAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean) {
 		Map<String, Object> map = new HashMap<>();
 		if (StringUtils.isNotBlank(apno)) {
 			map.put("apno", apno);
@@ -165,6 +165,6 @@ public class BaregivedtlDaoImpl extends SqlMapClientDaoSupport implements Baregi
 			map.put("procUser", userBean.getEmpNo());
 			map.put("procIp", userBean.getLoginIP());
 		}
-		return getSqlMapClientTemplate().update("BAREGIVEDTL.updateAfmkByApnoAndSeqno", map);
+		return getSqlMapClientTemplate().update("BAREGIVEDTL.updateMkAndBrmkAndAfmkByApnoAndSeqno", map);
 	}
 }

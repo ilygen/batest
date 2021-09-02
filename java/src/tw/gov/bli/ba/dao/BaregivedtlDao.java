@@ -83,6 +83,6 @@ public interface BaregivedtlDao {
      * @param seqno
      * @return
      */
-    public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
+    public int updateMkAndBrmkAndAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean);
     
 }

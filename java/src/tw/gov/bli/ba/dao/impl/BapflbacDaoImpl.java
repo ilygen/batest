@@ -500,7 +500,7 @@ public class BapflbacDaoImpl extends SqlMapClientDaoSupport implements BapflbacD
 
 	@Override
 	@DaoFieldList("APNO,SEQNO")
-	public int updateAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean) {
+	public int updateBrmkAndAfmkByApnoAndSeqno(String apno, String seqno, UserBean userBean) {
 		Map<String, Object> map = new HashMap<>();
 		if (StringUtils.isNotBlank(apno)) {
 			map.put("apno", apno);
@@ -513,6 +513,6 @@ public class BapflbacDaoImpl extends SqlMapClientDaoSupport implements BapflbacD
 			map.put("procUser", userBean.getEmpNo());
 			map.put("procIp", userBean.getLoginIP());
 		}
-		return getSqlMapClientTemplate().update("BAPFLBAC.updateAfmkByApnoAndSeqno", map);
+		return getSqlMapClientTemplate().update("BAPFLBAC.updateBrmkAndAfmkByApnoAndSeqno", map);
 	}
 }
