@@ -367,7 +367,7 @@ public class PayeeDataUpdateListForOldAgeDeathRepayAction extends BaseDispatchAc
             Baappbase detailData = updateService.getPayeeDataUpdateForUpdateCaseBy(baappbaseId);
 
             // 刪除資料
-            updateService.deletepPayeeDataUpdate(userData, detailData);
+            updateService.deletepPayeeDataUpdate(userData, detailData, "BAMO0D092C");
 
             // 呼叫即時編審WebService
 //            SingleCheckMarkServiceHttpBindingStub binding;

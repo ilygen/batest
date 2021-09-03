@@ -754,4 +754,23 @@
                     AND B.TYPEMK = 'C')
     </select>
     <!-- OtherRpt03 End -->
+    
+    <select id="selectDataCountByApnoAndSeqno" resultClass="java.lang.Integer">
+    	SELECT COUNT(*) DATACOUNT
+    	  FROM BAPFLBAC
+    	 WHERE APNO = #apno:VARCHAR#
+    	   AND SEQNO = #seqno:VARCHAR#
+    </select>
+    
+    <update id="updateBrmkAndAfmkByApnoAndSeqno">
+        UPDATE BAPFLBAC SET
+        	BRMK = 'D',
+            AFMK = 'D',
+            PROCUSER = #procUser:VARCHAR#,
+            PROCDEPTID = #procDeptId:VARCHAR#,
+            PROCIP = #procIp:VARCHAR#,
+            UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+         WHERE APNO = #apno:VARCHAR#
+           AND SEQNO = #seqno:VARCHAR#
+    </update>
 </sqlMap>

@@ -343,7 +343,7 @@ public class PayeeDataUpdateListAction extends BaseDispatchAction {
             Baappbase detailData = updateService.getPayeeDataUpdateForUpdateCaseBy(baappbaseId);
 
             // 刪除資料
-            updateService.deletepPayeeDataUpdate(userData, detailData);
+            updateService.deletepPayeeDataUpdate(userData, detailData, "BAMO0D082C");
 
             // 呼叫即時編審WebService
             // String webServiceUrl = (ResourceBundle.getBundle("webServiceUrl")).getString("checkMarkWebServicesUrlForOldage");

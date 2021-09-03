@@ -206,4 +206,16 @@
               AND T.PAYYM = #payYm:VARCHAR#
     </update>
     
+    <update id="updateMkAndBrmkAndAfmkByApnoAndSeqno">
+        UPDATE BAREGIVEDTL SET
+        	MK = 'D',
+        	BRMK = 'D',
+            AFMK = 'D',
+            PROCUSER = #procUser:VARCHAR#,
+            PROCDEPTID = #procDeptId:VARCHAR#,
+            PROCIP = #procIp:VARCHAR#,
+            UPDTIME = TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+         WHERE APNO = #apno:VARCHAR#
+           AND SEQNO = #seqno:VARCHAR#
+    </update>
 </sqlMap>
