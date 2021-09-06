@@ -7788,7 +7788,7 @@ public class UpdateService {
      * 
      * @param baappbase 給付主檔
      */
-    public void deletepPayeeDataUpdate(UserBean userData, Baappbase caseData) {
+    public void deletepPayeeDataUpdate(UserBean userData, Baappbase caseData, String progName) {
         // update BALP0D020 PROCMK
         updateProcMkByApNo(caseData.getApNo());
 
@@ -7811,7 +7811,17 @@ public class UpdateService {
             beforeBaappbaseList = baappbaseDao.selectBaappbaseDataByLog(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
             bachkfileDao.deleteBachkfileData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
             badaprDao.deleteBadaprData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
-            baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
+            // 當 BAPFLBAC 存在該筆 APNO & SEQNO 時，不刪除 BAAPPBASE 的資料，只將 CASEMK 修改為 D
+            if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
+            	// BAAPPBASE.CASEMK 改為 D
+            	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2), userData.getEmpNo());
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            } else {
+            	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
+            }
         }
         else if (StringUtils.countMatches(caseData.getSeqNo(), "0") == 2) {
             // 「序號」= 0XX0
@@ -7819,7 +7829,17 @@ public class UpdateService {
             beforeBaappbaseList = baappbaseDao.selectBaappbaseDataByLog(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3));
             bachkfileDao.deleteBachkfileData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3));
             badaprDao.deleteBadaprData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 2));
-            baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3));
+            // 當 BAPFLBAC 存在該筆 APNO & SEQNO 時，不刪除 BAAPPBASE 的資料，只將 CASEMK 修改為 D
+            if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
+            	// BAAPPBASE.CASEMK 改為 D
+            	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3), userData.getEmpNo());
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            } else {
+            	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), StringUtils.substring(caseData.getSeqNo(), 0, 3));
+            }
         }
         else if (StringUtils.countMatches(caseData.getSeqNo(), "0") == 1) {
             // 「序號」= 0XXX
@@ -7827,7 +7847,17 @@ public class UpdateService {
             beforeBaappbaseList = baappbaseDao.selectBaappbaseDataByLog(caseData.getApNo(), caseData.getSeqNo());
             bachkfileDao.deleteBachkfileData(caseData.getApNo(), caseData.getSeqNo());
             badaprDao.deleteBadaprData(caseData.getApNo(), caseData.getSeqNo());
-            baappbaseDao.deleteBaappbaseData(caseData.getApNo(), caseData.getSeqNo());
+            // 當 BAPFLBAC 存在該筆 APNO & SEQNO 時，不刪除 BAAPPBASE 的資料，只將 CASEMK 修改為 D
+            if ("BAMO0D092C".equals(progName) && bapflbacDao.selectDataCountByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo()) > 0) {
+            	// BAAPPBASE.CASEMK 改為 D
+            	baappbaseDao.updateCasemkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData.getEmpNo());
+            	// BAPFLBAC.BRMK, AFMK 改為 D
+            	bapflbacDao.updateBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            	// BAREGIVEDTL.MK, BRMK, AFMK 改為 D
+            	baregivedtlDao.updateMkAndBrmkAndAfmkByApnoAndSeqno(caseData.getApNo(), caseData.getSeqNo(), userData);
+            } else {
+            	baappbaseDao.deleteBaappbaseData(caseData.getApNo(), caseData.getSeqNo());
+            }
         }
 
         // 相關要修改的主檔清單
