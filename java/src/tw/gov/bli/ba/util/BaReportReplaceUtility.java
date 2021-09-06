@@ -3106,8 +3106,8 @@ public class BaReportReplaceUtility {
 	// 投保薪資比例金額
 	public void A154() {
 		if (!baappbase.getApNo().substring(0, 1).equals("L")) {
-			if (benData != null && Integer.parseInt(StringUtils.defaultIfEmpty(benData.getSInsuranceSalary(), "0") ) > 0) {
-				replaceValue.put(ConstantKey.A154, DF.format(Integer.parseInt(benData.getSInsuranceSalary())));
+			if (benData != null && Integer.parseInt(StringUtils.defaultIfEmpty(benData.getSinsuranceSalary(), "0") ) > 0) {
+				replaceValue.put(ConstantKey.A154, DF.format(Integer.parseInt(benData.getSinsuranceSalary())));
 			} else {
 				replaceValue.put(ConstantKey.A154, "0");
 			}

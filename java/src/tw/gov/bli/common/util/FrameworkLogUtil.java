@@ -266,7 +266,7 @@ public class FrameworkLogUtil {
 
                         for (Field fd : fieldArray) { // ... [
                             PropertyDescriptor prop = PropertyUtils.getPropertyDescriptor(opObj, fd.getName());
-                            if (prop.getReadMethod() != null) {
+                            if (prop != null && prop.getReadMethod() != null) {
                                 if (fd.isAnnotationPresent(PkeyField.class)) { // ... [
                                     String pkey = fd.getAnnotation(PkeyField.class).value();
                                     // 如果 PKey 名稱是空的, 則以 Property 名稱轉大寫當 PKey 名稱

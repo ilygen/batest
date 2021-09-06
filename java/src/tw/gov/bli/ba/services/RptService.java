@@ -4277,7 +4277,7 @@ public class RptService {
                 if (sInsuranceSalary == null) {
                     sInsuranceSalary = "0";
                 }
-                baappbase.setSInsuranceSalary(sInsuranceSalary);
+                baappbase.setSinsuranceSalary(sInsuranceSalary);
 
                 String receiveName = "";
                 List<Baappbase> receiveBenNameList = new ArrayList<Baappbase>();

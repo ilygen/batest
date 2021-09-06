@@ -682,7 +682,7 @@ public class Baappbase implements Serializable {
     // 給付查詢 檢查保密資料 idn
     private String idnNo; // 檢查身分證
 
-    private String sInsuranceSalary; // 投保薪資比例金額 For A154
+    private String sinsuranceSalary; // 投保薪資比例金額 For A154
     private String comRechkYm;
 
     // Field from NBSCHOOL
@@ -3057,12 +3057,12 @@ public class Baappbase implements Serializable {
         this.issuNotifyingMk = issuNotifyingMk;
     }
 
-    public String getSInsuranceSalary() {
-        return sInsuranceSalary;
+    public String getSinsuranceSalary() {
+        return sinsuranceSalary;
     }
 
-    public void setSInsuranceSalary(String sInsuranceSalary) {
-        this.sInsuranceSalary = sInsuranceSalary;
+    public void setSinsuranceSalary(String sinsuranceSalary) {
+        this.sinsuranceSalary = sinsuranceSalary;
     }
 
     public BigDecimal getMarginAmt() {
