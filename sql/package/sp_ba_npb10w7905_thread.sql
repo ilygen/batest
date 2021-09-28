@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE SP_BA_NPB10W7905_THREAD( p_bgn_apno IN VARCHAR2,
+CREATE OR REPLACE PROCEDURE BA.SP_BA_NPB10W7905_THREAD( p_bgn_apno IN VARCHAR2,
                                                      p_end_apno IN VARCHAR2,
                                                      p_thread   IN INTEGER,
                                                      p_jobno    IN VARCHAR2,
@@ -76,7 +76,8 @@ BEGIN
       --                                  (2) 因星期六全量可能執行超過 24 小時，因此星期日不執行此程式
       --      ChungYu    2019/09/04  v.32 因案件數量龐大，於每月月核後全量執行時間過長，修改為分流寫法，將搬資料邏輯移至SP_BA_NPB10W7905_THREAD
       --                                  , 本支Procedure 修改為SP_BA_NPB10W7905_THREAD 搬資料邏輯改為分流處理。          
-      --      ChungYu    2019/09/13  v.33 因國保異動更新尚未修改，因此調整每日異動搬檔 NPS.NPMEAPPSTS、BAMEAPPSTS、NPS.NPMEDAPR、BAMEDAPR均寫。     
+      --      ChungYu    2019/09/13  v.33 因國保異動更新尚未修改，因此調整每日異動搬檔 NPS.NPMEAPPSTS、BAMEAPPSTS、NPS.NPMEDAPR、BAMEDAPR均寫。
+      --      EthanChen  2021/08/19  v.34 新增案類代號bameappsts.pmrk以及移除寫入國保npmeappsts(資料查詢改由BA Restful API中呼叫，因此不跟五科介接)
       -- ============================================================================
 
       DECLARE
@@ -117,6 +118,7 @@ BEGIN
         v_countfail  NUMBER := 0; -- 失敗數
         v_countok    NUMBER := 0; -- 成功數
         v_tmp        VARCHAR2(100) := '';
+        v_pmrk       VARCHAR2(2) := '';
         v_recremtmp1 NUMBER := 0; -- 給付年月應收總額
         v_recremtmp2 NUMBER := 0; -- 給付年月已收總額
 
@@ -150,7 +152,8 @@ BEGIN
           CASETYP     BA.BAAPPBASE.CASETYP%type := '',
           PROCSTAT    BA.BAAPPBASE.PROCSTAT%type := '',
           PAYYMS      BA.BAAPPBASE.PAYYMS%type := '',
-          STATUS      VARCHAR2(100));
+          STATUS      VARCHAR2(100),
+          PMRK        VARCHAR2(2));
         r_base t_emprec;
         -- 2015/11/02 Added By Kiyomi
 
@@ -166,52 +169,6 @@ BEGIN
 
         -- ----------------------------------------------------------------------------
         -- CURSOR BEGIN
-        -------------------------------------------------------------------------------
-        --取得主檔資料
-        /* CURSOR c_base IS
-        SELECT APNO,
-               SEQNO,
-               PAYKIND,
-                CASE  WHEN (PAYKIND = '35') THEN '失能年金'
-                      WHEN (PAYKIND = '36') THEN '國保年金併計失能'
-                      WHEN (PAYKIND = '37') THEN '職災失能補償一次金'
-                      WHEN (PAYKIND = '38') THEN '失能年金併計國保年金'
-                      WHEN (PAYKIND = '39') THEN '請領一次失能給付差額'
-                      WHEN (PAYKIND = '45') THEN '老年年金'
-                      WHEN (PAYKIND = '48') THEN '老年年金併計國保年資'
-                      WHEN (PAYKIND = '49') THEN '請領一次老年給付差額'
-                      WHEN (PAYKIND = '57') THEN '職災死亡補償一次金'
-                      WHEN (PAYKIND = '58') THEN '喪葬津貼'
-                      WHEN (PAYKIND IN ('55','56','59')) THEN '遺屬年金'
-                      END AS PAYKINDNAME,
-                APPDATE,
-                EVTIDNNO,
-                EVTNAME,
-                EVTBRDATE,
-                EVTJOBDATE,
-                BENIDNNO,
-                BENNAME,
-                BENBRDATE,
-                APUBNO,
-                CASETYP,
-                PROCSTAT,
-                PAYYMS,                                                      --  2015/04/09 Add By ChungYu
-                CASE WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '1') AND ( PROCSTAT = '00'))  THEN '新案受理中'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '1') AND ( PROCSTAT <> '00')) THEN '新案審核中'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '2') AND ( PROCSTAT = '50'))  THEN '續發案核付'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '2') AND ( PROCSTAT <> '50')) THEN '續發案改核'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '3')) THEN '不給付案'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '4')) THEN '結案'
-                     WHEN ( (PAYKIND NOT IN ('36','38')) AND (CASETYP = '6')) THEN '暫緩給付案'                           -- Modify By ChungYu 2013/12/31 所有案件均提供查詢
-                     ELSE '作業流程中，如有疑義請洽承辦人'                                                                -- 除失能 36 & 38 案除外。
-                     END AS STATUS
-           FROM BAAPPBASE
-          WHERE SEQNO != (CASE WHEN (PAYKIND LIKE ('5%')) THEN '0000'
-                          ELSE 'XXXX' END)
-            AND (CASEMK <> 'D' OR CASEMK is NULL)
-            AND BENEVTREL NOT IN ('A','C','F','N','Z','O')
-          ORDER BY APNO, SEQNO; */
-
         -------------------------------------------------------------------------------
         --取得核定金額資料
         CURSOR c_dapr IS
@@ -281,7 +238,16 @@ BEGIN
                        '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''4'')) THEN ''結案''' ||     -- Modified By Kiyomi 2018/01/15
                        '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''6'')) THEN ''暫緩給付案''' ||     -- Modified By Kiyomi 2018/01/15
                        '             ELSE ''作業流程中，如有疑義請洽承辦人''' ||
-                       '             END AS STATUS' ||
+                       '             END AS STATUS,' ||
+                       '        CASE WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT = ''00''))  THEN ''1''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT <> ''00'')) THEN ''2''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT = ''50''))  THEN ''3''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT <> ''50'')) THEN ''4''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''3'')) THEN ''5''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''4'')) THEN ''6''' ||
+                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''6'')) THEN ''7''' ||
+                       '             ELSE ''8''' ||
+                       '             END AS PMRK' ||
                        '   FROM BA.BAAPPBASE' ||
                        '  WHERE SEQNO != (CASE WHEN (PAYKIND LIKE (''5%'')) THEN ''0000''' ||
                        '                  ELSE ''XXXX'' END)' ||
@@ -384,6 +350,7 @@ BEGIN
               v_evteebirt   := r_base.EVTBRDATE;
               v_appdate     := r_base.APPDATE;
               v_tmp         := r_base.STATUS;
+              v_pmrk        := r_base.PMRK;
               v_evtjobdate  := r_base.EVTJOBDATE;
               v_casetyp     := r_base.CASETYP; --Add By ChungYu 2011/02/21
               v_payyms      := r_base.PAYYMS; --Add By ChungYu 2015/04/09
@@ -523,6 +490,7 @@ BEGIN
                            FTYPE,
                            APPDATE,
                            STATUS,
+                           PMRK,
                            EVTDT,
                            VALSENI,
                            RECREM,
@@ -548,6 +516,7 @@ BEGIN
                            '2',
                            v_appdate,
                            v_tmp,
+                           v_pmrk,
                            v_evtjobdate,
                            '',
                            v_recrem,
@@ -607,7 +576,7 @@ BEGIN
                            v_empext,
                            v_payyms,
                            v_secretmk);
-            END IF;     
+            END IF;
             EXCEPTION
               WHEN OTHERS THEN
                 v_mapno     := '';
@@ -960,3 +929,4 @@ EXCEPTION
                                 DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
 
 END SP_BA_NPB10W7905_THREAD;
+/
