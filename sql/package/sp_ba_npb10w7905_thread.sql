@@ -216,12 +216,9 @@ BEGIN
                        '              WHEN (PAYKIND = ''36'') THEN ''國保年金併計失能''' ||
                        '              WHEN (PAYKIND = ''37'') THEN ''職災失能補償一次金''' ||
                        '              WHEN (PAYKIND = ''38'') THEN ''失能年金併計國保年金''' ||
-                       '              WHEN (PAYKIND = ''39'') THEN ''請領一次失能給付差額''' ||
                        '              WHEN (PAYKIND = ''45'') THEN ''老年年金''' ||
                        '              WHEN (PAYKIND = ''48'') THEN ''老年年金併計國保年資''' ||
                        '              WHEN (PAYKIND = ''49'') THEN ''請領一次老年給付差額''' ||
-                       '              WHEN (PAYKIND = ''57'') THEN ''職災死亡補償一次金''' ||
-                       '              WHEN (PAYKIND = ''58'') THEN ''喪葬津貼''' ||
                        '              WHEN (PAYKIND IN (''55'',''56'',''59'')) THEN ''遺屬年金''' ||
                        '              END AS PAYKINDNAME,' ||
                        '        APPDATE,' || '        EVTIDNNO,' ||
@@ -230,22 +227,22 @@ BEGIN
                        '        BENNAME,' || '        BENBRDATE,' ||
                        '        APUBNO,' || '        CASETYP,' ||
                        '        PROCSTAT,' || '        PAYYMS,' ||
-                       '        CASE WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT = ''00''))  THEN ''新案受理中''' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT <> ''00'')) THEN ''新案審核中''' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT = ''50''))  THEN ''續發案核付　'' || ISSUEAMT' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT <> ''50'')) THEN ''續發案改核''' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''3'')) THEN ''不給付案''' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''4'')) THEN ''結案''' ||     -- Modified By Kiyomi 2018/01/15
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''6'')) THEN ''暫緩給付案''' ||     -- Modified By Kiyomi 2018/01/15
+                       '        CASE WHEN ( (CASETYP = ''1'') AND ( PROCSTAT = ''00''))  THEN ''新案受理中''' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''1'') AND ( PROCSTAT <> ''00'')) THEN ''新案審核中''' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''2'') AND ( PROCSTAT = ''50''))  THEN ''續發案核付　'' || ISSUEAMT' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''2'') AND ( PROCSTAT <> ''50'')) THEN ''續發案改核''' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''3'')) THEN ''不給付案''' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''4'')) THEN ''結案''' ||     -- Modified By Kiyomi 2018/01/15
+                       '             WHEN ( (CASETYP = ''6'')) THEN ''暫緩給付案''' ||     -- Modified By Kiyomi 2018/01/15
                        '             ELSE ''作業流程中，如有疑義請洽承辦人''' ||
                        '             END AS STATUS,' ||
-                       '        CASE WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT = ''00''))  THEN ''1''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''1'') AND ( PROCSTAT <> ''00'')) THEN ''2''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT = ''50''))  THEN ''3''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''2'') AND ( PROCSTAT <> ''50'')) THEN ''4''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''3'')) THEN ''5''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''4'')) THEN ''6''' ||
-                       '             WHEN ( (PAYKIND IN (''45'',''48'',''49'',''35'',''36'',''38'',''55'',''56'',''59'')) AND (CASETYP = ''6'')) THEN ''7''' ||
+                       '        CASE WHEN ( (CASETYP = ''1'') AND ( PROCSTAT = ''00''))  THEN ''1''' ||
+                       '             WHEN ( (CASETYP = ''1'') AND ( PROCSTAT <> ''00'')) THEN ''2''' ||
+                       '             WHEN ( (CASETYP = ''2'') AND ( PROCSTAT = ''50''))  THEN ''3''' ||
+                       '             WHEN ( (CASETYP = ''2'') AND ( PROCSTAT <> ''50'')) THEN ''4''' ||
+                       '             WHEN ( (CASETYP = ''3'')) THEN ''5''' ||
+                       '             WHEN ( (CASETYP = ''4'')) THEN ''6''' ||
+                       '             WHEN ( (CASETYP = ''6'')) THEN ''7''' ||
                        '             ELSE ''8''' ||
                        '             END AS PMRK' ||
                        '   FROM BA.BAAPPBASE' ||
