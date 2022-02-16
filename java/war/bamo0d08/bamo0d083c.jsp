@@ -747,13 +747,15 @@
 		if($("benIdnNo").value.length==10){
 		if(document.getElementsByName("benNationTyp")[1].checked && document.getElementsByName("benSex")[0].checked==true){
  			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
- 				msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n';	
- 				 $("benSex").focus();
+ 				//msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n';	
+ 				//$("benSex").focus();
+ 				alert('個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n');
     		}
  		}else if(document.getElementsByName("benNationTyp")[1].checked && document.getElementsByName("benSex")[1].checked==true){
  			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
- 				msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n';	
- 				 $("benSex").focus();
+ 				//msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n';	
+ 				//$("benSex").focus();
+ 				alert('個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」。\r\n');
     		}
  		}
 		}
