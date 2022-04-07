@@ -60,7 +60,7 @@ CREATE OR REPLACE PACKAGE BODY ba.pkg_baprocrxf IS
                              FROM baunacpdtl b, baappbase p
                             WHERE b.recrem > 0
                               AND b.mdchkmk <> 'D'
-                              AND b.benids = p_idn
+                              AND b.benidnno = p_idn
                               --AND b.apno = p.apno
                               --AND b.seqno = p.seqno
                               )
