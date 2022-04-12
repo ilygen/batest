@@ -103,8 +103,10 @@ CREATE OR REPLACE PACKAGE BODY ba.pkg_baprocrxf IS
       v_rec_plog.userid    := p_prpno;
       v_rec_plog.jobid     := to_char(SYSDATE, 'YYYYMMDDHH24MISSSSS');
       v_rec_plog.starttime := SYSDATE;
+      v_rec_plog.typemk    := '1';
       v_rec_plog.levelmk   := '1'; --INFO
       v_rec_plog.pseq      := '1';
+      v_rec_plog.proctime  := SYSDATE;
       v_rec_plog.procname  := 'pkg_baprocrxf.AGREERXF';
       v_rec_plog.msg1      := '更新同意另案扣減金額';
       v_rec_plog.msg2      := '受理編號-應收='||p_apno1||
@@ -120,9 +122,11 @@ CREATE OR REPLACE PACKAGE BODY ba.pkg_baprocrxf IS
       v_rec_plog.userid    := 'BATCH';
       v_rec_plog.jobid     := to_char(SYSDATE, 'YYYYMMDDHH24MISSSSS');
       v_rec_plog.starttime := SYSDATE;
+      v_rec_plog.typemk    := '1';
       v_rec_plog.levelmk   := '3'; --ERROR
       v_rec_plog.pseq      := '1';
-      v_rec_plog.procname  := 'pkg_baprocrxf.sp_set_rbamt';
+      v_rec_plog.proctime  := SYSDATE;
+      v_rec_plog.procname  := 'pkg_baprocrxf.AGREERXF';
       v_rec_plog.msg1      := SQLCODE || SQLERRM;
       v_rec_plog.msg2      := dbms_utility.format_error_backtrace;
       pkg_plog.sp_ins_log(v_rec_plog);
