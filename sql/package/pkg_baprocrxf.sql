@@ -61,8 +61,8 @@ CREATE OR REPLACE PACKAGE BODY ba.pkg_baprocrxf IS
                             WHERE b.recrem > 0
                               AND b.mdchkmk <> 'D'
                               AND b.benidnno = p_idn
-                              --AND b.apno = p.apno
-                              --AND b.seqno = p.seqno
+                              AND b.apno = p.apno
+                              AND b.seqno = p.seqno
                               )
     LOOP
       PIPE ROW(rec_baunacpdtl);
