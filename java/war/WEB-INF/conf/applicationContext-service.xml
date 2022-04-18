@@ -14,6 +14,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean id="rptService" class="tw.gov.bli.ba.services.RptService">
         <property name="baparamDao" ref="baparamDao" />
         <property name="baappbaseDao" ref="baappbaseDao" />
+        <property name="bbpmaDao" ref="bbpmaDao" />
         <property name="badaprDao" ref="badaprDao" />
         <property name="bachkfileDao" ref="bachkfileDao" />
         <property name="baexalistDao" ref="baexalistDao" />
@@ -22,6 +23,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="balp0d330Dao" ref="balp0d330Dao" />
         <property name="balp0d340Dao" ref="balp0d340Dao" />
         <property name="pbbmsaDao" ref="pbbmsaDao" />
+        <property name="bebmsaDao" ref="bebmsaDao" />
         <property name="banotifyDao" ref="banotifyDao" />
         <property name="bapaissudateDao" ref="bapaissudateDao" />
         <property name="baoncepayDao" ref="baoncepayDao" />

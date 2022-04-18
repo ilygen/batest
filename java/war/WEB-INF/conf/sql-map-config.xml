@@ -13,6 +13,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAINSPECT.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASEForAnnuityAcceptDataTransfer.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBPMA.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACOUNTRY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CVLDTL.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NPBANKLIST.xml" />
@@ -33,6 +34,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D330.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D340.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PBBMSA.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BEBMSA.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CAUB.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAONCEPAY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAISSUDATE.xml" />

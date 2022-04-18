@@ -15,8 +15,115 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import tw.gov.bli.ba.ConstantKey;
-import tw.gov.bli.ba.dao.*;
-import tw.gov.bli.ba.domain.*;
+import tw.gov.bli.ba.dao.BaappattfileDao;
+import tw.gov.bli.ba.dao.BaappbaseDao;
+import tw.gov.bli.ba.dao.BaappexpandDao;
+import tw.gov.bli.ba.dao.BaarclistDao;
+import tw.gov.bli.ba.dao.BabasicamtDao;
+import tw.gov.bli.ba.dao.BabatchjobDao;
+import tw.gov.bli.ba.dao.Babcml7Dao;
+import tw.gov.bli.ba.dao.BachkfileDao;
+import tw.gov.bli.ba.dao.BacountryDao;
+import tw.gov.bli.ba.dao.BadaprDao;
+import tw.gov.bli.ba.dao.BadupeidnDao;
+import tw.gov.bli.ba.dao.BaexalistDao;
+import tw.gov.bli.ba.dao.BafailurelistDao;
+import tw.gov.bli.ba.dao.BafamilyDao;
+import tw.gov.bli.ba.dao.BagivetmpdtlDao;
+import tw.gov.bli.ba.dao.BahandicaptermDao;
+import tw.gov.bli.ba.dao.Balp0d020Dao;
+import tw.gov.bli.ba.dao.Balp0d330Dao;
+import tw.gov.bli.ba.dao.Balp0d340Dao;
+import tw.gov.bli.ba.dao.BanotifyDao;
+import tw.gov.bli.ba.dao.BaoncepayDao;
+import tw.gov.bli.ba.dao.BapaavgmonDao;
+import tw.gov.bli.ba.dao.BapairrDao;
+import tw.gov.bli.ba.dao.BapaissudateDao;
+import tw.gov.bli.ba.dao.BapandomkDao;
+import tw.gov.bli.ba.dao.BapapaykindDao;
+import tw.gov.bli.ba.dao.BaparamDao;
+import tw.gov.bli.ba.dao.BapasignDao;
+import tw.gov.bli.ba.dao.BapayrptaccountDao;
+import tw.gov.bli.ba.dao.BapayrptrecordDao;
+import tw.gov.bli.ba.dao.BapayrptsumDao;
+import tw.gov.bli.ba.dao.BapflbacDao;
+import tw.gov.bli.ba.dao.BarecheckDao;
+import tw.gov.bli.ba.dao.BarptlogDao;
+import tw.gov.bli.ba.dao.BarxfDao;
+import tw.gov.bli.ba.dao.BastudnotifyDao;
+import tw.gov.bli.ba.dao.BastudtermDao;
+import tw.gov.bli.ba.dao.BaunacpdtlDao;
+import tw.gov.bli.ba.dao.BaunqualifiednoticeDao;
+import tw.gov.bli.ba.dao.BbarfDao;
+import tw.gov.bli.ba.dao.Bbcmf07Dao;
+import tw.gov.bli.ba.dao.Bbcmf09Dao;
+import tw.gov.bli.ba.dao.BbpmaDao;
+import tw.gov.bli.ba.dao.BebmsaDao;
+import tw.gov.bli.ba.dao.BirefDao;
+import tw.gov.bli.ba.dao.CaubDao;
+import tw.gov.bli.ba.dao.CipbDao;
+import tw.gov.bli.ba.dao.CipgDao;
+import tw.gov.bli.ba.dao.CiptDao;
+import tw.gov.bli.ba.dao.CvldtlDao;
+import tw.gov.bli.ba.dao.KcafDao;
+import tw.gov.bli.ba.dao.LnmDao;
+import tw.gov.bli.ba.dao.LnmdDao;
+import tw.gov.bli.ba.dao.LocalPfpcckyDao;
+import tw.gov.bli.ba.dao.MaadmrecDao;
+import tw.gov.bli.ba.dao.NbappbaseDao;
+import tw.gov.bli.ba.dao.NbdaprDao;
+import tw.gov.bli.ba.dao.NpcodeDao;
+import tw.gov.bli.ba.dao.PbbmsaDao;
+import tw.gov.bli.ba.dao.SdholidayDao;
+import tw.gov.bli.ba.domain.Baappattfile;
+import tw.gov.bli.ba.domain.Baappbase;
+import tw.gov.bli.ba.domain.Baappexpand;
+import tw.gov.bli.ba.domain.Baarclist;
+import tw.gov.bli.ba.domain.Babatchjob;
+import tw.gov.bli.ba.domain.Babcml7;
+import tw.gov.bli.ba.domain.Bachkfile;
+import tw.gov.bli.ba.domain.Badapr;
+import tw.gov.bli.ba.domain.Badupeidn;
+import tw.gov.bli.ba.domain.Baexalist;
+import tw.gov.bli.ba.domain.Bafailurelist;
+import tw.gov.bli.ba.domain.Bafamily;
+import tw.gov.bli.ba.domain.Bagivetmpdtl;
+import tw.gov.bli.ba.domain.Bahandicapterm;
+import tw.gov.bli.ba.domain.Balp0d020;
+import tw.gov.bli.ba.domain.Balp0d330;
+import tw.gov.bli.ba.domain.Banotify;
+import tw.gov.bli.ba.domain.Baoncepay;
+import tw.gov.bli.ba.domain.Bapairr;
+import tw.gov.bli.ba.domain.Bapaissudate;
+import tw.gov.bli.ba.domain.Bapapaykind;
+import tw.gov.bli.ba.domain.Bapayrptaccount;
+import tw.gov.bli.ba.domain.Bapayrptrecord;
+import tw.gov.bli.ba.domain.Bapayrptsum;
+import tw.gov.bli.ba.domain.Bapflbac;
+import tw.gov.bli.ba.domain.Barecheck;
+import tw.gov.bli.ba.domain.Barxf;
+import tw.gov.bli.ba.domain.Bastudnotify;
+import tw.gov.bli.ba.domain.Bastudterm;
+import tw.gov.bli.ba.domain.Baunacpdtl;
+import tw.gov.bli.ba.domain.Bbarf;
+import tw.gov.bli.ba.domain.Bbcmf07;
+import tw.gov.bli.ba.domain.Bbcmf09;
+import tw.gov.bli.ba.domain.Bbpma;
+import tw.gov.bli.ba.domain.Bebmsa;
+import tw.gov.bli.ba.domain.Biref;
+import tw.gov.bli.ba.domain.Caub;
+import tw.gov.bli.ba.domain.Cipb;
+import tw.gov.bli.ba.domain.Cipg;
+import tw.gov.bli.ba.domain.Cvldtl;
+import tw.gov.bli.ba.domain.Kcaf;
+import tw.gov.bli.ba.domain.Lnm;
+import tw.gov.bli.ba.domain.Lnmd;
+import tw.gov.bli.ba.domain.Maadmrec;
+import tw.gov.bli.ba.domain.Nbappbase;
+import tw.gov.bli.ba.domain.Nbdapr;
+import tw.gov.bli.ba.domain.Npcode;
+import tw.gov.bli.ba.domain.Pbbmsa;
+import tw.gov.bli.ba.domain.Pfpccky;
 import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.ba.rpt.cases.*;
 import tw.gov.bli.ba.update.cases.DisabledApplicationDataUpdateBareCheckCase;
@@ -38,6 +145,7 @@ public class RptService {
     private static Log log = LogFactory.getLog(RptService.class);
 
     private BaappbaseDao baappbaseDao;
+    private BbpmaDao bbpmaDao;
     private BabatchjobDao babatchjobDao;
     private BadaprDao badaprDao;
     private BachkfileDao bachkfileDao;
@@ -48,6 +156,7 @@ public class RptService {
     private Balp0d330Dao balp0d330Dao;
     private Balp0d340Dao balp0d340Dao;
     private PbbmsaDao pbbmsaDao;
+    private BebmsaDao bebmsaDao;
     private BanotifyDao banotifyDao;
     private BapaissudateDao bapaissudateDao;
     private BaoncepayDao baoncepayDao;
@@ -375,6 +484,20 @@ public class RptService {
             }
             caseData.setDiePayList(diePayCaseList);
 
+            // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+            List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayCaseBy9List = new ArrayList<OldAgeReviewRpt01DiePayDataCaseBy9>();
+            List<Bebmsa> diePayDataBy9List = bebmsaDao.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+            	diePayDataBy9List.addAll(bebmsaDao.getOldAgeReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+            }
+            for (Bebmsa diePayData : diePayDataBy9List) {
+                OldAgeReviewRpt01DiePayDataCaseBy9 diePayDataCase = new OldAgeReviewRpt01DiePayDataCaseBy9();
+                BeanUtility.copyProperties(diePayDataCase, diePayData);
+                diePayCaseBy9List.add(diePayDataCase);
+            }
+            caseData.setDiePayBy9List(diePayCaseBy9List);
+
             // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
             List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCase>();
             List<Baappbase> survivorAnnuityPayDataList = baappbaseDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
@@ -385,6 +508,17 @@ public class RptService {
             }
 
             caseData.setSurvivorAnnuityPayList(survivorAnnuityPayCaseList);
+
+            // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
+            List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayCaseBy9List = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9>();
+            List<Bbpma> survivorAnnuityPayDataBy9List = bbpmaDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
+            for (Bbpma survivorAnnuityPayData : survivorAnnuityPayDataBy9List) {
+                OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9 survivorAnnuityPayCase = new OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9();
+                BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
+                survivorAnnuityPayCaseBy9List.add(survivorAnnuityPayCase);
+            }
+
+            caseData.setSurvivorAnnuityPayBy9List(survivorAnnuityPayCaseBy9List);
 
             // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
             List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<OldAgeReviewRpt01InjuryPayDataCase>();
@@ -9382,4 +9516,18 @@ public class RptService {
     public void setBaappattfileDao(BaappattfileDao baappattfileDao) {
         this.baappattfileDao = baappattfileDao;
     }
+
+	/**
+	 * @param bebmsaDao the bebmsaDao to set
+	 */
+	public void setBebmsaDao(BebmsaDao bebmsaDao) {
+		this.bebmsaDao = bebmsaDao;
+	}
+
+	/**
+	 * @param bbpmaDao the bbpmaDao to set
+	 */
+	public void setBbpmaDao(BbpmaDao bbpmaDao) {
+		this.bbpmaDao = bbpmaDao;
+	}
 }

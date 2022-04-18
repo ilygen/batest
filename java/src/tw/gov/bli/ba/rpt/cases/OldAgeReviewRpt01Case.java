@@ -204,7 +204,9 @@ public class OldAgeReviewRpt01Case implements Serializable {
     private List<OldAgeReviewRpt01DisablePayDataCase> disablePayList; // 申請失能給付記錄
     private List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayList; // 申請失能年金記錄
     private List<OldAgeReviewRpt01DiePayDataCase> diePayList; // 申請死亡給付記錄
+    private List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayBy9List; // 申請死亡給付記錄-災保
     private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList; // 申請遺屬年金記錄
+    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List; // 申請遺屬年金記錄 災保
     private List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
     private List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<OldAgeReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
@@ -1828,4 +1830,33 @@ public class OldAgeReviewRpt01Case implements Serializable {
     public void setConsent(byte[] consent) {
         this.consent = consent;
     }
+
+	/**
+	 * @return the diePayBy9List
+	 */
+	public List<OldAgeReviewRpt01DiePayDataCaseBy9> getDiePayBy9List() {
+		return diePayBy9List;
+	}
+
+	/**
+	 * @param diePayBy9List the diePayBy9List to set
+	 */
+	public void setDiePayBy9List(List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayBy9List) {
+		this.diePayBy9List = diePayBy9List;
+	}
+
+	/**
+	 * @return the survivorAnnuityPayBy9List
+	 */
+	public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> getSurvivorAnnuityPayBy9List() {
+		return survivorAnnuityPayBy9List;
+	}
+
+	/**
+	 * @param survivorAnnuityPayBy9List the survivorAnnuityPayBy9List to set
+	 */
+	public void setSurvivorAnnuityPayBy9List(
+			List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List) {
+		this.survivorAnnuityPayBy9List = survivorAnnuityPayBy9List;
+	}
 }

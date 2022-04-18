@@ -1,0 +1,1912 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BEBMSA">
+
+    <typeAlias alias="Bebmsa" type="tw.gov.bli.ba.domain.Bebmsa" />
+
+    <resultMap id="BEBMSAResult" class="Bebmsa">
+        <result column="BMPAYKND"       property="bmPayKnd"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVIDNO"       property="bmEvidNo"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVBRTH"       property="bmEvBrth"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPCNT"        property="bmApCnt"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMBIGPG"        property="bmBigPg"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMUBNO"         property="bmUbNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTYPE"       property="bmEvType"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVCODE"       property="bmEvCode"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKDAY"       property="bmChkDay"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMADJAMTS"      property="bmAdjAmts"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMADJDATE"      property="bmAdjDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYWAY"       property="bmPayWay"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMUMK"          property="bmUmk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPMARK"      property="bmNopMark"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMGVIDNO"       property="bmGvIdNo"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMBIRGVBRTH"    property="bmBirGvBrth"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMBIRF01"       property="bmBirF01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMBIRINSYR"     property="bmBirInsYr"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMINJINJNME"    property="bmInjInjNme"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJPFMDTE"    property="bmInjPfmDte"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJPTODTE"    property="bmInjPtoDte"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJINPART"    property="bmInjInPart"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJMEDIUM"    property="bmInjMedium"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJWANGMK"    property="bmInjWangMk"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJF01"       property="bmInjF01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRISPCH"      property="bmCriSpch"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJCL1"    property="bmCriInjCl1"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJCL2"    property="bmCriInjCl2"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP1"    property="bmCriInjDp1"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP2"    property="bmCriInjDp2"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP3"    property="bmCriInjDp3"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP4"    property="bmCriInjDp4"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP5"    property="bmCriInjDp5"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP6"    property="bmCriInjDp6"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINPART"    property="bmCriInPart"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIMEDIUM"    property="bmCriMedium"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJNME"    property="bmCriInjNme"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDWAGE"      property="bmOldWage"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMOLDINSYR"     property="bmOldInsYr"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMOLDOLDYY"     property="bmOldOldYy"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMOLDOLDDD"     property="bmOldOldDd"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMOLDSAMYR"     property="bmOldSamYr"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMOLDMCHOLD"    property="bmOldMchOld"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDHMK"       property="bmOldHmk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDF01"       property="bmOldF01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAGVBRTH"    property="bmDeaGvBrth"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAINPART"    property="bmDeaInPart"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAMEDIUM"    property="bmDeaMedium"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAGVSUM"     property="bmDeaGvSum"   jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMDEAF01"       property="bmDeaF01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAWIDAMT"    property="bmDeaWidAmt"  jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMLOSGVBRTH"    property="bmLosGvBrth"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSFMDTE"     property="bmLosFmDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSTODTE"     property="bmLosToDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSF01"       property="bmLosF01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPWAGE"        property="bmPwage"      jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMGVNAME"       property="bmGvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMRTDTE"        property="bmRtDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMREPDTE"       property="bmRepDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMREPWAY"       property="bmRepWay"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS01"       property="bmCkRs01"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS02"       property="bmCkRs02"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS03"       property="bmCkRs03"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS04"       property="bmCkRs04"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS05"       property="bmCkRs05"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS06"       property="bmCkRs06"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS07"       property="bmCkRs07"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS08"       property="bmCkRs08"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS09"       property="bmCkRs09"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCKRS10"       property="bmCkRs10"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEPT"         property="bmDept"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHTYPE"       property="bmChType"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMRMK"          property="bmRmk"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMF99"          property="bmF99"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDORGDPT"    property="bmOldOrgDpt"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDAPLDPT"    property="bmOldAplDpt"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMOLDLAWNO"     property="bmOldLawNo"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAAPITEM"      property="bmDeaapItem"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OncePayDataForPaymentResult" class="Bebmsa">                                                                                       
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />             
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMADJAMTS"      property="bmAdjAmts"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />             
+        <result column="BMUBNO"         property="bmUbNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>    
+    
+    <resultMap id="CriPayApplyDataForPaymentResult" class="Bebmsa">                                                                                       
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />             
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJCL"     property="bmCriInjCl"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP"     property="bmCriInjDp"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DiePayApplyDataForPaymentResult" class="Bebmsa">                                                                                       
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />             
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="InjPayApplyDataForPaymentResult" class="Bebmsa">                                                                                       
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />        
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />             
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSFMDTE"     property="bmLosFmDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSTODTE"     property="bmLosToDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <resultMap id="OldAgeReviewRpt01DisablePayListResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJDP"     property="bmCriInjDp"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCRIINJCL"     property="bmCriInjCl"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYYM"        property="bmPayYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt01DiePayListResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYYM"        property="bmPayYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt01InjuryPayListResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSFMDTE"     property="bmLosFmDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSTODTE"     property="bmLosToDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYYM"        property="bmPayYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="DisableReviewRpt01InjuryPayListResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSFMDTE"     property="bmLosFmDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSTODTE"     property="bmLosToDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYYM"        property="bmPayYm"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTYPE"       property="bmEvType"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJPFMDTE"    property="bmInjPfmDte"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMINJPTODTE"    property="bmInjPtoDte"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPMARK"      property="bmNopMark"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMDEAAPITEM"      property="bmDeaapItem"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt01PayeeUpdate" class="Bebmsa">
+    	<result column="BMOLDAPLDPT"    property="bmOldAplDpt"  jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    	<result column="UNAME"			property="uname"		jdbcType="VARCHAR"		javaType="java.lang.String"		nullValue="" />
+    </resultMap>
+    <!-- [ -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+    <!-- SurvivorReviewRpt 01 Start -->
+    <!-- [ -->
+    <resultMap id="SurvivorReviewRpt01InjuryPayListResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMAPDTE"        property="bmApDte"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVNAME"       property="bmEvName"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMEVTDTE"       property="bmEvtDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMEXMDTE"       property="bmExmDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNREPDATE"     property="bmNrepDate"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNDOCMK"       property="bmNdocMk"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMNOPDATE"      property="bmNopDate"    jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSFMDTE"     property="bmLosFmDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMLOSTODTE"     property="bmLosToDte"   jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 End -->
+    
+    <resultMap id="DifferenceDetailResult" class="Bebmsa">
+        <result column="BMAPNO"         property="bmApNo"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="BMCHKAMT"       property="bmChkAmt"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="BMPAYDTE"       property="bmPayDte"     jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+    </resultMap>    
+    
+    
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="getOldAgeReviewRpt01OncePayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM  
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <!--  20091109 給付處取消出生日期條件
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                -->
+                AND A.BMPAYKND = '4'
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="getOldAgeReviewRpt01DisablePayListBy" resultMap="OldAgeReviewRpt01DisablePayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMEVTDTE,
+               (A.BMCRIINJDP1||' '||A.BMCRIINJDP2||' '||A.BMCRIINJDP3||' '||A.BMCRIINJDP4||' '||A.BMCRIINJDP5||' '||A.BMCRIINJDP6) AS BMCRIINJDP,
+               DECODE(SUBSTR(A.BMCRIINJNME, 1, 2),'',(A.BMCRIINJCL1||' '||A.BMCRIINJCL2), A.BMCRIINJNME) AS BMCRIINJCL,
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <!--  20091109 給付處取消出生日期條件
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                -->
+                AND A.BMPAYKND = '3'
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="getOldAgeReviewRpt01DiePayListBy" resultMap="OldAgeReviewRpt01DiePayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMEVTDTE,
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <!--  20091109 給付處取消出生日期條件
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                -->
+                AND A.BMPAYKND = '5'
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="getOldAgeReviewRpt01InjuryPayListBy" resultMap="OldAgeReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE,
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <!--  20091109 給付處取消出生日期條件
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                -->
+                AND A.BMPAYKND = '2'
+                <isNotEmpty prepend="AND" property="evtJobDate">
+                <![CDATA[
+                  (((A.BMINJPFMDTE <= #evtJobDate:VARCHAR# And A.BMINJPTODTE >= #evtJobDate:VARCHAR#) 
+                 And (A.BMNOPDATE = '' or A.BMNOPDATE is null) 
+                 And (A.BMEXMDTE <> '' or A.BMEXMDTE is not null)) 
+                  OR ((A.BMNOPDATE = '' or A.BMNOPDATE is null) 
+                 And (A.BMEXMDTE = '' or A.BMEXMDTE is  null)))
+               ]]>
+               </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+
+    <!-- DataUpdateRpt 03 Begin -->
+    <!-- [ -->
+    <select id="selectDataUpdateRpt03ListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM BEBMSA A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+            <![CDATA[
+                SUBSTR(A.BMAPNO, 5, 2) <> '11' AND 
+                SUBSTR(A.BMAPNO, 5, 2) <> '21' AND 
+                (A.BMNOPDATE = '' OR A.BMNOPDATE IS NULL) AND
+                (
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR# AND 
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                ) 
+                OR 
+                ( 
+                    SUBSTR(A.BMAPNO, 5, 2) = '52' AND 
+                    A.BMGVIDNO = #evtIdnNo:VARCHAR# AND 
+                    A.BMDEAGVBRTH = #evtBrDate:VARCHAR#
+                )
+                AND 
+                (
+                    A.BMCKRS01 = 'LS' OR 
+                    A.BMCKRS02 = 'LS' OR 
+                    A.BMCKRS03 = 'LS' OR 
+                    A.BMCKRS04 = 'LS' OR 
+                    A.BMCKRS05 = 'LS' OR 
+                    A.BMCKRS06 = 'LS' OR 
+                    A.BMCKRS07 = 'LS' OR 
+                    A.BMCKRS08 = 'LS' OR 
+                    A.BMCKRS09 = 'LS' OR 
+                    A.BMCKRS10 = 'LS' 
+                )
+            ]]>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- ] -->
+    <!-- DataUpdateRpt 03 End -->
+    
+    <select id="selectOncePayDataForPaymentBy" resultMap="OncePayDataForPaymentResult">
+        SELECT T.BMAPNO,                    
+               T.BMAPDTE,                   
+               T.BMEVNAME,                  
+               T.BMEVTDTE,                  
+               T.BMCHKAMT,                  
+               T.BMEXMDTE,                  
+               T.BMPAYDTE,                  
+               T.BMNREPDATE,                
+               T.BMNDOCMK,                  
+               T.BMNOPDATE,                 
+               T.BMADJAMTS,                 
+               T.BMUBNO           
+          FROM BEBMSA T                     
+         WHERE T.BMEVIDNO=#evtIdnNo:VARCHAR#                                                                                       
+           AND T.BMEVBRTH=#evtBrDate:VARCHAR#     
+           AND T.BMPAYKND='4'               
+    </select>
+    
+    <select id="selectCriPayApplyDataForPaymentBy" resultMap="CriPayApplyDataForPaymentResult">
+        SELECT T.BMAPNO,                                                                                                            
+               T.BMAPDTE,                                                                                                          
+               T.BMEVNAME,                                                                                                          
+               T.BMCHKAMT,                                                                                                          
+               T.BMEXMDTE,                                                                                                          
+               T.BMPAYDTE,                                                                                                          
+               T.BMNREPDATE,                                                                                                        
+               T.BMNDOCMK,                                                                                                          
+               T.BMNOPDATE,                                                                                                         
+               T.BMEVTDTE,                                                                                                          
+               (T.BMCRIINJDP1||' '||T.BMCRIINJDP2||' '||T.BMCRIINJDP3||' '||T.BMCRIINJDP4||' '||T.BMCRIINJDP5||' '||T.BMCRIINJDP6) AS BMCRIINJDP,
+               DECODE(SUBSTR(T.BMCRIINJNME,1,2),'  ',(T.BMCRIINJCL1||' '||T.BMCRIINJCL2),T.BMCRIINJNME) AS BMCRIINJCL
+          FROM BEBMSA T                                                                                                          
+         WHERE T.BMEVIDNO=#evtIdnNo:VARCHAR#                                                                                       
+           AND T.BMEVBRTH=#evtBrDate:VARCHAR#                                                                                           
+           AND T.BMPAYKND='3'                                                                                                      
+    </select>
+    
+    <select id="selectDiePayApplyDataForPaymentBy" resultMap="DiePayApplyDataForPaymentResult">
+        SELECT T.BMAPNO,            
+               T.BMAPDTE,           
+               T.BMEVNAME,          
+               T.BMCHKAMT,          
+               T.BMEXMDTE,          
+               T.BMPAYDTE,          
+               T.BMNREPDATE,        
+               T.BMNDOCMK,          
+               T.BMNOPDATE,         
+               T.BMEVTDTE             
+          FROM BEBMSA T             
+         WHERE T.BMEVIDNO=#evtIdnNo:VARCHAR#                                                                                       
+           AND T.BMEVBRTH=#evtBrDate:VARCHAR#      
+           AND T.BMPAYKND='5'           
+    </select>
+    
+    <select id="selectInjPayApplyDataForPaymentBy" resultMap="InjPayApplyDataForPaymentResult">
+        SELECT T.BMAPNO,             
+               T.BMAPDTE,            
+               T.BMEVNAME,           
+               T.BMEVTDTE,           
+               T.BMCHKAMT,           
+               T.BMEXMDTE,           
+               T.BMPAYDTE,           
+               T.BMNREPDATE,         
+               T.BMNDOCMK,           
+               T.BMNOPDATE,          
+               T.BMLOSFMDTE,         
+               T.BMLOSTODTE                  
+          FROM BEBMSA T              
+         WHERE T.BMEVIDNO=#evtIdnNo:VARCHAR#                                                                                       
+           AND T.BMEVBRTH=#evtBrDate:VARCHAR#     
+           AND T.BMPAYKND='2'                 
+    </select>
+    
+    <select id="selectOldAplDpt" resultMap="OldAgeReviewRpt01PayeeUpdate">
+    	SELECT DISTINCT T1.BMOLDAPLDPT as BMOLDAPLDPT 
+                ,T2.UNAME as UNAME 
+            FROM BEBMSA T1,CAUB T2
+           WHERE T1.BMOLDAPLDPT = T2.UBNO 
+			 AND T1.BMEVIDNO = #evtIdnNo:VARCHAR#
+             AND T1.BMEVBRTH = #evtBrDate:VARCHAR#
+             AND SUBSTR(T1.BMAPNO,5,2) = '46'  
+              <dynamic prepend="">
+	            <isParameterPresent>
+	                <isNotEmpty prepend="AND" property="bmOldAplDpt">
+	                    T1.BMOLDAPLDPT not in (#bmOldAplDpt:VARCHAR#)
+	                </isNotEmpty>
+	            </isParameterPresent>
+        	  </dynamic>
+    </select>
+    
+    <!-- SurvivorReviewRpt 01 Begin -->
+    <!-- [ -->
+    <select id="selectSurvivorReviewRpt01OncePayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '5'
+                <!-- AND SUBSTR(A.BMAPNO,5,2) = '51'  -->
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01OldAgePayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '4'
+                AND (SUBSTR(A.BMAPNO,5,2) = '41' or SUBSTR(A.BMAPNO,5,2) = '49')
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01DisPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '3'
+                AND (SUBSTR(A.BMAPNO,5,2) = '31' or SUBSTR(A.BMAPNO,5,2) = '39')
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01HosPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '9'
+                AND SUBSTR(A.BMAPNO,5,2) = '91'
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01InjuryPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM    
+        FROM   BEBMSA A  
+        WHERE  A.BMPAYKND = '2'
+        AND A.BMEVIDNO = #evtIdnNo:VARCHAR#
+        AND A.BMEVBRTH = #evtBrDate:VARCHAR#
+        AND SUBSTR(A.BMAPNO,5,2) = '21'
+        <![CDATA[
+        AND (A.BMINJPTODTE >= (select to_char(ADD_MONTHS(to_date(EVTJOBDATE,'yyyymmdd'),-12),'yyyymmdd') as EVTJOBDATE 
+                                 from BAAPPBASE
+                                where APNO  = #apNo:VARCHAR#
+                                  and SEQNO = '0000') 
+        AND  A.BMINJPTODTE <= (select EVTJOBDATE 
+                                 from BAAPPBASE
+                                where APNO  = #apNo:VARCHAR#
+                                  and SEQNO = '0000')) 
+        ]]>
+    </select>
+    
+    <select id="getSurvivorReviewRpt01FarmPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMINJINJNME, 
+               A.BMDEAAPITEM,   
+               deCode(SUBSTR(A.BMCRIINJNME,1,2),'  ',(A.BMCRIINJCL1||' '||A.BMCRIINJCL2),A.BMCRIINJNME) BMCRIINJNME
+        FROM   TCBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '3'
+                AND SUBSTR(A.BMAPNO,5,2) = '33'
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    <!-- ] -->
+    <!-- SurvivorReviewRpt 01 end -->
+    
+    <!-- DisableReviewRpt 01 Begin -->
+    
+    <select id="getDisableReviewRpt01OncePayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK1 AS BMNOPMARK,  
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMINJINJNME,
+               A.BMDEAAPITEM,   
+               (A.BMCRIINJCL1||' '||A.BMCRIINJCL2) As BMCRIINJNME
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '3'
+                AND SUBSTR(A.BMAPNO,5,2) = '31'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01FarmPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMINJINJNME, 
+               A.BMDEAAPITEM,   
+               deCode(SUBSTR(A.BMCRIINJNME,1,2),'  ',(A.BMCRIINJCL1||' '||A.BMCRIINJCL2),A.BMCRIINJNME) BMCRIINJNME
+        FROM   TCBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '3'
+                AND SUBSTR(A.BMAPNO,5,2) = '33'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01DisablePayListBy" resultMap="OldAgeReviewRpt01DisablePayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMEVTDTE,
+               (A.BMCRIINJDP1||' '||A.BMCRIINJDP2||' '||A.BMCRIINJDP3||' '||A.BMCRIINJDP4||' '||A.BMCRIINJDP5||' '||A.BMCRIINJDP6) AS BMCRIINJDP,
+               DECODE(SUBSTR(A.BMCRIINJNME, 1, 2),'',(A.BMCRIINJCL1||' '||A.BMCRIINJCL2), A.BMCRIINJNME) AS BMCRIINJCL,
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '3'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01DiePayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE, 
+               A.BMEVTYPE, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMNOPMARK,
+               A.BMDEAAPITEM,  
+               '' AS BMPAYYM 
+        FROM   BEBMSA A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '5'
+                AND SUBSTR(A.BMAPNO,5,2) = '51'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01DisPayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE, 
+               A.BMEVTYPE, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMNOPMARK, 
+               A.BMDEAAPITEM, 
+               '' AS BMPAYYM 
+        FROM   BEBMSA A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '6'
+                AND SUBSTR(A.BMAPNO,5,2) = '61'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01FamDiePayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE, 
+               A.BMEVTYPE, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMNOPMARK, 
+               A.BMDEAAPITEM, 
+               '' AS BMPAYYM 
+        FROM   TCBMSA A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '5'
+                AND SUBSTR(A.BMAPNO,5,2) = '53'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01InjuryPayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE, 
+               A.BMEVTYPE, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMNOPMARK, 
+               A.BMDEAAPITEM, 
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '2'
+                AND SUBSTR(A.BMAPNO,5,2) = '21'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="getDisableReviewRpt01OldPayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+        SELECT A.BMAPNO,
+               A.BMAPDTE,
+               A.BMEVNAME,
+               A.BMEVTDTE,
+               A.BMCHKAMT,
+               A.BMEXMDTE,
+               A.BMPAYDTE,
+               A.BMNREPDATE,
+               A.BMNDOCMK,
+               A.BMNOPDATE,
+               A.BMLOSFMDTE,
+               A.BMLOSTODTE, 
+               A.BMEVTYPE, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMNOPMARK, 
+               A.BMDEAAPITEM,  
+               '' AS BMPAYYM
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '4'
+                AND SUBSTR(A.BMAPNO,5,2) = '41'
+            </isParameterPresent>
+        </dynamic>
+        Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <select id="selectDisableReviewRpt01HosPayListBy" resultMap="BEBMSAResult">
+        SELECT A.BMPAYKND, 
+               A.BMEVIDNO, 
+               A.BMEVBRTH, 
+               A.BMEVTDTE, 
+               A.BMAPCNT, 
+               A.BMEVNAME, 
+               A.BMAPDTE, 
+               A.BMAPNO, 
+               A.BMEXMDTE, 
+               A.BMBIGPG, 
+               A.BMPAYDTE, 
+               A.BMUBNO, 
+               A.BMEVTYPE, 
+               A.BMEVCODE, 
+               A.BMCHKDAY, 
+               A.BMCHKAMT, 
+               A.BMADJAMTS, 
+               A.BMADJDATE, 
+               A.BMPAYWAY, 
+               A.BMUMK, 
+               A.BMNDOCMK, 
+               A.BMNREPDATE, 
+               A.BMNOPMARK, 
+               A.BMNOPDATE, 
+               A.BMGVIDNO, 
+               A.BMBIRGVBRTH, 
+               A.BMBIRF01, 
+               A.BMBIRINSYR, 
+               A.BMINJINJNME, 
+               A.BMINJPFMDTE, 
+               A.BMINJPTODTE, 
+               A.BMINJINPART, 
+               A.BMINJMEDIUM, 
+               A.BMINJWANGMK, 
+               A.BMINJF01, 
+               A.BMCRISPCH, 
+               A.BMCRIINJCL1, 
+               A.BMCRIINJCL2, 
+               A.BMCRIINJDP1, 
+               A.BMCRIINJDP2, 
+               A.BMCRIINJDP3, 
+               A.BMCRIINJDP4, 
+               A.BMCRIINJDP5, 
+               A.BMCRIINJDP6, 
+               A.BMCRIINPART, 
+               A.BMCRIMEDIUM, 
+               A.BMCRIINJNME, 
+               A.BMOLDWAGE, 
+               A.BMOLDINSYR, 
+               A.BMOLDOLDYY, 
+               A.BMOLDOLDDD, 
+               A.BMOLDSAMYR, 
+               A.BMOLDMCHOLD, 
+               A.BMOLDHMK, 
+               A.BMOLDF01, 
+               A.BMDEAGVBRTH, 
+               A.BMDEAINPART, 
+               A.BMDEAMEDIUM, 
+               A.BMDEAGVSUM, 
+               A.BMDEAF01, 
+               A.BMDEAWIDAMT, 
+               A.BMLOSGVBRTH, 
+               A.BMLOSFMDTE, 
+               A.BMLOSTODTE, 
+               A.BMLOSF01, 
+               A.BMPWAGE, 
+               A.BMGVNAME, 
+               A.BMRTDTE, 
+               A.BMREPDTE, 
+               A.BMREPWAY, 
+               A.BMCKRS01, 
+               A.BMCKRS02, 
+               A.BMCKRS03, 
+               A.BMCKRS04, 
+               A.BMCKRS05, 
+               A.BMCKRS06, 
+               A.BMCKRS07, 
+               A.BMCKRS08, 
+               A.BMCKRS09, 
+               A.BMCKRS10, 
+               A.BMDEPT, 
+               A.BMCHTYPE, 
+               A.BMRMK, 
+               A.BMF99,
+               A.BMOLDORGDPT,
+               A.BMOLDAPLDPT,
+               A.BMOLDLAWNO, 
+               A.BMDEAAPITEM   
+        FROM   BEBMSA A  
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.BMEVIDNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.BMEVBRTH = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                AND A.BMPAYKND = '9'
+                AND SUBSTR(A.BMAPNO,5,2) = '91'
+            </isParameterPresent>
+        </dynamic>
+         Order by A.BMAPDTE, A.BMAPNO
+    </select>
+    
+    <!-- DisableReviewRpt 01 End -->
+    
+    <select id="selectDifferenceDetail" resultMap="DifferenceDetailResult">
+        SELECT A.BMAPNO,
+               A.BMCHKAMT,
+               A.BMPAYDTE 
+        FROM   BEBMSA A   
+        WHERE A.BMEVIDNO = #evtIdnNo:VARCHAR#
+          AND A.BMEVBRTH = #evtBrDate:VARCHAR#
+          AND A.BMPAYKND = #sBMPAYKND:VARCHAR#
+          AND SUBSTR(A.BMAPNO,5,2) = #sBMAPNO:VARCHAR#
+          AND A.BMPAYDTE = (Select Max(BMPAYDTE) From BEBMSA 
+                             WHERE BMEVIDNO = #evtIdnNo:VARCHAR#    
+                               AND BMEVBRTH = #evtBrDate:VARCHAR#  
+                               AND BMPAYKND = #sBMPAYKND:VARCHAR#
+                               AND SUBSTR(BMAPNO,5,2) = #sBMAPNO:VARCHAR#)          
+    </select>
+    
+    
+</sqlMap>

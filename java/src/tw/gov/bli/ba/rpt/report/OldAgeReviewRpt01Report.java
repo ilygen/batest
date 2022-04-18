@@ -1,16 +1,23 @@
 package tw.gov.bli.ba.rpt.report;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Table;
+import com.lowagie.text.pdf.PdfImportedPage;
+import com.lowagie.text.pdf.PdfReader;
+
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.ba.rpt.actions.OldAgeReviewRpt01Action;
@@ -26,6 +33,7 @@ import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DeductAnnuityDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DeductOnceDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DieOncePayDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DiePayDataCase;
+import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DiePayDataCaseBy9;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DisableAnnuityPayDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01DisablePayDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01InjuryPayDataCase;
@@ -39,6 +47,7 @@ import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01OnceAvgAmtDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01OncePayDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01PayDataCase;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01SurvivorAnnuityPayDataCase;
+import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9;
 import tw.gov.bli.ba.rpt.cases.OldAgeReviewRpt01UnitCase;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
@@ -1628,6 +1637,83 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                     }
                 } // ] ... end for (int nDiePayCount = 0; nDiePayCount < diePayList.size(); nDiePayCount++)
 
+                // 申請死亡給付記錄資料 (有資料再印) 災保
+                List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayBy9List = caseData.getDiePayBy9List();
+                for (int nDiePayCount = 0; nDiePayCount < diePayBy9List.size(); nDiePayCount++) { // ... [
+                	OldAgeReviewRpt01DiePayDataCaseBy9 diePayData = diePayBy9List.get(nDiePayCount);
+
+                    // 印死亡給付記錄表頭
+                    if (nDiePayCount == 0) {
+                        addEmptyRow(table, 1);
+
+                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                            deleteRow(table, 1);
+                            document.add(table);
+                            table = addHeader(caseData, false, earlyWarning);
+                        }
+                        else {
+                            deleteRow(table, 1);
+                        }
+
+                        // 死亡給付記錄 表頭
+                        addColumn(table, 60, 1, "災保-申請死亡給付記錄：", fontCh12b, 0, LEFT);
+                    }
+
+                    // 死亡給付記錄資料一筆有四行, 在塞資料前先測試是否需換頁
+                    addEmptyRow(table, 4);
+
+                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                        deleteRow(table, 4);
+                        document.add(table);
+                        table = addHeader(caseData, false, earlyWarning);
+                    }
+                    else {
+                        deleteRow(table, 4);
+                    }
+
+                    addColumn(table, 7, 1, "申請日期", fontCh12b, 0, LEFT);
+                    addColumn(table, 18, 1, "受理編號/給付年月", fontCh12, 0, LEFT);
+                    addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "死亡日期", fontCh12, 0, LEFT);
+                    addColumn(table, 6, 1, "核定金額", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "核定日期", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "核付日期", fontCh12, 0, LEFT);
+                    // ---
+                    addColumn(table, 7, 1, diePayData.getBmApDteString(), fontCh12, 0, LEFT); // 申請日期
+                    addColumn(table, 18, 1, diePayData.getBmApNoString() + ((StringUtils.isNotBlank(diePayData.getBmPayYm())) ? ((StringUtils.isNotBlank(diePayData.getBmApNo())) ? (" / " + diePayData.getBmPayYmString()) : diePayData.getBmPayYmString()) : ""), fontCh12, 0, LEFT); // 受理編號/給付年月
+                    addColumn(table, 8, 1, diePayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
+                    addColumn(table, 7, 1, diePayData.getBmEvtDteString(), fontCh12, 0, LEFT); // 死亡日期
+
+                    if (diePayData.getBmChkAmt() != null && diePayData.getBmChkAmt().compareTo(new BigDecimal(0)) != 0)
+                        addColumn(table, 6, 1, formatBigDecimalToInteger(diePayData.getBmChkAmt()), fontCh12, 0, LEFT); // 核定金額
+                    else
+                        addColumn(table, 6, 1, " ", fontCh12, 0, LEFT); // 核定金額
+
+                    addColumn(table, 7, 1, diePayData.getBmExmDteString(), fontCh12, 0, LEFT); // 核定日期
+                    addColumn(table, 7, 1, diePayData.getBmPayDteString(), fontCh12, 0, LEFT); // 核付日期
+                    // ---
+                    addColumn(table, 10, 1, "補件日期/註記", fontCh12, 0, LEFT);
+                    addColumn(table, 8, 1, "不給付日期", fontCh12, 0, LEFT);
+                    addColumn(table, 42, 1, "　", fontCh12, 0, LEFT);
+                    // ---
+                    addColumn(table, 10, 1, diePayData.getBmNrepDateString() + ((StringUtils.isNotBlank(diePayData.getBmNdocMk())) ? ((StringUtils.isNotBlank(diePayData.getBmNrepDateString())) ? (" / " + diePayData.getBmNdocMk()) : diePayData.getBmNdocMk()) : ""), fontCh12, 0, LEFT); // 補件日期/註記
+                    addColumn(table, 8, 1, diePayData.getBmNopDateString(), fontCh12, 0, LEFT); // 不給付日期
+                    addColumn(table, 42, 1, "　", fontCh12, 0, LEFT);
+
+                    // 最後一筆印完後空一行 (其他給付記錄有資料再印)
+                    if ((nDiePayCount == diePayList.size() - 1) && (caseData.getSurvivorAnnuityPayList().size() > 0 || caseData.getInjuryPayList().size() > 0 || caseData.getJoblessPayList().size() > 0 || caseData.getNpPayList().size() > 0)) {
+                        // 空白行
+                        addEmptyRow(table, 1);
+
+                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                            // 換了頁就不再塞空白行了
+                            deleteRow(table, 1);
+                            document.add(table);
+                            table = addHeader(caseData, false, earlyWarning);
+                        }
+                    }
+                } // ] ... end for (int nDiePayCount = 0; nDiePayCount < diePayList.size(); nDiePayCount++)
+
                 // 申請遺屬年金記錄資料 (有資料再印)
                 List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList = caseData.getSurvivorAnnuityPayList();
                 for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayList.size(); nSurvivorAnnuityPayCount++) { // ... [
@@ -1648,6 +1734,87 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 
                         // 申請遺屬年金記錄 表頭
                         addColumn(table, 60, 1, "申請遺屬年金記錄：", fontCh12b, 0, LEFT);
+                    }
+
+                    // 遺屬年金記錄資料一筆有四行, 在塞資料前先測試是否需換頁
+                    addEmptyRow(table, 4);
+
+                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                        deleteRow(table, 4);
+                        document.add(table);
+                        table = addHeader(caseData, false, earlyWarning);
+                    }
+                    else {
+                        deleteRow(table, 4);
+                    }
+
+                    addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
+                    addColumn(table, 22, 1, "受理編號/核定年月/給付年月", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "死亡日期", fontCh12, 0, LEFT);
+                    addColumn(table, 7, 1, "核定金額", fontCh12, 0, LEFT);
+                    addColumn(table, 9, 1, "案件類別", fontCh12, 0, LEFT);
+
+                    // ---
+                    addColumn(table, 8, 1, survivorAnnuityPayData.getEvtName(), fontCh12, 0, LEFT); // 事故者姓名
+                    addColumn(table, 7, 1, DateUtility.formatChineseDateString(survivorAnnuityPayData.getAppDate(), false), fontCh12, 0, LEFT); // 申請日期
+                    addColumn(table, 22, 1, survivorAnnuityPayData.getApNoString() + " / " + StringUtils.defaultString(survivorAnnuityPayData.getIssuYmString()) + " / " + StringUtils.defaultString(survivorAnnuityPayData.getPayYmString()), fontCh12, 0, LEFT); // 受理編號/核定年月/給付年月
+                    addColumn(table, 7, 1, DateUtility.formatChineseDateString(survivorAnnuityPayData.getEvtJobDate(), false), fontCh12, 0, LEFT); // 死亡日期
+
+                    if (survivorAnnuityPayData.getIssueAmt() != null && survivorAnnuityPayData.getIssueAmt().compareTo(new BigDecimal(0)) != 0)
+                        addColumn(table, 7, 1, formatBigDecimalToInteger(survivorAnnuityPayData.getIssueAmt()), fontCh12, 0, CENTER); // 核定金額
+                    else
+                        addColumn(table, 7, 1, " ", fontCh12, 0, CENTER); // 核定金額
+
+                    addColumn(table, 9, 1, survivorAnnuityPayData.getCaseTypString(), fontCh12, 0, LEFT); // 案件類別
+                    // ---
+                    addColumn(table, 8, 1, "處理狀態", fontCh12, 0, LEFT);
+                    addColumn(table, 20, 1, "結案日期/結案原因", fontCh12, 0, LEFT);
+                    addColumn(table, 32, 1, "　", fontCh12, 0, LEFT);
+                    // ---
+                    addColumn(table, 8, 1, survivorAnnuityPayData.getProcStatString(), fontCh12, 0, LEFT); // 處理狀態
+                    if (StringUtils.isNotBlank(survivorAnnuityPayData.getCloseDate()) || StringUtils.isNotBlank(survivorAnnuityPayData.getCloseCauseStr())) {
+                        addColumn(table, 20, 1, DateUtility.formatChineseDateString(survivorAnnuityPayData.getCloseDate(), false) + "/" + survivorAnnuityPayData.getCloseCauseStr(), fontCh12, 0, LEFT); // 結案日期/結案原因
+                    }
+                    else {
+                        addColumn(table, 20, 1, "　", fontCh12, 0, LEFT); // 結案日期/結案原因
+                    }
+                    addColumn(table, 32, 1, "　", fontCh12, 0, LEFT);
+
+                    // 最後一筆印完後空一行 (其他給付記錄有資料再印)
+                    if ((nSurvivorAnnuityPayCount == survivorAnnuityPayList.size() - 1) && (caseData.getInjuryPayList().size() > 0 || caseData.getJoblessPayList().size() > 0 || caseData.getNpPayList().size() > 0)) {
+                        // 空白行
+                        addEmptyRow(table, 1);
+
+                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                            // 換了頁就不再塞空白行了
+                            deleteRow(table, 1);
+                            document.add(table);
+                            table = addHeader(caseData, false, earlyWarning);
+                        }
+                    }
+                } // ] ... end for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayList.size(); nSurvivorAnnuityPayCount++)
+
+                // 申請遺屬年金記錄資料 (有資料再印)
+                List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List = caseData.getSurvivorAnnuityPayBy9List();
+                for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayBy9List.size(); nSurvivorAnnuityPayCount++) { // ... [
+                    OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9 survivorAnnuityPayData = survivorAnnuityPayBy9List.get(nSurvivorAnnuityPayCount);
+
+                    // 印申請遺屬年金記錄表頭
+                    if (nSurvivorAnnuityPayCount == 0) {
+                        addEmptyRow(table, 1);
+
+                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                            deleteRow(table, 1);
+                            document.add(table);
+                            table = addHeader(caseData, false, earlyWarning);
+                        }
+                        else {
+                            deleteRow(table, 1);
+                        }
+
+                        // 申請遺屬年金記錄 表頭
+                        addColumn(table, 60, 1, "災保-申請遺屬年金記錄：", fontCh12b, 0, LEFT);
                     }
 
                     // 遺屬年金記錄資料一筆有四行, 在塞資料前先測試是否需換頁

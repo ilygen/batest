@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBPMA">
+
+    <typeAlias alias="Bbpma" type="tw.gov.bli.ba.domain.Bbpma" />
+    
+    <resultMap id="BBPMASurvivorAnnuityPayResult" class="Bbpma">
+        <result column="EVTNAME"           property="evtName"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APPDATE"           property="appDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNO"              property="apNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"            property="issuYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"             property="payYm"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTJOBDATE"        property="evtJobDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"          property="issueAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="CASETYP"           property="caseTyp"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"          property="procStat"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSEDATE"         property="closeDate"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"        property="closeCause"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSESTR"     property="closeCauseStr" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+
+    <!-- OldAgeReviewRpt 01 Begin -->
+    <select id="getOldAgeReviewRpt01SurvivorAnnuityPayDataBy" resultMap="BBPMASurvivorAnnuityPayResult">
+        SELECT A.EVTNAME,     
+               A.APPDATE,     
+               A.APNO,        
+               A.ISSUYM,      
+               A.PAYYM,       
+               A.EVTJOBDATE,  
+               A.ISSUEAMT,    
+               A.CASETYP,     
+               A.PROCSTAT,    
+               A.CLOSEDATE,   
+               A.CLOSECAUSE,  
+               (SELECT PARAMNAME FROM BAPARAM
+                 WHERE PARAMGROUP = (SUBSTR(A.APNO,1,1)||'CLOSECAUSE') AND PARAMCODE = A.CLOSECAUSE) AS CLOSECAUSESTR
+          FROM BBPMA A
+         WHERE A.EVTIDNNO = #evtIdnNo:VARCHAR#
+           AND A.SEQNO = '0000'
+           AND SUBSTR(A.APNO,1,1) = 'S'  
+    </select>
+    <!-- ] -->
+    <!-- OldAgeReviewRpt 01 End -->
+    
+</sqlMap>

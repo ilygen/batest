@@ -22,6 +22,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 
+    <bean id="bbpmaDao" class="tw.gov.bli.ba.dao.impl.BbpmaDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
     <bean id="bacountryDao" class="tw.gov.bli.ba.dao.impl.BacountryDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
@@ -107,6 +111,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     </bean>
 
     <bean id="pbbmsaDao" class="tw.gov.bli.ba.dao.impl.PbbmsaDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bebmsaDao" class="tw.gov.bli.ba.dao.impl.BebmsaDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 
