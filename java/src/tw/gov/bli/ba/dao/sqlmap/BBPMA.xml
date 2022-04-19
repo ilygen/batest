@@ -36,7 +36,7 @@
                  WHERE PARAMGROUP = (SUBSTR(A.APNO,1,1)||'CLOSECAUSE') AND PARAMCODE = A.CLOSECAUSE) AS CLOSECAUSESTR
           FROM BBPMA A
          WHERE A.EVTIDNNO = #evtIdnNo:VARCHAR#
-           AND A.SEQNO = '0000'
+           /* AND A.SEQNO = '0000' */
            AND SUBSTR(A.APNO,1,1) = 'S'  
     </select>
     <!-- ] -->

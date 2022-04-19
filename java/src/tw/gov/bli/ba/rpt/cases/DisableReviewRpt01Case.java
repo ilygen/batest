@@ -162,6 +162,10 @@ public class DisableReviewRpt01Case implements Serializable {
     // 請領同類給付資料
     // [
     private List<DisableReviewRpt01OncePayDataCase> oncePayList; // 一次給付
+    private List<DisableReviewRpt01OncePayDataCase> oncePayBy9List; // 一次給付 災保 災保失能給付
+    private List<DisableReviewRpt01OncePayDataCase> oncePay39By9List; // 一次給付 災保 退保後職業病失能津貼
+    private List<DisableReviewRpt01OncePayDataCase> oncePay3TBy9List; // 一次給付 災保 退保後職業病失能津貼
+    private List<DisableReviewRpt01OncePayDataCase> oncePay3NBy9List; // 一次給付 災保 未加保失能補助
     private List<DisableReviewRpt01OncePayDataCase> farmPayList; // 申請農保殘廢給付記錄
     private List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList; // 年金給付
     private List<DisableReviewRpt01AnnuityPayDataCase> nbPayList; // 申請國保年金給付記錄
@@ -1524,4 +1528,60 @@ public class DisableReviewRpt01Case implements Serializable {
         }
         return "";
     }
+
+	/**
+	 * @return the oncePayBy9List
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getOncePayBy9List() {
+		return oncePayBy9List;
+	}
+
+	/**
+	 * @param oncePayBy9List the oncePayBy9List to set
+	 */
+	public void setOncePayBy9List(List<DisableReviewRpt01OncePayDataCase> oncePayBy9List) {
+		this.oncePayBy9List = oncePayBy9List;
+	}
+
+	/**
+	 * @return the oncePay3TBy9List
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getOncePay3TBy9List() {
+		return oncePay3TBy9List;
+	}
+
+	/**
+	 * @param oncePay3TBy9List the oncePay3TBy9List to set
+	 */
+	public void setOncePay3TBy9List(List<DisableReviewRpt01OncePayDataCase> oncePay3TBy9List) {
+		this.oncePay3TBy9List = oncePay3TBy9List;
+	}
+
+	/**
+	 * @return the oncePay3NBy9List
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getOncePay3NBy9List() {
+		return oncePay3NBy9List;
+	}
+
+	/**
+	 * @param oncePay3NBy9List the oncePay3NBy9List to set
+	 */
+	public void setOncePay3NBy9List(List<DisableReviewRpt01OncePayDataCase> oncePay3NBy9List) {
+		this.oncePay3NBy9List = oncePay3NBy9List;
+	}
+
+	/**
+	 * @return the oncePay39By9List
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getOncePay39By9List() {
+		return oncePay39By9List;
+	}
+
+	/**
+	 * @param oncePay39By9List the oncePay39By9List to set
+	 */
+	public void setOncePay39By9List(List<DisableReviewRpt01OncePayDataCase> oncePay39By9List) {
+		this.oncePay39By9List = oncePay39By9List;
+	}
 }

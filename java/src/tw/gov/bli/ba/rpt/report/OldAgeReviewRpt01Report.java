@@ -1795,7 +1795,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                     }
                 } // ] ... end for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayList.size(); nSurvivorAnnuityPayCount++)
 
-                // 申請遺屬年金記錄資料 (有資料再印)
+                // 申請遺屬年金記錄資料 (有資料再印) 災保
                 List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List = caseData.getSurvivorAnnuityPayBy9List();
                 for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayBy9List.size(); nSurvivorAnnuityPayCount++) { // ... [
                     OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9 survivorAnnuityPayData = survivorAnnuityPayBy9List.get(nSurvivorAnnuityPayCount);

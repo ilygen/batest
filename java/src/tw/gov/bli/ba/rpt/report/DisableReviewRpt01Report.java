@@ -7,6 +7,11 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Table;
+
 import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.ba.rpt.cases.CiptUtilityCase;
 import tw.gov.bli.ba.rpt.cases.DisableQueryOccAccDataCase;
@@ -37,15 +42,8 @@ import tw.gov.bli.ba.rpt.cases.DisableReviewRpt01PayDataCase;
 import tw.gov.bli.ba.rpt.cases.DisableReviewRpt01PayDeductDataCase;
 import tw.gov.bli.ba.rpt.cases.DisableReviewRpt01SurvivorPayDataCase;
 import tw.gov.bli.ba.rpt.cases.DisableReviewRpt01UnitCase;
-import tw.gov.bli.ba.update.cases.DisabledApplicationDataUpdateBareCheckCase;
-import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ValidateUtility;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.Element;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Table;
 
 /**
  * 勞保失能年金給付受理編審清單
@@ -1797,13 +1795,28 @@ public class DisableReviewRpt01Report extends ReportBase {
                 addColumn(table, 58, 1, "請領同類給付資料：", fontCh12b, 0, LEFT);
 
                 // 一次給付資料 (有資料再印)
-                List<DisableReviewRpt01OncePayDataCase> oncePayList = caseData.getOncePayList();
-                for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++) { // ... [
-                    DisableReviewRpt01OncePayDataCase oncePayData = oncePayList.get(nOncePayCount);
+                this.subReportSameKind(caseData, caseData.getOncePayList(), table, earlyWarning, "[一次給付]");
+                
+                // 一次給付資料 (有資料再印) 災保 災保失能給付
+                this.subReportSameKind(caseData, caseData.getOncePayBy9List(), table, earlyWarning, "[災保失能給付]");
 
-                    // 印一次給付表頭
+                // 一次給付資料 (有資料再印) 災保 退保後職業病失能津貼
+                this.subReportSameKind(caseData, caseData.getOncePay3TBy9List(), table, earlyWarning, "[退保後職業病失能津貼]");
 
-                    if (nOncePayCount == 0) {
+                // 一次給付資料 (有資料再印) 災保 未加保失能補助
+                this.subReportSameKind(caseData, caseData.getOncePay3NBy9List(), table, earlyWarning, "[未加保失能補助]");
+
+                // 一次給付資料 (有資料再印) 災保 災保失能差額金
+                this.subReportSameKind(caseData, caseData.getOncePay39By9List(), table, earlyWarning, "[災保失能差額金]");
+
+                // 年金給付資料 (有資料再印)
+                List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList = caseData.getAnnuityPayList();
+                for (int nAnnuityPayCount = 0; nAnnuityPayCount < annuityPayList.size(); nAnnuityPayCount++) { // ... [
+                    DisableReviewRpt01AnnuityPayDataCase annuityPayData = annuityPayList.get(nAnnuityPayCount);
+
+                    // 印年金給付表頭
+
+                    if (nAnnuityPayCount == 0) {
                         addEmptyRow(table, 1);
 
                         if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
@@ -1815,9 +1828,9 @@ public class DisableReviewRpt01Report extends ReportBase {
                             deleteRow(table, 1);
                         }
 
-                        // 一次給付 表頭
+                        // 年金給付 表頭
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 58, 1, "[一次給付]", fontCh12b, 0, LEFT);
+                        addColumn(table, 58, 1, "[年金給付]", fontCh12b, 0, LEFT);
                     }
                     else {
                         addEmptyRow(table, 1);
@@ -1834,15 +1847,16 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
 
                     // 20101124 kiyomi - mark start
-                    // addEmptyRow(table, 8);
+                    // 年金給付資料一筆有四行, 在塞資料前先測試是否需換頁
+                    // addEmptyRow(table, 6);
 
                     // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                    // deleteRow(table, 8);
+                    // deleteRow(table, 6);
                     // document.add(table);
                     // table = addHeader(caseData, false, earlyWarning);
                     // }
                     // else {
-                    // deleteRow(table, 8);
+                    // deleteRow(table, 6);
                     // }
                     // 20101124 kiyomi - mark end
                     // 20101124 kiyomi - start
@@ -1861,11 +1875,11 @@ public class DisableReviewRpt01Report extends ReportBase {
                     // 20101124 kiyomi - end
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     addColumn(table, 10, 1, "事故者姓名", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
+                    addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
                     addColumn(table, 10, 1, "受理編號", fontCh12, 0, LEFT);
                     addColumn(table, 9, 1, "保險證號", fontCh12, 0, LEFT);
+                    addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
                     addColumn(table, 9, 1, "診斷失能日", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "傷病分類", fontCh12, 0, LEFT);
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                     // ---
@@ -1884,16 +1898,17 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
                     // 20101124 kiyomi - end
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, oncePayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
+                    addColumn(table, 10, 1, annuityPayData.getEvtName(), fontCh12, 0, LEFT); // 事故者姓名
 
-                    addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmApDteString()), fontCh12, 0, LEFT); // 受理日期
-                    addColumn(table, 10, 1, oncePayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
-                    addColumn(table, 9, 1, oncePayData.getBmUbNo(), fontCh12, 0, LEFT); // 保險證號
-                    addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmEvtDteString()), fontCh12, 0, LEFT); // 診斷失能日
-
-                    addColumn(table, 9, 1, oncePayData.getBmEvType(), fontCh12, 0, LEFT); // 診斷失能日
+                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getAppDateString()), fontCh12, 0, LEFT); // 申請日期
+                    addColumn(table, 10, 1, annuityPayData.getApNo(), fontCh12, 0, LEFT); // 受理編號
+                    addColumn(table, 9, 1, annuityPayData.getApUbno(), fontCh12, 0, LEFT); // 保險證號
+                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getPayYmsString()) + ((StringUtils.isNotBlank(annuityPayData.getPayYmsString())) ? "-" + StringUtils.defaultString(annuityPayData.getPayYmString()) : ""), fontCh12,
+                                    0, LEFT); // 首次給付年月
+                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getEvtJobDateString()), fontCh12, 0, LEFT); // 診斷失能日
 
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
                     // ---
 
                     // 20101124 kiyomi - start
@@ -1911,13 +1926,12 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
                     // 20101124 kiyomi - end
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "核付日數", fontCh12, 0, LEFT);
+                    addColumn(table, 10, 1, "傷病分類", fontCh12, 0, LEFT);
                     addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
                     addColumn(table, 37, 1, "失能項目", fontCh12, 0, LEFT);
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                     // ---
-
                     // 20101124 kiyomi - start
                     addEmptyRow(table, 1);
 
@@ -1933,12 +1947,13 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
                     // 20101124 kiyomi - end
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, formatBigDecimalToInteger(oncePayData.getBmChkDay()), fontCh12, 0, LEFT); // 核定日數
-                    addColumn(table, 9, 1, oncePayData.getBmCriInjNme(), fontCh12, 0, LEFT); // 失能等級
-                    addColumn(table, 37, 1, oncePayData.getCriInJdpStr(), fontCh12, 0, LEFT); // 失能項目
+                    addColumn(table, 10, 1, annuityPayData.getEvTyp(), fontCh12, 0, LEFT); // 傷病分類
+                    addColumn(table, 9, 1, annuityPayData.getCriInJclStr(), fontCh12, 0, LEFT); // 失能等級
+                    addColumn(table, 37, 1, annuityPayData.getCriInJdpStr(), fontCh12, 0, LEFT); // 失能項目
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                     // ---
+
                     // 20101124 kiyomi - start
                     addEmptyRow(table, 1);
 
@@ -1957,9 +1972,11 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 10, 1, "核定金額", fontCh12, 0, LEFT);
                     addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
                     addColumn(table, 10, 1, "核付日期", fontCh12, 0, LEFT);
-                    addColumn(table, 18, 1, "補件日期/註記", fontCh12, 0, LEFT);
-                    addColumn(table, 11, 1, "", fontCh12, 0, LEFT);
+                    addColumn(table, 27, 1, "結案日期/結案原因", fontCh12, 0, LEFT);
+                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
                     // ---
+
                     // 20101124 kiyomi - start
                     addEmptyRow(table, 1);
 
@@ -1975,64 +1992,19 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
                     // 20101124 kiyomi - end
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    if (oncePayData.getBmChkAmt() != null && oncePayData.getBmChkAmt().compareTo(new BigDecimal(0)) != 0)
-                        addColumn(table, 9, 1, formatBigDecimalToInteger(oncePayData.getBmChkAmt()), fontCh12, 0, LEFT); // 核定金額
+                    if (annuityPayData.getIssueAmt() != null && annuityPayData.getIssueAmt().compareTo(new BigDecimal(0)) != 0)
+                        addColumn(table, 9, 1, formatBigDecimalToInteger(annuityPayData.getIssueAmt()), fontCh12, 0, LEFT); // 核定金額
                     else
                         addColumn(table, 9, 1, "0", fontCh12, 0, LEFT); // 核定金額
                     addColumn(table, 1, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmExmDteString()), fontCh12, 0, LEFT); // 核定日期
-                    addColumn(table, 10, 1, StringUtils.defaultString(oncePayData.getBmPayDteString()), fontCh12, 0, LEFT); // 核付日期
-                    addColumn(table, 18, 1, oncePayData.getBmNrepDateString() + ((StringUtils.isNotBlank(oncePayData.getBmNdocMk())) ? " / " + oncePayData.getBmNdocMk() : ""), fontCh12, 0, LEFT); // 補件日期/註記
-                    addColumn(table, 11, 1, "", fontCh12, 0, LEFT);
+                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getChkDateString()), fontCh12, 0, LEFT); // 核定日期
+                    addColumn(table, 10, 1, StringUtils.defaultString(annuityPayData.getAplpayDateString()), fontCh12, 0, LEFT); // 核付日期
+                    addColumn(table, 27, 1, StringUtils.defaultString(annuityPayData.getCloseDateString()) + ((StringUtils.isNotBlank(annuityPayData.getCloseCause())) ? (" / " + annuityPayData.getCloseCause()) : ""), fontCh12, 0, LEFT); // 結案日期/原因
+                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                     // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 19, 1, "不給付日期/原因", fontCh12, 0, LEFT);
-                    addColumn(table, 20, 1, "補收金額—已收金額", fontCh12, 0, LEFT);
-                    addColumn(table, 19, 1, " ", fontCh12, 0, LEFT);
-                    // ---
-
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 19, 1, StringUtils.defaultString(oncePayData.getBmNopDateString()) + ((StringUtils.isNotBlank(oncePayData.getBmNopMark())) ? " / " + oncePayData.getBmNopMark() : ""), fontCh12, 0, LEFT); // 不給付日期/原因
-                    if (oncePayData.getBmAdjAmts() != null && oncePayData.getBmAdjAmts().compareTo(new BigDecimal(0)) != 0) {
-                        addColumn(table, 10, 1, formatBigDecimalToInteger(oncePayData.getBmAdjAmts()), fontCh12, 0, LEFT); // 補收金額
-                        addColumn(table, 1, 1, " ", fontCh12, 0, LEFT);
-                    }
-                    else {
-                        addColumn(table, 11, 1, " ", fontCh12, 0, LEFT); // 補收金額
-                    }
-                    addColumn(table, 28, 1, " ", fontCh12, 0, LEFT);
-
                     // 最後一筆印完後空一行 (如果年金給付資料有資料再印)
-                    if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getAnnuityPayList().size() > 0)) {
+                    if ((nAnnuityPayCount == annuityPayList.size() - 1) && (caseData.getAnnuityPayList().size() > 0)) {
                         // 空白行
 
                         addEmptyRow(table, 1);
@@ -2045,7 +2017,8 @@ public class DisableReviewRpt01Report extends ReportBase {
                             table = addHeader(caseData, false, earlyWarning);
                         }
                     }
-                } // ] ... end for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++)
+
+                } // ] ... end for (int nAnnuityPayCount = 0; nAnnuityPayCount < annuityPayList.size(); nAnnuityPayCount++)
 
                 // 申請農保殘廢給付記錄 (有資料再印)
                 List<DisableReviewRpt01OncePayDataCase> farmPayList = caseData.getFarmPayList();
@@ -2299,217 +2272,6 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
                 }
 
-                // 年金給付資料 (有資料再印)
-                List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList = caseData.getAnnuityPayList();
-                for (int nAnnuityPayCount = 0; nAnnuityPayCount < annuityPayList.size(); nAnnuityPayCount++) { // ... [
-                    DisableReviewRpt01AnnuityPayDataCase annuityPayData = annuityPayList.get(nAnnuityPayCount);
-
-                    // 印年金給付表頭
-
-                    if (nAnnuityPayCount == 0) {
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-
-                        // 年金給付 表頭
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 58, 1, "[年金給付]", fontCh12b, 0, LEFT);
-                    }
-                    else {
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                            addEmptyRow(table, 1);
-                        }
-                    }
-
-                    // 20101124 kiyomi - mark start
-                    // 年金給付資料一筆有四行, 在塞資料前先測試是否需換頁
-                    // addEmptyRow(table, 6);
-
-                    // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                    // deleteRow(table, 6);
-                    // document.add(table);
-                    // table = addHeader(caseData, false, earlyWarning);
-                    // }
-                    // else {
-                    // deleteRow(table, 6);
-                    // }
-                    // 20101124 kiyomi - mark end
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "事故者姓名", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "受理編號", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "保險證號", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "診斷失能日", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, annuityPayData.getEvtName(), fontCh12, 0, LEFT); // 事故者姓名
-
-                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getAppDateString()), fontCh12, 0, LEFT); // 申請日期
-                    addColumn(table, 10, 1, annuityPayData.getApNo(), fontCh12, 0, LEFT); // 受理編號
-                    addColumn(table, 9, 1, annuityPayData.getApUbno(), fontCh12, 0, LEFT); // 保險證號
-                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getPayYmsString()) + ((StringUtils.isNotBlank(annuityPayData.getPayYmsString())) ? "-" + StringUtils.defaultString(annuityPayData.getPayYmString()) : ""), fontCh12,
-                                    0, LEFT); // 首次給付年月
-                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getEvtJobDateString()), fontCh12, 0, LEFT); // 診斷失能日
-
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "傷病分類", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
-                    addColumn(table, 37, 1, "失能項目", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, annuityPayData.getEvTyp(), fontCh12, 0, LEFT); // 傷病分類
-                    addColumn(table, 9, 1, annuityPayData.getCriInJclStr(), fontCh12, 0, LEFT); // 失能等級
-                    addColumn(table, 37, 1, annuityPayData.getCriInJdpStr(), fontCh12, 0, LEFT); // 失能項目
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "核定金額", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "核付日期", fontCh12, 0, LEFT);
-                    addColumn(table, 27, 1, "結案日期/結案原因", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    if (annuityPayData.getIssueAmt() != null && annuityPayData.getIssueAmt().compareTo(new BigDecimal(0)) != 0)
-                        addColumn(table, 9, 1, formatBigDecimalToInteger(annuityPayData.getIssueAmt()), fontCh12, 0, LEFT); // 核定金額
-                    else
-                        addColumn(table, 9, 1, "0", fontCh12, 0, LEFT); // 核定金額
-                    addColumn(table, 1, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, StringUtils.defaultString(annuityPayData.getChkDateString()), fontCh12, 0, LEFT); // 核定日期
-                    addColumn(table, 10, 1, StringUtils.defaultString(annuityPayData.getAplpayDateString()), fontCh12, 0, LEFT); // 核付日期
-                    addColumn(table, 27, 1, StringUtils.defaultString(annuityPayData.getCloseDateString()) + ((StringUtils.isNotBlank(annuityPayData.getCloseCause())) ? (" / " + annuityPayData.getCloseCause()) : ""), fontCh12, 0, LEFT); // 結案日期/原因
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-                    // 最後一筆印完後空一行 (如果年金給付資料有資料再印)
-                    if ((nAnnuityPayCount == annuityPayList.size() - 1) && (caseData.getAnnuityPayList().size() > 0)) {
-                        // 空白行
-
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                    }
-
-                } // ] ... end for (int nAnnuityPayCount = 0; nAnnuityPayCount < annuityPayList.size(); nAnnuityPayCount++)
-
                 // 申請國保給付記錄資料 (有資料再印)
                 List<DisableReviewRpt01NpPayDataCase> npDisPayList = caseData.getNbDisPayList();
                 for (int nNpDisPayCount = 0; nNpDisPayCount < npDisPayList.size(); nNpDisPayCount++) { // ... [
@@ -2706,6 +2468,11 @@ public class DisableReviewRpt01Report extends ReportBase {
                 addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                 addColumn(table, 58, 1, "請領他類給付資料：", fontCh12b, 0, LEFT);
 
+                // 申請職災住院醫療給付記錄
+                this.subReportOtherKind1(caseData, table, earlyWarning);
+                this.subReportOtherKind2(caseData, table, earlyWarning);
+                
+                
                 // 申請老年年金給付(有資料再印)
                 List<DisableReviewRpt01OldAgePayDataCase> oldAgePayCaseList = caseData.getOldAgePayList();
                 if (caseData.getOldAgePayList() != null) {
@@ -3046,366 +2813,6 @@ public class DisableReviewRpt01Report extends ReportBase {
                         }
                     }
                 }// ] ... end for (int nDisablePayCount = 0; nDisablePayCount < disablePayList.size(); nDisablePayCount++)
-
-                // 申請職災住院醫療給付記錄
-                List<DisableReviewRpt01OncePayDataCase> hosPayList = caseData.getHosPayList();
-                if (caseData.getHosPayList() != null) {
-                    for (int nHosPayCount = 0; nHosPayCount < hosPayList.size(); nHosPayCount++) { // ... [
-                        DisableReviewRpt01OncePayDataCase hosPayData = hosPayList.get(nHosPayCount);
-
-                        // 印年金給付表頭
-
-                        if (nHosPayCount == 0) {
-                            addEmptyRow(table, 1);
-
-                            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                                deleteRow(table, 1);
-                                document.add(table);
-                                table = addHeader(caseData, false, earlyWarning);
-                            }
-                            else {
-                                deleteRow(table, 1);
-                            }
-
-                            // 年金給付 表頭
-                            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                            addColumn(table, 58, 1, "申請職災住院醫療給付記錄:", fontCh12b, 0, LEFT);
-                        }
-                        else {
-                            addEmptyRow(table, 1);
-
-                            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                                deleteRow(table, 1);
-                                document.add(table);
-                                table = addHeader(caseData, false, earlyWarning);
-                            }
-                            else {
-                                deleteRow(table, 1);
-                                addEmptyRow(table, 1);
-                            }
-                        }
-
-                        // 20101124 kiyomi - mark start
-                        // 年金給付資料一筆有四行, 在塞資料前先測試是否需換頁
-                        // addEmptyRow(table, 4);
-
-                        // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // deleteRow(table, 4);
-                        // document.add(table);
-                        // table = addHeader(caseData, false, earlyWarning);
-                        // }else {
-                        // deleteRow(table, 4);
-                        // }
-                        // 20101124 kiyomi - mark end
-
-                        // 20101124 kiyomi - start
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-                        // 20101124 kiyomi - end
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "事故者姓名", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "受理編號", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "保險證號", fontCh12, 0, LEFT);
-                        addColumn(table, 20, 1, "事故日期", fontCh12, 0, LEFT);
-
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        // ---
-                        // 20101124 kiyomi - start
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-                        // 20101124 kiyomi - end
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, hosPayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
-
-                        addColumn(table, 9, 1, hosPayData.getBmApDteString(), fontCh12, 0, LEFT); // 受理日期
-                        addColumn(table, 9, 1, hosPayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
-                        addColumn(table, 9, 1, hosPayData.getBmUbNo(), fontCh12, 0, LEFT); // 保險證號
-                        addColumn(table, 20, 1, hosPayData.getBmEvtDte(), fontCh12, 0, LEFT); // 事故日期
-
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        // ---
-                        // 20101124 kiyomi - start
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-                        // 20101124 kiyomi - end
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "住院始日", fontCh12, 0, LEFT);
-                        ;
-                        addColumn(table, 9, 1, "傷病原因", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "受傷部位", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
-                        addColumn(table, 22, 1, " ", fontCh12, 0, LEFT);
-                        // ---
-                        // 20101124 kiyomi - start
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-                        // 20101124 kiyomi - end
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 9, 1, hosPayData.getBmInjPfmDteString(), fontCh12, 0, LEFT); // 住院始日
-                        addColumn(table, 9, 1, hosPayData.getBmEvCode(), fontCh12, 0, LEFT); // 傷病原因
-                        addColumn(table, 9, 1, hosPayData.getBmInjInPart(), fontCh12, 0, LEFT); // 受傷部位
-                        addColumn(table, 9, 1, hosPayData.getBmExmDteString(), fontCh12, 0, LEFT); // 核定日期
-                        addColumn(table, 22, 1, " ", fontCh12, 0, LEFT);
-
-                        // 最後一筆印完後空一行 (其他給付記錄有資料再印)
-                        if ((nHosPayCount == hosPayList.size() - 1) && (caseData.getHosPayList().size() > 0)) {
-                            // 空白行
-
-                            addEmptyRow(table, 1);
-
-                            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                                // 換了頁就不再塞空白行了
-
-                                deleteRow(table, 1);
-                                document.add(table);
-                                table = addHeader(caseData, false, earlyWarning);
-                            }
-                        }
-
-                    } // ] ... end for (int nDisPayCount = 0; nDisPayCount < getDisPayList.size(); nDisPayCount++)
-                }
-
-                // 申請傷病給付記錄資料 (有資料再印)
-                List<DisableReviewRpt01InjuryPayDataCase> injuryPayList = caseData.getInjuryPayList();
-                for (int nInjuryPayCount = 0; nInjuryPayCount < injuryPayList.size(); nInjuryPayCount++) { // ... [
-                    DisableReviewRpt01InjuryPayDataCase injuryPayData = injuryPayList.get(nInjuryPayCount);
-
-                    // 印傷病給付記錄表頭
-
-                    if (nInjuryPayCount == 0) {
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-
-                        // 傷病給付記錄 表頭
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 58, 1, "申請傷病給付記錄：", fontCh12b, 0, LEFT);
-                    }
-                    else {
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                            addEmptyRow(table, 1);
-                        }
-                    }
-
-                    // 20101124 kiyomi - mark start
-                    // 傷病給付記錄資料一筆有四行, 在塞資料前先測試是否需換頁
-                    // addEmptyRow(table, 4);
-
-                    // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                    // deleteRow(table, 4);
-                    // document.add(table);
-                    // table = addHeader(caseData, false, earlyWarning);
-                    // }
-                    // else {
-                    // deleteRow(table, 4);
-                    // }
-                    // 20101124 kiyomi - mark end
-
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "事故者姓名", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "受理編號", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "事故日期", fontCh12, 0, LEFT);
-                    addColumn(table, 6, 1, "傷病分類", fontCh12, 0, LEFT);
-                    addColumn(table, 12, 1, "給付起日-迄日", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh8, 0, LEFT);
-
-                    // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, injuryPayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
-
-                    addColumn(table, 9, 1, injuryPayData.getBmApDteString(), fontCh12, 0, LEFT); // 受理日期
-                    addColumn(table, 10, 1, injuryPayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
-                    addColumn(table, 9, 1, injuryPayData.getBmEvtDteString(), fontCh12, 0, LEFT); // 事故日期
-                    addColumn(table, 6, 1, injuryPayData.getBmEvType(), fontCh12, 0, LEFT); // 傷病分類
-                    // addColumn(table, 12, 1, injuryPayData.getBmInjPfmDteString() + ((StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) ? "-" +injuryPayData.getBmInjPtoDteString(): ""), fontCh12, 0, LEFT); // 給付起日-迄日
-                    addColumn(table, 12, 1, injuryPayData.getBmInjPfmDteString(), fontCh12, 0, LEFT); // 給付起日-迄日
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
-                    // ---
-                    // 20111012 by Kiyomi 將起日-迄日中的迄日另外獨立一行列印
-
-                    if (StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) {
-                        // 20101124 kiyomi - start
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                        else {
-                            deleteRow(table, 1);
-                        }
-                        // 20101124 kiyomi - end
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 事故者姓名
-
-                        addColumn(table, 9, 1, " ", fontCh12, 0, LEFT); // 受理日期
-                        addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 受理編號
-                        addColumn(table, 9, 1, " ", fontCh12, 0, LEFT); // 事故日期
-                        addColumn(table, 6, 1, " ", fontCh12, 0, LEFT); // 傷病分類
-                        addColumn(table, 12, 1, ((StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) ? "-" + injuryPayData.getBmInjPtoDteString() : ""), fontCh12, 0, LEFT); // 給付起日-迄日
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    }
-
-                    // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "核定金額", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "核付日期", fontCh12, 0, LEFT);
-                    addColumn(table, 9, 1, "補件日期/註記", fontCh12, 0, LEFT);
-                    addColumn(table, 11, 1, "不給付日期/原因", fontCh12, 0, LEFT);
-                    addColumn(table, 7, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    // ---
-                    // 20101124 kiyomi - start
-                    addEmptyRow(table, 1);
-
-                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                        // 換了頁就不再塞空白行了
-
-                        deleteRow(table, 1);
-                        document.add(table);
-                        table = addHeader(caseData, false, earlyWarning);
-                    }
-                    else {
-                        deleteRow(table, 1);
-                    }
-                    // 20101124 kiyomi - end
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    if (injuryPayData.getBmChkAmt() != null && injuryPayData.getBmChkAmt().compareTo(new BigDecimal(0)) != 0)
-                        addColumn(table, 10, 1, formatBigDecimalToInteger(injuryPayData.getBmChkAmt()), fontCh12, 0, LEFT); // 核定金額
-                    else
-                        addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 核定金額
-
-                    addColumn(table, 9, 1, injuryPayData.getBmExmDteString(), fontCh12, 0, LEFT); // 核定日期
-
-                    addColumn(table, 10, 1, injuryPayData.getBmPayDteString(), fontCh12, 0, LEFT); // 核付日期
-                    addColumn(table, 9, 1, injuryPayData.getBmNrepDateString()
-                                    + ((StringUtils.isNotBlank(injuryPayData.getBmNdocMk())) ? ((StringUtils.isNotBlank(injuryPayData.getBmNrepDateString())) ? (" / " + injuryPayData.getBmNdocMk()) : injuryPayData.getBmNdocMk()) : ""), fontCh12, 0,
-                                    LEFT); // 補件日期/註記
-                    addColumn(table, 9, 1, injuryPayData.getBmNopDateString()
-                                    + ((StringUtils.isNotBlank(injuryPayData.getBmNopMark())) ? ((StringUtils.isNotBlank(injuryPayData.getBmNopDateString())) ? (" / " + injuryPayData.getBmNopMark()) : injuryPayData.getBmNopMark()) : ""), fontCh12,
-                                    0, LEFT); // 不給付日期
-
-                    addColumn(table, 9, 1, " ", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                    // 最後一筆印完後空一行 (其他給付記錄有資料再印)
-                    if ((nInjuryPayCount == injuryPayList.size() - 1) && caseData.getInjuryPayList().size() > 0) {
-                        // 空白行
-
-                        addEmptyRow(table, 1);
-
-                        if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-                            // 換了頁就不再塞空白行了
-
-                            deleteRow(table, 1);
-                            document.add(table);
-                            table = addHeader(caseData, false, earlyWarning);
-                        }
-                    }
-                } // ] ... end for (int nInjuryPayCount = 0; nInjuryPayCount < injuryPayList.size(); nInjuryPayCount++)
 
                 // 申請老年給付記錄 (有資料再印)
                 List<DisableReviewRpt01OldPayDataCase> oldAgePayList = caseData.getOldPayList();
@@ -6684,5 +6091,625 @@ public class DisableReviewRpt01Report extends ReportBase {
 
         return bao;
     }
+
+	private void subReportOtherKind2(DisableReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+        // 申請傷病給付記錄資料 (有資料再印)
+        List<DisableReviewRpt01InjuryPayDataCase> injuryPayList = caseData.getInjuryPayList();
+        for (int nInjuryPayCount = 0; nInjuryPayCount < injuryPayList.size(); nInjuryPayCount++) { // ... [
+            DisableReviewRpt01InjuryPayDataCase injuryPayData = injuryPayList.get(nInjuryPayCount);
+
+            // 印傷病給付記錄表頭
+
+            if (nInjuryPayCount == 0) {
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+
+                // 傷病給付記錄 表頭
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 58, 1, "申請傷病給付記錄：", fontCh12b, 0, LEFT);
+            }
+            else {
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                    addEmptyRow(table, 1);
+                }
+            }
+
+            // 20101124 kiyomi - mark start
+            // 傷病給付記錄資料一筆有四行, 在塞資料前先測試是否需換頁
+            // addEmptyRow(table, 4);
+
+            // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+            // deleteRow(table, 4);
+            // document.add(table);
+            // table = addHeader(caseData, false, earlyWarning);
+            // }
+            // else {
+            // deleteRow(table, 4);
+            // }
+            // 20101124 kiyomi - mark end
+
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "事故者姓名", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "受理編號", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "事故日期", fontCh12, 0, LEFT);
+            addColumn(table, 6, 1, "傷病分類", fontCh12, 0, LEFT);
+            addColumn(table, 12, 1, "給付起日-迄日", fontCh12, 0, LEFT);
+            addColumn(table, 2, 1, " ", fontCh8, 0, LEFT);
+
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, injuryPayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
+
+            addColumn(table, 9, 1, injuryPayData.getBmApDteString(), fontCh12, 0, LEFT); // 受理日期
+            addColumn(table, 10, 1, injuryPayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
+            addColumn(table, 9, 1, injuryPayData.getBmEvtDteString(), fontCh12, 0, LEFT); // 事故日期
+            addColumn(table, 6, 1, injuryPayData.getBmEvType(), fontCh12, 0, LEFT); // 傷病分類
+            // addColumn(table, 12, 1, injuryPayData.getBmInjPfmDteString() + ((StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) ? "-" +injuryPayData.getBmInjPtoDteString(): ""), fontCh12, 0, LEFT); // 給付起日-迄日
+            addColumn(table, 12, 1, injuryPayData.getBmInjPfmDteString(), fontCh12, 0, LEFT); // 給付起日-迄日
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
+            // ---
+            // 20111012 by Kiyomi 將起日-迄日中的迄日另外獨立一行列印
+
+            if (StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) {
+                // 20101124 kiyomi - start
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 20101124 kiyomi - end
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 事故者姓名
+
+                addColumn(table, 9, 1, " ", fontCh12, 0, LEFT); // 受理日期
+                addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 受理編號
+                addColumn(table, 9, 1, " ", fontCh12, 0, LEFT); // 事故日期
+                addColumn(table, 6, 1, " ", fontCh12, 0, LEFT); // 傷病分類
+                addColumn(table, 12, 1, ((StringUtils.isNotBlank(injuryPayData.getBmInjPtoDte())) ? "-" + injuryPayData.getBmInjPtoDteString() : ""), fontCh12, 0, LEFT); // 給付起日-迄日
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            }
+
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "核定金額", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "核付日期", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "補件日期/註記", fontCh12, 0, LEFT);
+            addColumn(table, 11, 1, "不給付日期/原因", fontCh12, 0, LEFT);
+            addColumn(table, 7, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            if (injuryPayData.getBmChkAmt() != null && injuryPayData.getBmChkAmt().compareTo(new BigDecimal(0)) != 0)
+                addColumn(table, 10, 1, formatBigDecimalToInteger(injuryPayData.getBmChkAmt()), fontCh12, 0, LEFT); // 核定金額
+            else
+                addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 核定金額
+
+            addColumn(table, 9, 1, injuryPayData.getBmExmDteString(), fontCh12, 0, LEFT); // 核定日期
+
+            addColumn(table, 10, 1, injuryPayData.getBmPayDteString(), fontCh12, 0, LEFT); // 核付日期
+            addColumn(table, 9, 1, injuryPayData.getBmNrepDateString()
+                            + ((StringUtils.isNotBlank(injuryPayData.getBmNdocMk())) ? ((StringUtils.isNotBlank(injuryPayData.getBmNrepDateString())) ? (" / " + injuryPayData.getBmNdocMk()) : injuryPayData.getBmNdocMk()) : ""), fontCh12, 0,
+                            LEFT); // 補件日期/註記
+            addColumn(table, 9, 1, injuryPayData.getBmNopDateString()
+                            + ((StringUtils.isNotBlank(injuryPayData.getBmNopMark())) ? ((StringUtils.isNotBlank(injuryPayData.getBmNopDateString())) ? (" / " + injuryPayData.getBmNopMark()) : injuryPayData.getBmNopMark()) : ""), fontCh12,
+                            0, LEFT); // 不給付日期
+
+            addColumn(table, 9, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            // 最後一筆印完後空一行 (其他給付記錄有資料再印)
+            if ((nInjuryPayCount == injuryPayList.size() - 1) && caseData.getInjuryPayList().size() > 0) {
+                // 空白行
+
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+            }
+        } // ] ... end for (int nInjuryPayCount = 0; nInjuryPayCount < injuryPayList.size(); nInjuryPayCount++)
+
+		
+	}
+
+	private void subReportOtherKind1(DisableReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+        // 申請職災住院醫療給付記錄
+        List<DisableReviewRpt01OncePayDataCase> hosPayList = caseData.getHosPayList();
+        if (caseData.getHosPayList() != null) {
+            for (int nHosPayCount = 0; nHosPayCount < hosPayList.size(); nHosPayCount++) { // ... [
+                DisableReviewRpt01OncePayDataCase hosPayData = hosPayList.get(nHosPayCount);
+
+                // 印年金給付表頭
+
+                if (nHosPayCount == 0) {
+                    addEmptyRow(table, 1);
+
+                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                        deleteRow(table, 1);
+                        document.add(table);
+                        table = addHeader(caseData, false, earlyWarning);
+                    }
+                    else {
+                        deleteRow(table, 1);
+                    }
+
+                    // 年金給付 表頭
+                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                    addColumn(table, 58, 1, "申請職災住院醫療給付記錄:", fontCh12b, 0, LEFT);
+                }
+                else {
+                    addEmptyRow(table, 1);
+
+                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                        deleteRow(table, 1);
+                        document.add(table);
+                        table = addHeader(caseData, false, earlyWarning);
+                    }
+                    else {
+                        deleteRow(table, 1);
+                        addEmptyRow(table, 1);
+                    }
+                }
+
+                // 20101124 kiyomi - mark start
+                // 年金給付資料一筆有四行, 在塞資料前先測試是否需換頁
+                // addEmptyRow(table, 4);
+
+                // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // deleteRow(table, 4);
+                // document.add(table);
+                // table = addHeader(caseData, false, earlyWarning);
+                // }else {
+                // deleteRow(table, 4);
+                // }
+                // 20101124 kiyomi - mark end
+
+                // 20101124 kiyomi - start
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 20101124 kiyomi - end
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "事故者姓名", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "受理編號", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "保險證號", fontCh12, 0, LEFT);
+                addColumn(table, 20, 1, "事故日期", fontCh12, 0, LEFT);
+
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                // ---
+                // 20101124 kiyomi - start
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 20101124 kiyomi - end
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, hosPayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
+
+                addColumn(table, 9, 1, hosPayData.getBmApDteString(), fontCh12, 0, LEFT); // 受理日期
+                addColumn(table, 9, 1, hosPayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
+                addColumn(table, 9, 1, hosPayData.getBmUbNo(), fontCh12, 0, LEFT); // 保險證號
+                addColumn(table, 20, 1, hosPayData.getBmEvtDte(), fontCh12, 0, LEFT); // 事故日期
+
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                // ---
+                // 20101124 kiyomi - start
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 20101124 kiyomi - end
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "住院始日", fontCh12, 0, LEFT);
+                ;
+                addColumn(table, 9, 1, "傷病原因", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "受傷部位", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
+                addColumn(table, 22, 1, " ", fontCh12, 0, LEFT);
+                // ---
+                // 20101124 kiyomi - start
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 20101124 kiyomi - end
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 9, 1, hosPayData.getBmInjPfmDteString(), fontCh12, 0, LEFT); // 住院始日
+                addColumn(table, 9, 1, hosPayData.getBmEvCode(), fontCh12, 0, LEFT); // 傷病原因
+                addColumn(table, 9, 1, hosPayData.getBmInjInPart(), fontCh12, 0, LEFT); // 受傷部位
+                addColumn(table, 9, 1, hosPayData.getBmExmDteString(), fontCh12, 0, LEFT); // 核定日期
+                addColumn(table, 22, 1, " ", fontCh12, 0, LEFT);
+
+                // 最後一筆印完後空一行 (其他給付記錄有資料再印)
+                if ((nHosPayCount == hosPayList.size() - 1) && (caseData.getHosPayList().size() > 0)) {
+                    // 空白行
+
+                    addEmptyRow(table, 1);
+
+                    if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                        // 換了頁就不再塞空白行了
+
+                        deleteRow(table, 1);
+                        document.add(table);
+                        table = addHeader(caseData, false, earlyWarning);
+                    }
+                }
+
+            } // ] ... end for (int nDisPayCount = 0; nDisPayCount < getDisPayList.size(); nDisPayCount++)
+        }
+
+		
+	}
+
+	private void subReportSameKind(DisableReviewRpt01Case caseData, List<DisableReviewRpt01OncePayDataCase> oncePayList, Table table, String earlyWarning, String title) throws Exception {
+        for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++) { // ... [
+            DisableReviewRpt01OncePayDataCase oncePayData = oncePayList.get(nOncePayCount);
+
+            // 印一次給付表頭
+
+            if (nOncePayCount == 0) {
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+
+                // 一次給付 表頭
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 58, 1, title, fontCh12b, 0, LEFT);
+            }
+            else {
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                    addEmptyRow(table, 1);
+                }
+            }
+
+            // 20101124 kiyomi - mark start
+            // addEmptyRow(table, 8);
+
+            // if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+            // deleteRow(table, 8);
+            // document.add(table);
+            // table = addHeader(caseData, false, earlyWarning);
+            // }
+            // else {
+            // deleteRow(table, 8);
+            // }
+            // 20101124 kiyomi - mark end
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "事故者姓名", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "受理日期", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "受理編號", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "保險證號", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "診斷失能日", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "傷病分類", fontCh12, 0, LEFT);
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, oncePayData.getBmEvName(), fontCh12, 0, LEFT); // 事故者姓名
+
+            addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmApDteString()), fontCh12, 0, LEFT); // 受理日期
+            addColumn(table, 10, 1, oncePayData.getBmApNo(), fontCh12, 0, LEFT); // 受理編號
+            addColumn(table, 9, 1, oncePayData.getBmUbNo(), fontCh12, 0, LEFT); // 保險證號
+            addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmEvtDteString()), fontCh12, 0, LEFT); // 診斷失能日
+
+            addColumn(table, 9, 1, oncePayData.getBmEvType(), fontCh12, 0, LEFT); // 診斷失能日
+
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            // ---
+
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "核付日數", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
+            addColumn(table, 37, 1, "失能項目", fontCh12, 0, LEFT);
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
+            // ---
+
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, formatBigDecimalToInteger(oncePayData.getBmChkDay()), fontCh12, 0, LEFT); // 核定日數
+            addColumn(table, 9, 1, oncePayData.getBmCriInjNme(), fontCh12, 0, LEFT); // 失能等級
+            addColumn(table, 37, 1, oncePayData.getCriInJdpStr(), fontCh12, 0, LEFT); // 失能項目
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "核定金額", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, "核定日期", fontCh12, 0, LEFT);
+            addColumn(table, 10, 1, "核付日期", fontCh12, 0, LEFT);
+            addColumn(table, 18, 1, "補件日期/註記", fontCh12, 0, LEFT);
+            addColumn(table, 11, 1, "", fontCh12, 0, LEFT);
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            if (oncePayData.getBmChkAmt() != null && oncePayData.getBmChkAmt().compareTo(new BigDecimal(0)) != 0)
+                addColumn(table, 9, 1, formatBigDecimalToInteger(oncePayData.getBmChkAmt()), fontCh12, 0, LEFT); // 核定金額
+            else
+                addColumn(table, 9, 1, "0", fontCh12, 0, LEFT); // 核定金額
+            addColumn(table, 1, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getBmExmDteString()), fontCh12, 0, LEFT); // 核定日期
+            addColumn(table, 10, 1, StringUtils.defaultString(oncePayData.getBmPayDteString()), fontCh12, 0, LEFT); // 核付日期
+            addColumn(table, 18, 1, oncePayData.getBmNrepDateString() + ((StringUtils.isNotBlank(oncePayData.getBmNdocMk())) ? " / " + oncePayData.getBmNdocMk() : ""), fontCh12, 0, LEFT); // 補件日期/註記
+            addColumn(table, 11, 1, "", fontCh12, 0, LEFT);
+
+            // ---
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 19, 1, "不給付日期/原因", fontCh12, 0, LEFT);
+            addColumn(table, 20, 1, "補收金額—已收金額", fontCh12, 0, LEFT);
+            addColumn(table, 19, 1, " ", fontCh12, 0, LEFT);
+            // ---
+
+            // 20101124 kiyomi - start
+            addEmptyRow(table, 1);
+
+            if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                // 換了頁就不再塞空白行了
+
+                deleteRow(table, 1);
+                document.add(table);
+                table = addHeader(caseData, false, earlyWarning);
+            }
+            else {
+                deleteRow(table, 1);
+            }
+            // 20101124 kiyomi - end
+            addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+            addColumn(table, 19, 1, StringUtils.defaultString(oncePayData.getBmNopDateString()) + ((StringUtils.isNotBlank(oncePayData.getBmNopMark())) ? " / " + oncePayData.getBmNopMark() : ""), fontCh12, 0, LEFT); // 不給付日期/原因
+            if (oncePayData.getBmAdjAmts() != null && oncePayData.getBmAdjAmts().compareTo(new BigDecimal(0)) != 0) {
+                addColumn(table, 10, 1, formatBigDecimalToInteger(oncePayData.getBmAdjAmts()), fontCh12, 0, LEFT); // 補收金額
+                addColumn(table, 1, 1, " ", fontCh12, 0, LEFT);
+            }
+            else {
+                addColumn(table, 11, 1, " ", fontCh12, 0, LEFT); // 補收金額
+            }
+            addColumn(table, 28, 1, " ", fontCh12, 0, LEFT);
+
+            // 最後一筆印完後空一行 (如果年金給付資料有資料再印)
+            if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getAnnuityPayList().size() > 0)) {
+                // 空白行
+
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    // 換了頁就不再塞空白行了
+
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+            }
+        } // ] ... end for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++)
+		
+	}
 
 }

@@ -1445,7 +1445,9 @@
                     A.BMEVBRTH = #evtBrDate:VARCHAR#
                 </isNotEmpty>
                 AND A.BMPAYKND = '3'
-                AND SUBSTR(A.BMAPNO,5,2) = '31'
+                <isNotEmpty prepend="AND" property="paytyp">
+	                AND SUBSTR(A.BMAPNO,5,2) = #paytyp:VARCHAR#
+                </isNotEmpty>
             </isParameterPresent>
         </dynamic>
         Order by A.BMAPDTE, A.BMAPNO

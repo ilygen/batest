@@ -3,6 +3,7 @@ package tw.gov.bli.ba.dao;
 import java.util.List;
 
 import tw.gov.bli.ba.domain.Bebmsa;
+import tw.gov.bli.common.annotation.DaoFieldList;
 
 /**
  * DAO for 現金給付參考檔 (<code>BEBMSA</code>) <br>
@@ -166,15 +167,6 @@ public interface BebmsaDao {
     public List<Bebmsa> getSurvivorReviewRpt01FamDiePayListBy(String evtIdnNo, String evtBrDate);
     
     /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 一次給付資料 for 勞保失能年金給付受理編審清單
-     * 
-     * @param evtIdnNo 事故者身分證號
-     * @param evtBrDate 事故者出生日期
-     * @return
-     */
-    public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate);
-    
-    /**
      * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請農保殘廢給付記錄 for 勞保失能年金給付受理編審清單
      * 
      * @param evtIdnNo 事故者身分證號
@@ -255,6 +247,16 @@ public interface BebmsaDao {
      * @param evtBrDate 事故者出生日期
      * @return 內含 <code>Bebmsa</code> 物件的 List
      */
-    public List<Bebmsa> selectDifferenceDetail(String evtIdnNo, String evtBrDate, String sBMPAYKND, String sBMAPNO);    
+    public List<Bebmsa> selectDifferenceDetail(String evtIdnNo, String evtBrDate, String sBMPAYKND, String sBMAPNO);
+
+	/**
+	 * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 一次給付資料 for 災保失能年金給付受理編審清單
+	 * 
+	 * @param evtIdnNo 事故者身分證號
+	 * @param evtBrDate 事故者出生日期
+	 * @param paytyp 給付種類
+	 * @return
+	 */
+	public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp);    
     
 }

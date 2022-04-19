@@ -198,6 +198,7 @@ public class SurvivorReviewRpt01Case implements Serializable {
     // [
         private List<SurvivorReviewRpt01OncePayDataCase> oncePayList; // 一次給付
         private List<SurvivorReviewRpt01AnnuityPayDataCase> annuityPayList; // 年金給付
+        private List<SurvivorReviewRpt01OncePayDataCaseBy9> oncePayBy9List; // 一次給付 災保
     // ]
 
     // 請領他類給付資料
@@ -1852,4 +1853,18 @@ public class SurvivorReviewRpt01Case implements Serializable {
         }
         return "";
     }
+
+	/**
+	 * @return the oncePayBy9List
+	 */
+	public List<SurvivorReviewRpt01OncePayDataCaseBy9> getOncePayBy9List() {
+		return oncePayBy9List;
+	}
+
+	/**
+	 * @param oncePayBy9List the oncePayBy9List to set
+	 */
+	public void setOncePayBy9List(List<SurvivorReviewRpt01OncePayDataCaseBy9> oncePayBy9List) {
+		this.oncePayBy9List = oncePayBy9List;
+	}
 }

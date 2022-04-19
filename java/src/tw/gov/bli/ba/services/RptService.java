@@ -1039,20 +1039,10 @@ public class RptService {
 
             caseData.setOncePayList(oncePayCaseList);
 
-            // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
-            List<DisableReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
-            List<Pbbmsa> farmPayDataList = pbbmsaDao.getDisableReviewRpt01FarmPayListBy(evtIdnNo, evtBrDate);
-            // 用關鍵欄位變更檔 去找資料
-            for (Kcaf kcaf : evtKcafList) {
-                farmPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FarmPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-            }
-            for (Pbbmsa farmPayData : farmPayDataList) {
-                DisableReviewRpt01OncePayDataCase farmPayDataCase = new DisableReviewRpt01OncePayDataCase();
-                BeanUtility.copyProperties(farmPayDataCase, farmPayData);
-                farmPayCaseList.add(farmPayDataCase);
-            }
-
-            caseData.setFarmPayList(farmPayCaseList);
+            caseData.setOncePayBy9List(this.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "31", evtKcafList));
+            caseData.setOncePay3TBy9List(this.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "3T", evtKcafList));
+            caseData.setOncePay3NBy9List(this.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "3N", evtKcafList));
+            caseData.setOncePay39By9List(this.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "39", evtKcafList));
 
             // 取得 年金給付資料
             List<DisableReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
@@ -1101,6 +1091,21 @@ public class RptService {
                 annuityPayCaseList.add(annuityPayDataCase);
             }
             caseData.setAnnuityPayList(annuityPayCaseList);
+
+            // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
+            List<DisableReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
+            List<Pbbmsa> farmPayDataList = pbbmsaDao.getDisableReviewRpt01FarmPayListBy(evtIdnNo, evtBrDate);
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+                farmPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FarmPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+            }
+            for (Pbbmsa farmPayData : farmPayDataList) {
+                DisableReviewRpt01OncePayDataCase farmPayDataCase = new DisableReviewRpt01OncePayDataCase();
+                BeanUtility.copyProperties(farmPayDataCase, farmPayData);
+                farmPayCaseList.add(farmPayDataCase);
+            }
+
+            caseData.setFarmPayList(farmPayCaseList);
 
             // 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
             List<DisableReviewRpt01NpPayDataCase> npDisPayCaseList = new ArrayList<DisableReviewRpt01NpPayDataCase>();
@@ -1614,7 +1619,24 @@ public class RptService {
         return caseList;
     }
 
-    /**
+    private List<DisableReviewRpt01OncePayDataCase> getDisableReviewRpt01OncePayDataCaseBy9(String evtIdnNo,
+			String evtBrDate, String paytyp, List<Kcaf> evtKcafList) {
+        List<DisableReviewRpt01OncePayDataCase> oncePayCaseBy9List = new ArrayList<DisableReviewRpt01OncePayDataCase>();
+        List<Bebmsa> oncePayDataBy9List = bebmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, paytyp);
+        // 用關鍵欄位變更檔 去找資料
+        for (Kcaf kcaf : evtKcafList) {
+        	oncePayDataBy9List.addAll(bebmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
+        }
+        for (Bebmsa oncePayData : oncePayDataBy9List) {
+        	DisableReviewRpt01OncePayDataCase oncePayDataCase = new DisableReviewRpt01OncePayDataCase();
+            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+            oncePayCaseBy9List.add(oncePayDataCase);
+        }
+
+		return oncePayCaseBy9List;
+	}
+
+	/**
      * 依傳入的條件取得 勞保遺屬年金給付受理編審清單 的資料
      * 
      * @param apNoBegin 受理編號 (起)
@@ -2241,6 +2263,19 @@ public class RptService {
                 oncePayCaseList.add(oncePayDataCase);
             }
             caseData.setOncePayList(oncePayCaseList);
+
+            List<SurvivorReviewRpt01OncePayDataCaseBy9> oncePayCaseBy9List = new ArrayList<SurvivorReviewRpt01OncePayDataCaseBy9>();
+            List<Bebmsa> oncePayDataBy9List = bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate());
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+            	oncePayDataBy9List.addAll(bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+            }
+            for (Bebmsa oncePayData : oncePayDataBy9List) {
+            	SurvivorReviewRpt01OncePayDataCaseBy9 oncePayDataCase = new SurvivorReviewRpt01OncePayDataCaseBy9();
+                BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+                oncePayCaseBy9List.add(oncePayDataCase);
+            }
+            caseData.setOncePayBy9List(oncePayCaseBy9List);
 
             // 取得 年金給付資料
             List<SurvivorReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<SurvivorReviewRpt01AnnuityPayDataCase>();

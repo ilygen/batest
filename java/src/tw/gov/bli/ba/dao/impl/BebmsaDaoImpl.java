@@ -324,20 +324,24 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
     }
 
     /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 一次給付資料 for 勞保失能年金給付受理編審清單
+     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 一次給付資料 for 災保失能年金給付受理編審清單
      * 
      * @param evtIdnNo 事故者身分證號
      * @param evtBrDate 事故者出生日期
+	 * @param paytyp 給付種類
      * @return
      */
-    @DaoFieldList("EVTIDNNO,EVTBRDATE")
-    public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate) {
+    @Override
+	@DaoFieldList("EVTIDNNO,EVTBRDATE,PAYTYP")
+    public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(paytyp))
+            map.put("paytyp", paytyp);
 
         return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01OncePayListBy", map);
     }
