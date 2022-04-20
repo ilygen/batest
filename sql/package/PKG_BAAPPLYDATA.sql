@@ -116,12 +116,20 @@ CREATE OR REPLACE PACKAGE BA.PKG_BAAPPLYDATA AUTHID DEFINER IS
         ,RECAMT      BADAPR.RECAMT%TYPE         -- 收回金額
         ,SUPAMT      BADAPR.SUPAMT%TYPE         -- 補發金額
         ,APLPAYMK    BADAPR.APLPAYMK%TYPE       -- 帳務註記
-        ,APLPAYDATE  BADAPR.APLPAYDATE%TYPE     -- 帳務日期
+        ,APLPAYDATE  BADAPR.APLPAYDATE%TYPE     -- 核付日期
         ,REMITMK     BADAPR.REMITMK%TYPE        -- 後續註記
         ,REMITDATE   BADAPR.REMITDATE%TYPE      -- 處理註記日期
         );
     TYPE ba_badapr_tab IS TABLE OF ba_badapr_rec;
 
+    TYPE ba_L_aplpay_rec IS RECORD(
+         APNO             BAAPPBASE.APNO%TYPE            -- 受理編號
+         ,APPDATE         BAAPPBASE.Appdate%type        -- 申請日期
+         ,APLPAYDATE      BADAPR.APLPAYDATE%TYPE        -- 核付日期
+    );
+    TYPE ba_L_aplpay_tab IS TABLE OF ba_L_aplpay_rec;
+    
+    
 FUNCTION ba_baappbase(
     p_idn   IN VARCHAR2
    ,p_brith IN VARCHAR2
@@ -133,6 +141,16 @@ FUNCTION ba_badapr(
    ,p_brith IN VARCHAR2
    ,p_name  IN VARCHAR2
 ) RETURN ba_badapr_tab PIPELINED;
+
+/*讀取老年年金首次核付日期
+  p_idn: 身分證號
+  p_brith: 生日(可空白)
+  p_name: 姓名(可空白)*/
+FUNCTION fn_get_aplpaydate(
+  p_idn   IN VARCHAR2,
+  p_brith IN VARCHAR2,
+  p_name  IN VARCHAR2
+) RETURN ba_L_aplpay_tab PIPELINED;
 
 END PKG_BAAPPLYDATA;
 /
@@ -327,6 +345,42 @@ BEGIN
     LOOP
         PIPE ROW(l_row);
     END LOOP;
+END;
+
+/*讀取老年年金首次核付日期
+  p_idn: 身分證號
+  p_brith: 生日(可空白)
+  p_name: 姓名(可空白)*/
+FUNCTION fn_get_aplpaydate(p_idn   IN VARCHAR2,
+                           p_brith IN VARCHAR2,
+                           p_name  IN VARCHAR2) RETURN ba_l_aplpay_tab
+  PIPELINED IS
+BEGIN
+  FOR ba_l_aplpay_rec IN (SELECT a.apno,
+                                 a.appdate,
+                                 (SELECT MIN(aplpaydate)
+                                    FROM badapr b
+                                   WHERE a.apno = b.apno
+                                     --AND a.seqno = b.seqno 當遺屬代領,不能卡受款人序
+                                     AND mtestmk = 'F'
+                                     AND aplpaymk = '3'
+                                     AND manchkmk = 'Y') aplpaydate
+                            FROM baappbase a
+                           WHERE evtidnno = p_idn
+                             AND (p_brith IS NULL OR a.evtbrdate = p_brith)
+                             AND (p_name IS NULL OR a.evtname = p_name)
+                             AND apno LIKE 'L%'
+                             AND casetyp IN ('2', '4')
+                             AND seqno = '0000'
+                             AND EXISTS (SELECT 1 --結案的案件不一定有核付過
+                                    FROM ba.badapr d
+                                   WHERE a.apno = d.apno
+                                     AND mtestmk = 'F'
+                                     AND aplpaymk = '3'
+                                     AND manchkmk = 'Y'))
+  LOOP
+    PIPE ROW(ba_l_aplpay_rec);
+  END LOOP;
 END;
 
 END PKG_BAAPPLYDATA;
