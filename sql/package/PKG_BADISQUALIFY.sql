@@ -10,16 +10,19 @@ CREATE OR REPLACE PACKAGE BA.PKG_BADISQUALIFY IS
 -- ============================================================================
 -- 全域變數
     TYPE R_RTN IS RECORD(
-        UBNO   BCPMA.UBNO%TYPE,
-        GVNAME BCBEN.GVNAME%TYPE,
-        GVBRTH BCBEN.GVBRTH%TYPE,
-        GVIDNO BCBEN.GVIDNO%TYPE,
-        EVTDTE BCPMA.EVTDTE%TYPE,
-        CHKDTE BCPMA.CHKDTE%TYPE,
-        APNO   BCPMA.APNO%TYPE,
-        RCKDTE BCPMA.RCKDTE%TYPE,
-        NDOCMK BCPMA.NDOCMK%TYPE,
-        BIGPG  BCPMA.BIGPG%TYPE
+        RESGTYPE BCRESG.RESGTYPE%TYPE,
+        UBNO     BCPMA.UBNO%TYPE,
+        GVNAME   BCBEN.GVNAME%TYPE,
+        GVBRTH   BCBEN.GVBRTH%TYPE,
+        GVIDNO   BCBEN.GVIDNO%TYPE,
+        EVTDTE   BCPMA.EVTDTE%TYPE,
+        CHKDTE   BCPMA.CHKDTE%TYPE,
+        APNO     BCPMA.APNO%TYPE,
+        RCKDTE   BCPMA.RCKDTE%TYPE,
+        NDOCMK   BCPMA.NDOCMK%TYPE,
+        BIGPG    BCPMA.BIGPG%TYPE,
+        RESGDTE  BCRESG.RESGDTE%TYPE,
+        SEQNO    BCRESG.SEQNO%TYPE
     );
     TYPE BC_RESG_TAB IS TABLE OF R_RTN;
 -- ============================================================================
@@ -47,7 +50,9 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BADISQUALIFY IS
     ) RETURN R_RTN IS
         SELECT * 
         FROM (
-            SELECT DECODE(SUBSTR(APNO, 1, 1), 'L', BAAPPBASE.LSUBNO, BAAPPBASE.APUBNO) UBNO,
+            SELECT 
+                   '' RESGTYPE,
+                   DECODE(SUBSTR(APNO, 1, 1), 'L', BAAPPBASE.LSUBNO, BAAPPBASE.APUBNO) UBNO,
                    BAAPPBASE.EVTNAME,
                    BAAPPBASE.EVTBRDATE,
                    BAAPPBASE.EVTIDNNO,
@@ -56,7 +61,9 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BADISQUALIFY IS
                    BAAPPBASE.APNO,
                    '' RCKDTE,
                    '' NDOCMK,
-                   TO_NUMBER(BAAPPBASE.ARCPG)
+                   TO_NUMBER(BAAPPBASE.ARCPG),
+                   '' RESGDTE,
+                   '' SEQNO
               FROM BAAPPBASE
              WHERE BAAPPBASE.CASEMK IS NULL
                AND BAAPPBASE.EVTIDNNO = p_idn
@@ -70,7 +77,9 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BADISQUALIFY IS
     ) RETURN R_RTN IS
         SELECT * 
         FROM (
-            SELECT DECODE(SUBSTR(APNO, 1, 1), 'L', BAAPPBASE.LSUBNO, BAAPPBASE.APUBNO) UBNO,
+            SELECT 
+                   BCRESG.RESGTYPE,
+                   DECODE(SUBSTR(APNO, 1, 1), 'L', BAAPPBASE.LSUBNO, BAAPPBASE.APUBNO) UBNO,
                    BAAPPBASE.EVTNAME,
                    BAAPPBASE.EVTBRDATE,
                    BAAPPBASE.EVTIDNNO,
@@ -79,7 +88,9 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BADISQUALIFY IS
                    BAAPPBASE.APNO,
                    '' RCKDTE,
                    '' NDOCMK,
-                   TO_NUMBER(BAAPPBASE.ARCPG)
+                   TO_NUMBER(BAAPPBASE.ARCPG),
+                   BCRESG.RESGDTE,
+                   BCRESG.SEQNO
               FROM BAAPPBASE
              INNER JOIN BCRESG
                 ON ((BCRESG.RESGTYPE = '1' AND BCRESG.RESGIDNO = BAAPPBASE.EVTIDNNO) OR
