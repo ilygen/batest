@@ -1,5 +1,4 @@
-Issue number:babaweb-15
-EXE_TYPE:sql
-ISDEPLOY:true
-CODE_SCAN:true
- 
+Issue number:
+EXE_TYPE:
+ISDEPLOY:
+CODE_SCAN:
