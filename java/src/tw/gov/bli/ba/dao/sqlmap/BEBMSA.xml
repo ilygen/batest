@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="BEBMSA">
 
     <typeAlias alias="Bebmsa" type="tw.gov.bli.ba.domain.Bebmsa" />
@@ -799,6 +799,9 @@
                     A.BMEVBRTH = #evtBrDate:VARCHAR#
                 </isNotEmpty>
                 AND A.BMPAYKND = '5'
+                <isNotEmpty prepend="AND" property="paytyp">
+                	SUBSTR(A.BMAPNO,5,2) = #paytyp:VARCHAR#
+                </isNotEmpty>
                 <!-- AND SUBSTR(A.BMAPNO,5,2) = '51'  -->
             </isParameterPresent>
         </dynamic>
@@ -1626,7 +1629,9 @@
                     A.BMEVBRTH = #evtBrDate:VARCHAR#
                 </isNotEmpty>
                 AND A.BMPAYKND = '5'
-                AND SUBSTR(A.BMAPNO,5,2) = '51'
+                <isNotEmpty prepend="AND" property="paytyp">
+                	SUBSTR(A.BMAPNO,5,2) = #paytyp:VARCHAR#
+                </isNotEmpty>
             </isParameterPresent>
         </dynamic>
         Order by A.BMAPDTE, A.BMAPNO

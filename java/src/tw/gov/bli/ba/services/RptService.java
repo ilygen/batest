@@ -141,6 +141,10 @@ import tw.gov.bli.common.domain.UserInfo;
  * 
  * @author Goston
  */
+/**
+ * @author kn0561
+ *
+ */
 public class RptService {
     private static Log log = LogFactory.getLog(RptService.class);
 
@@ -396,46 +400,14 @@ public class RptService {
 
             // 取得 請領同類給付資料
             // [
-            
-            OldAgeReviewSameKind sameKind = new OldAgeReviewSameKind();
-            
-            // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-            caseData.setOncePayList(sameKind.getOldAgeReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 年金給付資料
-            caseData.setAnnuityPayList(sameKind.getOldAgeReviewRpt01AnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+	        OldAgeReviewSameKind sameKind = new OldAgeReviewSameKind();
+	        sameKind.execute(caseData, evtData, evtIdnNo, evtBrDate, apNo, evtKcafList);
             // ]
 
             // 取得 請領他類給付資料
             // [
-            OldAgeReviewOtherKind otherKind = new OldAgeReviewOtherKind();
-            
-            // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-            caseData.setDisablePayList(otherKind.getOldAgeReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
-            caseData.setDisableAnnuityPayList(otherKind.getOldAgeReviewRpt01DisableAnnuityPayListBy(apNo, evtIdnNo));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-            caseData.setDiePayList(otherKind.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料 災保
-            caseData.setDiePayBy9List(otherKind.getOldAgeReviewRpt01DiePayBy9ListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
-            caseData.setSurvivorAnnuityPayList(otherKind.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo));
-
-            // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
-            caseData.setSurvivorAnnuityPayBy9List(otherKind.getOldAgeReviewRpt01SurvivorAnnuityPayBy9ListBy(evtIdnNo));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-            caseData.setInjuryPayList(otherKind.getOldAgeReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, evtJobDate, evtKcafList));
-
-            // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-            caseData.setJoblessPayList(otherKind.getOldAgeReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-            caseData.setNpPayList(otherKind.getOldAgeReviewRpt01NpPayListBy(evtData.getEvtIds()));            
+	        OldAgeReviewOtherKind otherKind = new OldAgeReviewOtherKind();
+	        otherKind.execute(caseData, evtData, evtIdnNo, evtBrDate, evtJobDate, apNo, evtKcafList);
             // ]
 
             // 取得 給付核定檔 (BADAPR) 事故者於受款人給付資料的資料
@@ -570,6 +542,457 @@ public class RptService {
         return caseList;
 
     }
+
+	class OldAgeReviewSameKind {
+		
+		public OldAgeReviewSameKind() {
+			super();
+			
+		}
+		
+		/**
+		 * 
+			// 勞保老年給付	
+			// 勞保補償金	
+			// 勞保老年差額金
+			// 勞保老年年金
+		 * 
+		 * @param caseData
+		 * @param evtData
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(OldAgeReviewRpt01Case caseData, Baappbase evtData, String evtIdnNo, String evtBrDate,
+				String apNo, List<Kcaf> evtKcafList) {
+	        
+			// 勞保老年給付	
+			// 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+			caseData.setOncePayList(this.getOldAgeReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 勞保補償金
+			
+			// 勞保老年差額金
+			
+			// 勞保老年年金
+	        // 取得 年金給付資料
+	        caseData.setAnnuityPayList(this.getOldAgeReviewRpt01AnnuityPays(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+			
+		}
+		
+	    /**
+	     * 取得 年金給付資料
+	     * 
+	     * @param apNo
+	     * @param evtIdnNo
+	     * @param evtBrDate
+	     * @param evtKcafList
+	     * @return
+	     */
+	    public List<OldAgeReviewRpt01AnnuityPayDataCase> getOldAgeReviewRpt01AnnuityPays(String apNo, String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 年金給付資料
+	    	
+	        List<Baappbase> annuityPayDataList = baappbaseDao.getOldAgeReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            annuityPayDataList.addAll(baappbaseDao.getOldAgeReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        }
+	        
+	        List<OldAgeReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<OldAgeReviewRpt01AnnuityPayDataCase>();
+	        for (Baappbase annuityPayData : annuityPayDataList) {
+	            OldAgeReviewRpt01AnnuityPayDataCase annuityPayDataCase = new OldAgeReviewRpt01AnnuityPayDataCase();
+	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
+
+	            Badapr annuityPayBadaprData = badaprDao.getOldAgeReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm(), annuityPayData.getPayYm());
+	            if (annuityPayBadaprData != null) {
+	                annuityPayDataCase.setChkDate(annuityPayBadaprData.getChkDate()); // 核定日期
+	                annuityPayDataCase.setAplpayDate(annuityPayBadaprData.getAplpayDate()); // 帳務日期
+	                annuityPayDataCase.setRecAmt(annuityPayBadaprData.getRecAmt()); // 收回金額
+	                annuityPayDataCase.setSupAmt(annuityPayBadaprData.getSupAmt()); // 補發金額
+	                
+	            }
+
+	            Maadmrec annuityPayMaadmrecData = maadmrecDao.getOldAgeReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
+	            if (annuityPayMaadmrecData != null) {
+	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 承辦 / 創收日期
+	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記一
+	                
+	            }
+
+	            annuityPayCaseList.add(annuityPayDataCase);
+	            
+	        }
+	        
+			return annuityPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01OncePayDataCase> getOldAgeReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+
+	    	List<Pbbmsa> oncePayDataList = pbbmsaDao.getOldAgeReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oncePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<OldAgeReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<OldAgeReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa oncePayData : oncePayDataList) {
+	            OldAgeReviewRpt01OncePayDataCase oncePayDataCase = new OldAgeReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+	            oncePayCaseList.add(oncePayDataCase);
+	            
+	        }
+
+			return oncePayCaseList;
+			
+		}
+	}
+
+
+	class OldAgeReviewOtherKind {
+		
+		public OldAgeReviewOtherKind() {
+			super();
+			
+		}
+
+		/**
+		 * 
+			// 勞保傷病給付
+			// 勞保失能給付
+			// 勞保失能年金
+			// 勞保本人死亡給付	
+			// 災保本人死亡給付
+			// 勞保家屬死亡給付	
+			// 勞保失蹤津貼給付
+			// 農保喪葬津貼
+			// 勞保遺屬年金	
+			// 災保遺屬年金
+			// 就保失業給付
+			// 國保老年年金	
+			// 國保身障年金	
+			// 國保喪葬給付	
+			// 國保遺屬年金
+		 * 
+		 * 
+		 * @param caseData
+		 * @param evtData
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtJobDate
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(OldAgeReviewRpt01Case caseData, Baappbase evtData, String evtIdnNo, String evtBrDate,
+				String evtJobDate, String apNo, List<Kcaf> evtKcafList) {
+            // 取得 請領他類給付資料
+	        
+			// 勞保傷病給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+	        caseData.setInjuryPayList(this.getInjuryPayListBy(evtIdnNo, evtBrDate, evtJobDate, evtKcafList));
+			
+			// 勞保失能給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+	        caseData.setDisablePayList(this.getDisablePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 勞保失能年金
+	        // 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
+	        caseData.setDisableAnnuityPayList(this.getDisableAnnuityPayListBy(apNo, evtIdnNo));
+			
+			// 勞保本人死亡給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+	        caseData.setDiePayList(this.getDiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 災保本人死亡給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料 災保
+	        caseData.setDisasterInsuranceDiePayList(this.getDisasterInsuranceReviewRpt01DiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 勞保家屬死亡給付
+	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
+	        caseData.setSurvivorAnnuityPayList(this.getSurvivorAnnuityPayListBy(evtIdnNo));
+			
+			// 勞保失蹤津貼給付
+			
+			// 農保喪葬津貼
+			
+			// 勞保遺屬年金
+			
+			// 災保遺屬年金
+	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
+	        caseData.setDisasterInsuranceSurvivorAnnuityPayList(this.getDisasterInsuranceReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo));
+			
+			// 就保失業給付
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+	        caseData.setJoblessPayList(this.getJoblessPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 國保老年年金
+			
+			// 國保身障年金
+			
+			// 國保喪葬給付
+			
+			// 國保遺屬年金
+			
+
+
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料 20220421 excel 無此項目
+	        // caseData.setNpPayList(this.getOldAgeReviewRpt01NpPayListBy(evtData.getEvtIds()));            
+			
+		}
+
+		/**
+		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01NpPayDataCase> getOldAgeReviewRpt01NpPayListBy(String evtIds) {
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+	        List<Nbappbase> npPayDataList = nbappbaseDao.getOldAgeReviewRpt01NpPayListBy(evtIds);
+	        
+	        List<OldAgeReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<OldAgeReviewRpt01NpPayDataCase>();
+	        for (Nbappbase npPayData : npPayDataList) {
+	            OldAgeReviewRpt01NpPayDataCase npPayDataCase = new OldAgeReviewRpt01NpPayDataCase();
+	            BeanUtility.copyProperties(npPayDataCase, npPayData);
+
+	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+	            Nbdapr npPayDetailData = nbdaprDao.getOldAgeReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
+	            if (npPayDetailData != null) {
+	                npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
+	                npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
+	                
+	            }
+
+	            npPayCaseList.add(npPayDataCase);
+	            
+	        }
+	        
+			return npPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01JoblessPayDataCase> getJoblessPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+
+	    	List<Biref> joblessPayDataList = birefDao.getOldAgeReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            joblessPayDataList.addAll(birefDao.getOldAgeReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<OldAgeReviewRpt01JoblessPayDataCase>();
+	        for (Biref joblessPayData : joblessPayDataList) {
+	            OldAgeReviewRpt01JoblessPayDataCase joblessPayDataCase = new OldAgeReviewRpt01JoblessPayDataCase();
+	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
+	            joblessPayCaseList.add(joblessPayDataCase);
+	            
+	        }
+	        
+			return joblessPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtJobDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01InjuryPayDataCase> getInjuryPayListBy(String evtIdnNo,
+				String evtBrDate, String evtJobDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+	    	List<Pbbmsa> injuryPayDataList = pbbmsaDao.getOldAgeReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, evtJobDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            injuryPayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01InjuryPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), evtJobDate));
+	            
+	        }
+	        
+	        List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<OldAgeReviewRpt01InjuryPayDataCase>();
+	        for (Pbbmsa injuryPayData : injuryPayDataList) {
+	            OldAgeReviewRpt01InjuryPayDataCase injuryPayDataCase = new OldAgeReviewRpt01InjuryPayDataCase();
+	            BeanUtility.copyProperties(injuryPayDataCase, injuryPayData);
+	            injuryPayCaseList.add(injuryPayDataCase);
+	            
+	        }
+	        
+			return injuryPayCaseList;
+		}
+
+		/**
+		 * 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
+		 * 
+		 * @param evtIdnNo
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> getDisasterInsuranceReviewRpt01SurvivorAnnuityPayListBy(
+				String evtIdnNo) {
+	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
+	        List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase>();
+	        List<Bbpma> survivorAnnuityPayDataList = bbpmaDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
+	        for (Bbpma survivorAnnuityPayData : survivorAnnuityPayDataList) {
+	            DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase survivorAnnuityPayCase = new DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase();
+	            BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
+	            survivorAnnuityPayCaseList.add(survivorAnnuityPayCase);
+	        }
+
+			return survivorAnnuityPayCaseList;
+		}
+
+		/**
+		 * 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
+		 * 
+		 * @param evtIdnNo
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> getSurvivorAnnuityPayListBy(
+				String evtIdnNo) {
+	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
+	        List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCase>();
+	        List<Baappbase> survivorAnnuityPayDataList = baappbaseDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
+
+	        for (Baappbase survivorAnnuityPayData : survivorAnnuityPayDataList) {
+	            OldAgeReviewRpt01SurvivorAnnuityPayDataCase survivorAnnuityPayCase = new OldAgeReviewRpt01SurvivorAnnuityPayDataCase();
+	            BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
+	            survivorAnnuityPayCaseList.add(survivorAnnuityPayCase);
+	        }
+
+			return survivorAnnuityPayCaseList;
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01DiePayDataCase> getDisasterInsuranceReviewRpt01DiePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+	        List<DisasterInsuranceReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<DisasterInsuranceReviewRpt01DiePayDataCase>();
+	        List<Bebmsa> diePayDataList = bebmsaDao.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
+	        
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	diePayDataList.addAll(bebmsaDao.getOldAgeReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        }
+	        
+	        for (Bebmsa diePayData : diePayDataList) {
+	            DisasterInsuranceReviewRpt01DiePayDataCase diePayDataCase = new DisasterInsuranceReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(diePayDataCase, diePayData);
+	            diePayCaseList.add(diePayDataCase);
+	        }
+	        
+			return diePayCaseList;
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01DiePayDataCase> getDiePayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+	        List<OldAgeReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<OldAgeReviewRpt01DiePayDataCase>();
+	        List<Pbbmsa> diePayDataList = pbbmsaDao.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
+	        
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            diePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        }
+	        
+	        for (Pbbmsa diePayData : diePayDataList) {
+	            OldAgeReviewRpt01DiePayDataCase diePayDataCase = new OldAgeReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(diePayDataCase, diePayData);
+	            diePayCaseList.add(diePayDataCase);
+	        }
+	        
+			return diePayCaseList;
+		}
+
+		/**
+		 * 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01DisableAnnuityPayDataCase> getDisableAnnuityPayListBy(
+	    		String apNo, String evtIdnNo) {
+	    	
+	        // 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
+	        List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01DisableAnnuityPayDataCase>();
+	        List<Baappbase> disableAnnuityPayDataList = baappbaseDao.getOldAgeReviewRpt01DisableAnnuityPayListBy(apNo, evtIdnNo);
+	        
+	        for (Baappbase disableAnnuityPayData : disableAnnuityPayDataList) {
+	            OldAgeReviewRpt01DisableAnnuityPayDataCase disableAnnuityPayCase = new OldAgeReviewRpt01DisableAnnuityPayDataCase();
+	            BeanUtility.copyProperties(disableAnnuityPayCase, disableAnnuityPayData);
+	            disableAnnuityPayCaseList.add(disableAnnuityPayCase);
+	        }
+
+			return disableAnnuityPayCaseList;
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<OldAgeReviewRpt01DisablePayDataCase> getDisablePayListBy(String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+	        List<OldAgeReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<OldAgeReviewRpt01DisablePayDataCase>();
+	        List<Pbbmsa> disablePayDataList = pbbmsaDao.getOldAgeReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate);
+	        
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            disablePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01DisablePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        }
+	        
+	        for (Pbbmsa disablePayData : disablePayDataList) {
+	            OldAgeReviewRpt01DisablePayDataCase disablePayDataCase = new OldAgeReviewRpt01DisablePayDataCase();
+	            BeanUtility.copyProperties(disablePayDataCase, disablePayData);
+	            disablePayCaseList.add(disablePayDataCase);
+	        }
+	        
+			return disablePayCaseList;
+		}
+		
+	}
 
 
 	/**
@@ -895,70 +1318,14 @@ public class RptService {
 
             // 取得 請領同類給付資料
             // [
-
-            DisableReviewSameKind sameKind = new DisableReviewSameKind();
-            
-            // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-            caseData.setOncePayList(sameKind.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            caseData.setOncePayBy9List(sameKind.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "31", evtKcafList));
-            caseData.setOncePay3TBy9List(sameKind.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "3T", evtKcafList));
-            caseData.setOncePay3NBy9List(sameKind.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "3N", evtKcafList));
-            caseData.setOncePay39By9List(sameKind.getDisableReviewRpt01OncePayDataCaseBy9(evtIdnNo, evtBrDate, "39", evtKcafList));
-
-            // 取得 年金給付資料
-            caseData.setAnnuityPayList(sameKind.getDisableReviewRpt01AnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
-            caseData.setFarmPayList(sameKind.getDisableReviewRpt01FarmPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            caseData.setNbDisPayList(sameKind.getDisableReviewRpt01NpDisPayListBy(evtData.getEvtIds()));
-
-            // 取得 申請國保給付記錄資料
-            caseData.setNbPayList(sameKind.getDisableReviewRpt01NbPayListBy(evtData.getEvtIds(), evtKcafList));
+	        DisableReviewSameKind sameKind = new DisableReviewSameKind();
+	        sameKind.execute(caseData, evtData, evtIdnNo, evtBrDate, apNo, evtKcafList);
             // ]
 
             // 取得 請領他類給付資料
             // [
-            
-            DisableReviewOtherKind otherKind = new DisableReviewOtherKind();
-            
-            // 取得 老年年金給付記錄
-            caseData.setOldAgePayList(otherKind.getDisableReviewRpt01OldAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
-
-            // 取得遺屬年金給付記錄
-            caseData.setSurvivorPayList(otherKind.getDisableReviewRpt01SurvivorPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
-
-            // // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-            // caseData.setDisablePayList(drsok.getDisableReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-            
-            // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-            caseData.setDiePayList(otherKind.getDisableReviewRpt01DiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-            caseData.setDisPayList(otherKind.getDisableReviewRpt01DisPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-            caseData.setFamDiePayList(otherKind.getDisableReviewRpt01FamDiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-            caseData.setInjuryPayList(otherKind.getDisableReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-            caseData.setHosPayList(otherKind.selectDisableReviewRpt01HosPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
-            caseData.setOldPayList(otherKind.getDisableReviewRpt01OldPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-            caseData.setJoblessPayList(otherKind.getDisableReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
-            caseData.setVocationalTrainingLivingAllowanceList(otherKind.getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-            caseData.setNpPayList(otherKind.getDisableReviewRpt01NpPayListBy(evtData.getEvtIds()));
-            
+	        DisableReviewOtherKind otherKind = new DisableReviewOtherKind();
+	        otherKind.execute(caseData, evtData, evtIdnNo, evtBrDate, apNo, evtKcafList);
             // ]
 
             // 取得 給付核定檔 (BADAPR) 事故者於受款人給付資料的資料
@@ -1201,6 +1568,969 @@ public class RptService {
         return caseList;
     }
 
+	class DisableReviewSameKind {
+		
+		public DisableReviewSameKind() {
+			super();
+		}
+		
+		/**
+		 * 
+			// 勞保失能給付
+			// 災保失能給付
+			// 退保後職業病失能津貼
+			// 未加保失能補助
+			// 勞保失能差額金
+			// 災保失能差額金
+			// 勞保失能年金
+			// 災保失能年金
+			// 災保失能照護補助
+			// 農保殘廢給付
+			// 國保身障年金
+			// 公保失能給付
+			// 軍保身心障礙給付
+		 * 
+		 * @param caseData
+		 * @param evtData
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(DisableReviewRpt01Case caseData, Baappbase evtData, String evtIdnNo,
+				String evtBrDate, String apNo, List<Kcaf> evtKcafList) {
+	        
+			// 勞保失能給付
+	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+	        caseData.setOncePayList(this.getOncePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 災保失能給付
+	        caseData.setDisasterInsuranceOncePayList(this.getDisasterInsuranceReviewRpt01OncePayDataCase(evtIdnNo, evtBrDate, "31", evtKcafList));
+			
+			// 退保後職業病失能津貼
+	        caseData.setDisasterInsuranceOncePay3TList(this.getDisasterInsuranceReviewRpt01OncePayDataCase(evtIdnNo, evtBrDate, "3T", evtKcafList));
+			
+			// 未加保失能補助
+	        caseData.setDisasterInsuranceOncePay3NList(this.getDisasterInsuranceReviewRpt01OncePayDataCase(evtIdnNo, evtBrDate, "3N", evtKcafList));
+			
+			// 勞保失能差額金
+			
+			// 災保失能差額金
+	        caseData.setDisasterInsuranceOncePay39List(this.getDisasterInsuranceReviewRpt01OncePayDataCase(evtIdnNo, evtBrDate, "39", evtKcafList));
+			
+			// 勞保失能年金
+	        // 取得 年金給付資料
+	        caseData.setAnnuityPayList(this.getAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+			
+			// 災保失能年金
+	        // TODO
+			// ???
+			
+			// 災保失能照護補助
+	        // TODO
+			// ???
+			
+			// 農保殘廢給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
+	        caseData.setFarmPayList(this.getFarmPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 國保身障年金
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
+	        caseData.setNbDisPayList(this.getNpDisPayListBy(evtData.getEvtIds()));
+			
+			// 公保失能給付
+			
+			// 軍保身心障礙給付
+			
+	        // 取得 申請國保給付記錄資料 20220421 excel 無此項目
+	        // caseData.setNbPayList(this.getDisableReviewRpt01NbPayListBy(evtData.getEvtIds(), evtKcafList));
+			
+		}
+
+		/**
+		 * 取得 申請國保給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01AnnuityPayDataCase> getDisableReviewRpt01NbPayListBy(String evtIds,
+				List<Kcaf> evtKcafList) {
+	        // 取得 申請國保給付記錄資料
+	    	
+	        List<Baappbase> nbPayDataList = baappbaseDao.getDisableReviewRpt01NbPayListBy(evtIds);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            nbPayDataList.addAll(baappbaseDao.getDisableReviewRpt01NbPayListBy(kcaf.getBIdn()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01AnnuityPayDataCase> nbPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
+	        for (Baappbase nbPayData : nbPayDataList) {
+	            DisableReviewRpt01AnnuityPayDataCase nbPayDataCase = new DisableReviewRpt01AnnuityPayDataCase();
+	            BeanUtility.copyProperties(nbPayDataCase, nbPayDataList);
+	
+	            Badapr nbPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(nbPayData.getApNo(), nbPayData.getIssuYm(), nbPayData.getPayYm());
+	            if (nbPayBadaprData != null) {
+	                nbPayDataCase.setChkDate(nbPayBadaprData.getChkDate()); // 核定日期
+	                nbPayDataCase.setAplpayDate(nbPayBadaprData.getAplpayDate()); // 核付日期
+	                nbPayDataCase.setRecAmt(nbPayBadaprData.getRecAmt()); // 收回金額
+	                nbPayDataCase.setSupAmt(nbPayBadaprData.getSupAmt()); // 補發金額
+	                
+	            }
+	
+	            nbPayCaseList.add(nbPayDataCase);
+	            
+	        }
+	        
+			return nbPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @return
+		 */
+		public List<DisableReviewRpt01NpPayDataCase> getNpDisPayListBy(String evtIds) {
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
+	        
+	    	List<Nbappbase> npDisPayDataList = nbappbaseDao.getDisableReviewRpt01NpDisPayListBy(evtIds);
+	        
+	        List<DisableReviewRpt01NpPayDataCase> npDisPayCaseList = new ArrayList<DisableReviewRpt01NpPayDataCase>();
+	        for (Nbappbase npDisPayData : npDisPayDataList) {
+	            DisableReviewRpt01NpPayDataCase npDisPayDataCase = new DisableReviewRpt01NpPayDataCase();
+	            BeanUtility.copyProperties(npDisPayDataCase, npDisPayData);
+	
+	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+	            Nbdapr npDisPayDetailData = nbdaprDao.getDisableReviewRpt01NpPayDetailDataBy(npDisPayData.getApNo(), npDisPayData.getIssuYm(), npDisPayData.getPayYm());
+	            if (npDisPayDetailData != null) {
+	                npDisPayDataCase.setChkDt(npDisPayDetailData.getChkDt()); // 核定日期
+	                npDisPayDataCase.setAplPayDate(npDisPayDetailData.getAplPayDate()); // 帳務日期
+	                
+	            }
+	
+	            npDisPayCaseList.add(npDisPayDataCase);
+	            
+	        }
+	
+	        return npDisPayCaseList;
+	        
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01OncePayDataCase> getFarmPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
+	        
+	    	List<Pbbmsa> farmPayDataList = pbbmsaDao.getDisableReviewRpt01FarmPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	farmPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FarmPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa farmPayData : farmPayDataList) {
+	            DisasterInsuranceReviewRpt01OncePayDataCase farmPayDataCase = new DisasterInsuranceReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(farmPayDataCase, farmPayData);
+	            farmPayCaseList.add(farmPayDataCase);
+	            
+	        }
+	
+			return farmPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 年金給付資料
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01AnnuityPayDataCase> getAnnuityPayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 年金給付資料
+	        List<DisableReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
+	        List<Baappbase> annuityPayDataList = baappbaseDao.getDisableReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            annuityPayDataList.addAll(baappbaseDao.getDisableReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        }
+	        for (Baappbase annuityPayData : annuityPayDataList) {
+	            DisableReviewRpt01AnnuityPayDataCase annuityPayDataCase = new DisableReviewRpt01AnnuityPayDataCase();
+	
+	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
+	
+	            Baappexpand baappexpandData = baappexpandDao.getDisabledReviewRpt01AnnuityPayList(annuityPayData.getApNo());
+	            if (baappexpandData != null) {
+	                annuityPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
+	                annuityPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
+	                annuityPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
+	                annuityPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
+	                annuityPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
+	                annuityPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
+	                annuityPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
+	                annuityPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
+	                annuityPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
+	                annuityPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
+	                annuityPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
+	                annuityPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
+	                annuityPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
+	                annuityPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
+	            }
+	
+	            Badapr annuityPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm(), annuityPayData.getPayYm());
+	            if (annuityPayBadaprData != null) {
+	                annuityPayDataCase.setChkDate(annuityPayBadaprData.getChkDate()); // 核定日期
+	                annuityPayDataCase.setAplpayDate(annuityPayBadaprData.getAplpayDate()); // 核付日期
+	                annuityPayDataCase.setRecAmt(annuityPayBadaprData.getRecAmt()); // 收回金額
+	                annuityPayDataCase.setSupAmt(annuityPayBadaprData.getSupAmt()); // 補發金額
+	            }
+	
+	            Maadmrec annuityPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
+	            if (annuityPayMaadmrecData != null) {
+	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
+	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
+	            }
+	
+	            annuityPayCaseList.add(annuityPayDataCase);
+	        }
+	        
+			return annuityPayCaseList;
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01OncePayDataCase> getOncePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+	        
+	    	List<Pbbmsa> oncePayDataList = pbbmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oncePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa oncePayData : oncePayDataList) {
+	        	DisableReviewRpt01OncePayDataCase oncePayDataCase = new DisableReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+	            oncePayCaseList.add(oncePayDataCase);
+	            
+	        }
+	
+			return oncePayCaseList;
+			
+		}
+	
+		public List<DisasterInsuranceReviewRpt01OncePayDataCase> getDisasterInsuranceReviewRpt01OncePayDataCase(String evtIdnNo,
+				String evtBrDate, String paytyp, List<Kcaf> evtKcafList) {
+	        List<DisasterInsuranceReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<DisasterInsuranceReviewRpt01OncePayDataCase>();
+	        List<Bebmsa> oncePayDataList = bebmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, paytyp);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	oncePayDataList.addAll(bebmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
+	        }
+	        for (Bebmsa oncePayData : oncePayDataList) {
+	        	DisasterInsuranceReviewRpt01OncePayDataCase oncePayDataCase = new DisasterInsuranceReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+	            oncePayCaseList.add(oncePayDataCase);
+	        }
+	
+			return oncePayCaseList;
+		}
+	
+	}
+
+	class DisableReviewOtherKind {
+	
+		public DisableReviewOtherKind() {
+			super();
+		}
+		
+		/**
+		 * 
+			// 職災住院醫療給付
+			// 勞保傷病給付
+			// 災保傷病給付
+			// 莫拉克傷病給付
+			// 傷病照護補助
+			// 勞保老年給付
+			// 勞保補償金
+			// 勞保老年差額金
+			// 勞保本人死亡給付
+			// 災保本人死亡給付
+			// 退保後職業病死亡津貼
+			// 未加保死亡補助
+			// 勞保家屬死亡給付
+			// 勞保失蹤津貼給付
+			// 災保失蹤津貼給付
+			// 農保喪葬津貼
+			// 就保失業給付
+			// 就保職訓津貼
+			// 就保育嬰津貼
+			// 勞保老年年金
+			// 勞保遺屬年金
+			// 災保遺屬年金
+			// 國保老年年金
+			// 國保喪葬給付
+			// 國保遺屬年金
+			// 公保養老年金給付
+			// 公保養老遺屬年金給付
+			// 公保死亡遺屬年金給付
+		 * 
+		 * 
+		 * @param caseData
+		 * @param evtData
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(DisableReviewRpt01Case caseData, Baappbase evtData, String evtIdnNo,
+				String evtBrDate, String apNo, List<Kcaf> evtKcafList) {
+
+			// 取得 請領他類給付資料
+
+			
+			// 職災住院醫療給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+	        caseData.setHosPayList(this.selectHosPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 勞保傷病給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+	        caseData.setInjuryPayList(this.getInjuryPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 災保傷病給付
+	        caseData.setDisasterInsuranceInjuryPayList(this.getDisasterInsuranceInjuryPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 莫拉克傷病給付
+			
+			// 傷病照護補助
+			
+			// 勞保老年給付
+	        // 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
+	        caseData.setOldPayList(this.getOldPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 勞保補償金
+			
+			// 勞保老年差額金
+			
+			// 勞保本人死亡給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+	        caseData.setDiePayList(this.getDiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 災保本人死亡給付
+	        caseData.setDisasterInsuranceDiePayList(this.getDisasterInsuranceDiePayListBy(evtIdnNo, evtBrDate, evtKcafList, "51"));
+			
+			// 退保後職業病死亡津貼
+	        caseData.setDisasterInsuranceDieForDiseaseDAfterQuitInsurancePayList(this.getDisasterInsuranceDiePayListBy(evtIdnNo, evtBrDate, evtKcafList, "5T"));
+	        
+			// 未加保死亡補助
+	        caseData.setDisasterInsuranceDieWithoutInsurancePayList(this.getDisasterInsuranceDiePayListBy(evtIdnNo, evtBrDate, evtKcafList, "5N"));
+			
+			// 勞保家屬死亡給付
+			
+			// 勞保失蹤津貼給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+	        caseData.setDisPayList(this.getDisPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 災保失蹤津貼給付
+	        caseData.setDisasterInsuranceLostPayList(this.getDisasterInsuranceDisPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 農保喪葬津貼
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
+	        caseData.setFamDiePayList(this.getFamDiePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 就保失業給付
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+	        caseData.setJoblessPayList(this.getJoblessPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 就保職訓津貼
+	        // 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
+	        caseData.setVocationalTrainingLivingAllowanceList(this.getVocationalTrainingLivingAllowanceListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+			// 就保育嬰津貼
+			
+			// 勞保老年年金
+	        // 取得 老年年金給付記錄
+	        caseData.setOldAgePayList(this.getOldAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+			
+			// 勞保遺屬年金
+	        // 取得遺屬年金給付記錄
+	        caseData.setSurvivorPayList(this.getSurvivorPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+			
+			// 災保遺屬年金
+	        // TODO
+			// ???
+			
+			// 國保老年年金
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+	        caseData.setNpPayList(this.getNpPayListBy(evtData.getEvtIds()));
+			
+			// 國保喪葬給付
+			
+			// 國保遺屬年金
+			
+			// 公保養老年金給付
+			
+			// 公保養老遺屬年金給付
+			
+			// 公保死亡遺屬年金給付
+			
+
+	        
+	        // // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+	        // caseData.setDisablePayList(this.getDisableReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+	        
+		}
+
+	    /**
+	     * 取得 老年年金給付記錄
+	     * 
+	     * @param apNo
+	     * @param evtIdnNo
+	     * @param evtBrDate
+	     * @param evtKcafList
+	     * @return
+	     */
+	    public List<DisableReviewRpt01OldAgePayDataCase> getOldAnnuityPayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+            // 取得 老年年金給付記錄
+            
+	    	List<Baappbase> oldAgePayDataList = baappbaseDao.getDisableReviewRpt01OldPayListBy(apNo, evtIdnNo, evtBrDate);
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+                oldAgePayDataList.addAll(baappbaseDao.getDisableReviewRpt01OldPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+                
+            }
+            
+            List<DisableReviewRpt01OldAgePayDataCase> oldAgePayCaseList = new ArrayList<DisableReviewRpt01OldAgePayDataCase>();
+            for (Baappbase oldPayData : oldAgePayDataList) {
+                DisableReviewRpt01OldAgePayDataCase oldPayDataCase = new DisableReviewRpt01OldAgePayDataCase();
+                BeanUtility.copyProperties(oldPayDataCase, oldPayData);
+
+                Badapr oldPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm(), oldPayData.getPayYm());
+                if (oldPayBadaprData != null) {
+                    oldPayDataCase.setChkDate(oldPayBadaprData.getChkDate()); // 核定日期
+                    oldPayDataCase.setAplpayDate(oldPayBadaprData.getAplpayDate()); // 核付日期
+                    oldPayDataCase.setRecAmt(oldPayBadaprData.getRecAmt()); // 收回金額
+                    oldPayDataCase.setSupAmt(oldPayBadaprData.getSupAmt()); // 補發金額
+                    
+                }
+
+                Maadmrec oldPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm());
+                if (oldPayMaadmrecData != null) {
+                    oldPayDataCase.setProdate(oldPayMaadmrecData.getProDate()); // 補件日期
+                    oldPayDataCase.setNdomk1(oldPayMaadmrecData.getNdomk1()); // 處理註記
+                    
+                }
+
+                oldAgePayCaseList.add(oldPayDataCase);
+                
+            }
+
+			return oldAgePayCaseList;
+		}
+
+		/**
+	     * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+	     * 
+	     * @param evtIdnNo
+	     * @param evtBrDate
+	     * @param evtKcafList
+	     * @return
+	     */
+	    public List<DisableReviewRpt01DisablePayDataCase> getDisableReviewRpt01DisablePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+			// 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
+	
+	    	List<Pbbmsa> disablePayDataList = pbbmsaDao.getDisableReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate);
+			// 用關鍵欄位變更檔 去找資料
+			for (Kcaf kcaf : evtKcafList) {
+	        	 disablePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DisablePayListBy(StringUtils.substring(kcaf.getBIdn(),0, 10), kcaf.getBBrDte()));
+	        	 
+	        }
+			
+			List<DisableReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<DisableReviewRpt01DisablePayDataCase>();
+	        for (Pbbmsa disablePayData : disablePayDataList) {
+		         DisableReviewRpt01DisablePayDataCase disablePayDataCase = new DisableReviewRpt01DisablePayDataCase();
+		         BeanUtility.copyProperties(disablePayDataCase, disablePayData);
+		         
+		         disablePayCaseList.add(disablePayDataCase);
+		         
+	        }
+	        
+			return disablePayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @return
+		 */
+		public List<DisableReviewRpt01NpPayDataCase> getNpPayListBy(String evtIds) {
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+	        
+	    	List<Nbappbase> npPayDataList = nbappbaseDao.getDisableReviewRpt01NpPayListBy(evtIds);
+	        
+	        List<DisableReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<DisableReviewRpt01NpPayDataCase>();
+	        for (Nbappbase npPayData : npPayDataList) {
+	            DisableReviewRpt01NpPayDataCase npPayDataCase = new DisableReviewRpt01NpPayDataCase();
+	            BeanUtility.copyProperties(npPayDataCase, npPayData);
+	
+	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+	            Nbdapr npPayDetailData = nbdaprDao.getDisableReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
+	            if (npPayDetailData != null) {
+	                npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
+	                npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
+	                
+	            }
+	
+	            npPayCaseList.add(npPayDataCase);
+	            
+	        }
+	        
+			return npPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01JoblessPayDataCase> getVocationalTrainingLivingAllowanceListBy(
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
+	
+	    	List<Biref> vocationalTrainingLivingAllowanceDataList = birefDao.getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            vocationalTrainingLivingAllowanceDataList.addAll(birefDao.getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01JoblessPayDataCase> vocationalTrainingLivingAllowanceList = new ArrayList<DisableReviewRpt01JoblessPayDataCase>();
+	        for (Biref vocationalTrainingLivingAllowanceData : vocationalTrainingLivingAllowanceDataList) {
+	            DisableReviewRpt01JoblessPayDataCase vocationalTrainingLivingAllowanceDataCase = new DisableReviewRpt01JoblessPayDataCase();
+	            BeanUtility.copyProperties(vocationalTrainingLivingAllowanceDataCase, vocationalTrainingLivingAllowanceData);
+	        
+	            vocationalTrainingLivingAllowanceList.add(vocationalTrainingLivingAllowanceDataCase);
+	            
+	        }
+	        
+			return vocationalTrainingLivingAllowanceList;
+			
+		}
+	
+		/**
+		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01JoblessPayDataCase> getJoblessPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+	    	
+	        List<Biref> joblessPayDataList = birefDao.getDisableReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            joblessPayDataList.addAll(birefDao.getDisableReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<DisableReviewRpt01JoblessPayDataCase>();
+	        for (Biref joblessPayData : joblessPayDataList) {
+	            DisableReviewRpt01JoblessPayDataCase joblessPayDataCase = new DisableReviewRpt01JoblessPayDataCase();
+	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
+	            
+	            joblessPayCaseList.add(joblessPayDataCase);
+	            
+	        }
+	        
+			return null;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01OldPayDataCase> getOldPayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
+	
+	    	List<Pbbmsa> oldPayDataList = pbbmsaDao.getDisableReviewRpt01OldPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oldPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01OldPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01OldPayDataCase> oldPayCaseList = new ArrayList<DisableReviewRpt01OldPayDataCase>();
+	        for (Pbbmsa oldPayData : oldPayDataList) {
+	            DisableReviewRpt01OldPayDataCase oldPayDataCase = new DisableReviewRpt01OldPayDataCase();
+	            BeanUtility.copyProperties(oldPayDataCase, oldPayData);
+	            oldPayCaseList.add(oldPayDataCase);
+	            
+	        }
+	        
+			return oldPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01OncePayDataCase> selectHosPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+	    	
+	        List<Pbbmsa> hosPayDataList = pbbmsaDao.selectDisableReviewRpt01HosPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            hosPayDataList.addAll(pbbmsaDao.selectDisableReviewRpt01HosPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa hosPayData : hosPayDataList) {
+	            DisasterInsuranceReviewRpt01OncePayDataCase hosPayDataCase = new DisasterInsuranceReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(hosPayDataCase, hosPayData);
+	            
+	            hosPayCaseList.add(hosPayDataCase);
+	            
+	        }
+	        
+			return hosPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01InjuryPayDataCase> getInjuryPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+	
+	    	List<Pbbmsa> injuryPayDataList = pbbmsaDao.getDisableReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            injuryPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01InjuryPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<DisableReviewRpt01InjuryPayDataCase>();
+	        for (Pbbmsa injuryPayData : injuryPayDataList) {
+	            DisableReviewRpt01InjuryPayDataCase injuryPayDataCase = new DisableReviewRpt01InjuryPayDataCase();
+	            BeanUtility.copyProperties(injuryPayDataCase, injuryPayData);
+	            injuryPayCaseList.add(injuryPayDataCase);
+	            
+	        }
+	        
+			return injuryPayCaseList;
+			
+		}
+	
+		/**
+		 * 
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01InjuryPayDataCase> getDisasterInsuranceInjuryPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (BEBMSA) 申請災保傷病給付記錄資料
+	
+	    	List<Bebmsa> injuryPayDataList = bebmsaDao.getDisableReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            injuryPayDataList.addAll(bebmsaDao.getDisableReviewRpt01InjuryPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01InjuryPayDataCase>();
+	        for (Bebmsa injuryPayData : injuryPayDataList) {
+	        	DisasterInsuranceReviewRpt01InjuryPayDataCase injuryPayDataCase = new DisasterInsuranceReviewRpt01InjuryPayDataCase();
+	            BeanUtility.copyProperties(injuryPayDataCase, injuryPayData);
+	            injuryPayCaseList.add(injuryPayDataCase);
+	            
+	        }
+	        
+			return injuryPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01DiePayDataCase> getFamDiePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
+	    	
+	        List<Pbbmsa> famDiePayDataList = pbbmsaDao.getDisableReviewRpt01FamDiePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	famDiePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FamDiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        	
+	        }
+	        
+	        List<DisableReviewRpt01DiePayDataCase> famDiePayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
+	        for (Pbbmsa famDiePayData : famDiePayDataList) {
+	            DisableReviewRpt01DiePayDataCase famDiePayDataCase = new DisableReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(famDiePayDataCase, famDiePayData);
+	            
+	            famDiePayCaseList.add(famDiePayDataCase);
+	            
+	        }
+	        
+			return famDiePayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01DiePayDataCase> getDisPayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+	
+	    	List<Pbbmsa> disPayDataList = pbbmsaDao.getDisableReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            disPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01DiePayDataCase> disPayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
+	        for (Pbbmsa disPayData : disPayDataList) {
+	            DisableReviewRpt01DiePayDataCase disPayDataCase = new DisableReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(disPayDataCase, disPayData);
+	            disPayCaseList.add(disPayDataCase);
+	            
+	        }
+	        
+			return disPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01DiePayDataCase> getDisasterInsuranceDisPayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料 災保
+	
+	    	List<Bebmsa> disPayDataList = bebmsaDao.getDisableReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            disPayDataList.addAll(bebmsaDao.getDisableReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01DiePayDataCase> disPayCaseList = new ArrayList<>();
+	        for (Bebmsa disPayData : disPayDataList) {
+	        	DisasterInsuranceReviewRpt01DiePayDataCase disPayDataCase = new DisasterInsuranceReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(disPayDataCase, disPayData);
+	            disPayCaseList.add(disPayDataCase);
+	            
+	        }
+	        
+			return disPayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01DiePayDataCase> getDiePayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
+	        
+	    	List<Pbbmsa> diePayDataList = pbbmsaDao.getDisableReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            diePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
+	        for (Pbbmsa diePayData : diePayDataList) {
+	            DisableReviewRpt01DiePayDataCase diePayDataCase = new DisableReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(diePayDataCase, diePayData);
+	            diePayCaseList.add(diePayDataCase);
+	            
+	        }
+	        
+			return diePayCaseList;
+			
+		}
+	
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料 災保
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisasterInsuranceReviewRpt01DiePayDataCase> getDisasterInsuranceDiePayListBy(String evtIdnNo, String evtBrDate,
+				List<Kcaf> evtKcafList, String paytype) {
+	        // 取得 現金給付參考檔 (BEBMSA) 申請死亡給付記錄資料 災保
+	        
+	    	List<Bebmsa> diePayDataList = bebmsaDao.getDisableReviewRpt01DiePayListBy(evtIdnNo, evtBrDate, paytype);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            diePayDataList.addAll(bebmsaDao.getDisableReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytype));
+	            
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<DisasterInsuranceReviewRpt01DiePayDataCase>();
+	        for (Bebmsa diePayData : diePayDataList) {
+	        	DisasterInsuranceReviewRpt01DiePayDataCase diePayDataCase = new DisasterInsuranceReviewRpt01DiePayDataCase();
+	            BeanUtility.copyProperties(diePayDataCase, diePayData);
+	            diePayCaseList.add(diePayDataCase);
+	            
+	        }
+	        
+			return diePayCaseList;
+			
+		}
+	
+		/**
+		 * 取得遺屬年金給付記錄
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<DisableReviewRpt01SurvivorPayDataCase> getSurvivorPayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得遺屬年金給付記錄
+	        
+	        List<Baappbase> survivorPayDataList = baappbaseDao.getDisableReviewRpt01SurvivorPayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            survivorPayDataList.addAll(baappbaseDao.getDisableReviewRpt01SurvivorPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<DisableReviewRpt01SurvivorPayDataCase> survivorPayCaseList = new ArrayList<DisableReviewRpt01SurvivorPayDataCase>();
+	        for (Baappbase survivorPayData : survivorPayDataList) {
+	            DisableReviewRpt01SurvivorPayDataCase survivorPayDataCase = new DisableReviewRpt01SurvivorPayDataCase();
+	            BeanUtility.copyProperties(survivorPayDataCase, survivorPayData);
+	
+	            Baappexpand baappexpandData = baappexpandDao.getDisabledReviewRpt01SurvivorPayList(survivorPayData.getApNo());
+	            if (baappexpandData != null) {
+	                survivorPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
+	                survivorPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
+	                survivorPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
+	                survivorPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
+	                survivorPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
+	                survivorPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
+	                survivorPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
+	                survivorPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
+	                survivorPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
+	                survivorPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
+	                survivorPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
+	                survivorPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
+	                survivorPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
+	                survivorPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
+	                
+	            }
+	
+	            Badapr survivorPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm(), survivorPayData.getPayYm());
+	            if (survivorPayBadaprData != null) {
+	                survivorPayDataCase.setChkDate(survivorPayBadaprData.getChkDate()); // 核定日期
+	                survivorPayDataCase.setAplpayDate(survivorPayBadaprData.getAplpayDate()); // 核付日期
+	                survivorPayDataCase.setRecAmt(survivorPayBadaprData.getRecAmt()); // 收回金額
+	                survivorPayDataCase.setSupAmt(survivorPayBadaprData.getSupAmt()); // 補發金額
+	                
+	            }
+	
+	            Maadmrec survivorPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm());
+	            if (survivorPayMaadmrecData != null) {
+	                survivorPayDataCase.setProdate(survivorPayMaadmrecData.getProDate()); // 補件日期
+	                survivorPayDataCase.setNdomk1(survivorPayMaadmrecData.getNdomk1()); // 處理註記
+	                
+	            }
+	
+	            survivorPayCaseList.add(survivorPayDataCase);
+	            
+	        }
+	        
+			return survivorPayCaseList;
+			
+		}
+	
+	}
+	
 
 	/**
      * 依傳入的條件取得 勞保遺屬年金給付受理編審清單 的資料
@@ -1813,63 +3143,15 @@ public class RptService {
             }
 
             // 取得 請領同類給付資料
-
             // [
-            
-            SurvirorReviewSameKind sameKind = new SurvirorReviewSameKind();
-            
-            // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-            caseData.setOncePayList(sameKind.selectSurvivorReviewRpt01OncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            caseData.setOncePayBy9List(sameKind.selectSurvivorReviewRpt01OncePayBy9ListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 年金給付資料
-            caseData.setAnnuityPayList(sameKind.selectSurvivorReviewRpt01AnnuityPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
+	        SurvirorReviewSameKind sameKind = new SurvirorReviewSameKind();
+	        sameKind.execute(caseData, apNo, evtKcafList);
             // ]
 
             // 取得 請領他類給付資料
-
             // [
-
-            SurvirorReviewOtherKind otherKind = new SurvirorReviewOtherKind();
-            
-            // 取得 老年年金給付記錄資料
-            caseData.setOldPayList(otherKind.selectSurvivorReviewRpt01OldPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 申請失能年金給付記錄
-            caseData.setDisablePayList(otherKind.selectSurvivorReviewRpt01DisablePayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
-            caseData.setOldAgePayList(otherKind.selectSurvivorReviewRpt01OldAgePayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
-            caseData.setDisPayList(otherKind.selectSurvivorReviewRpt01DisPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-            caseData.setHosPayList(otherKind.selectSurvivorReviewRpt01HosPayListBy(evtIdnNo, evtBrDate, evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-            caseData.setInjurySurvivorPayList(otherKind.selectSurvivorReviewRpt01InjuryPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), apNo, evtKcafList));
-
-            // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-            caseData.setJoblessPayList(otherKind.getDisableReviewRpt01JoblessPayList2By(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-            caseData.setDisappearPayList(otherKind.getSurvivorReviewRpt01DisappearPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-            caseData.setFamDiePayList(otherKind.getSurvivorReviewRpt01FamDiePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
-
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-            caseData.setNpPayList(otherKind.selectSurvivorReviewRpt01NpPayListBy(caseData.getEvtIds()));
-
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-            caseData.setNpSurivorDidePayList(otherKind.selectSurvivorReviewRpt01NpDidePayListByC(caseData.getEvtIds(), "C"));
-
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-            caseData.setNpSurivorPayList(otherKind.selectSurvivorReviewRpt01NpDidePayListByD(caseData.getEvtIds(), "D"));
-
+	        SurvirorReviewOtherKind otherKind = new SurvirorReviewOtherKind();
+	        otherKind.execute(caseData, evtIdnNo, evtBrDate, apNo, evtKcafList);
             // ]
 
             // 年金給付
@@ -1942,6 +3224,809 @@ public class RptService {
         return caseList;
     }
 
+	class SurvirorReviewSameKind {
+		
+		public SurvirorReviewSameKind() {
+			super();
+			
+		}
+
+		/**
+		 * 
+			// 災保遺屬年金
+			// 勞保遺屬年金
+			// 災保本人死亡給付
+			// 退保後職業病死亡津貼
+			// 未加保死亡補助	
+			// 勞保本人死亡給付
+			// 勞保家屬死亡給付
+			// 農保喪葬津貼
+			// 國保喪葬給付
+			// 國保遺屬年金
+			// 公保一次死亡給付
+			// 公保眷屬喪葬津貼
+			// 公保養老遺屬年金給付
+			// 公保死亡遺屬年金給付
+			// 軍保死亡給付
+			// 軍保眷屬喪葬津貼
+		 * 
+		 * @param caseData
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(SurvivorReviewRpt01Case caseData, String apNo, List<Kcaf> evtKcafList) {
+	        
+			// 災保遺屬年金
+	        // TODO
+			// ???
+			
+			// 勞保遺屬年金
+	        // 取得 年金給付資料
+	        caseData.setAnnuityPayList(this.selectAnnuityPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+			
+			// 災保本人死亡給付
+	        caseData.setDisasterInsuranceOncePayList(this.selectDisasterInsuranceReviewRpt01SurvivorOncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList, "51"));
+			
+			// 退保後職業病死亡津貼
+	        caseData.setDisasterInsuranceDieForDiseaseDAfterQuitInsurancePayList(this.selectDisasterInsuranceReviewRpt01SurvivorOncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList, "5T"));
+			
+			// 未加保死亡補助
+	        caseData.setDisasterInsuranceDieWithoutInsurancePayList(this.selectDisasterInsuranceReviewRpt01SurvivorOncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList, "5N"));
+			
+			// 勞保本人死亡給付
+			// 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+	        caseData.setOncePayList(this.selectOncePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+			
+			// 勞保家屬死亡給付
+			
+			// 農保喪葬津貼
+			
+			// 國保喪葬給付
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+	        caseData.setNpSurivorDidePayList(this.selectNpDidePayListByC(caseData.getEvtIds(), "C"));
+			
+			// 國保遺屬年金
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+	        caseData.setNpSurivorPayList(this.selectNpDidePayListByD(caseData.getEvtIds(), "D"));
+			
+			// 公保一次死亡給付
+			
+			// 公保眷屬喪葬津貼
+			
+			// 公保養老遺屬年金給付
+			
+			// 公保死亡遺屬年金給付
+			
+			// 軍保死亡給付
+			
+			// 軍保眷屬喪葬津貼
+
+		}
+
+		/**
+		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @param apNoTyp
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01NpPayDataCase> selectNpDidePayListByC(String evtIds,
+				String apNoTyp) {
+            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+            List<SurvivorReviewRpt01NpPayDataCase> npSurivorDidePayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
+            List<Nbappbase> npSurivorDidePayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpDidePayListBy(evtIds, apNoTyp);
+            for (Nbappbase npSurivorDidePayData : npSurivorDidePayDataList) {
+                SurvivorReviewRpt01NpPayDataCase npSurivorDidePayDataCase = new SurvivorReviewRpt01NpPayDataCase();
+                BeanUtility.copyProperties(npSurivorDidePayDataCase, npSurivorDidePayData);
+
+                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+                Nbdapr npSurivorDidePayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npSurivorDidePayData.getApNo(), npSurivorDidePayData.getIssuYm(), npSurivorDidePayData.getPayYm());
+                if (npSurivorDidePayDetailData != null) {
+                    npSurivorDidePayDataCase.setChkDt(npSurivorDidePayDetailData.getChkDt()); // 核定日期
+                    npSurivorDidePayDataCase.setAplPayDate(npSurivorDidePayDetailData.getAplPayDate()); // 帳務日期
+                }
+
+                npSurivorDidePayCaseList.add(npSurivorDidePayDataCase);
+            }
+            return npSurivorDidePayCaseList;
+            
+		}
+		
+	    /**
+	     * 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+	     * 
+	     * @param evtIds
+	     * @param apNoTyp
+	     * @return
+	     */
+	    public List<SurvivorReviewRpt01NpPayDataCase> selectNpDidePayListByD(String evtIds,
+				String apNoTyp) {
+            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
+            
+	    	List<Nbappbase> npSurivorPayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpDidePayListBy(evtIds, apNoTyp);
+            
+            List<SurvivorReviewRpt01NpPayDataCase> npSurivorPayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
+            for (Nbappbase npSurivorPayData : npSurivorPayDataList) {
+                SurvivorReviewRpt01NpPayDataCase npSurivorPayDataCase = new SurvivorReviewRpt01NpPayDataCase();
+                BeanUtility.copyProperties(npSurivorPayDataCase, npSurivorPayData);
+
+                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+                Nbdapr npSurivorPayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npSurivorPayData.getApNo(), npSurivorPayData.getIssuYm(), npSurivorPayData.getPayYm());
+                if (npSurivorPayDetailData != null) {
+                    npSurivorPayDataCase.setChkDt(npSurivorPayDetailData.getChkDt()); // 核定日期
+                    npSurivorPayDataCase.setAplPayDate(npSurivorPayDetailData.getAplPayDate()); // 帳務日期
+                    
+                }
+
+                npSurivorPayCaseList.add(npSurivorPayDataCase);
+                
+            }
+            
+			return npSurivorPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 年金給付資料
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01AnnuityPayDataCase> selectAnnuityPayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 年金給付資料
+	        
+	    	List<Baappbase> annuityPayDataList = baappbaseDao.selectSurvivorReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            annuityPayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<SurvivorReviewRpt01AnnuityPayDataCase>();
+	        for (Baappbase annuityPayData : annuityPayDataList) {
+	            SurvivorReviewRpt01AnnuityPayDataCase annuityPayDataCase = new SurvivorReviewRpt01AnnuityPayDataCase();
+	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
+
+	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(annuityPayData.getApNo());
+	            if (dateData != null) {
+	                annuityPayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
+	                annuityPayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
+	                annuityPayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
+	                annuityPayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
+	                
+	            }
+	            
+	            Maadmrec annuityPayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
+	            if (annuityPayMaadmrecData != null) {
+	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
+	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
+	                
+	            }
+
+	            Baappexpand annuityPayBaappexpand = baappexpandDao.getSurvivorReviewRpt01AnnuityPayList(annuityPayData.getApNo());
+	            if (annuityPayBaappexpand != null) {
+	                annuityPayDataCase.setEvTyp(annuityPayBaappexpand.getEvTyp());// 傷病分類
+	                
+	            }
+
+	            annuityPayCaseList.add(annuityPayDataCase);
+	            
+	        }
+	        
+			return annuityPayCaseList;
+			
+		}
+
+		public List<DisasterInsuranceReviewRpt01SurvivorOncePayDataCase> selectDisasterInsuranceReviewRpt01SurvivorOncePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList, String paytyp) {
+
+	    	List<Bebmsa> oncePayDataList = bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, paytyp);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	oncePayDataList.addAll(bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
+	        	
+	        }
+	        
+	        List<DisasterInsuranceReviewRpt01SurvivorOncePayDataCase> oncePayCaseList = new ArrayList<DisasterInsuranceReviewRpt01SurvivorOncePayDataCase>();
+	        for (Bebmsa oncePayData : oncePayDataList) {
+	        	DisasterInsuranceReviewRpt01SurvivorOncePayDataCase oncePayDataCase = new DisasterInsuranceReviewRpt01SurvivorOncePayDataCase();
+	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+	            
+	            oncePayCaseList.add(oncePayDataCase);
+	            
+	        }
+	        
+			return oncePayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01OncePayDataCase> selectOncePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
+	    	
+	        List<Pbbmsa> oncePayDataList = pbbmsaDao.selectSurvivorReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oncePayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa oncePayData : oncePayDataList) {
+	            SurvivorReviewRpt01OncePayDataCase oncePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
+	            
+	            oncePayCaseList.add(oncePayDataCase);
+	            
+	        }
+	        
+			return oncePayCaseList;
+			
+		}
+	}
+	
+	class SurvirorReviewOtherKind {
+		
+		public SurvirorReviewOtherKind() {
+			super();
+			
+		}
+
+		/**
+			// 職災住院醫療給付
+			// 災保傷病給付
+			// 傷病照護補助
+			// 勞保傷病給付
+			// 莫拉克傷病給付
+			// 災保失能給付
+			// 退保後職業病失能津貼
+			// 未加保失能補助
+			// 災保失能差額金
+			// 勞保失能給付
+			// 勞保失能差額金
+			// 災保失蹤津貼給付
+			// 災保失能年金
+			// 勞保失能年金
+			// 勞保老年給付
+			// 勞保補償金
+			// 勞保老年差額金
+			// 勞保老年年金
+			// 農保職業傷害
+			// 農保殘廢給付
+			// 職災保護補助
+			// 國保老年年金
+			// 國保身障年金
+			// 公保失能給付
+			// 公保養老年金給付
+			// 軍保身心障礙給付
+		 * 
+		 * @param caseData
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 */
+		public void execute(SurvivorReviewRpt01Case caseData, String evtIdnNo, String evtBrDate,
+				String apNo, List<Kcaf> evtKcafList) {
+	        
+            // 取得 請領他類給付資料
+
+			// 職災住院醫療給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+	        caseData.setHosPayList(this.selectHosPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+	        
+			// 災保傷病給付
+	        caseData.setDisasterInsuranceInjurySurvivorPayList(this.selectDisasterInsuranceInjuryPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), apNo, evtKcafList));
+	        
+			// 傷病照護補助
+	        
+			// 勞保傷病給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+	        caseData.setInjurySurvivorPayList(this.selectInjuryPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), apNo, evtKcafList));
+	        
+			// 莫拉克傷病給付
+	        
+			// 災保失能給付
+	        // TODO
+			// ???
+	        
+			// 退保後職業病失能津貼
+	        // TODO
+			// ???
+	        
+			// 未加保失能補助
+	        // TODO
+			// ???
+	        
+			// 災保失能差額金
+	        // TODO
+			// ???
+	        
+			// 勞保失能給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
+	        caseData.setDisPayList(this.selectDisPayListBy(evtIdnNo, evtBrDate, evtKcafList));
+	        
+			// 勞保失能差額金
+	        
+			// 災保失蹤津貼給付
+	        // TODO
+			// ???
+	        
+			// 災保失能年金
+	        // TODO
+			// ???
+			
+	        // 勞保失能年金
+	        // 取得 申請失能年金給付記錄
+	        caseData.setDisablePayList(this.selectDisablePayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+			
+	        // 勞保老年給付
+	        // 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
+	        caseData.setOldAgePayList(this.selectOldAgePayListBy(evtIdnNo, evtBrDate, evtKcafList));
+			
+	        // 勞保補償金
+			
+	        // 勞保老年差額金
+			
+	        // 勞保老年年金
+	        // 取得 老年年金給付記錄資料
+	        caseData.setOldPayList(this.selectOldPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+			
+	        // 農保職業傷害
+			
+	        // 農保殘廢給付
+			
+	        // 職災保護補助
+			
+	        // 國保老年年金
+	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+	        caseData.setNpPayList(this.selectNpPayListBy(caseData.getEvtIds()));
+			
+	        // 國保身障年金
+			
+	        // 公保失能給付
+			
+	        // 公保養老年金給付
+			
+	        // 軍保身心障礙給付
+
+	        
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料 20220421
+	        // caseData.setJoblessPayList(this.getDisableReviewRpt01JoblessPayList2By(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+	
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料 20220421
+	        // caseData.setDisappearPayList(this.getSurvivorReviewRpt01DisappearPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+	
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料 20220421
+	        // caseData.setFamDiePayList(this.getSurvivorReviewRpt01FamDiePayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+			
+		}
+	
+		
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01DiePayDataCase> getSurvivorReviewRpt01DisappearPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+            // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
+            
+			List<Pbbmsa> disappearPayDataList = pbbmsaDao.getSurvivorReviewRpt01DisappearPayListBy(evtIdnNo, evtBrDate);
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+                disappearPayDataList.addAll(pbbmsaDao.getSurvivorReviewRpt01DisappearPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+                
+            }
+            
+            List<SurvivorReviewRpt01DiePayDataCase> disappearPayCaseList = new ArrayList<SurvivorReviewRpt01DiePayDataCase>();
+            for (Pbbmsa disappearPayData : disappearPayDataList) {
+                SurvivorReviewRpt01DiePayDataCase disappearPayDataCase = new SurvivorReviewRpt01DiePayDataCase();
+                BeanUtility.copyProperties(disappearPayDataCase, disappearPayData);
+                
+                disappearPayCaseList.add(disappearPayDataCase);
+                
+            }
+            
+			return disappearPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+		 * 
+		 * @param evtIds
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01NpPayDataCase> selectNpPayListBy(String evtIds) {
+            // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
+            
+            List<Nbappbase> npPayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpPayListBy(evtIds);
+            
+            List<SurvivorReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
+            for (Nbappbase npPayData : npPayDataList) {
+                SurvivorReviewRpt01NpPayDataCase npPayDataCase = new SurvivorReviewRpt01NpPayDataCase();
+                BeanUtility.copyProperties(npPayDataCase, npPayData);
+
+                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
+                Nbdapr npPayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
+                if (npPayDetailData != null) {
+                    npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
+                    npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
+                    
+                }
+
+                npPayCaseList.add(npPayDataCase);
+                
+            }
+            
+			return npPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01JoblessPayDataCase> getDisableReviewRpt01JoblessPayList2By(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
+
+	        List<Biref> joblessPayDataList = birefDao.getDisableReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            joblessPayDataList.addAll(birefDao.getDisableReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<SurvivorReviewRpt01JoblessPayDataCase>();
+	        for (Biref joblessPayData : joblessPayDataList) {
+	            SurvivorReviewRpt01JoblessPayDataCase joblessPayDataCase = new SurvivorReviewRpt01JoblessPayDataCase();
+	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
+	        
+	            joblessPayCaseList.add(joblessPayDataCase);
+	            
+	        }
+	        
+			return joblessPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01OncePayDataCase> getSurvivorReviewRpt01FamDiePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
+
+	    	List<Pbbmsa> famDiePayDataList = pbbmsaDao.getSurvivorReviewRpt01FamDiePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	        	famDiePayDataList.addAll(pbbmsaDao.getSurvivorReviewRpt01FamDiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	        	
+	        }
+	        
+	        List<SurvivorReviewRpt01OncePayDataCase> famDiePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa famDiePayData : famDiePayDataList) {
+	            SurvivorReviewRpt01OncePayDataCase famDiePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(famDiePayDataCase, famDiePayData);
+	            
+	            famDiePayCaseList.add(famDiePayDataCase);
+	            
+	        }
+	        
+			return famDiePayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01InjuryPayDataCase> selectInjuryPayListBy(String evtIdnNo,
+				String evtBrDate, String apNo, List<Kcaf> evtKcafList) {
+            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+
+			List<Pbbmsa> injurySurvivorPayDataList = pbbmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, apNo);
+
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+                injurySurvivorPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(kcaf.getBIdn(), kcaf.getBBrDte(), apNo));
+                
+            }
+            
+            List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayCaseList = new ArrayList<SurvivorReviewRpt01InjuryPayDataCase>();
+            for (Pbbmsa injurySurvivorPayData : injurySurvivorPayDataList) {
+                SurvivorReviewRpt01InjuryPayDataCase injurySurvivorPayDataCase = new SurvivorReviewRpt01InjuryPayDataCase();
+                BeanUtility.copyProperties(injurySurvivorPayDataCase, injurySurvivorPayData);
+                
+                injurySurvivorPayCaseList.add(injurySurvivorPayDataCase);
+                
+            }
+
+            return injurySurvivorPayCaseList;
+            
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param apNo
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01InjuryPayDataCase> selectDisasterInsuranceInjuryPayListBy(String evtIdnNo,
+				String evtBrDate, String apNo, List<Kcaf> evtKcafList) {
+            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
+
+			List<Bebmsa> injurySurvivorPayDataList = bebmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, apNo);
+
+            // 用關鍵欄位變更檔 去找資料
+            for (Kcaf kcaf : evtKcafList) {
+                injurySurvivorPayDataList.addAll(bebmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(kcaf.getBIdn(), kcaf.getBBrDte(), apNo));
+                
+            }
+            
+            List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayCaseList = new ArrayList<SurvivorReviewRpt01InjuryPayDataCase>();
+            for (Bebmsa injurySurvivorPayData : injurySurvivorPayDataList) {
+                SurvivorReviewRpt01InjuryPayDataCase injurySurvivorPayDataCase = new SurvivorReviewRpt01InjuryPayDataCase();
+                BeanUtility.copyProperties(injurySurvivorPayDataCase, injurySurvivorPayData);
+                
+                injurySurvivorPayCaseList.add(injurySurvivorPayDataCase);
+                
+            }
+
+            return injurySurvivorPayCaseList;
+            
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01OncePayDataCase> selectHosPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
+
+	    	List<Pbbmsa> hosPayDataList = pbbmsaDao.selectSurvivorReviewRpt01HosPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            hosPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01HosPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa hosPayData : hosPayDataList) {
+	            SurvivorReviewRpt01OncePayDataCase hosPayDataCase = new SurvivorReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(hosPayDataCase, hosPayData);
+	            
+	            hosPayCaseList.add(hosPayDataCase);
+	            
+	        }
+	        
+			return hosPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01OncePayDataCase> selectDisPayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
+	        
+	        List<Pbbmsa> disPayDataList = pbbmsaDao.selectSurvivorReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            disPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01OncePayDataCase> disPayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa disPayData : disPayDataList) {
+	            SurvivorReviewRpt01OncePayDataCase disPayDataCase = new SurvivorReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(disPayDataCase, disPayData);
+	            
+	            disPayCaseList.add(disPayDataCase);
+	            
+	        }
+	        
+			return disPayCaseList;
+			
+		}
+
+		/**
+		 * 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
+		 * 
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01OncePayDataCase> selectOldAgePayListBy(String evtIdnNo,
+				String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
+
+	    	List<Pbbmsa> oldAgePayDataList = pbbmsaDao.selectSurvivorReviewRpt01OldAgePayListBy(evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oldAgePayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01OldAgePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01OncePayDataCase> oldAgePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
+	        for (Pbbmsa oldAgePayData : oldAgePayDataList) {
+	            SurvivorReviewRpt01OncePayDataCase oldAgePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
+	            BeanUtility.copyProperties(oldAgePayDataCase, oldAgePayData);
+	            oldAgePayCaseList.add(oldAgePayDataCase);
+	            
+	        }
+	        
+			return oldAgePayCaseList;
+			
+		}
+
+		/**
+		 * 取得 申請失能年金給付記錄
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01DisablePayDataCase> selectDisablePayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 申請失能年金給付記錄
+
+	    	List<Baappbase> disablePayDataList = baappbaseDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            disablePayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<SurvivorReviewRpt01DisablePayDataCase>();
+	        for (Baappbase disablePayData : disablePayDataList) {
+	            SurvivorReviewRpt01DisablePayDataCase disablePayDataCase = new SurvivorReviewRpt01DisablePayDataCase();
+	            BeanUtility.copyProperties(disablePayDataCase, disablePayData);
+	            
+	            disablePayDataCase.setApNo(disablePayData.getApNo());
+
+	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(disablePayData.getApNo());
+	            if (dateData != null) {
+	                disablePayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
+	                disablePayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
+	                disablePayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
+	                disablePayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
+	                
+	            }
+	            
+	            Maadmrec disablePayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(disablePayData.getApNo(), disablePayData.getIssuYm());
+	            if (disablePayMaadmrecData != null) {
+	                disablePayDataCase.setProdate(disablePayMaadmrecData.getProDate()); // 補件日期
+	                disablePayDataCase.setNdomk1(disablePayMaadmrecData.getNdomk1()); // 處理註記
+	                
+	            }
+
+	            Baappexpand disablePayBaappexpand = baappexpandDao.getSurvivorReviewRpt01DisablePayList(disablePayData.getApNo());
+	            if (disablePayBaappexpand != null) {
+	                disablePayDataCase.setEvTyp(disablePayBaappexpand.getEvTyp());// 傷病分類
+	                disablePayDataCase.setCriInJdp1(disablePayBaappexpand.getCriInJdp1()); // 失能項目1
+	                disablePayDataCase.setCriInJdp2(disablePayBaappexpand.getCriInJdp2()); // 失能項目2
+	                disablePayDataCase.setCriInJdp3(disablePayBaappexpand.getCriInJdp3()); // 失能項目3
+	                disablePayDataCase.setCriInJdp4(disablePayBaappexpand.getCriInJdp4()); // 失能項目4
+	                disablePayDataCase.setCriInJdp5(disablePayBaappexpand.getCriInJdp5()); // 失能項目5
+	                disablePayDataCase.setCriInJdp6(disablePayBaappexpand.getCriInJdp6()); // 失能項目6
+	                disablePayDataCase.setCriInJdp7(disablePayBaappexpand.getCriInJdp7()); // 失能項目7
+	                disablePayDataCase.setCriInJdp8(disablePayBaappexpand.getCriInJdp8()); // 失能項目8
+	                disablePayDataCase.setCriInJdp9(disablePayBaappexpand.getCriInJdp9()); // 失能項目9
+	                disablePayDataCase.setCriInJdp10(disablePayBaappexpand.getCriInJdp10()); // 失能項目10
+	                disablePayDataCase.setCriInJcl1(disablePayBaappexpand.getCriInJcl1()); // 失能等級1
+	                disablePayDataCase.setCriInJcl2(disablePayBaappexpand.getCriInJcl2()); // 失能等級2
+	                disablePayDataCase.setCriInJcl3(disablePayBaappexpand.getCriInJcl3()); // 失能等級3
+
+	            }
+
+	            disablePayCaseList.add(disablePayDataCase);
+	            
+	        }
+	        
+			return disablePayCaseList;
+			
+		}
+
+		/**
+		 * 取得 老年年金給付記錄資料
+		 * 
+		 * @param apNo
+		 * @param evtIdnNo
+		 * @param evtBrDate
+		 * @param evtKcafList
+		 * @return
+		 */
+		public List<SurvivorReviewRpt01AnnuityPayDataCase> selectOldPayListBy(String apNo,
+				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+	        // 取得 老年年金給付記錄資料
+	        
+	    	List<Baappbase> oldPayDataList = baappbaseDao.selectSurvivorReviewRpt01OldPayListBy(apNo, evtIdnNo, evtBrDate);
+	        // 用關鍵欄位變更檔 去找資料
+	        for (Kcaf kcaf : evtKcafList) {
+	            oldPayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01OldPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            
+	        }
+	        
+	        List<SurvivorReviewRpt01AnnuityPayDataCase> oldPayCaseList = new ArrayList<SurvivorReviewRpt01AnnuityPayDataCase>();
+	        for (Baappbase oldPayData : oldPayDataList) {
+	            SurvivorReviewRpt01AnnuityPayDataCase oldPayDataCase = new SurvivorReviewRpt01AnnuityPayDataCase();
+	            BeanUtility.copyProperties(oldPayDataCase, oldPayData);
+
+	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(oldPayData.getApNo());
+	            if (dateData != null) {
+	                oldPayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
+	                oldPayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
+	                oldPayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
+	                oldPayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
+	                
+	            }
+	            
+	            Maadmrec oldPayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm());
+	            if (oldPayMaadmrecData != null) {
+	                oldPayDataCase.setProdate(oldPayMaadmrecData.getProDate()); // 補件日期
+	                oldPayDataCase.setNdomk1(oldPayMaadmrecData.getNdomk1()); // 處理註記
+	                
+	            }
+
+	            oldPayCaseList.add(oldPayDataCase);
+	            
+	        }
+	        
+			return oldPayCaseList;
+			
+		}
+
+	}
+    
 
 	/**
      * 依傳入的條件取得 勞工紓困貸款繳納本息情形查詢單 的資料
@@ -8643,1568 +10728,6 @@ public class RptService {
 	}
 
 
-	class OldAgeReviewSameKind {
-		
-		public OldAgeReviewSameKind() {
-			super();
-			
-		}
-		
-	    /**
-	     * 取得 年金給付資料
-	     * 
-	     * @param apNo
-	     * @param evtIdnNo
-	     * @param evtBrDate
-	     * @param evtKcafList
-	     * @return
-	     */
-	    public List<OldAgeReviewRpt01AnnuityPayDataCase> getOldAgeReviewRpt01AnnuityPayListBy(String apNo, String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 年金給付資料
-	    	
-	        List<Baappbase> annuityPayDataList = baappbaseDao.getOldAgeReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            annuityPayDataList.addAll(baappbaseDao.getOldAgeReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        }
-	        
-	        List<OldAgeReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<OldAgeReviewRpt01AnnuityPayDataCase>();
-	        for (Baappbase annuityPayData : annuityPayDataList) {
-	            OldAgeReviewRpt01AnnuityPayDataCase annuityPayDataCase = new OldAgeReviewRpt01AnnuityPayDataCase();
-	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
-
-	            Badapr annuityPayBadaprData = badaprDao.getOldAgeReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm(), annuityPayData.getPayYm());
-	            if (annuityPayBadaprData != null) {
-	                annuityPayDataCase.setChkDate(annuityPayBadaprData.getChkDate()); // 核定日期
-	                annuityPayDataCase.setAplpayDate(annuityPayBadaprData.getAplpayDate()); // 帳務日期
-	                annuityPayDataCase.setRecAmt(annuityPayBadaprData.getRecAmt()); // 收回金額
-	                annuityPayDataCase.setSupAmt(annuityPayBadaprData.getSupAmt()); // 補發金額
-	                
-	            }
-
-	            Maadmrec annuityPayMaadmrecData = maadmrecDao.getOldAgeReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
-	            if (annuityPayMaadmrecData != null) {
-	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 承辦 / 創收日期
-	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記一
-	                
-	            }
-
-	            annuityPayCaseList.add(annuityPayDataCase);
-	            
-	        }
-	        
-			return annuityPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01OncePayDataCase> getOldAgeReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate,
-				List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-
-	    	List<Pbbmsa> oncePayDataList = pbbmsaDao.getOldAgeReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oncePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<OldAgeReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<OldAgeReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa oncePayData : oncePayDataList) {
-	            OldAgeReviewRpt01OncePayDataCase oncePayDataCase = new OldAgeReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
-	            oncePayCaseList.add(oncePayDataCase);
-	            
-	        }
-
-			return oncePayCaseList;
-			
-		}
-	}
-
-
-	class OldAgeReviewOtherKind {
-		
-		public OldAgeReviewOtherKind() {
-			super();
-			
-		}
-
-		/**
-		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01NpPayDataCase> getOldAgeReviewRpt01NpPayListBy(String evtIds) {
-	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-	        List<Nbappbase> npPayDataList = nbappbaseDao.getOldAgeReviewRpt01NpPayListBy(evtIds);
-	        
-	        List<OldAgeReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<OldAgeReviewRpt01NpPayDataCase>();
-	        for (Nbappbase npPayData : npPayDataList) {
-	            OldAgeReviewRpt01NpPayDataCase npPayDataCase = new OldAgeReviewRpt01NpPayDataCase();
-	            BeanUtility.copyProperties(npPayDataCase, npPayData);
-
-	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-	            Nbdapr npPayDetailData = nbdaprDao.getOldAgeReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
-	            if (npPayDetailData != null) {
-	                npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
-	                npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
-	                
-	            }
-
-	            npPayCaseList.add(npPayDataCase);
-	            
-	        }
-	        
-			return npPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01JoblessPayDataCase> getOldAgeReviewRpt01JoblessPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-
-	    	List<Biref> joblessPayDataList = birefDao.getOldAgeReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            joblessPayDataList.addAll(birefDao.getOldAgeReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<OldAgeReviewRpt01JoblessPayDataCase>();
-	        for (Biref joblessPayData : joblessPayDataList) {
-	            OldAgeReviewRpt01JoblessPayDataCase joblessPayDataCase = new OldAgeReviewRpt01JoblessPayDataCase();
-	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
-	            joblessPayCaseList.add(joblessPayDataCase);
-	            
-	        }
-	        
-			return joblessPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtJobDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01InjuryPayDataCase> getOldAgeReviewRpt01InjuryPayListBy(String evtIdnNo,
-				String evtBrDate, String evtJobDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-	    	List<Pbbmsa> injuryPayDataList = pbbmsaDao.getOldAgeReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, evtJobDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            injuryPayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01InjuryPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), evtJobDate));
-	            
-	        }
-	        
-	        List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<OldAgeReviewRpt01InjuryPayDataCase>();
-	        for (Pbbmsa injuryPayData : injuryPayDataList) {
-	            OldAgeReviewRpt01InjuryPayDataCase injuryPayDataCase = new OldAgeReviewRpt01InjuryPayDataCase();
-	            BeanUtility.copyProperties(injuryPayDataCase, injuryPayData);
-	            injuryPayCaseList.add(injuryPayDataCase);
-	            
-	        }
-	        
-			return injuryPayCaseList;
-		}
-
-		/**
-		 * 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
-		 * 
-		 * @param evtIdnNo
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> getOldAgeReviewRpt01SurvivorAnnuityPayBy9ListBy(
-				String evtIdnNo) {
-	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
-	        List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayCaseBy9List = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9>();
-	        List<Bbpma> survivorAnnuityPayDataBy9List = bbpmaDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
-	        for (Bbpma survivorAnnuityPayData : survivorAnnuityPayDataBy9List) {
-	            OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9 survivorAnnuityPayCase = new OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9();
-	            BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
-	            survivorAnnuityPayCaseBy9List.add(survivorAnnuityPayCase);
-	        }
-
-			return survivorAnnuityPayCaseBy9List;
-		}
-
-		/**
-		 * 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
-		 * 
-		 * @param evtIdnNo
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> getOldAgeReviewRpt01SurvivorAnnuityPayListBy(
-				String evtIdnNo) {
-	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList
-	        List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCase>();
-	        List<Baappbase> survivorAnnuityPayDataList = baappbaseDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
-
-	        for (Baappbase survivorAnnuityPayData : survivorAnnuityPayDataList) {
-	            OldAgeReviewRpt01SurvivorAnnuityPayDataCase survivorAnnuityPayCase = new OldAgeReviewRpt01SurvivorAnnuityPayDataCase();
-	            BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
-	            survivorAnnuityPayCaseList.add(survivorAnnuityPayCase);
-	        }
-
-			return survivorAnnuityPayCaseList;
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01DiePayDataCaseBy9> getOldAgeReviewRpt01DiePayBy9ListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-	        List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayCaseBy9List = new ArrayList<OldAgeReviewRpt01DiePayDataCaseBy9>();
-	        List<Bebmsa> diePayDataBy9List = bebmsaDao.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
-	        
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	diePayDataBy9List.addAll(bebmsaDao.getOldAgeReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        }
-	        
-	        for (Bebmsa diePayData : diePayDataBy9List) {
-	            OldAgeReviewRpt01DiePayDataCaseBy9 diePayDataCase = new OldAgeReviewRpt01DiePayDataCaseBy9();
-	            BeanUtility.copyProperties(diePayDataCase, diePayData);
-	            diePayCaseBy9List.add(diePayDataCase);
-	        }
-	        
-			return diePayCaseBy9List;
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01DiePayDataCase> getOldAgeReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate,
-				List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-	        List<OldAgeReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<OldAgeReviewRpt01DiePayDataCase>();
-	        List<Pbbmsa> diePayDataList = pbbmsaDao.getOldAgeReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
-	        
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            diePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        }
-	        
-	        for (Pbbmsa diePayData : diePayDataList) {
-	            OldAgeReviewRpt01DiePayDataCase diePayDataCase = new OldAgeReviewRpt01DiePayDataCase();
-	            BeanUtility.copyProperties(diePayDataCase, diePayData);
-	            diePayCaseList.add(diePayDataCase);
-	        }
-	        
-			return diePayCaseList;
-		}
-
-		/**
-		 * 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01DisableAnnuityPayDataCase> getOldAgeReviewRpt01DisableAnnuityPayListBy(
-	    		String apNo, String evtIdnNo) {
-	    	
-	        // 取得 年金給付主檔 (BAAPPBASE A, BAAPPEXPAND C) 申請失能年金記錄資料 disableAnnuityPayList
-	        List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01DisableAnnuityPayDataCase>();
-	        List<Baappbase> disableAnnuityPayDataList = baappbaseDao.getOldAgeReviewRpt01DisableAnnuityPayListBy(apNo, evtIdnNo);
-	        
-	        for (Baappbase disableAnnuityPayData : disableAnnuityPayDataList) {
-	            OldAgeReviewRpt01DisableAnnuityPayDataCase disableAnnuityPayCase = new OldAgeReviewRpt01DisableAnnuityPayDataCase();
-	            BeanUtility.copyProperties(disableAnnuityPayCase, disableAnnuityPayData);
-	            disableAnnuityPayCaseList.add(disableAnnuityPayCase);
-	        }
-
-			return disableAnnuityPayCaseList;
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<OldAgeReviewRpt01DisablePayDataCase> getOldAgeReviewRpt01DisablePayListBy(String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-	        List<OldAgeReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<OldAgeReviewRpt01DisablePayDataCase>();
-	        List<Pbbmsa> disablePayDataList = pbbmsaDao.getOldAgeReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate);
-	        
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            disablePayDataList.addAll(pbbmsaDao.getOldAgeReviewRpt01DisablePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        }
-	        
-	        for (Pbbmsa disablePayData : disablePayDataList) {
-	            OldAgeReviewRpt01DisablePayDataCase disablePayDataCase = new OldAgeReviewRpt01DisablePayDataCase();
-	            BeanUtility.copyProperties(disablePayDataCase, disablePayData);
-	            disablePayCaseList.add(disablePayDataCase);
-	        }
-	        
-			return disablePayCaseList;
-		}
-		
-	}
-
-	class DisableReviewSameKind {
-	
-		public DisableReviewSameKind() {
-			super();
-		}
-		
-		/**
-		 * 取得 申請國保給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01AnnuityPayDataCase> getDisableReviewRpt01NbPayListBy(String evtIds,
-				List<Kcaf> evtKcafList) {
-	        // 取得 申請國保給付記錄資料
-	    	
-	        List<Baappbase> nbPayDataList = baappbaseDao.getDisableReviewRpt01NbPayListBy(evtIds);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            nbPayDataList.addAll(baappbaseDao.getDisableReviewRpt01NbPayListBy(kcaf.getBIdn()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01AnnuityPayDataCase> nbPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
-	        for (Baappbase nbPayData : nbPayDataList) {
-	            DisableReviewRpt01AnnuityPayDataCase nbPayDataCase = new DisableReviewRpt01AnnuityPayDataCase();
-	            BeanUtility.copyProperties(nbPayDataCase, nbPayDataList);
-	
-	            Badapr nbPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(nbPayData.getApNo(), nbPayData.getIssuYm(), nbPayData.getPayYm());
-	            if (nbPayBadaprData != null) {
-	                nbPayDataCase.setChkDate(nbPayBadaprData.getChkDate()); // 核定日期
-	                nbPayDataCase.setAplpayDate(nbPayBadaprData.getAplpayDate()); // 核付日期
-	                nbPayDataCase.setRecAmt(nbPayBadaprData.getRecAmt()); // 收回金額
-	                nbPayDataCase.setSupAmt(nbPayBadaprData.getSupAmt()); // 補發金額
-	                
-	            }
-	
-	            nbPayCaseList.add(nbPayDataCase);
-	            
-	        }
-	        
-			return nbPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @return
-		 */
-		public List<DisableReviewRpt01NpPayDataCase> getDisableReviewRpt01NpDisPayListBy(String evtIds) {
-	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
-	        
-	    	List<Nbappbase> npDisPayDataList = nbappbaseDao.getDisableReviewRpt01NpDisPayListBy(evtIds);
-	        
-	        List<DisableReviewRpt01NpPayDataCase> npDisPayCaseList = new ArrayList<DisableReviewRpt01NpPayDataCase>();
-	        for (Nbappbase npDisPayData : npDisPayDataList) {
-	            DisableReviewRpt01NpPayDataCase npDisPayDataCase = new DisableReviewRpt01NpPayDataCase();
-	            BeanUtility.copyProperties(npDisPayDataCase, npDisPayData);
-	
-	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-	            Nbdapr npDisPayDetailData = nbdaprDao.getDisableReviewRpt01NpPayDetailDataBy(npDisPayData.getApNo(), npDisPayData.getIssuYm(), npDisPayData.getPayYm());
-	            if (npDisPayDetailData != null) {
-	                npDisPayDataCase.setChkDt(npDisPayDetailData.getChkDt()); // 核定日期
-	                npDisPayDataCase.setAplPayDate(npDisPayDetailData.getAplPayDate()); // 帳務日期
-	                
-	            }
-	
-	            npDisPayCaseList.add(npDisPayDataCase);
-	            
-	        }
-	
-	        return npDisPayCaseList;
-	        
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01OncePayDataCase> getDisableReviewRpt01FarmPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
-	        
-	    	List<Pbbmsa> farmPayDataList = pbbmsaDao.getDisableReviewRpt01FarmPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	farmPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FarmPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa farmPayData : farmPayDataList) {
-	            DisableReviewRpt01OncePayDataCase farmPayDataCase = new DisableReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(farmPayDataCase, farmPayData);
-	            farmPayCaseList.add(farmPayDataCase);
-	            
-	        }
-	
-			return farmPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 年金給付資料
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01AnnuityPayDataCase> getDisableReviewRpt01AnnuityPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 年金給付資料
-	        List<DisableReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
-	        List<Baappbase> annuityPayDataList = baappbaseDao.getDisableReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            annuityPayDataList.addAll(baappbaseDao.getDisableReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        }
-	        for (Baappbase annuityPayData : annuityPayDataList) {
-	            DisableReviewRpt01AnnuityPayDataCase annuityPayDataCase = new DisableReviewRpt01AnnuityPayDataCase();
-	
-	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
-	
-	            Baappexpand baappexpandData = baappexpandDao.getDisabledReviewRpt01AnnuityPayList(annuityPayData.getApNo());
-	            if (baappexpandData != null) {
-	                annuityPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
-	                annuityPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
-	                annuityPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
-	                annuityPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
-	                annuityPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
-	                annuityPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
-	                annuityPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
-	                annuityPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
-	                annuityPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
-	                annuityPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
-	                annuityPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
-	                annuityPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
-	                annuityPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
-	                annuityPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
-	            }
-	
-	            Badapr annuityPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm(), annuityPayData.getPayYm());
-	            if (annuityPayBadaprData != null) {
-	                annuityPayDataCase.setChkDate(annuityPayBadaprData.getChkDate()); // 核定日期
-	                annuityPayDataCase.setAplpayDate(annuityPayBadaprData.getAplpayDate()); // 核付日期
-	                annuityPayDataCase.setRecAmt(annuityPayBadaprData.getRecAmt()); // 收回金額
-	                annuityPayDataCase.setSupAmt(annuityPayBadaprData.getSupAmt()); // 補發金額
-	            }
-	
-	            Maadmrec annuityPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
-	            if (annuityPayMaadmrecData != null) {
-	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
-	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
-	            }
-	
-	            annuityPayCaseList.add(annuityPayDataCase);
-	        }
-	        
-			return annuityPayCaseList;
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01OncePayDataCase> getDisableReviewRpt01OncePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-	        
-	    	List<Pbbmsa> oncePayDataList = pbbmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oncePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa oncePayData : oncePayDataList) {
-	            DisableReviewRpt01OncePayDataCase oncePayDataCase = new DisableReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
-	            oncePayCaseList.add(oncePayDataCase);
-	            
-	        }
-	
-			return oncePayCaseList;
-			
-		}
-	
-		public List<DisableReviewRpt01OncePayDataCase> getDisableReviewRpt01OncePayDataCaseBy9(String evtIdnNo,
-				String evtBrDate, String paytyp, List<Kcaf> evtKcafList) {
-	        List<DisableReviewRpt01OncePayDataCase> oncePayCaseBy9List = new ArrayList<DisableReviewRpt01OncePayDataCase>();
-	        List<Bebmsa> oncePayDataBy9List = bebmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, paytyp);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	oncePayDataBy9List.addAll(bebmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
-	        }
-	        for (Bebmsa oncePayData : oncePayDataBy9List) {
-	        	DisableReviewRpt01OncePayDataCase oncePayDataCase = new DisableReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
-	            oncePayCaseBy9List.add(oncePayDataCase);
-	        }
-	
-			return oncePayCaseBy9List;
-		}
-	
-	}
-
-	class DisableReviewOtherKind {
-	
-		public DisableReviewOtherKind() {
-			super();
-		}
-		
-	    /**
-	     * 取得 老年年金給付記錄
-	     * 
-	     * @param apNo
-	     * @param evtIdnNo
-	     * @param evtBrDate
-	     * @param evtKcafList
-	     * @return
-	     */
-	    public List<DisableReviewRpt01OldAgePayDataCase> getDisableReviewRpt01OldAnnuityPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-            // 取得 老年年金給付記錄
-            
-	    	List<Baappbase> oldAgePayDataList = baappbaseDao.getDisableReviewRpt01OldPayListBy(apNo, evtIdnNo, evtBrDate);
-            // 用關鍵欄位變更檔 去找資料
-            for (Kcaf kcaf : evtKcafList) {
-                oldAgePayDataList.addAll(baappbaseDao.getDisableReviewRpt01OldPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-                
-            }
-            
-            List<DisableReviewRpt01OldAgePayDataCase> oldAgePayCaseList = new ArrayList<DisableReviewRpt01OldAgePayDataCase>();
-            for (Baappbase oldPayData : oldAgePayDataList) {
-                DisableReviewRpt01OldAgePayDataCase oldPayDataCase = new DisableReviewRpt01OldAgePayDataCase();
-                BeanUtility.copyProperties(oldPayDataCase, oldPayData);
-
-                Badapr oldPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm(), oldPayData.getPayYm());
-                if (oldPayBadaprData != null) {
-                    oldPayDataCase.setChkDate(oldPayBadaprData.getChkDate()); // 核定日期
-                    oldPayDataCase.setAplpayDate(oldPayBadaprData.getAplpayDate()); // 核付日期
-                    oldPayDataCase.setRecAmt(oldPayBadaprData.getRecAmt()); // 收回金額
-                    oldPayDataCase.setSupAmt(oldPayBadaprData.getSupAmt()); // 補發金額
-                    
-                }
-
-                Maadmrec oldPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm());
-                if (oldPayMaadmrecData != null) {
-                    oldPayDataCase.setProdate(oldPayMaadmrecData.getProDate()); // 補件日期
-                    oldPayDataCase.setNdomk1(oldPayMaadmrecData.getNdomk1()); // 處理註記
-                    
-                }
-
-                oldAgePayCaseList.add(oldPayDataCase);
-                
-            }
-
-			return oldAgePayCaseList;
-		}
-
-		/**
-	     * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-	     * 
-	     * @param evtIdnNo
-	     * @param evtBrDate
-	     * @param evtKcafList
-	     * @return
-	     */
-	    public List<DisableReviewRpt01DisablePayDataCase> getDisableReviewRpt01DisablePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-			// 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄資料
-	
-	    	List<Pbbmsa> disablePayDataList = pbbmsaDao.getDisableReviewRpt01DisablePayListBy(evtIdnNo, evtBrDate);
-			// 用關鍵欄位變更檔 去找資料
-			for (Kcaf kcaf : evtKcafList) {
-	        	 disablePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DisablePayListBy(StringUtils.substring(kcaf.getBIdn(),0, 10), kcaf.getBBrDte()));
-	        	 
-	        }
-			
-			List<DisableReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<DisableReviewRpt01DisablePayDataCase>();
-	        for (Pbbmsa disablePayData : disablePayDataList) {
-		         DisableReviewRpt01DisablePayDataCase disablePayDataCase = new DisableReviewRpt01DisablePayDataCase();
-		         BeanUtility.copyProperties(disablePayDataCase, disablePayData);
-		         
-		         disablePayCaseList.add(disablePayDataCase);
-		         
-	        }
-	        
-			return disablePayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @return
-		 */
-		public List<DisableReviewRpt01NpPayDataCase> getDisableReviewRpt01NpPayListBy(String evtIds) {
-	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-	        
-	    	List<Nbappbase> npPayDataList = nbappbaseDao.getDisableReviewRpt01NpPayListBy(evtIds);
-	        
-	        List<DisableReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<DisableReviewRpt01NpPayDataCase>();
-	        for (Nbappbase npPayData : npPayDataList) {
-	            DisableReviewRpt01NpPayDataCase npPayDataCase = new DisableReviewRpt01NpPayDataCase();
-	            BeanUtility.copyProperties(npPayDataCase, npPayData);
-	
-	            // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-	            Nbdapr npPayDetailData = nbdaprDao.getDisableReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
-	            if (npPayDetailData != null) {
-	                npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
-	                npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
-	                
-	            }
-	
-	            npPayCaseList.add(npPayDataCase);
-	            
-	        }
-	        
-			return npPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01JoblessPayDataCase> getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 就保給付檔 (BIREF) 申請職業訓練生活津貼記錄資料
-	
-	    	List<Biref> vocationalTrainingLivingAllowanceDataList = birefDao.getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            vocationalTrainingLivingAllowanceDataList.addAll(birefDao.getDisableReviewRpt01VocationalTrainingLivingAllowanceListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01JoblessPayDataCase> vocationalTrainingLivingAllowanceList = new ArrayList<DisableReviewRpt01JoblessPayDataCase>();
-	        for (Biref vocationalTrainingLivingAllowanceData : vocationalTrainingLivingAllowanceDataList) {
-	            DisableReviewRpt01JoblessPayDataCase vocationalTrainingLivingAllowanceDataCase = new DisableReviewRpt01JoblessPayDataCase();
-	            BeanUtility.copyProperties(vocationalTrainingLivingAllowanceDataCase, vocationalTrainingLivingAllowanceData);
-	        
-	            vocationalTrainingLivingAllowanceList.add(vocationalTrainingLivingAllowanceDataCase);
-	            
-	        }
-	        
-			return vocationalTrainingLivingAllowanceList;
-			
-		}
-	
-		/**
-		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01JoblessPayDataCase> getDisableReviewRpt01JoblessPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-	    	
-	        List<Biref> joblessPayDataList = birefDao.getDisableReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            joblessPayDataList.addAll(birefDao.getDisableReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<DisableReviewRpt01JoblessPayDataCase>();
-	        for (Biref joblessPayData : joblessPayDataList) {
-	            DisableReviewRpt01JoblessPayDataCase joblessPayDataCase = new DisableReviewRpt01JoblessPayDataCase();
-	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
-	            
-	            joblessPayCaseList.add(joblessPayDataCase);
-	            
-	        }
-	        
-			return null;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01OldPayDataCase> getDisableReviewRpt01OldPayListBy(String evtIdnNo, String evtBrDate,
-				List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔(PBMSA) 申請 老年給付記綠資料
-	
-	    	List<Pbbmsa> oldPayDataList = pbbmsaDao.getDisableReviewRpt01OldPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oldPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01OldPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01OldPayDataCase> oldPayCaseList = new ArrayList<DisableReviewRpt01OldPayDataCase>();
-	        for (Pbbmsa oldPayData : oldPayDataList) {
-	            DisableReviewRpt01OldPayDataCase oldPayDataCase = new DisableReviewRpt01OldPayDataCase();
-	            BeanUtility.copyProperties(oldPayDataCase, oldPayData);
-	            oldPayCaseList.add(oldPayDataCase);
-	            
-	        }
-	        
-			return oldPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01OncePayDataCase> selectDisableReviewRpt01HosPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-	    	
-	        List<Pbbmsa> hosPayDataList = pbbmsaDao.selectDisableReviewRpt01HosPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            hosPayDataList.addAll(pbbmsaDao.selectDisableReviewRpt01HosPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa hosPayData : hosPayDataList) {
-	            DisableReviewRpt01OncePayDataCase hosPayDataCase = new DisableReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(hosPayDataCase, hosPayData);
-	            
-	            hosPayCaseList.add(hosPayDataCase);
-	            
-	        }
-	        
-			return hosPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01InjuryPayDataCase> getDisableReviewRpt01InjuryPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-	
-	    	List<Pbbmsa> injuryPayDataList = pbbmsaDao.getDisableReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            injuryPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01InjuryPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01InjuryPayDataCase> injuryPayCaseList = new ArrayList<DisableReviewRpt01InjuryPayDataCase>();
-	        for (Pbbmsa injuryPayData : injuryPayDataList) {
-	            DisableReviewRpt01InjuryPayDataCase injuryPayDataCase = new DisableReviewRpt01InjuryPayDataCase();
-	            BeanUtility.copyProperties(injuryPayDataCase, injuryPayData);
-	            injuryPayCaseList.add(injuryPayDataCase);
-	            
-	        }
-	        
-			return injuryPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01DiePayDataCase> getDisableReviewRpt01FamDiePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-	    	
-	        List<Pbbmsa> famDiePayDataList = pbbmsaDao.getDisableReviewRpt01FamDiePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	famDiePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01FamDiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        	
-	        }
-	        
-	        List<DisableReviewRpt01DiePayDataCase> famDiePayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
-	        for (Pbbmsa famDiePayData : famDiePayDataList) {
-	            DisableReviewRpt01DiePayDataCase famDiePayDataCase = new DisableReviewRpt01DiePayDataCase();
-	            BeanUtility.copyProperties(famDiePayDataCase, famDiePayData);
-	            
-	            famDiePayCaseList.add(famDiePayDataCase);
-	            
-	        }
-	        
-			return famDiePayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01DiePayDataCase> getDisableReviewRpt01DisPayListBy(String evtIdnNo, String evtBrDate,
-				List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-	
-	    	List<Pbbmsa> disPayDataList = pbbmsaDao.getDisableReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            disPayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01DiePayDataCase> disPayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
-	        for (Pbbmsa disPayData : disPayDataList) {
-	            DisableReviewRpt01DiePayDataCase disPayDataCase = new DisableReviewRpt01DiePayDataCase();
-	            BeanUtility.copyProperties(disPayDataCase, disPayData);
-	            disPayCaseList.add(disPayDataCase);
-	            
-	        }
-	        
-			return disPayCaseList;
-			
-		}
-	
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01DiePayDataCase> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate,
-				List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請死亡給付記錄資料
-	        
-	    	List<Pbbmsa> diePayDataList = pbbmsaDao.getDisableReviewRpt01DiePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            diePayDataList.addAll(pbbmsaDao.getDisableReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01DiePayDataCase> diePayCaseList = new ArrayList<DisableReviewRpt01DiePayDataCase>();
-	        for (Pbbmsa diePayData : diePayDataList) {
-	            DisableReviewRpt01DiePayDataCase diePayDataCase = new DisableReviewRpt01DiePayDataCase();
-	            BeanUtility.copyProperties(diePayDataCase, diePayData);
-	            diePayCaseList.add(diePayDataCase);
-	            
-	        }
-	        
-			return diePayCaseList;
-			
-		}
-	
-		/**
-		 * 取得遺屬年金給付記錄
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<DisableReviewRpt01SurvivorPayDataCase> getDisableReviewRpt01SurvivorPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得遺屬年金給付記錄
-	        
-	        List<Baappbase> survivorPayDataList = baappbaseDao.getDisableReviewRpt01SurvivorPayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            survivorPayDataList.addAll(baappbaseDao.getDisableReviewRpt01SurvivorPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<DisableReviewRpt01SurvivorPayDataCase> survivorPayCaseList = new ArrayList<DisableReviewRpt01SurvivorPayDataCase>();
-	        for (Baappbase survivorPayData : survivorPayDataList) {
-	            DisableReviewRpt01SurvivorPayDataCase survivorPayDataCase = new DisableReviewRpt01SurvivorPayDataCase();
-	            BeanUtility.copyProperties(survivorPayDataCase, survivorPayData);
-	
-	            Baappexpand baappexpandData = baappexpandDao.getDisabledReviewRpt01SurvivorPayList(survivorPayData.getApNo());
-	            if (baappexpandData != null) {
-	                survivorPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
-	                survivorPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
-	                survivorPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
-	                survivorPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
-	                survivorPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
-	                survivorPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
-	                survivorPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
-	                survivorPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
-	                survivorPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
-	                survivorPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
-	                survivorPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
-	                survivorPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
-	                survivorPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
-	                survivorPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
-	                
-	            }
-	
-	            Badapr survivorPayBadaprData = badaprDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm(), survivorPayData.getPayYm());
-	            if (survivorPayBadaprData != null) {
-	                survivorPayDataCase.setChkDate(survivorPayBadaprData.getChkDate()); // 核定日期
-	                survivorPayDataCase.setAplpayDate(survivorPayBadaprData.getAplpayDate()); // 核付日期
-	                survivorPayDataCase.setRecAmt(survivorPayBadaprData.getRecAmt()); // 收回金額
-	                survivorPayDataCase.setSupAmt(survivorPayBadaprData.getSupAmt()); // 補發金額
-	                
-	            }
-	
-	            Maadmrec survivorPayMaadmrecData = maadmrecDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm());
-	            if (survivorPayMaadmrecData != null) {
-	                survivorPayDataCase.setProdate(survivorPayMaadmrecData.getProDate()); // 補件日期
-	                survivorPayDataCase.setNdomk1(survivorPayMaadmrecData.getNdomk1()); // 處理註記
-	                
-	            }
-	
-	            survivorPayCaseList.add(survivorPayDataCase);
-	            
-	        }
-	        
-			return survivorPayCaseList;
-			
-		}
-	
-	}
-	
-	class SurvirorReviewSameKind {
-		
-		public SurvirorReviewSameKind() {
-			super();
-			
-		}
-
-		/**
-		 * 取得 年金給付資料
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01AnnuityPayDataCase> selectSurvivorReviewRpt01AnnuityPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 年金給付資料
-	        
-	    	List<Baappbase> annuityPayDataList = baappbaseDao.selectSurvivorReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            annuityPayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<SurvivorReviewRpt01AnnuityPayDataCase>();
-	        for (Baappbase annuityPayData : annuityPayDataList) {
-	            SurvivorReviewRpt01AnnuityPayDataCase annuityPayDataCase = new SurvivorReviewRpt01AnnuityPayDataCase();
-	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
-
-	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(annuityPayData.getApNo());
-	            if (dateData != null) {
-	                annuityPayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
-	                annuityPayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
-	                annuityPayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
-	                annuityPayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
-	                
-	            }
-	            
-	            Maadmrec annuityPayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
-	            if (annuityPayMaadmrecData != null) {
-	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
-	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
-	                
-	            }
-
-	            Baappexpand annuityPayBaappexpand = baappexpandDao.getSurvivorReviewRpt01AnnuityPayList(annuityPayData.getApNo());
-	            if (annuityPayBaappexpand != null) {
-	                annuityPayDataCase.setEvTyp(annuityPayBaappexpand.getEvTyp());// 傷病分類
-	                
-	            }
-
-	            annuityPayCaseList.add(annuityPayDataCase);
-	            
-	        }
-	        
-			return annuityPayCaseList;
-			
-		}
-
-		public List<SurvivorReviewRpt01OncePayDataCaseBy9> selectSurvivorReviewRpt01OncePayBy9ListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-
-	    	List<Bebmsa> oncePayDataBy9List = bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	oncePayDataBy9List.addAll(bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        	
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCaseBy9> oncePayCaseBy9List = new ArrayList<SurvivorReviewRpt01OncePayDataCaseBy9>();
-	        for (Bebmsa oncePayData : oncePayDataBy9List) {
-	        	SurvivorReviewRpt01OncePayDataCaseBy9 oncePayDataCase = new SurvivorReviewRpt01OncePayDataCaseBy9();
-	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
-	            
-	            oncePayCaseBy9List.add(oncePayDataCase);
-	            
-	        }
-	        
-			return oncePayCaseBy9List;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01OncePayDataCase> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 一次給付資料
-	    	
-	        List<Pbbmsa> oncePayDataList = pbbmsaDao.selectSurvivorReviewRpt01OncePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oncePayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCase> oncePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa oncePayData : oncePayDataList) {
-	            SurvivorReviewRpt01OncePayDataCase oncePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
-	            
-	            oncePayCaseList.add(oncePayDataCase);
-	            
-	        }
-	        
-			return oncePayCaseList;
-			
-		}
-	}
-	
-	class SurvirorReviewOtherKind {
-		
-		public SurvirorReviewOtherKind() {
-			super();
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01DiePayDataCase> getSurvivorReviewRpt01DisappearPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-            // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料
-            
-			List<Pbbmsa> disappearPayDataList = pbbmsaDao.getSurvivorReviewRpt01DisappearPayListBy(evtIdnNo, evtBrDate);
-            // 用關鍵欄位變更檔 去找資料
-            for (Kcaf kcaf : evtKcafList) {
-                disappearPayDataList.addAll(pbbmsaDao.getSurvivorReviewRpt01DisappearPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-                
-            }
-            
-            List<SurvivorReviewRpt01DiePayDataCase> disappearPayCaseList = new ArrayList<SurvivorReviewRpt01DiePayDataCase>();
-            for (Pbbmsa disappearPayData : disappearPayDataList) {
-                SurvivorReviewRpt01DiePayDataCase disappearPayDataCase = new SurvivorReviewRpt01DiePayDataCase();
-                BeanUtility.copyProperties(disappearPayDataCase, disappearPayData);
-                
-                disappearPayCaseList.add(disappearPayDataCase);
-                
-            }
-            
-			return disappearPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01NpPayDataCase> selectSurvivorReviewRpt01NpPayListBy(String evtIds) {
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
-            
-            List<Nbappbase> npPayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpPayListBy(evtIds);
-            
-            List<SurvivorReviewRpt01NpPayDataCase> npPayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
-            for (Nbappbase npPayData : npPayDataList) {
-                SurvivorReviewRpt01NpPayDataCase npPayDataCase = new SurvivorReviewRpt01NpPayDataCase();
-                BeanUtility.copyProperties(npPayDataCase, npPayData);
-
-                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-                Nbdapr npPayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npPayData.getApNo(), npPayData.getIssuYm(), npPayData.getPayYm());
-                if (npPayDetailData != null) {
-                    npPayDataCase.setChkDt(npPayDetailData.getChkDt()); // 核定日期
-                    npPayDataCase.setAplPayDate(npPayDetailData.getAplPayDate()); // 帳務日期
-                    
-                }
-
-                npPayCaseList.add(npPayDataCase);
-                
-            }
-            
-			return npPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-		 * 
-		 * @param evtIds
-		 * @param apNoTyp
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01NpPayDataCase> selectSurvivorReviewRpt01NpDidePayListByC(String evtIds,
-				String apNoTyp) {
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-            List<SurvivorReviewRpt01NpPayDataCase> npSurivorDidePayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
-            List<Nbappbase> npSurivorDidePayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpDidePayListBy(evtIds, apNoTyp);
-            for (Nbappbase npSurivorDidePayData : npSurivorDidePayDataList) {
-                SurvivorReviewRpt01NpPayDataCase npSurivorDidePayDataCase = new SurvivorReviewRpt01NpPayDataCase();
-                BeanUtility.copyProperties(npSurivorDidePayDataCase, npSurivorDidePayData);
-
-                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-                Nbdapr npSurivorDidePayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npSurivorDidePayData.getApNo(), npSurivorDidePayData.getIssuYm(), npSurivorDidePayData.getPayYm());
-                if (npSurivorDidePayDetailData != null) {
-                    npSurivorDidePayDataCase.setChkDt(npSurivorDidePayDetailData.getChkDt()); // 核定日期
-                    npSurivorDidePayDataCase.setAplPayDate(npSurivorDidePayDetailData.getAplPayDate()); // 帳務日期
-                }
-
-                npSurivorDidePayCaseList.add(npSurivorDidePayDataCase);
-            }
-            return npSurivorDidePayCaseList;
-            
-		}
-		
-	    /**
-	     * 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-	     * 
-	     * @param evtIds
-	     * @param apNoTyp
-	     * @return
-	     */
-	    public List<SurvivorReviewRpt01NpPayDataCase> selectSurvivorReviewRpt01NpDidePayListByD(String evtIds,
-				String apNoTyp) {
-            // 取得 國保給付主檔 (NBAPPBASE) 申請國保遺屬給付記錄資料
-            
-	    	List<Nbappbase> npSurivorPayDataList = nbappbaseDao.selectSurvivorReviewRpt01NpDidePayListBy(evtIds, apNoTyp);
-            
-            List<SurvivorReviewRpt01NpPayDataCase> npSurivorPayCaseList = new ArrayList<SurvivorReviewRpt01NpPayDataCase>();
-            for (Nbappbase npSurivorPayData : npSurivorPayDataList) {
-                SurvivorReviewRpt01NpPayDataCase npSurivorPayDataCase = new SurvivorReviewRpt01NpPayDataCase();
-                BeanUtility.copyProperties(npSurivorPayDataCase, npSurivorPayData);
-
-                // 取得 國保給付核定檔 (NBDAPR) 申請國保給付記錄資料
-                Nbdapr npSurivorPayDetailData = nbdaprDao.selectSurvivorReviewRpt01NpPayDetailDataBy(npSurivorPayData.getApNo(), npSurivorPayData.getIssuYm(), npSurivorPayData.getPayYm());
-                if (npSurivorPayDetailData != null) {
-                    npSurivorPayDataCase.setChkDt(npSurivorPayDetailData.getChkDt()); // 核定日期
-                    npSurivorPayDataCase.setAplPayDate(npSurivorPayDetailData.getAplPayDate()); // 帳務日期
-                    
-                }
-
-                npSurivorPayCaseList.add(npSurivorPayDataCase);
-                
-            }
-            
-			return npSurivorPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01JoblessPayDataCase> getDisableReviewRpt01JoblessPayList2By(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
-
-	        List<Biref> joblessPayDataList = birefDao.getDisableReviewRpt01JoblessPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            joblessPayDataList.addAll(birefDao.getDisableReviewRpt01JoblessPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01JoblessPayDataCase> joblessPayCaseList = new ArrayList<SurvivorReviewRpt01JoblessPayDataCase>();
-	        for (Biref joblessPayData : joblessPayDataList) {
-	            SurvivorReviewRpt01JoblessPayDataCase joblessPayDataCase = new SurvivorReviewRpt01JoblessPayDataCase();
-	            BeanUtility.copyProperties(joblessPayDataCase, joblessPayData);
-	        
-	            joblessPayCaseList.add(joblessPayDataCase);
-	            
-	        }
-	        
-			return joblessPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01OncePayDataCase> getSurvivorReviewRpt01FamDiePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請農保死亡給付記錄資料
-
-	    	List<Pbbmsa> famDiePayDataList = pbbmsaDao.getSurvivorReviewRpt01FamDiePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	        	famDiePayDataList.addAll(pbbmsaDao.getSurvivorReviewRpt01FamDiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	        	
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCase> famDiePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa famDiePayData : famDiePayDataList) {
-	            SurvivorReviewRpt01OncePayDataCase famDiePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(famDiePayDataCase, famDiePayData);
-	            
-	            famDiePayCaseList.add(famDiePayDataCase);
-	            
-	        }
-	        
-			return famDiePayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param apNo
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01InjuryPayDataCase> selectSurvivorReviewRpt01InjuryPayListBy(String evtIdnNo,
-				String evtBrDate, String apNo, List<Kcaf> evtKcafList) {
-            // 取得 現金給付參考檔 (PBBMSA) 申請傷病給付記錄資料
-
-			List<Pbbmsa> injurySurvivorPayDataList = pbbmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(evtIdnNo, evtBrDate, apNo);
-
-            // 用關鍵欄位變更檔 去找資料
-            for (Kcaf kcaf : evtKcafList) {
-                injurySurvivorPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01InjuryPayListBy(kcaf.getBIdn(), kcaf.getBBrDte(), apNo));
-                
-            }
-            
-            List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayCaseList = new ArrayList<SurvivorReviewRpt01InjuryPayDataCase>();
-            for (Pbbmsa injurySurvivorPayData : injurySurvivorPayDataList) {
-                SurvivorReviewRpt01InjuryPayDataCase injurySurvivorPayDataCase = new SurvivorReviewRpt01InjuryPayDataCase();
-                BeanUtility.copyProperties(injurySurvivorPayDataCase, injurySurvivorPayData);
-                
-                injurySurvivorPayCaseList.add(injurySurvivorPayDataCase);
-                
-            }
-
-            return injurySurvivorPayCaseList;
-            
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01OncePayDataCase> selectSurvivorReviewRpt01HosPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
-
-	    	List<Pbbmsa> hosPayDataList = pbbmsaDao.selectSurvivorReviewRpt01HosPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            hosPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01HosPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa hosPayData : hosPayDataList) {
-	            SurvivorReviewRpt01OncePayDataCase hosPayDataCase = new SurvivorReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(hosPayDataCase, hosPayData);
-	            
-	            hosPayCaseList.add(hosPayDataCase);
-	            
-	        }
-	        
-			return hosPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01OncePayDataCase> selectSurvivorReviewRpt01DisPayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄
-	        
-	        List<Pbbmsa> disPayDataList = pbbmsaDao.selectSurvivorReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            disPayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCase> disPayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa disPayData : disPayDataList) {
-	            SurvivorReviewRpt01OncePayDataCase disPayDataCase = new SurvivorReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(disPayDataCase, disPayData);
-	            
-	            disPayCaseList.add(disPayDataCase);
-	            
-	        }
-	        
-			return disPayCaseList;
-			
-		}
-
-		/**
-		 * 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
-		 * 
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01OncePayDataCase> selectSurvivorReviewRpt01OldAgePayListBy(String evtIdnNo,
-				String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 現金給付參考檔 (PBBMSA) 申請老年給付記錄
-
-	    	List<Pbbmsa> oldAgePayDataList = pbbmsaDao.selectSurvivorReviewRpt01OldAgePayListBy(evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oldAgePayDataList.addAll(pbbmsaDao.selectSurvivorReviewRpt01OldAgePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01OncePayDataCase> oldAgePayCaseList = new ArrayList<SurvivorReviewRpt01OncePayDataCase>();
-	        for (Pbbmsa oldAgePayData : oldAgePayDataList) {
-	            SurvivorReviewRpt01OncePayDataCase oldAgePayDataCase = new SurvivorReviewRpt01OncePayDataCase();
-	            BeanUtility.copyProperties(oldAgePayDataCase, oldAgePayData);
-	            oldAgePayCaseList.add(oldAgePayDataCase);
-	            
-	        }
-	        
-			return oldAgePayCaseList;
-			
-		}
-
-		/**
-		 * 取得 申請失能年金給付記錄
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01DisablePayDataCase> selectSurvivorReviewRpt01DisablePayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 申請失能年金給付記錄
-
-	    	List<Baappbase> disablePayDataList = baappbaseDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            disablePayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01DisablePayDataCase> disablePayCaseList = new ArrayList<SurvivorReviewRpt01DisablePayDataCase>();
-	        for (Baappbase disablePayData : disablePayDataList) {
-	            SurvivorReviewRpt01DisablePayDataCase disablePayDataCase = new SurvivorReviewRpt01DisablePayDataCase();
-	            BeanUtility.copyProperties(disablePayDataCase, disablePayData);
-	            
-	            disablePayDataCase.setApNo(disablePayData.getApNo());
-
-	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(disablePayData.getApNo());
-	            if (dateData != null) {
-	                disablePayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
-	                disablePayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
-	                disablePayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
-	                disablePayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
-	                
-	            }
-	            
-	            Maadmrec disablePayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(disablePayData.getApNo(), disablePayData.getIssuYm());
-	            if (disablePayMaadmrecData != null) {
-	                disablePayDataCase.setProdate(disablePayMaadmrecData.getProDate()); // 補件日期
-	                disablePayDataCase.setNdomk1(disablePayMaadmrecData.getNdomk1()); // 處理註記
-	                
-	            }
-
-	            Baappexpand disablePayBaappexpand = baappexpandDao.getSurvivorReviewRpt01DisablePayList(disablePayData.getApNo());
-	            if (disablePayBaappexpand != null) {
-	                disablePayDataCase.setEvTyp(disablePayBaappexpand.getEvTyp());// 傷病分類
-	                disablePayDataCase.setCriInJdp1(disablePayBaappexpand.getCriInJdp1()); // 失能項目1
-	                disablePayDataCase.setCriInJdp2(disablePayBaappexpand.getCriInJdp2()); // 失能項目2
-	                disablePayDataCase.setCriInJdp3(disablePayBaappexpand.getCriInJdp3()); // 失能項目3
-	                disablePayDataCase.setCriInJdp4(disablePayBaappexpand.getCriInJdp4()); // 失能項目4
-	                disablePayDataCase.setCriInJdp5(disablePayBaappexpand.getCriInJdp5()); // 失能項目5
-	                disablePayDataCase.setCriInJdp6(disablePayBaappexpand.getCriInJdp6()); // 失能項目6
-	                disablePayDataCase.setCriInJdp7(disablePayBaappexpand.getCriInJdp7()); // 失能項目7
-	                disablePayDataCase.setCriInJdp8(disablePayBaappexpand.getCriInJdp8()); // 失能項目8
-	                disablePayDataCase.setCriInJdp9(disablePayBaappexpand.getCriInJdp9()); // 失能項目9
-	                disablePayDataCase.setCriInJdp10(disablePayBaappexpand.getCriInJdp10()); // 失能項目10
-	                disablePayDataCase.setCriInJcl1(disablePayBaappexpand.getCriInJcl1()); // 失能等級1
-	                disablePayDataCase.setCriInJcl2(disablePayBaappexpand.getCriInJcl2()); // 失能等級2
-	                disablePayDataCase.setCriInJcl3(disablePayBaappexpand.getCriInJcl3()); // 失能等級3
-
-	            }
-
-	            disablePayCaseList.add(disablePayDataCase);
-	            
-	        }
-	        
-			return disablePayCaseList;
-			
-		}
-
-		/**
-		 * 取得 老年年金給付記錄資料
-		 * 
-		 * @param apNo
-		 * @param evtIdnNo
-		 * @param evtBrDate
-		 * @param evtKcafList
-		 * @return
-		 */
-		public List<SurvivorReviewRpt01AnnuityPayDataCase> selectSurvivorReviewRpt01OldPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
-	        // 取得 老年年金給付記錄資料
-	        
-	    	List<Baappbase> oldPayDataList = baappbaseDao.selectSurvivorReviewRpt01OldPayListBy(apNo, evtIdnNo, evtBrDate);
-	        // 用關鍵欄位變更檔 去找資料
-	        for (Kcaf kcaf : evtKcafList) {
-	            oldPayDataList.addAll(baappbaseDao.selectSurvivorReviewRpt01OldPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
-	            
-	        }
-	        
-	        List<SurvivorReviewRpt01AnnuityPayDataCase> oldPayCaseList = new ArrayList<SurvivorReviewRpt01AnnuityPayDataCase>();
-	        for (Baappbase oldPayData : oldPayDataList) {
-	            SurvivorReviewRpt01AnnuityPayDataCase oldPayDataCase = new SurvivorReviewRpt01AnnuityPayDataCase();
-	            BeanUtility.copyProperties(oldPayDataCase, oldPayData);
-
-	            Badapr dateData = badaprDao.selectSurvivorReviewRpt01DateDataBy(oldPayData.getApNo());
-	            if (dateData != null) {
-	                oldPayDataCase.setChkDate(dateData.getChkDate()); // 核定日期
-	                oldPayDataCase.setAplpayDate(dateData.getAplpayDate()); // 核付日期
-	                oldPayDataCase.setRecAmt(dateData.getRecAmt()); // 收回金額
-	                oldPayDataCase.setSupAmt(dateData.getSupAmt()); // 補發金額
-	                
-	            }
-	            
-	            Maadmrec oldPayMaadmrecData = maadmrecDao.selectSurvivorReviewRpt01AnnuityPayDataBy(oldPayData.getApNo(), oldPayData.getIssuYm());
-	            if (oldPayMaadmrecData != null) {
-	                oldPayDataCase.setProdate(oldPayMaadmrecData.getProDate()); // 補件日期
-	                oldPayDataCase.setNdomk1(oldPayMaadmrecData.getNdomk1()); // 處理註記
-	                
-	            }
-
-	            oldPayCaseList.add(oldPayDataCase);
-	            
-	        }
-	        
-			return oldPayCaseList;
-			
-		}
-
-	}
-    
     public void setUpdateService(UpdateService updateService) {
         this.updateService = updateService;
     }

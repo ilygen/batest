@@ -110,7 +110,7 @@ public interface BebmsaDao {
      * @param evtBrDate 事故者出生日期
      * @return
      */
-    public List<Bebmsa> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate);
+    public List<Bebmsa> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp);
     
     /**
      * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 老年給付資料 for 勞保遺屬年金給付受理編審清單
@@ -192,7 +192,7 @@ public interface BebmsaDao {
      * @param evtBrDate 事故者出生日期
      * @return
      */
-    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate);
+    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate, String paytyp);
     
     /**
      * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請失蹤給付記錄 for 勞保失能年金給付受理編審清單
@@ -257,6 +257,6 @@ public interface BebmsaDao {
 	 * @param paytyp 給付種類
 	 * @return
 	 */
-	public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp);    
-    
+	public List<Bebmsa> getDisableReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp);
+
 }

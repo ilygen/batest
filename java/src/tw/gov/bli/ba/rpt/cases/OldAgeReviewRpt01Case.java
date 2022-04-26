@@ -3,10 +3,11 @@ package tw.gov.bli.ba.rpt.cases;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.util.DateUtility;
-import tw.gov.bli.common.annotation.LogField;
 
 /**
  * Case for 勞保老年年金給付受理編審清單
@@ -204,9 +205,9 @@ public class OldAgeReviewRpt01Case implements Serializable {
     private List<OldAgeReviewRpt01DisablePayDataCase> disablePayList; // 申請失能給付記錄
     private List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayList; // 申請失能年金記錄
     private List<OldAgeReviewRpt01DiePayDataCase> diePayList; // 申請死亡給付記錄
-    private List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayBy9List; // 申請死亡給付記錄-災保
+    private List<DisasterInsuranceReviewRpt01DiePayDataCase> disasterInsuranceDiePayList; // 申請死亡給付記錄-災保
     private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList; // 申請遺屬年金記錄
-    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List; // 申請遺屬年金記錄 災保
+    private List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> disasterInsuranceSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
     private List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
     private List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<OldAgeReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
@@ -1834,29 +1835,29 @@ public class OldAgeReviewRpt01Case implements Serializable {
 	/**
 	 * @return the diePayBy9List
 	 */
-	public List<OldAgeReviewRpt01DiePayDataCaseBy9> getDiePayBy9List() {
-		return diePayBy9List;
+	public List<DisasterInsuranceReviewRpt01DiePayDataCase> getDisasterInsuranceDiePayList() {
+		return disasterInsuranceDiePayList;
 	}
 
 	/**
 	 * @param diePayBy9List the diePayBy9List to set
 	 */
-	public void setDiePayBy9List(List<OldAgeReviewRpt01DiePayDataCaseBy9> diePayBy9List) {
-		this.diePayBy9List = diePayBy9List;
+	public void setDisasterInsuranceDiePayList(List<DisasterInsuranceReviewRpt01DiePayDataCase> disasterInsuranceDiePayList) {
+		this.disasterInsuranceDiePayList = disasterInsuranceDiePayList;
 	}
 
 	/**
-	 * @return the survivorAnnuityPayBy9List
+	 * @return the disasterInsuranceSurvivorAnnuityPayList
 	 */
-	public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> getSurvivorAnnuityPayBy9List() {
-		return survivorAnnuityPayBy9List;
+	public List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> getDisasterInsuranceSurvivorAnnuityPayList() {
+		return disasterInsuranceSurvivorAnnuityPayList;
 	}
 
 	/**
-	 * @param survivorAnnuityPayBy9List the survivorAnnuityPayBy9List to set
+	 * @param disasterInsuranceSurvivorAnnuityPayList the disasterInsuranceSurvivorAnnuityPayList to set
 	 */
-	public void setSurvivorAnnuityPayBy9List(
-			List<OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9> survivorAnnuityPayBy9List) {
-		this.survivorAnnuityPayBy9List = survivorAnnuityPayBy9List;
+	public void setDisasterInsuranceSurvivorAnnuityPayList(
+			List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> disasterInsuranceSurvivorAnnuityPayList) {
+		this.disasterInsuranceSurvivorAnnuityPayList = disasterInsuranceSurvivorAnnuityPayList;
 	}
 }

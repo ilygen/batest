@@ -2,19 +2,24 @@ package tw.gov.bli.ba.rpt.cases;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 import org.apache.commons.lang.StringUtils;
+
 import tw.gov.bli.ba.util.DateUtility;
 
 /**
- * Case for 災保遺屬年金給付受理編審清單 - 請領同類給付資料 - 一次給付
+ * Case for 勞保失能年金給付受理編審清單 - 請領同類給付資料 - 一次給付
  * 
- * @author Rickychi
+ * @author Evelyn Hsu
  */
-public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
+
+public class DisasterInsuranceReviewRpt01OncePayDataCase implements Serializable {
+    private static final long serialVersionUID = -6541879602291890822L;
+
     private String bmPayKnd; // 給付類別
     private String bmEvidNo; // 事故者身分證號
     private String bmEvBrth; // 事故者出生日期
-    private String bmEvtDte; // 死亡日期
+    private String bmEvtDte; // 事故日期
     private BigDecimal bmApCnt; // 申請次數
     private String bmEvName; // 事故者姓名
     private String bmApDte; // 受理日期
@@ -24,7 +29,7 @@ public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
     private String bmPayDte; // 核付日期
     private String bmUbNo; // 保險證號
     private String bmEvType; // 傷病分類
-    private String bmEvCode; // 傷病原因
+    private String bmEvCode; // 事故原因
     private BigDecimal bmChkDay; // 核定日(月)數
     private BigDecimal bmChkAmt; // 核定金額
     private BigDecimal bmAdjAmts; // 補發收回金額
@@ -98,9 +103,7 @@ public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
     private String bmOldOrgDpt;// 原事業主管機關
     private String bmOldAplDpt;// 申請代算單位
     private String bmOldLawNo;// 法令依據代碼
-    private String bmDeaapItem; //申請項目
-    
-    
+
     /**
      * 受理號碼 14 碼<br>
      * 格式: xxx-x-xx-xxxxxx-xx
@@ -116,30 +119,19 @@ public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
             return bmApNo.substring(0, 3) + "-" + bmApNo.substring(3, 4) + "-" + bmApNo.substring(4, 6) + "-" + bmApNo.substring(6, 12) + "-" + bmApNo.substring(12, 14);
         }
     }
-    
-    
-    /*
+
+    /**
      * 受理日期
+     * 
+     * @return
      */
-    public String getBmApDteString(){
-        if(StringUtils.length(bmApDte) == 8)
+    public String getBmApDteString() {
+        if (StringUtils.length(bmApDte) == 8)
             return DateUtility.formatChineseDateString(DateUtility.changeDateType(bmApDte), false);
         else
             return StringUtils.defaultString(bmApDte);
     }
-    
-    /**
-     * 核定起日
-     * 
-     * @return
-     */
-    public String getBmInjPfmDteString() {
-        if (StringUtils.length(bmInjPfmDte) == 8)
-            return DateUtility.formatChineseDateString(DateUtility.changeDateType(bmInjPfmDte), false);
-        else
-            return StringUtils.defaultString(bmInjPfmDte);
-    }
-    
+
     /**
      * 事故日期
      * 
@@ -199,52 +191,64 @@ public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
         else
             return StringUtils.defaultString(bmNopDate);
     }
-    
-    // 失能項目
-    public String getCriInJdpStr() {
-        String criInJdp = "";
-        if (StringUtils.isNotBlank(getBmCriInjDp1())) {
-            criInJdp += getBmCriInjDp1() + " ";
-        }
-        if (StringUtils.isNotBlank(getBmCriInjDp2())) {
-            criInJdp += getBmCriInjDp2() + " ";
-        }
-        if (StringUtils.isNotBlank(getBmCriInjDp3())) {
-            criInJdp += getBmCriInjDp3() + " ";
-        }
-        if (StringUtils.isNotBlank(getBmCriInjDp4())) {
-            criInJdp += getBmCriInjDp4() + " ";
-        }
-        if (StringUtils.isNotBlank(getBmCriInjDp5())) {
-            criInJdp += getBmCriInjDp5() + " ";
-        }
-        if (StringUtils.isNotBlank(getBmCriInjDp6())) {
-            criInJdp += getBmCriInjDp6() + " ";
-        }
-        
-        return criInJdp;
+
+    /**
+     * 核定起日
+     * 
+     * @return
+     */
+    public String getBmInjPfmDteString() {
+        if (StringUtils.length(bmInjPfmDte) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(bmInjPfmDte), false);
+        else
+            return StringUtils.defaultString(bmInjPfmDte);
     }
-    
-    // 失能等級
+
+    // 核定等級
     public String getCriInJclStr() {
         String criInJcl = "";
         if (StringUtils.isNotBlank(getBmCriInjCl1())) {
-            criInJcl += getBmCriInjCl1() + " ";
+            criInJcl += getBmCriInjCl1() + ",";
         }
-        if (StringUtils.isNotBlank(getBmCriInjCl2())) {
-            criInJcl += getBmCriInjCl2() + " ";
+        if (StringUtils.isNotBlank(getBmCriInjCl1())) {
+            criInJcl += getBmCriInjCl1() + ",";
         }
-       
         if (StringUtils.isNotBlank(criInJcl)) {
             criInJcl = criInJcl.substring(0, criInJcl.length() - 1);
         }
         return criInJcl;
     }
-    
-    public SurvivorReviewRpt01OncePayDataCaseBy9(){
-        
+
+    // 失能項目
+    public String getCriInJdpStr() {
+        String criInJdp = "";
+        if (StringUtils.isNotBlank(getBmCriInjDp1())) {
+            criInJdp += getBmCriInjDp1() + ",";
+        }
+        if (StringUtils.isNotBlank(getBmCriInjDp2())) {
+            criInJdp += getBmCriInjDp2() + ",";
+        }
+        if (StringUtils.isNotBlank(getBmCriInjDp3())) {
+            criInJdp += getBmCriInjDp3() + ",";
+        }
+        if (StringUtils.isNotBlank(getBmCriInjDp4())) {
+            criInJdp += getBmCriInjDp4() + ",";
+        }
+        if (StringUtils.isNotBlank(getBmCriInjDp5())) {
+            criInJdp += getBmCriInjDp5() + ",";
+        }
+        if (StringUtils.isNotBlank(getBmCriInjDp6())) {
+            criInJdp += getBmCriInjDp6() + ",";
+        }
+        if (StringUtils.isNotBlank(criInJdp)) {
+            criInJdp = criInJdp.substring(0, criInJdp.length() - 1);
+        }
+        return criInJdp;
     }
-    
+
+    public DisasterInsuranceReviewRpt01OncePayDataCase() {
+
+    }
 
     public String getBmPayKnd() {
         return bmPayKnd;
@@ -942,15 +946,4 @@ public class SurvivorReviewRpt01OncePayDataCaseBy9 implements Serializable {
         this.bmOldLawNo = bmOldLawNo;
     }
 
-
-    public String getBmDeaapItem() {
-        return bmDeaapItem;
-    }
-
-
-    public void setBmDeaapItem(String bmDeaapItem) {
-        this.bmDeaapItem = bmDeaapItem;
-    }
-    
-    
 }

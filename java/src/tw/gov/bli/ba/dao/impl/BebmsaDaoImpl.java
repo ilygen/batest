@@ -197,14 +197,16 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
      * @param evtBrDate 事故者出生日期
      * @return
      */
-    @DaoFieldList("EVTIDNNO,EVTBRDATE")
-    public List<Bebmsa> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate) {
+    @DaoFieldList("EVTIDNNO,EVTBRDATE,PAYTYP")
+    public List<Bebmsa> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(paytyp))
+            map.put("paytyp", paytyp);
 
         return getSqlMapClientTemplate().queryForList("BEBMSA.selectSurvivorReviewRpt01OncePayListBy", map);
     }
@@ -393,13 +395,15 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
      * @return
      */
     @DaoFieldList("EVTIDNNO,EVTBRDATE")
-    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate) {
+    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate, String paytype) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(paytype))
+            map.put("paytype", paytype);
 
         return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01DiePayListBy", map);
     }
@@ -514,6 +518,6 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
         map.put("sBMPAYKND", sBMPAYKND);
         map.put("sBMAPNO", sBMAPNO);        
         return getSqlMapClientTemplate().queryForList("BEBMSA.selectDifferenceDetail", map);
-    }    
+    }
 
 }

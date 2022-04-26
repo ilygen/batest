@@ -12,7 +12,7 @@ import tw.gov.bli.ba.util.DateUtility;
  * 
  * @author Noctis
  */
-public class OldAgeReviewRpt01SurvivorAnnuityPayDataCaseBy9 implements Serializable {
+public class DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase implements Serializable {
 	private String evtName; // 事故者姓名
     private String appDate; // 申請日期
     private String apNo; // 受理編號

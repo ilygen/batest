@@ -10,7 +10,7 @@ import tw.gov.bli.ba.util.DateUtility;
  * 
  * @author Goston
  */
-public class OldAgeReviewRpt01DiePayDataCaseBy9 implements Serializable {
+public class DisasterInsuranceReviewRpt01DiePayDataCase implements Serializable {
     private String bmApNo; // 受理號碼
     private String bmApDte; // 受理日期
     private String bmEvName; // 事故者姓名
@@ -22,6 +22,10 @@ public class OldAgeReviewRpt01DiePayDataCaseBy9 implements Serializable {
     private String bmNopDate; // 不給付日期
     private String bmEvtDte; // 事故日期
     private String bmPayYm; // 給付年月
+    private String bmLosFmDte; //申請起日
+    private String bmLosToDte; //申請迄日
+    private String bmEvType; //傷病分類
+    private String bmDeaapItem; //申請項目
 
     /**
      * 受理號碼 14 碼<br>
@@ -118,7 +122,7 @@ public class OldAgeReviewRpt01DiePayDataCaseBy9 implements Serializable {
             return StringUtils.defaultString(bmPayYm);
     }
 
-    public OldAgeReviewRpt01DiePayDataCaseBy9() {
+    public DisasterInsuranceReviewRpt01DiePayDataCase() {
 
     }
 
@@ -208,6 +212,86 @@ public class OldAgeReviewRpt01DiePayDataCaseBy9 implements Serializable {
 
     public void setBmPayYm(String bmPayYm) {
         this.bmPayYm = bmPayYm;
+    }
+
+	/**
+	 * @return the bmEvType
+	 */
+	public String getBmEvType() {
+		return bmEvType;
+	}
+
+	/**
+	 * @param bmEvType the bmEvType to set
+	 */
+	public void setBmEvType(String bmEvType) {
+		this.bmEvType = bmEvType;
+	}
+
+	/**
+	 * @return the bmDeaapItem
+	 */
+	public String getBmDeaapItem() {
+		return bmDeaapItem;
+	}
+
+	/**
+	 * @param bmDeaapItem the bmDeaapItem to set
+	 */
+	public void setBmDeaapItem(String bmDeaapItem) {
+		this.bmDeaapItem = bmDeaapItem;
+	}
+
+	/**
+	 * @return the bmLosFmDte
+	 */
+	public String getBmLosFmDte() {
+		return bmLosFmDte;
+	}
+
+	/**
+	 * @param bmLosFmDte the bmLosFmDte to set
+	 */
+	public void setBmLosFmDte(String bmLosFmDte) {
+		this.bmLosFmDte = bmLosFmDte;
+	}
+
+	/**
+	 * @return the bmLosToDte
+	 */
+	public String getBmLosToDte() {
+		return bmLosToDte;
+	}
+
+	/**
+	 * @param bmLosToDte the bmLosToDte to set
+	 */
+	public void setBmLosToDte(String bmLosToDte) {
+		this.bmLosToDte = bmLosToDte;
+	}
+
+    /**
+     * 申請起日
+     * 
+     * @return
+     */
+    public String getBmLosToDteString() {
+        if (StringUtils.length(bmLosToDte) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(bmLosToDte), false);
+        else
+            return StringUtils.defaultString(bmLosToDte);
+    }
+    
+    /**
+     * 申請迄日
+     * 
+     * @return
+     */
+    public String getBmLosFmDteString() {
+        if (StringUtils.length(bmLosFmDte) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(bmLosFmDte), false);
+        else
+            return StringUtils.defaultString(bmLosFmDte);
     }
 
 }
