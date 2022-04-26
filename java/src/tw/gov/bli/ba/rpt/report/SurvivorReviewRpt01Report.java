@@ -3629,7 +3629,8 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             chkfileString = new StringBuffer("");
                         }
 
-                        chkfileString.append(((StringUtils.isBlank(chkfileString.toString())) ? (chkfileData.getPayYmString() + "－ " + chkfileData.getChkCode()) : (" " + chkfileData.getChkCode())));
+                        // Modified by EthanChen 20211130 for babaweb-8 調整註記代號後顯示可穿透及改後層級
+                        chkfileString.append(((StringUtils.isBlank(chkfileString.toString())) ? (chkfileData.getPayYmString() + "－ " + chkfileData.getChkCode() + getChkCodeTyp(chkfileData) + ",") : (" " + chkfileData.getChkCode() + getChkCodeTyp(chkfileData) + ",")));
                     }
                     // 如果 chkfileString 不為空白則必須於迴圈後將其加入 ArrayList, 否則資料會少一筆
                     if (StringUtils.isNotBlank(chkfileString.toString()))
@@ -7472,7 +7473,8 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                                     benChkfileString = new StringBuffer("");
                                 }
 
-                                benChkfileString.append(((StringUtils.isBlank(benChkfileString.toString())) ? (benChkfileData.getPayYmString() + "－ " + benChkfileData.getChkCode()) : (" " + benChkfileData.getChkCode())));
+                                // Modified by EthanChen 20211130 for babaweb-8 調整註記代號後顯示可穿透及改後層級
+                                benChkfileString.append(((StringUtils.isBlank(benChkfileString.toString())) ? (benChkfileData.getPayYmString() + "－ " + benChkfileData.getChkCode() + getChkCodeTyp(benChkfileData) + ",") : (" " + benChkfileData.getChkCode() + getChkCodeTyp(benChkfileData) + ",")));
                             }
                             // 如果 chkfileString 不為空白則必須於迴圈後將其加入 ArrayList, 否則資料會少一筆
                             if (StringUtils.isNotBlank(benChkfileString.toString()))
@@ -8506,4 +8508,17 @@ public class SurvivorReviewRpt01Report extends ReportBase {
         return bao;
     }
     
+    /**
+     * 取得編審註記代號改前改後類型字串(可穿透才串改前)
+     * @param chkfileData
+     * @return
+     */
+    private String getChkCodeTyp(SurvivorReviewRpt01ChkfileDataCase chkfileData) {
+    	String rtn = "";
+    	if(StringUtils.isNotBlank(chkfileData.getChkCodePre())) {
+    		rtn = "O".equals(chkfileData.getChkCodePre()) ? (" " + chkfileData.getChkCodePre() + chkfileData.getChkCodePost()) : (" " + chkfileData.getChkCodePost());
+    	}
+    	return rtn;
+    }
+
 }
