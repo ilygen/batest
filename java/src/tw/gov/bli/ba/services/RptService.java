@@ -1727,7 +1727,7 @@ public class RptService {
 		 * @param evtKcafList
 		 * @return
 		 */
-		public List<DisasterInsuranceReviewRpt01OncePayDataCase> getFarmPayListBy(String evtIdnNo,
+		public List<DisableReviewRpt01OncePayDataCase> getFarmPayListBy(String evtIdnNo,
 				String evtBrDate, List<Kcaf> evtKcafList) {
 	        // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
 	        
@@ -1738,9 +1738,9 @@ public class RptService {
 	            
 	        }
 	        
-	        List<DisasterInsuranceReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01OncePayDataCase>();
+	        List<DisableReviewRpt01OncePayDataCase> farmPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
 	        for (Pbbmsa farmPayData : farmPayDataList) {
-	            DisasterInsuranceReviewRpt01OncePayDataCase farmPayDataCase = new DisasterInsuranceReviewRpt01OncePayDataCase();
+	        	DisableReviewRpt01OncePayDataCase farmPayDataCase = new DisableReviewRpt01OncePayDataCase();
 	            BeanUtility.copyProperties(farmPayDataCase, farmPayData);
 	            farmPayCaseList.add(farmPayDataCase);
 	            
@@ -2219,7 +2219,7 @@ public class RptService {
 		 * @param evtKcafList
 		 * @return
 		 */
-		public List<DisasterInsuranceReviewRpt01OncePayDataCase> selectHosPayListBy(String evtIdnNo,
+		public List<DisableReviewRpt01OncePayDataCase> selectHosPayListBy(String evtIdnNo,
 				String evtBrDate, List<Kcaf> evtKcafList) {
 	        // 取得 現金給付參考檔 (PBBMSA) 申請職災住院醫療給付記錄
 	    	
@@ -2230,9 +2230,9 @@ public class RptService {
 	            
 	        }
 	        
-	        List<DisasterInsuranceReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<DisasterInsuranceReviewRpt01OncePayDataCase>();
+	        List<DisableReviewRpt01OncePayDataCase> hosPayCaseList = new ArrayList<DisableReviewRpt01OncePayDataCase>();
 	        for (Pbbmsa hosPayData : hosPayDataList) {
-	            DisasterInsuranceReviewRpt01OncePayDataCase hosPayDataCase = new DisasterInsuranceReviewRpt01OncePayDataCase();
+	        	DisableReviewRpt01OncePayDataCase hosPayDataCase = new DisableReviewRpt01OncePayDataCase();
 	            BeanUtility.copyProperties(hosPayDataCase, hosPayData);
 	            
 	            hosPayCaseList.add(hosPayDataCase);

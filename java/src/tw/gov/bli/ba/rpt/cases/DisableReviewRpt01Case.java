@@ -168,7 +168,7 @@ public class DisableReviewRpt01Case implements Serializable {
     private List<DisasterInsuranceReviewRpt01OncePayDataCase> disasterInsuranceOncePay39List; // 一次給付 災保 退保後職業病失能津貼
     private List<DisasterInsuranceReviewRpt01OncePayDataCase> disasterInsuranceOncePay3TList; // 一次給付 災保 退保後職業病失能津貼
     private List<DisasterInsuranceReviewRpt01OncePayDataCase> disasterInsuranceOncePay3NList; // 一次給付 災保 未加保失能補助
-    private List<DisasterInsuranceReviewRpt01OncePayDataCase> farmPayList; // 申請農保殘廢給付記錄
+    private List<DisableReviewRpt01OncePayDataCase> farmPayList; // 申請農保殘廢給付記錄
     private List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList; // 年金給付
     private List<DisableReviewRpt01AnnuityPayDataCase> nbPayList; // 申請國保年金給付記錄
     private List<DisableReviewRpt01NpPayDataCase> nbDisPayList; // 申請國保身障年金給付記錄
@@ -192,7 +192,7 @@ public class DisableReviewRpt01Case implements Serializable {
     private List<DisableReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<DisableReviewRpt01JoblessPayDataCase> vocationalTrainingLivingAllowanceList; // 申請職業訓練生活津貼記錄
     private List<DisableReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
-    private List<DisasterInsuranceReviewRpt01OncePayDataCase> hosPayList; // 申請職災住院醫療給付給付記錄
+    private List<DisableReviewRpt01OncePayDataCase> hosPayList; // 申請職災住院醫療給付給付記錄
     // ]
 
     // 另案扣減資料
@@ -1276,11 +1276,11 @@ public class DisableReviewRpt01Case implements Serializable {
         this.famChkDescList = famChkDescList;
     }
 
-    public List<DisasterInsuranceReviewRpt01OncePayDataCase> getFarmPayList() {
+    public List<DisableReviewRpt01OncePayDataCase> getFarmPayList() {
         return farmPayList;
     }
 
-    public void setFarmPayList(List<DisasterInsuranceReviewRpt01OncePayDataCase> farmPayList) {
+    public void setFarmPayList(List<DisableReviewRpt01OncePayDataCase> farmPayList) {
         this.farmPayList = farmPayList;
     }
 
@@ -1396,11 +1396,11 @@ public class DisableReviewRpt01Case implements Serializable {
         this.nbDisPayList = nbDisPayList;
     }
 
-    public List<DisasterInsuranceReviewRpt01OncePayDataCase> getHosPayList() {
+    public List<DisableReviewRpt01OncePayDataCase> getHosPayList() {
         return hosPayList;
     }
 
-    public void setHosPayList(List<DisasterInsuranceReviewRpt01OncePayDataCase> hosPayList) {
+    public void setHosPayList(List<DisableReviewRpt01OncePayDataCase> hosPayList) {
         this.hosPayList = hosPayList;
     }
 
