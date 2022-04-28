@@ -127,6 +127,7 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAPROCRXF IS
                 ROLLBACK;
                 p_rtncode := '-1';
                 p_rtnmsg := '異動筆數大於一筆，請確認';
+                RETURN;
             END IF;
             v_rec_plog.userid    := p_prpno;
             v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
