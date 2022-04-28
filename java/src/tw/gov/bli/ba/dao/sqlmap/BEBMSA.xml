@@ -382,10 +382,12 @@
         AND (A.BMINJPTODTE >= (select to_char(ADD_MONTHS(to_date(EVTJOBDATE,'yyyymmdd'),-12),'yyyymmdd') as EVTJOBDATE 
                                  from view_baappbase
                                 where APNO  = #apNo:VARCHAR#
+                                  and inskd = '9'
                                   and SEQNO = '0000') 
         AND  A.BMINJPTODTE <= (select EVTJOBDATE 
                                  from view_baappbase
                                 where APNO  = #apNo:VARCHAR#
+                                  and inskd = '9'
                                   and SEQNO = '0000')) 
         ]]>
     </select>
@@ -488,10 +490,12 @@
         AND (A.BMINJPTODTE >= (select to_char(ADD_MONTHS(to_date(EVTJOBDATE,'yyyymmdd'),-12),'yyyymmdd') as EVTJOBDATE 
                                  from view_baappbase
                                 where APNO  = #apNo:VARCHAR#
+                                  and inskd = '9'
                                   and SEQNO = '0000') 
         AND  A.BMINJPTODTE <= (select EVTJOBDATE 
                                  from view_baappbase
                                 where APNO  = #apNo:VARCHAR#
+                                  and inskd = '9'
                                   and SEQNO = '0000')) 
         ]]>
     </select>

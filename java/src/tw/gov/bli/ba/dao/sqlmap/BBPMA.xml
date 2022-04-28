@@ -204,7 +204,7 @@
                A.CLOSECAUSE,  
                (SELECT PARAMNAME FROM BAPARAM
                  WHERE PARAMGROUP = (SUBSTR(A.APNO,1,1)||'CLOSECAUSE') AND PARAMCODE = A.CLOSECAUSE) AS CLOSECAUSESTR
-          FROM BBPMA A
+          FROM VIEW_BAAPPBASE A
          WHERE A.EVTIDNNO = #evtIdnNo:VARCHAR#
            /* AND A.SEQNO = '0000' */
            AND SUBSTR(A.APNO,1,1) = 'S'  
