@@ -928,8 +928,8 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 */
 		public void printDisasterReviewDiePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請死亡給付記錄資料 (有資料再印) 災保
-			if (caseData.getDisasterInsuranceDiePayList() != null) {
-				List<OldAgeReviewRpt01DiePayDataCase> diePayBy9List = caseData.getDisasterInsuranceDiePayList();
+			if (caseData.getDisasterDiePayList() != null) {
+				List<OldAgeReviewRpt01DiePayDataCase> diePayBy9List = caseData.getDisasterDiePayList();
 				for (int nDiePayCount = 0; nDiePayCount < diePayBy9List.size(); nDiePayCount++) { // ... [
 					OldAgeReviewRpt01DiePayDataCase diePayData = diePayBy9List.get(nDiePayCount);
 					

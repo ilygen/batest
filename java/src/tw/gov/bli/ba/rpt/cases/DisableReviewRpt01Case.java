@@ -169,9 +169,9 @@ public class DisableReviewRpt01Case implements Serializable {
     private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3TList; // 一次給付 災保 退保後職業病失能津貼
     private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3NList; // 一次給付 災保 未加保失能補助
     private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3CList; // 一次給付 災保 未加保失能補助
+    private List<DisableReviewRpt01AnnuityPayDataCase> disasterAnnuityPayList; // 年金給付 災保
     private List<DisableReviewRpt01OncePayDataCase> farmPayList; // 申請農保殘廢給付記錄
     private List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList; // 年金給付
-    private List<DisableReviewRpt01AnnuityPayDataCase> disasterAnnuityPayList; // 年金給付 災保
     private List<DisableReviewRpt01AnnuityPayDataCase> nbPayList; // 申請國保年金給付記錄
     private List<DisableReviewRpt01NpPayDataCase> nbDisPayList; // 申請國保身障年金給付記錄
     // ]
@@ -180,23 +180,23 @@ public class DisableReviewRpt01Case implements Serializable {
     // [
     private List<DisableReviewRpt01OldAgePayDataCase> oldAgePayList; // 老年年金給付
     private List<DisableReviewRpt01SurvivorPayDataCase> survivorPayList; // 遺屬年金給付
-    private List<DisableReviewRpt01SurvivorPayDataCase> disasterSurvivorPayList; // 遺屬年金給付 災保
     private List<DisableReviewRpt01OldPayDataCase> oldPayList;// 老年給付
     private List<DisableReviewRpt01DisablePayDataCase> disablePayList; // 申請失能給付記錄
     private List<DisableReviewRpt01DiePayDataCase> diePayList; // 申請死亡給付記錄
-    private List<DisableReviewRpt01DiePayDataCase> disasterDiePayList; // 申請死亡給付記錄 災保
-    private List<DisableReviewRpt01DiePayDataCase> disasterDieForDiseaseAfterQuitPayList; // 退保後職業病死亡津貼 災保
-    private List<DisableReviewRpt01DiePayDataCase> disasterDieWithoutPayList; // 未加保死亡補助 災保
     private List<DisableReviewRpt01DiePayDataCase> famDiePayList; // 申請農保死亡給付記錄
     private List<DisableReviewRpt01DiePayDataCase> disPayList; // 申請失蹤給付記錄
-    private List<DisableReviewRpt01DiePayDataCase> disasterLostPayList; // 申請失蹤給付記錄 災保
     private List<DisableReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
-    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryPayList; // 申請傷病給付記錄 災保
-    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryCarePayList; // 申請傷病給付記錄 災保
     private List<DisableReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<DisableReviewRpt01JoblessPayDataCase> vocationalTrainingLivingAllowanceList; // 申請職業訓練生活津貼記錄
     private List<DisableReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
     private List<DisableReviewRpt01OncePayDataCase> hosPayList; // 申請職災住院醫療給付給付記錄
+    private List<DisableReviewRpt01DiePayDataCase> disasterDiePayList; // 申請死亡給付記錄 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterDieForDiseaseAfterQuitPayList; // 退保後職業病死亡津貼 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterDieWithoutPayList; // 未加保死亡補助 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterLostPayList; // 申請失蹤給付記錄 災保
+    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryPayList; // 申請傷病給付記錄 災保
+    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryCarePayList; // 申請傷病給付記錄 災保
+    private List<DisableReviewRpt01SurvivorPayDataCase> disasterSurvivorPayList; // 遺屬年金給付 災保
     // ]
 
     // 另案扣減資料

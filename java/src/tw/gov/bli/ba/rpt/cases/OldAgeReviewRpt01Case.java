@@ -205,12 +205,13 @@ public class OldAgeReviewRpt01Case implements Serializable {
     private List<OldAgeReviewRpt01DisablePayDataCase> disablePayList; // 申請失能給付記錄
     private List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayList; // 申請失能年金記錄
     private List<OldAgeReviewRpt01DiePayDataCase> diePayList; // 申請死亡給付記錄
-    private List<OldAgeReviewRpt01DiePayDataCase> disasterInsuranceDiePayList; // 申請死亡給付記錄-災保
     private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList; // 申請遺屬年金記錄
-    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
     private List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
     private List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<OldAgeReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
+    
+    private List<OldAgeReviewRpt01DiePayDataCase> disasterDiePayList; // 申請死亡給付記錄-災保
+    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
     // ]
 
     // 事故者於受款人給付資料的資料
@@ -1833,17 +1834,17 @@ public class OldAgeReviewRpt01Case implements Serializable {
     }
 
 	/**
-	 * @return the diePayBy9List
+	 * @return the disasterDiePayList
 	 */
-	public List<OldAgeReviewRpt01DiePayDataCase> getDisasterInsuranceDiePayList() {
-		return disasterInsuranceDiePayList;
+	public List<OldAgeReviewRpt01DiePayDataCase> getDisasterDiePayList() {
+		return disasterDiePayList;
 	}
 
 	/**
-	 * @param diePayBy9List the diePayBy9List to set
+	 * @param disasterDiePayList the disasterDiePayList to set
 	 */
-	public void setDisasterDiePayList(List<OldAgeReviewRpt01DiePayDataCase> disasterInsuranceDiePayList) {
-		this.disasterInsuranceDiePayList = disasterInsuranceDiePayList;
+	public void setDisasterDiePayList(List<OldAgeReviewRpt01DiePayDataCase> disasterDiePayList) {
+		this.disasterDiePayList = disasterDiePayList;
 	}
 
 	/**

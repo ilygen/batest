@@ -208,22 +208,22 @@ public class SurvivorReviewRpt01Case implements Serializable {
     // [
         private List<SurvivorReviewRpt01AnnuityPayDataCase> oldPayList; // 申請老年年金給付記錄
         private List<SurvivorReviewRpt01DisablePayDataCase> disablePayList; // 申請失能年金給付記錄
-        private List<SurvivorReviewRpt01DisablePayDataCase> disasterDisablePayList; // 申請失能年金給付記錄 災保
         private List<SurvivorReviewRpt01OncePayDataCase> oldAgePayList; //申請老年給付記錄
         private List<SurvivorReviewRpt01OncePayDataCase> disPayList; //申請失能給付記錄
         private List<SurvivorReviewRpt01OncePayDataCase> disasterDisPayList; //申請失能給付記錄 職保
         private List<SurvivorReviewRpt01OncePayDataCase> disasterDisableForDiseaseAfterQuitPayList; //退保後職業病失能津貼 職保
         private List<SurvivorReviewRpt01OncePayDataCase> disasterDisableWithoutPayList; //未加保失能補助 職保
-        
         private List<SurvivorReviewRpt01OncePayDataCase> disasterDisableDifferenceAmountList; //申請失能差額金記錄 職保
+        private List<SurvivorReviewRpt01DiePayDataCase> disasterReviewDisappearPayList; // 申請失蹤給付記錄 職保
+        private List<SurvivorReviewRpt01DisablePayDataCase> disasterDisablePayList; // 申請失能年金給付記錄 災保
+        private List<SurvivorReviewRpt01InjuryPayDataCase> disasterInjurySurvivorPayList; // 申請傷病給付記錄
+        private List<SurvivorReviewRpt01InjuryPayDataCase> disasterInjuryCareSurvivorPayList; // 申請傷病給付記錄
+        
         private List<SurvivorReviewRpt01OncePayDataCase> hosPayList; //申請職災住院醫療給付給付記錄
         private List<SurvivorReviewRpt01DiePayDataCase> disappearPayList; // 申請失蹤給付記錄
-        private List<SurvivorReviewRpt01DiePayDataCase> disasterReviewDisappearPayList; // 申請失蹤給付記錄 職保
         private List<SurvivorReviewRpt01OncePayDataCase> famDiePayList; // 申請農保死亡給付記錄
         
         private List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayList; // 申請傷病給付記錄
-        private List<SurvivorReviewRpt01InjuryPayDataCase> disasterInjurySurvivorPayList; // 申請傷病給付記錄
-        private List<SurvivorReviewRpt01InjuryPayDataCase> disasterInjuryCareSurvivorPayList; // 申請傷病給付記錄
         private List<SurvivorReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
         private List<SurvivorReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
        
