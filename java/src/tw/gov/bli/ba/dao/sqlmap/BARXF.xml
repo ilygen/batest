@@ -206,14 +206,18 @@
     <!-- DisableReviewRpt 01 Begin -->
     <!-- [ -->
     <select id="selectDisableReviewRpt01DeductListBy" resultMap="DisableReviewRpt01DeductResult">
-		      SELECT RXFNAME    
-		      		,RXFAPNO    
-		      		,SUBAMT     
-		      		,PRST 
-		      		,APNO 
-		  	 FROM BARXF
-		  	 WHERE BENIDNNO  = #benIdnNo:VARCHAR#
-		  	   AND BENBRDATE = #benBrDate:VARCHAR#
+		      SELECT A.RXFNAME    
+		      		,A.RXFAPNO    
+		      		,A.SUBAMT     
+		      		,A.PRST 
+		      		,A.APNO 
+              From  BARXF A, BCARF B
+             where A.RXFAPNO = B.APNO
+               AND A.SUBAMT > 0
+               AND A.PRTMK = 'Y'
+               AND (B.AMTTOT - B.AMTINC) >0
+               AND BENIDNNO = #benidnNo:VARCHAR#
+               AND BENBRDATE = #benBrDate:VARCHAR#
     </select>
     <!-- ] -->
     <!-- DisableReviewRpt 01 End -->
