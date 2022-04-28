@@ -205,9 +205,9 @@ public class OldAgeReviewRpt01Case implements Serializable {
     private List<OldAgeReviewRpt01DisablePayDataCase> disablePayList; // 申請失能給付記錄
     private List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayList; // 申請失能年金記錄
     private List<OldAgeReviewRpt01DiePayDataCase> diePayList; // 申請死亡給付記錄
-    private List<DisasterInsuranceReviewRpt01DiePayDataCase> disasterInsuranceDiePayList; // 申請死亡給付記錄-災保
+    private List<OldAgeReviewRpt01DiePayDataCase> disasterInsuranceDiePayList; // 申請死亡給付記錄-災保
     private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList; // 申請遺屬年金記錄
-    private List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> disasterInsuranceSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
+    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
     private List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
     private List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<OldAgeReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
@@ -1835,29 +1835,29 @@ public class OldAgeReviewRpt01Case implements Serializable {
 	/**
 	 * @return the diePayBy9List
 	 */
-	public List<DisasterInsuranceReviewRpt01DiePayDataCase> getDisasterInsuranceDiePayList() {
+	public List<OldAgeReviewRpt01DiePayDataCase> getDisasterInsuranceDiePayList() {
 		return disasterInsuranceDiePayList;
 	}
 
 	/**
 	 * @param diePayBy9List the diePayBy9List to set
 	 */
-	public void setDisasterInsuranceDiePayList(List<DisasterInsuranceReviewRpt01DiePayDataCase> disasterInsuranceDiePayList) {
+	public void setDisasterDiePayList(List<OldAgeReviewRpt01DiePayDataCase> disasterInsuranceDiePayList) {
 		this.disasterInsuranceDiePayList = disasterInsuranceDiePayList;
 	}
 
 	/**
-	 * @return the disasterInsuranceSurvivorAnnuityPayList
+	 * @return the disasterSurvivorAnnuityPayList
 	 */
-	public List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> getDisasterInsuranceSurvivorAnnuityPayList() {
-		return disasterInsuranceSurvivorAnnuityPayList;
+	public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> getDisasterSurvivorAnnuityPayList() {
+		return disasterSurvivorAnnuityPayList;
 	}
 
 	/**
-	 * @param disasterInsuranceSurvivorAnnuityPayList the disasterInsuranceSurvivorAnnuityPayList to set
+	 * @param disasterSurvivorAnnuityPayList the disasterSurvivorAnnuityPayList to set
 	 */
-	public void setDisasterInsuranceSurvivorAnnuityPayList(
-			List<DisasterInsuranceReviewRpt01SurvivorAnnuityPayDataCase> disasterInsuranceSurvivorAnnuityPayList) {
-		this.disasterInsuranceSurvivorAnnuityPayList = disasterInsuranceSurvivorAnnuityPayList;
+	public void setDisasterSurvivorAnnuityPayList(
+			List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList) {
+		this.disasterSurvivorAnnuityPayList = disasterSurvivorAnnuityPayList;
 	}
 }

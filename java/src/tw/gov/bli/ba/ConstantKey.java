@@ -2167,6 +2167,10 @@ public class ConstantKey {
     public static final String BADAPR_PAYMENT_QUERY_ISSUPAY_DATA_SQL_VAR_MOD = "改-";
     // ]
 
+    public static final String BBDAPR_PAYMENT_QUERY_ISSUPAY_DATA_SQL_VAR_IN = "入-";
+    public static final String BBDAPR_PAYMENT_QUERY_ISSUPAY_DATA_SQL_VAR_OUT = "退-";
+    public static final String BBDAPR_PAYMENT_QUERY_ISSUPAY_DATA_SQL_VAR_MOD = "改-";
+
     // MAADMREC - 行政支援記錄檔
     // [
     // 行政支援記錄-XX函-SQL Str
@@ -2185,6 +2189,19 @@ public class ConstantKey {
     public static final String MAADMREC_SOURCE_STR_1 = "行政支援自行新增";
     // ]
 
+    public static final String BXADMINS_LETTER_TYPE_MK_SQL_A = "發函-";
+    public static final String BXADMINS_LETTER_TYPE_MK_SQL_B = "回覆-";
+    public static final String BXADMINS_LETTER_TYPE_MK_SQL_C = "通知-";
+    public static final String BXADMINS_LETTER_TYPE_MK_SQL_D = "催辦-";
+    // 行政支援記錄檔 - 來源別 - 0
+    public static final String BXADMINS_SOURCE_0 = "0";
+    // 行政支援記錄檔 - 來源別 - 1
+    public static final String BXADMINS_SOURCE_1 = "1";
+    // 行政支援記錄檔 - 來源別 - 0 (中文)
+    public static final String BXADMINS_SOURCE_STR_0 = "從SDD批次轉入";
+    // 行政支援記錄檔 - 來源別 - 1 (中文)
+    public static final String BXADMINS_SOURCE_STR_1 = "行政支援自行新增";
+    
     // BAGIVEDTL - 給付入帳媒體明細錄檔
     // [
     // 批次 - 處理狀況

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBPMAK">
+
+	<typeAlias alias="Bbpmak" type="tw.gov.bli.ba.domain.Bbpmak" />
+	
+	<resultMap id="DisabledDataForPaymentReview" class="Bbpmak">
+        <result column="PRTYPE"             property="prType"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIMEDIUM"          property="criMedium"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="REHCYM"             property="rehcYm"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCIDENTMK"       property="ocaccIdentMk"     jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVCODE"             property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL2"          property="criInJcl2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJCL3"          property="criInJcl3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART1"         property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART2"         property="criInPart2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINPART3"         property="criInPart3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME1"         property="criInJnme1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME2"         property="criInJnme2"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME3"         property="criInJnme3"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJNME4"         property="criInJnme4"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP1"          property="criInJdp1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP2"          property="criInJdp2"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP3"          property="criInJdp3"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP4"          property="criInJdp4"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP5"          property="criInJdp5"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP6"          property="criInJdp6"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP7"          property="criInJdp7"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP8"          property="criInJdp8"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP9"          property="criInJdp9"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP10"         property="criInJdp10"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="HOSID"              property="hosId"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME1"        property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DOCTORNAME2"        property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DEDUCTDAY"          property="deductDay"        jdbcType="VARCHAR"      javaType="java.math.BigDecimal" />
+        <result column="JUDGEDATE"          property="judgeDate"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FAMAPPMK"           property="famAppMk"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="DISQUALMK"          property="disQualMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCHOSID"         property="ocAccHosId"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME1"   property="ocAccDoctorName1" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="OCACCDOCTORNAME2"   property="ocAccDoctorName2" jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="EVAPPTYP"           property="evAppTyp"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+    </resultMap>
+	
+    <select id="selectDisasterReviewRpt01AnnuityPayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP                
+          FROM VIEW_BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'K'   
+           AND INSKD = '9'
+    </select>
+    
+    <select id="selectDisasterReviewRpt01DisablePayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP 
+          FROM VIEW_BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'K'   
+           AND INSKD = '9'
+    </select>
+    
+    <select id="selectDisasterReviewRpt01SurvivorPayList" resultMap="DisabledDataForPaymentReview">
+        SELECT PRTYPE,
+               CRIMEDIUM,  
+               EVTYP,
+               REHCYM,
+               OCACCIDENTMK,      
+               EVCODE,     
+               CRIINISSUL, 
+               CRIINJCL1,  
+               CRIINJCL2,  
+               CRIINJCL3,  
+               CRIINPART1, 
+               CRIINPART2, 
+               CRIINPART3, 
+               CRIINJNME1, 
+               CRIINJNME2, 
+               CRIINJNME3, 
+               CRIINJNME4, 
+               CRIINJDP1,  
+               CRIINJDP2,  
+               CRIINJDP3,  
+               CRIINJDP4,  
+               CRIINJDP5,  
+               CRIINJDP6,  
+               CRIINJDP7,  
+               CRIINJDP8,  
+               CRIINJDP9,  
+               CRIINJDP10, 
+               HOSID,      
+               DOCTORNAME1,
+               DOCTORNAME2,
+               JUDGEDATE,
+               FAMAPPMK, 
+               DEDUCTDAY,
+               DISQUALMK,               
+               OCACCHOSID,      
+               OCACCDOCTORNAME1,
+               OCACCDOCTORNAME2,
+               EVAPPTYP
+          FROM VIEW_BAAPPEXPAND
+         WHERE APNO = #apNo:VARCHAR#
+           AND SEQNO = '0000' 
+           AND SUBSTR(APNO,1,1) = 'S'   
+           AND INSKD = '9'
+    </select>
+    
+</sqlMap>

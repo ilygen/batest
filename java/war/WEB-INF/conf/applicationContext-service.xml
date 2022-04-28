@@ -16,6 +16,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="baappbaseDao" ref="baappbaseDao" />
         <property name="bbpmaDao" ref="bbpmaDao" />
         <property name="badaprDao" ref="badaprDao" />
+        <property name="bbdaprDao" ref="bbdaprDao" />
         <property name="bachkfileDao" ref="bachkfileDao" />
         <property name="baexalistDao" ref="baexalistDao" />
         <property name="lnmDao" ref="lnmDao" />
@@ -41,6 +42,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="bapapaykindDao" ref="bapapaykindDao" />
         <property name="kcafDao" ref="kcafDao" />
         <property name="maadmrecDao" ref="maadmrecDao" />
+        <property name="bxadminsDao" ref="bxadminsDao" />
         <property name="balp0d020Dao" ref="balp0d020Dao" />
         <property name="baappexpandDao" ref="baappexpandDao" />
         <property name="bafamilyDao" ref="bafamilyDao" />

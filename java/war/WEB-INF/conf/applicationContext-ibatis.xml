@@ -74,6 +74,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 
+    <bean id="bbdaprDao" class="tw.gov.bli.ba.dao.impl.BbdaprDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
     <bean id="bachkfileDao" class="tw.gov.bli.ba.dao.impl.BachkfileDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
@@ -216,6 +220,10 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     </bean>
 
     <bean id="maadmrecDao" class="tw.gov.bli.ba.dao.impl.MaadmrecDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bxadminsDao" class="tw.gov.bli.ba.dao.impl.BxadminsDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 

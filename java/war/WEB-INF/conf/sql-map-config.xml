@@ -23,6 +23,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPANDOMK.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANOTIFY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BADAPR.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBDAPR.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACHKFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BASENIMAINT.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPACUT.xml" />
@@ -59,6 +60,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAPAYKIND.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF08.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/MAADMREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BXADMINS.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/KCAF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D020.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPEXPAND.xml" />

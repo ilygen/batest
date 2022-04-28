@@ -4,6 +4,143 @@
 
     <typeAlias alias="Bbpma" type="tw.gov.bli.ba.domain.Bbpma" />
     
+    <resultMap id="BBPMAResult" class="Bbpma">
+        <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="IMK"              property="imk"             jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APITEM"           property="apItem"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYKIND"          property="payKind"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APPDATE"          property="appDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MAPNO"            property="mapNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MAPROOTMK"        property="mapRootMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMBAPMARK"       property="combapMark"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CASEMK"           property="caseMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ACCEPTMK"         property="acceptMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MANCHKMK"         property="manchkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHGNOTE"          property="chgNote"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EXESTAT"          property="exeStat"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APUBNO"           property="apUbno"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APUBNOCK"         property="apubnock"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LSUBNO"           property="lsUbno"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LSUBNOCK"         property="lsUbnoCk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDS"           property="evtIds"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTBRDATE"        property="evtBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTSEX"           property="evtSex"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNATIONTPE"     property="evtNationTpe"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTNATIONCODE"    property="evtNationCode"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTIDENT"         property="evtIdent"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTDATE"          property="evtDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTDIEDATE"       property="evtDieDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTAGE"           property="evtAge"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDS"           property="benIds"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENBRDATE"        property="benBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENSEX"           property="benSex"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNATIONTYP"     property="benNationTyp"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENNATIONCODE"    property="benNationCode"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENEVTREL"        property="benEvtRel"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENDIEDATE"       property="benDieDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENPAYMK"         property="benPayMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKYM"         property="idnChkYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="IDNCHKNOTE"       property="idnChkNote"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="TEL1"             property="tel1"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="TEL2"             property="tel2"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMMTYP"          property="commTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMMZIP"          property="commZip"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="COMMADDR"         property="commAddr"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYTYP"           property="payTyp"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BANKNAME"         property="bankName"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYBANKID"        property="payBankId"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BRANCHID"         property="branchId"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYEEACC"         property="payEeacc"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKPAYBANKID"     property="chkPayBankId"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKBRANCHID"      property="chkBranchId"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKPAYEEACC"      property="chkPayEeacc"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ACCIDN"           property="accIdn"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ACCNAME"          property="accName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ACCREL"           property="accRel"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MITRATE"          property="mitRate"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="GRDIDNNO"         property="grdIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="GRDNAME"          property="grdName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="GRDBRDATE"        property="grdBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNIDNNO"      property="assignIdnNo"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNNAME"       property="assignName"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ASSIGNBRDATE"     property="assignBrDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" /> 
+        <result column="ONCEPAYMK"        property="oncePayMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="OLDSENIAB"        property="oldSeniab"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="MUSTISSUEAMT"     property="mustIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PAYDATE"          property="payDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYMS"           property="payYms"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYME"           property="payYme"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAUSEYM"          property="pauseYm"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UNPAUSEYM"        property="unPauseYm"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="NOTIFYFORM"       property="notifyForm"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LOANMK"           property="loanMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MEXCLVL"          property="mexcLvl"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="REALEXCLVL"       property="realexcLvl"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKMAN"           property="chkMan"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="RECHKDATE"        property="rechkDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="RECHKMAN"         property="rechkMan"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EXEDATE"          property="exeDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EXEMAN"           property="exeMan"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ARCDATE"          property="arcDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ARCPG"            property="arcPg"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSEDATE"        property="closeDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"       property="closeCause"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PROMOTEUSER"      property="promoteUser"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="DUPEIDNNOMK"      property="dupeIdnNoMk"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="CRTUSER"          property="crtUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CRTTIME"          property="crtTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UPDUSER"          property="updUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UPDTIME"          property="updTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTEXPIREDATE"    property="evtExpireDate"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTELIGIBLEDATE"  property="evtEligibleDate" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTMISSINGDATE"   property="evtMissingDate"  jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LSINSMAMT"        property="lsInsmAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="LSCHKMK"          property="lsChkMk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
+        <result column="LSCOUNT"          property="lsCount"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="LNCHKMK"          property="lnChkMk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
+        <result column="DABAPNO"          property="dabApNo"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
+        <result column="DABANNUAMT"       property="dabAnnuAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="RESENIMK"         property="reSeniMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="OFFINSURDATE"     property="offInsurDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="LAWRETIREDATE"    property="lawRetireDate"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTAPPNAME"       property="evtAppName"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
+        <result column="CUTAMT"           property="cutAmt"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ACCSEQNO"         property="accSeqNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="BENMARRMK"        property="benMarrMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHGMK"            property="chgMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYAMTS"          property="payAmts"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />             
+        <result column="EVTAPPIDNNO"      property="evtAppIdnNo"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTAPPBRDATE"     property="evtAppBrDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHOICEYM"         property="choiceYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="MOBILEPHONE"      property="mobilePhone"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="ANNUAMT"          property="annuAmt"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="INTERVALMONTH"    property="interValMonth"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SPECIALACC"       property="specialAcc"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SPEACCDATE"       property="speAccDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="UNQUALIFIEDCAUSE" property="unqualifiedCause" jdbcType="VARCHAR" javaType="java.lang.String" nullValue="" />
+        <result column="ISSUNOTIFYINGMK"  property="issuNotifyingMk" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTJOBAGE"        property="evtJobAge"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SAMTY"            property="samTY"           jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="SAMTD"            property="samTD"           jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ONCETY"           property="onceTY"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ONCEPAYM"         property="oncePayM"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="ONCEISSUEAMT"     property="onceIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="MARGINAMT"        property="marginAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+    </resultMap>
+    
     <resultMap id="BBPMASurvivorAnnuityPayResult" class="Bbpma">
         <result column="EVTNAME"           property="evtName"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="APPDATE"           property="appDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -18,6 +155,39 @@
         <result column="CLOSECAUSE"        property="closeCause"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CLOSECAUSESTR"     property="closeCauseStr" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
+
+    <resultMap id="DisasterReviewRpt01SurvivorPayListBy" class="Bbpma">
+    	<result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="APPDATE"          property="appDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="PAYYMS"           property="payYms"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="PAYYME"           property="payYme"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" /> 
+		<result column="CLOSEDATE"        property="closeDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="CLOSECAUSE"       property="closeCause"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+	</resultMap>
+
+    <resultMap id="DisasterReviewRpt01AnnuityResult" class="Bbpma">
+
+		<result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SEQNO"            property="seqNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTNAME"          property="evtName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="APPDATE"          property="appDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="APUBNO"           property="apUbno"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+	 	<result column="PAYYMS"           property="payYms"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="PAYYME"           property="payYme"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+		<result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" /> 
+		<result column="CLOSEDATE"        property="closeDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CLOSECAUSE"       property="closeCause"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+
+	</resultMap>
 
     <!-- OldAgeReviewRpt 01 Begin -->
     <select id="getOldAgeReviewRpt01SurvivorAnnuityPayDataBy" resultMap="BBPMASurvivorAnnuityPayResult">
@@ -38,8 +208,477 @@
          WHERE A.EVTIDNNO = #evtIdnNo:VARCHAR#
            /* AND A.SEQNO = '0000' */
            AND SUBSTR(A.APNO,1,1) = 'S'  
+           AND A.INSKD = '9'
     </select>
     <!-- ] -->
     <!-- OldAgeReviewRpt 01 End -->
+    
+    <select id="selectSurvivorReviewRpt01DisablePayListBy" resultMap="BBPMAResult">
+        SELECT A.APNO,                     
+               A.SEQNO,                    
+               A.IMK,                      
+               A.APITEM,                   
+               A.PAYKIND,                  
+               A.APPDATE,                  
+               A.CASETYP,                  
+               A.MAPNO,                    
+               A.MAPROOTMK,                
+               A.COMBAPMARK,               
+               A.CASEMK,                   
+               A.PROCSTAT,                 
+               A.ACCEPTMK,                 
+               A.MANCHKMK,                 
+               A.CHGNOTE,                   
+               A.EXESTAT,                   
+               A.APUBNO,                    
+               A.APUBNOCK,                  
+               A.LSUBNO,                    
+               A.LSUBNOCK,                  
+               A.EVTIDS,                    
+               A.EVTIDNNO,                  
+               A.EVTNAME,                   
+               A.EVTBRDATE,                 
+               A.EVTSEX,                    
+               A.EVTNATIONTPE,              
+               A.EVTNATIONCODE,             
+               A.EVTIDENT,                  
+               A.EVTJOBDATE,                
+               A.EVTDATE,                   
+               A.EVTDIEDATE,                
+               A.EVTAGE,                    
+               A.BENIDS,                    
+               A.BENIDNNO,                  
+               A.BENNAME,                   
+               A.BENBRDATE,                 
+               A.BENSEX,                    
+               A.BENNATIONTYP,              
+               A.BENNATIONCODE,             
+               A.BENEVTREL,                 
+               A.BENDIEDATE,                
+               A.BENPAYMK,                  
+               A.IDNCHKYM,                  
+               A.IDNCHKNOTE,                
+               A.TEL1,                      
+               A.TEL2,                      
+               A.COMMTYP,                   
+               A.COMMZIP,                   
+               A.COMMADDR,                  
+               A.PAYTYP,                    
+               A.BANKNAME,                  
+               A.PAYBANKID,                 
+               A.BRANCHID,                  
+               A.PAYEEACC, 
+               A.CHKPAYBANKID,                 
+               A.CHKBRANCHID,                  
+               A.CHKPAYEEACC,                  
+               A.ACCIDN,                    
+               A.ACCNAME,                   
+               A.ACCREL,                    
+               A.MITRATE,                   
+               A.GRDIDNNO,                  
+               A.GRDNAME,                   
+               A.GRDBRDATE,                 
+               A.ASSIGNIDNNO,               
+               A.ASSIGNNAME,                
+               A.ASSIGNBRDATE,              
+               A.ISSUYM,                    
+               A.PAYYM,                     
+               A.ISSUEAMT,                                                                 
+               A.ONCEPAYMK,                                
+               A.OLDSENIAB,
+               A.MUSTISSUEAMT,              
+               A.PAYDATE,                   
+               A.PAYYMS,                    
+               A.PAYYME,                    
+               A.PAUSEYM,                   
+               A.UNPAUSEYM,                 
+               A.NOTIFYFORM,                
+               A.LOANMK,                    
+               A.MEXCLVL,                   
+               A.REALEXCLVL,                
+               A.CHKDATE,                   
+               A.CHKMAN,                    
+               A.RECHKDATE,                 
+               A.RECHKMAN,                  
+               DECODE(A.CASETYP, '3', A.EXEDATE) AS EXEDATE,                   
+               A.EXEMAN,                    
+               A.ARCDATE,                   
+               A.ARCPG,                     
+               A.CLOSEDATE,                 
+               A.CLOSECAUSE,                
+               A.PROMOTEUSER,               
+               A.DUPEIDNNOMK,
+               A.CRTUSER,                   
+               A.CRTTIME,                   
+               A.UPDUSER,                   
+               A.UPDTIME,
+               A.EVTEXPIREDATE,   
+               A.EVTELIGIBLEDATE,
+               A.EVTMISSINGDATE,        
+               A.LSINSMAMT,
+               A.LSCHKMK,    
+               A.LSCOUNT,    
+               A.LNCHKMK,    
+               A.DABAPNO,    
+               A.DABANNUAMT,
+               A.RESENIMK,     
+               A.OFFINSURDATE,
+               A.LAWRETIREDATE,
+               A.EVTAPPNAME,
+               A.CUTAMT,
+               A.ACCSEQNO,
+               A.BENMARRMK,
+               A.CHGMK,
+               A.PAYAMTS,
+               A.EVTAPPIDNNO,
+               A.EVTAPPBRDATE,
+               A.OLDAPLDPT,
+               A.CHOICEYM,
+               A.MOBILEPHONE, 
+               A.ANNUAMT,
+               A.INTERVALMONTH,
+               A.SPECIALACC,
+               A.SPEACCDATE,
+               A.UNQUALIFIEDCAUSE,
+               A.ISSUNOTIFYINGMK,
+               A.EVTJOBAGE,
+               A.SAMTY,
+               A.SAMTD,
+               A.ONCETY,
+               A.ONCEPAYM,
+               A.ONCEISSUEAMT,
+               A.MARGINAMT
+        FROM   VIEW_BAAPPBASE A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.EVTBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+         <![CDATA[
+             AND (A.CASEMK <> 'D' OR A.CASEMK IS NULL)
+             AND A.SEQNO  = '0000'
+             AND SUBSTR(A.APNO, 1, 1) = 'K' 
+			 AND A.INSKD = '9'
+             ORDER BY A.APPDATE
+         ]]>   
+    </select>
+    
+    <select id="getDisasterReviewRpt01AnnuityPayListBy" resultMap="BBPMAResult">
+        SELECT A.APNO,                     
+               A.SEQNO,                    
+               A.IMK,                      
+               A.APITEM,                   
+               A.PAYKIND,                  
+               A.APPDATE,                  
+               A.CASETYP,                  
+               A.MAPNO,                    
+               A.MAPROOTMK,                
+               A.COMBAPMARK,               
+               A.CASEMK,                   
+               A.PROCSTAT,                 
+               A.ACCEPTMK,                 
+               A.MANCHKMK,                 
+               A.CHGNOTE,                   
+               A.EXESTAT,                   
+               A.APUBNO,                    
+               A.APUBNOCK,                  
+               A.LSUBNO,                    
+               A.LSUBNOCK,                  
+               A.EVTIDS,                    
+               A.EVTIDNNO,                  
+               A.EVTNAME,                   
+               A.EVTBRDATE,                 
+               A.EVTSEX,                    
+               A.EVTNATIONTPE,              
+               A.EVTNATIONCODE,             
+               A.EVTIDENT,                  
+               A.EVTJOBDATE,                
+               A.EVTDATE,                   
+               A.EVTDIEDATE,                
+               A.EVTAGE,                    
+               A.BENIDS,                    
+               A.BENIDNNO,                  
+               A.BENNAME,                   
+               A.BENBRDATE,                 
+               A.BENSEX,                    
+               A.BENNATIONTYP,              
+               A.BENNATIONCODE,             
+               A.BENEVTREL,                 
+               A.BENDIEDATE,                
+               A.BENPAYMK,                  
+               A.IDNCHKYM,                  
+               A.IDNCHKNOTE,                
+               A.TEL1,                      
+               A.TEL2,                      
+               A.COMMTYP,                   
+               A.COMMZIP,                   
+               A.COMMADDR,                  
+               A.PAYTYP,                    
+               A.BANKNAME,                  
+               A.PAYBANKID,                 
+               A.BRANCHID,                  
+               A.PAYEEACC, 
+               A.CHKPAYBANKID,                 
+               A.CHKBRANCHID,                  
+               A.CHKPAYEEACC,                 
+               A.ACCIDN,                    
+               A.ACCNAME,                   
+               A.ACCREL,                    
+               A.MITRATE,                   
+               A.GRDIDNNO,                  
+               A.GRDNAME,                   
+               A.GRDBRDATE,                 
+               A.ASSIGNIDNNO,               
+               A.ASSIGNNAME,                
+               A.ASSIGNBRDATE,              
+               A.ISSUYM,                    
+               A.PAYYM,                     
+               A.ISSUEAMT,                                                                 
+               A.ONCEPAYMK,                                
+               A.OLDSENIAB,
+               A.MUSTISSUEAMT,              
+               A.PAYDATE, 
+               A.PAYYMS,                     
+               A.PAYYME,                    
+               A.PAUSEYM,                   
+               A.UNPAUSEYM,                 
+               A.NOTIFYFORM,                
+               A.LOANMK,                    
+               A.MEXCLVL,                   
+               A.REALEXCLVL,                
+               A.CHKDATE,                   
+               A.CHKMAN,                    
+               A.RECHKDATE,                 
+               A.RECHKMAN,                  
+               DECODE(A.CASETYP, '3', A.EXEDATE) AS EXEDATE,                   
+               A.EXEMAN,                    
+               A.ARCDATE,                   
+               A.ARCPG,                     
+               A.CLOSEDATE,                 
+               A.CLOSECAUSE,                
+               A.PROMOTEUSER,               
+               A.DUPEIDNNOMK,
+               A.CRTUSER,                   
+               A.CRTTIME,                   
+               A.UPDUSER,                   
+               A.UPDTIME,
+               A.EVTEXPIREDATE,   
+               A.EVTELIGIBLEDATE,
+               A.EVTMISSINGDATE,        
+               A.LSINSMAMT,
+               A.LSCHKMK,    
+               A.LSCOUNT,    
+               A.LNCHKMK,    
+               A.DABAPNO,    
+               A.DABANNUAMT,
+               A.RESENIMK,     
+               A.OFFINSURDATE,
+               A.LAWRETIREDATE,
+               A.EVTAPPNAME,
+               A.CUTAMT,
+               A.ACCSEQNO,
+               A.BENMARRMK,
+               A.CHGMK,
+               A.PAYAMTS,
+               A.EVTAPPIDNNO,
+               A.EVTAPPBRDATE,
+               A.OLDAPLDPT,
+               A.CHOICEYM,
+               A.MOBILEPHONE, 
+               A.ANNUAMT,
+               A.INTERVALMONTH,
+               A.SPECIALACC,
+               A.SPEACCDATE,
+               A.UNQUALIFIEDCAUSE,
+               A.ISSUNOTIFYINGMK,
+               A.EVTJOBAGE,
+               A.SAMTY,
+               A.SAMTD,
+               A.ONCETY,
+               A.ONCEPAYM,
+               A.ONCEISSUEAMT,
+               A.MARGINAMT
+        FROM   VIEW_BAAPPBASE A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                <![CDATA[
+                    A.APNO <> #apNo:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.EVTBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND (A.CASEMK <> 'D' OR A.CASEMK IS NULL)
+                AND A.BENPAYMK = '1'
+                AND SUBSTR(A.APNO, 1, 1) = 'K'
+           		AND A.INSKD = '9'
+                ORDER BY A.APPDATE
+                ]]>          
+            </isParameterPresent>
+        </dynamic>
+    </select>
+   
+    <select id="getDisasterReviewRpt01SurvivorPayListBy" resultMap="DisasterReviewRpt01SurvivorPayListBy">
+        Select DISTINCT 
+		       A.APNO,                               
+		       A.SEQNO,                                       
+		       A.BENNAME,                                     
+		       A.EVTNAME,                                     
+		       A.APPDATE,                                     
+		       A.ISSUYM,                                      
+		       A.PAYYMS, 
+		       A.PAYYME,                  
+		       A.EVTJOBDATE,                                  
+		       A.ISSUEAMT,                                    
+		       A.CLOSEDATE,                                  
+		       A.CLOSECAUSE                                  
+		  From VIEW_BAAPPBASE A 
+		 <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.EVTBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND (A.CASEMK <> 'D' OR A.CASEMK IS NULL)
+                AND SUBSTR(A.APNO, 1, 1) = 'S' 
+				AND A.SEQNO = '0000' 
+           		AND A.INSKD = '9'
+                ]]>          
+            </isParameterPresent>
+		UNION 
+		Select DISTINCT 
+		       B.APNO,                               
+		       B.SEQNO,                                       
+		       B.BENNAME,                                     
+		       B.EVTNAME,                                     
+		       B.APPDATE,                                     
+		       B.ISSUYM,                                      
+		       B.PAYYMS, 
+		       B.PAYYME,                  
+		       B.EVTJOBDATE,                                  
+		       B.ISSUEAMT,                                    
+		       B.CLOSEDATE,                                  
+		       B.CLOSECAUSE                                  
+		  From VIEW_BAAPPBASE B 
+		  Where 
+			<![CDATA[
+		        (B.CASEMK <> 'D' OR B.CASEMK IS NULL)
+		        AND B.BENPAYMK = '1'
+		        AND SUBSTR(B.APNO, 1, 1) = 'S' 
+				AND B.SEQNO <> '0000'
+           		AND B.INSKD = '9'
+		        ]]>  
+		    <isParameterPresent>
+		      
+		                <isNotEmpty prepend="AND" property="evtIdnNo">
+		                    B.BENIDNNO = #evtIdnNo:VARCHAR#
+		                </isNotEmpty>
+		                <isNotEmpty prepend="AND" property="evtBrDate">
+		                    B.BENBRDATE = #evtBrDate:VARCHAR#
+		                </isNotEmpty>
+		                        
+		            </isParameterPresent>
+		        </dynamic>
+    </select>
+    
+    <select id="selectDisasterReviewRpt01AnnuityPayListBy" resultMap="DisasterReviewRpt01AnnuityResult">
+        SELECT DISTINCT A.APNO,                               
+		       A.SEQNO,                                      
+		       A.BENNAME,                                     
+		       A.EVTNAME,                                   
+		       A.APPDATE,                                    
+		       A.APUBNO,                                      
+		       A.ISSUYM,                                    
+		       A.PAYYMS, 
+		       A.PAYYME,                  
+		       A.EVTJOBDATE,                                
+		       A.ISSUEAMT,                                   
+		       A.CLOSEDATE,                                  
+		       A.CLOSECAUSE                             
+        FROM   VIEW_BAAPPBASE A   
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                <![CDATA[
+                    A.APNO <> #apNo:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.EVTBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                <![CDATA[
+                AND (A.CASEMK <> 'D' OR A.CASEMK IS NULL)
+                AND SUBSTR(A.APNO, 1, 1) = 'S'
+                AND A.SEQNO='0000' 
+           		AND A.INSKD = '9'
+                ]]>          
+            </isParameterPresent>
+             UNION
+         SELECT DISTINCT B.APNO,                               
+		       B.SEQNO,                                      
+		       B.BENNAME,                                     
+		       B.EVTNAME,                                   
+		       B.APPDATE,                                    
+		       B.APUBNO,                                      
+		       B.ISSUYM,                                    
+		       B.PAYYMS, 
+		       B.PAYYME,                  
+		       B.EVTJOBDATE,                                
+		       B.ISSUEAMT,                                   
+		       B.CLOSEDATE,                                  
+		       B.CLOSECAUSE                             
+        FROM   VIEW_BAAPPBASE B
+        
+         <![CDATA[
+         		WHERE SUBSTR(B.APNO, 1, 1) = 'S'
+                AND (B.CASEMK <> 'D' OR B.CASEMK IS NULL)
+                AND B.SEQNO<>'0000'
+           		AND B.INSKD = '9'
+                ]]>    
+         <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                <![CDATA[
+                    B.APNO <> #apNo:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    B.BENIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    B.BENBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                     
+            </isParameterPresent>
+        </dynamic>
+       
+    </select>
     
 </sqlMap>
