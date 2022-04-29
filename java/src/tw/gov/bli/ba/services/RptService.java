@@ -161,7 +161,7 @@ public class RptService {
     private BbdaprDao bbdaprDao;
     private BachkfileDao bachkfileDao;
     private BaexalistDao baexalistDao;
-    private LnmDao lnmDao;
+    private LnmDao lnmDao; 
     private LnmdDao lnmdDao;
     private BaparamDao baparamDao;
     private Balp0d330Dao balp0d330Dao;
