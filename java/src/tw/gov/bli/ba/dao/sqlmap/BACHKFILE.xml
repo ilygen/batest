@@ -175,6 +175,7 @@
         <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKCODE"        property="chkCode"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKCODEPRE"     property="chkCodePre"     jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
     </resultMap>
     <!-- ] -->
@@ -1322,7 +1323,8 @@
     <select id="selectSurvivorReviewRpt01ChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
 	    SELECT A.PAYYM,                   
 	           A.CHKCODE,                 
-	           A.CHKCODEPRE,              
+	           A.CHKCODEPRE, 
+	           A.CHKCODEPOST,              
 	           A.CHKRESULT                
 	      FROM BACHKFILE A
         <dynamic prepend="WHERE">
@@ -1430,11 +1432,12 @@
         ORDER BY A.CHKCODE
     </select>
     
-    <select id="getSurvivorReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
+    <select id="getSurvivorReviewRpt01BenChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
                A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
+               A.CHKCODEPOST, 
                A.CHKRESULT 
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
