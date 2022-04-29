@@ -15,7 +15,9 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     private String chkCodePre;	// 編審註記代號類型
     private String chkCodePost; // 編審註記代號改後類型
     private String chkResult; // 編審註記名稱
-
+    
+    private String keyValue;
+    
     /**
      * 給付年月
      * 
@@ -71,4 +73,18 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     public void setChkCode(String chkCode) {
         this.chkCode = chkCode;
     }
+
+	/**
+	 * @return the keyValue
+	 */
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	/**
+	 * @param keyValue the keyValue to set
+	 */
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
 }

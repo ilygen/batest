@@ -5952,7 +5952,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                         }
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                         addColumn(table, 10, 1, "編審註記說明：", fontCh12, 0, LEFT);
-                        addColumn(table, 46, 1, StringUtils.defaultString(evtChkfileDesc.getChkCode()) + " " + StringUtils.defaultString(evtChkfileDesc.getChkCodePost()) + " " + StringUtils.defaultString(evtChkfileDesc.getChkResult()), fontCh12, 0, LEFT);
+                        addColumn(table, 46, 1, StringUtils.defaultString(evtChkfileDesc.getChkCode()) + " " + StringUtils.defaultString(evtChkfileDesc.getChkCodePost()) + " " + StringUtils.defaultString(evtChkfileDesc.getChkResult()) + " " + StringUtils.defaultString(evtChkfileDesc.getKeyValue()), fontCh12, 0, LEFT);
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     }
                 }
@@ -9862,7 +9862,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             }
 
                             addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                            addColumn(table, 56, 1, StringUtils.defaultString(benChkfileData.getChkCode()) + " " + StringUtils.defaultString(benChkfileData.getChkCodePost()) + " " + StringUtils.defaultString(benChkfileData.getChkResult()), fontCh12, 0, LEFT);
+                            addColumn(table, 56, 1, StringUtils.defaultString(benChkfileData.getChkCode()) + " " + StringUtils.defaultString(benChkfileData.getChkCodePost()) + " " + StringUtils.defaultString(benChkfileData.getChkResult()) + " " + StringUtils.defaultString(benChkfileData.getKeyValue()), fontCh12, 0, LEFT);
                             addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                         }
@@ -9918,7 +9918,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                                 deleteRow(table, 1);
                             }
                             addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                            addColumn(table, 56, 1, StringUtils.defaultString(chkfileData.getChkCode()) + " " + StringUtils.defaultString(chkfileData.getChkCodePost()) + " " + StringUtils.defaultString(chkfileData.getChkResult()), fontCh12, 0, LEFT);
+                            addColumn(table, 56, 1, StringUtils.defaultString(chkfileData.getChkCode()) + " " + StringUtils.defaultString(chkfileData.getChkCodePost()) + " " + StringUtils.defaultString(chkfileData.getChkResult()) + " " + StringUtils.defaultString(chkfileData.getKeyValue()), fontCh12, 0, LEFT);
                             addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 
                         }

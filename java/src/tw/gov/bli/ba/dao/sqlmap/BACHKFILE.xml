@@ -1342,7 +1342,8 @@
         SELECT DISTINCT 
                A.CHKCODE, 
                A.CHKCODEPRE, 
-               A.CHKRESULT 
+               A.CHKRESULT,
+               A.KEYVALUE 
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -1428,7 +1429,8 @@
         SELECT A.PAYYM,
                A.CHKCODE, 
                A.CHKCODEPRE, 
-               A.CHKRESULT 
+               A.CHKRESULT, 
+               A.KEYVALUE
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -1483,7 +1485,8 @@
                            A.CHKRESULT || A.KEYVALUE
                           ELSE
                            A.CHKRESULT
-                        END AS CHKRESULT
+                        END AS CHKRESULT,
+                        A.KEYVALUE
         FROM BACHKFILE A
         WHERE SEQNO='0000'
         <dynamic>
