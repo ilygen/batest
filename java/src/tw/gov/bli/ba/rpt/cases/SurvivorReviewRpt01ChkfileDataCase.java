@@ -58,6 +58,14 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
         this.chkResult = chkResult;
     }
 
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
+	
     public String getPayYm() {
         return payYm;
     }
@@ -73,18 +81,4 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     public void setChkCode(String chkCode) {
         this.chkCode = chkCode;
     }
-
-	/**
-	 * @return the keyValue
-	 */
-	public String getKeyValue() {
-		return keyValue;
-	}
-
-	/**
-	 * @param keyValue the keyValue to set
-	 */
-	public void setKeyValue(String keyValue) {
-		this.keyValue = keyValue;
-	}
 }
