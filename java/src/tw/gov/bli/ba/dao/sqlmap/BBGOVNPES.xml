@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBGOVNPES">
+	
+	<typeAlias alias="Bbgovnpes" type="tw.gov.bli.ba.domain.Bbgovnpes" />
+	
+	<resultMap id="BBGOVNPESResult" class="Bbgovnpes" >
+        <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="EVTRETDATE"     property="evtRetDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="DISQUALMK"      property="disQualMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CRIINJDP"       property="criinjdp"			jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APPISSUEDATE"   property="appIssueDate"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="APPISSUEAMT"   	property="appIssueAmt"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="CLOSEDATE"   	property="closeDate"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+    </resultMap>
+    
+    <select id="getCivilServantReviewRpt01PayListBy" resultMap="BBGOVNPESResult">
+       select A.APPNAME
+   			, A.APPDATE 
+   			, A.EVTRETDATE 
+   			, A.APPDATE 
+   			, A.DISQUALMK 
+   			, A.CRIINJDP 
+   			, A.APPISSUEDATE 
+   			, A.APPISSUEAMT 
+   			, A.CLOSEDATE
+    	 from BBGOVNPES A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="evtIdnNo">
+                    A.EVTIDNNO = #evtIdnNo:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="evtBrDate">
+                    A.EVTBRDATE = #evtBrDate:VARCHAR#
+                </isNotEmpty>
+                <isNotEmpty prepend="AND" property="payKindG">
+			    	A.PAYKINDG=#payKindG:VARCHAR#
+                </isNotEmpty>
+            </isParameterPresent>
+        </dynamic>
+        <![CDATA[
+    	  and (A.DELMK is null or A.DELMK <> 'D')
+    	  order by A.DATADATE    	  
+         ]]>   
+    </select>
+    
+</sqlMap>

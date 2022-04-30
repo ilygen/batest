@@ -484,6 +484,18 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 
+    <bean id="bbgovnbefDao" class="tw.gov.bli.ba.dao.impl.BbgovnbefDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbgovnpesDao" class="tw.gov.bli.ba.dao.impl.BbgovnpesDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="bbmtybefDao" class="tw.gov.bli.ba.dao.impl.BbmtybefDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
     <!-- ] -->
     <!-- End for BA System -->
 

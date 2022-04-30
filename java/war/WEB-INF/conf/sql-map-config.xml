@@ -7,6 +7,9 @@
         
     <!-- for BA System Begin -->
     <!-- [ -->
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBGOVNPES.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBMTYBEF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBGOVNBEF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCHK.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCSLVL.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPARAM.xml" />
@@ -124,7 +127,6 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANSF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPATTFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMFILEFTPRECORD.xml" />
-
     <!-- ] -->
     <!-- End for BA System -->
 

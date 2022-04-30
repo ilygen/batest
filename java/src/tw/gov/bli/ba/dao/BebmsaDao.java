@@ -3,6 +3,7 @@ package tw.gov.bli.ba.dao;
 import java.util.List;
 
 import tw.gov.bli.ba.domain.Bebmsa;
+import tw.gov.bli.common.annotation.DaoFieldList;
 
 /**
  * DAO for 現金給付參考檔 (<code>BEBMSA</code>) <br>
@@ -110,5 +111,14 @@ public interface BebmsaDao {
 	 * @return
 	 */
 	List<Bebmsa> selectDisasterReviewRpt01InjuryCarePayListBy(String evtIdnNo, String evtBrDate, String apNo);
+
+	/**
+	 * 依傳入條件取得 現金給付參考檔 (<code>PBBMSA</code>) 職災住院醫療給付資料 for 勞保失能年金給付受理編審清單
+	 * 
+	 * @param evtIdnNo 事故者身分證號
+	 * @param evtBrDate 事故者出生日期
+	 * @return
+	 */
+	List<Bebmsa> selectDisableReviewRpt01HosPayListBy(String evtIdnNo, String evtBrDate);
 
 }
