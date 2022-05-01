@@ -5,24 +5,24 @@
 	<typeAlias alias="Bbgovnpes" type="tw.gov.bli.ba.domain.Bbgovnpes" />
 	
 	<resultMap id="BBGOVNPESResult" class="Bbgovnpes" >
-        <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTRETDATE"     property="evtRetDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="DISQUALMK"      property="disQualMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CRIINJDP"       property="criinjdp"			jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="APPISSUEDATE"   property="appIssueDate"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="APPISSUEAMT"   	property="appIssueAmt"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="CLOSEDATE"   	property="closeDate"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="EVTJOBDATE"     property="evtJobDate"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="PENSDATE"      	property="pensDate"        	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="PAYYM"       	property="payYm"			jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="ISSUEDATE"   	property="issueDate"     	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />        
+        <result column="APPISSUEAMT"   	property="appIssueAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />        
+        <result column="CLOSEDATE"   	property="closeDate"        jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />        
     </resultMap>
     
     <select id="getCivilServantReviewRpt01PayListBy" resultMap="BBGOVNPESResult">
        select A.APPNAME
    			, A.APPDATE 
-   			, A.EVTRETDATE 
+   			, A.EVTJOBDATE 
    			, A.APPDATE 
-   			, A.DISQUALMK 
-   			, A.CRIINJDP 
-   			, A.APPISSUEDATE 
+   			, A.PENSDATE 
+   			, A.PAYYM 
+   			, A.ISSUEDATE 
    			, A.APPISSUEAMT 
    			, A.CLOSEDATE
     	 from BBGOVNPES A

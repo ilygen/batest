@@ -5,14 +5,14 @@
 	<typeAlias alias="Bbmtybef" type="tw.gov.bli.ba.domain.Bbmtybef" />
 	
 	<resultMap id="BBMTYBEFResult" class="Bbmtybef" >
-        <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTRETDATE"     property="evtRetDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="DISQUALMK"      property="disQualMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CRIINJDP"       property="criinjdp"			jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="APPISSUEDATE"   property="appIssueDate"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="APPISSUEAMT"   	property="appIssueAmt"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="CLOSEDATE"   	property="closeDate"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="EVTRETDATE"     property="evtRetDate"       jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="DISQUALMK"      property="disQualMk"        jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="DISEVTCODE"     property="disEvtCode"		jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
+        <result column="APPISSUEDATE"   property="appIssueDate"     jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />        
+        <result column="APPISSUEAMT"   	property="appIssueAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />        
+        <result column="CLOSEDATE"   	property="closeDate"        jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />        
     </resultMap>
     
     <select id="getSoldierReviewRpt01PayListBy" resultMap="BBMTYBEFResult">
@@ -21,7 +21,7 @@
    			, A.EVTRETDATE 
    			, A.APPDATE 
    			, A.DISQUALMK 
-   			, A.CRIINJDP 
+   			, A.DISEVTCODE 
    			, A.APPISSUEDATE 
    			, A.APPISSUEAMT 
    			, A.CLOSEDATE
