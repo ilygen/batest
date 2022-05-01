@@ -7,7 +7,7 @@
 	<resultMap id="BBGOVNPESResult" class="Bbgovnpes" >
         <result column="APPNAME"        property="appName"        	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
         <result column="APPDATE"    	property="appDate"   		jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
-        <result column="EVTJOBDATE"     property="evtJobDate"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="EVTJOBDATE"     property="evtJobDate"       jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
         <result column="PENSDATE"      	property="pensDate"        	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
         <result column="PAYYM"       	property="payYm"			jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />
         <result column="ISSUEDATE"   	property="issueDate"     	jdbcType="VARCHAR"  javaType="java.lang.String" 	nullValue="" />        
