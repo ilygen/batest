@@ -8163,8 +8163,8 @@ UNION
                        A1.CHKDATE,
                        A1.MEXCLVL,
                        A1.PAYKIND,
-                       (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS RECHK,
-                       (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS EXEMK                                
+                       (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS RECHK,
+                       (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS EXEMK                                
                   FROM BAAPPBASE A1
                  WHERE A1.APNO IN (SELECT APNO FROM BALP0D020
                                     WHERE APNO = #apNo:VARCHAR#
@@ -8180,9 +8180,9 @@ UNION
                    AND A1.PROCSTAT IN ('20','30','40')
                    <![CDATA[
                    AND NVL(TRIM(A1.MANCHKMK),' ')<>' ' AND A1.MANCHKMK IS NOT NULL
-                   AND ((A1.MEXCLVL<=(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))))
-                          OR(MEXCLVL>(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))
-                         AND(SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))='Y'))
+                   AND ((A1.MEXCLVL<=(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))))
+                          OR(MEXCLVL>(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))
+                         AND(SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))='Y'))
                    ]]>
                        ) A,
                (SELECT B1.BALP0D020ID,
@@ -8251,8 +8251,8 @@ UNION
                        A1.CHKDATE,
                        A1.MEXCLVL,
                        A1.PAYKIND,
-                       (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS RECHK,
-                       (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS EXEMK                                
+                       (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS RECHK,
+                       (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))) AS EXEMK                                
                   FROM BAAPPBASE A1
                  WHERE A1.APNO IN (SELECT APNO FROM BALP0D020
                                     WHERE RPTDATE = #rptDate:VARCHAR# AND PAGENO = #pageNo:VARCHAR#
@@ -8274,9 +8274,9 @@ UNION
                    AND A1.PROCSTAT IN ('20','30','40')
                    <![CDATA[
                    AND NVL(TRIM(A1.MANCHKMK),' ')<>' ' AND A1.MANCHKMK IS NOT NULL
-                   AND ((A1.MEXCLVL<=(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))))                   
-                          OR(MEXCLVL>(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))
-                         AND(SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))='Y'))
+                   AND ((A1.MEXCLVL<=(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99'))))))                   
+                          OR(MEXCLVL>(SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))
+                         AND(SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(A1.APNO, 1, 1) OR (PAYTYP = '99')))))='Y'))
                    ]]>
                        ) A,
                (SELECT B1.BALP0D020ID,
@@ -8340,7 +8340,7 @@ UNION
 	                </isEqual>    
 	           </isParameterPresent>
 	       </dynamic>
-	           REALEXCLVL = (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# And (PAYTYP = SUBSTR(#apNo:VARCHAR#, 1, 1) OR (PAYTYP = '99')))))
+	           REALEXCLVL = (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empId:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empId:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(#apNo:VARCHAR#, 1, 1) OR (PAYTYP = '99')))))
 	     WHERE APNO = #apNo:VARCHAR#
 	       AND PROCSTAT in ('20','30','40')    
     </update>
@@ -14456,18 +14456,18 @@ UNION
         SELECT MEXCLVL,
                (SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" 
                 FROM BCCMF01 
-                WHERE PRPNO = #empNo:VARCHAR# AND 
+                WHERE PRPNO = #empNo:VARCHAR# AND INSKD = '1' AND 
                       ((PAYTYP = 'K' OR (PAYTYP = '99')))
                ) AS RECHK,
                (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) 
                 FROM BCCMF01 
-                WHERE PRPNO = #empNo:VARCHAR# AND 
+                WHERE PRPNO = #empNo:VARCHAR# AND INSKD = '1' AND 
                       ((PAYTYP = 'K' OR (PAYTYP = '99')))
                ) AS EXEMK
         FROM   BAAPPBASE A1
         WHERE ((SELECT DECODE(SIGNL2, NULL, '', 'Y') As "SIGNL1" 
                 FROM BCCMF01 
-                WHERE PRPNO = #empNo:VARCHAR# AND 
+                WHERE PRPNO = #empNo:VARCHAR# AND INSKD = '1' AND 
                       ((PAYTYP = 'K' OR (PAYTYP='99'))))='Y') AND 
               A1.APNO = #apNo:VARCHAR# AND 
               A1.SEQNO = '0000'
