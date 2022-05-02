@@ -92,7 +92,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
          * @param earlyWarning
          * @throws Exception
          */
-        public void execute(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+        public Table execute(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 在塞請領同類給付資料表頭前, 先隨便塞空白行測試是否需換頁
             addEmptyRow(table, 1);
 
@@ -109,15 +109,11 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 
 			// 勞保老年給付	
             // 一次給付資料 (有資料再印)
-            this.printOncePays(caseData, table, earlyWarning);
+            table = this.printOncePays(caseData, table, earlyWarning);
             
-			// 勞保補償金	
-			
-            // 勞保老年差額金
-
             // 勞保老年年金
             // 年金給付資料 (有資料再印)
-            this.printAnnuitys(caseData, table, earlyWarning);
+            table = this.printAnnuitys(caseData, table, earlyWarning);
             
             
             // 在塞分隔線前, 先隨便塞空白行測試是否需換頁
@@ -133,7 +129,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                 deleteRow(table, 1);
                 addLine(table);
             }
-    		
+    	
+            return table;
+            
     	}
 
     	/**
@@ -144,7 +142,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
     	 * @param earlyWarning
     	 * @throws Exception
     	 */
-    	public void printOncePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+    	public Table printOncePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 一次給付資料 (有資料再印)
     		if (caseData.getOncePayList() != null) {
     			List<OldAgeReviewRpt01OncePayDataCase> oncePayList = caseData.getOncePayList();
@@ -256,7 +254,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
     			} // ] ... end for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++)
     			
     		}
-    		
+        	
+            return table;
+            
     	}
 
 		/**
@@ -267,7 +267,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 年金給付資料 (有資料再印)
 			if (caseData.getAnnuityPayList() != null) {
 				List<OldAgeReviewRpt01AnnuityPayDataCase> annuityPayList = caseData.getAnnuityPayList();
@@ -347,7 +347,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nAnnuityPayCount = 0; nAnnuityPayCount < annuityPayList.size(); nAnnuityPayCount++)
 				
 			}
-
+	    	
+            return table;
+            
 		}
     	
     }
@@ -382,7 +384,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
          * @param earlyWarning
          * @throws Exception
          */
-        public void execute(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+        public Table execute(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 在塞請領他類給付資料表頭前, 先隨便塞空白行測試是否需換頁
             addEmptyRow(table, 1);
 
@@ -399,56 +401,39 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 
 			// 勞保傷病給付
             // 申請傷病給付記錄資料 (有資料再印)
-            this.printInjuryPays(caseData, table, earlyWarning);
+            table = this.printInjuryPays(caseData, table, earlyWarning);
             
 			// 勞保失能給付
             // 申請失能給付記錄資料 (有資料再印)
-            this.printDisablePays(caseData, table, earlyWarning);
+            table = this.printDisablePays(caseData, table, earlyWarning);
             
 			// 勞保失能年金
             // 申請失能年金記錄資料 (有資料再印)
-            this.printDisableAnnuitys(caseData, table, earlyWarning);
+            table = this.printDisableAnnuitys(caseData, table, earlyWarning);
             
 			// 勞保本人死亡給付
             // 申請死亡給付記錄資料 (有資料再印)
-            this.printDiePays(caseData, table, earlyWarning);
+            table = this.printDiePays(caseData, table, earlyWarning);
             
 			// 災保本人死亡給付
             // 申請死亡給付記錄資料 (有資料再印) 災保 20220421
-            this.printDisasterReviewDiePays(caseData, table, earlyWarning);
+            table = this.printDisasterReviewDiePays(caseData, table, earlyWarning);
             
 			// 勞保家屬死亡給付
             // 申請遺屬年金記錄資料 (有資料再印)
-            this.printSurvivorAnnuitys(caseData, table, earlyWarning);
-            
-			// 勞保失蹤津貼給付
-            
-			// 農保喪葬津貼
-            
-			// 勞保遺屬年金
+            table = this.printSurvivorAnnuitys(caseData, table, earlyWarning);
             
 			// 災保遺屬年金
             // 申請遺屬年金記錄資料 (有資料再印) 災保 20220421
-            this.printDisasterReviewSurvivorAnnuitys(caseData, table, earlyWarning);
+            table = this.printDisasterReviewSurvivorAnnuitys(caseData, table, earlyWarning);
             
 			// 就保失業給付
             // 申請失業給付記錄資料 (有資料再印)
-            this.printJoblessPays(caseData, table, earlyWarning);
+            table = this.printJoblessPays(caseData, table, earlyWarning);
             
-			// 國保老年年金
-            
-			// 國保身障年金
-            
-			// 國保喪葬給付
-            
-			// 國保遺屬年金
-            
-
-            /** 20220421 excel 無此項目
             // 申請國保給付記錄資料 (有資料再印)
-            this.printNpPayList(caseData, table, earlyWarning);
-             * 
-             */
+            table = this.printNpPays(caseData, table, earlyWarning);
+
 
             // 在塞分隔線前, 先隨便塞空白行測試是否需換頁
             addEmptyRow(table, 1);
@@ -463,6 +448,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                 deleteRow(table, 1);
                 addLine(table);
             }
+        	
+            return table;
+            
         }
         
 		/**
@@ -473,7 +461,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printNpPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printNpPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請國保給付記錄資料 (有資料再印)
 			if (caseData.getNpPayList() != null) {
 				List<OldAgeReviewRpt01NpPayDataCase> npPayList = caseData.getNpPayList();
@@ -542,7 +530,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nNpPayCount = 0; nNpPayCount < npPayList.size(); nNpPayCount++)
 				
 			}
-
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -553,7 +543,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printJoblessPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printJoblessPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請失業給付記錄資料 (有資料再印)
 			if (caseData.getJoblessPayList() != null) {
 				List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList = caseData.getJoblessPayList();
@@ -638,7 +628,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nJoblessPayCount = 0; nJoblessPayCount < joblessPayList.size(); nJoblessPayCount++)
 				
 			}
-			
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -649,7 +641,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printInjuryPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printInjuryPays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請傷病給付記錄資料 (有資料再印)
 			if (caseData.getInjuryPayList() != null) {
 				List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList = caseData.getInjuryPayList();
@@ -733,7 +725,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nInjuryPayCount = 0; nInjuryPayCount < injuryPayList.size(); nInjuryPayCount++)
 				
 			}
-
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -744,7 +738,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printDisasterReviewSurvivorAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printDisasterReviewSurvivorAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請遺屬年金記錄資料 (有資料再印) 災保
 			if (caseData.getDisasterSurvivorAnnuityPayList() != null) {
 				List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayBy9List = caseData.getDisasterSurvivorAnnuityPayList();
@@ -828,10 +822,12 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayList.size(); nSurvivorAnnuityPayCount++)
 				
 			}
+	    	
+            return table;
             
 		}
 
-		public void printSurvivorAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printSurvivorAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請遺屬年金記錄資料 (有資料再印)
 			if (caseData.getSurvivorAnnuityPayList() != null) {
 				List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayList = caseData.getSurvivorAnnuityPayList();
@@ -915,7 +911,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nSurvivorAnnuityPayCount = 0; nSurvivorAnnuityPayCount < survivorAnnuityPayList.size(); nSurvivorAnnuityPayCount++)
 				
 			}
-			
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -926,7 +924,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printDisasterReviewDiePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printDisasterReviewDiePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請死亡給付記錄資料 (有資料再印) 災保
 			if (caseData.getDisasterDiePayList() != null) {
 				List<OldAgeReviewRpt01DiePayDataCase> diePayBy9List = caseData.getDisasterDiePayList();
@@ -1010,7 +1008,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nDiePayCount = 0; nDiePayCount < diePayList.size(); nDiePayCount++)
 				
 			}
-
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -1021,7 +1021,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printDiePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printDiePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請死亡給付記錄資料 (有資料再印)
 			if (caseData.getDiePayList() != null) {
 				List<OldAgeReviewRpt01DiePayDataCase> diePayList = caseData.getDiePayList();
@@ -1105,8 +1105,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nDiePayCount = 0; nDiePayCount < diePayList.size(); nDiePayCount++)
 				
 			}
-
-			
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -1117,7 +1118,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printDisableAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printDisableAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請失能年金記錄資料 (有資料再印)
 			if (caseData.getDisableAnnuityPayList() != null) {
 				List<OldAgeReviewRpt01DisableAnnuityPayDataCase> disableAnnuityPayList = caseData.getDisableAnnuityPayList();
@@ -1208,7 +1209,9 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 				} // ] ... end for (int nDisableAnnuityPayCount = 0; nDisableAnnuityPayCount < disableAnnuityPayList.size(); nDisableAnnuityPayCount++)
 				
 			}
-
+	    	
+            return table;
+            
 		}
 
 		/**
@@ -1219,7 +1222,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		 * @param earlyWarning
 		 * @throws Exception
 		 */
-		public void printDisablePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+		public Table printDisablePays(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請失能給付記錄資料 (有資料再印)
 			if (caseData.getDisablePayList() != null) {
 				List<OldAgeReviewRpt01DisablePayDataCase> disablePayList = caseData.getDisablePayList();
@@ -1308,8 +1311,10 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 					}
 				} // ] ... end for (int nDisablePayCount = 0; nDisablePayCount < disablePayList.size(); nDisablePayCount++)
 			}
-				
-			}
+	    	
+            return table;
+            
+		}
     	
     }
 
@@ -2404,7 +2409,8 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                 // 請領同類給付資料
                 // [
                 OldAgeReviewSameKind sameKind = new OldAgeReviewSameKind();
-                sameKind.execute(caseData, table, earlyWarning);
+                table = sameKind.execute(caseData, table, earlyWarning);
+                sameKind = null;
                 
                 if (false) {
                 // 在塞請領同類給付資料表頭前, 先隨便塞空白行測試是否需換頁
@@ -2628,7 +2634,8 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                 // 請領他類給付資料
                 // [
                 OldAgeReviewOtherKind otherKind = new OldAgeReviewOtherKind();
-                otherKind.execute(caseData, table, earlyWarning);
+                table = otherKind.execute(caseData, table, earlyWarning);
+                otherKind = null;
                 
                 if (false) {
                 // 在塞請領他類給付資料表頭前, 先隨便塞空白行測試是否需換頁
