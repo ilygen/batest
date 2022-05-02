@@ -329,7 +329,7 @@
                     </isEqual>    
                </isParameterPresent>
            </dynamic>
-               REALEXCLVL = (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empNo:VARCHAR# AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empNo:VARCHAR# And (PAYTYP = SUBSTR(#apNo:VARCHAR#, 1, 1) OR (PAYTYP = '99')))))
+               REALEXCLVL = (SELECT (CASE WHEN SIGNL2>SIGNL3 THEN SIGNL2 ELSE SIGNL3 END) FROM BCCMF01 WHERE PRPNO = #empNo:VARCHAR# AND INSKD = '1' AND (PAYTYP = (Select min(DECODE(PAYTYP, '00', '99', PAYTYP)) As "PAYTYP" From BCCMF01 where PRPNO = #empNo:VARCHAR# AND INSKD = '1' And (PAYTYP = SUBSTR(#apNo:VARCHAR#, 1, 1) OR (PAYTYP = '99')))))
          WHERE APNO = #apNo:VARCHAR#
            AND BALP0D020ID = #balp0d020Id:NUMERIC#
            <![CDATA[
