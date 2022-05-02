@@ -1665,7 +1665,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "申請災保本人死亡給付記錄：]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請災保本人死亡給付記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);

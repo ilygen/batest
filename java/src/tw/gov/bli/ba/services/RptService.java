@@ -1652,7 +1652,10 @@ public class RptService {
 	        // 取得 現金給付參考檔 (PBBMSA) 申請農保殘廢給付記錄
 	        caseData.setFarmPayList(this.getFarmPayListBy(evtIdnNo, evtBrDate, evtKcafList));
 			
-			// 國保身障年金
+	        // 取得 申請國保給付記錄資料 20220421 excel 無此項目
+	        caseData.setNbPayList(this.getDisableReviewRpt01NbPayListBy(evtData.getEvtIds(), evtKcafList));
+
+	        // 國保身障年金
 	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保身障給付記錄資料
 	        caseData.setNbDisPayList(this.getNpDisPayListBy(evtData.getEvtIds()));
 			
@@ -1662,8 +1665,6 @@ public class RptService {
 			// 軍保身心障礙給付
 	        caseData.setSoldierDisablePayList(this.getSoldierDisablePayList(evtIdnNo, evtBrDate, evtKcafList));
 			
-	        // 取得 申請國保給付記錄資料 20220421 excel 無此項目
-	        // caseData.setNbPayList(this.getDisableReviewRpt01NbPayListBy(evtData.getEvtIds(), evtKcafList));
 			
 		}
 
@@ -3620,8 +3621,6 @@ public class RptService {
 			// 軍保死亡給付
 	        caseData.setSoldierDeadPayList(this.getSoldierDeadPayList(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
 			
-			// 軍保眷屬喪葬津貼
-
 		}
 
 		public List<SoldierReviewRpt01DeadPayCase> getSoldierDeadPayList(String evtIdnNo, String evtBrDate,
