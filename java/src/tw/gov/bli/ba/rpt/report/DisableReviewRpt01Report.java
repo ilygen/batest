@@ -120,19 +120,19 @@ public class DisableReviewRpt01Report extends ReportBase {
 	        
 	        // 災保失能給付
 	        // 一次給付資料 (有資料再印) 災保 災保失能給付 20220421
-	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePayList(), table, earlyWarning, "[災保失能給付]");
+	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePayList(), table, earlyWarning, "申請災保失能給付記錄：");
 	        
 			// 退保後職業病失能津貼
 	        // 一次給付資料 (有資料再印) 災保 退保後職業病失能津貼 20220421
-	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3TList(), table, earlyWarning, "[退保後職業病失能津貼]");
+	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3TList(), table, earlyWarning, "申請退保後職業病失能津貼記錄：");
 	        
 			// 未加保失能補助
 	        // 一次給付資料 (有資料再印) 災保 未加保失能補助 20220421
-	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3NList(), table, earlyWarning, "[未加保失能補助]");
+	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3NList(), table, earlyWarning, "申請未加保失能補助記錄：");
 	        
 			// 災保失能差額金
 	        // 一次給付資料 (有資料再印) 災保 災保失能差額金 20220421
-	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay39List(), table, earlyWarning, "[災保失能差額金]");
+	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay39List(), table, earlyWarning, "申請災保失能差額金記錄：");
 	        
 			// 勞保失能年金
 	        // 年金給付資料 (有資料再印)
@@ -143,7 +143,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 	        table = this.printDisasterReviewAnnuitys(caseData, table, earlyWarning);
 	        
 			// 災保失能照護補助
-	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3CList(), table, earlyWarning, "[災保失能照護補助]");
+	        table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3CList(), table, earlyWarning, "申請災保失能照護補助記錄：");
 	        
 			// 農保殘廢給付
 	        // 申請農保殘廢給付記錄 (有資料再印)
@@ -153,10 +153,10 @@ public class DisableReviewRpt01Report extends ReportBase {
 	        table = this.printNbDisPays(caseData, table, earlyWarning);
 	        
 			// 公保失能給付
-	        table = this.printCivilServantDisablePayList(caseData, caseData.getCivilServantDisablePayList(), table, earlyWarning, "[公保失能給付]");
+	        table = this.printCivilServantDisablePayList(caseData, caseData.getCivilServantDisablePayList(), table, earlyWarning, "申請公保失能給付記錄：");
 	        
 			// 軍保身心障礙給付
-	        table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "[軍保身心障礙給付]");
+	        table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "申請軍保身心障礙給付記錄：");
 	        
 	        
 	        
@@ -314,16 +314,25 @@ public class DisableReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1)) {
 						
@@ -479,16 +488,25 @@ public class DisableReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getSoldierDisablePayList().size() > 0)) {
@@ -1994,76 +2012,76 @@ public class DisableReviewRpt01Report extends ReportBase {
 
 			// 職災住院醫療給付
 	        // 申請職災住院醫療給付記錄
-	        this.printOncePays(caseData, table, earlyWarning);
+	        table = this.printOncePays(caseData, table, earlyWarning);
 	        
 			// 勞保傷病給付
 	        // 申請傷病給付記錄資料 (有資料再印)
-	        this.printInjuryPays(caseData, table, earlyWarning);
+	        table = this.printInjuryPays(caseData, table, earlyWarning);
 	        
 			// 災保傷病給付
-	        this.printDisasterReviewInjuryPays(caseData, table, earlyWarning);
+	        table = this.printDisasterReviewInjuryPays(caseData, table, earlyWarning);
 	        
 			// 傷病照護補助
-	        this.printDisasterReviewInjuryCarePays(caseData, table, earlyWarning);
+	        table = this.printDisasterReviewInjuryCarePays(caseData, table, earlyWarning);
 	        
 			// 勞保老年給付
 	        // 申請老年給付記錄 (有資料再印)
-	        this.printOldAgePays(caseData, table, earlyWarning);
+	        table = this.printOldAgePays(caseData, table, earlyWarning);
 	        
 			// 勞保本人死亡給付
 	        // 申請死亡給付記錄資料 (有資料再印)
-	        this.printDiePays(caseData, table, earlyWarning);
+	        table = this.printDiePays(caseData, table, earlyWarning);
 	        
 			// 災保本人死亡給付
-	        this.printDisasterDiePays(caseData, table, earlyWarning);
+	        table = this.printDisasterDiePays(caseData, table, earlyWarning);
 	        
 			// 退保後職業病死亡津貼
-	        this.printDisasterDieForDiseaseAfterQuitPays(caseData, table, earlyWarning);
+	        table = this.printDisasterDieForDiseaseAfterQuitPays(caseData, table, earlyWarning);
 	        
 			// 未加保死亡補助
-	        this.printDisasterDieWithoutPays(caseData, table, earlyWarning);
+	        table = this.printDisasterDieWithoutPays(caseData, table, earlyWarning);
 	        
 			// 勞保家屬死亡給付
 	        // 申請遺屬年金給付(有資料再印)
-	        this.printSurvivorPays(caseData, table, earlyWarning);
+	        table = this.printSurvivorPays(caseData, table, earlyWarning);
 	        
 			// 勞保失蹤津貼給付
 	        // 申請失蹤給付記錄資料 (有資料再印)
-	        this.printLostPays(caseData, table, earlyWarning);
+	        table = this.printLostPays(caseData, table, earlyWarning);
 	        
 			// 災保失蹤津貼給付
-	        this.printDisasterLostPays(caseData, table, earlyWarning);
+	        table = this.printDisasterLostPays(caseData, table, earlyWarning);
 	        
 			// 農保喪葬津貼
 	        // 申請農保死亡給付記錄資料 (有資料再印)
-	        this.printFarmDiePays(caseData, table, earlyWarning);
+	        table = this.printFarmDiePays(caseData, table, earlyWarning);
 	        
 			// 就保失業給付
 	        // 申請失業給付記錄資料 (有資料再印)
-	        this.printJoblessPays(caseData, table, earlyWarning);
+	        table = this.printJoblessPays(caseData, table, earlyWarning);
 	        
 			// 就保職訓津貼
 	        // 申請職業訓練生活津貼記錄資料 (有資料再印)
-	        this.printJobTrainingPays(caseData, table, earlyWarning);
+	        table = this.printJobTrainingPays(caseData, table, earlyWarning);
 	        
 			// 勞保老年年金
 	        // 申請老年年金給付(有資料再印)
-	        this.printOldAgeAnnuitys(caseData, table, earlyWarning);
+	        table = this.printOldAgeAnnuitys(caseData, table, earlyWarning);
 	        
 			// 災保遺屬年金
-	        this.printDisasterReviewSurvivorPays(caseData, table, earlyWarning);
+	        table = this.printDisasterReviewSurvivorPays(caseData, table, earlyWarning);
 	        
 	        // 申請國保給付記錄資料 (有資料再印)
-	        this.printNpPays(caseData, table, earlyWarning);
+	        table = this.printNpPays(caseData, table, earlyWarning);
 
 			// 公保養老年金給付
-	        this.printCivilServantRetiredAnnuityPayList(caseData, table, earlyWarning);
+	        table = this.printCivilServantRetiredAnnuityPayList(caseData, table, earlyWarning);
 	        
 			// 公保養老遺屬年金給付
-	        this.printCivilServantRetiredSurvivorAnnuityPayList(caseData, table, earlyWarning);
+	        table = this.printCivilServantRetiredSurvivorAnnuityPayList(caseData, table, earlyWarning);
 	        
 			// 公保死亡遺屬年金給付
-	        this.printCivilServantDeadSurvivorAnnuityPayList(caseData, table, earlyWarning);
+	        table = this.printCivilServantDeadSurvivorAnnuityPayList(caseData, table, earlyWarning);
 	        
 	        
 
@@ -2124,7 +2142,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老遺屬年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2236,16 +2254,25 @@ public class DisableReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1)) {
 						
@@ -2289,7 +2316,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老遺屬年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2401,16 +2428,25 @@ public class DisableReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getCivilServantDeadSurvivorAnnuityPayList().size() > 0)) {
@@ -2456,7 +2492,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2568,16 +2604,25 @@ public class DisableReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getCivilServantRetiredSurvivorAnnuityPayList().size() > 0

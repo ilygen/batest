@@ -187,7 +187,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
     						deleteRow(table, 4);
     				}
     				
-    				addColumn(table, 7, 1, "事故者姓名", fontCh12b, 0, LEFT);
+    				addColumn(table, 7, 1, "事故者姓名", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "受理日期", fontCh12, 0, LEFT);
     				addColumn(table, 12, 1, "受理編號", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "事故日期", fontCh12, 0, LEFT);
@@ -303,7 +303,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 8, 1, "事故者姓名", fontCh12b, 0, LEFT);
+					addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 24, 1, "受理編號/核定年月/給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "事故日期", fontCh12, 0, LEFT);
@@ -498,7 +498,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 7, 1, "申請日期", fontCh12b, 0, LEFT);
+					addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 15, 1, "受理編號/給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 11, 1, "被保險人姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "事故日期", fontCh12, 0, LEFT);
@@ -536,6 +536,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 就保失業給付
 		 * 申請失業給付記錄資料
 		 * 
 		 * @param caseData
@@ -579,7 +580,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 7, 1, "受理日期", fontCh12b, 0, LEFT);
+					addColumn(table, 7, 1, "受理日期", fontCh12, 0, LEFT);
 					addColumn(table, 12, 1, "受理編號", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "求職日期", fontCh12, 0, LEFT);
@@ -634,6 +635,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 勞保傷病給付
 		 * 申請傷病給付記錄資料
 		 * 
 		 * @param caseData
@@ -677,7 +679,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 7, 1, "受理日期", fontCh12b, 0, LEFT);
+					addColumn(table, 7, 1, "受理日期", fontCh12, 0, LEFT);
 					addColumn(table, 12, 1, "受理編號", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "事故日期", fontCh12, 0, LEFT);
@@ -731,6 +733,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 災保遺屬年金
 		 * 申請遺屬年金記錄資料 災保
 		 * 
 		 * @param caseData
@@ -759,7 +762,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						}
 						
 						// 申請遺屬年金記錄 表頭
-						addColumn(table, 60, 1, "災保-申請遺屬年金記錄：", fontCh12b, 0, LEFT);
+						addColumn(table, 60, 1, "申請災保遺屬年金記錄：", fontCh12b, 0, LEFT);
 					}
 					
 					// 遺屬年金記錄資料一筆有四行, 在塞資料前先測試是否需換頁
@@ -827,6 +830,15 @@ public class OldAgeReviewRpt01Report extends ReportBase {
             
 		}
 
+		/**
+		 * 勞保家屬死亡給付
+		 * 
+		 * @param caseData
+		 * @param table
+		 * @param earlyWarning
+		 * @return
+		 * @throws Exception
+		 */
 		public Table printSurvivorAnnuitys(OldAgeReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
             // 申請遺屬年金記錄資料 (有資料再印)
 			if (caseData.getSurvivorAnnuityPayList() != null) {
@@ -848,7 +860,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						}
 						
 						// 申請遺屬年金記錄 表頭
-						addColumn(table, 60, 1, "申請遺屬年金記錄：", fontCh12b, 0, LEFT);
+						addColumn(table, 60, 1, "申請勞保家屬死亡給付記錄：", fontCh12b, 0, LEFT);
 					}
 					
 					// 遺屬年金記錄資料一筆有四行, 在塞資料前先測試是否需換頁
@@ -917,6 +929,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 災保本人死亡給付
 		 * 申請死亡給付記錄資料 災保
 		 * 
 		 * @param caseData
@@ -945,7 +958,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						}
 						
 						// 死亡給付記錄 表頭
-						addColumn(table, 60, 1, "災保-申請死亡給付記錄：", fontCh12b, 0, LEFT);
+						addColumn(table, 60, 1, "申請災保本人死亡給付記錄：", fontCh12b, 0, LEFT);
 					}
 					
 					// 死亡給付記錄資料一筆有四行, 在塞資料前先測試是否需換頁
@@ -960,7 +973,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 7, 1, "申請日期", fontCh12b, 0, LEFT);
+					addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 18, 1, "受理編號/給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "死亡日期", fontCh12, 0, LEFT);
@@ -1014,6 +1027,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 勞保本人死亡給付
 		 * 申請死亡給付記錄資料
 		 * 
 		 * @param caseData
@@ -1057,7 +1071,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 7, 1, "申請日期", fontCh12b, 0, LEFT);
+					addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 18, 1, "受理編號/給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 7, 1, "死亡日期", fontCh12, 0, LEFT);
@@ -1111,6 +1125,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 勞保失能年金
 		 * 申請失能年金記錄資料
 		 * 
 		 * @param caseData
@@ -1215,6 +1230,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 		}
 
 		/**
+		 * 勞保失能給付
 		 * 申請失能給付記錄資料
 		 * 
 		 * @param caseData
@@ -1258,7 +1274,7 @@ public class OldAgeReviewRpt01Report extends ReportBase {
 						deleteRow(table, 4);
 					}
 					
-					addColumn(table, 11, 1, "申請（受理）日期", fontCh12b, 0, LEFT);
+					addColumn(table, 11, 1, "申請（受理）日期", fontCh12, 0, LEFT);
 					addColumn(table, 18, 1, "受理編號/給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 8, 1, "事故者姓名", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "診斷失能日期", fontCh12, 0, LEFT);

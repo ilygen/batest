@@ -116,19 +116,19 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 	        
 			// 災保失能給付
 	        // 一次給付資料 (有資料再印) 災保 災保失能給付 20220421
-            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePayList(), table, earlyWarning, "[災保失能給付]");
+            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePayList(), table, earlyWarning, "申請災保失能給付記錄：");
 	        
 			// 退保後職業病失能津貼
 	        // 一次給付資料 (有資料再印) 災保 退保後職業病失能津貼 20220421
-            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3TList(), table, earlyWarning, "[退保後職業病失能津貼]");
+            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3TList(), table, earlyWarning, "申請退保後職業病失能津貼記錄：");
 	        
 			// 未加保失能補助
 	        // 一次給付資料 (有資料再印) 災保 未加保失能補助 20220421
-            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3NList(), table, earlyWarning, "[未加保失能補助]");
+            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3NList(), table, earlyWarning, "申請未加保失能補助記錄：");
 	        
 			// 災保失能差額金
 	        // 一次給付資料 (有資料再印) 災保 災保失能差額金 20220421
-            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay39List(), table, earlyWarning, "[災保失能差額金]");
+            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay39List(), table, earlyWarning, "申請災保失能差額金記錄：");
 	        
 			// 勞保失能年金
 	        // 年金給付資料 (有資料再印)
@@ -139,13 +139,13 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
             table = this.printDisasterReviewAnnuitys(caseData, table, earlyWarning);
 	        
 			// 災保失能照護補助
-            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3CList(), table, earlyWarning, "[災保失能照護補助]");
+            table = this.printDisasterOncePays(caseData, caseData.getDisasterOncePay3CList(), table, earlyWarning, "申請災保失能照護補助記錄：");
 	        
 			// 公保失能給付
-            table = this.printCivilServantDisablePayList(caseData, caseData.getCivilServantDisablePayList(), table, earlyWarning, "[公保失能給付]");
+            table = this.printCivilServantDisablePayList(caseData, caseData.getCivilServantDisablePayList(), table, earlyWarning, "申請公保失能給付記錄：");
 	        
 			// 軍保身心障礙給付
-            table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "[軍保身心障礙給付]");
+            table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "申請軍保身心障礙給付記錄：");
 	        
 	        
 	        
@@ -303,16 +303,25 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getAnnuityPayList() != null && caseData.getCivilServantDisablePayList().size() > 0)) {
@@ -470,16 +479,25 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getAnnuityPayList() != null && caseData.getCivilServantDisablePayList().size() > 0)) {
@@ -1578,7 +1596,7 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老遺屬年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -1690,16 +1708,25 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getAnnuityPayList() != null && caseData.getCivilServantDeadSurvivorAnnuityPayList().size() > 0)) {
@@ -1745,7 +1772,7 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老遺屬年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -1857,16 +1884,25 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getAnnuityPayList() != null && caseData.getCivilServantRetiredSurvivorAnnuityPayList().size() > 0)) {
@@ -1913,7 +1949,7 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2025,16 +2061,25 @@ public class DisableReviewRpt01Kind36Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
 							&& (caseData.getAnnuityPayList() != null && caseData.getCivilServantRetiredAnnuityPayList().size() > 0)) {

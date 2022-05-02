@@ -198,7 +198,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[公保一次死亡給付]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請軍保死亡給付記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -229,13 +229,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
     				addColumn(table, 6, 1, "致身心障礙日", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "身障等級", fontCh12, 0, LEFT);
-    				addColumn(table, 10, 1, "身障編號", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "身障等級", fontCh12, 0, LEFT);
+    				addColumn(table, 8, 1, "身障編號", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
     				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				
+    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -253,13 +253,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
     				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 致身心障礙日
-    				addColumn(table, 7, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障等級
-    				addColumn(table, 10, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障編號
-    				addColumn(table, 8, 1, oncePayData.getDisEvtCode(), fontCh12, 0, LEFT); // 核付日期
+    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障等級
+    				addColumn(table, 8, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障編號
+    				addColumn(table, 6, 1, oncePayData.getDisEvtCode(), fontCh12, 0, LEFT); // 核付日期
     				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				
+    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -275,26 +275,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				
     				// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
     				if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getSoldierDeadPayList() != null && caseData.getSoldierDeadPayList().size() > 0)) {
@@ -339,7 +319,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[公保養老遺屬年金給付]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請公保養老遺屬年金給付記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -376,13 +356,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
     				addColumn(table, 6, 1, "退休日期", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "年金起始日", fontCh12, 0, LEFT);
-    				addColumn(table, 10, 1, "給付年月", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "年金起始日", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "給付年月", fontCh12, 0, LEFT);
     				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
     				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				
+    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -400,13 +380,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
     				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
-    				addColumn(table, 7, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 年金起始日
-    				addColumn(table, 10, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 給付年月
+    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 年金起始日
+    				addColumn(table, 6, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 給付年月
     				addColumn(table, 8, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
     				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				
+    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -422,26 +402,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				
     				// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
     				if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getCivilServantRetiredSurvivorAnnuityPayList() != null && caseData.getCivilServantRetiredSurvivorAnnuityPayList().size() > 0)) {
@@ -486,7 +446,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[公保眷屬喪葬津貼]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請公保眷屬喪葬津貼記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -517,13 +477,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
     				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "失能等級", fontCh12, 0, LEFT);
-    				addColumn(table, 10, 1, "失能編號", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "失能等級", fontCh12, 0, LEFT);
+    				addColumn(table, 8, 1, "失能編號", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
     				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				
+    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -541,13 +501,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
     				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-    				addColumn(table, 7, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-    				addColumn(table, 10, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
-    				addColumn(table, 8, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
+    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
+    				addColumn(table, 8, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
     				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				
+    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -563,26 +523,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				
     				// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
     				if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getCivilServantFamilyDeadPayList() != null && caseData.getCivilServantFamilyDeadPayList().size() > 0)) {
@@ -627,7 +567,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[公保一次死亡給付]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請公保一次死亡給付記錄:", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -658,13 +598,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
     				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "失能等級", fontCh12, 0, LEFT);
-    				addColumn(table, 10, 1, "失能編號", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "失能等級", fontCh12, 0, LEFT);
+    				addColumn(table, 8, 1, "失能編號", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
     				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				
+    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -682,13 +622,13 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				// 20101124 kiyomi - end
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
     				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-    				addColumn(table, 7, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-    				addColumn(table, 10, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
-    				addColumn(table, 8, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
+    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
+    				addColumn(table, 8, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
     				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				
+    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -704,26 +644,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				
     				// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
     				if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getCivilServantDeadOncePayList() != null && caseData.getCivilServantDeadOncePayList().size() > 0)) {
@@ -768,7 +688,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[公保死亡遺屬年金給付]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請公保死亡遺屬年金給付記錄:", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -808,10 +728,10 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
     				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, "年金起始日", fontCh12, 0, LEFT);
-    				addColumn(table, 10, 1, "給付年月", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "給付年月", fontCh12, 0, LEFT);
+    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
     				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				
+    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -832,10 +752,10 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
     				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
     				addColumn(table, 7, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
-    				addColumn(table, 10, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 給付年月
-    				addColumn(table, 8, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
+    				addColumn(table, 6, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 給付年月
+    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
     				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				
+    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
@@ -851,26 +771,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				
     				// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
     				if ((nOncePayCount == oncePayList.size() - 1) && (caseData.getCivilServantDeadSurvivorAnnuityPayList() != null && caseData.getCivilServantDeadSurvivorAnnuityPayList().size() > 0)) {
@@ -915,7 +815,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     						
     						// 國保遺屬年金給付記錄 表頭
     						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    						addColumn(table, 58, 1, "國保遺屬年金給付記錄：", fontCh12b, 0, LEFT);
+    						addColumn(table, 58, 1, "申請國保遺屬年金給付記錄：", fontCh12b, 0, LEFT);
     						
     					}
     					else {
@@ -1081,7 +981,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
                         // 國保喪葬給付記錄 表頭
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-                        addColumn(table, 58, 1, "國保喪葬給付記錄：", fontCh12b, 0, LEFT);
+                        addColumn(table, 58, 1, "申請國保喪葬給付記錄：", fontCh12b, 0, LEFT);
 
                     }
                     else {
@@ -1241,7 +1141,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 						
 						// 年金給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "勞保遺屬年金給付：", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請勞保遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -1409,7 +1309,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 						
 						// 年金給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "災保遺屬年金給付：", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請災保遺屬年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -1765,7 +1665,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 一次給付 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[一次給付（災保本人死亡給付）]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請災保本人死亡給付記錄：]", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -1937,7 +1837,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 退保後職業病死亡津貼 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[退保後職業病死亡津貼]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請退保後職業病死亡津貼記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -2096,7 +1996,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					
     					// 未加保死亡補助 表頭
     					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    					addColumn(table, 58, 1, "[未加保死亡補助]", fontCh12b, 0, LEFT);
+    					addColumn(table, 58, 1, "申請未加保死亡補助記錄：", fontCh12b, 0, LEFT);
     				}
     				else {
     					addEmptyRow(table, 1);
@@ -2353,7 +2253,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 	        table = this.printCivilServantRetiredAnnuityPayList(caseData, table, earlyWarning);
 	        
 			// 軍保身心障礙給付
-	        table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "[軍保身心障礙給付]");
+	        table = this.printSoldierDisablePayList(caseData, caseData.getSoldierDisablePayList(), table, earlyWarning, "申請軍保身心障礙給付記錄：");
 
 	
 	
@@ -2506,15 +2406,25 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
@@ -2563,7 +2473,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保養老年金給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保養老年金給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2675,15 +2585,25 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
@@ -2731,7 +2651,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 						
 						// 一次給付 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "公保失能給付", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請公保失能給付記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
@@ -2843,15 +2763,25 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 					}
 					// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-					addColumn(table, 10, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
 					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
-					// ---
-					// 20101124 kiyomi - start
-					addEmptyRow(table, 1);
-					
+    				// ---
+    				// 20101124 kiyomi - start
+    				addEmptyRow(table, 1);
+    				
+    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+    					// 換了頁就不再塞空白行了
+    					deleteRow(table, 1);
+    					document.add(table);
+    					table = addHeader(caseData, false, earlyWarning);
+    				}
+    				else {
+    					deleteRow(table, 1);
+    				}
+    				// 20101124 kiyomi - end
 					
 					// 最後一筆印完後空一行 (如果年金給付資料有資料再印)
 					if ((nOncePayCount == oncePayList.size() - 1) 
@@ -4080,6 +4010,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 		}
 
 		public Table printDisasterReviewInjuryPays(SurvivorReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+			// 災保傷病給付
 	        // 申請傷病給付記錄資料 (有資料再印)
 	        if (caseData.getDisasterInjurySurvivorPayList() != null) {
 	        	List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayList = caseData.getDisasterInjurySurvivorPayList();
@@ -4101,7 +4032,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 傷病給付記錄 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請傷病給付記錄：", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請災保傷病給付記錄：", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
@@ -4287,6 +4218,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 		}
 
 		public Table printDisasterReviewInjuryCarePays(SurvivorReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+			// 傷病照護補助
 	        // 申請傷病給付記錄資料 (有資料再印)
 	        if (caseData.getDisasterInjuryCareSurvivorPayList() != null) {
 	        	List<SurvivorReviewRpt01InjuryPayDataCase> injurySurvivorPayList = caseData.getDisasterInjuryCareSurvivorPayList();
@@ -4308,7 +4240,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 傷病給付記錄 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請傷病給付記錄：", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請傷病照護補助記錄：", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
@@ -5151,7 +5083,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 未加保失能補助 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請未加保失能補助:", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請未加保失能補助記錄:", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
@@ -5363,7 +5295,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 災保失能差額金 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請災保失能差額金:", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請災保失能差額金記錄:", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
@@ -5725,6 +5657,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 		}
 
 		public Table printDisableAnnuitys(SurvivorReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+			// 勞保失能年金
 	        // 申請失能給付記錄資料 (有資料再印)
 	        if (caseData.getDisablePayList() != null) {
 	        	List<SurvivorReviewRpt01DisablePayDataCase> disablePayList = caseData.getDisablePayList();
@@ -5746,7 +5679,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 失能給付記錄 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請失能年金給付記錄：", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請勞保失能年金給付記錄：", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
@@ -5924,6 +5857,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 		}
 
 		public Table printDisasterReviewDisableAnnuitys(SurvivorReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
+			// 災保失能年金
 	        // 申請失能給付記錄資料 (有資料再印)
 	        if (caseData.getDisasterDisablePayList() != null) {
 	        	List<SurvivorReviewRpt01DisablePayDataCase> disablePayList = caseData.getDisasterDisablePayList();
@@ -5945,7 +5879,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 失能給付記錄 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請失能年金給付記錄：", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請災保失能年金給付記錄：", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
