@@ -866,36 +866,6 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				
-    				// 申請人姓名-APPNAME、 申請日期-APPDATE 、 
-    				// 死亡日期-EVTJOBDATE、 年金起始日-PENSDATE、 
-    				// 給付年月-PAYYM 、 核付日期-ISSUEDATE、
-    				// 核付金額-APPISSUEAMT、 結案日期-CLOSEDATE
-
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "年金起始日", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "首次給付年月", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
-    				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
