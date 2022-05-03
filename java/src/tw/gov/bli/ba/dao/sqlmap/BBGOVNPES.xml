@@ -44,7 +44,8 @@
         </dynamic>
         <![CDATA[
     	  and (A.DELMK is null or A.DELMK <> 'D')
-    	  order by A.DATADATE    	  
+    	  and rownum = 1
+    	  order by A.PAYYM asc    	  
          ]]>   
     </select>
     

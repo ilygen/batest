@@ -2541,7 +2541,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, "退休日期", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "年金起始日", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, "給付年月", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
@@ -2564,7 +2564,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
 					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
 					addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
-					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 給付年月
+					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getIssueDate()), fontCh12, 0, LEFT); // 核付日期
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					// ---
