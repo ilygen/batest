@@ -2122,10 +2122,10 @@ public class DisableReviewRpt01Report extends ReportBase {
 
 		public Table printCivilServantDeadSurvivorAnnuityPayList(DisableReviewRpt01Case caseData, Table table,
 				String earlyWarning) throws Exception {
-			List<CivilServantReviewRpt01DeadOncePayCase> oncePayList = caseData.getCivilServantDeadSurvivorAnnuityPayList();
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> oncePayList = caseData.getCivilServantDeadSurvivorAnnuityPayList();
 			if (oncePayList != null) {
 				for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++) { // ... [
-					CivilServantReviewRpt01DeadOncePayCase oncePayData = oncePayList.get(nOncePayCount);
+					CivilServantReviewRpt01RetirementAnnuityPayCase oncePayData = oncePayList.get(nOncePayCount);
 					
 					// 印一次給付表頭
 					if (nOncePayCount == 0) {
@@ -2190,8 +2190,8 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, "死亡日期", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, "失能編號", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "年金起始日", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
@@ -2212,9 +2212,9 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
-					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-					addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-					addColumn(table, 9, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+					addColumn(table, 10, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 死亡日期
+					addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
+					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getIssueDate()), fontCh12, 0, LEFT); // 核付日期
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					// ---
@@ -2296,10 +2296,10 @@ public class DisableReviewRpt01Report extends ReportBase {
 		public Table printCivilServantRetiredSurvivorAnnuityPayList(DisableReviewRpt01Case caseData, Table table,
 				String earlyWarning) throws Exception {
 			// 公保養老遺屬年金給付 (有資料再印)
-			List<CivilServantReviewRpt01DeadOncePayCase> oncePayList = caseData.getCivilServantRetiredSurvivorAnnuityPayList();
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> oncePayList = caseData.getCivilServantRetiredSurvivorAnnuityPayList();
 			if (oncePayList != null) {
 				for (int nOncePayCount = 0; nOncePayCount < oncePayList.size(); nOncePayCount++) { // ... [
-					CivilServantReviewRpt01DeadOncePayCase oncePayData = oncePayList.get(nOncePayCount);
+					CivilServantReviewRpt01RetirementAnnuityPayCase oncePayData = oncePayList.get(nOncePayCount);
 					
 					// 印一次給付表頭
 					if (nOncePayCount == 0) {
@@ -2364,8 +2364,8 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, "死亡日期", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
-					addColumn(table, 9, 1, "失能編號", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "年金起始日", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
 					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					
@@ -2386,9 +2386,9 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
-					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-					addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-					addColumn(table, 9, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+					addColumn(table, 10, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 死亡日期
+					addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
+					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getIssueDate()), fontCh12, 0, LEFT); // 核付日期
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					// ---
@@ -2562,7 +2562,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
-					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
+					addColumn(table, 10, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 退休日期
 					addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
 					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getIssueDate()), fontCh12, 0, LEFT); // 核付日期

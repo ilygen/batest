@@ -2140,7 +2140,7 @@ public class RptService {
 	        
 		}
 
-		public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantDeadSurvivorAnnuityPayList(
+		public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantDeadSurvivorAnnuityPayList(
 				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
 
 			List<Bbgovnpes> oncePayDataList = bbgovnpesDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "7");
@@ -2150,9 +2150,9 @@ public class RptService {
 	            
 	        }
 	        
-	        List<CivilServantReviewRpt01DeadOncePayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01DeadOncePayCase>();
+	        List<CivilServantReviewRpt01RetirementAnnuityPayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01RetirementAnnuityPayCase>();
 	        for (Bbgovnpes oncePayData : oncePayDataList) {
-	        	CivilServantReviewRpt01DeadOncePayCase oncePayDataCase = new CivilServantReviewRpt01DeadOncePayCase();
+	        	CivilServantReviewRpt01RetirementAnnuityPayCase oncePayDataCase = new CivilServantReviewRpt01RetirementAnnuityPayCase();
 	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
 	            
 	            oncePayCaseList.add(oncePayDataCase);
@@ -2163,7 +2163,7 @@ public class RptService {
 			
 		}
 
-	    public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantRetiredSurvivorAnnuityPayList(
+	    public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantRetiredSurvivorAnnuityPayList(
 				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
 			List<Bbgovnpes> oncePayDataList = bbgovnpesDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "6");
 	        // 用關鍵欄位變更檔 去找資料
@@ -2172,9 +2172,9 @@ public class RptService {
 	            
 	        }
 	        
-	        List<CivilServantReviewRpt01DeadOncePayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01DeadOncePayCase>();
+	        List<CivilServantReviewRpt01RetirementAnnuityPayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01RetirementAnnuityPayCase>();
 	        for (Bbgovnpes oncePayData : oncePayDataList) {
-	        	CivilServantReviewRpt01DeadOncePayCase oncePayDataCase = new CivilServantReviewRpt01DeadOncePayCase();
+	        	CivilServantReviewRpt01RetirementAnnuityPayCase oncePayDataCase = new CivilServantReviewRpt01RetirementAnnuityPayCase();
 	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
 	            
 	            oncePayCaseList.add(oncePayDataCase);

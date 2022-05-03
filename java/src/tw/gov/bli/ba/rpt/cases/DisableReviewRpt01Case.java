@@ -203,8 +203,8 @@ public class DisableReviewRpt01Case implements Serializable {
     private List<DisableReviewRpt01SurvivorPayDataCase> disasterSurvivorPayList; // 遺屬年金給付 災保
 
     private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredAnnuityPayList; // 公保養老年金給付 
-    private List<CivilServantReviewRpt01DeadOncePayCase> civilServantRetiredSurvivorAnnuityPayList; // 公保養老遺屬年金給付
-    private List<CivilServantReviewRpt01DeadOncePayCase> civilServantDeadSurvivorAnnuityPayList; // 公保死亡遺屬年金給付
+    private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredSurvivorAnnuityPayList; // 公保養老遺屬年金給付
+    private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantDeadSurvivorAnnuityPayList; // 公保死亡遺屬年金給付
     // ]
 
     // 另案扣減資料
@@ -1780,7 +1780,7 @@ public class DisableReviewRpt01Case implements Serializable {
 	/**
 	 * @return the civilServantRetiredSurvivorAnnuityPayList
 	 */
-	public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantRetiredSurvivorAnnuityPayList() {
+	public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantRetiredSurvivorAnnuityPayList() {
 		return civilServantRetiredSurvivorAnnuityPayList;
 	}
 
@@ -1788,14 +1788,14 @@ public class DisableReviewRpt01Case implements Serializable {
 	 * @param civilServantRetiredSurvivorAnnuityPayList the civilServantRetiredSurvivorAnnuityPayList to set
 	 */
 	public void setCivilServantRetiredSurvivorAnnuityPayList(
-			List<CivilServantReviewRpt01DeadOncePayCase> civilServantRetiredSurvivorAnnuityPayList) {
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredSurvivorAnnuityPayList) {
 		this.civilServantRetiredSurvivorAnnuityPayList = civilServantRetiredSurvivorAnnuityPayList;
 	}
 
 	/**
 	 * @return the civilServantDeadSurvivorAnnuityPayList
 	 */
-	public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantDeadSurvivorAnnuityPayList() {
+	public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantDeadSurvivorAnnuityPayList() {
 		return civilServantDeadSurvivorAnnuityPayList;
 	}
 
@@ -1803,7 +1803,7 @@ public class DisableReviewRpt01Case implements Serializable {
 	 * @param civilServantDeadSurvivorAnnuityPayList the civilServantDeadSurvivorAnnuityPayList to set
 	 */
 	public void setCivilServantDeadSurvivorAnnuityPayList(
-			List<CivilServantReviewRpt01DeadOncePayCase> civilServantDeadSurvivorAnnuityPayList) {
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantDeadSurvivorAnnuityPayList) {
 		this.civilServantDeadSurvivorAnnuityPayList = civilServantDeadSurvivorAnnuityPayList;
 	}
 

@@ -14,7 +14,7 @@ public class CivilServantReviewRpt01RetirementAnnuityPayCase implements Serializ
 
 	private String appName;// 申請人姓名
 	private String appDate;// 申請日期
-	private String evtRetDate;// 退休日期
+	private String evtJobDate;// 退休日期
 	private String pensDate;// 年金起始日
 	private String payYm;// 給付年月
 	private String issueDate;// 核付日期
@@ -58,17 +58,17 @@ public class CivilServantReviewRpt01RetirementAnnuityPayCase implements Serializ
 	}
 
 	/**
-	 * @return the evtRetDate
+	 * @return the evtJobDate
 	 */
-	public String getEvtRetDate() {
-		return evtRetDate;
+	public String getEvtJobDate() {
+		return evtJobDate;
 	}
 
 	/**
-	 * @param evtRetDate the evtRetDate to set
+	 * @param evtJobDate the evtJobDate to set
 	 */
-	public void setEvtRetDate(String evtRetDate) {
-		this.evtRetDate = evtRetDate;
+	public void setEvtJobDate(String evtJobDate) {
+		this.evtJobDate = evtJobDate;
 	}
 
 	/**

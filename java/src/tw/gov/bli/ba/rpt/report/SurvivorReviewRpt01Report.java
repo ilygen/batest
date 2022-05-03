@@ -750,7 +750,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
     				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
+    				addColumn(table, 6, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 死亡日期
     				addColumn(table, 7, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
     				addColumn(table, 6, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
     				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
@@ -2543,7 +2543,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
 					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
-					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
+					addColumn(table, 10, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 退休日期
 					addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
 					addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 給付年月
 					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getIssueDate()), fontCh12, 0, LEFT); // 核付日期
