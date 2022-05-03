@@ -227,40 +227,78 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "致身心障礙日", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "身障等級", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "身障編號", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
-    				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 致身心障礙日
-    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障等級
-    				addColumn(table, 8, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障編號
-    				addColumn(table, 6, 1, oncePayData.getDisEvtCode(), fontCh12, 0, LEFT); // 核付日期
-    				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "致身心障礙日", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "身障等級", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "身障編號", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
+	    				addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 致身心障礙日
+    					addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 身障等級
+    					addColumn(table, 9, 1, oncePayData.getDisEvtCode(), fontCh12, 0, LEFT); // 身障編號
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppIssueAmt()), fontCh12, 0, LEFT); // 核付日期
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "核付金額", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "結案日期", fontCh12, 0, LEFT);
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
     				addEmptyRow(table, 1);
@@ -349,45 +387,78 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     				}
     				// 20101124 kiyomi - end
     				
-    				// 申請人姓名-APPNAME、 申請日期-APPDATE 、 
-    				// 退休日期-EVTJOBDATE、 年金起始日-PENSDATE、 
-    				// 給付年月-PAYYM 、 核付日期-ISSUEDATE、
-    				//  核付金額-APPISSUEAMT、 結案日期-CLOSEDATE
-
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "退休日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "年金起始日", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "給付年月", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "核付日期", fontCh12, 0, LEFT);
-    				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
-    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 年金起始日
-    				addColumn(table, 6, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 給付年月
-    				addColumn(table, 8, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
-    				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "退休日期", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "年金起始日", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "給付年月", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
+					addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 退休日期
+					addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 年金起始日
+					addColumn(table, 9, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 給付年月
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppIssueAmt()), fontCh12, 0, LEFT); // 核付日期
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "核付金額", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "結案日期", fontCh12, 0, LEFT);
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
     				addEmptyRow(table, 1);
@@ -475,40 +546,78 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "失能等級", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "失能編號", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
-    				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-    				addColumn(table, 8, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
-    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
-    				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 10, 1, "死亡日期", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "失能編號", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
+    				addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
+    				addColumn(table, 9, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppIssueAmt()), fontCh12, 0, LEFT); // 核付日期
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "核付金額", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "結案日期", fontCh12, 0, LEFT);
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
     				addEmptyRow(table, 1);
@@ -596,40 +705,80 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, "申請人姓名", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "申請日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "死亡日期", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "失能等級", fontCh12, 0, LEFT);
-    				addColumn(table, 8, 1, "失能編號", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "核付日期", fontCh12, 0, LEFT);
-    				addColumn(table, 11, 1, "核付金額", fontCh12, 0, LEFT);
-    				addColumn(table, 6, 1, "結案日期", fontCh12, 0, LEFT);
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				// ---
-    				// 20101124 kiyomi - start
-    				addEmptyRow(table, 1);
-    				
-    				if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
-    					// 換了頁就不再塞空白行了
-    					deleteRow(table, 1);
-    					document.add(table);
-    					table = addHeader(caseData, false, earlyWarning);
-    				}
-    				else {
-    					deleteRow(table, 1);
-    				}
-    				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 6, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
-    				addColumn(table, 6, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
-    				addColumn(table, 8, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
-    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
-    				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
+
+    				addColumn(table, 10, 1, "死亡日期", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "失能等級", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "失能編號", fontCh12, 0, LEFT);
+ 
+					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 10, 1, oncePayData.getEvtRetDate(), fontCh12, 0, LEFT); // 死亡日期
+    				addColumn(table, 9, 1, oncePayData.getDisQualMk(), fontCh12, 0, LEFT); // 失能等級
+    				addColumn(table, 9, 1, oncePayData.getCriinjdp(), fontCh12, 0, LEFT); // 失能編號
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppIssueAmt()), fontCh12, 0, LEFT); // 核付日期
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "核付金額", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "結案日期", fontCh12, 0, LEFT);
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
     				addEmptyRow(table, 1);
@@ -747,16 +896,78 @@ public class SurvivorReviewRpt01Report extends ReportBase {
     					deleteRow(table, 1);
     				}
     				// 20101124 kiyomi - end
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-    				addColumn(table, 7, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
-    				addColumn(table, 7, 1, oncePayData.getAppDate(), fontCh12, 0, LEFT); // 申請日期
-    				addColumn(table, 6, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 死亡日期
-    				addColumn(table, 7, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
-    				addColumn(table, 6, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
-    				addColumn(table, 6, 1, oncePayData.getIssueDate(), fontCh12, 0, LEFT); // 核付日期
-    				addColumn(table, 11, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
-    				addColumn(table, 6, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
-    				addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "申請人姓名", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "申請日期", fontCh12, 0, LEFT);
+    				addColumn(table, 10, 1, "死亡日期", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "年金起始日", fontCh12, 0, LEFT);
+    				addColumn(table, 9, 1, "首次給付年月", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "核付日期", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppName(), fontCh12, 0, LEFT); // 申請人姓名
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppDate()), fontCh12, 0, LEFT); // 申請日期
+    				addColumn(table, 10, 1, oncePayData.getEvtJobDate(), fontCh12, 0, LEFT); // 死亡日期
+    				addColumn(table, 9, 1, oncePayData.getPensDate(), fontCh12, 0, LEFT); // 年金起始日
+    				addColumn(table, 9, 1, oncePayData.getPayYm(), fontCh12, 0, LEFT); // 首次給付年月
+					addColumn(table, 9, 1, StringUtils.defaultString(oncePayData.getAppIssueAmt()), fontCh12, 0, LEFT); // 核付日期
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, "核付金額", fontCh12, 0, LEFT);
+					addColumn(table, 9, 1, "結案日期", fontCh12, 0, LEFT);
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					
+					// ---
+					
+					// 20101124 kiyomi - start
+					addEmptyRow(table, 1);
+					
+					if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+						// 換了頁就不再塞空白行了
+						deleteRow(table, 1);
+						document.add(table);
+						table = addHeader(caseData, false, earlyWarning);
+					}
+					else {
+						deleteRow(table, 1);
+					}
+					// 20101124 kiyomi - end
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+					addColumn(table, 10, 1, oncePayData.getAppIssueAmt(), fontCh12, 0, LEFT); // 核付金額
+					addColumn(table, 9, 1, oncePayData.getCloseDate(), fontCh12, 0, LEFT); // 結案日期
+					addColumn(table, 37, 1, " ", fontCh12, 0, LEFT); 
+					addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
     				// ---
     				// 20101124 kiyomi - start
     				addEmptyRow(table, 1);
