@@ -5,13 +5,13 @@
     <typeAlias alias="Bxadmins" type="tw.gov.bli.ba.domain.Bxadmins" />
     
     <resultMap id="SurvivorReviewRpt01AnnuityPayDataDetailResult" class="Bxadmins">
-        <result column="PRODATE"        property="proDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+        <result column="PRODTE"        property="proDate"      jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="NDOMK1"         property="ndomk1"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
     </resultMap>
 
     <select id="selectSurvivorReviewRpt01AnnuityPayDataBy" resultMap="SurvivorReviewRpt01AnnuityPayDataDetailResult">
-        SELECT PRODATE, NDOMK1, APNO
-          FROM (SELECT A.PRODATE,
+        SELECT PRODTE, NDOMK1, APNO
+          FROM (SELECT A.PRODTE,
                        A.NDOMK1,
                        A.APNO
                   FROM BXADMINS A  
