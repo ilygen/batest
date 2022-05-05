@@ -26,11 +26,15 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
      * @return
      */
     @DaoFieldList("EVTIDNNO")
-    public List<Bbpma> getOldAgeReviewRpt01SurvivorAnnuityPayListBy(String evtIdnNo) {
+    public List<Bbpma> getOldAgeReviewRpt01SurvivorAnnuityPayDataBy(String evtIdnNo, String evtBrDate, String evtName) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
+        if (StringUtils.isNotBlank(evtBrDate))
+            map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(evtName))
+            map.put("evtName", evtName);
 
         return getSqlMapClientTemplate().queryForList("BBPMA.getOldAgeReviewRpt01SurvivorAnnuityPayDataBy", map);
     }
@@ -45,7 +49,7 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
      */
     @Override
 	@DaoFieldList("APNO,EVTIDNNO,EVTBRDATE")
-    public List<Bbpma> selectSurvivorReviewRpt01DisablePayListBy(String apNo, String evtIdnNo, String evtBrDate) {
+    public List<Bbpma> selectSurvivorReviewRpt01DisablePayListBy(String apNo, String evtIdnNo, String evtBrDate, String evtName) {
         HashMap<String, String> map = new HashMap<String, String>();
         if (StringUtils.isNotBlank(apNo))
             map.put("apNo", apNo);
@@ -53,6 +57,8 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(evtName))
+            map.put("evtName", evtName);
         
         return getSqlMapClientTemplate().queryForList("BBPMA.selectSurvivorReviewRpt01DisablePayListBy", map);
     }
@@ -67,7 +73,7 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
      */
     @Override
 	@DaoFieldList("APNO,EVTIDNNO,EVTBRDATE")
-    public List<Bbpma> getDisasterReviewRpt01AnnuityPayListBy(String apNo, String evtIdnNo, String evtBrDate) {
+    public List<Bbpma> getDisasterReviewRpt01AnnuityPayListBy(String apNo, String evtIdnNo, String evtBrDate, String evtName) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(apNo))
@@ -76,6 +82,8 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(evtName))
+            map.put("evtName", evtName);
 
         return getSqlMapClientTemplate().queryForList("BBPMA.getDisasterReviewRpt01AnnuityPayListBy", map);
     }
@@ -90,7 +98,7 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
      */
     @Override
 	@DaoFieldList("APNO,EVTIDNNO,EVTBRDATE")
-    public List<Bbpma> getDisasterReviewRpt01SurvivorPayListBy(String apNo, String evtIdnNo, String evtBrDate) {
+    public List<Bbpma> getDisasterReviewRpt01SurvivorPayListBy(String apNo, String evtIdnNo, String evtBrDate, String evtName) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(apNo))
@@ -99,6 +107,8 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(evtName))
+            map.put("evtName", evtName);
 
         return getSqlMapClientTemplate().queryForList("BBPMA.getDisasterReviewRpt01SurvivorPayListBy", map);
     }
@@ -113,14 +123,18 @@ public class BbpmaDaoImpl extends SqlMapClientDaoSupport implements BbpmaDao {
      */
     @Override
 	@DaoFieldList("APNO,EVTIDNNO,EVTBRDATE")
-    public List<Bbpma> selectDisasterReviewRpt01AnnuityPayListBy(String apNo, String evtIdnNo, String evtBrDate) {
+    public List<Bbpma> selectDisasterReviewRpt01AnnuityPayListBy(String apNo, String evtIdnNo, String evtBrDate, String evtName) {
         HashMap<String, String> map = new HashMap<String, String>();
+        
         if (StringUtils.isNotBlank(apNo))
             map.put("apNo", apNo);
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
+        if (StringUtils.isNotBlank(evtName))
+            map.put("evtName", evtName);
+
         return getSqlMapClientTemplate().queryForList("BBPMA.selectDisasterReviewRpt01AnnuityPayListBy", map);
     }
 
