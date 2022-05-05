@@ -38,13 +38,18 @@
                     A.EVTBRDATE = #evtBrDate:VARCHAR#
                 </isNotEmpty>
                 <isNotEmpty prepend="AND" property="payKindG">
-			    	A.PAYKINDG=#payKindG:VARCHAR#
+			    	A.PAYKINDG = #payKindG:VARCHAR#
                 </isNotEmpty>
             </isParameterPresent>
         </dynamic>
         <![CDATA[
     	  and (A.DELMK is null or A.DELMK <> 'D')
-    	  and A.PAYYM = (select min(B.PAYYM) from BBGOVNPES B where B.EVTIDNNO = A.EVTIDNNO and B.EVTBRDATE = A.EVTBRDATE)
+    	  and A.PAYYM = (select min(B.PAYYM) 
+    	  				from BBGOVNPES B 
+    	  				where B.EVTIDNNO = A.EVTIDNNO 
+    	  				and B.EVTBRDATE = A.EVTBRDATE
+    	  				and B.PAYKINDG = A.PAYKINDG
+    	  				)
          ]]>   
     </select>
     
