@@ -14,12 +14,9 @@
         <result column="CASETYP"          property="caseTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="MAPNO"            property="mapNo"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="MAPROOTMK"        property="mapRootMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="COMBAPMARK"       property="combapMark"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CASEMK"           property="caseMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PROCSTAT"         property="procStat"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="ACCEPTMK"         property="acceptMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="MANCHKMK"         property="manchkMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHGNOTE"          property="chgNote"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EXESTAT"          property="exeStat"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="APUBNO"           property="apUbno"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="APUBNOCK"         property="apubnock"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -35,20 +32,8 @@
         <result column="EVTIDENT"         property="evtIdent"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTJOBDATE"       property="evtJobDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTDATE"          property="evtDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTDIEDATE"       property="evtDieDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTAGE"           property="evtAge"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENIDS"           property="benIds"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENIDNNO"         property="benIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENNAME"          property="benName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENBRDATE"        property="benBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENSEX"           property="benSex"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENNATIONTYP"     property="benNationTyp"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENNATIONCODE"    property="benNationCode"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENEVTREL"        property="benEvtRel"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENDIEDATE"       property="benDieDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENPAYMK"         property="benPayMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="IDNCHKYM"         property="idnChkYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="IDNCHKNOTE"       property="idnChkNote"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="TEL1"             property="tel1"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="TEL2"             property="tel2"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="COMMTYP"          property="commTyp"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -59,32 +44,15 @@
         <result column="PAYBANKID"        property="payBankId"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="BRANCHID"         property="branchId"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PAYEEACC"         property="payEeacc"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHKPAYBANKID"     property="chkPayBankId"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHKBRANCHID"      property="chkBranchId"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHKPAYEEACC"      property="chkPayEeacc"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ACCIDN"           property="accIdn"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ACCNAME"          property="accName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ACCREL"           property="accRel"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="MITRATE"          property="mitRate"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="GRDIDNNO"         property="grdIdnNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="GRDNAME"          property="grdName"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="GRDBRDATE"        property="grdBrDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ASSIGNIDNNO"      property="assignIdnNo"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ASSIGNNAME"       property="assignName"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="ASSIGNBRDATE"     property="assignBrDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="ISSUYM"           property="issuYm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PAYYM"            property="payYm"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="ISSUEAMT"         property="issueAmt"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" /> 
-        <result column="ONCEPAYMK"        property="oncePayMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="OLDSENIAB"        property="oldSeniab"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="MUSTISSUEAMT"     property="mustIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="PAYDATE"          property="payDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PAYYMS"           property="payYms"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PAYYME"           property="payYme"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="PAUSEYM"          property="pauseYm"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="UNPAUSEYM"        property="unPauseYm"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="NOTIFYFORM"       property="notifyForm"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="LOANMK"           property="loanMk"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="MEXCLVL"          property="mexcLvl"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="REALEXCLVL"       property="realexcLvl"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CHKDATE"          property="chkDate"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -97,48 +65,16 @@
         <result column="ARCPG"            property="arcPg"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CLOSEDATE"        property="closeDate"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CLOSECAUSE"       property="closeCause"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="PROMOTEUSER"      property="promoteUser"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="DUPEIDNNOMK"      property="dupeIdnNoMk"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
-        <result column="CRTUSER"          property="crtUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CRTTIME"          property="crtTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UPDUSER"          property="updUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UPDTIME"          property="updTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTEXPIREDATE"    property="evtExpireDate"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTELIGIBLEDATE"  property="evtEligibleDate" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTMISSINGDATE"   property="evtMissingDate"  jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="LSINSMAMT"        property="lsInsmAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="LSCHKMK"          property="lsChkMk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
-        <result column="LSCOUNT"          property="lsCount"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="LNCHKMK"          property="lnChkMk"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
         <result column="DABAPNO"          property="dabApNo"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
         <result column="DABANNUAMT"       property="dabAnnuAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="RESENIMK"         property="reSeniMk"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="OFFINSURDATE"     property="offInsurDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="LAWRETIREDATE"    property="lawRetireDate"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTAPPNAME"       property="evtAppName"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />     
-        <result column="CUTAMT"           property="cutAmt"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="ACCSEQNO"         property="accSeqNo"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="BENMARRMK"        property="benMarrMk"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHGMK"            property="chgMk"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PAYAMTS"          property="payAmts"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />             
         <result column="EVTAPPIDNNO"      property="evtAppIdnNo"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTAPPBRDATE"     property="evtAppBrDate"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="CHOICEYM"         property="choiceYm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="MOBILEPHONE"      property="mobilePhone"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="ANNUAMT"          property="annuAmt"         jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="INTERVALMONTH"    property="interValMonth"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="SPECIALACC"       property="specialAcc"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="SPEACCDATE"       property="speAccDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="UNQUALIFIEDCAUSE" property="unqualifiedCause" jdbcType="VARCHAR" javaType="java.lang.String" nullValue="" />
-        <result column="ISSUNOTIFYINGMK"  property="issuNotifyingMk" jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="EVTJOBAGE"        property="evtJobAge"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="SAMTY"            property="samTY"           jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="SAMTD"            property="samTD"           jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="ONCETY"           property="onceTY"          jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="ONCEPAYM"         property="oncePayM"        jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="ONCEISSUEAMT"     property="onceIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
-        <result column="MARGINAMT"        property="marginAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="EVTYP"              property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="CRIINISSUL"         property="criInIssul"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="CRIINJCL1"          property="criInJcl1"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
