@@ -1930,7 +1930,7 @@ public class RptService {
 	                annuityPayDataCase.setSupAmt(annuityPayBadaprData.getSupAmt()); // 補發金額
 	            }
 	
-	            Bxadmins annuityPayMaadmrecData = bxadminsDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
+	            Bxadmins annuityPayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo());
 	            if (annuityPayMaadmrecData != null) {
 	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
 	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
@@ -2832,7 +2832,7 @@ public class RptService {
 	                
 	            }
 	
-	            Bxadmins survivorPayMaadmrecData = bxadminsDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm());
+	            Bxadmins survivorPayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo());
 	            if (survivorPayMaadmrecData != null) {
 	                survivorPayDataCase.setProdate(survivorPayMaadmrecData.getProDate()); // 補件日期
 	                survivorPayDataCase.setNdomk1(survivorPayMaadmrecData.getNdomk1()); // 處理註記
@@ -3649,15 +3649,15 @@ public class RptService {
 		public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantFamilyDeadPayList(String evtIdnNo,
 				String evtBrDate, List<Kcaf> evtKcafList) {
 
-			List<Bbgovnpes> oncePayDataList = bbgovnpesDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "3");
+			List<Bbgovnbef> oncePayDataList = bbgovnbefDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "3");
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            oncePayDataList.addAll(bbgovnpesDao.getCivilServantReviewRpt01PayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), "3"));
+	            oncePayDataList.addAll(bbgovnbefDao.getCivilServantReviewRpt01PayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), "3"));
 	            
 	        }
 	        
 	        List<CivilServantReviewRpt01DeadOncePayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01DeadOncePayCase>();
-	        for (Bbgovnpes oncePayData : oncePayDataList) {
+	        for (Bbgovnbef oncePayData : oncePayDataList) {
 	        	CivilServantReviewRpt01DeadOncePayCase oncePayDataCase = new CivilServantReviewRpt01DeadOncePayCase();
 	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
 	            
@@ -3672,15 +3672,15 @@ public class RptService {
 		public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantDeadOncePayList(String evtIdnNo,
 				String evtBrDate, List<Kcaf> evtKcafList) {
 
-			List<Bbgovnpes> oncePayDataList = bbgovnpesDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "2");
+			List<Bbgovnbef> oncePayDataList = bbgovnbefDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "2");
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            oncePayDataList.addAll(bbgovnpesDao.getCivilServantReviewRpt01PayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), "2"));
+	            oncePayDataList.addAll(bbgovnbefDao.getCivilServantReviewRpt01PayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), "2"));
 	            
 	        }
 	        
 	        List<CivilServantReviewRpt01DeadOncePayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01DeadOncePayCase>();
-	        for (Bbgovnpes oncePayData : oncePayDataList) {
+	        for (Bbgovnbef oncePayData : oncePayDataList) {
 	        	CivilServantReviewRpt01DeadOncePayCase oncePayDataCase = new CivilServantReviewRpt01DeadOncePayCase();
 	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
 	            
@@ -3889,7 +3889,7 @@ public class RptService {
 	                
 	            }
 	            
-	            Bxadmins annuityPayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm());
+	            Bxadmins annuityPayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo());
 	            if (annuityPayMaadmrecData != null) {
 	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
 	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
@@ -4664,7 +4664,7 @@ public class RptService {
 	                
 	            }
 	            
-	            Bxadmins disablePayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(disablePayData.getApNo(), disablePayData.getIssuYm());
+	            Bxadmins disablePayMaadmrecData = bxadminsDao.selectSurvivorReviewRpt01AnnuityPayDataBy(disablePayData.getApNo());
 	            if (disablePayMaadmrecData != null) {
 	                disablePayDataCase.setProdate(disablePayMaadmrecData.getProDate()); // 補件日期
 	                disablePayDataCase.setNdomk1(disablePayMaadmrecData.getNdomk1()); // 處理註記
