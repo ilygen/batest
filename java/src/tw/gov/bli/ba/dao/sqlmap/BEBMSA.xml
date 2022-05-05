@@ -380,14 +380,12 @@
         AND SUBSTR(A.BMAPNO,5,2) = '21'
         <![CDATA[
         AND (A.BMINJPTODTE >= (select to_char(ADD_MONTHS(to_date(EVTJOBDATE,'yyyymmdd'),-12),'yyyymmdd') as EVTJOBDATE 
-                                 from view_baappbase
+                                 from BAAPPBASE
                                 where APNO  = #apNo:VARCHAR#
-                                  and inskd = '9'
                                   and SEQNO = '0000') 
         AND  A.BMINJPTODTE <= (select EVTJOBDATE 
-                                 from view_baappbase
+                                 from BAAPPBASE
                                 where APNO  = #apNo:VARCHAR#
-                                  and inskd = '9'
                                   and SEQNO = '0000')) 
         ]]>
     </select>
@@ -488,14 +486,12 @@
         AND SUBSTR(A.BMAPNO,5,2) = '23'
         <![CDATA[
         AND (A.BMINJPTODTE >= (select to_char(ADD_MONTHS(to_date(EVTJOBDATE,'yyyymmdd'),-12),'yyyymmdd') as EVTJOBDATE 
-                                 from view_baappbase
+                                 from BAAPPBASE
                                 where APNO  = #apNo:VARCHAR#
-                                  and inskd = '9'
                                   and SEQNO = '0000') 
         AND  A.BMINJPTODTE <= (select EVTJOBDATE 
-                                 from view_baappbase
+                                 from BAAPPBASE
                                 where APNO  = #apNo:VARCHAR#
-                                  and inskd = '9'
                                   and SEQNO = '0000')) 
         ]]>
     </select>
@@ -765,7 +761,7 @@
         Order by A.BMAPDTE, A.BMAPNO
     </select>
     
-    <select id="getDisableReviewRpt01DisPayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
+    <select id="getSurvivorReviewRpt01DisappearPayListBy" resultMap="DisableReviewRpt01InjuryPayListResult">
         SELECT A.BMAPNO,
                A.BMAPDTE,
                A.BMEVNAME,

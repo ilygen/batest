@@ -2630,10 +2630,10 @@ public class RptService {
 				List<Kcaf> evtKcafList) {
 	        // 取得 現金給付參考檔 (PBBMSA) 申請失蹤給付記錄資料 災保
 	
-	    	List<Bebmsa> disPayDataList = bebmsaDao.getDisableReviewRpt01DisPayListBy(evtIdnNo, evtBrDate);
+	    	List<Bebmsa> disPayDataList = bebmsaDao.getSurvivorReviewRpt01DisappearPayListBy(evtIdnNo, evtBrDate);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            disPayDataList.addAll(bebmsaDao.getDisableReviewRpt01DisPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            disPayDataList.addAll(bebmsaDao.getSurvivorReviewRpt01DisappearPayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
 	            
 	        }
 	        
@@ -3715,7 +3715,7 @@ public class RptService {
 			
 		}
 
-	    public List<CivilServantReviewRpt01DeadOncePayCase> getCivilServantRetiredSurvivorAnnuityPayList(
+	    public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantRetiredSurvivorAnnuityPayList(
 				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
 			List<Bbgovnpes> oncePayDataList = bbgovnpesDao.getCivilServantReviewRpt01PayListBy(evtIdnNo, evtBrDate, "6");
 	        // 用關鍵欄位變更檔 去找資料
@@ -3724,9 +3724,9 @@ public class RptService {
 	            
 	        }
 	        
-	        List<CivilServantReviewRpt01DeadOncePayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01DeadOncePayCase>();
+	        List<CivilServantReviewRpt01RetirementAnnuityPayCase> oncePayCaseList = new ArrayList<CivilServantReviewRpt01RetirementAnnuityPayCase>();
 	        for (Bbgovnpes oncePayData : oncePayDataList) {
-	        	CivilServantReviewRpt01DeadOncePayCase oncePayDataCase = new CivilServantReviewRpt01DeadOncePayCase();
+	        	CivilServantReviewRpt01RetirementAnnuityPayCase oncePayDataCase = new CivilServantReviewRpt01RetirementAnnuityPayCase();
 	            BeanUtility.copyProperties(oncePayDataCase, oncePayData);
 	            
 	            oncePayCaseList.add(oncePayDataCase);

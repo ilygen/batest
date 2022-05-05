@@ -5,6 +5,10 @@ package tw.gov.bli.ba.rpt.cases;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
+import tw.gov.bli.ba.util.DateUtility;
+
 /**
  *  
  * @author kn0561
@@ -21,13 +25,54 @@ public class CivilServantReviewRpt01RetirementAnnuityPayCase implements Serializ
 	private String appIssueAmt;// 核付金額
 	private String closeDate;// 結案日期
 
-	
 	/**
 	 * 
 	 */
 	public CivilServantReviewRpt01RetirementAnnuityPayCase() {
 		// TODO Auto-generated constructor stub
 	}
+
+    public String getPayYmString() {
+        if (StringUtils.length(payYm) == 6)
+            return DateUtility.formatChineseYearMonthString(DateUtility.changeWestYearMonthType(payYm), false);
+        else
+            return StringUtils.defaultString(payYm);
+    }
+	
+    public String getIssueDateString() {
+        if (StringUtils.length(issueDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(issueDate), false);
+        else
+            return StringUtils.defaultString(issueDate);
+    }
+
+    public String getAppDateString() {
+        if (StringUtils.length(appDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(appDate), false);
+        else
+            return StringUtils.defaultString(appDate);
+    }
+
+    public String getEvtJobDateString() {
+        if (StringUtils.length(evtJobDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(evtJobDate), false);
+        else
+            return StringUtils.defaultString(evtJobDate);
+    }
+
+    public String getPensDateString() {
+        if (StringUtils.length(pensDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(pensDate), false);
+        else
+            return StringUtils.defaultString(pensDate);
+    }
+
+    public String getCloseDateString() {
+        if (StringUtils.length(closeDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(closeDate), false);
+        else
+            return StringUtils.defaultString(closeDate);
+    }
 
 	/**
 	 * @return the appName

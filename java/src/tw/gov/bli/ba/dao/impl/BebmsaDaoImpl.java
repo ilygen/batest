@@ -140,7 +140,7 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
 
-        return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01DisPayListBy", map);
+        return getSqlMapClientTemplate().queryForList("BEBMSA.getSurvivorReviewRpt01DisappearPayListBy", map);
     }
     
     /**
@@ -186,26 +186,6 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
             map.put("paytype", paytype);
 
         return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01DiePayListBy", map);
-    }
-    
-    /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請失蹤給付記錄 for 勞保失能年金給付受理編審清單
-     * 
-     * @param evtIdnNo 事故者身分證號
-     * @param evtBrDate 事故者出生日期
-     * @return
-     */
-	@Override
-    @DaoFieldList("EVTIDNNO,EVTBRDATE")
-    public List<Bebmsa> getDisableReviewRpt01DisPayListBy(String evtIdnNo, String evtBrDate) {
-        HashMap<String, String> map = new HashMap<String, String>();
-
-        if (StringUtils.isNotBlank(evtIdnNo))
-            map.put("evtIdnNo", evtIdnNo);
-        if (StringUtils.isNotBlank(evtBrDate))
-            map.put("evtBrDate", evtBrDate);
-
-        return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01DisPayListBy", map);
     }
     
     /**

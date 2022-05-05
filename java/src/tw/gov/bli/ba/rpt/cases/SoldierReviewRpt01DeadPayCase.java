@@ -5,6 +5,10 @@ package tw.gov.bli.ba.rpt.cases;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
+import tw.gov.bli.ba.util.DateUtility;
+
 /**
  * 
  * @author kn0561
@@ -29,6 +33,34 @@ public class SoldierReviewRpt01DeadPayCase implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+    public String getAppDateString() {
+        if (StringUtils.length(appDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(appDate), false);
+        else
+            return StringUtils.defaultString(appDate);
+    }
+
+    public String getEvtRetDateString() {
+        if (StringUtils.length(evtRetDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(evtRetDate), false);
+        else
+            return StringUtils.defaultString(evtRetDate);
+    }
+
+    public String getAppIssueDateString() {
+        if (StringUtils.length(appIssueDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(appIssueDate), false);
+        else
+            return StringUtils.defaultString(appIssueDate);
+    }
+
+    public String getCloseDateString() {
+        if (StringUtils.length(closeDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(closeDate), false);
+        else
+            return StringUtils.defaultString(closeDate);
+    }
+	
 	/**
 	 * @return the appName
 	 */

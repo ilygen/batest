@@ -5,6 +5,10 @@ package tw.gov.bli.ba.rpt.cases;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
+import tw.gov.bli.ba.util.DateUtility;
+
 /**
  * 
  * @author kn0561
@@ -28,6 +32,34 @@ public class CivilServantReviewRpt01DeadOncePayCase implements Serializable {
 	public CivilServantReviewRpt01DeadOncePayCase() {
 		// TODO Auto-generated constructor stub
 	}
+
+    public String getAppDateString() {
+        if (StringUtils.length(appDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(appDate), false);
+        else
+            return StringUtils.defaultString(appDate);
+    }
+
+    public String getEvtRetDateString() {
+        if (StringUtils.length(evtRetDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(evtRetDate), false);
+        else
+            return StringUtils.defaultString(evtRetDate);
+    }
+
+    public String getIssueDateString() {
+        if (StringUtils.length(issueDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(issueDate), false);
+        else
+            return StringUtils.defaultString(issueDate);
+    }
+
+    public String getCloseDateString() {
+        if (StringUtils.length(closeDate) == 8)
+            return DateUtility.formatChineseDateString(DateUtility.changeDateType(closeDate), false);
+        else
+            return StringUtils.defaultString(closeDate);
+    }
 
 	/**
 	 * @return the appName

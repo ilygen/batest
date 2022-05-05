@@ -44,8 +44,7 @@
         </dynamic>
         <![CDATA[
     	  and (A.DELMK is null or A.DELMK <> 'D')
-    	  and rownum = 1
-    	  order by A.PAYYM asc    	  
+    	  and A.PAYYM = (select min(B.PAYYM) from BBGOVNPES B where B.EVTIDNNO = A.EVTIDNNO and B.EVTBRDATE = A.EVTBRDATE)
          ]]>   
     </select>
     

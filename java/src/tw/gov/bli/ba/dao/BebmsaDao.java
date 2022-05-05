@@ -58,15 +58,6 @@ public interface BebmsaDao {
     public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate, String paytyp);
     
     /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請失蹤給付記錄 for 勞保失能年金給付受理編審清單
-     * 
-     * @param evtIdnNo 事故者身分證號
-     * @param evtBrDate 事故者出生日期
-     * @return
-     */
-    public List<Bebmsa> getDisableReviewRpt01DisPayListBy(String evtIdnNo, String evtBrDate);
-    
-    /**
      * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請傷病給付記錄 for 勞保失能年金給付受理編審清單
      * 
      * @param evtIdnNo 事故者身分證號
