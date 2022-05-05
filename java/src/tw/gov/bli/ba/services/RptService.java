@@ -62,7 +62,6 @@ import tw.gov.bli.ba.dao.BbgovnbefDao;
 import tw.gov.bli.ba.dao.BbgovnpesDao;
 import tw.gov.bli.ba.dao.BbmtybefDao;
 import tw.gov.bli.ba.dao.BbpmaDao;
-import tw.gov.bli.ba.dao.BbpmakDao;
 import tw.gov.bli.ba.dao.BebmsaDao;
 import tw.gov.bli.ba.dao.BirefDao;
 import tw.gov.bli.ba.dao.BxadminsDao;
@@ -119,7 +118,6 @@ import tw.gov.bli.ba.domain.Bbgovnbef;
 import tw.gov.bli.ba.domain.Bbgovnpes;
 import tw.gov.bli.ba.domain.Bbmtybef;
 import tw.gov.bli.ba.domain.Bbpma;
-import tw.gov.bli.ba.domain.Bbpmak;
 import tw.gov.bli.ba.domain.Bebmsa;
 import tw.gov.bli.ba.domain.Biref;
 import tw.gov.bli.ba.domain.Bxadmins;
@@ -194,7 +192,6 @@ public class RptService {
     private BxadminsDao bxadminsDao;
     private Balp0d020Dao balp0d020Dao;
     private BaappexpandDao baappexpandDao;
-    private BbpmakDao bbpmakDao;
     private BafamilyDao bafamilyDao;
     private Babcml7Dao babcml7Dao;
     private Bbcmf07Dao bbcmf07Dao;
@@ -266,6 +263,7 @@ public class RptService {
 
             String evtIdnNo = evtData.getEvtIdnNo();
             String evtBrDate = evtData.getEvtBrDate();
+            String evtName = evtData.getEvtName();
             String evtJobDate = evtData.getEvtJobDate();
             String evtIdnNoForCIPTPG = evtData.getEvtIdnNo(); // for CIPT&CIPG
             // 檢核是否有身分證重號的情況
@@ -280,6 +278,9 @@ public class RptService {
 
                     if (StringUtils.isNotBlank(dupeIdnData.getBrDate()))
                         evtBrDate = dupeIdnData.getBrDate().trim();
+
+                    if (StringUtils.isNotBlank(dupeIdnData.getName()))
+                    	evtName = dupeIdnData.getName().trim();
                 }
             }
 
@@ -427,7 +428,7 @@ public class RptService {
             // 取得 請領他類給付資料
             // [
 	        OldAgeReviewOtherKind otherKind = new OldAgeReviewOtherKind();
-	        otherKind.execute(caseData, evtData, evtIdnNo, evtBrDate, evtJobDate, apNo, evtKcafList);
+	        otherKind.execute(caseData, evtData, evtIdnNo, evtBrDate, evtName, evtJobDate, apNo, evtKcafList);
             // ]
 
             // 取得 給付核定檔 (BADAPR) 事故者於受款人給付資料的資料
@@ -717,7 +718,7 @@ public class RptService {
 		 * @param evtKcafList
 		 */
 		public void execute(OldAgeReviewRpt01Case caseData, Baappbase evtData, String evtIdnNo, String evtBrDate,
-				String evtJobDate, String apNo, List<Kcaf> evtKcafList) {
+				String evtName, String evtJobDate, String apNo, List<Kcaf> evtKcafList) {
             // 取得 請領他類給付資料
 	        
 			// 勞保傷病給付
@@ -752,7 +753,7 @@ public class RptService {
 			
 			// 災保遺屬年金
 	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
-	        caseData.setDisasterSurvivorAnnuityPayList(this.getDisasterReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo));
+	        caseData.setDisasterSurvivorAnnuityPayList(this.getDisasterReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo, evtBrDate, evtName));
 			
 			// 就保失業給付
 	        // 取得 就保給付檔 (BIREF) 申請失業給付記錄資料
@@ -872,10 +873,10 @@ public class RptService {
 		 * @return
 		 */
 		public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> getDisasterReviewRpt01SurvivorAnnuityPayListBy(
-				String evtIdnNo) {
+				String evtIdnNo, String evtBrDate, String evtName) {
 	        // 取得 年金給付主檔 (BAAPPBASE) 申請遺屬年金記錄資料 survivorAnnuityPayList 災保
 	        List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> survivorAnnuityPayCaseList = new ArrayList<OldAgeReviewRpt01SurvivorAnnuityPayDataCase>();
-	        List<Bbpma> survivorAnnuityPayDataList = bbpmaDao.getOldAgeReviewRpt01SurvivorAnnuityPayListBy(evtIdnNo);
+	        List<Bbpma> survivorAnnuityPayDataList = bbpmaDao.getOldAgeReviewRpt01SurvivorAnnuityPayDataBy(evtIdnNo, evtBrDate, evtName);
 	        for (Bbpma survivorAnnuityPayData : survivorAnnuityPayDataList) {
 	        	OldAgeReviewRpt01SurvivorAnnuityPayDataCase survivorAnnuityPayCase = new OldAgeReviewRpt01SurvivorAnnuityPayDataCase();
 	            BeanUtility.copyProperties(survivorAnnuityPayCase, survivorAnnuityPayData);
@@ -1040,8 +1041,9 @@ public class RptService {
             // 20090421 新增 讀取關鍵欄位變更檔資料
             List<Kcaf> evtKcafList = getKcafListBy(evtData.getEvtIdnNo(), evtData.getEvtBrDate());
 
-            String evtIdnNo = evtData.getEvtIdnNo();
-            String evtBrDate = evtData.getEvtBrDate();
+            final String evtIdnNo = evtData.getEvtIdnNo();
+            final String evtBrDate = evtData.getEvtBrDate();
+            final String evtName = evtData.getEvtName();
             // String evtJobDate = evtData.getEvtJobDate();
             // String evtIssuYm = evtData.getIssuYm();
 
@@ -1643,7 +1645,7 @@ public class RptService {
 	        caseData.setAnnuityPayList(this.getAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
 			
 			// 災保失能年金
-	        caseData.setDisasterAnnuityPayList(this.getDisasterAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+	        caseData.setDisasterAnnuityPayList(this.getDisasterAnnuityPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtData.getEvtName(), evtKcafList));
 			
 			// 災保失能照護補助
 	        caseData.setDisasterOncePay3CList(this.getDisasterReviewRpt01OncePayDataCase(evtIdnNo, evtBrDate, "3C", evtKcafList));
@@ -1888,39 +1890,21 @@ public class RptService {
 		 * @return
 		 */
 		public List<DisableReviewRpt01AnnuityPayDataCase> getDisasterAnnuityPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+				String evtIdnNo, String evtBrDate, String evtName, List<Kcaf> evtKcafList) {
 
 			// 取得 年金給付資料
 	        List<DisableReviewRpt01AnnuityPayDataCase> annuityPayCaseList = new ArrayList<DisableReviewRpt01AnnuityPayDataCase>();
-	        List<Bbpma> annuityPayDataList = bbpmaDao.getDisasterReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
+	        List<Bbpma> annuityPayDataList = bbpmaDao.getDisasterReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate, evtName);
 	        
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            annuityPayDataList.addAll(bbpmaDao.getDisasterReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            annuityPayDataList.addAll(bbpmaDao.getDisasterReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), kcaf.getBName()));
 	        }
 	        
 	        for (Bbpma annuityPayData : annuityPayDataList) {
 	            DisableReviewRpt01AnnuityPayDataCase annuityPayDataCase = new DisableReviewRpt01AnnuityPayDataCase();
 	
 	            BeanUtility.copyProperties(annuityPayDataCase, annuityPayData);
-	
-	            Bbpmak baappexpandData = bbpmakDao.selectDisasterReviewRpt01AnnuityPayList(annuityPayData.getApNo());
-	            if (baappexpandData != null) {
-	                annuityPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
-	                annuityPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
-	                annuityPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
-	                annuityPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
-	                annuityPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
-	                annuityPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
-	                annuityPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
-	                annuityPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
-	                annuityPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
-	                annuityPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
-	                annuityPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
-	                annuityPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
-	                annuityPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
-	                annuityPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
-	            }
 	
 	            Bbdapr annuityPayBadaprData = bbdaprDao.getDisableReviewRpt01AnnuityPayDataBy(annuityPayData.getApNo(), annuityPayData.getIssuYm(), annuityPayData.getPayYm());
 	            if (annuityPayBadaprData != null) {
@@ -2114,7 +2098,7 @@ public class RptService {
 	        caseData.setSurvivorPayList(this.getSurvivorPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
 			
 			// 災保遺屬年金
-	        caseData.setDisasterSurvivorPayList(this.getDisasterReviewSurvivorPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtKcafList));
+	        caseData.setDisasterSurvivorPayList(this.getDisasterReviewSurvivorPayListBy(apNo, evtData.getEvtIdnNo(), evtData.getEvtBrDate(), evtData.getEvtName(), evtKcafList));
 			
 			// 國保老年年金
 	        // 取得 國保給付主檔 (NBAPPBASE) 申請國保給付記錄資料
@@ -2789,13 +2773,13 @@ public class RptService {
 		 * @return
 		 */
 		public List<DisableReviewRpt01SurvivorPayDataCase> getDisasterReviewSurvivorPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+				String evtIdnNo, String evtBrDate, String evtName, List<Kcaf> evtKcafList) {
 	        // 取得遺屬年金給付記錄
 	        
-	        List<Bbpma> survivorPayDataList = bbpmaDao.getDisasterReviewRpt01SurvivorPayListBy(apNo, evtIdnNo, evtBrDate);
+	        List<Bbpma> survivorPayDataList = bbpmaDao.getDisasterReviewRpt01SurvivorPayListBy(apNo, evtIdnNo, evtBrDate, evtName);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            survivorPayDataList.addAll(bbpmaDao.getDisasterReviewRpt01SurvivorPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            survivorPayDataList.addAll(bbpmaDao.getDisasterReviewRpt01SurvivorPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), kcaf.getBName()));
 	            
 	        }
 	        
@@ -2803,25 +2787,6 @@ public class RptService {
 	        for (Bbpma survivorPayData : survivorPayDataList) {
 	            DisableReviewRpt01SurvivorPayDataCase survivorPayDataCase = new DisableReviewRpt01SurvivorPayDataCase();
 	            BeanUtility.copyProperties(survivorPayDataCase, survivorPayData);
-	
-	            Bbpmak baappexpandData = bbpmakDao.selectDisasterReviewRpt01SurvivorPayList(survivorPayData.getApNo());
-	            if (baappexpandData != null) {
-	                survivorPayDataCase.setEvTyp(baappexpandData.getEvTyp()); // 傷病分類
-	                survivorPayDataCase.setCriInJcl1(baappexpandData.getCriInJcl1()); // 失能等級 1
-	                survivorPayDataCase.setCriInJcl2(baappexpandData.getCriInJcl2()); // 失能等級 2
-	                survivorPayDataCase.setCriInJcl3(baappexpandData.getCriInJcl3()); // 失能等級 3
-	                survivorPayDataCase.setCriInJdp1(baappexpandData.getCriInJdp1()); // 失能項目 1
-	                survivorPayDataCase.setCriInJdp2(baappexpandData.getCriInJdp2()); // 失能項目 2
-	                survivorPayDataCase.setCriInJdp3(baappexpandData.getCriInJdp3()); // 失能項目 3
-	                survivorPayDataCase.setCriInJdp4(baappexpandData.getCriInJdp4()); // 失能項目 4
-	                survivorPayDataCase.setCriInJdp5(baappexpandData.getCriInJdp5()); // 失能項目 5
-	                survivorPayDataCase.setCriInJdp6(baappexpandData.getCriInJdp6()); // 失能項目 6
-	                survivorPayDataCase.setCriInJdp7(baappexpandData.getCriInJdp7()); // 失能項目 7
-	                survivorPayDataCase.setCriInJdp8(baappexpandData.getCriInJdp8()); // 失能項目 8
-	                survivorPayDataCase.setCriInJdp9(baappexpandData.getCriInJdp9()); // 失能項目 9
-	                survivorPayDataCase.setCriInJdp10(baappexpandData.getCriInJdp10()); // 失能項目 10
-	                
-	            }
 	
 	            Bbdapr survivorPayBadaprData = bbdaprDao.getDisableReviewRpt01AnnuityPayDataBy(survivorPayData.getApNo(), survivorPayData.getIssuYm(), survivorPayData.getPayYm());
 	            if (survivorPayBadaprData != null) {
@@ -3575,7 +3540,7 @@ public class RptService {
 		public void execute(SurvivorReviewRpt01Case caseData, String apNo, List<Kcaf> evtKcafList) {
 	        
 			// 災保遺屬年金
-	        caseData.setDisasterAnnuityPayList(this.selectDisasterReviewAnnuityPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+	        caseData.setDisasterAnnuityPayList(this.selectDisasterReviewAnnuityPayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), caseData.getEvtName(), evtKcafList));
 			
 			// 勞保遺屬年金
 	        // 取得 年金給付資料
@@ -3865,13 +3830,13 @@ public class RptService {
 		 * @return
 		 */
 		public List<SurvivorReviewRpt01AnnuityPayDataCase> selectDisasterReviewAnnuityPayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+				String evtIdnNo, String evtBrDate, String evtName, List<Kcaf> evtKcafList) {
 	        // 取得 年金給付資料
 	        
-	    	List<Bbpma> annuityPayDataList = bbpmaDao.selectDisasterReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate);
+	    	List<Bbpma> annuityPayDataList = bbpmaDao.selectDisasterReviewRpt01AnnuityPayListBy(apNo, evtIdnNo, evtBrDate, evtName);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            annuityPayDataList.addAll(bbpmaDao.selectDisasterReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            annuityPayDataList.addAll(bbpmaDao.selectDisasterReviewRpt01AnnuityPayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), kcaf.getBName()));
 	            
 	        }
 	        
@@ -3893,12 +3858,6 @@ public class RptService {
 	            if (annuityPayMaadmrecData != null) {
 	                annuityPayDataCase.setProdate(annuityPayMaadmrecData.getProDate()); // 補件日期
 	                annuityPayDataCase.setNdomk1(annuityPayMaadmrecData.getNdomk1()); // 處理註記
-	                
-	            }
-
-	            Bbpmak annuityPayBaappexpand = bbpmakDao.selectDisasterReviewRpt01AnnuityPayList(annuityPayData.getApNo());
-	            if (annuityPayBaappexpand != null) {
-	                annuityPayDataCase.setEvTyp(annuityPayBaappexpand.getEvTyp());// 傷病分類
 	                
 	            }
 
@@ -4050,7 +4009,7 @@ public class RptService {
 	        caseData.setDisasterReviewDisappearPayList(this.getDisasterReviewRpt01DisappearPayListBy(caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
 	        
 			// 災保失能年金
-	        caseData.setDisasterDisablePayList(this.selectDisasterDisablePayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), evtKcafList));
+	        caseData.setDisasterDisablePayList(this.selectDisasterDisablePayListBy(apNo, caseData.getEvtIdnNo(), caseData.getEvtBrDate(), caseData.getEvtName(), evtKcafList));
 			
 	        // 勞保失能年金
 	        // 取得 申請失能年金給付記錄
@@ -4638,13 +4597,13 @@ public class RptService {
 		 * @return
 		 */
 		public List<SurvivorReviewRpt01DisablePayDataCase> selectDisasterDisablePayListBy(String apNo,
-				String evtIdnNo, String evtBrDate, List<Kcaf> evtKcafList) {
+				String evtIdnNo, String evtBrDate, String evtName, List<Kcaf> evtKcafList) {
 	        // 取得 申請失能年金給付記錄
 
-	    	List<Bbpma> disablePayDataList = bbpmaDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, evtIdnNo, evtBrDate);
+	    	List<Bbpma> disablePayDataList = bbpmaDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, evtIdnNo, evtBrDate, evtName);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            disablePayDataList.addAll(bbpmaDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte()));
+	            disablePayDataList.addAll(bbpmaDao.selectSurvivorReviewRpt01DisablePayListBy(apNo, StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), kcaf.getBName()));
 	            
 	        }
 	        
@@ -4669,25 +4628,6 @@ public class RptService {
 	                disablePayDataCase.setProdate(disablePayMaadmrecData.getProDate()); // 補件日期
 	                disablePayDataCase.setNdomk1(disablePayMaadmrecData.getNdomk1()); // 處理註記
 	                
-	            }
-
-	            Bbpmak disablePayBaappexpand = bbpmakDao.selectDisasterReviewRpt01DisablePayList(disablePayData.getApNo());
-	            if (disablePayBaappexpand != null) {
-	                disablePayDataCase.setEvTyp(disablePayBaappexpand.getEvTyp());// 傷病分類
-	                disablePayDataCase.setCriInJdp1(disablePayBaappexpand.getCriInJdp1()); // 失能項目1
-	                disablePayDataCase.setCriInJdp2(disablePayBaappexpand.getCriInJdp2()); // 失能項目2
-	                disablePayDataCase.setCriInJdp3(disablePayBaappexpand.getCriInJdp3()); // 失能項目3
-	                disablePayDataCase.setCriInJdp4(disablePayBaappexpand.getCriInJdp4()); // 失能項目4
-	                disablePayDataCase.setCriInJdp5(disablePayBaappexpand.getCriInJdp5()); // 失能項目5
-	                disablePayDataCase.setCriInJdp6(disablePayBaappexpand.getCriInJdp6()); // 失能項目6
-	                disablePayDataCase.setCriInJdp7(disablePayBaappexpand.getCriInJdp7()); // 失能項目7
-	                disablePayDataCase.setCriInJdp8(disablePayBaappexpand.getCriInJdp8()); // 失能項目8
-	                disablePayDataCase.setCriInJdp9(disablePayBaappexpand.getCriInJdp9()); // 失能項目9
-	                disablePayDataCase.setCriInJdp10(disablePayBaappexpand.getCriInJdp10()); // 失能項目10
-	                disablePayDataCase.setCriInJcl1(disablePayBaappexpand.getCriInJcl1()); // 失能等級1
-	                disablePayDataCase.setCriInJcl2(disablePayBaappexpand.getCriInJcl2()); // 失能等級2
-	                disablePayDataCase.setCriInJcl3(disablePayBaappexpand.getCriInJcl3()); // 失能等級3
-
 	            }
 
 	            disablePayCaseList.add(disablePayDataCase);
@@ -11712,13 +11652,6 @@ public class RptService {
 	 */
 	public void setBxadminsDao(BxadminsDao bxadminsDao) {
 		this.bxadminsDao = bxadminsDao;
-	}
-
-	/**
-	 * @param bbpmakDao the bbpmakDao to set
-	 */
-	public void setBbpmakDao(BbpmakDao bbpmakDao) {
-		this.bbpmakDao = bbpmakDao;
 	}
 
 	/**
