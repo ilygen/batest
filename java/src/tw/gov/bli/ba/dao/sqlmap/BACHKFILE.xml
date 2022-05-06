@@ -1335,7 +1335,7 @@
 	           A.CHKCODE,                 
 	           A.CHKCODEPRE, 
 	           A.CHKCODEPOST,              
-	           A.CHKRESULT
+	           A.CHKRESULT                
 	      FROM BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
