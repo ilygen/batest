@@ -1331,11 +1331,11 @@
     <!-- [ -->
     <select id="selectSurvivorReviewRpt01ChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
 	    SELECT A.PAYYM,                   
+	           A.KEYVALUE,                
 	           A.CHKCODE,                 
 	           A.CHKCODEPRE, 
 	           A.CHKCODEPOST,              
-	           A.CHKRESULT,
-	           A.KEYVALUE                
+	           A.CHKRESULT
 	      FROM BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
