@@ -924,6 +924,7 @@
     <!-- [ -->
     <select id="getDisableReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -1010,6 +1011,7 @@
     
     <select id="getDisableReviewRpt01FamChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -1058,6 +1060,7 @@
     
     <select id="getDisableReviewRpt01FamChkfileDescDataBy" resultMap="DisableReviewRpt01ChkfileDescDataResult">
         SELECT DISTINCT 
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
