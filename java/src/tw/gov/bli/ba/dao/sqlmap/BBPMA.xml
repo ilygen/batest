@@ -184,7 +184,7 @@
                A.CLOSECAUSE,  
                (SELECT PARAMNAME FROM BAPARAM
                  WHERE PARAMGROUP = (SUBSTR(A.APNO,1,1)||'CLOSECAUSE') AND PARAMCODE = A.CLOSECAUSE) AS CLOSECAUSESTR
-          FROM TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A
+          FROM TABLE(PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A
     </select>
     <!-- ] -->
     <!-- OldAgeReviewRpt 01 End -->
@@ -283,9 +283,9 @@
                A.CRIINJDP8,  
                A.CRIINJDP9,  
                A.CRIINJDP10 
-        FROM   TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
+        FROM   TABLE(PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
          <![CDATA[
-         	WHERE A.SEQNO  = '0000'
+         	WHERE PAYCODE = 'K'
             ORDER BY A.APPDATE
          ]]>   
     </select>
@@ -384,7 +384,7 @@
                A.CRIINJDP8,  
                A.CRIINJDP9,  
                A.CRIINJDP10 
-        FROM   TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
+        FROM   TABLE(PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
                 1 = 0
@@ -396,6 +396,7 @@
                 ]]>
                 </isNotEmpty>
                 <![CDATA[
+				AND PAYCODE = 'K'
                 ORDER BY A.APPDATE
                 ]]>          
             </isParameterPresent>
@@ -438,58 +439,23 @@
                A.CRIINJDP8,  
                A.CRIINJDP9,  
                A.CRIINJDP10 
-		  From TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A 
-		 <dynamic prepend="WHERE">
+		  From TABLE(PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A
+        <dynamic prepend="WHERE">
             <isNotParameterPresent>
                 1 = 0
             </isNotParameterPresent>
             <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
                 <![CDATA[
-				A.SEQNO = '0000' 
+                    A.APNO <> #apNo:VARCHAR#
+                ]]>
+                </isNotEmpty>
+                <![CDATA[
+				AND PAYCODE = 'K'
+                ORDER BY A.APPDATE
                 ]]>          
             </isParameterPresent>
-		UNION 
-		Select DISTINCT 
-		       B.APNO,                               
-		       B.SEQNO,                                       
-		       B.BENNAME,                                     
-		       B.EVTNAME,                                     
-		       B.APPDATE,                                     
-		       B.ISSUYM,                                      
-		       B.PAYYMS, 
-		       B.PAYYME,                  
-		       B.EVTJOBDATE,                                  
-		       B.ISSUEAMT,                                    
-		       B.CLOSEDATE,                                  
-		       B.CLOSECAUSE,                                  
-               B.EVTYP,
-               B.CRIINISSUL, 
-               B.CRIINJCL1,  
-               B.CRIINJCL2,  
-               B.CRIINJCL3,  
-               B.CRIINPART1, 
-               B.CRIINPART2, 
-               B.CRIINPART3, 
-               B.CRIINJNME1, 
-               B.CRIINJNME2, 
-               B.CRIINJNME3, 
-               B.CRIINJNME4, 
-               B.CRIINJDP1,  
-               B.CRIINJDP2,  
-               B.CRIINJDP3,  
-               B.CRIINJDP4,  
-               B.CRIINJDP5,  
-               B.CRIINJDP6,  
-               B.CRIINJDP7,  
-               B.CRIINJDP8,  
-               B.CRIINJDP9,  
-               B.CRIINJDP10 
-		  From TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) B 
-		  Where 
-			<![CDATA[
-				B.SEQNO <> '0000'
-		        ]]>  
-		        </dynamic>
+        </dynamic>
     </select>
     
     <select id="selectDisasterReviewRpt01AnnuityPayListBy" resultMap="DisasterReviewRpt01AnnuityResult">
@@ -528,7 +494,7 @@
                A.CRIINJDP8,  
                A.CRIINJDP9,  
                A.CRIINJDP10 
-        FROM   TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
+        FROM   TABLE(PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) A   
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
                 1 = 0
@@ -539,59 +505,11 @@
                     A.APNO <> #apNo:VARCHAR#
                 ]]>
                 </isNotEmpty>
-                <![CDATA[
-                AND A.SEQNO='0000' 
-                ]]>          
             </isParameterPresent>
-             UNION
-         SELECT DISTINCT B.APNO,                               
-		       B.SEQNO,                                      
-		       B.BENNAME,                                     
-		       B.EVTNAME,                                   
-		       B.APPDATE,                                    
-		       B.APUBNO,                                      
-		       B.ISSUYM,                                    
-		       B.PAYYMS, 
-		       B.PAYYME,                  
-		       B.EVTJOBDATE,                                
-		       B.ISSUEAMT,                                   
-		       B.CLOSEDATE,                                  
-		       B.CLOSECAUSE,                             
-               B.EVTYP,
-               B.CRIINISSUL, 
-               B.CRIINJCL1,  
-               B.CRIINJCL2,  
-               B.CRIINJCL3,  
-               B.CRIINPART1, 
-               B.CRIINPART2, 
-               B.CRIINPART3, 
-               B.CRIINJNME1, 
-               B.CRIINJNME2, 
-               B.CRIINJNME3, 
-               B.CRIINJNME4, 
-               B.CRIINJDP1,  
-               B.CRIINJDP2,  
-               B.CRIINJDP3,  
-               B.CRIINJDP4,  
-               B.CRIINJDP5,  
-               B.CRIINJDP6,  
-               B.CRIINJDP7,  
-               B.CRIINJDP8,  
-               B.CRIINJDP9,  
-               B.CRIINJDP10 
-        FROM   TABLE(BB.PKG_BB_FT.BB_BBPMA(#evtIdnNo:VARCHAR#, #evtBrDate:VARCHAR#, #evtName:VARCHAR#)) B
-        
-         <![CDATA[
-         		WHERE B.SEQNO<>'0000'
-                ]]>    
-         <isParameterPresent>
-                <isNotEmpty prepend="AND" property="apNo">
-                <![CDATA[
-                    B.APNO <> #apNo:VARCHAR#
-                ]]>
-                </isNotEmpty>
-                     
-            </isParameterPresent>
+            <![CDATA[
+				AND PAYCODE = 'S'
+               ORDER BY A.APPDATE
+            ]]>          
         </dynamic>
        
     </select>

@@ -211,13 +211,19 @@
 		      		,A.SUBAMT     
 		      		,A.PRST 
 		      		,A.APNO 
-              From  BARXF A, BCARF B
-             where A.RXFAPNO = B.APNO
-               AND A.SUBAMT > 0
+              From  BARXF A
+             where A.SUBAMT > 0
                AND A.PRTMK = 'Y'
-               AND (B.AMTTOT - B.AMTINC) >0
                AND BENIDNNO = #benidnNo:VARCHAR#
                AND BENBRDATE = #benBrDate:VARCHAR#
+               AND (EXISTS(
+               			SELECT 1 FROM BCARF B WHERE A.RXFAPNO = B.APNO AND (B.AMTTOT - B.AMTINC) > 0
+               		) OR EXISTS(
+               			SELECT 1 FROM BEARF B WHERE A.RXFAPNO = B.APNO AND (B.AMTTOT - B.AMTINC) > 0
+               		) OR EXISTS(
+               			SELECT 1 FROM TABLE(PKG_BB_FT.BB_BBUNACPDTL(A.BENIDNNO)) B WHERE A.RXFAPNO = B.APNO AND RECREM > 0
+               		)
+               	)
     </select>
     <!-- ] -->
     <!-- DisableReviewRpt 01 End -->
