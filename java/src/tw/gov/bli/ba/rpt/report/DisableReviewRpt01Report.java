@@ -5598,7 +5598,7 @@ public class DisableReviewRpt01Report extends ReportBase {
 						
 						// 傷病給付記錄 表頭
 						addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-						addColumn(table, 58, 1, "申請災保傷病給付記錄：", fontCh12b, 0, LEFT);
+						addColumn(table, 58, 1, "申請傷病照護補助記錄：", fontCh12b, 0, LEFT);
 					}
 					else {
 						addEmptyRow(table, 1);
