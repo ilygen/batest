@@ -4819,7 +4819,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 		}
 
 		public Table printDisasterReviewDisableOncePays(SurvivorReviewRpt01Case caseData, Table table, String earlyWarning) throws Exception {
-	        // 申請失能給付記錄
+	        // 申請災保失能給付記錄
 	        List<SurvivorReviewRpt01OncePayDataCase> disPayList = caseData.getDisasterOncePayList();
 	        if (caseData.getDisPayList() != null) {
 	            for (int nDisPayCount = 0; nDisPayCount < disPayList.size(); nDisPayCount++) { // ... [
@@ -4840,7 +4840,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
 
 	                    // 年金給付 表頭
 	                    addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-	                    addColumn(table, 58, 1, "申請失能給付記錄:", fontCh12b, 0, LEFT);
+	                    addColumn(table, 58, 1, "申請災保失能給付記錄:", fontCh12b, 0, LEFT);
 	                }
 	                else {
 	                    addEmptyRow(table, 1);
