@@ -3872,10 +3872,10 @@ public class RptService {
 		public List<SurvivorReviewRpt01OncePayDataCase> selectDisasterReviewRpt01SurvivorOncePayListBy(String evtIdnNo,
 				String evtBrDate, List<Kcaf> evtKcafList, String paytyp) {
 
-	    	List<Bebmsa> oncePayDataList = bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, paytyp);
+	    	List<Bebmsa> oncePayDataList = bebmsaDao.getDisableReviewRpt01DiePayListBy(evtIdnNo, evtBrDate, paytyp);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	        	oncePayDataList.addAll(bebmsaDao.selectSurvivorReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
+	        	oncePayDataList.addAll(bebmsaDao.getDisableReviewRpt01DiePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), paytyp));
 	        	
 	        }
 	        
@@ -4466,10 +4466,10 @@ public class RptService {
 				String evtBrDate, String payTyp, List<Kcaf> evtKcafList) {
 	        // 取得 現金給付參考檔 (PBBMSA) 申請失能給付記錄 職保
 	        
-	        List<Bebmsa> disPayDataList = bebmsaDao.selectSurvivorReviewRpt01DisPayListUsingPayTypBy(evtIdnNo, evtBrDate, payTyp);
+	        List<Bebmsa> disPayDataList = bebmsaDao.getDisableReviewRpt01OncePayListBy(evtIdnNo, evtBrDate, payTyp);
 	        // 用關鍵欄位變更檔 去找資料
 	        for (Kcaf kcaf : evtKcafList) {
-	            disPayDataList.addAll(bebmsaDao.selectSurvivorReviewRpt01DisPayListUsingPayTypBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), payTyp));
+	            disPayDataList.addAll(bebmsaDao.getDisableReviewRpt01OncePayListBy(StringUtils.substring(kcaf.getBIdn(), 0, 10), kcaf.getBBrDte(), payTyp));
 	            
 	        }
 	        

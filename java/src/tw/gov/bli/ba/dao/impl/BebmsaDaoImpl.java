@@ -40,50 +40,6 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
     }
 
     /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 一次給付資料 for 勞保遺屬年金給付受理編審清單
-     * 
-     * @param evtIdnNo 事故者身分證號
-     * @param evtBrDate 事故者出生日期
-     * @return
-     */
-	@Override
-    @DaoFieldList("EVTIDNNO,EVTBRDATE,PAYTYP")
-    public List<Bebmsa> selectSurvivorReviewRpt01OncePayListBy(String evtIdnNo, String evtBrDate, String paytyp) {
-        HashMap<String, String> map = new HashMap<String, String>();
-
-        if (StringUtils.isNotBlank(evtIdnNo))
-            map.put("evtIdnNo", evtIdnNo);
-        if (StringUtils.isNotBlank(evtBrDate))
-            map.put("evtBrDate", evtBrDate);
-        if (StringUtils.isNotBlank(paytyp))
-            map.put("paytyp", paytyp);
-
-        return getSqlMapClientTemplate().queryForList("BEBMSA.selectSurvivorReviewRpt01OncePayListBy", map);
-    }
-    
-    /**
-     * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 失能給付資料 for 勞保遺屬年金給付受理編審清單
-     * 
-     * @param evtIdnNo 事故者身分證號
-     * @param evtBrDate 事故者出生日期
-     * @return
-     */
-    @Override
-	@DaoFieldList("EVTIDNNO,EVTBRDATE,PAYTYP")
-    public List<Bebmsa> selectSurvivorReviewRpt01DisPayListUsingPayTypBy(String evtIdnNo, String evtBrDate, String payTyp) {
-        HashMap<String, String> map = new HashMap<String, String>();
-
-        if (StringUtils.isNotBlank(evtIdnNo))
-            map.put("evtIdnNo", evtIdnNo);
-        if (StringUtils.isNotBlank(evtBrDate))
-            map.put("evtBrDate", evtBrDate);
-        if (StringUtils.isNotBlank(payTyp))
-            map.put("payTyp", payTyp);
-        
-        return getSqlMapClientTemplate().queryForList("BEBMSA.selectSurvivorReviewRpt01DisPayListUsingPayTypBy", map);
-    }
-    
-    /**
      * 依傳入條件取得 現金給付參考檔 (<code>BEBMSA</code>) 申請傷病給付記錄 for 勞保遺屬年金給付受理編審清單
      * 
      * @param bmEvidNo 身分證號
@@ -174,16 +130,16 @@ public class BebmsaDaoImpl extends SqlMapClientDaoSupport implements BebmsaDao {
      * @return
      */
 	@Override
-    @DaoFieldList("EVTIDNNO,EVTBRDATE")
-    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate, String paytype) {
+    @DaoFieldList("EVTIDNNO,EVTBRDATE,PAYTYP")
+    public List<Bebmsa> getDisableReviewRpt01DiePayListBy(String evtIdnNo, String evtBrDate, String paytyp) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         if (StringUtils.isNotBlank(evtIdnNo))
             map.put("evtIdnNo", evtIdnNo);
         if (StringUtils.isNotBlank(evtBrDate))
             map.put("evtBrDate", evtBrDate);
-        if (StringUtils.isNotBlank(paytype))
-            map.put("paytype", paytype);
+        if (StringUtils.isNotBlank(paytyp))
+            map.put("paytyp", paytyp);
 
         return getSqlMapClientTemplate().queryForList("BEBMSA.getDisableReviewRpt01DiePayListBy", map);
     }
