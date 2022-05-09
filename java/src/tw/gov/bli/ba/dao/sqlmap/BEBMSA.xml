@@ -165,6 +165,7 @@
                 </isNotEmpty>
                 -->
                 AND A.BMPAYKND = '5'
+                AND SUBSTR(A.BMAPNO,5,2) = '51'
             </isParameterPresent>
         </dynamic>
     </select>
