@@ -2831,6 +2831,26 @@ public class RptService {
         for (String apNo : apNoList) {
             SurvivorReviewRpt01Case caseData = new SurvivorReviewRpt01Case();
 
+            // 取得 與失能相關之欄位資料
+            List<SurvivorRevewRpt01ExpDataCase> expDataCaseList = new ArrayList<SurvivorRevewRpt01ExpDataCase>();
+            List<Baappexpand> expDataList = baappexpandDao.getSurvivorBaappexpandListByEvt(apNo);
+            for (Baappexpand expData : expDataList) {
+                SurvivorRevewRpt01ExpDataCase expDataCase = new SurvivorRevewRpt01ExpDataCase();
+                BeanUtility.copyProperties(expDataCase, expData);
+                expDataCaseList.add(expDataCase);
+
+            }
+            caseData.setDisableList(expDataCaseList);
+
+            String inTyp = "L";
+            if(expDataCaseList != null && expDataCaseList.size() > 0) {
+                if (expDataCaseList.get(0).getAdWkMk() != null) {
+                    inTyp = (expDataCaseList.get(0).getAdWkMk()).equals("2") ? "V" : "L";
+                }
+            } else {
+            	return null;
+            }
+
             // 取得 給付主檔 (BAAPPBASE) 事故者資料
 
             Baappbase evtData = baappbaseDao.selectSurvivorReviewRpt01EvtDataBy(apNo);
@@ -3030,17 +3050,6 @@ public class RptService {
             }
             caseData.setExtList(extList);
 
-            // 取得 與失能相關之欄位資料
-            List<SurvivorRevewRpt01ExpDataCase> expDataCaseList = new ArrayList<SurvivorRevewRpt01ExpDataCase>();
-            List<Baappexpand> expDataList = baappexpandDao.getSurvivorBaappexpandListByEvt(apNo);
-            for (Baappexpand expData : expDataList) {
-                SurvivorRevewRpt01ExpDataCase expDataCase = new SurvivorRevewRpt01ExpDataCase();
-                BeanUtility.copyProperties(expDataCase, expData);
-                expDataCaseList.add(expDataCase);
-
-            }
-            caseData.setDisableList(expDataCaseList);
-
             // 取得 本次紓困貸款(BADAPR) 給付資料
             List<SurvivorReviewRpt01LoanAmtCase> loanAmtList = new ArrayList<SurvivorReviewRpt01LoanAmtCase>();
             List<Badapr> loanAmtDataList = badaprDao.getSurvivorReviewRpt01LoanAmt(apNo, evtData.getIssuYm());
@@ -3060,14 +3069,6 @@ public class RptService {
 
             // String adWkMk = expDataCaseList != null && expDataCaseList.get(0).getAdWkMk() != null ? expDataCaseList.get(0).getAdWkMk() : "";
             // String ocaccIdentMk = expDataCaseList != null && expDataCaseList.get(0).getOcaccIdentMk() != null ? expDataCaseList.get(0).getOcaccIdentMk() : "";
-            String inTyp = "L";
-            if(expDataCaseList != null && expDataCaseList.size() > 0) {
-                if (expDataCaseList.get(0).getAdWkMk() != null) {
-                    inTyp = (expDataCaseList.get(0).getAdWkMk()).equals("2") ? "V" : "L";
-                }
-            } else {
-            	return null;
-            }
 
             List<SurvivorReviewRpt01CipgDataCase> avgWgDataCaseList = new ArrayList<SurvivorReviewRpt01CipgDataCase>();
 
