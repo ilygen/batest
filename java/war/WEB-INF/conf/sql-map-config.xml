@@ -7,12 +7,16 @@
         
     <!-- for BA System Begin -->
     <!-- [ -->
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBGOVNPES.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBMTYBEF.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBGOVNBEF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCHK.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPADCSLVL.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPARAM.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAINSPECT.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPBASEForAnnuityAcceptDataTransfer.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBPMA.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACOUNTRY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CVLDTL.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/NPBANKLIST.xml" />
@@ -22,6 +26,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPANDOMK.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANOTIFY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BADAPR.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBDAPR.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BACHKFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BASENIMAINT.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPACUT.xml" />
@@ -33,6 +38,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D330.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D340.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/PBBMSA.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BEBMSA.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/CAUB.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAONCEPAY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAISSUDATE.xml" />
@@ -57,6 +63,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAPAPAYKIND.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF08.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/MAADMREC.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BXADMINS.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/KCAF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D020.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPEXPAND.xml" />
@@ -120,7 +127,6 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANSF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPATTFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMFILEFTPRECORD.xml" />
-
     <!-- ] -->
     <!-- End for BA System -->
 

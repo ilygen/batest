@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BBDAPR">
+
+    <typeAlias alias="Bbdapr" type="tw.gov.bli.ba.domain.Bbdapr" />
+
+    <resultMap id="SurvivorReviewRpt01DateDataResult" class="Bbdapr">
+        <result column="CHKDATE"         property="chkDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="APLPAYDATE"      property="aplpayDate"    jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="RECAMT"          property="recAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="SUPAMT"          property="supAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    <resultMap id="OldAgeReviewRpt01AnnuityPayDataResult" class="Bbdapr">
+        <result column="CHKDATE"         property="chkDate"       jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="APLPAYDATE"      property="aplpayDate"    jdbcType="VARCHAR"     javaType="java.lang.String"    nullValue="" />
+        <result column="RECAMT"          property="recAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+        <result column="SUPAMT"          property="supAmt"        jdbcType="NUMERIC"     javaType="java.math.BigDecimal" />
+    </resultMap>
+    
+    
+    <select id="getDisableReviewRpt01AnnuityPayDataBy" resultMap="OldAgeReviewRpt01AnnuityPayDataResult">
+        SELECT A.CHKDATE,
+               DECODE(A.APLPAYMK, '3', A.APLPAYDATE) AS APLPAYDATE,
+               A.RECAMT,
+               A.SUPAMT
+        FROM   BBDAPR A
+        <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000' AND
+                    A.ISSUYM = ( SELECT MAX(B.ISSUYM) 
+                                FROM BBDAPR B
+                               WHERE B.APNO = #apNo:VARCHAR#
+                                 AND B.SEQNO = '0000'
+                                 AND B.MTESTMK = 'F' 
+                                 AND B.APLPAYMK = '3' 
+                                 AND Trim(B.APLPAYDATE) Is Not NulL)
+                </isNotEmpty>
+                
+                <![CDATA[
+                AND A.MTESTMK = 'F'
+                AND A.APLPAYMK = '3'
+                AND Trim(A.APLPAYDATE) Is Not Null
+                AND ROWNUM = 1
+                ]]>
+            </isParameterPresent>
+        </dynamic>
+    </select>
+    
+    <select id="selectSurvivorReviewRpt01DateDataBy" resultMap="SurvivorReviewRpt01DateDataResult">
+        SELECT A.CHKDATE,
+               Decode(A.APLPAYMK,'3',A.APLPAYDATE)  AS APLPAYDATE,
+               A.RECAMT,
+               A.SUPAMT
+        FROM   BBDAPR A
+         <dynamic prepend="WHERE">
+            <isNotParameterPresent>
+                1 = 0
+            </isNotParameterPresent>
+            <isParameterPresent>
+                <isNotEmpty prepend="AND" property="apNo">
+                    A.APNO = #apNo:VARCHAR# AND
+                    A.SEQNO = '0000' AND
+                    A.ISSUYM = ( SELECT MAX(B.ISSUYM) 
+                                FROM BBDAPR B
+                               WHERE B.APNO = #apNo:VARCHAR# 
+                                 AND B.SEQNO = '0000'
+                                 AND B.MTESTMK = 'F' 
+                                 AND B.APLPAYMK = '3'
+                                 AND Trim(B.APLPAYDATE) Is Not Null)
+                </isNotEmpty>
+               
+            </isParameterPresent>
+        </dynamic>
+        AND A.MTESTMK = 'F' 
+        And A.APLPAYMK = '3'
+        AnD Trim(A.APLPAYDATE) Is Not Null 
+        AND ROWNUM = 1 
+    </select>
+    
+</sqlMap>

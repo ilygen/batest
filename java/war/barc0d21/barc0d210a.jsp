@@ -64,16 +64,17 @@
                 $("pageNo").value = "";
             }
         <%}else{%>
-            $("qryCond2").checked=true;
-            $('cond1').style.display='none';
-            $('cond2').style.display='inline';
-            $("chkMan").disabled = false;
-            $("rptDate").disabled = false;
-            $("pageNo").disabled = false;
-            $("apNo1").value = "";
-            $("apNo2").value = "";
-            $("apNo3").value = "";
-            $("apNo4").value = "";            
+	        // Modified by EthanChen 20211130 for babaweb-8 調整畫面載入時預設選項
+        	$("qryCond1").checked=true;
+	        $('cond1').style.display='inline';
+	        $('cond2').style.display='none';
+	        $("apNo1").disabled = false;
+	        $("apNo2").disabled = false;
+	        $("apNo3").disabled = false;
+	        $("apNo4").disabled = false;
+	        $("chkMan").value = "";
+	        $("rptDate").value = "";
+	        $("pageNo").value = "";
         <%}%>
     }    
        

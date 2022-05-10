@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.update.cases.DisabledApplicationDataUpdateBareCheckCase;
 import tw.gov.bli.ba.update.cases.DisabledApplicationDataUpdateCheckFileCase;
@@ -162,10 +164,19 @@ public class DisableReviewRpt01Case implements Serializable {
     // 請領同類給付資料
     // [
     private List<DisableReviewRpt01OncePayDataCase> oncePayList; // 一次給付
+    private List<DisableReviewRpt01OncePayDataCase> disasterOncePayList; // 一次給付 災保 災保失能給付
+    private List<DisableReviewRpt01OncePayDataCase> disasterOncePay39List; // 一次給付 災保 退保後職業病失能津貼
+    private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3TList; // 一次給付 災保 退保後職業病失能津貼
+    private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3NList; // 一次給付 災保 未加保失能補助
+    private List<DisableReviewRpt01OncePayDataCase> disasterOncePay3CList; // 一次給付 災保 未加保失能補助
+    private List<DisableReviewRpt01AnnuityPayDataCase> disasterAnnuityPayList; // 年金給付 災保
     private List<DisableReviewRpt01OncePayDataCase> farmPayList; // 申請農保殘廢給付記錄
     private List<DisableReviewRpt01AnnuityPayDataCase> annuityPayList; // 年金給付
     private List<DisableReviewRpt01AnnuityPayDataCase> nbPayList; // 申請國保年金給付記錄
     private List<DisableReviewRpt01NpPayDataCase> nbDisPayList; // 申請國保身障年金給付記錄
+
+    private List<CivilServantReviewRpt01DisablePayCase> civilServantDisablePayList; // 申請公保失能給付記錄
+    private List<SoldierReviewRpt01DeadPayCase> soldierDisablePayList; // 申請軍保身心障礙給付記錄
     // ]
 
     // 請領他類給付資料
@@ -182,6 +193,18 @@ public class DisableReviewRpt01Case implements Serializable {
     private List<DisableReviewRpt01JoblessPayDataCase> vocationalTrainingLivingAllowanceList; // 申請職業訓練生活津貼記錄
     private List<DisableReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
     private List<DisableReviewRpt01OncePayDataCase> hosPayList; // 申請職災住院醫療給付給付記錄
+    private List<DisableReviewRpt01OncePayDataCase> disasterHosPayList; // 申請職災住院醫療給付給付記錄
+    private List<DisableReviewRpt01DiePayDataCase> disasterDiePayList; // 申請死亡給付記錄 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterDieForDiseaseAfterQuitPayList; // 退保後職業病死亡津貼 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterDieWithoutPayList; // 未加保死亡補助 災保
+    private List<DisableReviewRpt01DiePayDataCase> disasterLostPayList; // 申請失蹤給付記錄 災保
+    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryPayList; // 申請傷病給付記錄 災保
+    private List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryCarePayList; // 申請傷病給付記錄 災保
+    private List<DisableReviewRpt01SurvivorPayDataCase> disasterSurvivorPayList; // 遺屬年金給付 災保
+
+    private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredAnnuityPayList; // 公保養老年金給付 
+    private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredSurvivorAnnuityPayList; // 公保養老遺屬年金給付
+    private List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantDeadSurvivorAnnuityPayList; // 公保死亡遺屬年金給付
     // ]
 
     // 另案扣減資料
@@ -1524,4 +1547,278 @@ public class DisableReviewRpt01Case implements Serializable {
         }
         return "";
     }
+
+	/**
+	 * @return the disasterOncePayList
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterOncePayList() {
+		return disasterOncePayList;
+	}
+
+	/**
+	 * @param disasterOncePayList the disasterOncePayList to set
+	 */
+	public void setDisasterOncePayList(List<DisableReviewRpt01OncePayDataCase> disasterOncePayList) {
+		this.disasterOncePayList = disasterOncePayList;
+	}
+
+	/**
+	 * @return the disasterOncePay3TList
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterOncePay3TList() {
+		return disasterOncePay3TList;
+	}
+
+	/**
+	 * @param disasterOncePay3TList the disasterOncePay3TList to set
+	 */
+	public void setDisasterOncePay3TList(List<DisableReviewRpt01OncePayDataCase> disasterOncePay3TList) {
+		this.disasterOncePay3TList = disasterOncePay3TList;
+	}
+
+	/**
+	 * @return the disasterOncePay3NList
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterOncePay3NList() {
+		return disasterOncePay3NList;
+	}
+
+	/**
+	 * @param disasterOncePay3NList the disasterOncePay3NList to set
+	 */
+	public void setDisasterOncePay3NList(List<DisableReviewRpt01OncePayDataCase> disasterOncePay3NList) {
+		this.disasterOncePay3NList = disasterOncePay3NList;
+	}
+
+	/**
+	 * @return the disasterOncePay39List
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterOncePay39List() {
+		return disasterOncePay39List;
+	}
+
+	/**
+	 * @param disasterOncePay39List the disasterOncePay39List to set
+	 */
+	public void setDisasterOncePay39List(List<DisableReviewRpt01OncePayDataCase> disasterOncePay39List) {
+		this.disasterOncePay39List = disasterOncePay39List;
+	}
+
+	/**
+	 * @return the disasterInjuryPayList
+	 */
+	public List<DisableReviewRpt01InjuryPayDataCase> getDisasterInjuryPayList() {
+		return disasterInjuryPayList;
+	}
+
+	/**
+	 * @param disasterInjuryPayList the disasterInjuryPayList to set
+	 */
+	public void setDisasterInjuryPayList(List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryPayList) {
+		this.disasterInjuryPayList = disasterInjuryPayList;
+	}
+
+	/**
+	 * @return the disasterDiePayList
+	 */
+	public List<DisableReviewRpt01DiePayDataCase> getDisasterDiePayList() {
+		return disasterDiePayList;
+	}
+
+	/**
+	 * @param disasterDiePayList the disasterDiePayList to set
+	 */
+	public void setDisasterDiePayList(
+			List<DisableReviewRpt01DiePayDataCase> disasterDiePayList) {
+		this.disasterDiePayList = disasterDiePayList;
+	}
+
+	/**
+	 * @return the disasterLostPayList
+	 */
+	public List<DisableReviewRpt01DiePayDataCase> getDisasterLostPayList() {
+		return disasterLostPayList;
+	}
+
+	/**
+	 * @param disasterLostPayList the disasterLostPayList to set
+	 */
+	public void setDisasterLostPayList(
+			List<DisableReviewRpt01DiePayDataCase> disasterLostPayList) {
+		this.disasterLostPayList = disasterLostPayList;
+	}
+
+	/**
+	 * @return the disasterDieForDiseaseAfterQuitPayList
+	 */
+	public List<DisableReviewRpt01DiePayDataCase> getDisasterDieForDiseaseAfterQuitPayList() {
+		return disasterDieForDiseaseAfterQuitPayList;
+	}
+
+	/**
+	 * @param disasterDieForDiseaseAfterQuitPayList the disasterDieForDiseaseAfterQuitPayList to set
+	 */
+	public void setDisasterDieForDiseaseAfterQuitPayList(
+			List<DisableReviewRpt01DiePayDataCase> disasterDieForDiseaseAfterQuitPayList) {
+		this.disasterDieForDiseaseAfterQuitPayList = disasterDieForDiseaseAfterQuitPayList;
+	}
+
+	/**
+	 * @return the disasterDieWithoutPayList
+	 */
+	public List<DisableReviewRpt01DiePayDataCase> getDisasterDieWithoutPayList() {
+		return disasterDieWithoutPayList;
+	}
+
+	/**
+	 * @param disasterDieWithoutPayList the disasterDieWithoutPayList to set
+	 */
+	public void setDisasterDieWithoutPayList(
+			List<DisableReviewRpt01DiePayDataCase> disasterDieWithoutPayList) {
+		this.disasterDieWithoutPayList = disasterDieWithoutPayList;
+	}
+
+	/**
+	 * @return the disasterOncePay3CList
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterOncePay3CList() {
+		return disasterOncePay3CList;
+	}
+
+	/**
+	 * @param disasterOncePay3CList the disasterOncePay3CList to set
+	 */
+	public void setDisasterOncePay3CList(List<DisableReviewRpt01OncePayDataCase> disasterOncePay3CList) {
+		this.disasterOncePay3CList = disasterOncePay3CList;
+	}
+
+	/**
+	 * @return the disasterAnnuityPayList
+	 */
+	public List<DisableReviewRpt01AnnuityPayDataCase> getDisasterAnnuityPayList() {
+		return disasterAnnuityPayList;
+	}
+
+	/**
+	 * @param disasterAnnuityPayList the disasterAnnuityPayList to set
+	 */
+	public void setDisasterAnnuityPayList(List<DisableReviewRpt01AnnuityPayDataCase> disasterAnnuityPayList) {
+		this.disasterAnnuityPayList = disasterAnnuityPayList;
+	}
+
+	/**
+	 * @return the disasterSurvivorPayList
+	 */
+	public List<DisableReviewRpt01SurvivorPayDataCase> getDisasterSurvivorPayList() {
+		return disasterSurvivorPayList;
+	}
+
+	/**
+	 * @param disasterSurvivorPayList the disasterSurvivorPayList to set
+	 */
+	public void setDisasterSurvivorPayList(List<DisableReviewRpt01SurvivorPayDataCase> disasterSurvivorPayList) {
+		this.disasterSurvivorPayList = disasterSurvivorPayList;
+	}
+
+	/**
+	 * @return the disasterInjuryCarePayList
+	 */
+	public List<DisableReviewRpt01InjuryPayDataCase> getDisasterInjuryCarePayList() {
+		return disasterInjuryCarePayList;
+	}
+
+	/**
+	 * @param disasterInjuryCarePayList the disasterInjuryCarePayList to set
+	 */
+	public void setDisasterInjuryCarePayList(List<DisableReviewRpt01InjuryPayDataCase> disasterInjuryCarePayList) {
+		this.disasterInjuryCarePayList = disasterInjuryCarePayList;
+	}
+
+	/**
+	 * @return the civilServantDisablePayList
+	 */
+	public List<CivilServantReviewRpt01DisablePayCase> getCivilServantDisablePayList() {
+		return civilServantDisablePayList;
+	}
+
+	/**
+	 * @param civilServantDisablePayList the civilServantDisablePayList to set
+	 */
+	public void setCivilServantDisablePayList(List<CivilServantReviewRpt01DisablePayCase> civilServantDisablePayList) {
+		this.civilServantDisablePayList = civilServantDisablePayList;
+	}
+
+	/**
+	 * @return the soldierDisablePayList
+	 */
+	public List<SoldierReviewRpt01DeadPayCase> getSoldierDisablePayList() {
+		return soldierDisablePayList;
+	}
+
+	/**
+	 * @param soldierDisablePayList the soldierDisablePayList to set
+	 */
+	public void setSoldierDisablePayList(List<SoldierReviewRpt01DeadPayCase> soldierDisablePayList) {
+		this.soldierDisablePayList = soldierDisablePayList;
+	}
+
+	/**
+	 * @return the civilServantRetiredAnnuityPayList
+	 */
+	public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantRetiredAnnuityPayList() {
+		return civilServantRetiredAnnuityPayList;
+	}
+
+	/**
+	 * @param civilServantRetiredAnnuityPayList the civilServantRetiredAnnuityPayList to set
+	 */
+	public void setCivilServantRetiredAnnuityPayList(
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredAnnuityPayList) {
+		this.civilServantRetiredAnnuityPayList = civilServantRetiredAnnuityPayList;
+	}
+
+	/**
+	 * @return the civilServantRetiredSurvivorAnnuityPayList
+	 */
+	public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantRetiredSurvivorAnnuityPayList() {
+		return civilServantRetiredSurvivorAnnuityPayList;
+	}
+
+	/**
+	 * @param civilServantRetiredSurvivorAnnuityPayList the civilServantRetiredSurvivorAnnuityPayList to set
+	 */
+	public void setCivilServantRetiredSurvivorAnnuityPayList(
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantRetiredSurvivorAnnuityPayList) {
+		this.civilServantRetiredSurvivorAnnuityPayList = civilServantRetiredSurvivorAnnuityPayList;
+	}
+
+	/**
+	 * @return the civilServantDeadSurvivorAnnuityPayList
+	 */
+	public List<CivilServantReviewRpt01RetirementAnnuityPayCase> getCivilServantDeadSurvivorAnnuityPayList() {
+		return civilServantDeadSurvivorAnnuityPayList;
+	}
+
+	/**
+	 * @param civilServantDeadSurvivorAnnuityPayList the civilServantDeadSurvivorAnnuityPayList to set
+	 */
+	public void setCivilServantDeadSurvivorAnnuityPayList(
+			List<CivilServantReviewRpt01RetirementAnnuityPayCase> civilServantDeadSurvivorAnnuityPayList) {
+		this.civilServantDeadSurvivorAnnuityPayList = civilServantDeadSurvivorAnnuityPayList;
+	}
+
+	/**
+	 * @return the disasterHosPayList
+	 */
+	public List<DisableReviewRpt01OncePayDataCase> getDisasterHosPayList() {
+		return disasterHosPayList;
+	}
+
+	/**
+	 * @param disasterHosPayList the disasterHosPayList to set
+	 */
+	public void setDisasterHosPayList(List<DisableReviewRpt01OncePayDataCase> disasterHosPayList) {
+		this.disasterHosPayList = disasterHosPayList;
+	}
+	
 }

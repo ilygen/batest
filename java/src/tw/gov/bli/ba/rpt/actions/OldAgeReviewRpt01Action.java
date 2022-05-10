@@ -425,7 +425,7 @@ public class OldAgeReviewRpt01Action extends BaseDispatchAction {
 						}
 					} else if ((ConstantKey.BAAPPBASE_PAGE_PAYKIND_S).equals(payKind)) {// 遺屬
 						List<SurvivorReviewRpt01Case> list = rptService.getSurvivorReviewRpt01DataBy(s, s);
-						if(!list.isEmpty()) {
+						if(list != null && !list.isEmpty()) {
 							SurvivorReviewRpt01CaseList.add(rptService.getSurvivorReviewRpt01DataBy(s, s).get(0));
 						}
 					}

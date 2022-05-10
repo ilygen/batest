@@ -3,10 +3,11 @@ package tw.gov.bli.ba.rpt.cases;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.util.DateUtility;
-import tw.gov.bli.common.annotation.LogField;
 
 /**
  * Case for 勞保老年年金給付受理編審清單
@@ -208,6 +209,9 @@ public class OldAgeReviewRpt01Case implements Serializable {
     private List<OldAgeReviewRpt01InjuryPayDataCase> injuryPayList; // 申請傷病給付記錄
     private List<OldAgeReviewRpt01JoblessPayDataCase> joblessPayList; // 申請失業給付記錄
     private List<OldAgeReviewRpt01NpPayDataCase> npPayList; // 申請國保給付記錄
+    
+    private List<OldAgeReviewRpt01DiePayDataCase> disasterDiePayList; // 申請死亡給付記錄-災保
+    private List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList; // 申請遺屬年金記錄 災保
     // ]
 
     // 事故者於受款人給付資料的資料
@@ -1828,4 +1832,33 @@ public class OldAgeReviewRpt01Case implements Serializable {
     public void setConsent(byte[] consent) {
         this.consent = consent;
     }
+
+	/**
+	 * @return the disasterDiePayList
+	 */
+	public List<OldAgeReviewRpt01DiePayDataCase> getDisasterDiePayList() {
+		return disasterDiePayList;
+	}
+
+	/**
+	 * @param disasterDiePayList the disasterDiePayList to set
+	 */
+	public void setDisasterDiePayList(List<OldAgeReviewRpt01DiePayDataCase> disasterDiePayList) {
+		this.disasterDiePayList = disasterDiePayList;
+	}
+
+	/**
+	 * @return the disasterSurvivorAnnuityPayList
+	 */
+	public List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> getDisasterSurvivorAnnuityPayList() {
+		return disasterSurvivorAnnuityPayList;
+	}
+
+	/**
+	 * @param disasterSurvivorAnnuityPayList the disasterSurvivorAnnuityPayList to set
+	 */
+	public void setDisasterSurvivorAnnuityPayList(
+			List<OldAgeReviewRpt01SurvivorAnnuityPayDataCase> disasterSurvivorAnnuityPayList) {
+		this.disasterSurvivorAnnuityPayList = disasterSurvivorAnnuityPayList;
+	}
 }

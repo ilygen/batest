@@ -59,9 +59,11 @@
     <resultMap id="OldAgeReviewRpt01ChkfileDataResult" class="Bachkfile">
         <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"	    nullValue="" />
         <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
+		<result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"     	javaType="java.lang.String"     nullValue="" />
     </resultMap>
     
     <resultMap id="OldAgeReviewRpt01ChkfileDescResult" class="Bachkfile">
+		<result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"     	javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODEPOST"     property="chkCodePost"       jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKRESULT"      property="chkResult"        jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
@@ -135,6 +137,7 @@
         <result column="CHKFILENAME"    property="chkFileName"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
         <result column="CHKFILEDESC"    property="chkFileDesc"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />
         <result column="CHKFILECODE"    property="chkFileCode"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue="" />               
+		<result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"     	javaType="java.lang.String"     nullValue="" />
     </resultMap>
     <!-- ] -->
     <!-- Disabled Application Data Update -->
@@ -154,12 +157,14 @@
     <!-- [ -->
     <resultMap id="DisableReviewRpt01ChkfileDataResult" class="Bachkfile">
         <result column="PAYYM"          property="payYm"            jdbcType="VARCHAR"      javaType="java.lang.String"	    nullValue="" />
+        <result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODEPRE"     property="chkCodePre"   	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKRESULT"      property="chkResult"    	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
     </resultMap>
     
     <resultMap id="DisableReviewRpt01ChkfileDescDataResult" class="Bachkfile">
+		<result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODE"        property="chkCode"          jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKCODEPRE"     property="chkCodePre"   	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="CHKRESULT"      property="chkResult"    	jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
@@ -169,9 +174,11 @@
     <!-- SurvivorReviewRpt 01 Begin -->
     <!-- [ -->
     <resultMap id="SurvivorReviewRpt01ChkfileDataResult" class="Bachkfile">
+		<result column="KEYVALUE"      	property="keyValue"    		jdbcType="VARCHAR"      javaType="java.lang.String"     nullValue="" />
         <result column="PAYYM"          property="payYm"          jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKCODE"        property="chkCode"        jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKCODEPRE"     property="chkCodePre"     jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
+        <result column="CHKCODEPOST"    property="chkCodePost"    jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
         <result column="CHKRESULT"      property="chkResult"      jdbcType="VARCHAR"     javaType="java.lang.String"   nullValue=""/>
     </resultMap>
     <!-- ] -->
@@ -692,7 +699,8 @@
     <!-- [ -->
     <select id="getOldAgeReviewRpt01ChkfileDataBy" resultMap="OldAgeReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
-               A.CHKCODE
+               A.CHKCODE,
+               A.KEYVALUE
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -713,7 +721,8 @@
     
     <select id="getOldAgeReviewRpt01BenChkfileDataBy" resultMap="OldAgeReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
-               A.CHKCODE
+               A.CHKCODE,
+               A.KEYVALUE
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -743,6 +752,7 @@
                           ELSE
                            A.CHKRESULT
                         END AS CHKRESULT
+                        , A.KEYVALUE
         FROM BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -919,6 +929,7 @@
     <!-- [ -->
     <select id="getDisableReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -946,7 +957,8 @@
         SELECT A.PAYYM,
                A.CHKCODE,  
                A.CHKCODEPRE, 
-               A.CHKRESULT 
+               A.CHKRESULT, 
+               A.KEYVALUE
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -974,6 +986,7 @@
                           ELSE
                            A.CHKRESULT
                         END AS CHKRESULT
+                        , A.KEYVALUE
         FROM BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -1004,6 +1017,7 @@
     
     <select id="getDisableReviewRpt01FamChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -1052,6 +1066,7 @@
     
     <select id="getDisableReviewRpt01FamChkfileDescDataBy" resultMap="DisableReviewRpt01ChkfileDescDataResult">
         SELECT DISTINCT 
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -1316,8 +1331,10 @@
     <!-- [ -->
     <select id="selectSurvivorReviewRpt01ChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
 	    SELECT A.PAYYM,                   
+	           A.KEYVALUE,                
 	           A.CHKCODE,                 
-	           A.CHKCODEPRE,              
+	           A.CHKCODEPRE, 
+	           A.CHKCODEPOST,              
 	           A.CHKRESULT                
 	      FROM BACHKFILE A
         <dynamic prepend="WHERE">
@@ -1340,6 +1357,7 @@
     </select>
     <select id="getSurvivorReviewRpt01BenChkfileDescDataBy" resultMap="DisableReviewRpt01ChkfileDescDataResult">
         SELECT DISTINCT 
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
                A.CHKRESULT 
@@ -1424,10 +1442,12 @@
         ORDER BY A.CHKCODE
     </select>
     
-    <select id="getSurvivorReviewRpt01BenChkfileDataBy" resultMap="DisableReviewRpt01ChkfileDataResult">
+    <select id="getSurvivorReviewRpt01BenChkfileDataBy" resultMap="SurvivorReviewRpt01ChkfileDataResult">
         SELECT A.PAYYM,
+               A.KEYVALUE,
                A.CHKCODE, 
                A.CHKCODEPRE, 
+               A.CHKCODEPOST, 
                A.CHKRESULT 
         FROM   BACHKFILE A
         <dynamic prepend="WHERE">
@@ -1484,6 +1504,7 @@
                           ELSE
                            A.CHKRESULT
                         END AS CHKRESULT
+                        , A.KEYVALUE
         FROM BACHKFILE A
         WHERE SEQNO='0000'
         <dynamic>
@@ -1510,7 +1531,8 @@
         SELECT A.PAYYM,
                A.CHKCODE||'-'||A.CHKCODEPOST AS CHKFILENAME,
                A.CHKCODE||'-'||A.CHKRESULT   AS CHKFILEDESC,
-               A.CHKCODE                     AS CHKFILECODE 
+               A.CHKCODE                     AS CHKFILECODE,
+               A.KEYVALUE 
         FROM   BACHKFILE A,
                (
                    SELECT X.BAAPPBASEID,

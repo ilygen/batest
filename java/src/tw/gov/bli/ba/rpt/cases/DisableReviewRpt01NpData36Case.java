@@ -41,6 +41,10 @@ public class DisableReviewRpt01NpData36Case implements Serializable {
     public String getValSeniDisplay() {
 
         String valSeniDisplay = "";
+        if (valSeni == null) {
+        	return valSeniDisplay;
+        }
+        
         // 國保年資 如為0 不帶入
         if (valSeni.compareTo(new BigDecimal("0")) != 0 && valSenid.compareTo(new BigDecimal("0")) != 0) {
             valSeniDisplay = valSeni + "月" + valSenid + "日";
