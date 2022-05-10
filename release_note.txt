@@ -2,3 +2,4 @@ Issue number:babaweb-21
 EXE_TYPE:sql
 ISDEPLOY:true
 CODE_SCAN:true
+ 
