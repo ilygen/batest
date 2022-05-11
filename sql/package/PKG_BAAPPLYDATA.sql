@@ -119,6 +119,7 @@ CREATE OR REPLACE PACKAGE BA.PKG_BAAPPLYDATA AUTHID DEFINER IS
         ,APLPAYDATE  BADAPR.APLPAYDATE%TYPE     -- 核付日期
         ,REMITMK     BADAPR.REMITMK%TYPE        -- 後續註記
         ,REMITDATE   BADAPR.REMITDATE%TYPE      -- 處理註記日期
+        ,MANCHKMK    BADAPR.MANCHKMK%TYPE       -- 人工審核結果
         );
     TYPE ba_badapr_tab IS TABLE OF ba_badapr_rec;
 
@@ -300,7 +301,8 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAAPPLYDATA IS
                         DAPR.APLPAYMK,
                         DAPR.APLPAYDATE,
                         DAPR.REMITMK,
-                        DAPR.REMITDATE
+                        DAPR.REMITDATE,
+                        DAPR.MANCHKMK
           FROM BAAPPBASE BASE
           JOIN BADAPR DAPR
             ON BASE.APNO = DAPR.APNO
