@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d][%-5p][%C.%M(%L)] %m%n" />
+		</Console>
+		<RollingFile name="RollingFile"
+					 fileName="/log/aplog/ba/ba_baweb_${sys:logSuffix}.log"
+					 filePattern="/log/aplog/ba/ba_baweb_${sys:logSuffix}.log.%d{yyyy-MM-dd}"
+					 ignoreExceptions="false" >
+
+			<PatternLayout>
+				<Pattern>[%d][%-5p][%C.%M(%L)] %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="${rootLogger}">
+			<AppenderRef ref="RollingFile" />
+		</Root>
+		<logger name="com.ibatis" level="${configuration}"></logger>
+		<logger name="com.ibatis.common.jdbc" level="${configuration}"></logger>
+		<logger name="com.ibatis.common.jdbc.ScriptRunner" level="${configuration}"></logger>
+		<logger name="com.ibatis.sqlmap" level="${configuration}"></logger>
+		<logger name="java.sql.Connection" level="${configuration}"></logger>
+		<logger name="java.sql.Statement" level="${configuration}"></logger>
+		<logger name="java.sql.PreparedStatement" level="${configuration}"></logger>
+		<logger name="java.sql.ResultSet" level="${configuration}"></logger>
+		<logger name="org.apache.commons" level="${configuration}"></logger>
+		<logger name="org.apache.commons.beanutils.BeanUtils" level="${configuration}"></logger>
+		<logger name="org.apache.commons.digester.Digester" level="${configuration}"></logger>
+		<logger name="org.springframework.util.ClassUtils" level="${configuration}"></logger>
+	</Loggers>
+</Configuration>

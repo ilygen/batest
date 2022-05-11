@@ -30,11 +30,6 @@
         <param-value>/WEB-INF/conf/applicationContext*.xml</param-value>
     </context-param>
 
-    <context-param>
-        <param-name>log4jConfigLocation</param-name>
-        <param-value>/WEB-INF/classes/log4j.properties</param-value>
-    </context-param>
-
     <filter>
         <filter-name>SetCharacterEncoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -100,15 +95,15 @@
         <filter-class>edu.yale.its.tp.cas.client.filter.CASFilter</filter-class>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.loginUrl</param-name>
-            <param-value>https://${BliportalRunHostAddress}/cas/login</param-value>
+            <param-value>https://bliportalde.bli.gov.tw/cas/login</param-value>
         </init-param>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.validateUrl</param-name>
-            <param-value>https://${BliportalRunHostAddress}/cas/serviceValidate</param-value>
+            <param-value>https://bliportalde.bli.gov.tw/cas/serviceValidate</param-value>
         </init-param>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.serverName</param-name>
-            <param-value>${BliapRunHostAddress}</param-value>
+            <param-value>localhost:8443</param-value>
         </init-param>
     </filter>
     
