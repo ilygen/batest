@@ -95,15 +95,15 @@
         <filter-class>edu.yale.its.tp.cas.client.filter.CASFilter</filter-class>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.loginUrl</param-name>
-            <param-value>https://bliportalde.bli.gov.tw/cas/login</param-value>
+            <param-value>https://${BliportalRunHostAddress}/cas/login</param-value>
         </init-param>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.validateUrl</param-name>
-            <param-value>https://bliportalde.bli.gov.tw/cas/serviceValidate</param-value>
+            <param-value>https://${BliportalRunHostAddress}/cas/serviceValidate</param-value>
         </init-param>
         <init-param>
             <param-name>edu.yale.its.tp.cas.client.filter.serverName</param-name>
-            <param-value>localhost:8443</param-value>
+            <param-value>${BliapRunHostAddress}</param-value>
         </init-param>
     </filter>
     
