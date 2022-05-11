@@ -12,9 +12,12 @@ import tw.gov.bli.ba.util.DateUtility;
 public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     private String payYm; // 給付年月
     private String chkCode; // 編審註記代碼
-    private String chkCodePost; // 編審註記代號類型
+    private String chkCodePre;	// 編審註記代號類型
+    private String chkCodePost; // 編審註記代號改後類型
     private String chkResult; // 編審註記名稱
-
+    
+    private String keyValue;
+    
     /**
      * 給付年月
      * 
@@ -30,6 +33,14 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     public SurvivorReviewRpt01ChkfileDataCase() {
 
     }
+    
+    public String getChkCodePre() {
+		return chkCodePre;
+	}
+
+	public void setChkCodePre(String chkCodePre) {
+		this.chkCodePre = chkCodePre;
+	}
 
     public String getChkCodePost() {
         return chkCodePost;
@@ -47,6 +58,14 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
         this.chkResult = chkResult;
     }
 
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
+	
     public String getPayYm() {
         return payYm;
     }
@@ -62,5 +81,4 @@ public class SurvivorReviewRpt01ChkfileDataCase implements Serializable {
     public void setChkCode(String chkCode) {
         this.chkCode = chkCode;
     }
-
 }
