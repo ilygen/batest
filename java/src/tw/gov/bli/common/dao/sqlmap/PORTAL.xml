@@ -22,7 +22,7 @@
         (
             SELECT A.FUNC_ID AS ITEM_ID, 
                    A.ITEM_NAME
-            FROM   table(get_ba_items) A
+            FROM   table(GET_SYS_ITEMS('BA')) A
             WHERE  A.FUNC_ID = #itemId#
         )
     </select>
@@ -42,7 +42,7 @@
                A.USER_NAME,
                A.EMP_ID,
                A.DEPT_ID
-        FROM   USERS A 
+        FROM   USERS_V A 
         WHERE  A.USER_ID = #userId#
     </select> 
 
