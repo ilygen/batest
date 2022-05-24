@@ -3131,10 +3131,14 @@ public class RptService {
 
             if (caseData.getApItem().equals("7")) {
                 // 他案 失能
-                Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
-                List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
                 if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
-                    avgWgDataList = cipgDao.selectDisableReviewRpt01CipgData(dabapNo, "0000", evtIdnNoAfter, disableExpDataList.get(0).getEvTyp(), inTyp, disableExpDataList.get(0).getPrType(), appMonthStr);
+                	Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
+                	if (disableEvtData != null) {
+	                	List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
+	                	if (CollectionUtils.isNotEmpty(disableExpDataList)) {
+	                		avgWgDataList = cipgDao.selectDisableReviewRpt01CipgData(dabapNo, "0000", evtIdnNoAfter, disableExpDataList.get(0).getEvTyp(), inTyp, disableExpDataList.get(0).getPrType(), appMonthStr);
+	                	}
+                	}
                 }
             }
             else if (caseData.getApItem().equals("8")) {
@@ -3159,20 +3163,21 @@ public class RptService {
                             && (expDataCaseList.get(0).getPrType() == null || "Y".equals(expDataCaseList.get(0).getPrType()))) {
                 if (caseData.getApItem().equals("7")) {
                     // 失能
-                    Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
-                    List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
-
-                    if (StringUtils.isNotBlank(disableExpDataList.get(0).getEvTyp()) && ("3".equals(disableExpDataList.get(0).getEvTyp()) || "4".equals(disableExpDataList.get(0).getEvTyp()))
-                                    && (disableExpDataList.get(0).getPrType() == null || !"Y".equals(disableExpDataList.get(0).getPrType()))) {
-                        if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
-                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "1");
-                        }
-                    }
-                    else {
-                        if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
-                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "6");
-                        }
-                    }
+                	if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
+	                    Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
+	                    if (disableEvtData != null) {
+		                    List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
+		                    if (CollectionUtils.isNotEmpty(disableExpDataList)) {
+			                    if (StringUtils.isNotBlank(disableExpDataList.get(0).getEvTyp()) && ("3".equals(disableExpDataList.get(0).getEvTyp()) || "4".equals(disableExpDataList.get(0).getEvTyp()))
+			                                    && (disableExpDataList.get(0).getPrType() == null || !"Y".equals(disableExpDataList.get(0).getPrType()))) {
+		                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "1");
+			                    }
+			                    else {
+		                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "6");
+			                    }
+		                    }
+	                    }
+                	}
                 }
                 else if (caseData.getApItem().equals("8")) {
                     // 老年
@@ -3187,20 +3192,21 @@ public class RptService {
             else {
                 if (caseData.getApItem().equals("7")) {
                     // 失能
-                    Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
-                    List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
-
-                    if (StringUtils.isNotBlank(disableExpDataList.get(0).getEvTyp()) && ("3".equals(disableExpDataList.get(0).getEvTyp()) || "4".equals(disableExpDataList.get(0).getEvTyp()))
-                                    && (disableExpDataList.get(0).getPrType() == null || !"Y".equals(disableExpDataList.get(0).getPrType()))) {
-                        if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
-                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "1");
-                        }
-                    }
-                    else {
-                        if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
-                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "6");
-                        }
-                    }
+                	if (StringUtils.isNotBlank(dabapNo) && StringUtils.isNotBlank(evtIdnNoAfter)) {
+	                    Baappbase disableEvtData = baappbaseDao.selectDisableReviewRpt01EvtDataBy(dabapNo);
+	                    if (disableEvtData != null) {
+		                    List<Baappexpand> disableExpDataList = baappexpandDao.getDisableBaappexpandListBy(disableEvtData.getBaappbaseId(), dabapNo);
+		                    if (CollectionUtils.isNotEmpty(disableExpDataList)) {
+			                    if (StringUtils.isNotBlank(disableExpDataList.get(0).getEvTyp()) && ("3".equals(disableExpDataList.get(0).getEvTyp()) || "4".equals(disableExpDataList.get(0).getEvTyp()))
+			                                    && (disableExpDataList.get(0).getPrType() == null || !"Y".equals(disableExpDataList.get(0).getPrType()))) {
+		                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "1");
+			                    }
+			                    else {
+		                            realAvgMon = cipgDao.getRealAvgMonForDisableReviewRpt01By(dabapNo, "0000", evtIdnNoAfter, inTyp, "6");
+			                    }
+		                    }
+	                    }
+                	}
                 }
                 else if (caseData.getApItem().equals("8")) {
                     // 老年
