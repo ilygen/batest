@@ -17241,6 +17241,7 @@ UNION
               T2.EVTNAME   As "EVTNAME",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                WHERE NVL(TRIM(TAL20),' ') <> '0099'
+               AND B1.INSKD = '1'
                AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
                AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
               (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -17297,6 +17298,7 @@ UNION
                  T1.EVTNAME   As "EVTNAME",
                  (SELECT A1.PRPNO FROM BCCMF09 A1
                  WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                 AND A1.INSKD = '1'
                  AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
                  AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                 (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -17341,6 +17343,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
                   AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -17438,6 +17441,7 @@ UNION
                <![CDATA[
                (SELECT A1.PRPNO FROM BCCMF09 A1
                  WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                   AND A1.INSKD = '1'
                    AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
                    AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                         (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -17513,6 +17517,7 @@ UNION
               T2.EVTNAME    As "EVTNAME",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
                   AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -17591,6 +17596,7 @@ UNION
                T1.EVTNAME    As "EVTNAME",
                (SELECT A1.PRPNO FROM BCCMF09 A1
          WHERE NVL(TRIM(TAL20),' ') <> '0099'
+           AND A1.INSKD = '1'
            AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
            AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                 (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -17647,6 +17653,7 @@ UNION
               T2.PROCSTAT AS "PROCSTAT",
               (SELECT B1.PRPNO FROM BCCMF09 B1
          WHERE NVL(TRIM(TAL20),' ') <> '0099'
+           AND B1.INSKD = '1'
            AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
            AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                 (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -17736,6 +17743,7 @@ UNION
              T1.PROCSTAT AS "PROCSTAT",
              (SELECT A1.PRPNO FROM BCCMF09 A1
         WHERE NVL(TRIM(TAL20),' ') <> '0099'
+          AND A1.INSKD = '1'
           AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
           AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
               (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -17783,6 +17791,7 @@ UNION
     <![CDATA[
                (SELECT B1.PRPNO FROM BCCMF09 B1
                  WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                   AND B1.INSKD = '1'
                    AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
                    AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                         (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -17918,6 +17927,7 @@ UNION
         <![CDATA[
               (SELECT A1.PRPNO FROM BCCMF09 A1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND A1.INSKD = '1'
                   AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
                   AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -17995,6 +18005,7 @@ UNION
                T2.PROCSTAT AS "PROCSTAT",
                (SELECT B1.PRPNO FROM BCCMF09 B1
                  WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                   AND B1.INSKD = '1'
                    AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T2.APNO,1,2)||'%')
                    AND ((SUBSTR(T2.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                         (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T2.APNO, 11, 2) AND
@@ -18105,6 +18116,7 @@ UNION
               T1.PROCSTAT AS "PROCSTAT",
               (SELECT A1.PRPNO FROM BCCMF09 A1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND A1.INSKD = '1'
                   AND (A1.PAYTYP||A1.GROUPMK) LIKE (SUBSTR(T1.APNO,1,2)||'%')
                   AND ((SUBSTR(T1.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(A1.TAL20, 1, 2) <= SUBSTR(T1.APNO, 11, 2) AND
@@ -18202,6 +18214,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18263,6 +18276,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18325,6 +18339,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18408,6 +18423,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18469,6 +18485,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18532,6 +18549,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18601,6 +18619,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18700,6 +18719,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18799,6 +18819,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18898,6 +18919,7 @@ UNION
               <![CDATA[
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -18978,6 +19000,7 @@ UNION
               t.SEQNO    As "SEQNO",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -19054,6 +19077,7 @@ UNION
               t.SEQNO    As "SEQNO",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -19130,6 +19154,7 @@ UNION
               t.SEQNO    As "SEQNO",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -19206,6 +19231,7 @@ UNION
               t.SEQNO    As "SEQNO",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -19282,6 +19308,7 @@ UNION
               t.SEQNO    As "SEQNO",
               (SELECT B1.PRPNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
@@ -20192,6 +20219,7 @@ UNION
            A.ISSUYM
       FROM BAAPPBASE A, BCCMF09 B
      WHERE A.CASETYP IN ('1', '2', '3', '4', '6')
+       AND B.INSKD = '1'
        AND A.SEQNO = '0000'
        AND A.PROCSTAT < '40'
        AND A.APNO LIKE #payCode:VARCHAR# || '%'      
@@ -20265,6 +20293,7 @@ UNION
            A.ISSUYM
       FROM BAAPPBASE A, BCCMF09 B
      WHERE A.CASETYP IN ('1', '2', '3', '4', '6')
+       AND B.INSKD = '1'
        AND A.SEQNO = '0000'
        AND A.PROCSTAT < '40'
        AND A.APNO LIKE #payCode:VARCHAR# || '%'
@@ -20289,6 +20318,7 @@ UNION
         <![CDATA[
                (SELECT B1.PRPNO FROM BCCMF09 B1
                  WHERE NVL(TRIM(TAL20),' ') <> '0099'
+                   AND B1.INSKD = '1'
                    AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(T.APNO,1,2)||'%')
                    AND ((SUBSTR(T.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) OR
                         (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(T.APNO, 11, 2) AND
@@ -21775,6 +21805,7 @@ SELECT IDNNO
                <![CDATA[ 
                WHERE NVL(TRIM(TAL20), ' ') <> '0099'
                ]]>
+                 AND B1.INSKD = '1'
                  AND (B1.PAYTYP || B1.GROUPMK) LIKE (SUBSTR(t.APNO, 1, 2) || '%')
                  AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) 
                    <![CDATA[ 
@@ -21846,6 +21877,7 @@ SELECT IDNNO
                 <![CDATA[ 
                 WHERE NVL(TRIM(TAL20), ' ') <> '0099'
                 ]]>
+                  AND B1.INSKD = '1'
                   AND (B1.PAYTYP || B1.GROUPMK) LIKE (SUBSTR(t.APNO, 1, 2) || '%')
                   AND ((SUBSTR(t.APNO, 12, 1) IN (TAL11, TAL12, TAL13, TAL14, TAL15)) 
                     <![CDATA[ 
