@@ -9,7 +9,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     </bean>
     
     <bean id="portalDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:comp/env/jdbc/portalaclDS" />
+        <property name="jndiName" value="java:comp/env/jdbc/portal3aclDS" />
     </bean>
     
     <!--
