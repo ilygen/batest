@@ -37,7 +37,7 @@
     <target name="backupFile">
         <echo message="backupFile..."/>
         <copy file="${war.dir}/web.xml" tofile="./web.xml.ori" overwrite="true"/>
-        <copy file="${src.dir}/log4j.properties" tofile="./log4j.properties.ori" overwrite="true"/>
+        <copy file="${src.dir}/log4j2.xml" tofile="./log4j2.xml.ori" overwrite="true"/>
     </target>
     
     <target name="replaceDev">
@@ -46,7 +46,7 @@
             <replacefilter token="${BliportalRunHostAddress}" value="bliportalde.bli.gov.tw"/>
             <replacefilter token="${BliapRunHostAddress}" value="bliapbde.bli.gov.tw"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+        <replace encoding="utf-8" file="${src.dir}/log4j2.xml">
             <replacefilter token="${rootLogger}" value="DEBUG"/>
             <replacefilter token="${configuration}" value="DEBUG"/>
         </replace>
@@ -58,7 +58,7 @@
         <replacefilter token="${BliportalRunHostAddress}" value="bliportalte.bli.gov.tw"/>
         <replacefilter token="${BliapRunHostAddress}" value="bliapbte.bli.gov.tw"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+        <replace encoding="utf-8" file="${src.dir}/log4j2.xml">
         <replacefilter token="${rootLogger}" value="INFO"/>
         <replacefilter token="${configuration}" value="ERROR"/>
         </replace>
@@ -70,7 +70,7 @@
         <replacefilter token="${BliportalRunHostAddress}" value="bliportalon.bli.gov.tw"/>
         <replacefilter token="${BliapRunHostAddress}" value="bliapbon.bli.gov.tw"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/log4j.properties">
+        <replace encoding="utf-8" file="${src.dir}/log4j2.xml">
         <replacefilter token="${rootLogger}" value="INFO"/>
         <replacefilter token="${configuration}" value="ERROR"/>
         </replace>
@@ -121,8 +121,8 @@
     <target name="reverseFile">
         <echo message="reverseFile..."/>
         <copy file="./web.xml.ori" tofile="${war.dir}/web.xml" overwrite="true"/>
-        <copy file="./log4j.properties.ori" tofile="${src.dir}/log4j.properties" overwrite="true"/>
+        <copy file="./log4j2.xml.ori" tofile="${src.dir}/log4j2.xml" overwrite="true"/>
         <delete file="./web.xml.ori"/>
-        <delete file="./log4j.properties.ori"/>
+        <delete file="./log4j2.xml.ori"/>
     </target>
 </project>
