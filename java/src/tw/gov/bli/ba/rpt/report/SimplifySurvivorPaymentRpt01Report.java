@@ -163,8 +163,10 @@ public class SimplifySurvivorPaymentRpt01Report extends ReportBase {
             
             // 表頭
             Table table = addHeader(userData, caseData, false);
+            // 受理編號 + 系統類別
+            String apnoAndSysCode = caseData.getApNoStrDisplay().concat(" ").concat(caseData.getSysCode());
             
-            addColumn(table, 20, 1, "受理編號："+caseData.getApNoStrDisplay() , fontCh12, 0, LEFT);
+            addColumn(table, 20, 1, "受理編號：" + apnoAndSysCode, fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "事故日期/申請日期："+DateUtil.changeDateType(caseData.getEvtJobDate())+"/"+DateUtil.changeDateType(caseData.getAppDate()) , fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "給付別："+caseData.getPagePayKindStr() , fontCh12, 0, LEFT);         
 
@@ -208,13 +210,15 @@ public class SimplifySurvivorPaymentRpt01Report extends ReportBase {
             addColumn(table, 15, 1, "符合日期："+caseData.getEvtEligibleDateStr(), fontCh12, 0, LEFT);
             
             addColumn(table, 15, 1, "傷病分類："+disabledData.getEvTypStr() , fontCh12, 0, LEFT);
-            addColumn(table, 15, 1, "傷病原因："+disabledData.getEvCode() , fontCh12, 0, LEFT);
-            addColumn(table, 15, 1, "受傷部位："+disabledData.getCriInPartStr() , fontCh12, 0, LEFT);
-            addColumn(table, 15, 1, "屆齡日期："+caseData.getEvtExpireDateStr() , fontCh12, 0, LEFT);
+//            addColumn(table, 15, 1, "傷病原因："+disabledData.getEvCode() , fontCh12, 0, LEFT);
+//            addColumn(table, 15, 1, "受傷部位："+disabledData.getCriInPartStr() , fontCh12, 0, LEFT);
+            addColumn(table, 45, 1, "屆齡日期："+caseData.getEvtExpireDateStr() , fontCh12, 0, LEFT);
             
-            addColumn(table, 30, 1, "國際疾病代碼："+disabledData.getCriInJnmeStr() , fontCh12, 0, LEFT);
-            addColumn(table, 15, 1, "媒介物："+disabledData.getCriMedium() , fontCh12, 0, LEFT);
-            addColumn(table, 15, 1, "先核普通："+disabledData.getPrType() , fontCh12, 0, LEFT);
+//            addColumn(table, 30, 1, "國際疾病代碼："+disabledData.getCriInJnmeStr() , fontCh12, 0, LEFT);
+//            addColumn(table, 15, 1, "媒介物："+disabledData.getCriMedium() , fontCh12, 0, LEFT);
+            addColumn(table, 60, 1, "先核普通："+disabledData.getPrType() , fontCh12, 0, LEFT);
+            
+            addColumn(table, 60, 1, "來源受理編號：" + caseData.getApnoFm(), fontCh12, 0, LEFT);
             
             if(StringUtils.isBlank(caseData.getOldApNo())){
             	caseData.setOldApNo("");

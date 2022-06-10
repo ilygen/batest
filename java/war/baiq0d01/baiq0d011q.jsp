@@ -83,6 +83,7 @@
                             </display:column>
                             <display:column title="受理編號" headerClass="issuetitle_L" class="issueinfo" style="width:12%; text-align:left;">
                                 <c:out value="${listItem.apNoStrDisplay}" />&nbsp;
+                                <c:out value="${listItem.sysCode}" />&nbsp;
                             </display:column>
                             <display:column title="事故者姓名" headerClass="issuetitle_L" class="issueinfo" style="width:16%; text-align:left;">
                                 <c:out value="${listItem.evtName}" />&nbsp;

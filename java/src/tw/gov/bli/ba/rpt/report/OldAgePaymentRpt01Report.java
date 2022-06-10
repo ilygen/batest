@@ -158,8 +158,10 @@ public class OldAgePaymentRpt01Report extends ReportBase {
             
             // 表頭
             Table table = addHeader(userData, caseData, false);
+            // 受理編號 + 系統類別
+            String apnoAndSysCode = caseData.getApNoStrDisplay().concat(" ").concat(caseData.getSysCode());
             
-            addColumn(table, 20, 1, "受理編號："+caseData.getApNoStrDisplay() , fontCh12, 0, LEFT);
+            addColumn(table, 20, 1, "受理編號：" + apnoAndSysCode, fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "事故日期/申請日期："+DateUtil.changeDateType(caseData.getEvtJobDate())+"/"+DateUtil.changeDateType(caseData.getAppDate())  , fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "給付別："+caseData.getPagePayKindStr() , fontCh12, 0, LEFT);         
 
