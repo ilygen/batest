@@ -135,10 +135,7 @@ public class OldAgePaymentRpt01Report extends ReportBase {
         //460, 795, writer.getCurrentPageNumber(), "第 ", " 頁，共 ", 11, 150, 50,bfKChinese
         addColumn(table, 60, 1, "給付查詢", fontCh18, 0, CENTER);
         
-        // 受理編號 + 系統類別
-        String apnoAndSysCode = caseData.getApNoStrDisplay().concat(" ").concat(caseData.getSysCode());
-        
-        addColumn(table, 10, 1, "受理編號：" + apnoAndSysCode, fontCh8, 0, LEFT);
+        addColumn(table, 10, 1, "受理編號："+caseData.getApNoStrDisplay() , fontCh8, 0, LEFT);
         addColumn(table, 20, 1, "事故者姓名："+caseData.getEvtName(), fontCh8, 0, LEFT);
         addColumn(table, 15, 1, "印表人員："+userData.getEmpNo()  , fontCh8, 0, RIGHT);
         addColumn(table, 15, 1, "   印表日期：" + printDate, fontCh8, 0, LEFT);
@@ -161,10 +158,8 @@ public class OldAgePaymentRpt01Report extends ReportBase {
             
             // 表頭
             Table table = addHeader(userData, caseData, false);
-            // 受理編號 + 系統類別
-            String apnoAndSysCode = caseData.getApNoStrDisplay().concat(" ").concat(caseData.getSysCode());
             
-            addColumn(table, 20, 1, "受理編號：" + apnoAndSysCode, fontCh12, 0, LEFT);
+            addColumn(table, 20, 1, "受理編號："+caseData.getApNoStrDisplay() , fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "事故日期/申請日期："+DateUtil.changeDateType(caseData.getEvtJobDate())+"/"+DateUtil.changeDateType(caseData.getAppDate())  , fontCh12, 0, LEFT);
             addColumn(table, 20, 1, "給付別："+caseData.getPagePayKindStr() , fontCh12, 0, LEFT);         
 

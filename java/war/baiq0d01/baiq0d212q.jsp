@@ -384,8 +384,8 @@
                                             <c:out value="${detail.evtExpireDateStr}" />&nbsp;
                                         </td>
                                     </tr>
+                                    <%--
                                     <tr>
-                                        <%--
                                         <td id="iss" colspan="2">
                                             <span class="issuetitle_L_down">國際疾病代碼：</span>
                                             <c:out value="${disabledData.criInJnmeStr}" />&nbsp;
@@ -394,12 +394,12 @@
                                             <span class="issuetitle_L_down">媒介物：</span>
                                             <c:out value="${disabledData.criMedium}" />&nbsp;
                                         </td>
-                                        --%>
                                         <td id="iss" colspan="4">
                                             <span class="issuetitle_L_down">先核普通： </span>
                                             <c:out value="${disabledData.prType}" />&nbsp;
                                         </td>
                                     </tr>
+                                    --%>
                                     <tr>
                                     	<td id="iss" colspan="4">
                                             <span class="issuetitle_L_down">來源受理編號：</span>

@@ -244,7 +244,6 @@
                                         <td width="33%">
                                             <span class="issuetitle_L_down">受理編號：</span>
                                             <c:out value="${detail.apNoStrDisplay}" />
-                                            <c:out value="${detail.sysCode}" />
                                         </td>                   
                                         <td width="33%">
                                             <span class="issuetitle_L_down">事故日期／申請日期：</span>

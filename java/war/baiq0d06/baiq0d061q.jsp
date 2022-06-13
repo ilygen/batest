@@ -83,7 +83,9 @@
                             </display:column>
                             <display:column title="受理編號" style="width:13%; text-align:center;">
                                 <c:out value="${listItem.apNoStrDisplay}" />&nbsp;
-                                <c:out value="${listItem.sysCode}" />&nbsp;
+                                <c:if test='${(listItem.pagePayKind ne "L")}'>
+                                	<c:out value="${listItem.sysCode}" />&nbsp;
+                                </c:if>
                             </display:column>
                             <display:column title="事故者姓名" style="width:10%; text-align:center;">
                                 <c:out value="${listItem.evtName}" />&nbsp;
