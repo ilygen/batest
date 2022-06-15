@@ -231,7 +231,7 @@
             $("cbxSameAsApply").checked = false;
             $("cbxSameAsApply").disabled = true;
             $("lsUbno").value =  "";
-            $("prType").disabled = false;
+            //$("prType").disabled = false;
         }
         else {
             $("cbxSameAsApply").disabled = false;
@@ -245,16 +245,16 @@
                     $("cbxSameAsApply").checked = false;
                 }
             }
-            $("prType").checked = false;
-            $("prType").disabled = true;
+            //$("prType").checked = false;
+            //$("prType").disabled = true;
         }
         if ($F("evTyp") == "2") {
-            $("ocaccIdentMk").disabled = false;
-            $("ocaccIdentMk").value = $("oldOcaccIdentMk").value;
+            //$("ocaccIdentMk").disabled = false;
+            //$("ocaccIdentMk").value = $("oldOcaccIdentMk").value;
         }
         else {
-            $("ocaccIdentMk").value = "";
-            $("ocaccIdentMk").disabled = true;
+            //$("ocaccIdentMk").value = "";
+            //$("ocaccIdentMk").disabled = true;
         }
         
         doCutAmtChange();
@@ -446,6 +446,17 @@
     
     <%-- 申請傷病分類 && 傷病分類 檢核 --%>
     function checkEvTyp() {
+    	if ('1,2'.includes($F('evAppTyp'))) {
+    		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evAppTyp" />」僅得輸入「3」或「4」');
+    		$("evAppTyp").focus();
+    		return false;
+    	}
+    	if ('1,2'.includes($F('evTyp'))) {
+    		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evTyp" />」僅得輸入「3」或「4」');
+    		$("evTyp").focus();
+    		return false;
+    	}
+    	
         if($F("evTyp") == "1"){
             if (Trim($F("lsUbno")).length == 0) {
                 alert('請輸入「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.lsUbno" />」');
@@ -461,6 +472,7 @@
             }
         }
         
+       	<%--
         if ($F("evTyp") == "1" || $F("evTyp") == "2") {
             if ($F("evTyp") == "1") {
                 if (Trim($F("evCode")).length == 0) {
@@ -517,6 +529,7 @@
                 }
             }
         }
+		--%>
 
         return true;
     }
@@ -944,12 +957,18 @@
     }
 
     function initAll() {
+    	// 隱藏職災欄位
+    	var hiddenColumns = document.getElementsByClassName('col_hidden');
+    	for (var e of hiddenColumns) {
+    		e.style.display = 'none';
+    	}
+    	
         doEvtNationTpeChange();
         doEvtNationCodeChange();
         initRehcMk();
         doCloseCauseChange();
         doHosIdChange();
-        doOcAccHosIdChange();
+        //doOcAccHosIdChange();
         doEvTypChange();
         doCutAmtChange();
         checkIdnoExist();
@@ -1344,6 +1363,7 @@
                                 <td width="33%">
                                     <span class="issuetitle_L_down">受理編號：</span>
                                     <bean:write name="DisabledApplicationDataUpdateForm" property="apNoString" />
+                                    <c:out value="${caseData.sysCode}" />
                                 </td>
                                 <td width="33%">
                                     <c:if test="${caseData.payKind eq '36'}">
@@ -1564,17 +1584,17 @@
                                     </html:select>
                                     <html:hidden styleId="oldEvAppTyp" property="oldEvAppTyp" />
                                 </td>
-                                <td id="iss">
-                                    &nbsp;
+                                <td id="iss" colspan="2">
+                                    &nbsp;&nbsp;
                                     <span class="needtxt">＊</span>
-                                    <span class="issuetitle_L_down">傷病分類：</span>
+                                    <span class="issuetitle_L_down">核定傷病分類：</span>
                                     <html:select styleId="evTyp" property="evTyp" tabindex="20" onchange="doEvTypChange();doEvTypAfterChange();" onblur="doEvTypChange();">
                                         <html:option value="">請選擇...</html:option>
                                         <html:optionsCollection label="paramName" value="paramCode" property="evTypOptionList" />
                                     </html:select>
                                     <html:hidden styleId="oldEvTyp" property="oldEvTyp" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">傷病原因：</span>
                                     <html:text styleId="evCode" property="evCode" styleClass="textinput" size="5" maxlength="2" tabindex="22" />
@@ -1582,7 +1602,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">受傷部位：</span>
                                     <html:text styleId="criInPart1" property="criInPart1" styleClass="textinput" size="3" maxlength="3" tabindex="24" onblur="this.value = asc(this.value).toUpperCase();" onkeyup="this.value = asc(this.value).toUpperCase();" />
@@ -1594,13 +1614,13 @@
                                     <html:hidden styleId="oldCriInPart2" property="oldCriInPart2" />
                                     <html:hidden styleId="oldCriInPart3" property="oldCriInPart3" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">媒 介 物：</span>
                                     <html:text styleId="criMedium" property="criMedium" styleClass="textinput" size="3" maxlength="3" tabindex="30" />
                                     <html:hidden styleId="oldCriMedium" property="oldCriMedium" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" colspan="3">
                                 	&nbsp;                     
                                     <span class="needtxt">＊</span>
                                     <span class="issuetitle_L_down">年金請領資格：</span>
@@ -1679,7 +1699,7 @@
                                     <html:hidden styleId="oldDoctorName2" property="oldDoctorName2" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="col_hidden">
                                 <td id="iss">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">職病醫療院所代碼：</span>
@@ -1716,33 +1736,31 @@
                                     <html:hidden styleId="oldCriInJnme4" property="oldCriInJnme4" />
                                 </td>
                             </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <span style="width: 100%; border-bottom-width: 0.05em; border-bottom-style: dotted; border-bottom-color: #666666;padding-bottom:3px; padding-top:4px;">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- html:multibox styleId="cbxRehcMk" property="cbxRehcMk" value="Y" tabindex="41" / -->
-                                            <span class="issuetitle_L_down">重新查核失能程度註記(<c:out value="${DisabledApplicationDataUpdateForm.rehcYmString}" />)：</span>
-                                            <span class="formtxt">
-                                                <html:radio styleId="rehcMk1" property="rehcMk" value="1" tabindex="68" onblur="doRehcMkChange();" onchange="doRehcMkChange();" onclick="doRehcMkChange();" />自動遞延61個月
-                                                <html:radio styleId="rehcMk2" property="rehcMk" value="2" tabindex="70" onblur="doRehcMkChange();" onchange="doRehcMkChange();" onclick="doRehcMkChange();" />手動調整
-                                                <div id="divRehcYm">
-                                                                                                                                                           ：
-                                                    <html:text styleId="rehcYear" property="rehcYear" styleClass="textinput" size="3" maxlength="3" tabindex="72" />年
-                                                    <html:text styleId="rehcMonth" property="rehcMonth" styleClass="textinput" size="2" maxlength="2" tabindex="74" />月
-                                                </div>
-                                                <c:if test="${caseData.rehcOpen eq 'Y'}">
-                                                     <input type="button" id="btnRehc" name="btnRehc" tabindex="75" class="button_120" value="重新查核失能程度" onclick="$('page').value='2'; $('method').value='doRehc'; document.DisabledApplicationDataUpdateForm.submit();">
-                                                </c:if>
-                                            </span>
-                                            <!-- html:hidden styleId="oldCbxRehcMk" property="oldCbxRehcMk" / -->
-                                            <html:hidden styleId="oldRehcMk" property="oldRehcMk" />
-                                            <html:hidden styleId="oldRehcYear" property="oldRehcYear" />
-                                            <html:hidden styleId="oldRehcMonth" property="oldRehcMonth" />
-                                        </span>
-                                    </td>
-                                </tr>
+							<tr>
+							    <td id="iss" colspan="3">
+								     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								     <!-- html:multibox styleId="cbxRehcMk" property="cbxRehcMk" value="Y" tabindex="41" / -->
+								     <span class="issuetitle_L_down">重新查核失能程度註記(<c:out value="${DisabledApplicationDataUpdateForm.rehcYmString}" />)：</span>
+								     <span class="formtxt">
+								         <html:radio styleId="rehcMk1" property="rehcMk" value="1" tabindex="68" onblur="doRehcMkChange();" onchange="doRehcMkChange();" onclick="doRehcMkChange();" />自動遞延61個月
+								         <html:radio styleId="rehcMk2" property="rehcMk" value="2" tabindex="70" onblur="doRehcMkChange();" onchange="doRehcMkChange();" onclick="doRehcMkChange();" />手動調整
+								         <div id="divRehcYm">
+								                                                                                                                    ：
+								             <html:text styleId="rehcYear" property="rehcYear" styleClass="textinput" size="3" maxlength="3" tabindex="72" />年
+								             <html:text styleId="rehcMonth" property="rehcMonth" styleClass="textinput" size="2" maxlength="2" tabindex="74" />月
+								         </div>
+								         <c:if test="${caseData.rehcOpen eq 'Y'}">
+								              <input type="button" id="btnRehc" name="btnRehc" tabindex="75" class="button_120" value="重新查核失能程度" onclick="$('page').value='2'; $('method').value='doRehc'; document.DisabledApplicationDataUpdateForm.submit();">
+								         </c:if>
+								     </span>
+								     <!-- html:hidden styleId="oldCbxRehcMk" property="oldCbxRehcMk" / -->
+								     <html:hidden styleId="oldRehcMk" property="oldRehcMk" />
+								     <html:hidden styleId="oldRehcYear" property="oldRehcYear" />
+								     <html:hidden styleId="oldRehcMonth" property="oldRehcMonth" />
+							    </td>
+							</tr>
                             <tr>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">符合第20條之1</span>
                                     <html:hidden styleId="oldOcaccIdentMk" property="oldOcaccIdentMk" />
@@ -1752,14 +1770,14 @@
                                          <html:option styleId="ocaccIdentMk2" value="2">未領取老年</html:option>
                                     </html:select>
                                 </td>
-                                <td id="iss">
+                                <td id="iss" colspan="3">
                                     &nbsp;&nbsp;
                                     <span class="needtxt">＊</span>
                                     <span class="issuetitle_L_down">核定格式：</span>
                                     <html:text styleId="notifyForm" property="notifyForm" styleClass="textinput" size="5" maxlength="3" tabindex="78" />
                                     <html:hidden styleId="oldNotifyForm" property="oldNotifyForm" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     <html:multibox styleId="prType" property="prType" value="Y" tabindex="80" />
                                     <span class="issuetitle_L_down">先核普通</span>
                                     <html:hidden styleId="oldPrType" property="oldPrType" />
@@ -1772,7 +1790,7 @@
                                     <html:text styleId="cutAmt" property="cutAmt" styleClass="textinput" size="8" maxlength="8" tabindex="82" onblur="doCutAmtChange();" />
                                     <html:hidden styleId="oldCutAmt" property="oldCutAmt" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" class="col_hidden">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">己領職災增給金額：</span>
                                     <html:text styleId="ocAccaddAmt" property="ocAccaddAmt" styleClass="textinput" size="8" maxlength="7" tabindex="84" />
@@ -1783,6 +1801,13 @@
                                     <span class="issuetitle_L_down">扣除日數：</span>
                                     <html:text styleId="deductDay" property="deductDay" styleClass="textinput" size="4" maxlength="4" tabindex="86" />
                                     <html:hidden styleId="oldDeductDay" property="oldDeductDay" />
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td id="iss" colspan="3">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="issuetitle_L_down">來源受理編號：</span>
+                                    <c:out value="${caseData.apnoFm}" />
                                 </td>
                             </tr>
                             <tr>

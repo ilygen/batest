@@ -42,6 +42,8 @@ public class DisabledApplicationDataUpdateCase implements Serializable {
     private String dupeIdnNoMk; // 身分證重號註記
     private String interValMonth;// 發放方式
     private String mapNo;// 相關受理編號
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
 
     // BAAPPEXPAND
     private BigDecimal baappexpandId; // 資料編號
@@ -933,6 +935,22 @@ public class DisabledApplicationDataUpdateCase implements Serializable {
 
     public void setMonNotifyingMk(String monNotifyingMk) {
         this.monNotifyingMk = monNotifyingMk;
-    }	
+    }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}	
 
 }
