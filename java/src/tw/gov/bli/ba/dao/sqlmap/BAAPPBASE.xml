@@ -681,6 +681,11 @@
         <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
+    <resultMap id="BaappbaseDataUpdateCaseAddSysCodeAndApnoFmResult" class="tw.gov.bli.ba.update.cases.BaappbaseDataUpdateCase" extends="BaappbaseDataUpdateCaseResult">
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
     <resultMap id="BaappbaseDataUpdateCaseForOldAgeDeathRepayResult" class="tw.gov.bli.ba.update.cases.BaappbaseDataUpdateCase">
         <result column="BAAPPBASEID"      property="baappbaseId"     jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -875,6 +880,8 @@
         <result column="UPDUSER"          property="updUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UPDTIME"          property="updTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
 
     <resultMap id="OncePayDataResult" class="Baappbase">
@@ -6486,7 +6493,7 @@ UNION
            ORDER BY T.SEQNO
     </select>
     
-    <select id="selectDisabledPayeeDataForList" resultMap="BaappbaseDataUpdateCaseResult">
+    <select id="selectDisabledPayeeDataForList" resultMap="BaappbaseDataUpdateCaseAddSysCodeAndApnoFmResult">
         SELECT BAAPPBASEID,  
                APNO,                     
                SEQNO,                    
@@ -6581,7 +6588,9 @@ UNION
                CRTTIME,                   
                UPDUSER,                   
                UPDTIME, 
-               OLDAPLDPT
+               OLDAPLDPT,
+               SYSCODE,
+               APNOFM
           FROM BAAPPBASE 
          WHERE BENPAYMK = '1'
            AND PROCSTAT  in  ('01', '10', '11', '12', '20','90')
@@ -6693,7 +6702,9 @@ UNION
                CRTTIME,                   
                UPDUSER,                   
                UPDTIME, 
-               OLDAPLDPT
+               OLDAPLDPT,
+               SYSCODE,
+               APNOFM
           FROM BAAPPBASE 
          WHERE PROCSTAT  in  ('01', '10', '11', '12', '20')
         <dynamic prepend="">

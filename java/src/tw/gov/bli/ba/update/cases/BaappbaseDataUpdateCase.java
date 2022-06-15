@@ -203,6 +203,8 @@ public class BaappbaseDataUpdateCase implements Serializable {
     private String specialAcc;// 專戶
 
     private String speAccDate;// 設定專戶日期
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
 
     public String getInterValMonth() {
         return interValMonth;
@@ -1844,5 +1846,21 @@ public class BaappbaseDataUpdateCase implements Serializable {
     public void setSpeAccDate(String speAccDate) {
         this.speAccDate = speAccDate;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 }
