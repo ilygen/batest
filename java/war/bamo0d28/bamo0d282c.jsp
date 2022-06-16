@@ -61,6 +61,7 @@
                                         <tr>
                                 			<td width="25%"><span class="issuetitle_L_down">受理編號：</span>
                                     			<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].apNoStrDisplay}" />
+                                    			<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].sysCode}" />
                                 			</td>
                                 			<td width="25%"><span class="issuetitle_L_down">給付別：</span>
                                     			<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].payCode}" />

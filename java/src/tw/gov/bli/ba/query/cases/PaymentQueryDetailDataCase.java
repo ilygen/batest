@@ -219,6 +219,8 @@ public class PaymentQueryDetailDataCase implements Serializable {
     private String nlWkMk; // 給付延伸主檔 (BAAPPEXPAND) - 普職註記
 
     private String rmp_Name; // 原住民羅馬拼音
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
 
     // BACHKFILE - 編審註記資料
     private List<DisabledApplicationDataUpdateCheckFileCase> checkFileList;
@@ -2509,4 +2511,21 @@ public class PaymentQueryDetailDataCase implements Serializable {
     public void setRmp_Name(String rmp_Name) {
         this.rmp_Name = rmp_Name;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
+    
 }

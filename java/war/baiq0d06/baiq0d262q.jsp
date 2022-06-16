@@ -235,6 +235,7 @@
                                         <td width="33%">
                                             <span class="issuetitle_L_down">受理編號：</span>
                                             <c:out value="${detail.apNoStrDisplay}" />
+                                            <c:out value="${detail.sysCode}" />
                                         </td>                   
                                         <td width="33%">
                                             <span class="issuetitle_L_down">事故日期／申請日期：</span>
@@ -359,6 +360,7 @@
                                             <span class="issuetitle_L_down">傷病分類：</span>
                                             <c:out value="${disabledData.evTypStr}" />&nbsp;
                                         </td>
+                                        <%--
                                         <td id="iss" width="25%">
                                             <span class="issuetitle_L_down">傷病原因：</span>
                                             <c:out value="${disabledData.evCode}" />&nbsp;
@@ -367,11 +369,13 @@
                                             <span class="issuetitle_L_down">受傷部位：</span>
                                             <c:out value="${disabledData.criInPartStr}" />&nbsp;
                                         </td>
-                                        <td id="iss" width="25%">
+                                        --%>
+                                        <td id="iss" colspan="3">
                                             <span class="issuetitle_L_down">屆齡日期：</span>
                                             <c:out value="${detail.evtExpireDateStr}" />&nbsp;
                                         </td>
                                     </tr>
+                                   	<%--
                                     <tr>
                                         <td id="iss" colspan="2">
                                             <span class="issuetitle_L_down">國際疾病代碼：</span>
@@ -381,9 +385,16 @@
                                             <span class="issuetitle_L_down">媒介物：</span>
                                             <c:out value="${disabledData.criMedium}" />&nbsp;
                                         </td>
-                                        <td id="iss" colspan="2">
+                                        <td id="iss" colspan="4">
                                             <span class="issuetitle_L_down">先核普通： </span>
                                             <c:out value="${disabledData.prType}" />&nbsp;
+                                        </td>
+                                    </tr>
+                                    --%>
+                                    <tr>
+                                    	<td id="iss" colspan="4">
+                                            <span class="issuetitle_L_down">來源受理編號：</span>
+                                            <c:out value="${detail.apnoFm}" />&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
@@ -564,14 +575,16 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td id="iss" colspan="2">
+                                        <td id="iss" colspan="4">
                                             <span class="issuetitle_L_down">普職註記：</span>
                                             <c:out value="${detail.nlWkMkStr}" />&nbsp;
-                                        </td>                   
+                                        </td>
+                                        <%--
                                         <td id="iss" colspan="2">
                                             <span class="issuetitle_L_down">加職註記：</span>
                                             <c:out value="${detail.adWkMkStr}" />&nbsp;
                                         </td>
+                                        --%>
                                     </tr>
                                     <tr>
                                         <td id="iss" width="25%">
