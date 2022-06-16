@@ -397,6 +397,12 @@ public class Baappbase implements Serializable {
 
     @LogField("CHECKIN")
     private String checkin; // 來源別(1:個人申辦  2:單位申辦)
+    
+    @LogField("SYSCODE")
+    private String sysCode;// 系統類別
+    
+    @LogField("APNOFM")
+    private String apnoFm;// 來源受理編號
 
     @LogField("MARGINAMT")
     private BigDecimal marginAmt;// 老年差額金
@@ -3232,5 +3238,21 @@ public class Baappbase implements Serializable {
     public void setCheckin(String checkin) {
         this.checkin = checkin;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 }

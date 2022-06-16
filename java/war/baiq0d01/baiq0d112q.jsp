@@ -245,8 +245,9 @@
                                 <table width="100%" border="0" cellpadding="2" cellspacing="2" class="px13">
                                     <tr>
                                         <td width="33%">
-                                            <span class="issuetitle_L_down">受理編號：</span>
+                                            <span class="issuetitle_L_down">受理編號1：</span>
                                             <c:out value="${detail.apNoStrDisplay}" />
+                                            <c:out value="${detail.sysCode}" />
                                         </td>                   
                                         <td width="33%">
                                             <span class="issuetitle_L_down">事故日期／申請日期：</span>
@@ -406,7 +407,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td id="iss"  width="25%">
+                                        <td id="iss" colspan="4">
                                             <span class="issuetitle_L_down">傷病分類：</span>
                                             <c:out value="${disabledData.evTyp}" />
                                             <c:if test="${disabledData.evTyp ne ''}">
@@ -414,6 +415,7 @@
                                             </c:if>
                                             <c:out value="${disabledData.evTypStr}" />&nbsp;
                                         </td>
+                                        <%--
                                         <td id="iss"  width="25%">
                                             <span class="issuetitle_L_down">傷病原因：</span>
                                             <c:out value="${disabledData.evCode}" />&nbsp;
@@ -426,6 +428,7 @@
                                             <span class="issuetitle_L_down">媒介物：</span>
                                             <c:out value="${disabledData.criMedium}" />&nbsp;
                                         </td>
+                                        --%>
                                     </tr>
                                     <tr>
                                         <td id="iss" colspan="2">
@@ -446,6 +449,7 @@
                                             </c:if>
                                         </td>
                                     </tr>
+                                    <%--
                                     <tr>
                                         <td id="iss" colspan="2">
                                             <span class="issuetitle_L_down">職病醫療院所代碼：</span>
@@ -455,7 +459,8 @@
                                             <span class="issuetitle_L_down">職病醫師姓名：</span>
                                             <c:out value="${disabledData.ocAccDoctorNameStr}" />&nbsp;
                                         </td>
-                                    </tr>                                    
+                                    </tr> 
+                                    --%>                                   
                                     <tr>
                                         
                                     </tr>
@@ -464,6 +469,7 @@
                                             <span class="issuetitle_L_down">重新查核失能程度年月：</span>
                                             <c:out value="${disabledData.rehcYmStr}" />&nbsp;
                                         </td>
+                                        <%--
                                         <td id="iss">
                                             <span class="issuetitle_L_down">符合第20條之1： </span>
                                             <c:out value="${disabledData.ocaccIdentMk}" />&nbsp;
@@ -472,12 +478,14 @@
                                             <span class="issuetitle_L_down">先核普通： </span>
                                             <c:out value="${disabledData.prType}" />&nbsp;
                                         </td>
-                                        <td id="iss">
+                                        --%>
+                                        <td id="iss" colspan="3">
                                             <span class="issuetitle_L_down">扣除日數： </span>
                                             <fmt:formatNumber value="${disabledData.deductDay}" />
                                             <c:if test="${disabledData.deductDay ne null}">天</c:if>&nbsp;
                                         </td>
                                     </tr>
+                                    <%--
                                     <tr>
                                         <td id="iss" colspan="2">
                                             <span class="issuetitle_L_down">職災補償一次金／6個月平均薪資：</span>
@@ -497,6 +505,13 @@
                                         <td id="iss">
                                             <span class="issuetitle_L_down">實發職災一次金：</span>
                                             <fmt:formatNumber value="${occAccData.aplpayAmt}" />&nbsp;
+                                        </td>
+                                    </tr>
+                                    --%>
+                                    <tr>
+                                        <td id="iss" colspan="4">
+                                            <span class="issuetitle_L_down">來源受理編號：</span>
+                                            <c:out value="${detail.apnoFm}" />&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
