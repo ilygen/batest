@@ -446,12 +446,8 @@
     
     <%-- 申請傷病分類 && 傷病分類 檢核 --%>
     function checkEvTyp() {
-    	if ('1,2'.includes($F('evAppTyp'))) {
-    		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evAppTyp" />」僅得輸入「3」或「4」');
-    		$("evAppTyp").focus();
-    		return false;
-    	}
-    	if ('1,2'.includes($F('evTyp'))) {
+    	// 核定傷病分類僅得輸入3或4
+    	if ('1,2'.indexOf($F('evTyp')) > -1) {
     		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evTyp" />」僅得輸入「3」或「4」');
     		$("evTyp").focus();
     		return false;
@@ -957,12 +953,6 @@
     }
 
     function initAll() {
-    	// 隱藏職災欄位
-    	var hiddenColumns = document.getElementsByClassName('col_hidden');
-    	for (var e of hiddenColumns) {
-    		e.style.display = 'none';
-    	}
-    	
         doEvtNationTpeChange();
         doEvtNationCodeChange();
         initRehcMk();
@@ -1594,7 +1584,7 @@
                                     </html:select>
                                     <html:hidden styleId="oldEvTyp" property="oldEvTyp" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">傷病原因：</span>
                                     <html:text styleId="evCode" property="evCode" styleClass="textinput" size="5" maxlength="2" tabindex="22" />
@@ -1602,7 +1592,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">受傷部位：</span>
                                     <html:text styleId="criInPart1" property="criInPart1" styleClass="textinput" size="3" maxlength="3" tabindex="24" onblur="this.value = asc(this.value).toUpperCase();" onkeyup="this.value = asc(this.value).toUpperCase();" />
@@ -1614,7 +1604,7 @@
                                     <html:hidden styleId="oldCriInPart2" property="oldCriInPart2" />
                                     <html:hidden styleId="oldCriInPart3" property="oldCriInPart3" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">媒 介 物：</span>
                                     <html:text styleId="criMedium" property="criMedium" styleClass="textinput" size="3" maxlength="3" tabindex="30" />
@@ -1699,7 +1689,7 @@
                                     <html:hidden styleId="oldDoctorName2" property="oldDoctorName2" />
                                 </td>
                             </tr>
-                            <tr class="col_hidden">
+                            <tr style="display: none;">
                                 <td id="iss">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">職病醫療院所代碼：</span>
@@ -1760,7 +1750,7 @@
 							    </td>
 							</tr>
                             <tr>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">符合第20條之1</span>
                                     <html:hidden styleId="oldOcaccIdentMk" property="oldOcaccIdentMk" />
@@ -1777,7 +1767,7 @@
                                     <html:text styleId="notifyForm" property="notifyForm" styleClass="textinput" size="5" maxlength="3" tabindex="78" />
                                     <html:hidden styleId="oldNotifyForm" property="oldNotifyForm" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     <html:multibox styleId="prType" property="prType" value="Y" tabindex="80" />
                                     <span class="issuetitle_L_down">先核普通</span>
                                     <html:hidden styleId="oldPrType" property="oldPrType" />
@@ -1790,7 +1780,7 @@
                                     <html:text styleId="cutAmt" property="cutAmt" styleClass="textinput" size="8" maxlength="8" tabindex="82" onblur="doCutAmtChange();" />
                                     <html:hidden styleId="oldCutAmt" property="oldCutAmt" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">己領職災增給金額：</span>
                                     <html:text styleId="ocAccaddAmt" property="ocAccaddAmt" styleClass="textinput" size="8" maxlength="7" tabindex="84" />

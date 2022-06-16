@@ -403,12 +403,8 @@
 
     <%-- 申請傷病分類 && 傷病分類 檢核 --%>
     function checkEvTyp() {
-    	if ('1,2'.includes($F('evAppTyp'))) {
-    		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evAppTyp" />」僅得輸入「3」或「4」');
-    		$("evAppTyp").focus();
-    		return false;
-    	}
-    	if ('1,2'.includes($F('evTyp'))) {
+    	// 核定傷病分類僅得輸入3或4
+    	if ('1,2'.indexOf($F('evTyp')) > -1) {
     		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evTyp" />」僅得輸入「3」或「4」');
     		$("evTyp").focus();
     		return false;
@@ -706,12 +702,6 @@
     }        
 
     function initAll() {
-    	// 隱藏職災欄位
-    	var hiddenColumns = document.getElementsByClassName('col_hidden');
-    	for (var e of hiddenColumns) {
-    		e.style.display = 'none';
-    	}
-    	
         doEvtNationTpeChange();
         doEvtNationCodeChange();
         doCloseCauseChange();
@@ -1208,14 +1198,14 @@
                                     </html:select>
                                     <html:hidden styleId="oldEvTyp" property="oldEvTyp" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">傷病原因：</span>
                                     <html:text styleId="evCode" property="evCode" styleClass="textinput" size="5" maxlength="2" tabindex="22" />
                                     <html:hidden styleId="oldEvCode" property="oldEvCode" />
                                 </td>
                             </tr>
-                            <tr class="col_hidden">
+                            <tr style="display: none;">
                                 <td id="iss">
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">受傷部位：</span>
@@ -1236,7 +1226,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">國際疾病代碼：</span>
                                     <html:text styleId="criInJnme1" property="criInJnme1" styleClass="textinput" size="30" maxlength="30" tabindex="36" onblur="this.value = asc(this.value).toUpperCase();" onkeyup="this.value = asc(this.value).toUpperCase();" />
@@ -1265,7 +1255,7 @@
                                     <html:text styleId="notifyForm" property="notifyForm" styleClass="textinput" size="5" maxlength="3" tabindex="47" />
                                     <html:hidden styleId="oldNotifyForm" property="oldNotifyForm" />
                                 </td>
-                                <td id="iss" class="col_hidden">
+                                <td id="iss" style="display: none;">
                                     <html:multibox styleId="prType" property="prType" value="Y" tabindex="48" />
                                     <span class="issuetitle_L_down">先核普通</span>
                                     <html:hidden styleId="oldPrType" property="oldPrType" />
