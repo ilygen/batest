@@ -101,6 +101,8 @@ public class DisableReviewRpt01Case implements Serializable {
     private String appMonth;// 平均薪資月數
     private String realAvgMon;// 實際均薪月數
     private String checkin; // 來源別(1:個人申辦  2:單位申辦)
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
     // ]
     private String specialAcc;// 專戶
     // 受款人資料
@@ -1547,6 +1549,22 @@ public class DisableReviewRpt01Case implements Serializable {
         }
         return "";
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 	/**
 	 * @return the disasterOncePayList

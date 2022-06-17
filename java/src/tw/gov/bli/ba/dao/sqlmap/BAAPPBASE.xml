@@ -279,6 +279,8 @@
         <result column="ONCEISSUEAMT"     property="onceIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="MARGINAMT"        property="marginAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="CHECKIN"          property="checkin"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <!-- DisabledAnnuityReceipt begin-->
@@ -1673,6 +1675,8 @@
         <result column="INTERVALMONTH"    property="interValMonth"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UNQUALIFIEDCAUSE" property="unqualifiedCause" jdbcType="VARCHAR" javaType="java.lang.String" nullValue="" />
         <result column="CHECKIN"          property="checkin"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     
@@ -14642,7 +14646,9 @@ UNION
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
                A.MARGINAMT,
-               A.CHECKIN
+               A.CHECKIN,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -15390,7 +15396,9 @@ UNION
                A.SPEACCDATE,  
                A.INTERVALMONTH,
                A.UNQUALIFIEDCAUSE,
-               A.CHECKIN
+               A.CHECKIN,
+               A.SYSCODE,
+               A.APNOFM
           FROM BAAPPBASE A             
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
