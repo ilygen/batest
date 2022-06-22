@@ -206,6 +206,8 @@ public class SurvivorPayeeDataUpdateCase implements Serializable{
     private String schoolCodeOption; //學校代碼 下單選單
     
     private String unqualifiedCause; // 不合格原因
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
 
 	public String getBaappexpandId() {
 		return baappexpandId;
@@ -1793,5 +1795,21 @@ public class SurvivorPayeeDataUpdateCase implements Serializable{
     public void setUnqualifiedCause(String unqualifiedCause) {
         this.unqualifiedCause = unqualifiedCause;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 }

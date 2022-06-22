@@ -28,6 +28,7 @@ public class PaymentQueryMasterCase implements Serializable {
     private String payKind;// 給付別
     private String secrecy; // 是否保密
     private String detailLock; // 是否可查看明細資料
+    private String sysCode;// 系統類別
 
     // 頁面顯示轉換
     // [
@@ -223,5 +224,13 @@ public class PaymentQueryMasterCase implements Serializable {
     public void setDetailLock(String detailLock) {
         this.detailLock = detailLock;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
 
 }

@@ -1677,6 +1677,7 @@
               <tr>
                 <td width="25%"><span class="issuetitle_L_down">受理編號：</span>
                 	<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].apNoStrDisplay}" />
+                	<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].sysCode}" />
                 </td>
                 <td width="25%"><span class="issuetitle_L_down">給付別：</span>
                 	<c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].payCode}" />
@@ -2129,7 +2130,14 @@
                       </html:select>
                   </td>           
                                 		  
-                </tr>
+              </tr>
+              <tr>
+                  <td id="iss" colspan="3">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="issuetitle_L_down">來源受理編號：</span>
+                      <c:out value="${SurvivorPayeeEvtDataUpdateQueryCase[0].apnoFm}" />
+                  </td>
+              </tr>
 			  <tr>
                   <td id="iss" colspan="3">
                       <table width="100%" border="0" cellpadding="0" cellspacing="0" class="px13">

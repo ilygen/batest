@@ -2334,7 +2334,7 @@
                OLDRATE,     
                OLDRATESDATE,
                OLDRATEEDATE,
-               ISSUEAMT,    
+               SUM(ISSUEAMT) OVER (PARTITION BY APNO) ISSUEAMT,
                APLPAYAMT,   
                APLPAYMK,    
                APLPAYDATE,  
@@ -2347,7 +2347,7 @@
                OFFSETAMT,
                COMPENAMT,
                DLINEDATE,
-               BEFISSUEAMT
+               SUM(BEFISSUEAMT) OVER (PARTITION BY APNO) BEFISSUEAMT
           From BADAPR A   
         Where A.APNO = #apNo:VARCHAR#
           And A.SEQNO = '0000'
@@ -2367,8 +2367,7 @@
                               And D.SEQNO = '0000'
                               And D.ISSUYM = #issuYm:VARCHAR#      
                          )
-        And Trim(A.SUPRECMK) Is Null
-        And RowNum = 1     
+        And Trim(A.SUPRECMK) Is Null   
     </select>
     
     <select id="selectReportReplaceDataTotal" resultClass="java.util.HashMap">
