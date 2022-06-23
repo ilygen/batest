@@ -279,6 +279,9 @@
         <result column="ONCEISSUEAMT"     property="onceIssueAmt"    jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="MARGINAMT"        property="marginAmt"       jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="CHECKIN"          property="checkin"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
+    <resultMap id="BAAPPBASEResultForDisableReviewRpt" class="Baappbase" extends="BAAPPBASEResultForOldAgeReviewRpt">
         <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
@@ -14532,7 +14535,7 @@ UNION
         ORDER BY D.APNO
     </select>
     
-    <select id="selectDisableReviewRpt01DataBy" resultMap="BAAPPBASEResultForOldAgeReviewRpt">
+    <select id="selectDisableReviewRpt01DataBy" resultMap="BAAPPBASEResultForDisableReviewRpt">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
