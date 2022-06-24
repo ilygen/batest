@@ -148,6 +148,8 @@ public class SurvivorReviewRpt01Case implements Serializable {
     private String receiveName;// 核定通知書受文者
 
     private String checkin; // 來源別(1:個人申辦  2:單位申辦)
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
     // ]
 
     // 遺屬資料
@@ -1877,6 +1879,22 @@ public class SurvivorReviewRpt01Case implements Serializable {
         }
         return "";
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 	/**
 	 * @return the disasterOncePayList

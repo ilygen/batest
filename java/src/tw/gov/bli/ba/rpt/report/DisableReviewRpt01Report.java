@@ -6060,7 +6060,10 @@ public class DisableReviewRpt01Report extends ReportBase {
         // ---
         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
         addColumn(table, 19, 1, "申請日期：" + caseData.getAppDateString(), fontCh12, 0, LEFT);
-        addColumn(table, 19, 1, "受理編號：" + caseData.getApNoString(), fontCh12, 0, LEFT);
+        
+        String apnoAndSysCode = caseData.getApNoString() + " " + caseData.getSysCode();
+        
+        addColumn(table, 19, 1, "受理編號：" + apnoAndSysCode, fontCh12, 0, LEFT);
         addBarcode39NoLabel(table, caseData.getApNo(), 75, 75, -5, 20, 1, 0, LEFT, MIDDLE);
         // ---
         // 首次給付年月為空 用給付年月起日帶入
@@ -6588,13 +6591,15 @@ public class DisableReviewRpt01Report extends ReportBase {
 
                 addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                 addColumn(table, 6, 1, "傷病分類", fontCh12, 0, LEFT);
-                addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
+                addColumn(table, 52, 1, "　", fontCh12, 0, LEFT);
+                /*
                 addColumn(table, 8, 1, "傷病原因", fontCh12, 0, LEFT);
                 addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
                 addColumn(table, 9, 1, "受傷部位", fontCh12, 0, LEFT);
                 addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
                 addColumn(table, 8, 1, "媒介物", fontCh12, 0, LEFT);
                 addColumn(table, 15, 1, "　", fontCh12, 0, LEFT);
+                 */
 
                 if (caseData.getDisableList() != null && disableList.size() > 0) {
 
@@ -6621,8 +6626,8 @@ public class DisableReviewRpt01Report extends ReportBase {
                         else
                             addColumn(table, 6, 1, " ", fontCh12, 0, LEFT); // 傷病分類
 
-                        addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
-
+                        addColumn(table, 52, 1, "　", fontCh12, 0, LEFT);
+                        /*
                         if (disData.getEvCode() != null)
                             addColumn(table, 9, 1, disData.getEvCode(), fontCh12, 0, LEFT); // 傷病原因
                         else
@@ -6644,7 +6649,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                             addColumn(table, 8, 1, " ", fontCh12, 0, LEFT); // 媒介物
 
                         addColumn(table, 15, 1, "　", fontCh12, 0, LEFT);
-
+						*/
                     }
 
                 }
@@ -6674,7 +6679,8 @@ public class DisableReviewRpt01Report extends ReportBase {
 
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     addColumn(table, 6, 1, " ", fontCh12, 0, LEFT); // 傷病分類
-                    addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
+                    addColumn(table, 52, 1, "　", fontCh12, 0, LEFT);
+                    /*
                     addColumn(table, 9, 1, " ", fontCh12, 0, LEFT); // 傷病原因
                     addColumn(table, 4, 1, "　", fontCh12, 0, LEFT);
                     addColumn(table, 8, 1, " ", fontCh12, 0, CENTER); // 受傷部位
@@ -6682,6 +6688,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 8, 1, " ", fontCh12, 0, CENTER); // 媒介物
 
                     addColumn(table, 15, 1, "　", fontCh12, 0, LEFT);
+                    */
 
                 }
 
@@ -6783,6 +6790,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                         addColumn(table, 10, 1, "　", fontCh12, 0, LEFT);
                         
                         // ---
+                        /*
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                         addColumn(table, 10, 1, "職病醫院代碼：", fontCh12, 0, LEFT);
                         if (disData.getOcAccHosId() != null)
@@ -6816,7 +6824,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                             addColumn(table, 40, 1, "　", fontCh12, 0, LEFT);
 
                         addColumn(table, 8, 1, "　", fontCh12, 0, LEFT);                        
-                        
+                        */
                     }
 
                 }
@@ -6837,6 +6845,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 40, 1, "　", fontCh12, 0, LEFT);
                     addColumn(table, 10, 1, "　", fontCh12, 0, LEFT);
                     // ---
+                    /*
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     addColumn(table, 8, 1, "職病醫院代碼：", fontCh12, 0, LEFT);
                     addColumn(table, 10, 1, "　", fontCh12, 0, LEFT);
@@ -6851,7 +6860,8 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     addColumn(table, 8, 1, "職病醫院名稱：", fontCh12, 0, LEFT);
                     addColumn(table, 40, 1, "　", fontCh12, 0, LEFT);
-                    addColumn(table, 10, 1, "　", fontCh12, 0, LEFT);                    
+                    addColumn(table, 10, 1, "　", fontCh12, 0, LEFT);
+                    */                    
                 }
 
                 // 分隔線
@@ -7041,6 +7051,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                         lineStatus = true;
 
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        /*
                         addColumn(table, 10, 1, "職災補償1次金", fontCh12, 0, LEFT);
                         addColumn(table, 1, 1, "/", fontCh12, 0, CENTER);
                         addColumn(table, 10, 1, "6個月平均薪資", fontCh12, 0, LEFT);
@@ -7049,14 +7060,16 @@ public class DisableReviewRpt01Report extends ReportBase {
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                         addColumn(table, 11, 1, "實發職災1次金", fontCh12, 0, LEFT);
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        */
                         addColumn(table, 8, 1, "扣除日數", fontCh12, 0, LEFT);
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 50, 1, " ", fontCh12, 0, LEFT);
 
                         Integer befIssueAmt = (occAcccData.getBefIssueAmt() == null) ? new Integer(0) : occAcccData.getBefIssueAmt().intValue();
                         Integer ocAccaddAmt = (occAcccData.getOcAccaddAmt() == null) ? new Integer(0) : occAcccData.getOcAccaddAmt().intValue();
                         Integer aplpayAmt = (befIssueAmt - ocAccaddAmt);
 
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        /*
                         if (occAcccData.getOldbAmt() != null)
                             addColumn(table, 6, 1, formatBigDecimalToInteger(occAcccData.getOldbAmt()), fontCh12, 0, RIGHT); // 職災補償1次金
                         else
@@ -7084,8 +7097,9 @@ public class DisableReviewRpt01Report extends ReportBase {
                             addColumn(table, 8, 1, "0", fontCh12, 0, RIGHT); // 職災實發1次金
 
                         addColumn(table, 5, 1, " ", fontCh12, 0, LEFT);
+                        */
                         addColumn(table, 4, 1, formatBigDecimalToInteger(disableList.get(0).getDeductDay()) != "" ? formatBigDecimalToInteger(disableList.get(0).getDeductDay()) : "0", fontCh12, 0, RIGHT); // 扣除天數
-                        addColumn(table, 6, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 54, 1, " ", fontCh12, 0, LEFT);
                     }
                 }
 
@@ -7100,11 +7114,13 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 10, 1, "已扣失能", fontCh12, 0, LEFT);
                     addColumn(table, 1, 1, "/", fontCh12, 0, LEFT);
                     addColumn(table, 11, 1, "未扣失能", fontCh12, 0, LEFT);
-                    addColumn(table, 2, 1, " ", fontCh12, 0, CENTER);
+                    addColumn(table, 25, 1, " ", fontCh12, 0, CENTER);
+                    /*
                     addColumn(table, 11, 1, "符合第20條之1", fontCh12, 0, LEFT);
                     addColumn(table, 2, 1, " ", fontCh12, 0, CENTER);
                     addColumn(table, 8, 1, "先核普通", fontCh12, 0, LEFT);
                     addColumn(table, 2, 1, " ", fontCh12, 0, CENTER);
+                    */
 
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
                     if (caseData.getCutAmt() != null && caseData.getCutAmt().compareTo(new BigDecimal(0)) != 0)
@@ -7135,7 +7151,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                         else
                             addColumn(table, 6, 1, "0", fontCh12, 0, RIGHT); // 未扣失能
                         addColumn(table, 5, 1, " ", fontCh12, 0, RIGHT);
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 25, 1, " ", fontCh12, 0, LEFT);
 
                     }
                     else {
@@ -7143,10 +7159,10 @@ public class DisableReviewRpt01Report extends ReportBase {
                         addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 已扣失能
                         addColumn(table, 1, 1, "/", fontCh12, 0, LEFT);
                         addColumn(table, 11, 1, " ", fontCh12, 0, LEFT); // 未扣失能
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 25, 1, " ", fontCh12, 0, LEFT);
 
                     }
-
+                    /*
                     if (caseData.getDisableList() != null && disableList.size() > 0) {
 
                         for (int disList = 0; disList < disableList.size(); disList++) {
@@ -7174,6 +7190,7 @@ public class DisableReviewRpt01Report extends ReportBase {
                     }
 
                     addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                    */
                 }
 
                 DisableReviewRpt01OncePayDataCase dieOncePayData = caseData.getDieOncePayData();
@@ -7268,6 +7285,24 @@ public class DisableReviewRpt01Report extends ReportBase {
                     addColumn(table, 4, 1, " ", fontCh12, 0, LEFT);
 
                 }
+
+                // 在塞來源受理編號資料前，塞空白行測試是否需換頁
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 來源受理編號區塊
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 10, 1, "來源受理編號：", fontCh12, 0, LEFT);
+                addColumn(table, 10, 1, caseData.getApnoFm(), fontCh12, 0, LEFT);
+                addColumn(table, 38, 1, " ", fontCh12, 0, LEFT);
+                
                 // 在塞事故者編審註記資料前, 先隨便塞空白行測試是否需換頁
                 addEmptyRow(table, 1);
                 if (lineStatus) {

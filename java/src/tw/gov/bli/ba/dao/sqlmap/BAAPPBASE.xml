@@ -281,6 +281,11 @@
         <result column="CHECKIN"          property="checkin"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
+    <resultMap id="BAAPPBASEResultForDisableReviewRpt" class="Baappbase" extends="BAAPPBASEResultForOldAgeReviewRpt">
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
     <!-- DisabledAnnuityReceipt begin-->
     <!-- [ -->
     <resultMap id="BAAPPBASEForDisabledResult" class="Baappbase">
@@ -681,6 +686,11 @@
         <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
+    <resultMap id="BaappbaseDataUpdateCaseAddSysCodeAndApnoFmResult" class="tw.gov.bli.ba.update.cases.BaappbaseDataUpdateCase" extends="BaappbaseDataUpdateCaseResult">
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
     <resultMap id="BaappbaseDataUpdateCaseForOldAgeDeathRepayResult" class="tw.gov.bli.ba.update.cases.BaappbaseDataUpdateCase">
         <result column="BAAPPBASEID"      property="baappbaseId"     jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
         <result column="APNO"             property="apNo"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
@@ -875,6 +885,8 @@
         <result column="UPDUSER"          property="updUser"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UPDTIME"          property="updTime"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="OLDAPLDPT"        property="oldAplDpt"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
 
     <resultMap id="OncePayDataResult" class="Baappbase">
@@ -1000,7 +1012,8 @@
         <result column="APPDATE"          property="appDate"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CASETYP"          property="caseTyp"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="PROCSTAT"         property="procStat"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="PAYKIND"          property="payKind"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
+        <result column="PAYKIND"          property="payKind"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <!-- Extend for Payment Query-->
@@ -1040,6 +1053,8 @@
         <result column="OLDEXTRARATE"       property="oldExtraRate"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />
         <result column="CLOSECAUSECODE"     property="closeCauseCode"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="INHERITORAMT"       property="inheritorAmt"      jdbcType="NUMERIC"  javaType="java.math.BigDecimal" nullValue="0" />
+        <result column="SYSCODE"            property="sysCode"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"             property="apnoFm"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="BaappbaseOccupationalDisasterResult" class="Baappbase" extends="BAAPPBASEResult">
@@ -1678,6 +1693,8 @@
         <result column="INTERVALMONTH"    property="interValMonth"   jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="UNQUALIFIEDCAUSE" property="unqualifiedCause" jdbcType="VARCHAR" javaType="java.lang.String" nullValue="" />
         <result column="CHECKIN"          property="checkin"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="SYSCODE"          property="sysCode"         jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="APNOFM"           property="apnoFm"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     
@@ -6491,7 +6508,7 @@ UNION
            ORDER BY T.SEQNO
     </select>
     
-    <select id="selectDisabledPayeeDataForList" resultMap="BaappbaseDataUpdateCaseResult">
+    <select id="selectDisabledPayeeDataForList" resultMap="BaappbaseDataUpdateCaseAddSysCodeAndApnoFmResult">
         SELECT BAAPPBASEID,  
                APNO,                     
                SEQNO,                    
@@ -6586,7 +6603,9 @@ UNION
                CRTTIME,                   
                UPDUSER,                   
                UPDTIME, 
-               OLDAPLDPT
+               OLDAPLDPT,
+               SYSCODE,
+               APNOFM
           FROM BAAPPBASE 
          WHERE BENPAYMK = '1'
            AND PROCSTAT  in  ('01', '10', '11', '12', '20','90')
@@ -6698,7 +6717,9 @@ UNION
                CRTTIME,                   
                UPDUSER,                   
                UPDTIME, 
-               OLDAPLDPT
+               OLDAPLDPT,
+               SYSCODE,
+               APNOFM
           FROM BAAPPBASE 
          WHERE PROCSTAT  in  ('01', '10', '11', '12', '20')
         <dynamic prepend="">
@@ -8364,7 +8385,8 @@ UNION
                T1.APPDATE,
                T1.CASETYP,
                T1.PROCSTAT,
-               T1.PAYKIND   
+               T1.PAYKIND,
+               T1.SYSCODE
           FROM (SELECT APNO,                               
                        EVTIDNNO,                           
                        EVTNAME, 
@@ -8374,7 +8396,8 @@ UNION
                        PROCSTAT,                     
                        BENIDNNO,
                        SEQNO,
-                       PAYKIND
+                       PAYKIND,
+                       SYSCODE
                   FROM BAAPPBASE
                  WHERE BENEVTREL NOT IN ('A','C','E','F','N','Z','O')
                 <dynamic prepend="">
@@ -8467,7 +8490,8 @@ UNION
                T1.APPDATE,
                T1.CASETYP,
                T1.PROCSTAT,
-               T1.PAYKIND
+               T1.PAYKIND,
+               T1.SYSCODE
           FROM (SELECT APNO,                               
                        EVTIDNNO,                           
                        EVTNAME, 
@@ -8477,7 +8501,8 @@ UNION
                        PROCSTAT,                     
                        BENIDNNO,
                        SEQNO,
-                       PAYKIND
+                       PAYKIND,
+                       SYSCODE
                   FROM BAAPPBASE T1
                  WHERE BENEVTREL NOT IN ('A','C','E','F','N','Z','O')
                 <dynamic prepend="">
@@ -8708,6 +8733,8 @@ UNION
                T1.ONCEPAYM,
                T1.ONCEISSUEAMT,
                T1.MARGINAMT,
+               T1.SYSCODE,
+               T1.APNOFM,
                T2.ANNUAMT,                        
                T2.MAXPAYYM,                       
                T2.MINPAYYM,                       
@@ -8878,7 +8905,9 @@ UNION
                        X.ONCETY,
                        X.ONCEPAYM,
                        X.ONCEISSUEAMT,
-                       X.MARGINAMT
+                       X.MARGINAMT,
+                       X.SYSCODE,
+                       X.APNOFM
                   FROM BAAPPBASE X 
                  WHERE X.APNO = #apNo:VARCHAR# 
                    AND X.SEQNO = '0000' 
@@ -14515,7 +14544,7 @@ UNION
         ORDER BY D.APNO
     </select>
     
-    <select id="selectDisableReviewRpt01DataBy" resultMap="BAAPPBASEResultForOldAgeReviewRpt">
+    <select id="selectDisableReviewRpt01DataBy" resultMap="BAAPPBASEResultForDisableReviewRpt">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
@@ -14651,7 +14680,9 @@ UNION
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
                A.MARGINAMT,
-               A.CHECKIN
+               A.CHECKIN,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
@@ -15399,7 +15430,9 @@ UNION
                A.SPEACCDATE,  
                A.INTERVALMONTH,
                A.UNQUALIFIEDCAUSE,
-               A.CHECKIN
+               A.CHECKIN,
+               A.SYSCODE,
+               A.APNOFM
           FROM BAAPPBASE A             
         <dynamic prepend="WHERE">
             <isNotParameterPresent>

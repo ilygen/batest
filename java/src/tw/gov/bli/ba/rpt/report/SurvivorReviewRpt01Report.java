@@ -6493,7 +6493,10 @@ public class SurvivorReviewRpt01Report extends ReportBase {
         // ---
         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
         addColumn(table, 19, 1, "申請日期：" + caseData.getAppDateString(), fontCh12, 0, LEFT);
-        addColumn(table, 19, 1, "受理編號：" + caseData.getApNoString(), fontCh12, 0, LEFT);
+        
+        String apnoAndSysCode = caseData.getApNoString() + " " + caseData.getSysCode();
+        
+        addColumn(table, 19, 1, "受理編號：" + apnoAndSysCode, fontCh12, 0, LEFT);
         addBarcode39NoLabel(table, caseData.getApNo(), 75, 75, -5, 20, 1, 0, LEFT, MIDDLE);
         // ---
         // 首次給付年月為空 用給付年月起日帶入
@@ -7007,7 +7010,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             addColumn(table, 8, 1, " ", fontCh12, 0, LEFT);
                             addColumn(table, 8, 1, " ", fontCh12, 0, LEFT);
                         }
-
+                        /*
                         if (disData.getEvCode() != null && StringUtils.isNotBlank(disData.getEvCode()))
                             addColumn(table, 8, 1, "傷病原因", fontCh12, 0, LEFT);
                         else
@@ -7022,11 +7025,12 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             addColumn(table, 10, 1, "媒介物", fontCh12, 0, LEFT);
                         else
                             addColumn(table, 10, 1, " ", fontCh12, 0, LEFT);
+                        */
 
                         /*
                          * if (disData.getCriInJnmeStr()!= null && StringUtils.isNotBlank(disData.getCriInJnmeStr())) addColumn(table, 25, 1, "國際疾病代碼", fontCh12, 0, LEFT); else addColumn(table, 25, 1, " ", fontCh12, 0, LEFT);
                          */
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 34, 1, " ", fontCh12, 0, LEFT);
                         // ---
 
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
@@ -7042,7 +7046,8 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             addColumn(table, 8, 1, " ", fontCh12, 0, LEFT);
                             addColumn(table, 8, 1, " ", fontCh12, 0, LEFT);
                         }
-
+                        
+                        /*
                         if (disData.getEvCode() != null && StringUtils.isNotBlank(disData.getEvCode()))
                             addColumn(table, 8, 1, disData.getEvCode(), fontCh12, 0, LEFT); // 傷病原因
                         else
@@ -7057,11 +7062,14 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                             addColumn(table, 10, 1, disData.getCriMedium(), fontCh12, 0, LEFT); // 媒介物
                         else
                             addColumn(table, 10, 1, " ", fontCh12, 0, LEFT); // 媒介物
+                        */
+                        
                         /*
                          * if (disData.getCriInJnmeStr()!= null && StringUtils.isNotBlank(disData.getCriInJnmeStr())) addColumn(table, 25, 1, disData.getCriInJnmeStr(), fontCh12, 0, LEFT); // 國際疾病代碼 else addColumn(table, 25, 1, " ", fontCh12, 0, LEFT); // 國際疾病代碼
                          */
-                        addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                        addColumn(table, 34, 1, " ", fontCh12, 0, LEFT);
 
+                        /*
                         // ---
                         // 20101124 kiyomi - start
                         addEmptyRow(table, 1);
@@ -7102,7 +7110,7 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                         else
                             addColumn(table, 56, 1, " ", fontCh12, 0, LEFT); // 國際疾病代碼
                         addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
-
+						*/
                     }
 
                 }
@@ -7240,6 +7248,23 @@ public class SurvivorReviewRpt01Report extends ReportBase {
                     addColumn(table, 8, 1, "0", fontCh12, 0, RIGHT); // 前次核定金額
                 
                 addColumn(table, 50, 1, " ", fontCh12, 0, RIGHT);
+                
+                // 在塞來源受理編號資料前，塞空白行測試是否需換頁
+                addEmptyRow(table, 1);
+
+                if (!writer.fitsPage(table)) { // 超過一頁所能顯示的行數
+                    deleteRow(table, 1);
+                    document.add(table);
+                    table = addHeader(caseData, false, earlyWarning);
+                }
+                else {
+                    deleteRow(table, 1);
+                }
+                // 來源受理編號區塊
+                addColumn(table, 2, 1, " ", fontCh12, 0, LEFT);
+                addColumn(table, 10, 1, "來源受理編號：", fontCh12, 0, LEFT);
+                addColumn(table, 10, 1, caseData.getApnoFm(), fontCh12, 0, LEFT);
+                addColumn(table, 38, 1, " ", fontCh12, 0, LEFT);
                 
                 // ---
                 addEmptyRow(table, 1);
