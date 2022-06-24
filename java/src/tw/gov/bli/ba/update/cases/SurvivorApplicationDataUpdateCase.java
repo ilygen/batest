@@ -40,6 +40,8 @@ public class SurvivorApplicationDataUpdateCase implements Serializable {
     private String interValMonth;//發放方式
     private String issuNotifyingMk; // 寄發核定通知書
     private String caseTyp; // 案件類別
+    private String sysCode;// 系統類別
+    private String apnoFm;// 來源受理編號
 
     // BAAPPEXPAND
     private BigDecimal baappexpandId; // 資料編號
@@ -608,5 +610,21 @@ public class SurvivorApplicationDataUpdateCase implements Serializable {
     public void setCaseTyp(String caseTyp) {
         this.caseTyp = caseTyp;
     }
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 }
