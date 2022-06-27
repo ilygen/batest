@@ -1059,9 +1059,12 @@ is
 
                                     PKG_BA_PRAPI.sp_BA_ManRemitAplpay(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym,v_i_paydate,v_i_procempno,v_i_procdeptid,v_i_procip,v_g_procMsgCode,v_g_procMsg);
 
+                                    /*
+                                    -- Removed by EthanChen 20220620 for babaweb-34
                                     if v_g_procMsgCode = '0' then
                                         PKG_BA_ProcCashier.sp_BA_expSingleChangRemit(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym,v_i_paydate,v_g_procMsgCode,v_g_procMsg);
                                     end if;
+                                    */
                                 end if;
                             else
                                 v_g_procMsgCode := '1';
