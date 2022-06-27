@@ -1194,7 +1194,6 @@
 		    FROM BAPAYRPTRECORD A,BAAPPBASE B
 		   WHERE A.APNO = B.APNO
 		     AND A.SEQNO = B.SEQNO
-		     AND A.PAYKIND = B.PAYKIND
 		     AND A.RPTTYP = '3' 
 		     AND A.ISSUYM = #issuYm:VARCHAR# 
 		     AND SUBSTR(A.APNO, 1, 1) = #payCode:VARCHAR#  
@@ -1209,48 +1208,7 @@
 			        	A.PAYSEQNO = #paySeqNo:VARCHAR#                     
 			    	</isNotEmpty>                
 			 	</isParameterPresent>
-			 </dynamic>            
-		UNION
-		 <![CDATA[ 
-		 SELECT A.APNO                                                       
-		        ,(nvl(A.PAYBANKID,'   ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
-		          nvl(A.BRANCHID,'    ')||deCode(nvl(A.BRANCHID,' '),' ',deCode(nvl(A.PAYEEACC,' '),' ','','-'),'-')||
-		         A.PAYEEACC) AS ACCOUNTNO                                    
-		        ,A.ISSUYM                                                     
-		        ,A.PAYYM                                                      
-		        ,A.BENIDN                                                     
-		        ,A.BENNAME                                                    
-		        ,NVL(A.PAYAMT, 0) AS PAYAMT                                   
-		        ,A.CHKDATE                                                    
-		        ,A.PAYDATE                                                    
-		        ,A.PAYTYP                                                     
-		        ,'' AS PAYTYPNAME                                     
-		        ,A.RPTPAGE                                                    
-		        ,A.BENEVTREL                                                  
-		        ,A.COMPNAME1                                                  
-		        ,A.COMPNAME2                                                 
-		        ,B.COMMZIP                                                    
-		        ,B.COMMADDR
-		        ,A.CPRNDATE                                                  
-		    FROM BAPAYRPTRECORD A,BAAPPBASE B
-		   WHERE A.APNO = B.APNO
-		     AND A.SEQNO = B.SEQNO
-		     AND B.PAYKIND = '37' 
-		     AND A.RPTTYP = '3' 
-		     AND A.ISSUYM =  #issuYm:VARCHAR# 
-		     AND SUBSTR(A.APNO, 1, 1) =#payCode:VARCHAR#  
-		     AND A.CHKDATE = #chkDate:VARCHAR#  
-		     AND A.PAYTYP =  '4']]> 
-		     <dynamic prepend="">
-			  	<isNotParameterPresent>
-			     AND 1 = 0
-			  	</isNotParameterPresent>
-			  	<isParameterPresent>
-			    	<isNotEmpty prepend="AND" property="paySeqNo">
-			      		 A.PAYSEQNO = #paySeqNo:VARCHAR#                     
-			   		 </isNotEmpty>                
-			  	</isParameterPresent>
-		     </dynamic>
+			 </dynamic>
     </select>
     
      <select id="getMonthlyRptS10RptType3DataBy" resultMap="MonthlyRpt10RptType3Result">
