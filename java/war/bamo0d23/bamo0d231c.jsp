@@ -140,7 +140,7 @@
         }
         
         if ($F("apItem") != "4" && $F("apItem") != "5") {
-            $("prType").checked = false;
+            //$("prType").checked = false;
         }
         
         if ($F("apItem") != "9") {
@@ -195,11 +195,11 @@
             //$("criInPart2").value="";
             //$("criInPart3").value="";
             //$("criMedium").value="";
-            $("prType").disabled = false;
+            //$("prType").disabled = false;
         }
         else {
-            $("prType").checked = false;
-            $("prType").disabled = true;
+            //$("prType").checked = false;
+            //$("prType").disabled = true;
         }
         doApItemChange();
     }
@@ -403,6 +403,14 @@
 
     <%-- 申請傷病分類 && 傷病分類 檢核 --%>
     function checkEvTyp() {
+    	// 核定傷病分類僅得輸入3或4
+    	if ('1,2'.indexOf($F('evTyp')) > -1) {
+    		alert('「<bean:message bundle="<%=Global.BA_MSG%>" key="label.update.disabled.evTyp" />」僅得輸入「3」或「4」');
+    		$("evTyp").focus();
+    		return false;
+    	}
+    	
+        <%--
         if ($F("evTyp") == "1" || $F("evTyp") == "2") {
             if ($F("evTyp") == "1") {
                 if (Trim($F("evCode")).length == 0) {
@@ -459,6 +467,7 @@
                 }
             }
         }
+        --%>
         return true;
     }
     
@@ -664,7 +673,7 @@
     
     function focusFamAppMk(e) {
         if ($F("apItem") != "4" && $F("apItem") != "5") {
-            $("prType").checked = false;
+            //$("prType").checked = false;
             $("famAppMk").focus();
             return false;
         }
@@ -1005,6 +1014,7 @@
                                 <td width="33%">
                                     <span class="issuetitle_L_down">受理編號：</span>
                                     <bean:write name="SurvivorApplicationDataUpdateForm" property="apNoString" />
+                                    <c:out value="${caseData.sysCode}" />
                                 </td>
                                 <td width="33%">
                                     <span class="issuetitle_L_down">給付別：</span>
@@ -1179,23 +1189,23 @@
                                     </html:select>
                                     <html:hidden styleId="oldEvAppTyp" property="oldEvAppTyp" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" colspan="2">
                                     <span class="needtxt">＊</span>
-                                    <span class="issuetitle_L_down">傷病分類：</span>
+                                    <span class="issuetitle_L_down">核定傷病分類：</span>
                                     <html:select styleId="evTyp" property="evTyp" tabindex="20" onchange="doEvTypChange();doEvTypAfterChange();" onblur="doEvTypChange();">
                                         <html:option value="">請選擇...</html:option>
                                         <html:optionsCollection label="paramName" value="paramCode" property="evTypOptionList" />
                                     </html:select>
                                     <html:hidden styleId="oldEvTyp" property="oldEvTyp" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">傷病原因：</span>
                                     <html:text styleId="evCode" property="evCode" styleClass="textinput" size="5" maxlength="2" tabindex="22" />
                                     <html:hidden styleId="oldEvCode" property="oldEvCode" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td id="iss">
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">受傷部位：</span>
@@ -1216,7 +1226,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="iss" colspan="2">
+                                <td id="iss" style="display: none;">
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="issuetitle_L_down">國際疾病代碼：</span>
                                     <html:text styleId="criInJnme1" property="criInJnme1" styleClass="textinput" size="30" maxlength="30" tabindex="36" onblur="this.value = asc(this.value).toUpperCase();" onkeyup="this.value = asc(this.value).toUpperCase();" />
@@ -1231,8 +1241,9 @@
                                     <html:hidden styleId="oldCriInJnme3" property="oldCriInJnme3" />
                                     <html:hidden styleId="oldCriInJnme4" property="oldCriInJnme4" />
                                 </td>
-                                <td id="iss">
-                                    &nbsp;&nbsp;<span class="issuetitle_L_down">應扣失能金額：</span>
+                                <td id="iss" colspan="3">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span class="issuetitle_L_down">應扣失能金額：</span>
                                     <html:text styleId="cutAmt" property="cutAmt" styleClass="textinput" size="9" maxlength="7" tabindex="43" onblur="this.value=asc(this.value);"/>
                                     <html:hidden styleId="oldCutAmt" property="oldCutAmt" />
                                 </td>
@@ -1244,15 +1255,22 @@
                                     <html:text styleId="notifyForm" property="notifyForm" styleClass="textinput" size="5" maxlength="3" tabindex="47" />
                                     <html:hidden styleId="oldNotifyForm" property="oldNotifyForm" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" style="display: none;">
                                     <html:multibox styleId="prType" property="prType" value="Y" tabindex="48" />
                                     <span class="issuetitle_L_down">先核普通</span>
                                     <html:hidden styleId="oldPrType" property="oldPrType" />
                                 </td>
-                                <td id="iss">
+                                <td id="iss" colspan="2">
                                     <html:multibox styleId="famAppMk" property="famAppMk" value="Y" tabindex="49" />
                                     <span class="issuetitle_L_down">符合第63條之1第3項 (<c:out value="${sessionScope.SurvivorApplicationDataUpdateForm.famAppMkString}" />)</span>
                                     <html:hidden styleId="oldFamAppMk" property="oldFamAppMk" />
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td id="iss" colspan="3">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span class="issuetitle_L_down">來源受理編號：</span>
+                                    <c:out value="${caseData.apnoFm}" />
                                 </td>
                             </tr>
                             <tr>
@@ -1316,7 +1334,7 @@
                                     	<span class="issuetitle_L_down">寄發核定通知書</span>
                                 	</c:if>
                                     <c:if test="${caseData.caseTyp ne '2'}">
-                                        <input type='hidden' name='issuNotifyingMk' value='' >&nbsp;
+                                        <input type='hidden' id="issuNotifyingMk" name='issuNotifyingMk' value='' >&nbsp;
                                     </c:if>
                                     <html:hidden styleId="oldIssuNotifyingMk" property="oldIssuNotifyingMk" />
                                 </td>    

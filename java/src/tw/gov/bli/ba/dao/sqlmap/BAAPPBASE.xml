@@ -1057,6 +1057,11 @@
         <result column="APNOFM"             property="apnoFm"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
+    <resultMap id="BaappbaseOccupationalDisasterResult" class="Baappbase" extends="BAAPPBASEResult">
+    	<result column="SYSCODE"        property="sysCode"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    	<result column="APNOFM"         property="apnoFm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
     <resultMap id="PaymentQueryBenIssuDataResult" class="Baappbase">                                                                            
         <result column="BAAPPBASEID"    property="baappbaseId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />   
         <result column="APNO"           property="apNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
@@ -12866,7 +12871,7 @@ UNION
     
     <!-- Disabled Application Data Update -->
     <!-- [ -->
-    <select id="getDisabledApplicationDataUpdateMasterDataBy" resultMap="BAAPPBASEResult">
+    <select id="getDisabledApplicationDataUpdateMasterDataBy" resultMap="BaappbaseOccupationalDisasterResult">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
@@ -13001,7 +13006,9 @@ UNION
                A.ONCETY,
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
-               A.MARGINAMT
+               A.MARGINAMT,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         WHERE  A.APNO = #apNo:VARCHAR# AND 
                A.SEQNO = '0000' AND 
@@ -13455,7 +13462,7 @@ UNION
     
     <!-- Survivor Application Data Update -->
     <!-- [ -->
-    <select id="getSurvivorApplicationDataUpdateMasterDataBy" resultMap="BAAPPBASEResult">
+    <select id="getSurvivorApplicationDataUpdateMasterDataBy" resultMap="BaappbaseOccupationalDisasterResult">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
@@ -13590,7 +13597,9 @@ UNION
                A.ONCETY,
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
-               A.MARGINAMT
+               A.MARGINAMT,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         WHERE  A.APNO = #apNo:VARCHAR# AND 
                A.SEQNO = '0000' AND 
