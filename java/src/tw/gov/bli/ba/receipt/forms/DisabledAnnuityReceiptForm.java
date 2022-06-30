@@ -66,6 +66,10 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String criInPart2;// 受傷部位
     private String criInPart3;// 受傷部位
     private String criMedium;// 媒 介 物
+    private String injDte;// 傷病發生日期
+    private String fvisitDte;// 初診日期
+    private String lsurgeryDte;// 最後手術日期
+    private String lsradiationDte;// 最後放射(化學)治療日期
     private String criInJdp1;// 失能項目
     private String criInJdp2;// 失能項目
     private String criInJdp3;// 失能項目
@@ -83,6 +87,7 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String criInJnme2;// 國際疾病代碼
     private String criInJnme3;// 國際疾病代碼
     private String criInJnme4;// 國際疾病代碼
+    private String forinsAddr;// 外籍被保險人母國地址
 
     // 給付資料
     private String payTyp;// 給付方式
@@ -228,6 +233,10 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String tempCriInPart2;// 受傷部位
     private String tempCriInPart3;// 受傷部位
     private String tempCriMedium;// 媒 介 物
+    private String tempInjDte;// 傷病發生日期
+    private String tempFvisitDte;// 初診日期
+    private String tempLsurgeryDte;// 最後手術日期
+    private String tempLsradiationDte;// 最後放射(化學)治療日期
     private String tempCriInJdp1;// 失能項目
     private String tempCriInJdp2;// 失能項目
     private String tempCriInJdp3;// 失能項目
@@ -245,6 +254,7 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String tempCriInJnme2;// 國際疾病代碼
     private String tempCriInJnme3;// 國際疾病代碼
     private String tempCriInJnme4;// 國際疾病代碼
+    private String tempForinsAddr;// 外籍被保險人母國地址
 
     // 給付資料
     private String tempPayTyp;// 給付方式
@@ -2073,6 +2083,86 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
 
 	public void setOldChkPayEeacc(String oldChkPayEeacc) {
 		this.oldChkPayEeacc = oldChkPayEeacc;
+	}
+
+	public String getInjDte() {
+		return injDte;
+	}
+
+	public void setInjDte(String injDte) {
+		this.injDte = injDte;
+	}
+
+	public String getFvisitDte() {
+		return fvisitDte;
+	}
+
+	public void setFvisitDte(String fvisitDte) {
+		this.fvisitDte = fvisitDte;
+	}
+
+	public String getLsurgeryDte() {
+		return lsurgeryDte;
+	}
+
+	public void setLsurgeryDte(String lsurgeryDte) {
+		this.lsurgeryDte = lsurgeryDte;
+	}
+
+	public String getLsradiationDte() {
+		return lsradiationDte;
+	}
+
+	public void setLsradiationDte(String lsradiationDte) {
+		this.lsradiationDte = lsradiationDte;
+	}
+
+	public String getForinsAddr() {
+		return forinsAddr;
+	}
+
+	public void setForinsAddr(String forinsAddr) {
+		this.forinsAddr = forinsAddr;
+	}
+
+	public String getTempInjDte() {
+		return tempInjDte;
+	}
+
+	public void setTempInjDte(String tempInjDte) {
+		this.tempInjDte = tempInjDte;
+	}
+
+	public String getTempFvisitDte() {
+		return tempFvisitDte;
+	}
+
+	public void setTempFvisitDte(String tempFvisitDte) {
+		this.tempFvisitDte = tempFvisitDte;
+	}
+
+	public String getTempLsurgeryDte() {
+		return tempLsurgeryDte;
+	}
+
+	public void setTempLsurgeryDte(String tempLsurgeryDte) {
+		this.tempLsurgeryDte = tempLsurgeryDte;
+	}
+
+	public String getTempLsradiationDte() {
+		return tempLsradiationDte;
+	}
+
+	public void setTempLsradiationDte(String tempLsradiationDte) {
+		this.tempLsradiationDte = tempLsradiationDte;
+	}
+
+	public String getTempForinsAddr() {
+		return tempForinsAddr;
+	}
+
+	public void setTempForinsAddr(String tempForinsAddr) {
+		this.tempForinsAddr = tempForinsAddr;
 	}
 
 }

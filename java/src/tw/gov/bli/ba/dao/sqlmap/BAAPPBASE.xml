@@ -11270,7 +11270,9 @@ UNION
             CRTUSER,
             CRTTIME,
             PROMOTEUSER,
-            MOBILEPHONE
+            MOBILEPHONE,
+            APNOFM,
+            SYSCODE
         )
         VALUES
         (
@@ -11327,7 +11329,9 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #promoteUser:VARCHAR#,
-            #mobilePhone:VARCHAR#
+            #mobilePhone:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         ) 
     </insert>
     

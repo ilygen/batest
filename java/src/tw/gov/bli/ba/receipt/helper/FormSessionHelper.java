@@ -130,6 +130,20 @@ public class FormSessionHelper {
         // 各 頁面
         session.removeAttribute(ConstantKey.OLDAGE_ANNUITY_RECEIPT_QUERY_FORM);
     }
+    
+    /**
+     * 受理作業 - 失能年金臨櫃受理作業<br>
+     * 將相關 Form 自 Session 中移除
+     * 
+     * @param request
+     */
+    public static void removeDisabledAnnuityWalkInReceiptQueryForm(HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.removeDisabledAnnuityWalkInReceiptQueryForm() ...");
+
+        HttpSession session = request.getSession();
+        session.removeAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM);
+    }
+    
 
     // ---------------------------------------------------------------------------------------
     // 受理作業 - 失能年金給付受理作業 - DisabledAnnuityReceipt

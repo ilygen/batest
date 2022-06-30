@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import tw.gov.bli.ba.ConstantKey;
+import tw.gov.bli.ba.dao.Baap0d040Dao;
 import tw.gov.bli.ba.dao.BaappbaseDao;
 import tw.gov.bli.ba.dao.BaappexpandDao;
 import tw.gov.bli.ba.dao.BaapplogDao;
@@ -25,6 +26,7 @@ import tw.gov.bli.ba.dao.NbappbaseDao;
 import tw.gov.bli.ba.dao.NbexcepDao;
 import tw.gov.bli.ba.dao.NpbanklistDao;
 import tw.gov.bli.ba.dao.NppostlistDao;
+import tw.gov.bli.ba.domain.Baap0d040;
 import tw.gov.bli.ba.domain.Baappbase;
 import tw.gov.bli.ba.domain.Baappexpand;
 import tw.gov.bli.ba.domain.Baapplog;
@@ -42,6 +44,7 @@ import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptBenCase;
 import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptCase;
 import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptEvtCase;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm;
+import tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm;
 import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm;
 import tw.gov.bli.ba.util.BaBusinessUtility;
 import tw.gov.bli.ba.util.BeanUtility;
@@ -73,6 +76,7 @@ public class ReceiptService {
     private BafamilyDao bafamilyDao;
     private NbappbaseDao nbappbaseDao;
     private NbexcepDao nbexcepDao;
+    private Baap0d040Dao baap0d040Dao;
 
     // ------------------------------ 老年年金受理作業 ------------------------------
     /**
@@ -661,6 +665,22 @@ public class ReceiptService {
         if (StringUtils.isNotBlank(caseObj.getEvtJobDate())) {
             caseObj.setEvtJobDate(DateUtility.changeDateType(caseObj.getEvtJobDate()));
         }
+        // 傷病發生日期
+ 		if (StringUtils.isNotBlank(caseObj.getInjDte())) {
+ 			caseObj.setInjDte(DateUtility.changeDateType(caseObj.getInjDte()));
+ 		}
+ 		// 初診日期
+ 		if (StringUtils.isNotBlank(caseObj.getFvisitDte())) {
+ 			caseObj.setFvisitDte(DateUtility.changeDateType(caseObj.getFvisitDte()));
+ 		}
+ 		// 最後手術日期
+ 		if (StringUtils.isNotBlank(caseObj.getLsurgeryDte())) {
+ 			caseObj.setLsurgeryDte(DateUtility.changeDateType(caseObj.getLsurgeryDte()));
+ 		}
+ 		// 最後放射(化學)治療日期
+ 		if (StringUtils.isNotBlank(caseObj.getLsradiationDte())) {
+ 			caseObj.setLsradiationDte(DateUtility.changeDateType(caseObj.getLsradiationDte()));
+ 		}
 
         // 根據 事故者身分證號, 出生日期 取得戶政資料
         Cvldtl cvldtlData = selectCvldtlNameBy(caseObj.getEvtIdnNo(), caseObj.getEvtBrDate());
@@ -1319,7 +1339,12 @@ public class ReceiptService {
         baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
         baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
         baappexpand.setHandIcapMk(evtCase.getEvtHandIcapMk());// 有無診斷書
-        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+//        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+		baappexpand.setInjDte(evtCase.getInjDte());// 傷病發生日期
+		baappexpand.setFvisitDte(evtCase.getFvisitDte());// 初診日期
+		baappexpand.setLsurgeryDte(evtCase.getLsurgeryDte());// 最後手術日期
+		baappexpand.setLsradiationDte(evtCase.getLsradiationDte());// 最後放射(化學)治療日期
+		baappexpand.setForinsAddr(evtCase.getForinsAddr());// 外籍被保險人母國地址
         BigDecimal baappexpandId = baappexpandDao.insertDataForDisabledAnnuityReceipt(baappexpand);
         log.debug("Insert BAAPPEXPAND Finished ...");
         // ]
@@ -3635,6 +3660,113 @@ public class ReceiptService {
 
         return evtForm;
     }
+    
+    /**
+	 * 將其它系統(BB、BC、BE)轉入的資料轉換成 form
+	 * 
+	 * @param baap0d040
+	 * @return
+	 */
+	public DisabledAnnuityWalkInReceiptQueryForm convertTurnInData(DisabledAnnuityWalkInReceiptQueryForm form,
+			Baap0d040 baap0d040) {
+		BeanUtility.copyProperties(form, baap0d040);
+
+		// 日期轉換
+		// 申請日期
+		if (StringUtils.isNotBlank(baap0d040.getAppDate())) {
+			form.setAppDate(DateUtility.changeDateType(baap0d040.getAppDate()));
+		}
+		// 事故者出生日期
+		if (StringUtils.isNotBlank(baap0d040.getEvtBrDate())) {
+			form.setEvtBrDate(DateUtility.changeDateType(baap0d040.getEvtBrDate()));
+		}
+		// 法定代理人出生日期
+		if (StringUtils.isNotBlank(baap0d040.getGrdBrDate())) {
+			form.setGrdBrDate(DateUtility.changeDateType(baap0d040.getGrdBrDate()));
+		}
+		// 診斷失能日期
+		if (StringUtils.isNotBlank(baap0d040.getEvtJobDate())) {
+			form.setEvtJobDate(DateUtility.changeDateType(baap0d040.getEvtJobDate()));
+		}
+		// 傷病發生日期
+		if (StringUtils.isNotBlank(baap0d040.getInjDte())) {
+			form.setInjDte(DateUtility.changeDateType(baap0d040.getInjDte()));
+		}
+		// 初診日期
+		if (StringUtils.isNotBlank(baap0d040.getFvisitDte())) {
+			form.setFvisitDte(DateUtility.changeDateType(baap0d040.getFvisitDte()));
+		}
+		// 最後手術日期
+		if (StringUtils.isNotBlank(baap0d040.getLsurgeryDte())) {
+			form.setLsurgeryDte(DateUtility.changeDateType(baap0d040.getLsurgeryDte()));
+		}
+		// 最後放射(化學)治療日期
+		if (StringUtils.isNotBlank(baap0d040.getLsradiationDte())) {
+			form.setLsradiationDte(DateUtility.changeDateType(baap0d040.getLsradiationDte()));
+		}
+
+		// 當申請傷病分類為 1、3 時，核定傷病分類為 3
+		// 當申請傷病分類為 2、4 時，核定傷病分類為 4
+		if (StringUtils.isNotBlank(baap0d040.getEvAppTyp())) {
+			String evAppTyp = baap0d040.getEvAppTyp();
+			if (StringUtils.contains("1,3", evAppTyp)) {
+				form.setEvTyp("3");
+			} else if (StringUtils.contains("2,4", evAppTyp)) {
+				form.setEvTyp("4");
+			}
+		}
+
+		// 給付方式非 1、2 者，一律帶入 A
+		if (StringUtils.isNotBlank(baap0d040.getPayTyp()) && !StringUtils.contains("1,2", baap0d040.getPayTyp())) {
+			form.setPayTyp("A");
+		}
+
+		// 金融帳號複驗
+		// 銀行總行代號
+		if (StringUtils.isNotBlank(baap0d040.getPayBankId())) {
+			form.setChkPayBankId(baap0d040.getPayBankId());
+		}
+		// 分支代號
+		if (StringUtils.isNotBlank(baap0d040.getBranchId())) {
+			form.setChkBranchId(baap0d040.getBranchId());
+		}
+		// 帳戶
+		if (StringUtils.isNotBlank(baap0d040.getPayEeacc())) {
+			form.setChkPayEeacc(baap0d040.getPayEeacc());
+		}
+
+		// 清除 form 的 受理編號
+		String procType = form.getProcType();
+		if (StringUtils.contains("2,3", procType)) {
+			// 因 BC、BE 未提供國籍別，預設帶入 1-本國籍
+			form.setEvtNationTpe("1");
+			form.cleanApnoForBc();
+		} else if (StringUtils.equals(procType, "4")) {
+			form.cleanApnoForBb();
+		}
+
+		return form;
+	}
+
+	/**
+	 * 取得轉入受理作業所需要的資料
+	 * 
+	 * @param apno
+	 * @param procType
+	 * @return
+	 */
+	public List<Baap0d040> getTurnInData(DisabledAnnuityWalkInReceiptQueryForm form) {
+		List<Baap0d040> list = null;
+		String procType = form.getProcType();
+		if (StringUtils.equals(procType, "2")) {
+			list = baap0d040Dao.selectTurnInDataFromBe(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "3")) {
+			list = baap0d040Dao.selectTurnInDataFromBc(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "4")) {
+			list = baap0d040Dao.selectTurnInDataFromBb(form.getApNoStrForBb());
+		}
+		return list;
+	}
 
     // ------------------------------ 共用function ------------------------------
 
@@ -3698,4 +3830,7 @@ public class ReceiptService {
         this.nbexcepDao = nbexcepDao;
     }
 
+    public void setBaap0d040Dao(Baap0d040Dao baap0d040Dao) {
+		this.baap0d040Dao = baap0d040Dao;
+	}
 }

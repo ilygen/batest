@@ -259,6 +259,21 @@ public class Baappexpand implements Serializable {
     
     @LogField("MONNOTIFYINGMK")
     private String monNotifyingMk; //寄發月通知表   
+    
+    @LogField("INJDTE")
+    private String injDte;// 傷病發生日期
+    
+    @LogField("FVISITDTE")
+    private String fvisitDte;// 初診日期
+    
+    @LogField("LSURGERYDTE")
+    private String lsurgeryDte;// 最後手術日期
+    
+    @LogField("LSRADIATIONDTE")
+    private String lsradiationDte;// 最後放射(化學)治療日期
+    
+    @LogField("FORINSADDR")
+    private String forinsAddr;// 外籍被保險人母國地址
 
     // Fields not in BAAPPEXPAND
     // [
@@ -977,6 +992,46 @@ public class Baappexpand implements Serializable {
 
     public void setMonNotifyingMk(String monNotifyingMk) {
         this.monNotifyingMk = monNotifyingMk;
-    }	
+    }
+
+	public String getInjDte() {
+		return injDte;
+	}
+
+	public void setInjDte(String injDte) {
+		this.injDte = injDte;
+	}
+
+	public String getFvisitDte() {
+		return fvisitDte;
+	}
+
+	public void setFvisitDte(String fvisitDte) {
+		this.fvisitDte = fvisitDte;
+	}
+
+	public String getLsurgeryDte() {
+		return lsurgeryDte;
+	}
+
+	public void setLsurgeryDte(String lsurgeryDte) {
+		this.lsurgeryDte = lsurgeryDte;
+	}
+
+	public String getLsradiationDte() {
+		return lsradiationDte;
+	}
+
+	public void setLsradiationDte(String lsradiationDte) {
+		this.lsradiationDte = lsradiationDte;
+	}
+
+	public String getForinsAddr() {
+		return forinsAddr;
+	}
+
+	public void setForinsAddr(String forinsAddr) {
+		this.forinsAddr = forinsAddr;
+	}	
 
 }
