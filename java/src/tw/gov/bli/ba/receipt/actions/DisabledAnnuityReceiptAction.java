@@ -15,11 +15,15 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.iisi.SecureToken;
+
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.framework.domain.UserBean;
+import tw.gov.bli.ba.framework.helper.CustomMessageHelper;
 import tw.gov.bli.ba.framework.helper.DatabaseMessageHelper;
 import tw.gov.bli.ba.framework.struts.actions.BaseDispatchAction;
 import tw.gov.bli.ba.helper.LoggingHelper;
+import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptCase;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptEvtCase;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptFamCase;
@@ -31,6 +35,8 @@ import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
+import tw.gov.bli.ba.webservices.SingleCheckMarkServiceHttpBindingStub;
+import tw.gov.bli.ba.webservices.SingleCheckMarkServiceLocator;
 import tw.gov.bli.common.helper.UserSessionHelper;
 
 /**
@@ -72,6 +78,8 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
     private static final String FAM_DATA_OPTION_UPDATE_MODE = "updateMode";
     
     private static final String SUCCESSFOR36 = "successFor36";
+    private static final String FAIL_FOR_36 = "failFor36";
+    private static final String BACK_FOR_36 = "backFor36";
 
     private ReceiptService receiptService;
     private SelectOptionService selectOptionService;
@@ -156,7 +164,7 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
              	 iform.setsFlag36("");
                  saveMessages(session, DatabaseMessageHelper.getNoResultMessage());
                  log.debug("執行 受理作業 - 失能年金給付受理作業 - 登錄修改查詢作業 DisabledAnnuityReceiptAction.prepareModify() 完成 ... ");
-                 return mapping.findForward(ConstantKey.FORWARD_FAIL);
+                 return mapping.findForward(FAIL_FOR_36);
                  
              }else{
             	 
@@ -455,9 +463,27 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
 
                     // 新增給付主檔、給付延伸主檔、眷屬檔資料
                     receiptService.insertDataForDisabled36Data(userData, evtCase , bafamilytempId);
+                    
+                    // 呼叫即時編審 WebService
+					String webServiceUrl = PropertyHelper.getProperty("checkMarkWebServicesUrlForOldage");
+					log.info("webServiceUrl: " + webServiceUrl);
+					String returnCode = ConstantKey.DO_CHECK_MARK_FAIL;
+					try {
+						SingleCheckMarkServiceHttpBindingStub binding;
+						binding = (SingleCheckMarkServiceHttpBindingStub) new SingleCheckMarkServiceLocator()
+								.getSingleCheckMarkServiceHttpPort();
+						returnCode = binding.doCheckMark(apNo, SecureToken.getInstance().getToken());
+					} catch (Exception e) {
+						log.error("DisabledApplicationDataUpdateAction.doSave() 即時編審發生錯誤:"
+								+ ExceptionUtility.getStackTrace(e));
+					}
 
                     // 設定新增成功訊息
-                    saveMessages(session, DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay()));
+					if (StringUtils.equals(ConstantKey.DO_CHECK_MARK_FAIL, returnCode)) {
+						saveMessages(session, CustomMessageHelper.getCheckMarkFailMessage()); // 設定即時編審失敗訊息
+					} else {
+						saveMessages(session, DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay()));
+					}
                     forward = FORWARD_SAVE_ALL_SUCCESS_FOR_36;
 
                     // 重新取得頁面資料
@@ -938,7 +964,12 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
 
         log.debug("執行 受理作業 - 失能年金給付受理作業 - 返回 DisabledAnnuityReceiptAction.doBack() 完成 ... ");
-        return mapping.findForward(ConstantKey.FORWARD_BACK);
+        String forward = ConstantKey.FORWARD_BACK;
+        if (form instanceof DisabledAnnuityReceiptForm 
+        		&& StringUtils.equals("Y", ((DisabledAnnuityReceiptForm) form).getsFlag36())) {
+        	forward = BACK_FOR_36;
+        }
+        return mapping.findForward(forward);
     }
 
     /**
