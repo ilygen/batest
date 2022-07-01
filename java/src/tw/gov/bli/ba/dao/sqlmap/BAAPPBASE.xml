@@ -1747,6 +1747,7 @@
         <result column="EVTJOBDATE"       property="evtJobDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                  
         <result column="MOBILEPHONE"      property="mobilePhone"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                  
         <result column="BAAPPEXPANDID"    property="baappexpandId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="EVAPPTYP"         property="evAppTyp"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="EVTYP"            property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="EVCODE"           property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="CRIINPART1"       property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
@@ -1771,6 +1772,11 @@
         <result column="DOCTORNAME1"      property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="DOCTORNAME2"      property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="HANDICAPMK"       property="handIcapMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+        <result column="INJDTE"           property="injDte"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FVISITDTE"        property="fvisitDte"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="LSURGERYDTE"      property="lsurgeryDte"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="LSRADIATIONDTE"   property="lsradiationDte"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FORINSADDR"       property="forinsAddr"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="DetailDataForSurvivorResult" class="Baappbase">
@@ -11275,7 +11281,9 @@ UNION
             CRTUSER,
             CRTTIME,
             PROMOTEUSER,
-            MOBILEPHONE
+            MOBILEPHONE,
+            APNOFM,
+            SYSCODE
         )
         VALUES
         (
@@ -11332,7 +11340,9 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #promoteUser:VARCHAR#,
-            #mobilePhone:VARCHAR#
+            #mobilePhone:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         ) 
     </insert>
     
@@ -11738,7 +11748,8 @@ UNION
                A.CHKPAYEEACC,                         
                A.EVTJOBDATE,
                A.MOBILEPHONE,                        
-               B.BAAPPEXPANDID,                     
+               B.BAAPPEXPANDID,
+			   B.EVAPPTYP,
                B.EVTYP,                             
                B.EVCODE,                            
                B.CRIINPART1,                        
@@ -11762,7 +11773,12 @@ UNION
                B.CRIINJNME4,                        
                B.DOCTORNAME1,                       
                B.DOCTORNAME2,
-               B.HANDICAPMK                        
+               B.HANDICAPMK,
+               B.INJDTE,
+	           B.FVISITDTE,
+	           B.LSURGERYDTE,
+	           B.LSRADIATIONDTE,
+	           B.FORINSADDR
           FROM BAAPPBASE A, BAAPPEXPAND B           
          WHERE A.BAAPPBASEID = B.BAAPPBASEID        
            AND A.BAAPPBASEID = #baappbaseId:NUMERIC#

@@ -184,9 +184,9 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
         }else if($("famEvtRel").value=="4"){                                                                                                                                                                                                                                                                                                                        
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
@@ -195,9 +195,9 @@
             //$("raiseChildMk").value = "";
             $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
         }else if($("famEvtRel").value=="7"){                                                                                                                                                                                                                                                                                                                        
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
@@ -206,9 +206,9 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
         }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){                                                                                                                                                                                                                                                                                                                                              
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
@@ -217,10 +217,10 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
-            $("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-            $("handIcapMk").value = "";     
-            $("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-            $("interDictMk").value = "";                                                                                                                                                                                                                                                                                             
+            //$("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").value = "";     
+            //$("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                             
         }else {                                                                                                                                                                                                                                                                                                                                              
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
@@ -228,9 +228,9 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                       
         }                                                                                                                                                                                                                                                                                                                                                     
     }
@@ -299,6 +299,7 @@
             var objName = origObjName.substring(0, origObjName.length-1);
             var objIdx = parseNumber(origObjName.substring(origObjName.length-1, origObjName.length))+1;
 
+            <%--
             //受傷部位
             if(origObjName.indexOf('criInPart') != -1){
                 for(var i=objIdx; i<=3; i++){
@@ -307,8 +308,9 @@
                     nextObj.value = "";
                 }
             }
+            --%>
             //失能項目
-            else if(origObjName.indexOf('criInJdp') != -1){
+            if(origObjName.indexOf('criInJdp') != -1){
                 for(var i=objIdx; i<=10; i++){
                     nextObj = document.getElementById(objName+i);
                     nextObj.disabled = true;
@@ -347,16 +349,18 @@
             nextObj = document.getElementById(nextObj);
         }
         
+        <%--
         //受傷部位
         if(origObjName.indexOf('criInPart') != -1){
             if((Trim(origObj.value) != "") && event.keyCode==9){
                 nextObj.focus();
             }else if((Trim(origObj.value) == "") && event.keyCode==9){
-                $("criMedium").focus();
+                //$("criMedium").focus();
             }
         }
+        --%>
         //失能項目
-        else if(origObjName.indexOf('criInJdp') != -1){
+        if(origObjName.indexOf('criInJdp') != -1){
             if((Trim(origObj.value) != "") && event.keyCode==9){
                 nextObj.focus();
             }else if((Trim(origObj.value) == "") && event.keyCode==9){
@@ -474,8 +478,8 @@
             $("studMk").value = famCase.studMk;                          
         }
         if(famCase.famEvtRel != '3' && famCase.famEvtRel != '5'){
-            $("handIcapMk").value = famCase.handIcapMk;      
-            $("interDictMk").value = famCase.interDictMk;
+            //$("handIcapMk").value = famCase.handIcapMk;      
+            //$("interDictMk").value = famCase.interDictMk;
         }
         chgMonIncomeMk();
         
@@ -628,11 +632,13 @@
                     $("payBankId").focus();
         }
         
+        <%--
         //檢查有無診斷書
         if($("evtHandIcapMk").disabled == false && Trim($("evtHandIcapMk").value)==""){
             msg += '「有無診斷書」：為必輸欄位。\r\n';                                                                                                                                                                                                                                                                                                          
             $("evtHandIcapMk").focus();  
         }            
+        --%>
         
         //檢核事故者出生日期  是否為數字 及 年月格式
         if($("evtBrDate").value.length < 7){
@@ -837,6 +843,7 @@
         }else{
             $("mobilePhone").value="";
         }
+        <%--
         //有無診斷書
         if($("mobilePhone").disabled == true){
             $("evtHandIcapMk").disabled = true; 
@@ -844,6 +851,7 @@
         }else{
             $("evtHandIcapMk").disabled = false;
         }
+        --%>
         
         //眷屬國籍                                                                                                                                                                                                                                                                                                                              
         if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'!=""){
@@ -874,10 +882,10 @@
                 $("raiseChildMk").value = "";
                 $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
                 $("studMk").value = "";
-                $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("handIcapMk").value = "";     
-                $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
+                //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").value = "";     
+                //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
             }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="4"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
@@ -885,10 +893,10 @@
                 $("raiseChildMk").value = "";
                 $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 $("studMk").value = "";
-                $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("handIcapMk").value = "";     
-                $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
+                //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").value = "";     
+                //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
             }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="7"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
@@ -896,10 +904,10 @@
                 $("raiseChildMk").value = "";
                 $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 $("studMk").value = "";
-                $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("handIcapMk").value = "";     
-                $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").value = "";     
+                //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
             }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="3"||'<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="5"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
@@ -907,10 +915,10 @@
                 $("raiseChildMk").value = "";
                 $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
                 $("studMk").value = "";
-                $("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-                $("handIcapMk").value = "";     
-                $("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-                $("interDictMk").value = "";                                                                                                                                                                                                                                                                                             
+                //$("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").value = "";     
+                //$("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+                //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                             
             }else {                                                                                                                                                                                                                                                                                                                                              
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
@@ -918,17 +926,17 @@
                 $("raiseChildMk").value = "";
                 $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
                 $("studMk").value = "";
-                $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("handIcapMk").value = "";     
-                $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-                $("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                       
+                //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("handIcapMk").value = "";     
+                //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+                //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                       
             }       
         }else{
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("raiseChildMk").disabled = true; 
             $("studMk").disabled = true;
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
         }
         if('<c:out value="${DisabledAnnuityReceiptFamForm.focusLocation}" />'=="famNationTyp"){
             $("famNationTyp").focus();
@@ -1061,8 +1069,8 @@
         $("studMk").value = "";                                       
         $("monIncomeMk").value = "";
         $("monIncome").value = "";            
-        $("handIcapMk").value = "";                                       
-        $("interDictMk").value = "";
+        //$("handIcapMk").value = "";                                       
+        //$("interDictMk").value = "";
         
         $("insertModeBtn").style.display="inline";  
         $("insertModeStr").style.display="inline";  
@@ -1101,17 +1109,22 @@
         $("tempGrdName").value = $("grdName").value; //法定代理人姓名                             
         $("tempGrdBrDate").value = $("grdBrDate").value; //法定代理人出生日期
         $("tempMobilePhone").value = $("mobilePhone").value; // 手機複驗         
-        $("tempEvtHandIcapMk").value = $("evtHandIcapMk").value; // 有無診斷書                     
+        //$("tempEvtHandIcapMk").value = $("evtHandIcapMk").value; // 有無診斷書                     
         //$("tempDefaultGrdData").value = $("defaultGrdData").value; //法定代理人預設眷屬1
                                                                                                   
         //保險事故                                                                                
-        $("tempEvTyp").value = $("evTyp").value; //傷病分類                                       
+        $("tempEvAppTyp").value = $("evAppTyp").value; //申請傷病分類                                       
+        $("tempEvTyp").value = $("evTyp").value; //核定傷病分類                                       
         $("tempEvtJobDate").value = $("evtJobDate").value; //診斷失能日期                         
-        $("tempEvCode").value = $("evCode").value; //傷病原因                                     
-        $("tempCriInPart1").value = $("criInPart1").value; //受傷部位                             
-        $("tempCriInPart2").value = $("criInPart2").value; //受傷部位                             
-        $("tempCriInPart3").value = $("criInPart3").value; //受傷部位                             
-        $("tempCriMedium").value = $("criMedium").value; //媒介物                                 
+        //$("tempEvCode").value = $("evCode").value; //傷病原因                                     
+        //$("tempCriInPart1").value = $("criInPart1").value; //受傷部位                             
+        //$("tempCriInPart2").value = $("criInPart2").value; //受傷部位                             
+        //$("tempCriInPart3").value = $("criInPart3").value; //受傷部位                             
+        //$("tempCriMedium").value = $("criMedium").value; //媒介物
+        $("tempInjDte").value = $("injDte").value; //傷病發生日期
+        $("tempFvisitDte").value = $("fvisitDte").value; //初診日期
+        $("tempLsurgeryDte").value = $("lsurgeryDte").value; //最後手術日期
+        $("tempLsradiationDte").value = $("lsradiationDte").value; //最後放射(化學)治療日期
         $("tempCriInJdp1").value = $("criInJdp1").value; //失能項目                               
         $("tempCriInJdp2").value = $("criInJdp2").value; //失能項目                               
         $("tempCriInJdp3").value = $("criInJdp3").value; //失能項目                               
@@ -1128,7 +1141,8 @@
         $("tempCriInJnme1").value = $("criInJnme1").value; //國際疾病代碼                         
         $("tempCriInJnme2").value = $("criInJnme2").value; //國際疾病代碼                         
         $("tempCriInJnme3").value = $("criInJnme3").value; //國際疾病代碼                         
-        $("tempCriInJnme4").value = $("criInJnme4").value; //國際疾病代碼                         
+        $("tempCriInJnme4").value = $("criInJnme4").value; //國際疾病代碼
+        $("tempForinsAddr").value = $("forinsAddr").value; //外籍被保險人母國地址
                                                                                                   
         //給付資料                                                                                
         $("tempPayTyp").value = $("payTyp").value; //給付方式                                     
@@ -1171,8 +1185,8 @@
         }else{
             $("mobilePhone").disabled = true;
             $("mobilePhone").value = "";
-            $("evtHandIcapMk").disabled = true;
-            $("evtHandIcapMk").value = "";
+            //$("evtHandIcapMk").disabled = true;
+            //$("evtHandIcapMk").value = "";
         }
     } 
     
@@ -1190,6 +1204,7 @@
                 shortTel2 = tel2.substring(0,2); 
             }
             
+            <%--
             if(Trim($("mobilePhone").value)=="" || ($("mobilePhone").value).length != 10 || !((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
                 $("evtHandIcapMk").disabled = true;
                 $("evtHandIcapMk").value = "";
@@ -1198,6 +1213,7 @@
             }else{
                 $("evtHandIcapMk").disabled = false;
             }
+            --%>
         } 
     }
     
@@ -1215,17 +1231,17 @@
             }
             
             if(Trim($("mobilePhone").value)==""||($("mobilePhone").value).length != 10 ||!((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
-                $("evtHandIcapMk").disabled = true;
-                $("evtHandIcapMk").value = "";
+                //$("evtHandIcapMk").disabled = true;
+                //$("evtHandIcapMk").value = "";
                 //alert("手機號碼輸入有誤，請檢查。\r\n");
                 
-                $("evtHandIcapMk").disabled = true;
-                $("evtHandIcapMk").value = "";
+                //$("evtHandIcapMk").disabled = true;
+                //$("evtHandIcapMk").value = "";
                 //$("defaultGrdData").focus();
                 $("grdName").focus();
             }else{
-                $("evtHandIcapMk").disabled = false;
-                $("evtHandIcapMk").focus();
+                //$("evtHandIcapMk").disabled = false;
+                //$("evtHandIcapMk").focus();
             }
         }
     }   
@@ -1306,7 +1322,7 @@
                                                                                                                                                                                                                                                                                                                                                               
     <div id="main" class="mainBody">                                                                                                                                                                                                                                                                                                                          
         <fieldset>                                                                                                                                                                                                                                                                                                                                            
-            <legend>&nbsp;失能年金給付受理作業&nbsp;</legend>                                                                                                                                                                                                                                                                                                 
+            <legend>&nbsp;失能年金批次受理作業&nbsp;</legend>                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                                                               
             <div align="right" id="showtime">                                                                                                                                                                                                                                                                                                                 
                     網頁下載時間：民國&nbsp;<func:nowDateTime />                                                                                                                                                                                                                                                                                  
@@ -1320,6 +1336,7 @@
                 <html:hidden styleId="bafamilytempId" property="bafamilytempId" value="<%=CaseSessionHelper.getDisabledAnnuityReceiptBafamilytempIdStr(request) %>"/>
                 <html:hidden styleId="actionTyp" property="actionTyp" value="insertMode"/>
                 <html:hidden styleId="sFlag36" property="sFlag36"/>
+                <html:hidden styleId="sysCode" property="sysCode" value="AA"/>
                                                                                                                                                                                                                                                                                                                                                                       
                 <tr>                                                                                                                                                                                                                                                                                                                                          
                     <td colspan="2" align="right">                                                                                                                                                                                                                                                                                                            
@@ -1434,11 +1451,11 @@
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>
                             <tr>
-                                <td id="iss">
+                                <td id="iss" colspan="2">
                                     <span class="issuetitle_L_down">　手機複驗：</span>
                                     <html:text tabindex="142" property="mobilePhone" styleId="mobilePhone" styleClass="textinput"  size="10" maxlength="10" onkeyup="this.value=asc(this.value); checkMobilePhone();" onkeypress="chgMobilePhoneFocus();" onblur="checkMobilePhone();"/>
                                 </td>
-                                <td id="iss">
+                                <td id="iss" style="display: none;">
                                     <span class="issuetitle_L_down">　有無診斷書：</span>
                                     <html:text tabindex="144" property="evtHandIcapMk" styleId="evtHandIcapMk" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>
                                     <span class="formtxt">(Y-有，N-無)</span>
@@ -1470,18 +1487,26 @@
                                     <span class="systemMsg">▲</span>&nbsp;保險事故                                                                                                                                                                                                                                                                           
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr>
+                            	<td id="iss" width="50%">                                                                                                                                                                                                                                                                                                     
+                                    <span class="needtxt">＊</span>                                                                                                                                                                                                                                                                                           
+                                    <span class="issuetitle_L_down">申請傷病分類：</span>                                                                                                                                                                                                                                                                         
+                                    <html:text tabindex="180" property="evAppTyp" styleId="evAppTyp" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value);"/>
+                                   	<span class="formtxt">(3-普通傷害，4-普通疾病)</span>
+                                </td>                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" width="50%">                                                                                                                                                                                                                                                                                                     
                                     <span class="needtxt">＊</span>                                                                                                                                                                                                                                                                                           
-                                    <span class="issuetitle_L_down">傷病分類：</span>                                                                                                                                                                                                                                                                         
-                                    <html:text tabindex="180" property="evTyp" styleId="evTyp" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value);"/>                                                                                                                                                                           
-                                    <span class="formtxt">(1-職業傷害，2-職業病，3-普通傷害，4-普通疾病)</span>                                                                                                                                                                                                                                               
+                                    <span class="issuetitle_L_down">核定傷病分類：</span>                                                                                                                                                                                                                                                                         
+                                    <html:text tabindex="185" property="evTyp" styleId="evTyp" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value);"/>                                                                                                                                                                           
+                                    <span class="formtxt">(3-普通傷害，4-普通疾病)</span>                                                                                                                                                                                                                                               
                                 </td>                                                                                                                                                                                                                                                                                                                         
-                                <td id="iss" width="50%">　 <span class="issuetitle_L_down">診斷失能日期：</span>                                                                                                                                                                                                                                             
+                            </tr>
+                            <tr>                                                                                                                                                                                                                                                                                                                              
+                                <td id="iss" colspan="2">　 <span class="issuetitle_L_down">診斷失能日期：</span>                                                                                                                                                                                                                                                 
                                     <html:text tabindex="190" property="evtJobDate" styleId="evtJobDate" styleClass="textinput" size="10" maxlength="7" onblur="this.value=asc(this.value);"/>                                                                                                                                                                
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss">　 <span class="issuetitle_L_down">傷病原因：</span>                                                                                                                                                                                                                                                             
                                     <html:text tabindex="200" property="evCode" styleId="evCode" styleClass="textinput" size="2" maxlength="2" onblur="this.value=asc(this.value);"/>                                                                                                                                                                         
                                 </td>                                                                                                                                                                                                                                                                                                                         
@@ -1491,11 +1516,31 @@
                                     <html:text tabindex="230" property="criInPart3" styleId="criInPart3" styleClass="textinput" size="3" maxlength="3" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                   
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" colspan="2">　 <span class="issuetitle_L_down">媒 介 物：</span>                                                                                                                                                                                                                                                 
                                     <html:text tabindex="240" property="criMedium" styleId="criMedium" styleClass="textinput" size="3" maxlength="3" onblur="this.value=asc(this.value);"/>                                                                                                                                                                   
                                 </td>                                                                                                                                                                                                                                                                                                                         
-                            </tr>                                                                                                                                                                                                                                                                                                                             
+                            </tr>
+                            <tr>
+                            	<td id="iss">　 <span class="issuetitle_L_down">傷病發生日期：</span>
+                                    <html:text tabindex="241" property="injDte" styleId="injDte" styleClass="textinput" size="7" maxlength="7"
+                                    	onblur="this.value=asc(this.value);"/>
+                                </td>
+                            	<td id="iss">　 <span class="issuetitle_L_down">初診日期：</span>
+                                    <html:text tabindex="242" property="fvisitDte" styleId="fvisitDte" styleClass="textinput" size="7" maxlength="7"
+                                    	onblur="this.value=asc(this.value);"/>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td id="iss">　 <span class="issuetitle_L_down">最後手術日期：</span>
+                                    <html:text tabindex="243" property="lsurgeryDte" styleId="lsurgeryDte" styleClass="textinput" size="7" maxlength="7"
+                                    	onblur="this.value=asc(this.value);"/>
+                                </td>
+                            	<td id="iss">　 <span class="issuetitle_L_down">最後放射(化學)治療日期：</span>
+                                    <html:text tabindex="244" property="lsradiationDte" styleId="lsradiationDte" styleClass="textinput" size="7" maxlength="7"
+                                    	onblur="this.value=asc(this.value);"/>
+                                </td>
+                            </tr>
                             <tr>                                                                                                                                                                                                                                                                                                                              
                                 <td colspan="2" id="iss">　 <span class="issuetitle_L_down">失能項目：</span>                                                                                                                                                                                                                                                 
                                     <html:text tabindex="250" property="criInJdp1" styleId="criInJdp1" styleClass="textinput" size="8" maxlength="8" onblur="this.value=asc(this.value).toUpperCase();"/>&nbsp;                                                                                                                                               
@@ -1526,7 +1571,13 @@
                                     <html:text tabindex="400" property="criInJnme3" styleId="criInJnme3" styleClass="textinput" size="30" maxlength="30" onblur="this.value=asc(this.value).toUpperCase();"/>&nbsp;                                                                                                                                             
                                     <html:text tabindex="410" property="criInJnme4" styleId="criInJnme4" styleClass="textinput" size="30" maxlength="30" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                   
                                 </td>                                                                                                                                                                                                                                                                                                                         
-                            </tr>                                                                                                                                                                                                                                                                                                                             
+                            </tr>
+                            <tr>
+                                <td id="iss" colspan="2">　 <span class="issuetitle_L_down">外籍被保險人母國地址：</span>
+                                    <html:text tabindex="411" property="forinsAddr" styleId="forinsAddr" styleClass="textinput" size="110" maxlength="70"
+                                    	onblur="this.value=asc(this.value).toUpperCase();"/>
+                                </td>
+                            </tr>
                             <tr>                                                                                                                                                                                                                                                                                                                              
                                 <td colspan="2" class="issuetitle_L"><br>                                                                                                                                                                                                                                                                                     
                                     <span class="systemMsg">▲</span>&nbsp;給付資料                                                                                                                                                                                                                                                                           
@@ -1594,6 +1645,7 @@
                 <html:hidden styleId="tempGrdIdnNo" property="tempGrdIdnNo" value=""/>
                 <html:hidden styleId="tempGrdName" property="tempGrdName" value=""/>
                 <html:hidden styleId="tempGrdBrDate" property="tempGrdBrDate" value=""/>
+                <html:hidden styleId="tempEvAppTyp" property="tempEvAppTyp" value=""/>
                 <html:hidden styleId="tempEvTyp" property="tempEvTyp" value=""/>
                 <html:hidden styleId="tempEvtJobDate" property="tempEvtJobDate" value=""/>
                 <html:hidden styleId="tempEvCode" property="tempEvCode" value=""/>
@@ -1601,6 +1653,10 @@
                 <html:hidden styleId="tempCriInPart2" property="tempCriInPart2" value=""/>
                 <html:hidden styleId="tempCriInPart3" property="tempCriInPart3" value=""/>
                 <html:hidden styleId="tempCriMedium" property="tempCriMedium" value=""/>
+                <html:hidden styleId="tempInjDte" property="tempInjDte" value=""/>
+                <html:hidden styleId="tempFvisitDte" property="tempFvisitDte" value=""/>
+                <html:hidden styleId="tempLsurgeryDte" property="tempLsurgeryDte" value=""/>
+                <html:hidden styleId="tempLsradiationDte" property="tempLsradiationDte" value=""/>
                 <html:hidden styleId="tempCriInJdp1" property="tempCriInJdp1" value=""/>
                 <html:hidden styleId="tempCriInJdp2" property="tempCriInJdp2" value=""/>
                 <html:hidden styleId="tempCriInJdp3" property="tempCriInJdp3" value=""/>
@@ -1618,6 +1674,7 @@
                 <html:hidden styleId="tempCriInJnme2" property="tempCriInJnme2" value=""/>
                 <html:hidden styleId="tempCriInJnme3" property="tempCriInJnme3" value=""/>
                 <html:hidden styleId="tempCriInJnme4" property="tempCriInJnme4" value=""/>
+                <html:hidden styleId="tempForinsAddr" property="tempForinsAddr" value=""/>
                 <html:hidden styleId="tempPayTyp" property="tempPayTyp" value=""/>
                 <html:hidden styleId="tempPayBankIdBranchId" property="tempPayBankIdBranchId" value=""/>
                 <html:hidden styleId="tempPayEeacc" property="tempPayEeacc" value=""/>
@@ -1742,13 +1799,13 @@
                                     <html:text tabindex="640" property="monIncome" styleId="monIncome" styleClass="textinput" size="7" maxlength="7" onblur="this.value=asc(this.value);"/>&nbsp;元                                                                                                                                                           
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" colspan="2">　 <span class="issuetitle_L_down">領有重度以上身心障礙手冊：</span>                                                                                                                                                                                                                                 
                                     <html:text tabindex="650" property="handIcapMk" styleId="handIcapMk" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                   
                                     <span class="formtxt">(領有重度以上身心障礙手冊者，請輸入Y)</span>                                                                                                                                                                                                                                                        
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td colspan="2" id="iss">　 <span class="issuetitle_L_down">受禁治產(監護)宣告：</span>                                                                                                                                                                                                                                             
                                     <html:text tabindex="660" property="interDictMk" styleId="interDictMk" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                 
                                     <span class="formtxt">(受禁治產(監護)宣告者，請輸入Y)</span>                                                                                                                                                                                                                                                                    
@@ -1785,8 +1842,8 @@
                             <display:column title="每月工作收入" style="width:10%; text-align:right;" >                                                                                                                                                                                                                                                          
                                 <fmt:formatNumber value="${listItem.monIncome}" />&nbsp;                                                                                                                                                                                                                                                                          
                             </display:column>                                                                                                                                                                                                                                                                                                                     
-                            <display:column title="領有身心障礙手冊" style="width:13%; text-align:center;" >                                                                                                                                                                                                                                                      
-                                <c:out value="${listItem.handIcapMkStr}" />&nbsp;
+                            <display:column title="結婚日期" style="width:13%; text-align:center;" >                                                                                                                                                                                                                                                      
+                                <c:out value="${listItem.marryDateStr}" />&nbsp;
                             </display:column>                                                                                                                                                                                                                                                                                                                     
                             <display:column title="操作區" style="width:14%; text-align:center;" >                                                                                                                                                                                                                                                                
                                 <acl:checkButton buttonName="btnUpdate">

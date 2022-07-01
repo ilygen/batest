@@ -2,16 +2,25 @@
 <script type='text/javascript' src='<c:url value="/js/menu.js"/>'></script>
 <script language="javascript">
 var menuHierarchy = [
-    <acl:menuAcl itemId="BAAAAA,BAAAAB,BAAAAC">
+    <acl:menuAcl itemId="BAAAAA,BAAAAB,BAAAAC,BAAAAD,BAAAAE,BAAAAF">
     ['受理作業', null,
         <acl:menuAcl itemId="BAAAAA">
         ['老年年金給付受理作業', '<c:url value="/enterOldAgeAnnuityReceipt.do?parameter=enterOldAgeAnnuityReceipt"/>',],
         </acl:menuAcl>
+        <acl:menuAcl itemId="BAAAAD">
+        ['失能年金臨櫃受理作業', '<c:url value="/enterDisabledAnnuityWalkInReceipt.do?parameter=enterDisabledAnnuityWalkInReceipt"/>',],
+        </acl:menuAcl>
+        <acl:menuAcl itemId="BAAAAE">
+        ['國併勞年金臨櫃受理作業', '<c:url value="/enterNpDisabledAnnuityReceipt.do?parameter=enterNpDisabledAnnuityReceipt"/>',],
+        </acl:menuAcl>
         <acl:menuAcl itemId="BAAAAB">
-        ['失能年金給付受理作業', '<c:url value="/enterDisabledAnnuityReceipt.do?parameter=enterDisabledAnnuityReceipt"/>',],
+        ['失能年金批次受理作業', '<c:url value="/enterDisabledAnnuityReceipt.do?parameter=enterDisabledAnnuityReceipt"/>',],
+        </acl:menuAcl>
+        <acl:menuAcl itemId="BAAAAF">
+        ['遺屬年金臨櫃受理作業', '<c:url value="/enterSurvivorAnnuityWalkInReceipt.do?parameter=enterSurvivorAnnuityWalkInReceipt"/>',],
         </acl:menuAcl>
         <acl:menuAcl itemId="BAAAAC">
-        ['遺屬年金給付受理作業', '<c:url value="/enterSurvivorAnnuityReceipt.do?parameter=enterSurvivorAnnuityReceipt"/>',],
+        ['遺屬年金批次受理作業', '<c:url value="/enterSurvivorAnnuityReceipt.do?parameter=enterSurvivorAnnuityReceipt"/>',],
         </acl:menuAcl>
     ],
     </acl:menuAcl>

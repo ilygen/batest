@@ -375,13 +375,22 @@
                 <msg bundle="baMsg" name="chineseDate" key="errors.date" />
                 <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.grdBrDate" />                
             </field> 
+            <field property="evAppTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.evAppTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([3-4])$</var-value>
+                </var>              
+            </field>
             <field property="evTyp" depends="required,mask" page="1">
                 <msg bundle="baMsg" name="required" key="errors.required" />
                 <msg bundle="baMsg" name="mask" key="errors.invalid" />
                 <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.evTyp" />  
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^([1-4])$</var-value>
+                    <var-value>^([3-4])$</var-value>
                 </var>              
             </field>
             <field property="evtJobDate" depends="chineseDate,notAfterToday" page="1">

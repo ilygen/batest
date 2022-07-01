@@ -661,6 +661,22 @@ public class ReceiptService {
         if (StringUtils.isNotBlank(caseObj.getEvtJobDate())) {
             caseObj.setEvtJobDate(DateUtility.changeDateType(caseObj.getEvtJobDate()));
         }
+        // 傷病發生日期
+ 		if (StringUtils.isNotBlank(caseObj.getInjDte())) {
+ 			caseObj.setInjDte(DateUtility.changeDateType(caseObj.getInjDte()));
+ 		}
+ 		// 初診日期
+ 		if (StringUtils.isNotBlank(caseObj.getFvisitDte())) {
+ 			caseObj.setFvisitDte(DateUtility.changeDateType(caseObj.getFvisitDte()));
+ 		}
+ 		// 最後手術日期
+ 		if (StringUtils.isNotBlank(caseObj.getLsurgeryDte())) {
+ 			caseObj.setLsurgeryDte(DateUtility.changeDateType(caseObj.getLsurgeryDte()));
+ 		}
+ 		// 最後放射(化學)治療日期
+ 		if (StringUtils.isNotBlank(caseObj.getLsradiationDte())) {
+ 			caseObj.setLsradiationDte(DateUtility.changeDateType(caseObj.getLsradiationDte()));
+ 		}
 
         // 根據 事故者身分證號, 出生日期 取得戶政資料
         Cvldtl cvldtlData = selectCvldtlNameBy(caseObj.getEvtIdnNo(), caseObj.getEvtBrDate());
@@ -1319,7 +1335,12 @@ public class ReceiptService {
         baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
         baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
         baappexpand.setHandIcapMk(evtCase.getEvtHandIcapMk());// 有無診斷書
-        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+//        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+		baappexpand.setInjDte(evtCase.getInjDte());// 傷病發生日期
+		baappexpand.setFvisitDte(evtCase.getFvisitDte());// 初診日期
+		baappexpand.setLsurgeryDte(evtCase.getLsurgeryDte());// 最後手術日期
+		baappexpand.setLsradiationDte(evtCase.getLsradiationDte());// 最後放射(化學)治療日期
+		baappexpand.setForinsAddr(evtCase.getForinsAddr());// 外籍被保險人母國地址
         BigDecimal baappexpandId = baappexpandDao.insertDataForDisabledAnnuityReceipt(baappexpand);
         log.debug("Insert BAAPPEXPAND Finished ...");
         // ]
@@ -1599,6 +1620,12 @@ public class ReceiptService {
             beforBaappexpand.setDoctorName2(beforBaappbase.getDoctorName2());
             beforBaappexpand.setHandIcapMk(beforBaappbase.getHandIcapMk());
             beforBaappexpand.setEvAppTyp(beforBaappbase.getEvTyp());
+            beforBaappexpand.setInjDte(beforBaappbase.getInjDte());// 傷病發生日期
+            beforBaappexpand.setFvisitDte(beforBaappbase.getFvisitDte());// 初診日期
+            beforBaappexpand.setLsurgeryDte(beforBaappbase.getLsurgeryDte());// 最後手術日期
+            beforBaappexpand.setLsradiationDte(beforBaappbase.getLsradiationDte());// 最後放射(化學)治療日期
+            beforBaappexpand.setForinsAddr(beforBaappbase.getForinsAddr());// 外籍被保險人母國地址
+            
         }
         // 更新給付主檔
         baappbaseDao.updateDataForDisabledAnnuityReceipt(baappbase);
@@ -1645,6 +1672,11 @@ public class ReceiptService {
             afterBaappexpand.setDoctorName2(baappexpand.getDoctorName2());
             afterBaappexpand.setHandIcapMk(baappexpand.getHandIcapMk());
             afterBaappexpand.setEvAppTyp(baappexpand.getEvAppTyp());
+            afterBaappexpand.setInjDte(baappexpand.getInjDte());// 傷病發生日期
+            afterBaappexpand.setFvisitDte(baappexpand.getFvisitDte());// 初診日期
+            afterBaappexpand.setLsurgeryDte(baappexpand.getLsurgeryDte());// 最後手術日期
+            afterBaappexpand.setLsradiationDte(baappexpand.getLsradiationDte());// 最後放射(化學)治療日期
+            afterBaappexpand.setForinsAddr(baappexpand.getForinsAddr());// 外籍被保險人母國地址
         }
 
         baappexpandDao.updateDataForDisabledAnnuityReceipt(baappexpand);
@@ -1951,6 +1983,22 @@ public class ReceiptService {
         if (StringUtils.isNotBlank(caseObj.getChkPayBankId()) || StringUtils.isNotBlank(caseObj.getChkBranchId())) {
             caseObj.setChkPayBankIdChkBranchId(caseObj.getChkPayBankId() + caseObj.getChkBranchId());
         }
+        // 傷病發生日期
+        if (StringUtils.isNotBlank(caseObj.getInjDte()) && caseObj.getInjDte().length() == 8) {
+        	caseObj.setInjDte(DateUtility.changeDateType(caseObj.getInjDte()));
+        }
+        // 初診日期
+        if (StringUtils.isNotBlank(caseObj.getFvisitDte()) && caseObj.getFvisitDte().length() == 8) {
+        	caseObj.setFvisitDte(DateUtility.changeDateType(caseObj.getFvisitDte()));
+        }
+        // 最後手術日期
+        if (StringUtils.isNotBlank(caseObj.getLsurgeryDte()) && caseObj.getLsurgeryDte().length() == 8) {
+        	caseObj.setLsurgeryDte(DateUtility.changeDateType(caseObj.getLsurgeryDte()));
+        }
+        // 最後放射(化學)治療日期
+        if (StringUtils.isNotBlank(caseObj.getLsradiationDte()) && caseObj.getLsradiationDte().length() == 8) {
+        	caseObj.setLsradiationDte(DateUtility.changeDateType(caseObj.getLsradiationDte()));
+        }
         return caseObj;
     }
 
@@ -2047,8 +2095,13 @@ public class ReceiptService {
             evtForm.setGrdIdnNo(famForm.getTempGrdIdnNo()); // 法定代理人身分證號
             evtForm.setGrdName(famForm.getTempGrdName()); // 法定代理人姓名
             evtForm.setGrdBrDate(famForm.getTempGrdBrDate()); // 法定代理人出生日期
-            evtForm.setEvTyp(famForm.getTempEvTyp()); // 傷病分類
+            evtForm.setEvAppTyp(famForm.getTempEvAppTyp());// 申請傷病分類
+            evtForm.setEvTyp(famForm.getTempEvTyp()); // 核定傷病分類
             evtForm.setEvtJobDate(famForm.getTempEvtJobDate()); // 診斷失能日期
+            evtForm.setInjDte(famForm.getTempInjDte());// 傷病發生日期
+            evtForm.setFvisitDte(famForm.getTempFvisitDte());// 初診日期
+            evtForm.setLsurgeryDte(famForm.getTempLsurgeryDte());// 最後手術日期
+            evtForm.setLsradiationDte(famForm.getTempLsradiationDte());// 最後放射(化學)治療日期
             evtForm.setEvCode(famForm.getTempEvCode()); // 傷病原因
             evtForm.setCriInPart1(famForm.getTempCriInPart1()); // 受傷部位
             evtForm.setCriInPart2(famForm.getTempCriInPart2()); // 受傷部位
@@ -2071,6 +2124,7 @@ public class ReceiptService {
             evtForm.setCriInJnme2(famForm.getTempCriInJnme2()); // 國際疾病代碼
             evtForm.setCriInJnme3(famForm.getTempCriInJnme3()); // 國際疾病代碼
             evtForm.setCriInJnme4(famForm.getTempCriInJnme4()); // 國際疾病代碼
+            evtForm.setForinsAddr(famForm.getTempForinsAddr());// 外籍被保險人母國地址
             evtForm.setPayTyp(famForm.getTempPayTyp()); // 給付方式
             evtForm.setPayBankIdBranchId(famForm.getTempPayBankIdBranchId()); // 帳號(前)
             evtForm.setPayEeacc(famForm.getTempPayEeacc()); // 帳號(後)
