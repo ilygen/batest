@@ -36,6 +36,7 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String appDate;// 申請日期
     private String apUbno;// 申請單位保險證號
     private String dataIdx; // 修改模式資料序號
+    private String sysCode;// 系統類別
 
     // 事故者個人資料
     private String evtNationTpe;// 事故者國籍別
@@ -59,7 +60,8 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String defaultGrdData;// 法定代理人預設眷屬1
 
     // 保險事故
-    private String evTyp;// 傷病分類
+    private String evAppTyp;// 申請傷病分類
+    private String evTyp;// 核定傷病分類
     private String evtJobDate;// 診斷失能日期
     private String evCode;// 傷病原因
     private String criInPart1;// 受傷部位
@@ -144,7 +146,8 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String oldGrdBrDate;// 法定代理人出生日期
     private String oldMobilePhone; // 手機複驗
     private String oldEvtHandIcapMk;// 有無診斷書
-    private String oldEvTyp;// 傷病分類
+    private String oldEvAppTyp;// 申請傷病分類
+    private String oldEvTyp;// 核定傷病分類
     private String oldEvtJobDate;// 診斷失能日期
     private String oldEvCode;// 傷病原因
     private String oldCriInPart1;// 受傷部位
@@ -226,7 +229,8 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
     private String tempDefaultGrdData;// 法定代理人預設眷屬1
 
     // 保險事故
-    private String tempEvTyp;// 傷病分類
+    private String tempEvAppTyp;// 申請傷病分類
+    private String tempEvTyp;// 核定傷病分類
     private String tempEvtJobDate;// 診斷失能日期
     private String tempEvCode;// 傷病原因
     private String tempCriInPart1;// 受傷部位
@@ -1821,7 +1825,15 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
         this.dataIdx = dataIdx;
     }
 
-    public String getFocusLocation() {
+    public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getFocusLocation() {
         return focusLocation;
     }
 
@@ -2163,6 +2175,30 @@ public class DisabledAnnuityReceiptForm extends BaseValidatorForm {
 
 	public void setTempForinsAddr(String tempForinsAddr) {
 		this.tempForinsAddr = tempForinsAddr;
+	}
+
+	public String getEvAppTyp() {
+		return evAppTyp;
+	}
+
+	public void setEvAppTyp(String evAppTyp) {
+		this.evAppTyp = evAppTyp;
+	}
+
+	public String getOldEvAppTyp() {
+		return oldEvAppTyp;
+	}
+
+	public void setOldEvAppTyp(String oldEvAppTyp) {
+		this.oldEvAppTyp = oldEvAppTyp;
+	}
+
+	public String getTempEvAppTyp() {
+		return tempEvAppTyp;
+	}
+
+	public void setTempEvAppTyp(String tempEvAppTyp) {
+		this.tempEvAppTyp = tempEvAppTyp;
 	}
 
 }
