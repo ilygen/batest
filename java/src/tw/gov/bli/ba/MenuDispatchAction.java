@@ -509,28 +509,6 @@ public class MenuDispatchAction extends BaseMappingDispatchAction {
     	
     	return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
     }
-    
-    /**
-     * 受理作業 - 國併勞年金臨櫃受理作業 - 受理頁面 (baap0d050a.jsp)
-     * 
-     * @param mapping
-     * @param form
-     * @param request
-     * @param response
-     * @return
-     */
-    public ActionForward enterNpDisabledAnnuityReceipt(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
-    	log.debug("執行 MenuDispatchAction.enterNpDisabledAnnuityReceipt() : 受理作業 - 國併勞年金臨櫃受理作業 (baap0d050a.jsp) ...");
-    	
-    	// 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
-        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptForm(request);
-        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
-        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQueryForm(request);
-        tw.gov.bli.ba.receipt.helper.CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
-    	
-    	return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
-    }
 
     /**
      * 行政支援作業 - 行政支援記錄維護 - 查詢頁面 (basu0d010a.jsp)
@@ -555,6 +533,28 @@ public class MenuDispatchAction extends BaseMappingDispatchAction {
         // 取得給函別類下拉選單的內容
         session.setAttribute(ConstantKey.LETTERTYPE_OPTION_LIST, selectOptionService.getLetterTypeOptionList());
         return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
+    }
+    
+    /**
+     * 受理作業 - 國併勞年金臨櫃受理作業 - 受理頁面 (baap0d050a.jsp)
+     * 
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
+    public ActionForward enterNpDisabledAnnuityReceipt(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+    	log.debug("執行 MenuDispatchAction.enterNpDisabledAnnuityReceipt() : 受理作業 - 國併勞年金臨櫃受理作業 (baap0d050a.jsp) ...");
+    	
+    	// 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQueryForm(request);
+        tw.gov.bli.ba.receipt.helper.CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
+    	
+    	return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
     }
 
     /**
