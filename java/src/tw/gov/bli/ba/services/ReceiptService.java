@@ -2040,6 +2040,85 @@ public class ReceiptService {
         }
         return chkResult;
     }
+    
+    /**
+     * 保存畫面上已輸入之事故者資料 for 失能臨櫃受理
+     * 
+     * @param evtForm
+     * @param famForm
+     * @return
+     */
+    public DisabledAnnuityWalkInReceiptQueryForm keepInputEvtFormDataForWalkInDisabled(
+    		DisabledAnnuityWalkInReceiptQueryForm evtForm, DisabledAnnuityWalkInReceiptQueryForm famForm) {
+        if (evtForm != null && famForm != null) {
+        	evtForm.setApNo1(famForm.getTempApNo1());// 受理編號-1
+            evtForm.setApNo2(famForm.getTempApNo2());// 受理編號-2
+            evtForm.setApNo3(famForm.getTempApNo3());// 受理編號-3
+            evtForm.setApNo4(famForm.getTempApNo4());// 受理編號-4
+            evtForm.setAppDate(famForm.getTempAppDate());// 申請日期
+            evtForm.setApUbno(famForm.getTempApUbno());// 申請單位保險證號
+            evtForm.setEvtNationTpe(famForm.getTempEvtNationTpe()); // 事故者國籍別
+            evtForm.setEvtSex(famForm.getTempEvtSex()); // 性別
+            evtForm.setEvtNationCode(famForm.getTempEvtNationCode()); // 事故者國籍
+            evtForm.setEvtNationCodeOption(famForm.getTempEvtNationCodeOption()); // 事故者國籍下拉選單
+            evtForm.setEvtName(famForm.getTempEvtName()); // 事故者姓名
+            evtForm.setCvldtlName(famForm.getTempCvldtlName()); // 戶籍姓名
+            evtForm.setEvtIdnNo(famForm.getTempEvtIdnNo()); // 事故者身分證號
+            evtForm.setEvtBrDate(famForm.getTempEvtBrDate()); // 事故者出生日期
+            evtForm.setTel1(famForm.getTempTel1()); // 電話1
+            evtForm.setTel2(famForm.getTempTel2()); // 電話2
+            evtForm.setCommTyp(famForm.getTempCommTyp()); // 通訊地址別
+            evtForm.setCommZip(famForm.getTempCommZip()); // 通訊郵遞區號
+            evtForm.setCommAddr(famForm.getTempCommAddr()); // 通訊地址
+            evtForm.setGrdIdnNo(famForm.getTempGrdIdnNo()); // 法定代理人身分證號
+            evtForm.setGrdName(famForm.getTempGrdName()); // 法定代理人姓名
+            evtForm.setGrdBrDate(famForm.getTempGrdBrDate()); // 法定代理人出生日期
+            evtForm.setEvAppTyp(famForm.getTempEvAppTyp());// 申請傷病分類
+            evtForm.setEvTyp(famForm.getTempEvTyp()); // 核定傷病分類
+            evtForm.setEvtJobDate(famForm.getTempEvtJobDate()); // 診斷失能日期
+            evtForm.setInjDte(famForm.getTempInjDte());// 傷病發生日期
+            evtForm.setFvisitDte(famForm.getTempFvisitDte());// 初診日期
+            evtForm.setLsurgeryDte(famForm.getTempLsurgeryDte());// 最後手術日期
+            evtForm.setLsradiationDte(famForm.getTempLsradiationDte());// 最後放射(化學)治療日期
+            evtForm.setEvCode(famForm.getTempEvCode()); // 傷病原因
+            evtForm.setCriInPart1(famForm.getTempCriInPart1()); // 受傷部位
+            evtForm.setCriInPart2(famForm.getTempCriInPart2()); // 受傷部位
+            evtForm.setCriInPart3(famForm.getTempCriInPart3()); // 受傷部位
+            evtForm.setCriMedium(famForm.getTempCriMedium()); // 媒 介 物
+            evtForm.setCriInJdp1(famForm.getTempCriInJdp1()); // 失能項目
+            evtForm.setCriInJdp2(famForm.getTempCriInJdp2()); // 失能項目
+            evtForm.setCriInJdp3(famForm.getTempCriInJdp3()); // 失能項目
+            evtForm.setCriInJdp4(famForm.getTempCriInJdp4()); // 失能項目
+            evtForm.setCriInJdp5(famForm.getTempCriInJdp5()); // 失能項目
+            evtForm.setCriInJdp6(famForm.getTempCriInJdp6()); // 失能項目
+            evtForm.setCriInJdp7(famForm.getTempCriInJdp7()); // 失能項目
+            evtForm.setCriInJdp8(famForm.getTempCriInJdp8()); // 失能項目
+            evtForm.setCriInJdp9(famForm.getTempCriInJdp9()); // 失能項目
+            evtForm.setCriInJdp10(famForm.getTempCriInJdp10()); // 失能項目
+            evtForm.setHosId(famForm.getTempHosId()); // 醫療院所代碼
+            evtForm.setDoctorName1(famForm.getTempDoctorName1()); // 醫師姓名
+            evtForm.setDoctorName2(famForm.getTempDoctorName2()); // 醫師姓名
+            evtForm.setCriInJnme1(famForm.getTempCriInJnme1()); // 國際疾病代碼
+            evtForm.setCriInJnme2(famForm.getTempCriInJnme2()); // 國際疾病代碼
+            evtForm.setCriInJnme3(famForm.getTempCriInJnme3()); // 國際疾病代碼
+            evtForm.setCriInJnme4(famForm.getTempCriInJnme4()); // 國際疾病代碼
+            evtForm.setForinsAddr(famForm.getTempForinsAddr());// 外籍被保險人母國地址
+            evtForm.setPayTyp(famForm.getTempPayTyp()); // 給付方式
+            evtForm.setPayBankIdBranchId(famForm.getTempPayBankIdBranchId()); // 帳號(前)
+            evtForm.setPayEeacc(famForm.getTempPayEeacc()); // 帳號(後)
+            evtForm.setChkPayBankIdChkBranchId(famForm.getTempChkPayBankIdChkBranchId()); // 帳號(前) 複驗
+            evtForm.setChkPayEeacc(famForm.getTempChkPayEeacc()); // 帳號(後) 複驗
+            evtForm.setMobilePhone(famForm.getTempMobilePhone());// 手機複驗
+            evtForm.setEvtHandIcapMk(famForm.getTempEvtHandIcapMk());// 有無診斷書
+            evtForm.setDefaultGrdData(famForm.getTempDefaultGrdData());// 法定代理人預設眷屬1
+            evtForm.setPayBankId(famForm.getTempPayBankId()); // 帳號(前)
+            evtForm.setBranchId(famForm.getTempBranchId()); // 帳號(前)
+            evtForm.setChkPayBankId(famForm.getTempChkPayBankId()); // 帳號(前) 複驗
+            evtForm.setChkBranchId(famForm.getTempChkBranchId()); // 帳號(前) 複驗
+        }
+
+        return evtForm;
+    }
 
     /**
      * 保存畫面上已輸入之事故者資料 for 失能受理

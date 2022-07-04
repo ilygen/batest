@@ -1211,6 +1211,109 @@
             </field>
         </form>    
                    
+        <form name="DisabledAnnuityWalkInReceiptFamForm">    
+            <field property="famNationTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famNationTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="famSex" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famSex" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>           
+            <field property="famName" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famName" />                
+            </field>
+            <field property="famIdnNo" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_FORN_MASK}</var-value>
+                </var>                
+            </field>
+            <field property="famBrDate" depends="required,notAfterToday" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famBrDate" />                
+            </field>
+            <field property="famAppDate" depends="required,chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famAppDate" />                
+            </field>
+            <field property="famEvtRel" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.famEvtRel" /> 
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([2-7])$</var-value>
+                </var>               
+            </field>
+            <field property="marryDate" depends="chineseDate,notAfterToday" page="1">                
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.marryDate" />                
+            </field>
+            <field property="raiseChildMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.raiseChildMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="studMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.studMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncomeMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.monIncomeMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncome" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.number" />                
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.monIncome"/>
+            </field>
+            <field property="handIcapMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.handIcapMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="interDictMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.disabledAnnuityReceipt.interDictMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+        </form>
+                   
         <form name="DisabledAnnuityReceiptFamForm">    
             <field property="famNationTyp" depends="required,mask" page="1">
                 <msg bundle="baMsg" name="required" key="errors.required" />

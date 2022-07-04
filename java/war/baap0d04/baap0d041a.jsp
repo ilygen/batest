@@ -16,7 +16,7 @@
     <script type='text/javascript' src='<c:url value="/js/ba_functions.js"/>'></script>                                                                                                                                                                                                                                                                       
     <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>                                                                                                                                                                                                                                                                          
     <html:javascript formName="DisabledAnnuityWalkInReceiptQueryForm" page="2" />                                                                                                                                                                                                                                                                                        
-    <html:javascript formName="DisabledAnnuityReceiptFamForm" page="1" />                                                                                                                                                                                                                                                                                        
+    <html:javascript formName="DisabledAnnuityWalkInReceiptFamForm" page="1" />                                                                                                                                                                                                                                                                                        
     <script language="javascript" type="text/javascript">                                                                                                                                                                                                                                                                                                     
     var nowDate = "<%=DateUtility.getNowChineseDate()%>";
     var procType = '<c:out value="${DisabledAnnuityWalkInReceiptQueryForm.procType}" />';
@@ -784,7 +784,7 @@
     <%-- ] ... end --%>                                                                                                                                                                                                                                                                                                                                       
                                                                                                                                                                                                                                                                                                                                                               
     function initAll(){
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famOptionMode}" />'=="updateMode"){
+        if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famOptionMode}" />'=="updateMode"){
             $("famOptionMode").value="updateMode";
             $("insertModeBtn").style.display="none";  
             $("insertModeStr").style.display="none";  
@@ -861,8 +861,8 @@
         --%>
         
         //眷屬國籍                                                                                                                                                                                                                                                                                                                              
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'!=""){
-            if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'=="1"){
+        if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famNationTyp}" />'!=""){
+            if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famNationTyp}" />'=="1"){
                 $("famSex").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("famNationCode").disabled = true;                                                                                                                                                                                                                                                                                                           
                 $("famNationCodeOption").disabled = true;                                                                                                                                                                                                                                                                                                     
@@ -881,8 +881,8 @@
             $("famNationCodeOption").disabled = true;                                                                                                                                                                                                                                                                                                         
         }
         //眷屬關係
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'!=""){
-            if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="2"){
+        if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'!=""){
+            if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'=="2"){
                 $("marryDate").disabled = false;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -893,7 +893,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="4"){
+            }else if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'=="4"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = false;
@@ -904,7 +904,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="7"){
+            }else if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'=="7"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -915,7 +915,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="3"||'<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="5"){
+            }else if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'=="3"||'<c:out value="${DisabledAnnuityWalkInReceiptFamForm.famEvtRel}" />'=="5"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -945,7 +945,7 @@
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
         }
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.focusLocation}" />'=="famNationTyp"){
+        if('<c:out value="${DisabledAnnuityWalkInReceiptFamForm.focusLocation}" />'=="famNationTyp"){
             $("famNationTyp").focus();
         }else{
             $("apNo1").focus();
@@ -1712,7 +1712,7 @@
                     </td>                                                                                                                                                                                                                                                                                                                                     
                 </tr>
             </html:form>
-            <html:form action="/disabledAnnuityWalkInReceiptInsertFam" method="post" onsubmit="return validateDisabledAnnuityReceiptFamForm(this);">                                                                                                                                                                                                                          
+            <html:form action="/disabledAnnuityWalkInReceiptInsertFam" method="post" onsubmit="return validateDisabledAnnuityWalkInReceiptFamForm(this);">                                                                                                                                                                                                                          
                 <html:hidden styleId="famPage" property="page" value="1" />                                                                                                                                                                                                                                                                                              
                 <html:hidden styleId="famMethod" property="method" value="" />
                 <html:hidden styleId="famBafamilytempId" property="bafamilytempId" value="<%=CaseSessionHelper.getDisabledAnnuityReceiptBafamilytempIdStr(request) %>"/>
@@ -1805,13 +1805,13 @@
                                                 <acl:checkButton buttonName="btnInsertFam">                                                                                                                                                                                                                                                                                           
                                                     <div id="insertModeBtn" style="display:inline">
                                                         <input type="button" tabindex="670" name="btnInsertFam" class="button" value="新增眷屬"
-                                                        	onclick="$('famPage').value='1'; $('famMethod').value='doInsertFamData'; if (document.DisabledAnnuityReceiptFamForm.onsubmit() && checkFamFields() && isValidFamDateTrue()){saveTempEvtData(); document.DisabledAnnuityReceiptFamForm.submit();}else{return false;}" />&nbsp;
+                                                        	onclick="$('famPage').value='1'; $('famMethod').value='doInsertFamData'; if (document.DisabledAnnuityWalkInReceiptFamForm.onsubmit() && checkFamFields() && isValidFamDateTrue()){saveTempEvtData(); document.DisabledAnnuityWalkInReceiptFamForm.submit();}else{return false;}" />&nbsp;
                                                     </div>
                                                 </acl:checkButton>
                                                 <acl:checkButton buttonName="btnUpdateFam">                                                                                                                                                                                                                                                                                           
                                                     <div id="updateModeBtn" style="display:none">
                                                         <input type="button" tabindex="680" name="btnUpdateFam" class="button" value="修改眷屬"
-                                                        	onclick="$('famPage').value='1'; $('famMethod').value='doUpdateFamData'; if (document.DisabledAnnuityReceiptFamForm.onsubmit() && checkFamFields() && isValidFamDateTrue()){saveTempEvtData(); document.DisabledAnnuityReceiptFamForm.submit();}else{return false;}" />&nbsp;&nbsp;
+                                                        	onclick="$('famPage').value='1'; $('famMethod').value='doUpdateFamData'; if (document.DisabledAnnuityWalkInReceiptFamForm.onsubmit() && checkFamFields() && isValidFamDateTrue()){saveTempEvtData(); document.DisabledAnnuityWalkInReceiptFamForm.submit();}else{return false;}" />&nbsp;&nbsp;
                                                     </div>                                                                                                                                                                                                                                                                                                                    
                                                 </acl:checkButton>
                                                 <acl:checkButton buttonName="btnClearFam">                                                                                                                                                                                                                                                                                            
@@ -1968,7 +1968,7 @@
                                     <input type="button" name="btnUpdate" class="button" value="修　改" onclick="getFamDetailData('<c:out value="${listItem.bafamilytempId}" />','<c:out value="${listItem.seqNo}" />');$('dataIdx').value=<c:out value="${listItem_rowNum}" />;$('dataIndex').innerHTML=<c:out value="${listItem_rowNum}" />;$('famOptionMode').value='updateMode';" />&nbsp;                                                                                                                                  
                                 </acl:checkButton>                                                                                                                                                                                                                                                                                                                
                                 <acl:checkButton buttonName="btnDeleteFam">                                                                                                                                                                                                                                                                                       
-                                    <input type="button" class="button" name="btnDeleteFam" value="刪　除" onclick="$('famPage').value='1'; $('famMethod').value='doDeleteFamData'; $('seqNo').value='<c:out value="${listItem.seqNo}" />'; if(confirm('<bean:message bundle="<%=Global.BA_MSG%>" key="msg.delete.confirm"/>')){document.DisabledAnnuityReceiptFamForm.submit();}else{return false;}">
+                                    <input type="button" class="button" name="btnDeleteFam" value="刪　除" onclick="$('famPage').value='1'; $('famMethod').value='doDeleteFamData'; $('seqNo').value='<c:out value="${listItem.seqNo}" />'; if(confirm('<bean:message bundle="<%=Global.BA_MSG%>" key="msg.delete.confirm"/>')){document.DisabledAnnuityWalkInReceiptFamForm.submit();}else{return false;}">
                                 </acl:checkButton>                                                                                                                                                                                                                                                                                                                
                             </display:column>                                                                                                                                                                                                                                                                                                                     
                         </display:table>                                                                                                                                                                                                                                                                                                                      

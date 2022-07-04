@@ -141,6 +141,8 @@ public class ConstantKey {
     public static final String DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM = "DisabledAnnuityWalkInReceiptQueryForm";
     // 受理作業 - 失能年金給付受理作業
     public static final String DISABLED_ANNUITY_RECEIPT_FORM = "DisabledAnnuityReceiptForm";
+    // 受理作業 - 失能年金臨櫃受理作業
+    public static final String DISABLED_ANNUITY_WALK_IN_RECEIPT_FAM_FORM = "DisabledAnnuityWalkInReceiptFamForm";
     // 受理作業 - 失能年金給付受理作業
     public static final String DISABLED_ANNUITY_RECEIPT_FAM_FORM = "DisabledAnnuityReceiptFamForm";
     // 受理作業 - 失能年金給付受理作業 - 查詢條件FORM

@@ -27,7 +27,6 @@ import tw.gov.bli.ba.framework.struts.actions.BaseDispatchAction;
 import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptEvtCase;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptFamCase;
-import tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm;
 import tw.gov.bli.ba.receipt.helper.CaseSessionHelper;
 import tw.gov.bli.ba.receipt.helper.FormSessionHelper;
@@ -55,6 +54,15 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	private ReceiptService receiptService;
 	private SelectOptionService selectOptionService;
 
+	/**
+	 * 受理作業 - 失能年金臨櫃受理作業 - 登錄新增作業
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	public ActionForward prepareInsertBa(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
 		log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 登錄新增作業 DisabledAnnuityWalkInReceiptAction.prepareInsertBa() 開始 ... ");
@@ -64,14 +72,15 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 		try {
 			DisabledAnnuityWalkInReceiptQueryForm queryForm = (DisabledAnnuityWalkInReceiptQueryForm) form;
 			String procType = queryForm.getProcType();
-			
+
 			// 轉入作業
 			if (!StringUtils.equals(procType, "1")) {
 				List<Baap0d040> turnInData = receiptService.getTurnInData(queryForm);
 				// 查無轉入資料
 				if (CollectionUtils.isEmpty(turnInData)) {
 					saveMessages(session, DatabaseMessageHelper.getNoResultMessage());
-					log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 登錄新增作業 DisabledAnnuityWalkInReceiptAction.prepareInsertBa() 完成 ... ");
+					log.debug(
+							"執行 受理作業 - 失能年金臨櫃受理作業 - 登錄新增作業 DisabledAnnuityWalkInReceiptAction.prepareInsertBa() 完成 ... ");
 					return mapping.findForward(ConstantKey.FORWARD_FAIL);
 				} else {
 					// 將它系統轉入資料設定至頁面使用的 form
@@ -106,6 +115,15 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 		}
 	}
 
+	/**
+	 * 受理作業 - 失能年金臨櫃受理作業 - 新增作業確認存檔
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	public ActionForward doInsertBa(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
 		log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 新增作業確認存檔 DisabledAnnuityWalkInReceiptAction.doInsertBa() 開始 ... ");
@@ -148,7 +166,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 								.getSingleCheckMarkServiceHttpPort();
 						returnCode = binding.doCheckMark(apNo, SecureToken.getInstance().getToken());
 					} catch (Exception e) {
-						log.error("DisabledApplicationDataUpdateAction.doSave() 即時編審發生錯誤:"
+						log.error("DisabledAnnuityWalkInReceiptAction.doInsertBa() 即時編審發生錯誤:"
 								+ ExceptionUtility.getStackTrace(e));
 					}
 
@@ -165,10 +183,8 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					// 重新取得頁面資料
 					// [
 					// 清除所有session資料
-					FormSessionHelper.removeDisabledAnnuityReceiptForm(request);
-					FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
+					FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
 					FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
-					FormSessionHelper.removeDisabledAnnuityReceiptQueryForm(request);
 					CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
 					FormSessionHelper.removeDisabledAnnuityWalkInReceiptQueryForm(request);
 					// 取得 遺屬眷屬暫存檔(BAFAMILYTEMP) 暫存檔資料列編號(Sequence.BAFAMILYTEMPID)
@@ -196,7 +212,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	}
 
 	/**
-	 * 受理作業 - 失能年金受理作業 - 返回
+	 * 受理作業 - 失能年金臨櫃受理作業 - 返回
 	 * 
 	 * @param mapping
 	 * @param form
@@ -210,10 +226,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 
 		// 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
 		FormSessionHelper.removeDisabledAnnuityWalkInReceiptQueryForm(request);
-		FormSessionHelper.removeDisabledAnnuityReceiptForm(request);
-		FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
 		FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
-		FormSessionHelper.removeDisabledAnnuityReceiptQueryForm(request);
 		CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
 
 		log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 返回 DisabledAnnuityWalkInReceiptAction.doBack() 完成 ... ");
@@ -237,14 +250,15 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 		UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
 		String forward = ConstantKey.FORWARD_SAVE_FAIL;
 		try {
-			DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
+			DisabledAnnuityWalkInReceiptQueryForm iform = (DisabledAnnuityWalkInReceiptQueryForm) form;
 			DisabledAnnuityReceiptFamCase caseObj = new DisabledAnnuityReceiptFamCase();
 			BeanUtility.copyProperties(caseObj, iform);
 
 			// 保存畫面上已輸入之事故者資料
-			DisabledAnnuityReceiptForm evtForm = FormSessionHelper.getDisabledAnnuityReceiptForm(request);
-			evtForm = receiptService.keepInputEvtFormDataForDisabled(evtForm, iform);
-			FormSessionHelper.setDisabledAnnuityReceiptForm(evtForm, request);
+			DisabledAnnuityWalkInReceiptQueryForm evtForm = FormSessionHelper
+					.getDisabledAnnuityWalkInReceiptQueryForm(request);
+			evtForm = receiptService.keepInputEvtFormDataForWalkInDisabled(evtForm, iform);
+			FormSessionHelper.setDisabledAnnuityWalkInReceiptQueryForm(evtForm, request);
 
 			// 先判斷該案是新增或修改
 			if ((APP_ACTION_TYP_INSERT).equals(iform.getActionTyp())) {
@@ -272,14 +286,14 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 							.getDisabledBafamilytempData(caseObj.getBafamilytempId());
 
 					// 重置頁面輸入資料
-					DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+					DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 					BeanUtility.copyProperties(insertForm, iform);
 					insertForm.cleanFamData();
 					insertForm.setFocusLocation("famNationTyp");
 
 					// 將資料存入Session
-					FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-					FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+					FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+					FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 					CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 					// ]
 				}
@@ -308,14 +322,14 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 							.getBafamilyDataForDiasbled(caseObj.getBaappbaseId(), caseObj.getApNo());
 
 					// 重置頁面輸入資料
-					DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+					DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 					BeanUtility.copyProperties(insertForm, iform);
 					insertForm.cleanFamData();
 					insertForm.setFocusLocation("famNationTyp");
 
 					// 將資料存入Session
-					FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-					FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+					FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+					FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 					CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 					// ]
 				}
@@ -331,7 +345,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	}
 
 	/**
-	 * 受理作業 - 失能年金給付受理作業 - 修改眷屬作業存檔
+	 * 受理作業 - 失能年金臨櫃受理作業 - 修改眷屬作業存檔
 	 * 
 	 * @param mapping
 	 * @param form
@@ -341,21 +355,22 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	 */
 	public ActionForward doUpdateFamData(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
-		log.debug("執行 受理作業 - 失能年金給付受理作業 - 修改眷屬作業存檔 DisabledAnnuityReceiptAction.doUpdateFamData() 開始 ... ");
+		log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 修改眷屬作業存檔 DisabledAnnuityWalkInReceiptAction.doUpdateFamData() 開始 ... ");
 
 		HttpSession session = request.getSession();
 		UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
 		String forward = ConstantKey.FORWARD_UPDATE_FAIL;
 
 		try {
-			DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
+			DisabledAnnuityWalkInReceiptQueryForm iform = (DisabledAnnuityWalkInReceiptQueryForm) form;
 			DisabledAnnuityReceiptFamCase caseObj = new DisabledAnnuityReceiptFamCase();
 			BeanUtility.copyProperties(caseObj, iform);
 
 			// 保存畫面上已輸入之事故者資料
-			DisabledAnnuityReceiptForm evtForm = FormSessionHelper.getDisabledAnnuityReceiptForm(request);
-			evtForm = receiptService.keepInputEvtFormDataForDisabled(evtForm, iform);
-			FormSessionHelper.setDisabledAnnuityReceiptForm(evtForm, request);
+			DisabledAnnuityWalkInReceiptQueryForm evtForm = FormSessionHelper
+					.getDisabledAnnuityWalkInReceiptQueryForm(request);
+			evtForm = receiptService.keepInputEvtFormDataForWalkInDisabled(evtForm, iform);
+			FormSessionHelper.setDisabledAnnuityWalkInReceiptQueryForm(evtForm, request);
 
 			// 先判斷該案是新增或修改
 			if ((APP_ACTION_TYP_INSERT).equals(iform.getActionTyp())) {
@@ -383,14 +398,14 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 							.getDisabledBafamilytempData(caseObj.getBafamilytempId());
 
 					// 重置頁面輸入資料
-					DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+					DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 					BeanUtility.copyProperties(insertForm, iform);
 					insertForm.cleanFamData();
 					insertForm.setFocusLocation("famNationTyp");
 
 					// 將資料存入Session
-					FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-					FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+					FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+					FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 					CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 					// ]
 				}
@@ -419,20 +434,20 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 							.getBafamilyDataForDiasbled(caseObj.getBaappbaseId(), caseObj.getApNo());
 
 					// 重置頁面輸入資料
-					DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+					DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 					BeanUtility.copyProperties(insertForm, iform);
 					insertForm.cleanFamData();
 					insertForm.setFocusLocation("famNationTyp");
 
 					// 將資料存入Session
-					FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-					FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+					FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+					FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 					CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 					// ]
 				}
 
 			}
-			log.debug("執行 受理作業 - 失能年金給付受理作業 - 修改眷屬作業存檔 DisabledAnnuityReceiptAction.doUpdateFamData() 完成 ... ");
+			log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 修改眷屬作業存檔 DisabledAnnuityWalkInReceiptAction.doUpdateFamData() 完成 ... ");
 			return mapping.findForward(forward);
 		} catch (Exception e) {
 			// 設定修改失敗訊息
@@ -443,7 +458,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	}
 
 	/**
-	 * 受理作業 - 失能年金給付受理作業 - 刪除眷屬作業存檔
+	 * 受理作業 - 失能年金臨櫃受理作業 - 刪除眷屬作業存檔
 	 * 
 	 * @param mapping
 	 * @param form
@@ -453,14 +468,14 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 	 */
 	public ActionForward doDeleteFamData(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
-		log.debug("執行 受理作業 - 失能年金給付受理作業 - 刪除眷屬作業存檔 DisabledAnnuityReceiptAction.doDeleteFamData() 開始 ... ");
+		log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 刪除眷屬作業存檔 DisabledAnnuityWalkInReceiptAction.doDeleteFamData() 開始 ... ");
 
 		HttpSession session = request.getSession();
 		UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
 		String forward = ConstantKey.FORWARD_DELETE_FAIL;
 
 		try {
-			DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
+			DisabledAnnuityWalkInReceiptQueryForm iform = (DisabledAnnuityWalkInReceiptQueryForm) form;
 
 			// 先判斷該案是新增或修改
 			if ((APP_ACTION_TYP_INSERT).equals(iform.getActionTyp())) {
@@ -482,14 +497,14 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 						.getDisabledBafamilytempData(iform.getBafamilytempId());
 
 				// 重置頁面輸入資料
-				DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+				DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 				BeanUtility.copyProperties(insertForm, iform);
 				insertForm.cleanFamData();
 				insertForm.setFocusLocation("famNationTyp");
 
 				// 將資料存入Session
-				FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-				FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+				FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+				FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 				CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 				// ]
 			} else if ((APP_ACTION_TYP_UPDATE).equals(iform.getActionTyp())) {
@@ -510,23 +525,23 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 						.getBafamilyDataForDiasbled(iform.getBaappbaseId(), iform.getApNo());
 
 				// 重置頁面輸入資料
-				DisabledAnnuityReceiptForm insertForm = new DisabledAnnuityReceiptForm();
+				DisabledAnnuityWalkInReceiptQueryForm insertForm = new DisabledAnnuityWalkInReceiptQueryForm();
 				BeanUtility.copyProperties(insertForm, iform);
 				insertForm.cleanFamData();
 				insertForm.setFocusLocation("famNationTyp");
 
 				// 將資料存入Session
-				FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
-				FormSessionHelper.setDisabledAnnuityReceiptFamForm(insertForm, request);
+				FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm(request);
+				FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm(insertForm, request);
 				CaseSessionHelper.setDisabledAnnuityReceiptFamDataList(famDataList, request);
 				// ]
 			}
 
-			log.debug("執行 受理作業 - 失能年金給付受理作業 - 刪除眷屬作業存檔 DisabledAnnuityReceiptAction.doDeleteBenData() 完成 ... ");
+			log.debug("執行 受理作業 - 失能年金臨櫃受理作業 - 刪除眷屬作業存檔 DisabledAnnuityWalkInReceiptAction.doDeleteBenData() 完成 ... ");
 			return mapping.findForward(forward);
 		} catch (Exception e) {
 			// 設定刪除失敗訊息
-			log.error("DisabledAnnuityReceiptAction.doDeleteBenData() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
+			log.error("DisabledAnnuityWalkInReceiptAction.doDeleteBenData() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
 			saveMessages(session, DatabaseMessageHelper.getDeleteFailMessage());
 			return mapping.findForward(ConstantKey.FORWARD_DELETE_FAIL);
 		}

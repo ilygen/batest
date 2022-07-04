@@ -24,6 +24,7 @@
         <form-bean name="DisabledAnnuityWalkInReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="DisabledAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
+        <form-bean name="DisabledAnnuityWalkInReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
@@ -1458,7 +1459,7 @@
             <forward name="saveAllFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
             <forward name="back" path="/baap0d04/baap0d040a.jsp" redirect="true" />
         </action>
-        <action name="DisabledAnnuityReceiptFamForm" path="/disabledAnnuityWalkInReceiptInsertFam" parameter="method" input="/baap0d04/baap0d041a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityWalkInReceiptAction" validate="false">
+        <action name="DisabledAnnuityWalkInReceiptFamForm" path="/disabledAnnuityWalkInReceiptInsertFam" parameter="method" input="/baap0d04/baap0d041a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityWalkInReceiptAction" validate="false">
             <forward name="saveSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
             <forward name="saveFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
             <forward name="updateSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
