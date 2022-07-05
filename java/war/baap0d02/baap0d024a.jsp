@@ -1348,6 +1348,7 @@
                 <html:hidden styleId="tempBranchId" property="tempBranchId" value=""/>
                 <html:hidden styleId="tempChkPayBankId" property="tempChkPayBankId" value=""/>
                 <html:hidden styleId="tempChkBranchId" property="tempChkBranchId" value=""/>
+                <html:hidden styleId="sFlag36" property="sFlag36" value="Y"/>
                 <%-- ]for 暫存以輸入之事故者資料 --%>
                 <tr>                                                                                                                                                                                                                                                                                                                                          
                     <td align="center" class="table1" colspan="8">                                                                                                                                                                                                                                                                                            

@@ -67,6 +67,13 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
     private static final String FORWARD_RECEIPT_MODIFY_LIST = "receiptModifyList";
     // 受理作業 - 失能年金給付受理作業 - 可修改之受理作業詳細資料頁面
     private static final String FORWARD_RECEIPT_MODIFY_DETAIL = "receiptModifyDetail";
+    
+    private static final String FORWARD_SAVE_SUCCESS_FOR_36 = "saveSuccessFor36";
+    private static final String FORWARD_SAVE_FAIL_FOR_36 = "saveFailFor36";
+    private static final String FORWARD_UPDATE_SUCCESS_FOR_36 = "updateSuccessFor36";
+    private static final String FORWARD_UPDATE_FAIL_FOR_36 = "updateFailFor36";
+    private static final String FORWARD_DELETE_SUCCESS_FOR_36 = "deleteSuccessFor36";
+    private static final String FORWARD_DELETE_FAIL_FOR_36 = "deleteFailFor36";
 
     // 案件操作模式 - 新增
     private static final String APP_ACTION_TYP_INSERT = "insertMode";
@@ -654,6 +661,10 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         HttpSession session = request.getSession();
         UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
         String forward = ConstantKey.FORWARD_SAVE_FAIL;
+        String sFlag36 = request.getParameter("sFlag36");
+        if (StringUtils.equals("Y", sFlag36)) {
+        	forward = FORWARD_SAVE_FAIL_FOR_36;
+        }
         try {
             DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
             DisabledAnnuityReceiptFamCase caseObj = new DisabledAnnuityReceiptFamCase();
@@ -678,7 +689,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
                     // 設定新增成功訊息
                     saveMessages(session, DatabaseMessageHelper.getSaveSuccessMessage());
 
-                    forward = ConstantKey.FORWARD_SAVE_SUCCESS;
+                    if (StringUtils.equals("Y", sFlag36)) {
+                    	forward = FORWARD_SAVE_SUCCESS_FOR_36;
+                    } else {
+                    	forward = ConstantKey.FORWARD_SAVE_SUCCESS;
+                    }
 
                     // 重新查詢資料
                     // [
@@ -742,7 +757,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
             // 設定新增失敗訊息
             log.error("DisabledAnnuityReceiptAction.doInsertFamData() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
             saveMessages(session, DatabaseMessageHelper.getSaveFailMessage());
-            return mapping.findForward(ConstantKey.FORWARD_SAVE_FAIL);
+            if (StringUtils.equals("Y", sFlag36)) {
+            	return mapping.findForward(FORWARD_SAVE_FAIL_FOR_36);
+            } else {
+            	return mapping.findForward(ConstantKey.FORWARD_SAVE_FAIL);
+            }
         }
     }
 
@@ -761,6 +780,10 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         HttpSession session = request.getSession();
         UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
         String forward = ConstantKey.FORWARD_UPDATE_FAIL;
+        String sFlag36 = request.getParameter("sFlag36");
+        if (StringUtils.equals("Y", sFlag36)) {
+        	forward = FORWARD_UPDATE_FAIL_FOR_36;
+        }
 
         try {
             DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
@@ -786,7 +809,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
                     // 設定修改成功訊息
                     saveMessages(session, DatabaseMessageHelper.getUpdateSuccessMessage());
 
-                    forward = ConstantKey.FORWARD_UPDATE_SUCCESS;
+                    if (StringUtils.equals("Y", sFlag36)) {
+                    	forward = FORWARD_UPDATE_SUCCESS_FOR_36;
+                    } else {
+                    	forward = ConstantKey.FORWARD_UPDATE_SUCCESS;
+                    }
 
                     // 重新查詢資料
                     // [
@@ -851,7 +878,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
             // 設定修改失敗訊息
             log.error("DisabledAnnuityReceiptAction.doUpdateFamData() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
             saveMessages(session, DatabaseMessageHelper.getUpdateFailMessage());
-            return mapping.findForward(ConstantKey.FORWARD_UPDATE_FAIL);
+            if (StringUtils.equals("Y", sFlag36)) {
+            	return mapping.findForward(FORWARD_UPDATE_FAIL_FOR_36);
+            } else {
+            	return mapping.findForward(ConstantKey.FORWARD_UPDATE_FAIL);
+            }
         }
     }
 
@@ -870,6 +901,10 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         HttpSession session = request.getSession();
         UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
         String forward = ConstantKey.FORWARD_DELETE_FAIL;
+        String sFlag36 = request.getParameter("sFlag36");
+        if (StringUtils.equals("Y", sFlag36)) {
+        	forward = FORWARD_DELETE_FAIL_FOR_36;
+        }
 
         try {
             DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
@@ -883,7 +918,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
                 saveMessages(session, DatabaseMessageHelper.getDeleteSuccessMessage());
 
                 // 設定 forward
-                forward = ConstantKey.FORWARD_DELETE_SUCCESS;
+                if (StringUtils.equals("Y", sFlag36)) {
+                	forward = FORWARD_DELETE_SUCCESS_FOR_36;
+                } else {
+                	forward = ConstantKey.FORWARD_DELETE_SUCCESS;
+                }
 
                 // 重新查詢資料
                 // [
@@ -940,7 +979,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
             // 設定刪除失敗訊息
             log.error("DisabledAnnuityReceiptAction.doDeleteBenData() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
             saveMessages(session, DatabaseMessageHelper.getDeleteFailMessage());
-            return mapping.findForward(ConstantKey.FORWARD_DELETE_FAIL);
+            if (StringUtils.equals("Y", sFlag36)) {
+            	return mapping.findForward(FORWARD_DELETE_FAIL_FOR_36);
+            } else {
+            	return mapping.findForward(ConstantKey.FORWARD_DELETE_FAIL);
+            }
         }
     }
 

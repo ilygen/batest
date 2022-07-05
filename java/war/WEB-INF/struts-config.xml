@@ -1495,6 +1495,12 @@
             <forward name="updateFail" path="/baap0d02/baap0d021a.jsp" redirect="true" />
             <forward name="deleteSuccess" path="/baap0d02/baap0d021a.jsp" redirect="true" />
             <forward name="deleteFail" path="/baap0d02/baap0d021a.jsp" redirect="true" />
+            <forward name="saveSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="saveFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="updateSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="updateFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="deleteSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="deleteFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
         </action>
         <!-- baap0d022c.jsp -->
         <action name="DisabledAnnuityReceiptForm" path="/disabledAnnuityReceiptList" parameter="method" input="/baap0d02/baap0d022c.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction" validate="false">
