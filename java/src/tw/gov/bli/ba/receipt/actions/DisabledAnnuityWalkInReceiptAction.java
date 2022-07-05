@@ -133,6 +133,7 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 		String forward = FORWARD_SAVE_ALL_FAIL;
 		try {
 			DisabledAnnuityWalkInReceiptQueryForm iform = (DisabledAnnuityWalkInReceiptQueryForm) form;
+			String procType = iform.getProcType();
 			String apNo = iform.getApNoStr();
 
 			// 手動輸入之受理編號不可為 K00000000000
@@ -187,6 +188,11 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
 					CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
 					FormSessionHelper.removeDisabledAnnuityWalkInReceiptQueryForm(request);
+					// 設定 form 的 procType 供 baap0d041a.jsp 判斷
+					DisabledAnnuityWalkInReceiptQueryForm initDataForm = new DisabledAnnuityWalkInReceiptQueryForm();
+					initDataForm.setProcType(procType);
+					FormSessionHelper.setDisabledAnnuityWalkInReceiptQueryForm(initDataForm, request);
+					
 					// 取得 遺屬眷屬暫存檔(BAFAMILYTEMP) 暫存檔資料列編號(Sequence.BAFAMILYTEMPID)
 					bafamilytempId = receiptService.getNewbafamilytempId();
 					// 取得國籍清單
