@@ -112,4 +112,18 @@ public class BacpirecDaoImpl extends SqlMapClientDaoSupport implements BacpirecD
     public List<Bacpirec> selectCpipRecForPaymentQuery() {
         return getSqlMapClientTemplate().queryForList("BACPIREC.selectCpipRecForPaymentQuery", null);
     }
+
+	@Override
+	public List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate) {
+		Map<String, Object> map = new HashMap<>();
+		if (StringUtils.isNotBlank(appDate)) {
+			map.put("appYm", StringUtils.substring(appDate, 0, 6));
+			map.put("appYear", StringUtils.substring(appDate, 0, 4));
+		}
+		if (StringUtils.isNotBlank(evtDieDate)) {
+			map.put("evtDieYm", StringUtils.substring(evtDieDate, 0, 6));
+		}
+
+		return getSqlMapClientTemplate().queryForList("BACPIREC.selectCpiRateByAppDateAndEvtDieDate", map);
+	}
 }

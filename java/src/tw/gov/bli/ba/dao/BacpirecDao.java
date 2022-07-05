@@ -70,5 +70,13 @@ public interface BacpirecDao {
      * @return
      */
     public List<Bacpirec> selectCpipRecForPaymentQuery();
+    
+    /**
+     * 依 appDate(申請日期) & evtDieDate(事故者死亡日期) 取得加計物價指數列表
+     * @param appDate
+     * @param evtDieDate
+     * @return
+     */
+    List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate);
 
 }
