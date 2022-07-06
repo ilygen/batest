@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -197,6 +199,7 @@ public class MonthlyRpt29Action extends BaseDispatchAction {
                     for (File existFile : fileList) {
                         files.add(existFile.getName());
                     }
+                    files = files.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
                     session.setAttribute(ConstantKey.MONTHLY_RPT_29_FILE_LIST, files);
                     return mapping.findForward(LIST_PAGE);
 
@@ -273,6 +276,7 @@ public class MonthlyRpt29Action extends BaseDispatchAction {
                     for (File existFile : fileList) {
                         files.add(existFile.getName());
                     }
+                    files = files.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
                     session.setAttribute(ConstantKey.MONTHLY_RPT_29_FILE_LIST, files);
                     return mapping.findForward(LIST_PAGE);
 
