@@ -2,3 +2,4 @@ Issue number:babaweb-40
 EXE_TYPE:java
 ISDEPLOY:true
 CODE_SCAN:true
+
