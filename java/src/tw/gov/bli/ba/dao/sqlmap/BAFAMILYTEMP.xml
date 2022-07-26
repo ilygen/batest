@@ -64,11 +64,11 @@
         <result column="FAMNAME"            property="famName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="CHECKMK"            property="checkMk"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
         <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
         <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MARRYDATE"          property="marryDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
-        <result column="CHECKMK"            property="checkMk"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="BankDataResult" class="Bafamilytemp">
@@ -285,11 +285,11 @@
 	           FAMNAME,      
 	           FAMIDNNO,     
 	           FAMBRDATE,     
+	           CHECKMK,
                STUDMK,       
 	           MONINCOME,    
 	           HANDICAPMK,
-	           MARRYDATE,
-	           CHECKMK
+	           MARRYDATE
 	      FROM BAFAMILYTEMP
 	     WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC# 
 	     ORDER BY SEQNO	
