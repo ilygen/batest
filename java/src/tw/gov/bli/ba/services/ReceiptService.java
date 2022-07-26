@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import tw.gov.bli.ba.ConstantKey;
+import tw.gov.bli.ba.dao.Baap0d040Dao;
 import tw.gov.bli.ba.dao.Baap0d060Dao;
 import tw.gov.bli.ba.dao.BaappbaseDao;
 import tw.gov.bli.ba.dao.BaappexpandDao;
@@ -28,6 +29,7 @@ import tw.gov.bli.ba.dao.NbexcepDao;
 import tw.gov.bli.ba.dao.NpbanklistDao;
 import tw.gov.bli.ba.dao.NppostlistDao;
 import tw.gov.bli.ba.domain.Baap0d060;
+import tw.gov.bli.ba.domain.Baap0d040;
 import tw.gov.bli.ba.domain.Baappbase;
 import tw.gov.bli.ba.domain.Baappexpand;
 import tw.gov.bli.ba.domain.Baapplog;
