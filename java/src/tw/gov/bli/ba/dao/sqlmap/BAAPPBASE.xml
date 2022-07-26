@@ -12297,7 +12297,9 @@ UNION
             ACCSEQNO,
             MITRATE,      
             CRTUSER,       
-            CRTTIME        
+            CRTTIME,
+            APNOFM,
+            SYSCODE
         )
         values      
         (
@@ -12329,7 +12331,9 @@ UNION
             #accSeqNo:VARCHAR#,
             #mitRate:NUMERIC#, 
             #crtUser:VARCHAR#,
-            #crtTime:VARCHAR#            
+            #crtTime:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         )
     </insert>
     
@@ -12394,7 +12398,11 @@ UNION
             CRTUSER,
             CRTTIME,
             MOBILEPHONE, 
-            MITRATE 
+            MITRATE,
+            SPECIALACC,
+            APNOFM,
+            SYSCODE,
+            BENMARRMK
         )
         VALUES
         (
@@ -12453,7 +12461,11 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #mobilePhone:VARCHAR#, 
-            #mitRate:NUMERIC#
+            #mitRate:NUMERIC#,
+            #specialAcc:NUMERIC#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#,
+            #benMarrMk:VARCHAR#
         )
     </insert>
         

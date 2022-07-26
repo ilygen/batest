@@ -2115,6 +2115,30 @@ public class MenuDispatchAction extends BaseMappingDispatchAction {
 
         return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
     }
+    
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業 - 受理頁面 (baap0d060a.jsp)
+     * 
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
+    public ActionForward enterSurvivorAnnuityWalkInReceipt(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+    	log.debug("執行 MenuDispatchAction.enterSurvivorAnnuityWalkInReceipt() : 受理作業 - 遺屬年金臨櫃受理作業 (baap0d060a.jsp) ...");
+    	
+    	HttpSession session = request.getSession();
+    	
+    	// 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
+    	tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeSurvivorAnnuityWalkInReceiptForm(request);
+    	tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeSurvivorAnnuityReceiptBenForm(request);
+    	tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeSurvivorAnnuityReceiptQryCondForm(request);
+    	tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeSurvivorAnnuityReceiptQryForm(request);
+    	tw.gov.bli.ba.receipt.helper.CaseSessionHelper.removeAllSurvivorAnnuityReceiptCase(request);
+    	
+    	return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
+    }
 
     /**
      * 受理作業 - 遺屬年金給付受理作業 - 受理頁面 (baap0d030a.jsp)

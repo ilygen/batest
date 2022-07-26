@@ -10,6 +10,7 @@ import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.receipt.forms.OldAgeAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm;
+import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityWalkInReceiptForm;
 
 /**
  * Form Helper for 受理作業
@@ -292,6 +293,76 @@ public class FormSessionHelper {
 
         HttpSession session = request.getSession();
         session.removeAttribute(ConstantKey.DISABLED_ANNUITY_RECEIPT_QUERY_FORM);
+    }
+    
+    // ---------------------------------------------------------------------------------------
+    // 受理作業 - 遺屬年金臨櫃受理作業 - SurvivorAnnuityReceipt
+    // ---------------------------------------------------------------------------------------
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業<br>
+     * 將 SurvivorAnnuityWalkInReceiptForm 加入 Session 中
+     * 
+     * @param request
+     */
+    public static void setSurvivorAnnuityWalkInReceiptForm(SurvivorAnnuityWalkInReceiptForm form, HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.setSurvivorAnnuityWalkInReceiptForm() ...");
+
+        HttpSession session = request.getSession();
+        session.setAttribute(ConstantKey.SURVIVOR_ANNUITY_WALK_IN_RECEIPT_FORM, form);
+    }
+    
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業<br>
+     * 將 SurvivorAnnuityWalkInReceiptForm 加入 Session 中
+     * 
+     * @param request
+     */
+    public static SurvivorAnnuityWalkInReceiptForm getSurvivorAnnuityWalkInReceiptForm(HttpServletRequest request) {
+    	log.debug("執行 FormSessionHelper.getSurvivorAnnuityWalkInReceiptForm() ...");
+    	
+    	HttpSession session = request.getSession();
+    	return (SurvivorAnnuityWalkInReceiptForm) session.getAttribute(ConstantKey.SURVIVOR_ANNUITY_WALK_IN_RECEIPT_FORM);
+    }
+    
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業<br>
+     * 將 SurvivorAnnuityWalkInReceiptForm 自 Session 中移除
+     * 
+     * @param request
+     */
+    public static void removeSurvivorAnnuityWalkInReceiptForm(HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.removeSurvivorAnnuityWalkInReceiptForm() ...");
+
+        HttpSession session = request.getSession();
+        // 各 頁面
+        session.removeAttribute(ConstantKey.SURVIVOR_ANNUITY_WALK_IN_RECEIPT_FORM);
+    }
+    
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業<br>
+     * 將 SurvivorAnnuityWalkInReceiptBenForm 加入 Session 中
+     * 
+     * @param request
+     */
+    public static void setSurvivorAnnuityWalkInReceiptBenForm(SurvivorAnnuityWalkInReceiptForm form, HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.setSurvivorAnnuityWalkInReceiptBenForm() ...");
+
+        HttpSession session = request.getSession();
+        session.setAttribute(ConstantKey.SURVIVOR_ANNUITY_WALK_IN_RECEIPT_BEN_FORM, form);
+    }
+    
+    /**
+     * 受理作業 - 遺屬年金臨櫃受理作業<br>
+     * 將 SurvivorAnnuityWalkInReceiptBenForm 自 Session 中移除
+     * 
+     * @param request
+     */
+    public static void removeSurvivorAnnuityWalkInReceiptBenForm(HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.removeSurvivorAnnuityWalkInReceiptBenForm() ...");
+
+        HttpSession session = request.getSession();
+        // 各 頁面
+        session.removeAttribute(ConstantKey.SURVIVOR_ANNUITY_WALK_IN_RECEIPT_BEN_FORM);
     }
 
     // ---------------------------------------------------------------------------------------

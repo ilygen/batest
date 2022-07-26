@@ -179,6 +179,14 @@ public class ReceiptAjaxService {
             caseObj.setFamAppDate(DateUtility.changeDateType(caseObj.getFamAppDate()));
         if (StringUtils.isNotBlank(caseObj.getFamBrDate()) && caseObj.getFamBrDate().length() == 8)
             caseObj.setFamBrDate(DateUtility.changeDateType(caseObj.getFamBrDate()));
+        // 收養日期
+        if (StringUtils.isNotBlank(caseObj.getAdoPtDate()) && caseObj.getAdoPtDate().length() == 8) {
+        	caseObj.setAdoPtDate(DateUtility.changeDateType(caseObj.getAdoPtDate()));
+        }
+        // 代辦人出生日期
+        if (StringUtils.isNotBlank(caseObj.getAssignBrDate()) && caseObj.getAssignBrDate().length() == 8) {
+        	caseObj.setAssignBrDate(DateUtility.changeDateType(caseObj.getAssignBrDate()));
+        }
         return caseObj;
     }
 
