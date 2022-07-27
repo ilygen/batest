@@ -1426,6 +1426,219 @@
             </field>
         </form>
         
+        <!-- Survivor Annuity walk-in ReceiptForm : baap0d060a.jsp、baap0d061a.jsp -->
+        <form name="SurvivorAnnuityWalkInReceiptForm">
+        	<field property="apNo1" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>3</var-value>
+                </var>
+            </field>
+        	<field property="apNo2" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>1</var-value>
+                </var>
+            </field>
+        	<field property="apNo3" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>2</var-value>
+                </var>
+            </field>
+        	<field property="apNo4" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+            </field>
+            <field property="apNo1ForBb" depends="minlength,mask" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2ForBb" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo3ForBb" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4ForBb" depends="minlength,integer" page="1">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <!-- page 2 -->
+            <field property="apNo1" depends="minlength,mask" page="2">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.survivor.apNo1.type" />
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo1" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO1_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${APNO1_TYPE_SURVIVOR}</var-value>
+                </var>
+            </field>
+            <field property="apNo2" depends="minlength,mask" page="2">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo2" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO2_LENGTH}</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(0)$</var-value>
+                </var>
+            </field>
+            <field property="apNo3" depends="minlength,integer" page="2">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo3" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO3_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="apNo4" depends="minlength,integer" page="2">
+                <msg bundle="baMsg" name="minlength" key="errors.minlength" />
+                <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
+                <arg bundle="baMsg" position="0" key="label.receipt.apNo4" />
+                <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>${APNO4_LENGTH}</var-value>
+                </var>
+            </field>
+            <field property="appDate" depends="required,chineseDate,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.appDate" />                
+            </field>
+            <field property="evtNationTpe" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtNationTpe" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="evtDieDate" depends="required,chineseDate,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtDieDate" />                
+            </field>
+            <field property="evtSex" depends="mask" page="2">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtSex" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="evtName" depends="required" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtName" /> 
+            </field>           
+            <field property="evtIdnNo" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_FORN_MASK}</var-value>
+                </var>              
+            </field>           
+            <field property="evtBrDate" depends="required,notAfterToday" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtBrDate" />                
+            </field>
+            <field property="evAppTyp" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evAppTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-4])$</var-value>
+                </var>              
+            </field>
+            <field property="evTyp" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([3-4])$</var-value>
+                </var>              
+            </field>
+            <field property="apItem" depends="required,mask" page="2">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.apItem" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([4-5|7-8])$</var-value>
+                </var>              
+            </field>
+            <field property="judgeDate" depends="chineseDate,notAfterToday" page="2">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.judgeDate" />                
+            </field>
+        </form>
+        
         <!-- Survivor Annuity Receipt Form : baap0d010a.jsp -->
         <form name="SurvivorAnnuityReceiptQueryForm">
             <field property="apNo1" depends="minlength,mask" page="1">
@@ -1592,6 +1805,147 @@
                     <var-name>mask</var-name>
                     <var-value>^([4-5|7-8])$</var-value>
                 </var>              
+            </field>
+        </form>
+        <form name="SurvivorAnnuityWalkInReceiptBenForm">
+            <field property="benNationTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benNationTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="benSex" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benSex" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="benName" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benName" /> 
+            </field>           
+            <field property="benAppDate" depends="required,chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benAppDate" />                
+            </field>
+            <field property="benIdnNo" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_FORN_MASK}</var-value>
+                </var>              
+            </field>           
+            <field property="benBrDate" depends="notAfterToday" page="1">
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benBrDate" />                
+            </field>
+            <field property="benEvtRel" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benEvtRel" /> 
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([2-7|O])$</var-value>
+                </var>               
+            </field>
+            <field property="commTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.commTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="mobilePhone" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.mobilePhone" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>              
+            </field>
+            <field property="grdBrDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.grdBrDate" />                
+            </field>
+            <field property="marryDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.marryDate" />                
+            </field>
+            <field property="studMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.studMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncomeMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.monIncomeMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncome" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.monIncome" />  
+            </field>
+            <field property="handIcap" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.handIcap" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="interDictMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.interDictMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="payTyp" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.payTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2]|[A])$</var-value>
+                </var>              
+            </field>
+            <field property="benMarrMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benMarrMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="adoPtDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.adoPtDate" />                
+            </field>
+            <field property="assignBrDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.assignBrDate" />                
             </field>
         </form>
         <form name="SurvivorAnnuityReceiptBenForm">
