@@ -1807,6 +1807,147 @@
                 </var>              
             </field>
         </form>
+        <form name="SurvivorAnnuityWalkInReceiptBenForm">
+            <field property="benNationTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benNationTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="benSex" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benSex" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="benName" depends="required" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benName" /> 
+            </field>           
+            <field property="benAppDate" depends="required,chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />             
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benAppDate" />                
+            </field>
+            <field property="benIdnNo" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benIdnNo" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${IDN_FORN_MASK}</var-value>
+                </var>              
+            </field>           
+            <field property="benBrDate" depends="notAfterToday" page="1">
+                <!-- <msg bundle="baMsg" name="chineseDate" key="errors.date" /> -->
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benBrDate" />                
+            </field>
+            <field property="benEvtRel" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="chineseDate" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benEvtRel" /> 
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([2-7|O])$</var-value>
+                </var>               
+            </field>
+            <field property="commTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.commTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2])$</var-value>
+                </var>              
+            </field>
+            <field property="mobilePhone" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.mobilePhone" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>${NUMBER_MASK}</var-value>
+                </var>              
+            </field>
+            <field property="grdBrDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.grdBrDate" />                
+            </field>
+            <field property="marryDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.marryDate" />                
+            </field>
+            <field property="studMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.studMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncomeMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.monIncomeMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="monIncome" depends="integer" page="1">
+                <msg bundle="baMsg" name="integer" key="errors.integer" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.monIncome" />  
+            </field>
+            <field property="handIcap" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.handIcap" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="interDictMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.interDictMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="payTyp" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.payTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([1-2]|[A])$</var-value>
+                </var>              
+            </field>
+            <field property="benMarrMk" depends="mask" page="1">
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.benMarrMk" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^(Y)$</var-value>
+                </var>              
+            </field>
+            <field property="adoPtDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.adoPtDate" />                
+            </field>
+            <field property="assignBrDate" depends="chineseDate,notAfterToday" page="1">
+                <msg bundle="baMsg" name="chineseDate" key="errors.date" />
+                <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.assignBrDate" />                
+            </field>
+        </form>
         <form name="SurvivorAnnuityReceiptBenForm">
             <field property="benNationTyp" depends="required,mask" page="1">
                 <msg bundle="baMsg" name="required" key="errors.required" />             
