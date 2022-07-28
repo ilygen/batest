@@ -3536,7 +3536,7 @@ public class ReceiptService {
      * @return
      */
     public String getSequenceApNoK3() {
-    	return baap0d040Dao.selectBaapnok3();
+    	return baappbaseDao.getSequenceApNoK3();
     }
 
     /**

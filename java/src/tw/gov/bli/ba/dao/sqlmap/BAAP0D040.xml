@@ -226,8 +226,4 @@
 		   AND APBBPMA.EVTAPPIDNNO = APBBBEN.BENIDNNO
     </select>
     
-    <select id="selectBaapnok3" resultClass="java.lang.String">
-        SELECT BAAPNOK3.NEXTVAL AS BAKAPNO FROM DUAL
-    </select>
-    
 </sqlMap>

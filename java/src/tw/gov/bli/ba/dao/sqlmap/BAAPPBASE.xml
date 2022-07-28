@@ -22059,4 +22059,8 @@ SELECT IDNNO
            AND SEQNO LIKE #seqno:VARCHAR# || '%'
     </update>
     
+    <select id="getSequenceApNoK3" resultClass="java.lang.String">
+        SELECT BAAPNOK3.NEXTVAL AS BAKAPNO FROM DUAL
+    </select>
+    
 </sqlMap>
