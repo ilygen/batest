@@ -3480,6 +3480,14 @@ public class ReceiptService {
     public String getSequenceSApNo() {
         return baappbaseDao.getSequenceSApNo();
     }
+    
+    /**
+     * 取得 SEQUENCE BAS.BAAPNOK3
+     * @return
+     */
+    public String getSequenceApNoK3() {
+    	return baappbaseDao.getSequenceApNoK3();
+    }
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) new 資料列編號

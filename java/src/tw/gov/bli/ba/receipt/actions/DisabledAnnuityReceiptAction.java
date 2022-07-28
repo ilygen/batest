@@ -31,6 +31,7 @@ import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
+import tw.gov.bli.ba.util.StringUtility;
 import tw.gov.bli.common.helper.UserSessionHelper;
 
 /**
@@ -354,6 +355,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         try {
             DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
             String apNo = iform.getApNoStr();
+            // 當受理編號未鍵入時，從 BAS.BAAPNOK3(SEQUENCE) 取得受理編號
+ 			if (StringUtils.equals(apNo, "K")) {
+ 				apNo = "K3" + StringUtility.chtLeftPad(receiptService.getSequenceApNoK3(), 10, "0");
+ 			}
+
 
             // 手動輸入之受理編號不可為 K00000000000
             if (StringUtils.equalsIgnoreCase(apNo, "K00000000000")) {
