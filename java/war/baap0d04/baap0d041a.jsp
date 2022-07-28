@@ -492,23 +492,35 @@
     <%-- begin ... [ --%>                                                                                                                                                                                                                                                                                                                                     
     function checkFields(){                                                                                                                                                                                                                                                                                                                                   
         var msg = "";
+        var apNo1 = Trim($('apNo1').value);
+        var apNo2 = Trim($('apNo2').value);
+        var apNo3 = Trim($('apNo3').value);
+        var apNo4 = Trim($('apNo4').value);
+        var apNoStr = apNo1 + apNo2 + apNo3 + apNo4;
+        if (apNo2 != '' || apNo3 != '' || apNo4 != '') {
+	        if(apNo1 == ""){
+	            msg += "「受理編號第一欄」為必填欄位。\r\n"
+	            $("apNo1").focus();
+	        }
+	        if(apNo2 == ""){
+	            msg += "「受理編號第二欄」為必填欄位。\r\n"
+	            $("apNo2").focus();
+	        }
+	        if(apNo3 == ""){
+	            msg += "「受理編號第三欄」為必填欄位。\r\n"
+	            $("apNo3").focus();
+	        }
+	        if(apNo4 == ""){
+	            msg += "「受理編號第四欄」為必填欄位。\r\n"
+	            $("apNo4").focus();
+	        }                                                                                                                                                                                                                                                                                                                                         
+        }
+        // BB 受理轉入時，受理編號需與來源受理編號一致
+        if (procType == '4' && $('apnoFm').value != apNoStr) {
+        	msg += "受理編號需與來源受理編號相同。\r\n"
+	            $("apNo1").focus();
+        }
         
-        if(Trim($("apNo1").value)==""){
-            msg+= "「受理編號第一欄」為必填欄位。\r\n"
-            $("apNo1").focus();
-        }
-        if(Trim($("apNo2").value)==""){
-            msg+= "「受理編號第二欄」為必填欄位。\r\n"
-            $("apNo2").focus();
-        }
-        if(Trim($("apNo3").value)==""){
-            msg+= "「受理編號第三欄」為必填欄位。\r\n"
-            $("apNo3").focus();
-        }
-        if(Trim($("apNo4").value)==""){
-            msg+= "「受理編號第四欄」為必填欄位。\r\n"
-            $("apNo4").focus();
-        }                                                                                                                                                                                                                                                                                                                                         
         if(parseNumber($("appDate").value) < parseNumber("0980101")){                                                                                                                                                                                                                                                                                         
             msg += "「申請日期」不可小於 0980101。\r\n"                                                                                                                                                                                                                                                                                                       
             $("appDate").focus();                                                                                                                                                                                                                                                                                                                             
@@ -1400,8 +1412,7 @@
                     <td colspan="8">                                                                                                                                                                                                                                                                                                                          
                         <table width="100%" border="0" class="px13">                                                                                                                                                                                                                                                                                          
                             <tr>                                                                                                                                                                                                                                                                                                                              
-                                <td>                                                                                                                                                                                                                                                                                                                          
-                                    <span class="needtxt">＊</span>                                                                                                                                                                                                                                                                                           
+                                <td>　
                                     <span class="issuetitle_L_down">受理編號：</span>                                                                                                                                                                                                                                                                         
                                     <html:text tabindex="2" property="apNo1" styleId="apNo1" styleClass="textinput" size="1" maxlength="1"
                                     	onblur="this.value=asc(this.value).toUpperCase();" onkeyup="autotab($('apNo1'), $('apNo2'))"/>                                                                                                                                                          

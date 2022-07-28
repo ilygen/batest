@@ -57,7 +57,7 @@
     <select id="selectTurnInDataFromBe" resultMap="baseTurnInData">
     	SELECT FN_CASE.APNO,
 	           FN_CASE.APUBNO,
-	           FN_CASE.MLDTE AS APPDATE,
+	           NVL(FN_CASE.MLDTE, FN_CASE.APDTE) AS APPDATE,
 	           '' AS EVTNATIONTPE,
 	           FN_BEN.GVSEX AS EVTSEX,
 	           '' AS EVTNATIONCODE,
@@ -113,7 +113,7 @@
     <select id="selectTurnInDataFromBc" resultMap="baseTurnInData">
     	SELECT BCPMA.APNO,
 		       BCPMA.APUBNO,
-		       BCPMA.MLDTE AS APPDATE,
+		       NVL(BCPMA.MLDTE, BCPMA.APDTE) AS APPDATE,
 		       '' AS EVTNATIONTPE,
 		       BCPMA.EVSEX AS EVTSEX,
 		       '' AS EVTNATIONCODE,
@@ -224,6 +224,10 @@
 		  LEFT JOIN TABLE(PKG_BB_FT.BB_APBBBEN(#apno:VARCHAR#)) APBBBEN
 		    ON APBBPMA.APNO = APBBBEN.APNO
 		   AND APBBPMA.EVTAPPIDNNO = APBBBEN.BENIDNNO
+    </select>
+    
+    <select id="selectBaapnok3" resultClass="java.lang.String">
+        SELECT BAAPNOK3.NEXTVAL AS BAKAPNO FROM DUAL
     </select>
     
 </sqlMap>

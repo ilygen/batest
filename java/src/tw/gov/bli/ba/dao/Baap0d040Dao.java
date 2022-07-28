@@ -29,5 +29,11 @@ public interface Baap0d040Dao {
 	 * @return
 	 */
 	List<Baap0d040> selectTurnInDataFromBb(String apno);
+	
+	/**
+	 * 從 BAS 的 SEQUENCE(BAAPNOK3) 取得受理編號
+	 * @return
+	 */
+	String selectBaapnok3();
 
 }

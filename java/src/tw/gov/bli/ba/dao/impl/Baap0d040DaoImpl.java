@@ -37,4 +37,9 @@ public class Baap0d040DaoImpl extends SqlMapClientDaoSupport implements Baap0d04
 		return getSqlMapClientTemplate().queryForList("BAAP0D040.selectTurnInDataFromBb", map);
 	}
 
+	@Override
+	public String selectBaapnok3() {
+		return (String) getSqlMapClientTemplate().queryForObject("BAAP0D040.selectBaapnok3", null);
+	}
+
 }

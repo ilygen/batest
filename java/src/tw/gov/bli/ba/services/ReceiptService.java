@@ -3530,6 +3530,14 @@ public class ReceiptService {
     public String getSequenceSApNo() {
         return baappbaseDao.getSequenceSApNo();
     }
+    
+    /**
+     * 取得 SEQUENCE BAS.BAAPNOK3
+     * @return
+     */
+    public String getSequenceApNoK3() {
+    	return baap0d040Dao.selectBaapnok3();
+    }
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) new 資料列編號
@@ -3821,6 +3829,13 @@ public class ReceiptService {
 			form.setEvtNationTpe("1");
 			form.cleanApnoForBc();
 		} else if (StringUtils.equals(procType, "4")) {
+			String apnoFm = baap0d040.getApnoFm();
+			if (StringUtils.isNotBlank(apnoFm) && apnoFm.length() == 12) {
+				form.setApNo1(apnoFm.substring(0, 1));
+				form.setApNo2(apnoFm.substring(1, 2));
+				form.setApNo3(apnoFm.substring(2, 7));
+				form.setApNo4(apnoFm.substring(7));
+			}
 			form.cleanApnoForBb();
 		}
 

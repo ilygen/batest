@@ -35,6 +35,7 @@ import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
+import tw.gov.bli.ba.util.StringUtility;
 import tw.gov.bli.ba.webservices.SingleCheckMarkServiceHttpBindingStub;
 import tw.gov.bli.ba.webservices.SingleCheckMarkServiceLocator;
 import tw.gov.bli.common.helper.UserSessionHelper;
@@ -135,6 +136,10 @@ public class DisabledAnnuityWalkInReceiptAction extends BaseDispatchAction {
 			DisabledAnnuityWalkInReceiptQueryForm iform = (DisabledAnnuityWalkInReceiptQueryForm) form;
 			String procType = iform.getProcType();
 			String apNo = iform.getApNoStr();
+			// BA、BE、BC 臨櫃受理時，當受理編號未鍵入時，從 BAS.BAAPNOK3(SEQUENCE) 取得受理編號
+			if (StringUtils.contains("1,2,3", procType) && StringUtils.equals(apNo, "K")) {
+				apNo = "K3" + StringUtility.chtLeftPad(receiptService.getSequenceApNoK3(), 10, "0");
+			}
 
 			// 手動輸入之受理編號不可為 K00000000000
 			if (StringUtils.equalsIgnoreCase(apNo, "K00000000000")) {
