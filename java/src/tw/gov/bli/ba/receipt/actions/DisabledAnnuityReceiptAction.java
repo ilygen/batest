@@ -31,8 +31,8 @@ import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
-import tw.gov.bli.ba.util.StringUtility;
 import tw.gov.bli.common.helper.UserSessionHelper;
+import tw.gov.bli.ba.util.StringUtility;
 
 /**
  * 受理作業 - 失能年金給付受理作業 (BAAP0D020A)
