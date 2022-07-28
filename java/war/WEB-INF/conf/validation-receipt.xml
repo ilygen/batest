@@ -299,7 +299,7 @@
             <field property="apNo2" depends="minlength,integer,mask" page="2">
                 <msg bundle="baMsg" name="minlength" key="errors.minlength" />
                 <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
-                <msg bundle="baMsg" name="mask" key="errors.receipt.insert.apNo2.type" />
+                <msg bundle="baMsg" name="mask" key="errors.receipt.insert.apNo2.type2" />
                 <arg bundle="baMsg" position="0" key="label.receipt.apNo2" />
                 <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
                 <var>
@@ -308,7 +308,7 @@
                 </var>
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^(0)$</var-value>
+                    <var-value>^([03])$</var-value>
                 </var>
             </field>
             <field property="apNo3" depends="minlength,integer" page="2">
@@ -670,7 +670,7 @@
             <field property="apNo2" depends="minlength,integer,mask" page="1">
                 <msg bundle="baMsg" name="minlength" key="errors.minlength" />
                 <msg bundle="baMsg" name="integer" key="errors.apNo.integer" />                
-                <msg bundle="baMsg" name="mask" key="errors.receipt.insert.apNo2.type" />
+                <msg bundle="baMsg" name="mask" key="errors.receipt.insert.apNo2.type2" />
                 <arg bundle="baMsg" position="0" key="label.receipt.apNo2" />
                 <arg bundle="baMsg" name="minlength" position="1" key="${var:minlength}" resource="false" />
                 <var>
@@ -679,7 +679,7 @@
                 </var>
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^(0)$</var-value>
+                    <var-value>^([03])$</var-value>
                 </var>
             </field>
             <field property="apNo3" depends="minlength,integer" page="1">
