@@ -1534,7 +1534,7 @@
                 </var>
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^(0)$</var-value>
+                    <var-value>^([02])$</var-value>
                 </var>
             </field>
             <field property="apNo3" depends="minlength,integer" page="2">
