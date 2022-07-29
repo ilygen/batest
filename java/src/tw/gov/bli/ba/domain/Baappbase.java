@@ -599,7 +599,8 @@ public class Baappbase implements Serializable {
     private String cancelYm; // 撤銷請領年月
     private String ocaccIdentMk; // 符合第20條之1註記
     private String prType; // 先核普通
-    private String evTyp; // 傷病分類
+    private String evAppTyp; // 申請傷病分類
+    private String evTyp; // 核定傷病分類
     private String evCode; // 傷病原因
     private String criInPart1; // 受傷部位1
     private String criInPart2; // 受傷部位2
@@ -2271,7 +2272,15 @@ public class Baappbase implements Serializable {
         this.prType = prType;
     }
 
-    public String getEvTyp() {
+    public String getEvAppTyp() {
+		return evAppTyp;
+	}
+
+	public void setEvAppTyp(String evAppTyp) {
+		this.evAppTyp = evAppTyp;
+	}
+
+	public String getEvTyp() {
         return evTyp;
     }
 

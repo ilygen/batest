@@ -2574,7 +2574,7 @@ public class ReceiptService {
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
-    public void insertSurvivorBafamilytempData(SurvivorAnnuityReceiptBenCase caseObj, UserBean userData) {
+    public String insertSurvivorBafamilytempData(SurvivorAnnuityReceiptBenCase caseObj, UserBean userData) {
         log.debug("Start Insert BAFAMILYTEMP ...");
         Bafamilytemp bafamilytemp = new Bafamilytemp();
         BeanUtility.copyProperties(bafamilytemp, caseObj);
@@ -2589,6 +2589,8 @@ public class ReceiptService {
 
         bafamilytempDao.insertDataForSurvivorAnnuityReceipt(bafamilytemp);
         log.debug("Insert BAFAMILYTEMP Finished...");
+        
+        return seqNo;
     }
 
     /**
@@ -2911,7 +2913,7 @@ public class ReceiptService {
         baappexpand.setSeqNo("0000");
         baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
         baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
-        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+//        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
         BigDecimal baappexpandId = baappexpandDao.insertDataForSurvivorAnnuityReceipt(baappexpand);
 
         baappexpand.setBaappexpandId(baappexpandId);
@@ -2989,6 +2991,8 @@ public class ReceiptService {
             else if (benObj.getApItem().equals("8")) {
                 benObj.setNotifyForm("023");
             }
+            benObj.setApnoFm(evtObj.getApnoFm());
+            benObj.setSysCode(evtObj.getSysCode());
 
             baappbaseId = baappbaseDao.insertBenDataForSurvivorAnnuityReceipt(benObj);
 
@@ -3018,7 +3022,7 @@ public class ReceiptService {
             baappexpand.setEvTyp(evtCase.getEvTyp());// 傷病分類
             baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
             baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
-            baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+            baappexpand.setEvAppTyp(evtCase.getEvAppTyp());// 申請傷病分類
             baappexpandId = baappexpandDao.insertDataForSurvivorAnnuityReceipt(baappexpand);
 
             // Insert MMAPLOG
@@ -3629,7 +3633,8 @@ public class ReceiptService {
             evtForm.setEvtName(benForm.getTempEvtName());// 事故者姓名
             evtForm.setEvtIdnNo(benForm.getTempEvtIdnNo());// 事故者身分證號
             evtForm.setEvtBrDate(benForm.getTempEvtBrDate());// 事故者出生日期
-            evtForm.setEvTyp(benForm.getTempEvTyp());// 傷病分類
+            evtForm.setEvAppTyp(benForm.getTempEvAppTyp());// 申請傷病分類
+            evtForm.setEvTyp(benForm.getTempEvTyp());// 核定傷病分類
             evtForm.setApItem(benForm.getTempApItem());// 申請項目
         }
 

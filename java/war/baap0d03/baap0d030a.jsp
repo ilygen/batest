@@ -100,7 +100,7 @@
         <html:hidden styleId="method" property="method" value="" />
         
         <fieldset>
-            <legend>&nbsp;遺屬年金給付受理作業 &nbsp;</legend>
+            <legend>&nbsp;遺屬年金批次受理作業 &nbsp;</legend>
             
             <div align="right" id="showtime">
                 網頁下載時間：民國&nbsp;<func:nowDateTime />

@@ -55,9 +55,11 @@
         <result column="FAMNAME"            property="famName"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
+        <result column="CHECKMK"            property="checkMk"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
         <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
-        <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="MARRYDATE"          property="marryDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="BankDataResult" class="Bafamilytemp">
@@ -265,9 +267,11 @@
 	           FAMNAME,      
 	           FAMIDNNO,     
 	           FAMBRDATE,     
+	           CHECKMK,
                STUDMK,       
 	           MONINCOME,    
-	           HANDICAPMK    
+	           HANDICAPMK,
+	           MARRYDATE
 	      FROM BAFAMILYTEMP
 	     WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC# 
 	     ORDER BY SEQNO	
@@ -317,7 +321,17 @@
             STUDMK,        
             CRTUSER,       
             CRTTIME,
-            MOBILEPHONE
+            MOBILEPHONE,
+            SCHOOLCODE,
+            ADOPTDATE,
+            RAISEEVTMK,
+            SPECIALACC,
+            BENMARRMK,
+            SAVINGMK,
+            ASSIGNNAME,
+            ASSIGNIDNNO,
+            ASSIGNBRDATE,
+            CHECKMK
         )
         VALUES
         (
@@ -359,7 +373,17 @@
             #studMk:VARCHAR#,
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
-            #mobilePhone:VARCHAR#
+            #mobilePhone:VARCHAR#,
+            #schoolCode:VARCHAR#,
+            #adoPtDate:VARCHAR#,
+            #raiseEvtMk:VARCHAR#,
+            #specialAcc:VARCHAR#,
+            #benMarrMk:VARCHAR#,
+            #savingMk:VARCHAR#,
+            #assignName:VARCHAR#,
+            #assignIdnNo:VARCHAR#,
+            #assignBrDate:VARCHAR#,
+            #checkMk:VARCHAR#
         )	
 	</insert>
 	
@@ -399,7 +423,17 @@
                INTERDICTMK = #interDictMk:VARCHAR#,
                HANDICAPMK = #handIcapMk:VARCHAR#,
                STUDMK = #studMk:VARCHAR#,
-               MOBILEPHONE = #mobilePhone:VARCHAR#
+               MOBILEPHONE = #mobilePhone:VARCHAR#,
+               SCHOOLCODE = #schoolCode:VARCHAR#,
+               ADOPTDATE = #adoPtDate:VARCHAR#,
+               RAISEEVTMK = #raiseEvtMk:VARCHAR#,
+               SPECIALACC = #specialAcc:VARCHAR#,
+               BENMARRMK = #benMarrMk:VARCHAR#,
+               SAVINGMK = #savingMk:VARCHAR#,
+               ASSIGNNAME = #assignName:VARCHAR#,
+               ASSIGNIDNNO = #assignIdnNo:VARCHAR#,
+               ASSIGNBRDATE = #assignBrDate:VARCHAR#,
+               CHECKMK = #checkMk:VARCHAR#
          WHERE BAFAMILYTEMPID = #bafamilytempId:NUMERIC#
            AND SEQNO = #seqNo:VARCHAR#
     </update>
@@ -523,7 +557,16 @@
                STUDMK,
                CRTUSER,
                CRTTIME,
-               MOBILEPHONE      
+               MOBILEPHONE,
+               SCHOOLCODE,
+	           ADOPTDATE,
+	           RAISEEVTMK,
+	           SPECIALACC,
+	           BENMARRMK,
+	           SAVINGMK,
+	           ASSIGNNAME,
+	           ASSIGNIDNNO,
+	           ASSIGNBRDATE
           FROM BAFAMILYTEMP
            
         <dynamic prepend="WHERE">

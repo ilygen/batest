@@ -1083,6 +1083,7 @@
         $("tempEvtName").value = $("evtName").value;
         $("tempEvtIdnNo").value = $("evtIdnNo").value;
         $("tempEvtBrDate").value = $("evtBrDate").value;
+        $("tempEvAppTyp").value = $("evAppTyp").value;
         $("tempEvTyp").value = $("evTyp").value;
         $("tempApItem").value = $("apItem").value;
     }
@@ -1194,7 +1195,7 @@
     
     <div id="main" class="mainBody">
         <fieldset>
-            <legend>&nbsp;遺屬年金給付受理作業&nbsp;</legend>
+            <legend>&nbsp;遺屬年金批次受理作業&nbsp;</legend>
             
             <div align="right" id="showtime">
                 網頁下載時間：民國&nbsp;<func:nowDateTime />
@@ -1303,11 +1304,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">傷病分類：</span>
-                                        <html:text tabindex="110" property="evTyp" styleId="evTyp" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value);"/>
-                                        <span class="formtxt">(1-職業傷害，2-職業病，3-普通傷害，4-普通疾病)</span>
+                                	<td id="iss">
+                                    	<span class="needtxt">＊</span><span class="issuetitle_L_down">申請傷病分類：</span>
+                                        <html:text tabindex="110" property="evAppTyp" styleId="evAppTyp" styleClass="textinput"  size="1" maxlength="1"
+                                        	onblur="this.value=asc(this.value);"/>
+                                    	<span class="formtxt">(3-普通傷害，4-普通疾病)</span>
                                     </td>
-                                    <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">申請項目：</span>
+                                    <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">核定傷病分類：</span>
+                                        <html:text tabindex="111" property="evTyp" styleId="evTyp" styleClass="textinput"  size="1" maxlength="1"
+                                        	onblur="this.value=asc(this.value);"/>
+                                        <span class="formtxt">(3-普通傷害，4-普通疾病)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">申請項目：</span>
                                         <html:text tabindex="120" property="apItem" styleId="apItem" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value);"/>
                                         <span class="formtxt">(4-遺屬年金加喪葬津貼，5-遺屬年金，7-領取失能年金期間死亡，8-領取老年年金期間死亡)</span>
                                     </td>
@@ -1344,7 +1354,8 @@
                     <html:hidden styleId="tempEvtName" property="tempEvtName" value=""/>                        
                     <html:hidden styleId="tempEvtIdnNo" property="tempEvtIdnNo" value=""/>                      
                     <html:hidden styleId="tempEvtBrDate" property="tempEvtBrDate" value=""/>                    
-                    <html:hidden styleId="tempEvTyp" property="tempEvTyp" value=""/>                            
+                    <html:hidden styleId="tempEvAppTyp" property="tempEvAppTyp" value=""/>
+                    <html:hidden styleId="tempEvTyp" property="tempEvTyp" value=""/>
                     <html:hidden styleId="tempApItem" property="tempApItem" value=""/>                          
                     <%-- ]for 暫存以輸入之事故者資料 --%>
                 
@@ -1601,8 +1612,8 @@
                                 <display:column title="每月工作收入" style="width:10%; text-align:right;">
                                     <fmt:formatNumber value="${listItem.monIncome}" />&nbsp;
                                 </display:column>
-                                <display:column title="領有身心障礙手冊" style="width:13%; text-align:center;">
-                                    <c:out value="${listItem.handIcapMkStr}" />&nbsp;
+                                <display:column title="結婚日期" style="width:13%; text-align:center;">
+                                    <c:out value="${listItem.marryDate}" />&nbsp;
                                 </display:column>
                                 <display:column title="操作區" style="width:16%; text-align:center;">
                                     <acl:checkButton buttonName="btnUpdate">
