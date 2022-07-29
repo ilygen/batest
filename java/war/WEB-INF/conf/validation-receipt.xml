@@ -1788,13 +1788,22 @@
                 <msg bundle="baMsg" name="notAfterToday" key="errors.date.notAfterToday" />
                 <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evtBrDate" />                
             </field>
+            <field property="evAppTyp" depends="required,mask" page="1">
+                <msg bundle="baMsg" name="required" key="errors.required" />
+                <msg bundle="baMsg" name="mask" key="errors.invalid" />
+                <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evAppTyp" />  
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^([3-4])$</var-value>
+                </var>              
+            </field>
             <field property="evTyp" depends="required,mask" page="1">
                 <msg bundle="baMsg" name="required" key="errors.required" />
                 <msg bundle="baMsg" name="mask" key="errors.invalid" />
                 <arg bundle="baMsg" key="label.receipt.survivorAnnuityReceipt.evTyp" />  
                 <var>
                     <var-name>mask</var-name>
-                    <var-value>^([1-4])$</var-value>
+                    <var-value>^([3-4])$</var-value>
                 </var>              
             </field>
             <field property="apItem" depends="required,mask" page="1">
