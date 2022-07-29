@@ -3711,6 +3711,17 @@ public class ReceiptService {
 				form.setApItem("4");
 			}
 		}
+		// BB 轉入時，以 BB 的受理編號為 BA 的受理編號
+		if (StringUtils.equals(procType, "4")) {
+			String apnoFm = baap0d060.getApnoFm();
+			if (StringUtils.isNotBlank(apnoFm) && apnoFm.length() == 12) {
+				form.setApNo1(apnoFm.substring(0, 1));
+				form.setApNo2(apnoFm.substring(1, 2));
+				form.setApNo3(apnoFm.substring(2, 7));
+				form.setApNo4(apnoFm.substring(7));
+			}
+
+		}
 
 		return form;
     }

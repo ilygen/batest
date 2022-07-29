@@ -831,6 +831,15 @@
     function checkFields(){
         var msg = "";
         
+        var apNoStr = Trim($('apNo1').value) + Trim($('apNo2').value)
+        	+ Trim($('apNo3').value) + Trim($('apNo4').value);
+        
+     	// BB 受理轉入時，受理編號需與來源受理編號一致
+        if (procType == '4' && $('apnoFm').value != apNoStr) {
+        	msg += "受理編號需與來源受理編號相同。\r\n"
+	            $("apNo1").focus();
+        }
+        
      	// 普通遺屬年金臨櫃受理，申請傷病分類僅能輸入 3 或 4
         if (procType == '1' && '3,4'.indexOf($('evAppTyp').value) < 0) {
         	msg += '「申請傷病分類」僅得輸入「3」或「4」。\r\n';
