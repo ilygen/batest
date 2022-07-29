@@ -1056,13 +1056,18 @@
         //$("tempDefaultGrdData").value = $("defaultGrdData").value; //法定代理人預設眷屬1
                                                                                                   
         //保險事故                                                                                
-        $("tempEvTyp").value = $("evTyp").value; //傷病分類                                       
+        $("tempEvAppTyp").value = $("evAppTyp").value; //申請傷病分類
+        $("tempEvTyp").value = $("evTyp").value; //核定傷病分類
         $("tempEvtJobDate").value = $("evtJobDate").value; //診斷失能日期                         
         //$("tempEvCode").value = $("evCode").value; //傷病原因                                     
         //$("tempCriInPart1").value = $("criInPart1").value; //受傷部位                             
         //$("tempCriInPart2").value = $("criInPart2").value; //受傷部位                             
         //$("tempCriInPart3").value = $("criInPart3").value; //受傷部位                             
         //$("tempCriMedium").value = $("criMedium").value; //媒介物                                 
+        $("tempInjDte").value = $("injDte").value; //傷病發生日期
+        $("tempFvisitDte").value = $("fvisitDte").value; //初診日期
+        $("tempLsurgeryDte").value = $("lsurgeryDte").value; //最後手術日期
+        $("tempLsradiationDte").value = $("lsradiationDte").value; //最後放射(化學)治療日期
         $("tempCriInJdp1").value = $("criInJdp1").value; //失能項目                               
         $("tempCriInJdp2").value = $("criInJdp2").value; //失能項目                               
         $("tempCriInJdp3").value = $("criInJdp3").value; //失能項目                               
@@ -1080,6 +1085,7 @@
         $("tempCriInJnme2").value = $("criInJnme2").value; //國際疾病代碼                         
         $("tempCriInJnme3").value = $("criInJnme3").value; //國際疾病代碼                         
         $("tempCriInJnme4").value = $("criInJnme4").value; //國際疾病代碼                         
+        $("tempForinsAddr").value = $("forinsAddr").value; //外籍被保險人母國地址
                                                                                                   
         //給付資料                                                                                
         $("tempPayTyp").value = $("payTyp").value; //給付方式                                     
@@ -1580,6 +1586,7 @@
                 <html:hidden styleId="tempGrdIdnNo" property="tempGrdIdnNo" value=""/>
                 <html:hidden styleId="tempGrdName" property="tempGrdName" value=""/>
                 <html:hidden styleId="tempGrdBrDate" property="tempGrdBrDate" value=""/>
+                <html:hidden styleId="tempEvAppTyp" property="tempEvAppTyp" value=""/>
                 <html:hidden styleId="tempEvTyp" property="tempEvTyp" value=""/>
                 <html:hidden styleId="tempEvtJobDate" property="tempEvtJobDate" value=""/>
                 <html:hidden styleId="tempEvCode" property="tempEvCode" value=""/>
@@ -1587,6 +1594,10 @@
                 <html:hidden styleId="tempCriInPart2" property="tempCriInPart2" value=""/>
                 <html:hidden styleId="tempCriInPart3" property="tempCriInPart3" value=""/>
                 <html:hidden styleId="tempCriMedium" property="tempCriMedium" value=""/>
+                <html:hidden styleId="tempInjDte" property="tempInjDte" value=""/>
+                <html:hidden styleId="tempFvisitDte" property="tempFvisitDte" value=""/>
+                <html:hidden styleId="tempLsurgeryDte" property="tempLsurgeryDte" value=""/>
+                <html:hidden styleId="tempLsradiationDte" property="tempLsradiationDte" value=""/>
                 <html:hidden styleId="tempCriInJdp1" property="tempCriInJdp1" value=""/>
                 <html:hidden styleId="tempCriInJdp2" property="tempCriInJdp2" value=""/>
                 <html:hidden styleId="tempCriInJdp3" property="tempCriInJdp3" value=""/>
@@ -1604,6 +1615,7 @@
                 <html:hidden styleId="tempCriInJnme2" property="tempCriInJnme2" value=""/>
                 <html:hidden styleId="tempCriInJnme3" property="tempCriInJnme3" value=""/>
                 <html:hidden styleId="tempCriInJnme4" property="tempCriInJnme4" value=""/>
+                <html:hidden styleId="tempForinsAddr" property="tempForinsAddr" value=""/>
                 <html:hidden styleId="tempPayTyp" property="tempPayTyp" value=""/>
                 <html:hidden styleId="tempPayBankIdBranchId" property="tempPayBankIdBranchId" value=""/>
                 <html:hidden styleId="tempPayEeacc" property="tempPayEeacc" value=""/>
