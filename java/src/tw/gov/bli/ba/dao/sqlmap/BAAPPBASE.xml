@@ -18254,7 +18254,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM 
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18262,7 +18263,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18316,7 +18319,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18324,7 +18328,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18463,7 +18469,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18471,7 +18478,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18525,7 +18534,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18533,7 +18543,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
