@@ -844,6 +844,21 @@
         if (procType == '1' && '3,4'.indexOf($('evAppTyp').value) < 0) {
         	msg += '「申請傷病分類」僅得輸入「3」或「4」。\r\n';
         }
+     	
+        var secondText = $("evtIdnNo").value.substring(1,2);
+		if($("evtIdnNo").value.length==10){
+			if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
+	 			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
+	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("evtSex").focus();
+	    		}
+	 		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
+	 			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
+	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("evtSex").focus();
+	    		}
+	 		}
+		}
         
         var benDataSize = <%=((List<SurvivorAnnuityReceiptBenCase>)request.getSession().getAttribute(ConstantKey.SURVIVOR_ANNUITY_RECEIPT_BEN_DATA_LIST)).size()%>
         if(benDataSize==0){
@@ -912,21 +927,6 @@
     
     function checkBenFields(){
         var msg = "";
-		
-		var secondText = $("evtIdnNo").value.substring(1,2);
-		if($("evtIdnNo").value.length==10){
-		if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
- 			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
- 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
- 				 $("evtSex").focus();
-    		}
- 		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
- 			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
- 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
- 				 $("evtSex").focus();
-    		}
- 		}
-		}
 		
 		var famText = $("benIdnNo").value.substring(1,2);
 		if($("benIdnNo").value.length==10){
@@ -1292,20 +1292,21 @@
 		$('method').value='doInsert';
 		// 系統類別
 		if (procType == '1') {
-			$('sysCode').value = 'AA'
+			$('sysCode').value = 'AA';
+			$('evTyp').value = $('evAppTyp').value;
 		} else if (procType == '2') {
-			$('sysCode').value = 'AE'
+			$('sysCode').value = 'AE';
 		} else if (procType == '3') {
-			$('sysCode').value = 'AC'
+			$('sysCode').value = 'AC';
 		} else if (procType == '4') {
-			$('sysCode').value = 'AB'
+			$('sysCode').value = 'AB';
 		}
 		// 檢核轉入之遺屬是否成功執行過修改遺屬
 		if (procType != '1') {
 			var uncheckeds = [];
 			$$('.checkMk').each(function (item) {
 				if (item.value != 'Y') {
-					uncheckeds.push(item.id.substring(8, item.id.length))
+					uncheckeds.push(item.id.substring(8, item.id.length));
 				}
 			});
 			if (uncheckeds.length > 0) {
@@ -1484,7 +1485,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="iss">
+                                    <td id="iss"<c:if test="${SurvivorAnnuityWalkInReceiptForm.procType eq '1' }"> colspan="2"</c:if>>
                                     	<span class="needtxt">＊</span><span class="issuetitle_L_down">申請傷病分類：</span>
                                         <html:text tabindex="110" property="evAppTyp" styleId="evAppTyp" styleClass="textinput"  size="1" maxlength="1"
                                         	onblur="this.value=asc(this.value);"/>
@@ -1495,7 +1496,7 @@
 	                                    	<span class="formtxt">(3-普通傷害，4-普通疾病)</span>
 	                                    </c:if>
                                     </td>
-                                    <td id="iss">
+                                    <td id="iss"<c:if test="${SurvivorAnnuityWalkInReceiptForm.procType eq '1' }"> style="display:none;"</c:if>>
                                     	<span class="needtxt">＊</span><span class="issuetitle_L_down">核定傷病分類：</span>
                                         <html:text tabindex="110" property="evTyp" styleId="evTyp" styleClass="textinput"  size="1" maxlength="1"
                                         	onblur="this.value=asc(this.value);"/>
