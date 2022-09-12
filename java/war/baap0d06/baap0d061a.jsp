@@ -576,6 +576,7 @@
 	        $('assignBrDate').value = '';// 代辦人出生日期
         	
         }
+        $('isIgnoreBenIdnCheck').value = '';// 是否檢核遺屬身分證與性別
     }
     
     // Ajax for 取得 具領人選單
@@ -830,7 +831,31 @@
     <%-- begin ... [ --%>
     function checkFields(){
         var msg = "";
+        var isIgnoreEvtIdnCheck = $("isIgnoreEvtIdnCheck").value;
         
+        var secondText = $("evtIdnNo").value.substring(1,2);
+		if($("evtIdnNo").value.length==10 && isIgnoreEvtIdnCheck != 'Y'){
+			if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
+	 			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
+	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("evtSex").focus();
+	    		}
+	 		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
+	 			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
+	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("evtSex").focus();
+	    		}
+	 		}
+		}
+		
+		if(msg != ""){
+			alert(msg);
+			if (confirm('是否忽略事故者外籍身分證與性別檢核？')) {
+				$("isIgnoreEvtIdnCheck").value = 'Y';
+			}
+	    	return false;
+	    }
+		
         var apNoStr = Trim($('apNo1').value) + Trim($('apNo2').value)
         	+ Trim($('apNo3').value) + Trim($('apNo4').value);
         
@@ -845,20 +870,6 @@
         	msg += '「申請傷病分類」僅得輸入「3」或「4」。\r\n';
         }
      	
-        var secondText = $("evtIdnNo").value.substring(1,2);
-		if($("evtIdnNo").value.length==10){
-			if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
-	 			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
-	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
-	 				 $("evtSex").focus();
-	    		}
-	 		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
-	 			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
-	 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
-	 				 $("evtSex").focus();
-	    		}
-	 		}
-		}
         
         var benDataSize = <%=((List<SurvivorAnnuityReceiptBenCase>)request.getSession().getAttribute(ConstantKey.SURVIVOR_ANNUITY_RECEIPT_BEN_DATA_LIST)).size()%>
         if(benDataSize==0){
@@ -927,21 +938,29 @@
     
     function checkBenFields(){
         var msg = "";
+        var isIgnoreBenIdnCheck = $("isIgnoreBenIdnCheck").value;
 		
 		var famText = $("benIdnNo").value.substring(1,2);
-		if($("benIdnNo").value.length==10){
-		if($("benNationTyp").value=="2" && $("benSex").value == "1"){
- 			if(famText!="A" && famText!="a" && famText!="C" && famText!="c" && famText!="8"){
- 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
- 				 $("benSex").focus();
-    		}
- 		}else if($("benNationTyp").value=="2" && $("benSex").value == "2"){
- 			if(famText!="B" && famText!="b" && famText!="D" && famText!="d" && famText!="9"){
- 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
- 				 $("benSex").focus();
-    		}
- 		}
+		if($("benIdnNo").value.length==10 && isIgnoreBenIdnCheck != 'Y'){
+			if($("benNationTyp").value=="2" && $("benSex").value == "1"){
+	 			if(famText!="A" && famText!="a" && famText!="C" && famText!="c" && famText!="8"){
+	 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("benSex").focus();
+	    		}
+	 		}else if($("benNationTyp").value=="2" && $("benSex").value == "2"){
+	 			if(famText!="B" && famText!="b" && famText!="D" && famText!="d" && famText!="9"){
+	 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+	 				 $("benSex").focus();
+	    		}
+	 		}
         }
+		if(msg != ""){
+			alert(msg);
+			if (confirm('是否忽略遺屬外籍身分證與性別檢核？')) {
+				$("isIgnoreBenIdnCheck").value = 'Y';
+			}
+	    	return false;
+	    }
         //檢查遺屬身分證號與生日是否與事故者相同
 
         if($("benIdnNo").value == $("evtIdnNo").value && $("benBrDate").value == $("evtBrDate").value){
@@ -1316,6 +1335,7 @@
 		}
 		
 		if (document.SurvivorAnnuityWalkInReceiptForm.onsubmit() && checkFields() && isValidEvtDateTrue()) {
+			$('isIgnoreEvtIdnCheck').value = '';
 			document.SurvivorAnnuityWalkInReceiptForm.submit();
 		} else {
 			return false;
@@ -1478,6 +1498,7 @@
                                     <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">事故者身分證號：</span>
                                         <html:text tabindex="90" property="evtIdnNo" styleId="evtIdnNo" styleClass="textinput"  size="25" maxlength="20"
                                         	onblur="this.value=asc(this.value).toUpperCase(); initCvldtlName();autoForeignEvtSex();"/>
+                                        <input type="text" id="isIgnoreEvtIdnCheck" />
                                     </td>
                                     <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">事故者出生日期：</span>
                                         <html:text tabindex="100" property="evtBrDate" styleId="evtBrDate" styleClass="textinput" size="8" maxlength="8"
@@ -1596,13 +1617,13 @@
                                                     <acl:checkButton buttonName="btnInsertBen">
                                                         <div id="insertModeBtn" style="display:inline">
                                                             <input tabindex="420" type="button" name="btnInsertBen" class="button" value="新增遺屬" 
-                                                            	onclick="$('benPage').value='1'; $('benMethod').value='doInsertBenData'; if (document.SurvivorAnnuityWalkInReceiptBenForm.onsubmit() && checkBenFields() && isValidBenDateTrue()){saveTempEvtData(); document.SurvivorAnnuityWalkInReceiptBenForm.submit();}else{return false;}" />&nbsp;&nbsp;
+                                                            	onclick="$('benPage').value='1'; $('benMethod').value='doInsertBenData'; if (document.SurvivorAnnuityWalkInReceiptBenForm.onsubmit() && checkBenFields() && isValidBenDateTrue()){saveTempEvtData(); $('isIgnoreBenIdnCheck').value = ''; document.SurvivorAnnuityWalkInReceiptBenForm.submit();}else{return false;}" />&nbsp;&nbsp;
                                                         </div>
                                                     </acl:checkButton>
                                                     <acl:checkButton buttonName="btnUpdateBen">
                                                         <div id="updateModeBtn" style="display:none">
                                                             <input tabindex="430" type="button" name="btnUpdateBen" class="button" value="修改遺屬"
-                                                            	onclick="$('benPage').value='1'; $('benMethod').value='doUpdateBenData'; if (document.SurvivorAnnuityWalkInReceiptBenForm.onsubmit() && checkBenFields() && isValidBenDateTrue()){saveTempEvtData(); document.SurvivorAnnuityWalkInReceiptBenForm.submit();}else{return false;}" />&nbsp;&nbsp;
+                                                            	onclick="$('benPage').value='1'; $('benMethod').value='doUpdateBenData'; if (document.SurvivorAnnuityWalkInReceiptBenForm.onsubmit() && checkBenFields() && isValidBenDateTrue()){saveTempEvtData(); $('isIgnoreBenIdnCheck').value = ''; document.SurvivorAnnuityWalkInReceiptBenForm.submit();}else{return false;}" />&nbsp;&nbsp;
                                                         </div>
                                                     </acl:checkButton>
                                                     <acl:checkButton buttonName="btnClearBen">
@@ -1660,6 +1681,7 @@
                                         <span class="issuetitle_L_down">遺屬身分證號：</span>
                                         <html:text tabindex="190" property="benIdnNo" styleId="benIdnNo" styleClass="textinput"  size="25" maxlength="20"
                                         	onblur="this.value=asc(this.value).toUpperCase();autoForeignBenSex();" />
+                                        <input type="hidden" id="isIgnoreBenIdnCheck" />
                                     </td>
                                     <td id="iss">
                                         <span class="needtxt">　</span>
