@@ -1498,7 +1498,7 @@
                                     <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">事故者身分證號：</span>
                                         <html:text tabindex="90" property="evtIdnNo" styleId="evtIdnNo" styleClass="textinput"  size="25" maxlength="20"
                                         	onblur="this.value=asc(this.value).toUpperCase(); initCvldtlName();autoForeignEvtSex();"/>
-                                        <input type="text" id="isIgnoreEvtIdnCheck" />
+                                        <input type="hidden" id="isIgnoreEvtIdnCheck" />
                                     </td>
                                     <td id="iss"><span class="needtxt">＊</span><span class="issuetitle_L_down">事故者出生日期：</span>
                                         <html:text tabindex="100" property="evtBrDate" styleId="evtBrDate" styleClass="textinput" size="8" maxlength="8"
