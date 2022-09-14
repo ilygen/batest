@@ -1057,6 +1057,11 @@
         <result column="APNOFM"             property="apnoFm"            jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
+    <resultMap id="BaappbaseOccupationalDisasterResult" class="Baappbase" extends="BAAPPBASEResult">
+    	<result column="SYSCODE"        property="sysCode"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    	<result column="APNOFM"         property="apnoFm"        jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+    </resultMap>
+    
     <resultMap id="PaymentQueryBenIssuDataResult" class="Baappbase">                                                                            
         <result column="BAAPPBASEID"    property="baappbaseId"   jdbcType="NUMERIC"  javaType="java.math.BigDecimal" />   
         <result column="APNO"           property="apNo"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />        
@@ -12870,7 +12875,7 @@ UNION
     
     <!-- Disabled Application Data Update -->
     <!-- [ -->
-    <select id="getDisabledApplicationDataUpdateMasterDataBy" resultMap="BAAPPBASEResult">
+    <select id="getDisabledApplicationDataUpdateMasterDataBy" resultMap="BaappbaseOccupationalDisasterResult">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
@@ -13005,7 +13010,9 @@ UNION
                A.ONCETY,
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
-               A.MARGINAMT
+               A.MARGINAMT,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         WHERE  A.APNO = #apNo:VARCHAR# AND 
                A.SEQNO = '0000' AND 
@@ -13459,7 +13466,7 @@ UNION
     
     <!-- Survivor Application Data Update -->
     <!-- [ -->
-    <select id="getSurvivorApplicationDataUpdateMasterDataBy" resultMap="BAAPPBASEResult">
+    <select id="getSurvivorApplicationDataUpdateMasterDataBy" resultMap="BaappbaseOccupationalDisasterResult">
         SELECT A.BAAPPBASEID,  
                A.APNO,                     
                A.SEQNO,                    
@@ -13594,7 +13601,9 @@ UNION
                A.ONCETY,
                A.ONCEPAYM,
                A.ONCEISSUEAMT,
-               A.MARGINAMT
+               A.MARGINAMT,
+               A.SYSCODE,
+               A.APNOFM
         FROM   BAAPPBASE A
         WHERE  A.APNO = #apNo:VARCHAR# AND 
                A.SEQNO = '0000' AND 
@@ -18249,7 +18258,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM 
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18257,7 +18267,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18311,7 +18323,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18319,7 +18332,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18458,7 +18473,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18466,7 +18482,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18520,7 +18538,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18528,7 +18547,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'

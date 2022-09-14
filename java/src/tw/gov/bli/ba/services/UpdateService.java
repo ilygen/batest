@@ -9388,6 +9388,8 @@ public class UpdateService {
         caseData.setDupeIdnNoMk(masterData.getDupeIdnNoMk()); // 身分證重號註記
         caseData.setInterValMonth(masterData.getInterValMonth());// 發放方式
         caseData.setMapNo(masterData.getMapNo());// 國保受理編號
+        caseData.setSysCode(masterData.getSysCode());// 系統類別
+        caseData.setApnoFm(masterData.getApnoFm());// 來源受理編號
         // ]
 
         // 取得 BAAPPEXPAND 資料
@@ -9902,6 +9904,8 @@ public class UpdateService {
         caseData.setInterValMonth(masterData.getInterValMonth());// 發放方式
         caseData.setIssuNotifyingMk(masterData.getIssuNotifyingMk()); // 寄發核定通知書
         caseData.setCaseTyp(masterData.getCaseTyp()); // 案件類別
+        caseData.setSysCode(masterData.getSysCode());// 系統類別
+        caseData.setApnoFm(masterData.getApnoFm());// 來源受理編號
         // ]
 
         // 取得 BAAPPEXPAND 資料
