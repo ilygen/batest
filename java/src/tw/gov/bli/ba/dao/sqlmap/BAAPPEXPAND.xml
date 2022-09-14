@@ -604,7 +604,12 @@
                UPDUSER = #updUser:VARCHAR#,
                UPDTIME = #updTime:VARCHAR#,
                HANDICAPMK = #handIcapMk:VARCHAR#,
-               EVAPPTYP = #evAppTyp:VARCHAR#
+               EVAPPTYP = #evAppTyp:VARCHAR#,
+               INJDTE = #injDte:VARCHAR#,
+               FVISITDTE = #fvisitDte:VARCHAR#,
+               LSURGERYDTE = #lsurgeryDte:VARCHAR#,
+               LSRADIATIONDTE = #lsradiationDte:VARCHAR#,
+               FORINSADDR = #forinsAddr:VARCHAR#
          WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#
            AND BAAPPBASEID = #baappbaseId:NUMERIC#
     </update>

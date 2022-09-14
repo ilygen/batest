@@ -38,6 +38,7 @@ import tw.gov.bli.ba.util.ExceptionUtility;
 import tw.gov.bli.ba.webservices.SingleCheckMarkServiceHttpBindingStub;
 import tw.gov.bli.ba.webservices.SingleCheckMarkServiceLocator;
 import tw.gov.bli.common.helper.UserSessionHelper;
+import tw.gov.bli.ba.util.StringUtility;
 
 /**
  * 受理作業 - 失能年金給付受理作業 (BAAP0D020A)
@@ -369,6 +370,11 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
         try {
             DisabledAnnuityReceiptForm iform = (DisabledAnnuityReceiptForm) form;
             String apNo = iform.getApNoStr();
+            // 當受理編號未鍵入時，從 BAS.BAAPNOK3(SEQUENCE) 取得受理編號
+ 			if (StringUtils.equals(apNo, "K")) {
+ 				apNo = "K3" + StringUtility.chtLeftPad(receiptService.getSequenceApNoK3(), 10, "0");
+ 			}
+
 
             // 手動輸入之受理編號不可為 K00000000000
             if (StringUtils.equalsIgnoreCase(apNo, "K00000000000")) {
