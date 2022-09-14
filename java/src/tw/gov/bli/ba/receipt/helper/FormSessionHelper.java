@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.receipt.forms.OldAgeAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm;
+import tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm;
 import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm;
 
 /**
@@ -130,10 +131,38 @@ public class FormSessionHelper {
         // 各 頁面
         session.removeAttribute(ConstantKey.OLDAGE_ANNUITY_RECEIPT_QUERY_FORM);
     }
+    
+    /**
+     * 受理作業 - 失能年金臨櫃受理作業<br>
+     * 將相關 Form 自 Session 中移除
+     * 
+     * @param request
+     */
+    public static void removeDisabledAnnuityWalkInReceiptQueryForm(HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.removeDisabledAnnuityWalkInReceiptQueryForm() ...");
+
+        HttpSession session = request.getSession();
+        session.removeAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM);
+    }
+    
 
     // ---------------------------------------------------------------------------------------
     // 受理作業 - 失能年金給付受理作業 - DisabledAnnuityReceipt
     // ---------------------------------------------------------------------------------------
+    /**
+     * 受理作業 - 失能年金臨櫃受理作業<br>
+     * 將 Form 加入 Session 中
+     * 
+     * @param form
+     * @param request
+     */
+    public static void setDisabledAnnuityWalkInReceiptQueryForm(DisabledAnnuityWalkInReceiptQueryForm form, HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.setDisabledAnnuityReceiptForm() ...");
+
+        HttpSession session = request.getSession();
+        session.setAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM, form);
+    }
+    
     /**
      * 受理作業 - 失能年金給付受理作業<br>
      * 將 Form 加入 Session 中
@@ -145,6 +174,19 @@ public class FormSessionHelper {
 
         HttpSession session = request.getSession();
         session.setAttribute(ConstantKey.DISABLED_ANNUITY_RECEIPT_FORM, form);
+    }
+    
+    /**
+     * 受理作業 - 失能年金臨櫃受理作業<br>
+     * 從 Session 中 取得 form
+     * 
+     * @param request
+     */
+    public static DisabledAnnuityWalkInReceiptQueryForm getDisabledAnnuityWalkInReceiptQueryForm(HttpServletRequest request) {
+    	log.debug("執行 FormSessionHelper.getDisabledAnnuityWalkInReceiptQueryForm() ...");
+    	
+    	HttpSession session = request.getSession();
+    	return (DisabledAnnuityWalkInReceiptQueryForm) session.getAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM);
     }
 
     /**
@@ -174,6 +216,19 @@ public class FormSessionHelper {
     }
 
     // ---------------------------------------------------------------------------------------
+    /**
+     *  受理作業 - 失能年金臨櫃受理作業<br>
+     *  將 Form 加入 Session 中
+     *  
+     * @param form
+     * @param request
+     */
+    public static void setDisabledAnnuityWalkInReceiptFamForm(DisabledAnnuityWalkInReceiptQueryForm form, HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.setDisabledAnnuityWalkInReceiptFamForm() ...");
+
+        HttpSession session = request.getSession();
+        session.setAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_FAM_FORM, form);
+    }
 
     /**
      * 受理作業 - 失能年金給付受理作業<br>
@@ -199,6 +254,18 @@ public class FormSessionHelper {
 
         HttpSession session = request.getSession();
         return (DisabledAnnuityReceiptForm) session.getAttribute(ConstantKey.DISABLED_ANNUITY_RECEIPT_FAM_FORM);
+    }
+    
+    /**
+     * 受理作業 - 失能年金臨櫃受理作業<br>
+     * 將相關 Form 自 Session 中移除
+     * @param request
+     */
+    public static void removeDisabledAnnuityWalkInReceiptFamForm(HttpServletRequest request) {
+        log.debug("執行 FormSessionHelper.removeDisabledAnnuityWalkInReceiptFamForm() ...");
+
+        HttpSession session = request.getSession();
+        session.removeAttribute(ConstantKey.DISABLED_ANNUITY_WALK_IN_RECEIPT_FAM_FORM);
     }
 
     /**

@@ -170,6 +170,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="baappexpandDao" ref="baappexpandDao" />
         <property name="nbappbaseDao" ref="nbappbaseDao" />
         <property name="nbexcepDao" ref="nbexcepDao" />
+        <property name="baap0d040Dao" ref="baap0d040Dao" />
     </bean>
 
     <!-- Service for executive -->

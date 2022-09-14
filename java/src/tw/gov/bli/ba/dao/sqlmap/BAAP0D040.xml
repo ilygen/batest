@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAP0D040">
+
+    <typeAlias alias="Baap0d040" type="tw.gov.bli.ba.domain.Baap0d040" />
+
+    <resultMap id="baseTurnInData" class="Baap0d040">
+        <result column="APNO"             property="apno"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APUBNO"           property="apUbno"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APPDATE"          property="appDate"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNATIONTPE"     property="evtNationTpe"     jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTSEX"           property="evtSex"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNATIONCODE"    property="evtNationCode"    jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNAME"          property="evtName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTBRDATE"        property="evtBrDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="TEL1"             property="tel1"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="TEL2"             property="tel2"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMTYP"          property="commTyp"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMZIP"          property="commZip"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMADDR"         property="commAddr"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="MOBILEPHONE"      property="mobilePhone"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDNAME"          property="grdName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDIDNNO"         property="grdIdnNo"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDBRDATE"        property="grdBrDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVAPPTYP"         property="evAppTyp"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTYP"            property="evTyp"            jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTJOBDATE"       property="evtJobDate"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="INJDTE"           property="injDte"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="FVISITDTE"        property="fvisitDte"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="LSURGERYDTE"      property="lsurgeryDte"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="LSRADIATIONDTE"   property="lsradiationDte"   jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP1"        property="criInJdp1"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP2"        property="criInJdp2"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP3"        property="criInJdp3"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP4"        property="criInJdp4"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP5"        property="criInJdp5"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP6"        property="criInJdp6"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP7"        property="criInJdp7"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP8"        property="criInJdp8"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP9"        property="criInJdp9"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJDP10"       property="criInJdp10"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="HOSID"            property="hosId"            jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="DOCTORNAME1"      property="doctorName1"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="DOCTORNAME2"      property="doctorName2"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJNME1"       property="criInJnme1"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJNME2"       property="criInJnme2"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJNME3"       property="criInJnme3"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="CRIINJNME4"       property="criInJnme4"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYTYP"           property="payTyp"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYBANKID"        property="payBankId"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BRANCHID"         property="branchId"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYEEACC"         property="payEeacc"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APNOFM"           property="apnoFm"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+    </resultMap>
+    
+    <select id="selectTurnInDataFromBe" resultMap="baseTurnInData">
+    	SELECT FN_CASE.APNO,
+	           FN_CASE.APUBNO,
+	           NVL(FN_CASE.MLDTE, FN_CASE.APDTE) AS APPDATE,
+	           '' AS EVTNATIONTPE,
+	           FN_BEN.GVSEX AS EVTSEX,
+	           '' AS EVTNATIONCODE,
+	           FN_CASE.EVNAME AS EVTNAME,
+	           FN_CASE.EVIDNO AS EVTIDNNO,
+	           FN_CASE.EVBRTH AS EVTBRDATE,
+	           FN_BEN.TELNO1 AS TEL1,
+	           FN_BEN.TELNO2 AS TEL2,
+	           FN_BEN.ADDMK AS COMMTYP,
+	           FN_BEN.POST AS COMMZIP,
+	           FN_BEN.ADDRES AS COMMADDR,
+	           '' AS MOBILEPHONE,
+	           FN_BEN.CHNAME AS GRDNAME,
+	           FN_BEN.CHIDNO AS GRDIDNNO,
+	           FN_BEN.CHBRTH AS GRDBRDATE,
+	           FN_CASE.APEVTYPE AS EVAPPTYP,
+     	       FN_CASE.EVTYPE AS EVTYP,
+	           FN_CASE.EVTDTE AS EVTJOBDATE,
+	           FN_CASE.INJDTE,
+    	       FN_CASE.FVISITDTE,
+	           FN_CASE.LSURGERYDTE,
+    	       FN_CASE.LSRADIATIONDTE,
+    	       FN_CASE.INJDP1 AS CRIINJDP1,
+    	       FN_CASE.INJDP2 AS CRIINJDP2,
+    	       FN_CASE.INJDP3 AS CRIINJDP3,
+    	       FN_CASE.INJDP4 AS CRIINJDP4,
+    	       FN_CASE.INJDP5 AS CRIINJDP5,
+    	       FN_CASE.INJDP6 AS CRIINJDP6,
+    	       FN_CASE.INJDP7 AS CRIINJDP7,
+		       FN_CASE.INJDP8 AS CRIINJDP8,
+		       FN_CASE.INJDP9 AS CRIINJDP9,
+		       FN_CASE.INJDP10 AS CRIINJDP10,
+		       FN_CASE.HOSPC AS HOSID,
+		       FN_CASE.DOCTOR1 AS DOCTORNAME1,
+		       FN_CASE.DOCTOR2 AS DOCTORNAME2,
+		       FN_CASE.INJNME1 AS CRIINJNME1,
+		       FN_CASE.INJNME2 AS CRIINJNME2,
+		       FN_CASE.INJNME3 AS CRIINJNME3,
+		       FN_CASE.INJNME4 AS CRIINJNME4,
+			   FN_BEN.PAYWAY AS PAYTYP,
+		       FN_BEN.BNKALL AS PAYBANKID,
+		       FN_BEN.BNKBRN AS BRANCHID,
+		       FN_BEN.HJNO AS PAYEEACC,
+		       FN_BEN.ACCONAME,
+		       FN_BEN.ACCIDN,
+		       SUBSTR(FN_CASE.APNO, 0, 12) AS APNOFM
+		  FROM TABLE(PKG_TRANCASE.FN_CASE(#apno:VARCHAR#, '')) FN_CASE
+		  LEFT JOIN TABLE(PKG_TRANCASE.FN_BEN(#apno:VARCHAR#)) FN_BEN
+		    ON FN_CASE.APNO = FN_BEN.APNO
+		   AND FN_BEN.HJSEQ = 1
+    </select>
+    
+    <select id="selectTurnInDataFromBc" resultMap="baseTurnInData">
+    	SELECT BCPMA.APNO,
+		       BCPMA.APUBNO,
+		       NVL(BCPMA.MLDTE, BCPMA.APDTE) AS APPDATE,
+		       '' AS EVTNATIONTPE,
+		       BCPMA.EVSEX AS EVTSEX,
+		       '' AS EVTNATIONCODE,
+		       BCPMA.EVNAME AS EVTNAME,
+		       BCPMA.EVIDNO AS EVTIDNNO,
+		       BCPMA.EVBRTH AS EVTBRDATE,
+		       BCBEN.TELNO1 AS TEL1,
+		       BCBEN.TELNO2 AS TEL2,
+		       BCBEN.ADDMK AS COMMTYP,
+		       BCBEN.POST AS COMMZIP,
+		       BCBEN.ADDRES AS COMMADDR,
+		       '' AS MOBILEPHONE,
+		       BCBEN.CHNAME AS GRDNAME,
+		       BCBEN.CHIDNO AS GRDIDNNO,
+		       BCBEN.CHBRTH AS GRDBRDATE,
+		       BCPMA.APEVTYPE AS EVAPPTYP,
+		       BCPMA.EVTYPE AS EVTYP,
+		       BCPMA.EVTDTE AS EVTJOBDATE,
+		       BCML3.INJDTE,
+		       BCML3.FVISITDTE,
+		       BCML3.LSURGERYDTE,
+		       BCML3.LSRADIATIONDTE,
+		       BCML3.INJDP1 AS CRIINJDP1,
+		       BCML3.INJDP2 AS CRIINJDP2,
+		       BCML3.INJDP3 AS CRIINJDP3,
+		       BCML3.INJDP4 AS CRIINJDP4,
+		       BCML3.INJDP5 AS CRIINJDP5,
+		       BCML3.INJDP6 AS CRIINJDP6,
+		       BCML3.INJDP7 AS CRIINJDP7,
+		       BCML3.INJDP8 AS CRIINJDP8,
+		       BCML3.INJDP9 AS CRIINJDP9,
+		       BCML3.INJDP10 AS CRIINJDP10,
+		       BCML3.HOSPC AS HOSID,
+		       BCML3.DOCTOR1 AS DOCTORNAME1,
+		       BCML3.DOCTOR2 AS DOCTORNAME2,
+		       BCML3.INJNME1 AS CRIINJNME1,
+		       BCML3.INJNME2 AS CRIINJNME2,
+		       BCML3.INJNME3 AS CRIINJNME3,
+		       BCML3.INJNME4 AS CRIINJNME4,
+		       BCBEN.PAYWAY AS PAYTYP,
+		       BCBEN.BNKALL AS PAYBANKID,
+		       BCBEN.BNKBRN AS BRANCHID,
+		       BCBEN.HJNO AS PAYEEACC,
+		       BCBEN.ACCONAME,
+		       BCBEN.ACCIDN,
+		       SUBSTR(BCPMA.APNO, 0, 12) AS APNOFM
+		  FROM BCPMA
+		  LEFT JOIN BCML3
+		    ON BCPMA.APNO = BCML3.APNO
+		  LEFT JOIN BCBEN
+		    ON BCPMA.APNO = BCBEN.APNO
+		   AND BCBEN.HJSEQ = '1'
+		 WHERE BCPMA.APNO = #apno:VARCHAR#
+		   AND BCPMA.DELMK IS NULL
+    </select>
+    
+    <select id="selectTurnInDataFromBb" resultMap="baseTurnInData">
+	    SELECT APBBPMA.APNO,
+		       APBBPMA.APUBNO,
+		       APBBPMA.APPDATE,
+		       APBBPMA.EVTNATIONTPE,
+		       APBBPMA.EVTSEX,
+		       APBBPMA.EVTNATIONCODE,
+		       APBBPMA.EVTNAME,
+		       APBBPMA.EVTIDNNO,
+		       APBBPMA.EVTBRDATE,
+		       APBBBEN.TEL1,
+		       APBBBEN.TEL2,
+		       APBBBEN.COMMTYP,
+		       APBBBEN.COMMZIP,
+		       APBBBEN.COMMCOUNTY || APBBBEN.COMMTOWN || APBBBEN.COMMADDR AS COMMADDR,
+		       APBBBEN.MOBILEPHONE,
+		       APBBBEN.GRDNAME,
+		       APBBBEN.GRDIDNNO,
+		       APBBBEN.GRDBRDATE,
+		       APBBPMA.EVAPPTYP,
+		       APBBPMA.EVTYP,
+		       APBBPMA.EVTJOBDATE,
+		       APBBPMA.ACCDATE AS INJDTE,
+		       BBPMAK.FIRSTVISITDATE AS FVISITDTE,
+		       BBPMAK.LASTSURGERYDATE AS LSURGERYDTE,
+		       BBPMAK.LASTCHEMODATE AS LSRADIATIONDTE,
+		       APBBPMA.CRIINJDP1,
+		       APBBPMA.CRIINJDP2,
+		       APBBPMA.CRIINJDP3,
+		       APBBPMA.CRIINJDP4,
+		       APBBPMA.CRIINJDP5,
+		       APBBPMA.CRIINJDP6,
+		       APBBPMA.CRIINJDP7,
+		       APBBPMA.CRIINJDP8,
+		       APBBPMA.CRIINJDP9,
+		       APBBPMA.CRIINJDP10,
+		       APBBPMA.HOSID,
+		       APBBPMA.DOCTORNAME1,
+		       APBBPMA.DOCTORNAME2,
+		       APBBPMA.CRIINJNME1,
+		       APBBPMA.CRIINJNME2,
+		       APBBPMA.CRIINJNME3,
+		       APBBPMA.CRIINJNME4,
+		       APBBBEN.PAYTYP,
+		       APBBBEN.PAYBANKID,
+		       APBBBEN.BRANCHID,
+		       APBBBEN.PAYEEACC,
+		       SUBSTR(APBBPMA.APNO, 0, 12) AS APNOFM
+		  FROM TABLE(PKG_BB_FT.BB_APBBPMA(#apno:VARCHAR#)) APBBPMA
+		  LEFT JOIN BBPMAK
+		    ON APBBPMA.APNO = BBPMAK.APNO
+		  LEFT JOIN TABLE(PKG_BB_FT.BB_APBBBEN(#apno:VARCHAR#)) APBBBEN
+		    ON APBBPMA.APNO = APBBBEN.APNO
+		   AND APBBPMA.EVTAPPIDNNO = APBBBEN.BENIDNNO
+    </select>
+    
+</sqlMap>

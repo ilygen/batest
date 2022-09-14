@@ -469,6 +469,7 @@
        Where A.PAYTYP = #payTyp:VARCHAR#
          AND A.ISSUYM = #issuYm:VARCHAR#
          AND A.MTESTMK = #mtestMk:VARCHAR#
+         AND B.INSKD = '1'
              <![CDATA[
              AND A.RPTKIND = '1'
              AND NVL(TRIM(TAL20),' ') <> '0099'
@@ -514,6 +515,7 @@
        Where A.PAYTYP = #payTyp:VARCHAR#
          AND A.ISSUYM = #issuYm:VARCHAR#
          AND A.MTESTMK = #mtestMk:VARCHAR#
+         AND B.INSKD = '1'
          <dynamic prepend="">
            <isNotParameterPresent>
                AND 1 = 0
