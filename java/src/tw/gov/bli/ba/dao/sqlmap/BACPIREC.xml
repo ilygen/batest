@@ -170,5 +170,30 @@
           FROM BACPIREC
          ORDER BY ISSUYEAR,ADJYEAR
     </select>
+    
+    <select id="selectCpiRateByAppDateAndEvtDieDate" resultClass="java.math.BigDecimal">
+        SELECT (ADJCPI / 100) + 1 AS CPIRATE
+          FROM BACPIREC
+        <dynamic prepend="WHERE">
+        	<isNotParameterPresent>
+        		1 = 0
+        	</isNotParameterPresent>
+        	<isParameterPresent>
+        		<isNotEmpty prepend="AND" property="appYm">
+        			<![CDATA[
+        			ADJYMB >= #appYm:VARCHAR#
+        			]]>
+        		</isNotEmpty>
+        		<isNotEmpty prepend="AND" property="evtDieYm">
+        			<![CDATA[
+        			ADJYMB <= #evtDieYm:VARCHAR#
+        			]]>
+        		</isNotEmpty>
+        		<isNotEmpty prepend="AND" property="appYear">
+        			ADJYEAR = #appYear:VARCHAR#
+        		</isNotEmpty>
+        	</isParameterPresent>
+        </dynamic>
+    </select>
 
 </sqlMap>

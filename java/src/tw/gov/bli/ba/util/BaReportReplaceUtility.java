@@ -13,6 +13,7 @@ import tw.gov.bli.ba.dao.BaappexpandDao;
 import tw.gov.bli.ba.dao.BabasicamtDao;
 import tw.gov.bli.ba.dao.BachkfileDao;
 import tw.gov.bli.ba.dao.BacountryDao;
+import tw.gov.bli.ba.dao.BacpirecDao;
 import tw.gov.bli.ba.dao.BadaprDao;
 import tw.gov.bli.ba.dao.BafamilyDao;
 import tw.gov.bli.ba.dao.BamarginamtnotifyDao;
@@ -790,6 +791,7 @@ public class BaReportReplaceUtility {
 	public void A019() {
 		BabasicamtDao babasicamtDao = (BabasicamtDao) SpringHelper.getBeanById("babasicamtDao");
 		BadaprDao badaprDao = (BadaprDao) SpringHelper.getBeanById("badaprDao");
+		BacpirecDao bacpirecDao = (BacpirecDao) SpringHelper.getBeanById("bacpirecDao");
 
 		BigDecimal issueAmt = BigDecimal.ZERO;
 		if (StringUtils.isNotBlank(baappbase.getDabApNo()) && StringUtils.startsWith(baappbase.getDabApNo(), "L")
@@ -843,10 +845,19 @@ public class BaReportReplaceUtility {
 						// BigDecimal.ROUND_HALF_UP);
 
 						// 加計物價指數 (20140808)
+						/*
 						if (badaprApItem8.getCpiRate() != null) {
 							BigDecimal cpi = BigDecimal.ONE
 									.add(badaprApItem8.getCpiRate().divide(ConstantKey.BIGDECIMAL_CONSTANT_100));
 							issueAmt = issueAmt.multiply(cpi).setScale(0, BigDecimal.ROUND_HALF_UP);
+						}
+						*/
+						if (StringUtils.isNotBlank(badaprApItem8.getAppDate()) && StringUtils.isNotBlank(badaprApItem8.getEvtDieDate())) {
+							List<BigDecimal> cpiRateList = 
+									bacpirecDao.selectCpiRateByAppDateAndEvtDieDate(badaprApItem8.getAppDate(), badaprApItem8.getEvtDieDate());
+							for (BigDecimal cpiRate : cpiRateList) {
+								issueAmt = issueAmt.multiply(cpiRate).setScale(0, BigDecimal.ROUND_HALF_UP);
+							}
 						}
 					}
 				} else { // if (badaprApItem8 != null)

@@ -24,6 +24,7 @@
         <form-bean name="DisabledAnnuityWalkInReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="DisabledAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
+        <form-bean name="DisabledAnnuityWalkInReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
