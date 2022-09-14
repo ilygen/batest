@@ -1478,6 +1478,7 @@
             <forward name="receiptModifyList" path="/baap0d02/baap0d022c.jsp" redirect="true" />
             <forward name="receiptModifyDetail" path="/baap0d02/baap0d023c.jsp" redirect="true" />
             <forward name="fail" path="/baap0d02/baap0d020a.jsp" redirect="true" />
+            <forward name="failFor36" path="/baap0d05/baap0d050a.jsp" redirect="true" />
         </action>
         <!-- baap0d021a.jsp baap0d024a.jsp-->
         <action name="DisabledAnnuityReceiptForm" path="/disabledAnnuityReceiptInsert" parameter="method" input="/baap0d02/baap0d021a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction" validate="false">
@@ -1486,6 +1487,7 @@
             <forward name="saveAllFail" path="/baap0d02/baap0d021a.jsp" redirect="true" />
             <forward name="saveAllFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
             <forward name="back" path="/baap0d02/baap0d020a.jsp" redirect="true" />
+            <forward name="backFor36" path="/baap0d05/baap0d050a.jsp" redirect="true" />
         </action>
         <action name="DisabledAnnuityReceiptFamForm" path="/disabledAnnuityReceiptInsertFam" parameter="method" input="/baap0d02/baap0d021a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction" validate="false">
             <forward name="saveSuccess" path="/baap0d02/baap0d021a.jsp" redirect="true" />
@@ -1494,6 +1496,12 @@
             <forward name="updateFail" path="/baap0d02/baap0d021a.jsp" redirect="true" />
             <forward name="deleteSuccess" path="/baap0d02/baap0d021a.jsp" redirect="true" />
             <forward name="deleteFail" path="/baap0d02/baap0d021a.jsp" redirect="true" />
+            <forward name="saveSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="saveFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="updateSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="updateFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="deleteSuccessFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
+            <forward name="deleteFailFor36" path="/baap0d02/baap0d024a.jsp" redirect="true" />
         </action>
         <!-- baap0d022c.jsp -->
         <action name="DisabledAnnuityReceiptForm" path="/disabledAnnuityReceiptList" parameter="method" input="/baap0d02/baap0d022c.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityReceiptAction" validate="false">

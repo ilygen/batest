@@ -534,6 +534,28 @@ public class MenuDispatchAction extends BaseMappingDispatchAction {
         session.setAttribute(ConstantKey.LETTERTYPE_OPTION_LIST, selectOptionService.getLetterTypeOptionList());
         return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
     }
+    
+    /**
+     * 受理作業 - 國併勞年金臨櫃受理作業 - 受理頁面 (baap0d050a.jsp)
+     * 
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
+    public ActionForward enterNpDisabledAnnuityReceipt(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+    	log.debug("執行 MenuDispatchAction.enterNpDisabledAnnuityReceipt() : 受理作業 - 國併勞年金臨櫃受理作業 (baap0d050a.jsp) ...");
+    	
+    	// 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptFamForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQryCondForm(request);
+        tw.gov.bli.ba.receipt.helper.FormSessionHelper.removeDisabledAnnuityReceiptQueryForm(request);
+        tw.gov.bli.ba.receipt.helper.CaseSessionHelper.removeAllDisabledAnnuityReceiptCase(request);
+    	
+    	return mapping.findForward(ConstantKey.FORWARD_SUCCESS);
+    }
 
     /**
      * 更正作業 - 通訊資料更正 - 查詢頁面 (bamo0d010c.jsp)

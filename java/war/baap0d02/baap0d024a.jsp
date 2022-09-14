@@ -286,6 +286,7 @@
             var objName = origObjName.substring(0, origObjName.length-1);
             var objIdx = parseNumber(origObjName.substring(origObjName.length-1, origObjName.length))+1;
 
+            <%--
             //受傷部位
             if(origObjName.indexOf('criInPart') != -1){
                 for(var i=objIdx; i<=3; i++){
@@ -294,8 +295,9 @@
                     nextObj.value = "";
                 }
             }
+            --%>
             //失能項目
-            else if(origObjName.indexOf('criInJdp') != -1){
+            if(origObjName.indexOf('criInJdp') != -1){
                 for(var i=objIdx; i<=10; i++){
                     nextObj = document.getElementById(objName+i);
                     nextObj.disabled = true;
@@ -334,6 +336,7 @@
             nextObj = document.getElementById(nextObj);
         }
         
+        <%--
         //受傷部位
         if(origObjName.indexOf('criInPart') != -1){
             if((Trim(origObj.value) != "") && event.keyCode==9){
@@ -342,8 +345,9 @@
                 $("criMedium").focus();
             }
         }
+        --%>
         //失能項目
-        else if(origObjName.indexOf('criInJdp') != -1){
+        if(origObjName.indexOf('criInJdp') != -1){
             if((Trim(origObj.value) != "") && event.keyCode==9){
                 nextObj.focus();
             }else if((Trim(origObj.value) == "") && event.keyCode==9){
@@ -821,17 +825,17 @@
         $("tempGrdName").value = $("grdName").value; //法定代理人姓名                             
         $("tempGrdBrDate").value = $("grdBrDate").value; //法定代理人出生日期
         $("tempMobilePhone").value = $("mobilePhone").value; // 手機複驗         
-        $("tempEvtHandIcapMk").value = $("evtHandIcapMk").value; // 有無診斷書                     
+        //$("tempEvtHandIcapMk").value = $("evtHandIcapMk").value; // 有無診斷書                     
         //$("tempDefaultGrdData").value = $("defaultGrdData").value; //法定代理人預設眷屬1
                                                                                                   
         //保險事故                                                                                
         $("tempEvTyp").value = $("evTyp").value; //傷病分類                                       
         $("tempEvtJobDate").value = $("evtJobDate").value; //診斷失能日期                         
-        $("tempEvCode").value = $("evCode").value; //傷病原因                                     
-        $("tempCriInPart1").value = $("criInPart1").value; //受傷部位                             
-        $("tempCriInPart2").value = $("criInPart2").value; //受傷部位                             
-        $("tempCriInPart3").value = $("criInPart3").value; //受傷部位                             
-        $("tempCriMedium").value = $("criMedium").value; //媒介物                                 
+        //$("tempEvCode").value = $("evCode").value; //傷病原因                                     
+        //$("tempCriInPart1").value = $("criInPart1").value; //受傷部位                             
+        //$("tempCriInPart2").value = $("criInPart2").value; //受傷部位                             
+        //$("tempCriInPart3").value = $("criInPart3").value; //受傷部位                             
+        //$("tempCriMedium").value = $("criMedium").value; //媒介物                                 
         $("tempCriInJdp1").value = $("criInJdp1").value; //失能項目                               
         $("tempCriInJdp2").value = $("criInJdp2").value; //失能項目                               
         $("tempCriInJdp3").value = $("criInJdp3").value; //失能項目                               
@@ -891,8 +895,8 @@
         }else{
             $("mobilePhone").disabled = true;
             $("mobilePhone").value = "";
-            $("evtHandIcapMk").disabled = true;
-            $("evtHandIcapMk").value = "";
+            //$("evtHandIcapMk").disabled = true;
+            //$("evtHandIcapMk").value = "";
         }
     } 
     
@@ -910,6 +914,7 @@
                 shortTel2 = tel2.substring(0,2); 
             }
             
+            <%--
             if(Trim($("mobilePhone").value)=="" || ($("mobilePhone").value).length != 10 || !((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
                 $("evtHandIcapMk").disabled = true;
                 $("evtHandIcapMk").value = "";
@@ -918,6 +923,7 @@
             }else{
                 $("evtHandIcapMk").disabled = false;
             }
+            --%>
         } 
     }
     
@@ -935,17 +941,17 @@
             }
             
             if(Trim($("mobilePhone").value)==""||($("mobilePhone").value).length != 10 ||!((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
-                $("evtHandIcapMk").disabled = true;
-                $("evtHandIcapMk").value = "";
+                //$("evtHandIcapMk").disabled = true;
+                //$("evtHandIcapMk").value = "";
                 //alert("手機號碼輸入有誤，請檢查。\r\n");
                 
-                $("evtHandIcapMk").disabled = true;
-                $("evtHandIcapMk").value = "";
+                //$("evtHandIcapMk").disabled = true;
+                //$("evtHandIcapMk").value = "";
                 //$("defaultGrdData").focus();
                 $("grdName").focus();
             }else{
-                $("evtHandIcapMk").disabled = false;
-                $("evtHandIcapMk").focus();
+                //$("evtHandIcapMk").disabled = false;
+                //$("evtHandIcapMk").focus();
             }
         }
     }
@@ -1018,7 +1024,7 @@
                                                                                                                                                                                                                                                                                                                                                               
     <div id="main" class="mainBody">                                                                                                                                                                                                                                                                                                                          
         <fieldset>                                                                                                                                                                                                                                                                                                                                            
-            <legend>&nbsp;失能年金給付受理作業&nbsp;</legend>                                                                                                                                                                                                                                                                                                 
+            <legend>&nbsp;國併勞年金臨櫃受理作業&nbsp;</legend>                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                                                               
             <div align="right" id="showtime">                                                                                                                                                                                                                                                                                                                 
                     網頁下載時間：民國&nbsp;<func:nowDateTime />                                                                                                                                                                                                                                                                                  
@@ -1031,7 +1037,7 @@
                 <html:hidden styleId="method" property="method" value="" />
                 <html:hidden styleId="bafamilytempId" property="bafamilytempId" value="<%=CaseSessionHelper.getDisabledAnnuityReceiptBafamilytempIdStr(request) %>"/>
                 <html:hidden styleId="actionTyp" property="actionTyp" value="insertMode"/>
-                <html:hidden styleId="sFlag36" property="sFlag36"/>
+                <html:hidden styleId="sFlag36" property="sFlag36" value="Y"/>
                                                                                                                                                                                                                                                                                                                                                                       
                 <tr>                                                                                                                                                                                                                                                                                                                                          
                     <td colspan="2" align="right">                                                                                                                                                                                                                                                                                                            
@@ -1146,11 +1152,11 @@
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>
                             <tr>
-                                <td id="iss">
+                                <td id="iss" colspan="2">
                                     <span class="issuetitle_L_down">　手機複驗：</span>
                                     <html:text tabindex="142" property="mobilePhone" styleId="mobilePhone" styleClass="disabled" readonly="true"  size="10" maxlength="10" onkeyup="this.value=asc(this.value); checkMobilePhone();" onkeypress="chgMobilePhoneFocus();" onblur="checkMobilePhone();"/>
                                 </td>
-                                <td id="iss">
+                                <td id="iss" style="display: none;">
                                     <span class="issuetitle_L_down">　有無診斷書：</span>
                                     <html:text tabindex="144" property="evtHandIcapMk" styleId="evtHandIcapMk" styleClass="disabled" readonly="true"  size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>
                                     <span class="formtxt">(Y-有，N-無)</span>
@@ -1193,7 +1199,7 @@
                                     <html:text tabindex="190" property="evtJobDate" styleId="evtJobDate" styleClass="disabled" readonly="true" size="10" maxlength="7" onblur="this.value=asc(this.value);"/>                                                                                                                                                                
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss">　 <span class="issuetitle_L_down">傷病原因：</span>                                                                                                                                                                                                                                                             
                                     <html:text tabindex="200" property="evCode" styleId="evCode" styleClass="disabled" readonly="true" size="2" maxlength="2" onblur="this.value=asc(this.value);"/>                                                                                                                                                                         
                                 </td>                                                                                                                                                                                                                                                                                                                         
@@ -1203,7 +1209,7 @@
                                     <html:text tabindex="230" property="criInPart3" styleId="criInPart3" styleClass="disabled" readonly="true" size="3" maxlength="3" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                   
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
-                            <tr>                                                                                                                                                                                                                                                                                                                              
+                            <tr style="display: none;">                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" colspan="2">　 <span class="issuetitle_L_down">媒 介 物：</span>                                                                                                                                                                                                                                                 
                                     <html:text tabindex="240" property="criMedium" styleId="criMedium" styleClass="disabled" readonly="true" size="3" maxlength="3" onblur="this.value=asc(this.value);"/>                                                                                                                                                                   
                                 </td>                                                                                                                                                                                                                                                                                                                         
@@ -1342,6 +1348,7 @@
                 <html:hidden styleId="tempBranchId" property="tempBranchId" value=""/>
                 <html:hidden styleId="tempChkPayBankId" property="tempChkPayBankId" value=""/>
                 <html:hidden styleId="tempChkBranchId" property="tempChkBranchId" value=""/>
+                <html:hidden styleId="sFlag36" property="sFlag36" value="Y"/>
                 <%-- ]for 暫存以輸入之事故者資料 --%>
                 <tr>                                                                                                                                                                                                                                                                                                                                          
                     <td align="center" class="table1" colspan="8">                                                                                                                                                                                                                                                                                            
