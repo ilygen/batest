@@ -504,7 +504,12 @@
             CRTUSER,
             CRTTIME,
             HANDICAPMK,
-            EVAPPTYP
+            EVAPPTYP,
+            INJDTE,
+            FVISITDTE,
+            LSURGERYDTE,
+            LSRADIATIONDTE,
+            FORINSADDR
         )
         VALUES
         (
@@ -538,7 +543,12 @@
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #handIcapMk:VARCHAR#,
-            #evAppTyp:VARCHAR#
+            #evAppTyp:VARCHAR#,
+            #injDte:VARCHAR#,
+            #fvisitDte:VARCHAR#,
+            #lsurgeryDte:VARCHAR#,
+            #lsradiationDte:VARCHAR#,
+            #forinsAddr:VARCHAR#
         )
 	</insert>
 	

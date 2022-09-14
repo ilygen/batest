@@ -11275,7 +11275,9 @@ UNION
             CRTUSER,
             CRTTIME,
             PROMOTEUSER,
-            MOBILEPHONE
+            MOBILEPHONE,
+            APNOFM,
+            SYSCODE
         )
         VALUES
         (
@@ -11332,7 +11334,9 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #promoteUser:VARCHAR#,
-            #mobilePhone:VARCHAR#
+            #mobilePhone:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         ) 
     </insert>
     
@@ -22075,5 +22079,9 @@ SELECT IDNNO
          WHERE APNO = #apno:VARCHAR#
            AND SEQNO LIKE #seqno:VARCHAR# || '%'
     </update>
+    
+    <select id="getSequenceApNoK3" resultClass="java.lang.String">
+        SELECT BAAPNOK3.NEXTVAL AS BAKAPNO FROM DUAL
+    </select>
     
 </sqlMap>

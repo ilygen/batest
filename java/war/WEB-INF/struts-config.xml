@@ -21,8 +21,10 @@
         <form-bean name="ExecutiveSupportQueryListForm" type="tw.gov.bli.ba.query.forms.ExecutiveSupportQueryListForm" />
         <form-bean name="OldAgeAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.OldAgeAnnuityReceiptForm" />
         <form-bean name="OldAgeAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.OldAgeAnnuityReceiptForm" />
+        <form-bean name="DisabledAnnuityWalkInReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="DisabledAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
+        <form-bean name="DisabledAnnuityWalkInReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
@@ -328,6 +330,16 @@
         <!-- OldAge Annuity Receipt - baap0d010a.jsp -->
         <action path="/enterOldAgeAnnuityReceipt" parameter="enterOldAgeAnnuityReceipt" input="/baindex.jsp" scope="request" type="tw.gov.bli.ba.MenuDispatchAction">
             <forward name="success" path="/baap0d01/baap0d010a.jsp" redirect="true" />
+        </action>
+
+        <!-- Disabled Annuity walk-in Receipt - baap0d040a.jsp -->
+        <action path="/enterDisabledAnnuityWalkInReceipt" parameter="enterDisabledAnnuityWalkInReceipt" input="/baindex.jsp" scope="request" type="tw.gov.bli.ba.MenuDispatchAction">
+            <forward name="success" path="/baap0d04/baap0d040a.jsp" redirect="true" />
+        </action>
+
+        <!-- NP Disabled Annuity Receipt - baap0d050a.jsp -->
+        <action path="/enterNpDisabledAnnuityReceipt" parameter="enterNpDisabledAnnuityReceipt" input="/baindex.jsp" scope="request" type="tw.gov.bli.ba.MenuDispatchAction">
+            <forward name="success" path="/baap0d05/baap0d050a.jsp" redirect="true" />
         </action>
 
         <!-- Disabled Annuity Receipt - baap0d020a.jsp -->
@@ -1431,6 +1443,29 @@
             <forward name="deleteFail" path="/baap0d01/baap0d013c.jsp" redirect="true" />
             <forward name="back" path="/baap0d01/baap0d010a.jsp" redirect="true" />
             <forward name="receiptModifyList" path="/baap0d01/baap0d012c.jsp" redirect="true" />
+        </action>
+        <!-- ] -->
+
+        <!--Disabled Annuity walk-in Receipt -->
+        <!-- [ -->
+        <!-- baap0d040a.jsp -->
+        <action name="DisabledAnnuityWalkInReceiptQueryForm" path="/disabledAnnuityWalkInReceipt" parameter="method" input="/baap0d04/baap0d040a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityWalkInReceiptAction" validate="false">
+            <forward name="success" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="fail" path="/baap0d04/baap0d040a.jsp" redirect="true" />
+        </action>
+        <!-- baap0d041a.jsp baap0d044a.jsp-->
+        <action name="DisabledAnnuityWalkInReceiptQueryForm" path="/disabledAnnuityWalkInReceiptInsert" parameter="method" input="/baap0d04/baap0d041a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityWalkInReceiptAction" validate="false">
+            <forward name="saveAllSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="saveAllFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="back" path="/baap0d04/baap0d040a.jsp" redirect="true" />
+        </action>
+        <action name="DisabledAnnuityWalkInReceiptFamForm" path="/disabledAnnuityWalkInReceiptInsertFam" parameter="method" input="/baap0d04/baap0d041a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.DisabledAnnuityWalkInReceiptAction" validate="false">
+            <forward name="saveSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="saveFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="updateSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="updateFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="deleteSuccess" path="/baap0d04/baap0d041a.jsp" redirect="true" />
+            <forward name="deleteFail" path="/baap0d04/baap0d041a.jsp" redirect="true" />
         </action>
         <!-- ] -->
 
