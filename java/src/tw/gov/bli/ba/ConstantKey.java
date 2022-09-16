@@ -137,8 +137,12 @@ public class ConstantKey {
     public static final String OLDAGE_ANNUITY_RECEIPT_QRYCOND_FORM = "OldAgeAnnuityReceiptQryCondForm";
     // 受理作業 - 老年年金給付受理作業 - 查詢條件FORM
     public static final String OLDAGE_ANNUITY_RECEIPT_QUERY_FORM = "OldAgeAnnuityReceiptQueryForm";
+    // 受理作業 - 失能年金臨櫃受理作業
+    public static final String DISABLED_ANNUITY_WALK_IN_RECEIPT_QUERY_FORM = "DisabledAnnuityWalkInReceiptQueryForm";
     // 受理作業 - 失能年金給付受理作業
     public static final String DISABLED_ANNUITY_RECEIPT_FORM = "DisabledAnnuityReceiptForm";
+    // 受理作業 - 失能年金臨櫃受理作業
+    public static final String DISABLED_ANNUITY_WALK_IN_RECEIPT_FAM_FORM = "DisabledAnnuityWalkInReceiptFamForm";
     // 受理作業 - 失能年金給付受理作業
     public static final String DISABLED_ANNUITY_RECEIPT_FAM_FORM = "DisabledAnnuityReceiptFamForm";
     // 受理作業 - 失能年金給付受理作業 - 查詢條件FORM
@@ -377,6 +381,10 @@ public class ConstantKey {
     public static final String RUN_PROCEDURE_FORM = "RunProcedureForm";
     // 批次處理 - 批次排程作業 - 批次程式查詢作業 (baba0m240x.jsp)
     public static final String QRY_PROCEDURE_FORM = "QryProcedureForm";
+    // 受理作業 - 遺屬年金臨櫃受理作業 - 查詢FORM
+    public static final String SURVIVOR_ANNUITY_WALK_IN_RECEIPT_FORM = "SurvivorAnnuityWalkInReceiptForm";
+    // 受理作業 - 遺屬年金臨櫃受理作業 - FORM
+    public static final String SURVIVOR_ANNUITY_WALK_IN_RECEIPT_BEN_FORM = "SurvivorAnnuityWalkInReceiptBenForm";
     // 受理作業 - 遺屬年金給付受理作業 - FORM
     public static final String SURVIVOR_ANNUITY_RECEIPT_FORM = "SurvivorAnnuityReceiptForm";
     // 受理作業 - 遺屬年金給付受理作業 - FORM

@@ -176,7 +176,7 @@
         <html:hidden styleId="origSFlag36" property="origSFlag36"/>
         
         <fieldset>
-            <legend>&nbsp;失能年金給付受理作業&nbsp;</legend>
+            <legend>&nbsp;失能年金批次受理作業&nbsp;</legend>
             
             <div align="right" id="showtime">
                                 網頁下載時間：民國&nbsp;<func:nowDateTime />
@@ -191,9 +191,11 @@
                         <acl:checkButton buttonName="btnModify">
                             <input type="button" id="btnModify" name="btnModify" tabindex="70" class="button" value="修　改" onclick="$('page').value='1'; $('method').value='prepareModify'; if (document.DisabledAnnuityReceiptQueryForm.onsubmit() && checkFields()){document.DisabledAnnuityReceiptQueryForm.submit();}else{return false;}" />&nbsp;
                         </acl:checkButton>
+                        <%--
                         <acl:checkButton buttonName="btnModify36">
                             <input type="button" id="btnModify36" name="btnModify36" tabindex="80" class="button" value="國併勞" onclick="$('page').value='1'; $('method').value='prepareInsert36Data'; document.DisabledAnnuityReceiptQueryForm.submit();" />&nbsp;
                         </acl:checkButton>
+                        --%>
                         <acl:checkButton buttonName="btnClear">
                             <input type="button" id="btnClear" name="btnClear" tabindex="90" class="button" value="清　除" onclick="resetForm();"/>
                         </acl:checkButton>                        
@@ -217,6 +219,7 @@
                         <html:text property="apNo4" styleId="apNo4" tabindex="50" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value)" onkeyup="autotab($('apNo4'), $('btnModify'));doInputChange();" onmouseout="doInputChange();"/>
                     </td>
                 </tr>
+                <%--
                 <tr>
                     <td align="right" class="issuetitle_R_down"><input type="checkbox" id="sFlag36" name="sFlag36" onclick="doCheckBoxChange();" value="Y" >國保受理編號：</td>
                     <td>
@@ -229,6 +232,7 @@
                         <html:text property="apNo4For36" styleId="apNo4For36" tabindex="50" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value)" onkeyup="autotab($('apNo4For36'), $('btnModify36'));" />
                     </td>
                 </tr>
+                --%>
                 <tr>
                     <td colspan="2">&nbsp;</td>
                 </tr>                                                

@@ -1748,6 +1748,7 @@
         <result column="EVTJOBDATE"       property="evtJobDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                  
         <result column="MOBILEPHONE"      property="mobilePhone"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                  
         <result column="BAAPPEXPANDID"    property="baappexpandId"    jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
+        <result column="EVAPPTYP"         property="evAppTyp"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="EVTYP"            property="evTyp"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="EVCODE"           property="evCode"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="CRIINPART1"       property="criInPart1"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
@@ -1772,6 +1773,11 @@
         <result column="DOCTORNAME1"      property="doctorName1"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="DOCTORNAME2"      property="doctorName2"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="HANDICAPMK"       property="handIcapMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />          
+        <result column="INJDTE"           property="injDte"           jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FVISITDTE"        property="fvisitDte"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="LSURGERYDTE"      property="lsurgeryDte"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="LSRADIATIONDTE"   property="lsradiationDte"   jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="FORINSADDR"       property="forinsAddr"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="DetailDataForSurvivorResult" class="Baappbase">
@@ -11277,7 +11283,9 @@ UNION
             CRTUSER,
             CRTTIME,
             PROMOTEUSER,
-            MOBILEPHONE
+            MOBILEPHONE,
+            APNOFM,
+            SYSCODE
         )
         VALUES
         (
@@ -11334,7 +11342,9 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #promoteUser:VARCHAR#,
-            #mobilePhone:VARCHAR#
+            #mobilePhone:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         ) 
     </insert>
     
@@ -11740,7 +11750,8 @@ UNION
                A.CHKPAYEEACC,                         
                A.EVTJOBDATE,
                A.MOBILEPHONE,                        
-               B.BAAPPEXPANDID,                     
+               B.BAAPPEXPANDID,
+			   B.EVAPPTYP,
                B.EVTYP,                             
                B.EVCODE,                            
                B.CRIINPART1,                        
@@ -11764,7 +11775,12 @@ UNION
                B.CRIINJNME4,                        
                B.DOCTORNAME1,                       
                B.DOCTORNAME2,
-               B.HANDICAPMK                        
+               B.HANDICAPMK,
+               B.INJDTE,
+	           B.FVISITDTE,
+	           B.LSURGERYDTE,
+	           B.LSRADIATIONDTE,
+	           B.FORINSADDR
           FROM BAAPPBASE A, BAAPPEXPAND B           
          WHERE A.BAAPPBASEID = B.BAAPPBASEID        
            AND A.BAAPPBASEID = #baappbaseId:NUMERIC#
@@ -12302,7 +12318,9 @@ UNION
             ACCSEQNO,
             MITRATE,      
             CRTUSER,       
-            CRTTIME        
+            CRTTIME,
+            APNOFM,
+            SYSCODE
         )
         values      
         (
@@ -12334,7 +12352,9 @@ UNION
             #accSeqNo:VARCHAR#,
             #mitRate:NUMERIC#, 
             #crtUser:VARCHAR#,
-            #crtTime:VARCHAR#            
+            #crtTime:VARCHAR#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#
         )
     </insert>
     
@@ -12399,7 +12419,11 @@ UNION
             CRTUSER,
             CRTTIME,
             MOBILEPHONE, 
-            MITRATE 
+            MITRATE,
+            SPECIALACC,
+            APNOFM,
+            SYSCODE,
+            BENMARRMK
         )
         VALUES
         (
@@ -12458,7 +12482,11 @@ UNION
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
             #mobilePhone:VARCHAR#, 
-            #mitRate:NUMERIC#
+            #mitRate:NUMERIC#,
+            #specialAcc:NUMERIC#,
+            #apnoFm:VARCHAR#,
+            #sysCode:VARCHAR#,
+            #benMarrMk:VARCHAR#
         )
     </insert>
         
@@ -18259,7 +18287,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM 
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18267,7 +18296,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18321,7 +18352,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18329,7 +18361,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18468,7 +18502,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18476,7 +18511,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -18530,7 +18567,8 @@ UNION
               t.EVTIDNNO As "EVTIDNNO",
               t.EVTBRDATE,
               <![CDATA[
-              (SELECT B1.PRPNO FROM BCCMF09 B1
+              (SELECT PRPNO FROM
+              (SELECT B1.PRPNO, B1.SEQNO FROM BCCMF09 B1
                 WHERE NVL(TRIM(TAL20),' ') <> '0099'
                   AND B1.INSKD = '1'
                   AND (B1.PAYTYP||B1.GROUPMK) LIKE (SUBSTR(t.APNO,1,2)||'%')
@@ -18538,7 +18576,9 @@ UNION
                        (SUBSTR(B1.TAL20, 1, 2) <= SUBSTR(t.APNO, 11, 2) AND
                        SUBSTR(TAL20, 3, 2) >= SUBSTR(t.APNO, 11, 2)) OR
                        (SUBSTR(t.APNO, 11, 2) IN (B1.TAL21, B1.TAL22, B1.TAL23, B1.TAL24, B1.TAL25)))
-                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')) As "PRPNO"
+                  AND (TRIM(B1.STATUS) IS NULL OR B1.STATUS <> 'D')
+                ORDER BY B1.SEQNO)
+                WHERE ROWNUM <= 1) As "PRPNO"
                 ]]>
          From BAAPPBASE t
         Where t.APNO like 'K%'
@@ -22068,5 +22108,9 @@ SELECT IDNNO
          WHERE APNO = #apno:VARCHAR#
            AND SEQNO LIKE #seqno:VARCHAR# || '%'
     </update>
+    
+    <select id="getSequenceApNoK3" resultClass="java.lang.String">
+        SELECT BAAPNOK3.NEXTVAL AS BAKAPNO FROM DUAL
+    </select>
     
 </sqlMap>

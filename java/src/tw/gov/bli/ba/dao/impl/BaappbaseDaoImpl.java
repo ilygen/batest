@@ -363,6 +363,11 @@ public class BaappbaseDaoImpl extends SqlMapClientDaoSupport implements Baappbas
     public String getSequenceSApNo() {
         return (String) getSqlMapClientTemplate().queryForObject("BAAPPBASE.getSequenceSApNo", null);
     }
+    
+    @Override
+	public String getSequenceApNoK3() {
+    	return (String) getSqlMapClientTemplate().queryForObject("BAAPPBASE.getSequenceApNoK3", null);
+	}
 
     /**
      * 更新通訊資料 for 給付主檔(<code>BAAPPBASE</code>)

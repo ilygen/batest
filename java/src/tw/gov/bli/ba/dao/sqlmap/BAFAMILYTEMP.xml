@@ -46,6 +46,15 @@
         <result column="CRTUSER"            property="crtUser"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
         <result column="CRTTIME"            property="crtTime"                 jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
 	    <result column="MOBILEPHONE"        property="mobilePhone"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="SCHOOLCODE"         property="schoolCode"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="ADOPTDATE"          property="adoPtDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="RAISEEVTMK"         property="raiseEvtMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="SPECIALACC"         property="specialAcc"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="BENMARRMK"          property="benMarrMk"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="SAVINGMK"           property="savingMk"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="ASSIGNNAME"         property="assignName"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="ASSIGNIDNNO"        property="assignIdnNo"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+	    <result column="ASSIGNBRDATE"       property="assignBrDate"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
 	</resultMap>
 	
 	<resultMap id="AnnuityReceiptFamDataListResult" class="Bafamilytemp">
@@ -126,7 +135,16 @@
                STUDMK,
                CRTUSER,
                CRTTIME,
-               MOBILEPHONE      
+               MOBILEPHONE,
+               SCHOOLCODE,
+	           ADOPTDATE,
+	           RAISEEVTMK,
+	           SPECIALACC,
+	           BENMARRMK,
+	           SAVINGMK,
+	           ASSIGNNAME,
+	           ASSIGNIDNNO,
+	           ASSIGNBRDATE
           FROM BAFAMILYTEMP
         <dynamic prepend="WHERE">
             <isNotParameterPresent>

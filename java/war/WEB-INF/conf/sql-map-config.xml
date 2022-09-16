@@ -66,6 +66,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BXADMINS.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/KCAF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D020.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAP0D040.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPEXPAND.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAFAMILY.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BABCML7.xml" />
@@ -127,6 +128,8 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANSF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPATTFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMFILEFTPRECORD.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAP0D060.xml" />
+    
     <!-- ] -->
     <!-- End for BA System -->
 

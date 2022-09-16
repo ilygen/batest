@@ -606,10 +606,15 @@ public class Baappbase implements Serializable {
     private String criInPart2; // 受傷部位2
     private String criInPart3; // 受傷部位3
     private String criMedium; // 媒介物
+    private String injDte; // 傷病發生日期
+    private String fvisitDte; // 初診日期
+    private String lsurgeryDte; // 最後手術日期
+    private String lsradiationDte; // 最後放射(化學)治療日期
     private String criInJnme1; // 國際疾病代碼1
     private String criInJnme2; // 國際疾病代碼2
     private String criInJnme3; // 國際疾病代碼3
     private String criInJnme4; // 國際疾病代碼4
+    private String forinsAddr; // 外籍被保險人母國地址
     private String criInJcl; // 失能等級
     private String criInJcl1; // 失能等級1
     private String criInJcl2; // 失能等級2
@@ -2328,7 +2333,39 @@ public class Baappbase implements Serializable {
         this.criMedium = criMedium;
     }
 
-    public String getCriInJnme1() {
+    public String getInjDte() {
+		return injDte;
+	}
+
+	public void setInjDte(String injDte) {
+		this.injDte = injDte;
+	}
+
+	public String getFvisitDte() {
+		return fvisitDte;
+	}
+
+	public void setFvisitDte(String fvisitDte) {
+		this.fvisitDte = fvisitDte;
+	}
+
+	public String getLsurgeryDte() {
+		return lsurgeryDte;
+	}
+
+	public void setLsurgeryDte(String lsurgeryDte) {
+		this.lsurgeryDte = lsurgeryDte;
+	}
+
+	public String getLsradiationDte() {
+		return lsradiationDte;
+	}
+
+	public void setLsradiationDte(String lsradiationDte) {
+		this.lsradiationDte = lsradiationDte;
+	}
+
+	public String getCriInJnme1() {
         return criInJnme1;
     }
 
@@ -2360,7 +2397,15 @@ public class Baappbase implements Serializable {
         this.criInJnme4 = criInJnme4;
     }
 
-    public String getCriInJcl() {
+    public String getForinsAddr() {
+		return forinsAddr;
+	}
+
+	public void setForinsAddr(String forinsAddr) {
+		this.forinsAddr = forinsAddr;
+	}
+
+	public String getCriInJcl() {
         return criInJcl;
     }
 

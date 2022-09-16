@@ -177,6 +177,12 @@ public interface BaappbaseDao {
      * 取得 SEQUENCE BASAPNO
      */
     public String getSequenceSApNo();
+    
+    /**
+     * 從 BAS 的 SEQUENCE(BAAPNOK3) 取得受理編號
+     * @return
+     */
+    public String getSequenceApNoK3();
 
     /**
      * 更新通訊資料 for 給付主檔(<code>BAAPPBASE</code>)

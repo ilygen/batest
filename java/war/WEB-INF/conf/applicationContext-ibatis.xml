@@ -114,7 +114,15 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 
+    <bean id="baap0d040Dao" class="tw.gov.bli.ba.dao.impl.Baap0d040DaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
     <bean id="pbbmsaDao" class="tw.gov.bli.ba.dao.impl.PbbmsaDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient" />
+    </bean>
+
+    <bean id="baap0d060Dao" class="tw.gov.bli.ba.dao.impl.Baap0d060DaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient" />
     </bean>
 

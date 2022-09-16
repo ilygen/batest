@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BAAP0D060">
+
+    <typeAlias alias="Baap0d060" type="tw.gov.bli.ba.domain.Baap0d060" />
+    <typeAlias alias="SurvivorBenData" type="tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptBenCase" />
+
+    <resultMap id="baseTurnInData" class="Baap0d060">
+        <result column="APNO"             property="apno"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APUBNO"           property="apUbno"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APPDATE"          property="appDate"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNATIONTPE"     property="evtNationTpe"     jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTDIEDATE"       property="evtDieDate"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTSEX"           property="evtSex"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNATIONCODE"    property="evtNationCode"    jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTNAME"          property="evtName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTIDNNO"         property="evtIdnNo"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTBRDATE"        property="evtBrDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVAPPTYP"         property="evAppTyp"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="EVTYP"            property="evTyp"            jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="MONNOTIFYINGMK"   property="monNotifyingMk"   jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APITEM"           property="apItem"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="JUDGEDATE"        property="judgeDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="APNOFM"           property="apnoFm"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+    </resultMap>
+
+    <resultMap id="baseTurnInBen" class="SurvivorBenData">
+        <result column="BENSEX"           property="benSex"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENNAME"          property="benName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENIDNNO"         property="benIdnNo"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENBRDATE"        property="benBrDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENEVTREL"        property="benEvtRel"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="TEL1"             property="tel1"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="TEL2"             property="tel2"             jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMTYP"          property="commTyp"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMZIP"          property="commZip"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="COMMADDR"         property="commAddr"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="SAVINGMK"         property="savingMk"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDNAME"          property="grdName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDIDNNO"         property="grdIdnNo"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="GRDBRDATE"        property="grdBrDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYTYP"           property="payTyp"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYBANKID"        property="payBankId"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BRANCHID"         property="branchId"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="PAYEEACC"         property="payEeacc"         jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ACCNAME"          property="accName"          jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ACCIDN"           property="accIdn"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="SPECIALACC"       property="specialAcc"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+    </resultMap>
+    
+    <resultMap id="turnInBenFromBb" class="SurvivorBenData" extends="baseTurnInBen">
+        <result column="BENNATIONTYP"     property="benNationTyp"     jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENNATIONCODE"    property="benNationCode"    jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENAPPDATE"       property="benAppDate"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="MOBILEPHONE"      property="mobilePhone"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="MARRYDATE"        property="marryDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="MONINCOME"        property="monIncome"        jdbcType="NUMERIC"   javaType="java.math.BigDecimal" />
+        <result column="STUDMK"           property="studMk"           jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="SCHOOLCODE"       property="schoolCode"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="BENMARRMK"        property="benMarrMk"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ADOPTDATE"        property="adoPtDate"        jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="RAISEEVTMK"       property="raiseEvtMk"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ASSIGNNAME"       property="assignName"       jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ASSIGNIDNNO"      property="assignIdnNo"      jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+        <result column="ASSIGNBRDATE"     property="assignBrDate"     jdbcType="VARCHAR"   javaType="java.lang.String"   nullValue="" />
+    </resultMap>
+    
+    <select id="selectSurvivorTurnInDataFromBe" resultMap="baseTurnInData">
+    	SELECT FN_CASE.APNO,
+		       FN_CASE.APUBNO,
+		       NVL(FN_CASE.MLDTE, FN_CASE.APDTE) AS APPDATE,
+		       BEML5.FMK AS EVTNATIONTPE,
+		       FN_CASE.EVTDTE AS EVTDIEDATE,
+		       FN_BEN.GVSEX AS EVTSEX,
+		       LPAD(BEML5.COUNTRYCOD, 3, '0') AS EVTNATIONCODE,
+		       FN_CASE.EVNAME AS EVTNAME,
+		       FN_CASE.EVIDNO AS EVTIDNNO,
+		       FN_CASE.EVBRTH AS EVTBRDATE,
+		       FN_CASE.APEVTYPE AS EVAPPTYP,
+		       FN_CASE.EVTYPE AS EVTYP,
+		       <![CDATA[
+		       CASE
+		         WHEN FN_CASE.PAYKIND <> '52' AND FN_CASE.APUBNO IS NOT NULL AND
+		              FN_CASE.UBNO IS NOT NULL THEN
+		          'Y'
+		         WHEN FN_CASE.PAYKIND = '52' AND FN_CASE.APUBNO IS NOT NULL AND
+		              FN_CASE.UBNO IS NOT NULL AND FN_CASE.APUBNO = FN_CASE.UBNO THEN
+		          'Y'
+		         ELSE
+		          'N'
+		       END AS MONNOTIFYINGMK,
+		       ]]>
+		       BEML5.APITEM,
+		       TO_CHAR(FN_CASE.DISDTE, 'YYYYMMDD') AS JUDGEDATE,
+		       SUBSTR(FN_CASE.APNO, 0, 12) AS APNOFM
+		  FROM TABLE(PKG_TRANCASE.FN_CASE(#apno:VARCHAR#, '')) FN_CASE
+		  LEFT JOIN TABLE(PKG_TRANCASE.FN_BEN(#apno:VARCHAR#)) FN_BEN
+		    ON FN_CASE.APNO = FN_BEN.APNO
+		   AND FN_BEN.HJSEQ = 1
+		  LEFT JOIN BEML5
+		    ON FN_CASE.APNO = BEML5.APNO
+    </select>
+    
+    <select id="selectSurvivorTurnInBenFromBe" resultMap="baseTurnInBen">
+    	SELECT GVSEX    AS BENSEX,
+		       GVNAME   AS BENNAME,
+		       GVIDNO   AS BENIDNNO,
+		       GVBRTH   AS BENBRDATE,
+		       REL      AS BENEVTREL,
+		       TELNO1   AS TEL1,
+		       TELNO2   AS TEL2,
+		       ADDMK    AS COMMTYP,
+		       POST     AS COMMZIP,
+		       ADDRES   AS COMMADDR,
+		       WIDRMK   AS SAVINGMK,
+		       CHNAME   AS GRDNAME,
+		       CHIDNO   AS GRDIDNNO,
+		       CHBRTH   AS GRDBRDATE,
+		       PAYWAY   AS PAYTYP,
+		       BNKALL   AS PAYBANKID,
+		       BNKBRN   AS BRANCHID,
+		       HJNO     AS PAYEEACC,
+		       ACCONAME AS ACCNAME,
+		       ACCIDN,
+		       SPECIALACC
+		  FROM BEBEN
+		 WHERE APNO = #apno:VARCHAR#
+		 ORDER BY HJSEQ
+    </select>
+    
+    <select id="selectSurvivorTurnInDataFromBc" resultMap="baseTurnInData">
+    	SELECT BCPMA.APNO,
+		       BCPMA.APUBNO,
+		       NVL(BCPMA.MLDTE, BCPMA.APDTE) AS APPDATE,
+		       BCML5.FMK AS EVTNATIONTPE,
+		       BCPMA.EVTDTE AS EVTDIEDATE,
+		       BCPMA.EVSEX AS EVTSEX,
+		       LPAD(BCML5.COUNTRYCOD, 3, '0') AS EVTNATIONCODE,
+		       BCPMA.EVNAME AS EVTNAME,
+		       BCPMA.EVIDNO AS EVTIDNNO,
+		       BCPMA.EVBRTH AS EVTBRDATE,
+		       BCPMA.APEVTYPE AS EVAPPTYP,
+		       BCPMA.EVTYPE AS EVTYP,
+		       <![CDATA[
+		       CASE
+		         WHEN BCPMA.PAYTYP <> '52' AND BCPMA.APUBNO IS NOT NULL AND
+		              BCPMA.UBNO IS NOT NULL THEN
+		          'Y'
+		         WHEN BCPMA.PAYTYP = '52' AND BCPMA.APUBNO IS NOT NULL AND
+		              BCPMA.UBNO IS NOT NULL AND BCPMA.APUBNO = BCPMA.UBNO THEN
+		          'Y'
+		         ELSE
+		          'N'
+		       END AS MONNOTIFYINGMK,
+		       ]]>
+		       BCML5.APITEM,
+		       BCML5.DISDTE AS JUDGEDATE,
+		       SUBSTR(BCPMA.APNO, 0, 12) AS APNOFM
+		  FROM BCPMA
+		  LEFT JOIN BCML5
+		    ON BCPMA.APNO = BCML5.APNO
+		 WHERE BCPMA.APNO = #apno:VARCHAR#
+		   AND BCPMA.DELMK IS NULL
+    </select>
+    
+    <select id="selectSurvivorTurnInBenFromBc" resultMap="baseTurnInBen">
+    	SELECT GVSEX    AS BENSEX,
+		       GVNAME   AS BENNAME,
+		       GVIDNO   AS BENIDNNO,
+		       GVBRTH   AS BENBRDATE,
+		       REL      AS BENEVTREL,
+		       TELNO1   AS TEL1,
+		       TELNO2   AS TEL2,
+		       ADDMK    AS COMMTYP,
+		       POST     AS COMMZIP,
+		       ADDRES   AS COMMADDR,
+		       WIDRMK   AS SAVINGMK,
+		       CHNAME   AS GRDNAME,
+		       CHIDNO   AS GRDIDNNO,
+		       CHBRTH   AS GRDBRDATE,
+		       PAYWAY   AS PAYTYP,
+		       BNKALL   AS PAYBANKID,
+		       BNKBRN   AS BRANCHID,
+		       HJNO     AS PAYEEACC,
+		       ACCONAME AS ACCNAME,
+		       ACCIDN,
+		       SPECIALACC
+		  FROM BCBEN
+		 WHERE APNO = #apno:VARCHAR#
+		 ORDER BY HJSEQ
+    </select>
+    
+    <select id="selectSurvivorTurnInDataFromBb" resultMap="baseTurnInData">
+    	SELECT BBPMA.APNO,
+		       BBPMA.APUBNO,
+		       BBPMA.APPDATE,
+		       BBPMA.EVTNATIONTPE,
+		       BBPMA.EVTJOBDATE AS EVTDIEDATE,
+		       BBPMA.EVTSEX,
+		       BBPMA.EVTNATIONCODE,
+		       BBPMA.EVTNAME,
+		       BBPMA.EVTIDNNO,
+		       BBPMA.EVTBRDATE,
+		       BBPMA.EVAPPTYP,
+		       BBPMA.EVTYP,
+		       BBPMA.MONNOTIFYINGMK,
+		       BBPMAS.APITEM,
+		       BBPMAS.JUDGEDATE,
+		       SUBSTR(BBPMA.APNO, 0, 12) AS APNOFM
+		  FROM BBPMA
+		  LEFT JOIN BBPMAS
+		    ON BBPMA.APNO = BBPMAS.APNO
+		 WHERE BBPMA.APNO = #apno:VARCHAR#
+		   AND NVL(BBPMA.CASEMK, 'X') != 'D'
+    </select>
+    
+    <select id="selectSurvivorTurnInBenFromBb" resultMap="turnInBenFromBb">
+    	SELECT BENNATIONTYP,
+		       BENSEX,
+		       BENNATIONCODE,
+		       BENNAME,
+		       BENAPPDATE,
+		       BENIDNNO,
+		       BENBRDATE,
+		       BENEVTREL,
+		       TEL1,
+		       TEL2,
+		       COMMTYP,
+		       COMMZIP,
+		       COMMCOUNTY || COMMTOWN || COMMADDR AS COMMADDR,
+		       MOBILEPHONE,
+		       SAVINGMK,
+		       MARRYDATE,
+		       MONINCOME,
+		       STUDMK,
+		       SCHOOLCODE,
+		       BENMARRMK,
+		       ADOPTDATE,
+		       RAISEEVTMK,
+		       GRDNAME,
+		       GRDIDNNO,
+		       GRDBRDATE,
+		       ASSIGNNAME,
+		       ASSIGNIDNNO,
+		       ASSIGNBRDATE,
+		       PAYTYP,
+		       PAYBANKID,
+		       BRANCHID,
+		       PAYEEACC,
+		       ACCIDN,
+		       ACCNAME,
+		       SPECIALACC
+		  FROM BBBEN
+		 WHERE APNO = #apno:VARCHAR#
+		 ORDER BY SEQNO
+    </select>
+    
+</sqlMap>
