@@ -13,6 +13,7 @@ import tw.gov.bli.ba.domain.Bafamilytemp;
 import tw.gov.bli.ba.receipt.cases.DisabledAnnuityReceiptFamCase;
 import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptBenCase;
 import tw.gov.bli.ba.services.ReceiptAjaxService;
+import tw.gov.bli.ba.services.ReceiptService;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 
@@ -25,12 +26,17 @@ public class ReceiptCommonAjax {
     private static Log log = LogFactory.getLog(ReceiptCommonAjax.class);
 
     private ReceiptAjaxService receiptAjaxService;
+    private ReceiptService receiptService;
 
     public void setReceiptAjaxService(ReceiptAjaxService receiptAjaxService) {
         this.receiptAjaxService = receiptAjaxService;
     }
 
-    /**
+    public void setReceiptService(ReceiptService receiptService) {
+		this.receiptService = receiptService;
+	}
+
+	/**
      * 依傳入條件取得 戶政全戶檔 姓名資料<br>
      * 
      * @param idn 事故者身分證號
@@ -109,5 +115,23 @@ public class ReceiptCommonAjax {
     public List<Bafamilytemp> getBenOptionListForSurvivorTemp(BigDecimal bafamilytempId, String seqNo) {
         log.debug("執行 ReceiptCommonAjax.getBenOptionListForSurvivorTemp(" + bafamilytempId + "," + seqNo + ") ...");
         return receiptAjaxService.getBenOptionListForSurvivorTemp(bafamilytempId, seqNo);
+    }
+    
+    /**
+     * 依給付方式、帳號前7碼取得金融機構名稱
+     * 
+     * @param payTyp
+     * @param payBankIdBranchId
+     * @return
+     */
+    public String getBankName(String payTyp, String payBankIdBranchId) {
+    	log.debug("執行 ReceiptCommonAjax.getBankName(" + payTyp + "," + payBankIdBranchId + ") ...");
+    	String bankName = "";
+    	if (StringUtils.equals(payTyp, "1")) {
+    		bankName = receiptService.getBankName(payBankIdBranchId);
+    	} else if (StringUtils.equals(payTyp, "2")) {
+    		bankName = receiptService.getPostName(payBankIdBranchId);
+    	}
+    	return bankName;
     }
 }

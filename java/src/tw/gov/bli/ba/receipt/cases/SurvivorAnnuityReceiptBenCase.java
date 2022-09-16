@@ -47,6 +47,17 @@ public class SurvivorAnnuityReceiptBenCase implements Serializable {
     private String handIcapMk;// 領有重度以上身心障礙手冊
     private String interDictMk;// 受禁治產(監護)宣告
     private String mobilePhone;// 手機複驗
+    private String savingMk;// 計息存儲
+    private String schoolCode;// 學校代碼
+    private String benMarrMk;// 婚姻狀況
+    private String adoPtDate;// 收養日期
+    private String raiseEvtMk;// 被保險人扶養
+    private String assignName;// 代辦人姓名
+    private String assignIdnNo;// 代辦人身分證號
+    private String assignBrDate;// 代辦人出生日期
+    private String specialAcc;// 專戶
+    private String checkMk;// 它系統轉入檢核註記(檢核完成=Y)
+    
 
     // 給付資料
     private String accData;// 具名領取資料
@@ -641,5 +652,85 @@ public class SurvivorAnnuityReceiptBenCase implements Serializable {
     public void setChkBranchId(String chkBranchId) {
         this.chkBranchId = chkBranchId;
     }
+
+	public String getSavingMk() {
+		return savingMk;
+	}
+
+	public void setSavingMk(String savingMk) {
+		this.savingMk = savingMk;
+	}
+
+	public String getSchoolCode() {
+		return schoolCode;
+	}
+
+	public void setSchoolCode(String schoolCode) {
+		this.schoolCode = schoolCode;
+	}
+
+	public String getBenMarrMk() {
+		return benMarrMk;
+	}
+
+	public void setBenMarrMk(String benMarrMk) {
+		this.benMarrMk = benMarrMk;
+	}
+
+	public String getAdoPtDate() {
+		return adoPtDate;
+	}
+
+	public void setAdoPtDate(String adoPtDate) {
+		this.adoPtDate = adoPtDate;
+	}
+
+	public String getRaiseEvtMk() {
+		return raiseEvtMk;
+	}
+
+	public void setRaiseEvtMk(String raiseEvtMk) {
+		this.raiseEvtMk = raiseEvtMk;
+	}
+
+	public String getAssignName() {
+		return assignName;
+	}
+
+	public void setAssignName(String assignName) {
+		this.assignName = assignName;
+	}
+
+	public String getAssignIdnNo() {
+		return assignIdnNo;
+	}
+
+	public void setAssignIdnNo(String assignIdnNo) {
+		this.assignIdnNo = assignIdnNo;
+	}
+
+	public String getAssignBrDate() {
+		return assignBrDate;
+	}
+
+	public void setAssignBrDate(String assignBrDate) {
+		this.assignBrDate = assignBrDate;
+	}
+
+	public String getSpecialAcc() {
+		return specialAcc;
+	}
+
+	public void setSpecialAcc(String specialAcc) {
+		this.specialAcc = specialAcc;
+	}
+
+	public String getCheckMk() {
+		return checkMk;
+	}
+
+	public void setCheckMk(String checkMk) {
+		this.checkMk = checkMk;
+	}
 
 }

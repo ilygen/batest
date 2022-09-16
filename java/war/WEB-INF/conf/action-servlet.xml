@@ -129,6 +129,25 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="selectOptionService" ref="selectOptionService" />
     </bean>
     <!-- ] -->
+    
+    <!-- Survivor Annuity walk-in Receipt -->
+    <!-- [ -->
+    <!-- baap0d060a.jsp -->
+    <bean name="/survivorAnnuityWalkInReceiptQuery" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <!-- baap0d061a.jsp -->
+    <bean name="/survivorAnnuityWalkInReceiptInsert" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    <bean name="/survivorAnnuityWalkInReceiptInsertBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
+        <property name="receiptService" ref="receiptService" />
+        <property name="selectOptionService" ref="selectOptionService" />
+    </bean>
+    
+    <!-- ] -->
 
     <!-- Survivor Annuity Receipt -->
     <!-- [ -->

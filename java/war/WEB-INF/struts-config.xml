@@ -26,6 +26,8 @@
         <form-bean name="DisabledAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
         <form-bean name="DisabledAnnuityWalkInReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm" />
         <form-bean name="DisabledAnnuityReceiptFamForm" type="tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm" />
+        <form-bean name="SurvivorAnnuityWalkInReceiptForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityWalkInReceiptForm" />
+        <form-bean name="SurvivorAnnuityWalkInReceiptBenForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityWalkInReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptQueryForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
         <form-bean name="SurvivorAnnuityReceiptBenForm" type="tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm" />
@@ -827,6 +829,11 @@
             <forward name="success" path="/baba0m04/baba0m040x.jsp" redirect="true" />
         </action>
 
+        <!-- Survivor Annuity Walk In Receipt - baap0d060a.jsp -->
+        <action path="/enterSurvivorAnnuityWalkInReceipt" parameter="enterSurvivorAnnuityWalkInReceipt" input="/baindex.jsp" scope="request" type="tw.gov.bli.ba.MenuDispatchAction">
+            <forward name="success" path="/baap0d06/baap0d060a.jsp" redirect="true" />
+        </action>
+
         <!-- Survivor Annuity Receipt - baap0d030a.jsp -->
         <action path="/enterSurvivorAnnuityReceipt" parameter="enterSurvivorAnnuityReceipt" input="/baindex.jsp" scope="request" type="tw.gov.bli.ba.MenuDispatchAction">
             <forward name="success" path="/baap0d03/baap0d030a.jsp" redirect="true" />
@@ -1554,6 +1561,29 @@
             <forward name="back" path="/bamo0d01/bamo0d010c.jsp" redirect="true" />
             <forward name="fail" path="/bamo0d01/bamo0d010c.jsp" redirect="true" />
             <forward name="csrffail" path="/baindex.jsp" redirect="true" />
+        </action>
+        <!-- ] -->
+        
+        <!--Survivor Annuity walk-in Receipt -->
+        <!-- [ -->
+        <!-- baap0d060a.jsp -->
+        <action name="SurvivorAnnuityWalkInReceiptForm" path="/survivorAnnuityWalkInReceiptQuery" parameter="method" input="/baap0d06/baap0d060a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction" validate="false">
+            <forward name="success" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="fail" path="/baap0d06/baap0d060a.jsp" redirect="true" />
+        </action>
+        <!-- baap0d061a.jsp -->
+        <action name="SurvivorAnnuityWalkInReceiptForm" path="/survivorAnnuityWalkInReceiptInsert" parameter="method" input="/baap0d06/baap0d061a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction" validate="false">
+            <forward name="saveAllSuccess" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="saveAllFail" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="back" path="/baap0d06/baap0d060a.jsp" redirect="true" />
+        </action>
+        <action name="SurvivorAnnuityWalkInReceiptBenForm" path="/survivorAnnuityWalkInReceiptInsertBen" parameter="method" input="/baap0d06/baap0d061a.jsp" scope="session" type="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction" validate="false">
+            <forward name="saveSuccess" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="saveFail" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="updateSuccess" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="updateFail" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="deleteSuccess" path="/baap0d06/baap0d061a.jsp" redirect="true" />
+            <forward name="deleteFail" path="/baap0d06/baap0d061a.jsp" redirect="true" />
         </action>
         <!-- ] -->
 

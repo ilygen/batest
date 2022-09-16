@@ -29,6 +29,8 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
     private String seqNo;// 序號
     private String appDate;// 申請日期
     private String apUbno;// 申請單位保險證號
+    private String apnoFm;// 來源受理編號
+    private String sysCode;// 系統類別
 
     // 事故者個人資料
     private String evtNationTpe;// 國籍別
@@ -40,8 +42,10 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
     private String cvldtlName;// 戶籍姓名
     private String evtIdnNo;// 事故者身分證號
     private String evtBrDate;// 事故者出生日期
-    private String evTyp;// 傷病分類
+    private String evAppTyp;// 申請傷病分類
+    private String evTyp;// 核定傷病分類
     private String apItem;// 申請項目
+    private String judgeDate;// 判決日期
 
     // Baappbase欄位
     private String evtJobDate;// 事故者離職日期
@@ -191,7 +195,23 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
         this.apUbno = apUbno;
     }
 
-    public String getAppDate() {
+    public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
+
+	public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getAppDate() {
         return appDate;
     }
 
@@ -255,7 +275,15 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
         this.evtBrDate = evtBrDate;
     }
 
-    public String getEvTyp() {
+    public String getEvAppTyp() {
+		return evAppTyp;
+	}
+
+	public void setEvAppTyp(String evAppTyp) {
+		this.evAppTyp = evAppTyp;
+	}
+
+	public String getEvTyp() {
         return evTyp;
     }
 
@@ -271,7 +299,15 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
         this.apItem = apItem;
     }
 
-    public String getEvtJobDate() {
+    public String getJudgeDate() {
+		return judgeDate;
+	}
+
+	public void setJudgeDate(String judgeDate) {
+		this.judgeDate = judgeDate;
+	}
+
+	public String getEvtJobDate() {
         return evtJobDate;
     }
 

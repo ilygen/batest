@@ -381,6 +381,10 @@ public class ConstantKey {
     public static final String RUN_PROCEDURE_FORM = "RunProcedureForm";
     // 批次處理 - 批次排程作業 - 批次程式查詢作業 (baba0m240x.jsp)
     public static final String QRY_PROCEDURE_FORM = "QryProcedureForm";
+    // 受理作業 - 遺屬年金臨櫃受理作業 - 查詢FORM
+    public static final String SURVIVOR_ANNUITY_WALK_IN_RECEIPT_FORM = "SurvivorAnnuityWalkInReceiptForm";
+    // 受理作業 - 遺屬年金臨櫃受理作業 - FORM
+    public static final String SURVIVOR_ANNUITY_WALK_IN_RECEIPT_BEN_FORM = "SurvivorAnnuityWalkInReceiptBenForm";
     // 受理作業 - 遺屬年金給付受理作業 - FORM
     public static final String SURVIVOR_ANNUITY_RECEIPT_FORM = "SurvivorAnnuityReceiptForm";
     // 受理作業 - 遺屬年金給付受理作業 - FORM

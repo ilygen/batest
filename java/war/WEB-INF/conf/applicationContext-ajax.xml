@@ -6,6 +6,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
     <bean id="receiptCommonAjax" class="tw.gov.bli.ba.receipt.ajax.ReceiptCommonAjax">
         <property name="receiptAjaxService" ref="receiptAjaxService"/>
+        <property name="receiptService" ref="receiptService"/>
     </bean>
     
     <bean id="executiveCommonAjax" class="tw.gov.bli.ba.executive.ajax.ExecutiveCommonAjax">

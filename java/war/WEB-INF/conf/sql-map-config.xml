@@ -128,6 +128,8 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BANSF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAPPATTFILE.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAMFILEFTPRECORD.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAP0D060.xml" />
+    
     <!-- ] -->
     <!-- End for BA System -->
 

@@ -742,7 +742,16 @@
             STUDMK,
             CRTUSER,
             CRTTIME,
-            EVAPPTYP
+            EVAPPTYP,
+            JUDGEDATE,
+            MONNOTIFYINGMK,
+            SAVINGMK,
+            SCHOOLCODE,
+            ADOPTDATE,
+            RAISEEVTMK,
+            ASSIGNNAME,
+            ASSIGNIDNNO,
+            ASSIGNBRDATE
         )
         VALUES
         (
@@ -759,7 +768,16 @@
             #studMk:VARCHAR#,
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#,
-            #evAppTyp:VARCHAR#
+            #evAppTyp:VARCHAR#,
+            #judgeDate:VARCHAR#,
+            #monNotifyingMk:VARCHAR#,
+            #savingMk:VARCHAR#,
+            #schoolCode:VARCHAR#,
+            #adoPtDate:VARCHAR#,
+            #raiseEvtMk:VARCHAR#,
+            #assignName:VARCHAR#,
+            #assignIdnNo:VARCHAR#,
+            #assignBrDate:VARCHAR#
         )  
     </insert>
     

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,6 +16,7 @@ import tw.gov.bli.ba.dao.Baap0d040Dao;
 import tw.gov.bli.ba.dao.BaappbaseDao;
 import tw.gov.bli.ba.dao.BaappexpandDao;
 import tw.gov.bli.ba.dao.BaapplogDao;
+import tw.gov.bli.ba.dao.Baap0d060Dao;
 import tw.gov.bli.ba.dao.BacountryDao;
 import tw.gov.bli.ba.dao.BafamilyDao;
 import tw.gov.bli.ba.dao.BafamilytempDao;
@@ -30,6 +32,7 @@ import tw.gov.bli.ba.domain.Baap0d040;
 import tw.gov.bli.ba.domain.Baappbase;
 import tw.gov.bli.ba.domain.Baappexpand;
 import tw.gov.bli.ba.domain.Baapplog;
+import tw.gov.bli.ba.domain.Baap0d060;
 import tw.gov.bli.ba.domain.Bafamily;
 import tw.gov.bli.ba.domain.Bafamilytemp;
 import tw.gov.bli.ba.domain.Cvldtl;
@@ -46,6 +49,7 @@ import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptEvtCase;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.forms.DisabledAnnuityWalkInReceiptQueryForm;
 import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm;
+import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityWalkInReceiptForm;
 import tw.gov.bli.ba.util.BaBusinessUtility;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
@@ -75,6 +79,7 @@ public class ReceiptService {
     private BafamilytempDao bafamilytempDao;
     private BafamilyDao bafamilyDao;
     private NbappbaseDao nbappbaseDao;
+    private Baap0d060Dao baap0d060Dao;
     private NbexcepDao nbexcepDao;
     private Baap0d040Dao baap0d040Dao;
 
@@ -2390,6 +2395,10 @@ public class ReceiptService {
         if (StringUtils.isNotBlank(caseObj.getEvtBrDate()) && caseObj.getEvtBrDate().length() == 7) {
             caseObj.setEvtBrDate(DateUtility.changeDateType(caseObj.getEvtBrDate()));
         }
+        // 「判決日期」
+        if (StringUtils.isNotBlank(caseObj.getJudgeDate()) && caseObj.getJudgeDate().length() == 7) {
+        	caseObj.setJudgeDate(DateUtility.changeDateType(caseObj.getJudgeDate()));
+        }
         // ]
 
         // 根據 事故者身分證號, 出生日期 取得戶政資料
@@ -2446,6 +2455,14 @@ public class ReceiptService {
         // 「結婚日期」
         if (StringUtils.isNotBlank(caseObj.getMarryDate()) && caseObj.getMarryDate().length() == 7) {
             caseObj.setMarryDate(DateUtility.changeDateType(caseObj.getMarryDate()));
+        }
+        // 「收養日期」
+        if (StringUtils.isNotBlank(caseObj.getAdoPtDate()) && caseObj.getAdoPtDate().length() == 7) {
+        	caseObj.setAdoPtDate(DateUtility.changeDateType(caseObj.getAdoPtDate()));
+        }
+        // 「代辦人出生日期」
+        if (StringUtils.isNotBlank(caseObj.getAssignBrDate()) && caseObj.getAssignBrDate().length() == 7) {
+        	caseObj.setAssignBrDate(DateUtility.changeDateType(caseObj.getAssignBrDate()));
         }
         // ]
         // 根據 遺屬身分證號, 出生日期 取得戶政資料
@@ -2711,7 +2728,7 @@ public class ReceiptService {
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
-    public void insertSurvivorBafamilytempData(SurvivorAnnuityReceiptBenCase caseObj, UserBean userData) {
+    public String insertSurvivorBafamilytempData(SurvivorAnnuityReceiptBenCase caseObj, UserBean userData) {
         log.debug("Start Insert BAFAMILYTEMP ...");
         Bafamilytemp bafamilytemp = new Bafamilytemp();
         BeanUtility.copyProperties(bafamilytemp, caseObj);
@@ -2726,6 +2743,8 @@ public class ReceiptService {
 
         bafamilytempDao.insertDataForSurvivorAnnuityReceipt(bafamilytemp);
         log.debug("Insert BAFAMILYTEMP Finished...");
+        
+        return seqNo;
     }
 
     /**
@@ -3048,7 +3067,7 @@ public class ReceiptService {
         baappexpand.setSeqNo("0000");
         baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
         baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
-        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+//        baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
         BigDecimal baappexpandId = baappexpandDao.insertDataForSurvivorAnnuityReceipt(baappexpand);
 
         baappexpand.setBaappexpandId(baappexpandId);
@@ -3126,6 +3145,8 @@ public class ReceiptService {
             else if (benObj.getApItem().equals("8")) {
                 benObj.setNotifyForm("023");
             }
+            benObj.setApnoFm(evtObj.getApnoFm());
+            benObj.setSysCode(evtObj.getSysCode());
 
             baappbaseId = baappbaseDao.insertBenDataForSurvivorAnnuityReceipt(benObj);
 
@@ -3155,7 +3176,7 @@ public class ReceiptService {
             baappexpand.setEvTyp(evtCase.getEvTyp());// 傷病分類
             baappexpand.setCrtUser(userData.getEmpNo());// 新增者代號
             baappexpand.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
-            baappexpand.setEvAppTyp(evtCase.getEvTyp());// 申請傷病分類
+            baappexpand.setEvAppTyp(evtCase.getEvAppTyp());// 申請傷病分類
             baappexpandId = baappexpandDao.insertDataForSurvivorAnnuityReceipt(baappexpand);
 
             // Insert MMAPLOG
@@ -3750,6 +3771,167 @@ public class ReceiptService {
         // return accSeqNoAmt;
         return bafamilytempDao.selectAccSeqNoAmt(bafamilytempId, seqNo);
     }
+    
+    /**
+     * 保存畫面上已輸入之事故者資料 for 遺屬臨櫃受理
+     * 
+     * @param evtForm
+     * @param famForm
+     * @return
+     */
+    public SurvivorAnnuityWalkInReceiptForm keepInputEvtFormDataForWalkInSurvivor(
+    		SurvivorAnnuityWalkInReceiptForm evtForm, SurvivorAnnuityWalkInReceiptForm benForm) {
+    	if (evtForm != null && benForm != null) {
+    		evtForm.setApNo1(benForm.getTempApNo1());// 受理編號-1
+    		evtForm.setApNo2(benForm.getTempApNo2());// 受理編號-2
+    		evtForm.setApNo3(benForm.getTempApNo3());// 受理編號-3
+    		evtForm.setApNo4(benForm.getTempApNo4());// 受理編號-4
+    		evtForm.setApUbno(benForm.getTempApUbno());// 申請單位保險證號
+    		evtForm.setAppDate(benForm.getTempAppDate());// 申請日期
+    		evtForm.setEvtNationTpe(benForm.getTempEvtNationTpe());// 國籍別
+    		evtForm.setEvtDieDate(benForm.getTempEvtDieDate());// 死亡日期
+    		evtForm.setEvtSex(benForm.getTempEvtSex());// 性別
+    		evtForm.setEvtNationCode(benForm.getTempEvtNationCode());// 國籍
+    		evtForm.setEvtNationCodeOption(benForm.getTempEvtNationCodeOption());// 事故者國籍下拉選單
+    		evtForm.setEvtName(benForm.getTempEvtName());// 事故者姓名
+    		evtForm.setEvtIdnNo(benForm.getTempEvtIdnNo());// 事故者身分證號
+    		evtForm.setEvtBrDate(benForm.getTempEvtBrDate());// 事故者出生日期
+    		evtForm.setEvAppTyp(benForm.getTempEvAppTyp());// 申請傷病分類
+    		evtForm.setEvTyp(benForm.getTempEvTyp());// 核定傷病分類
+    		evtForm.setApItem(benForm.getTempApItem());// 申請項目
+    	}
+    	
+    	return evtForm;
+    }
+    
+    public SurvivorAnnuityWalkInReceiptForm convertSurvivorTurnInData(SurvivorAnnuityWalkInReceiptForm form,
+			Baap0d060 baap0d060) {
+    	BeanUtility.copyProperties(form, baap0d060);
+    	
+    	String procType = form.getProcType();
+    	// 日期轉換
+		// 申請日期
+		if (StringUtils.isNotBlank(baap0d060.getAppDate())) {
+			form.setAppDate(DateUtility.changeDateType(baap0d060.getAppDate()));
+		}
+		// 死亡日期
+		if (StringUtils.isNotBlank(baap0d060.getEvtDieDate())) {
+			form.setEvtDieDate(DateUtility.changeDateType(baap0d060.getEvtDieDate()));
+		}
+		// 事故者出生日期
+		if (StringUtils.isNotBlank(baap0d060.getEvtBrDate())) {
+			form.setEvtBrDate(DateUtility.changeDateType(baap0d060.getEvtBrDate()));
+		}
+		// 判決日期
+		if (StringUtils.isNotBlank(baap0d060.getJudgeDate())) {
+			form.setJudgeDate(DateUtility.changeDateType(baap0d060.getJudgeDate()));
+		}
+		
+		// BC、BE 依身分證號判斷本國籍或外籍
+		if (StringUtils.contains("2,3", procType) && baap0d060.getEvtIdnNo().matches("[a-zA-Z][1-2]\\d{8}")) {
+			form.setEvtNationTpe("1");
+		} else {
+			form.setEvtNationTpe("2");
+		}
+		
+
+		// 當申請傷病分類為 1、3 時，核定傷病分類為 3
+		// 當申請傷病分類為 2、4 時，核定傷病分類為 4
+		if (StringUtils.isNotBlank(baap0d060.getEvAppTyp())) {
+			String evAppTyp = baap0d060.getEvAppTyp();
+			if (StringUtils.contains("1,3", evAppTyp)) {
+				form.setEvTyp("3");
+			} else if (StringUtils.contains("2,4", evAppTyp)) {
+				form.setEvTyp("4");
+			}
+		}
+		
+		// 申請項目
+		// BC、BE 申請項目為 2 時寫入 5，其餘寫入 4
+		if (StringUtils.contains("2,3", procType)) {
+			String apItem = baap0d060.getApItem();
+			if (StringUtils.equals(apItem, "2")) {
+				form.setApItem("5");
+			} else {
+				form.setApItem("4");
+			}
+		}
+		// BB 轉入時，以 BB 的受理編號為 BA 的受理編號
+		if (StringUtils.equals(procType, "4")) {
+			String apnoFm = baap0d060.getApnoFm();
+			if (StringUtils.isNotBlank(apnoFm) && apnoFm.length() == 12) {
+				form.setApNo1(apnoFm.substring(0, 1));
+				form.setApNo2(apnoFm.substring(1, 2));
+				form.setApNo3(apnoFm.substring(2, 7));
+				form.setApNo4(apnoFm.substring(7));
+			}
+
+		}
+
+		return form;
+    }
+    
+    /**
+	 * 取得遺屬年金轉入受理作業所需要的個人資料
+	 * 
+	 * @param apno
+	 * @param procType
+	 * @return
+	 */
+	public List<Baap0d060> getSurvivorTurnInData(SurvivorAnnuityWalkInReceiptForm form) {
+		String procType = form.getProcType();
+
+		List<Baap0d060> list = null;
+		if (StringUtils.equals(procType, "2")) {
+			list = baap0d060Dao.selectSurvivorTurnInDataFromBe(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "3")) {
+			list = baap0d060Dao.selectSurvivorTurnInDataFromBc(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "4")) {
+			list = baap0d060Dao.selectSurvivorTurnInDataFromBb(form.getApNoStrForBb());
+		}
+		return list;
+	}
+	
+	/**
+	 * 取得遺屬年金轉入受理作業所需要的遺屬資料
+	 * 
+	 * @param form
+	 * @return
+	 */
+	public List<SurvivorAnnuityReceiptBenCase> getSurvivorTurnInBen(SurvivorAnnuityWalkInReceiptForm form,
+			UserBean userData, BigDecimal bafamilytempId) {
+		String procType = form.getProcType();
+		
+		List<SurvivorAnnuityReceiptBenCase> benList = null;
+		if (StringUtils.equals(procType, "2")) {
+			benList = baap0d060Dao.selectSurvivorTurnInBenFromBe(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "3")) {
+			benList = baap0d060Dao.selectSurvivorTurnInBenFromBc(form.getApNoStr());
+		} else if (StringUtils.equals(procType, "4")) {
+			benList = baap0d060Dao.selectSurvivorTurnInBenFromBb(form.getApNoStrForBb());
+		}
+		
+		List<SurvivorAnnuityReceiptBenCase> benDataList = new ArrayList<>();
+		if (CollectionUtils.isNotEmpty(benList)) {
+			for (SurvivorAnnuityReceiptBenCase caseObj : benList) {
+				caseObj.setBafamilytempId(bafamilytempId);
+				// BC、BE 遺屬申請日期取自個人資料的申請日期，國籍別、國籍同事故者
+				if (StringUtils.contains("2,3", procType)) {
+					caseObj.setBenAppDate(form.getAppDate());
+					caseObj.setBenNationTyp(form.getEvtNationTpe());
+					caseObj.setBenNationCode(form.getEvtNationCode());
+				}
+				caseObj.setChkBranchId(caseObj.getBranchId());
+				caseObj.setChkPayBankId(caseObj.getPayBankId());
+				caseObj.setChkPayEeacc(caseObj.getPayEeacc());
+				caseObj = transSurvivorBenInputData(caseObj, "insertMode");
+				String seqNo = insertSurvivorBafamilytempData(caseObj, userData);
+				caseObj.setSeqNo(seqNo);
+				benDataList.add(caseObj);
+			}
+		}
+		return benDataList;
+	}
 
     /**
      * 保存畫面上已輸入之事故者資料 for 失能受理
@@ -3949,7 +4131,11 @@ public class ReceiptService {
         this.bafamilyDao = bafamilyDao;
     }
 
-    public void setNbappbaseDao(NbappbaseDao nbappbaseDao) {
+    public void setBaap0d060Dao(Baap0d060Dao baap0d060Dao) {
+		this.baap0d060Dao = baap0d060Dao;
+	}
+
+	public void setNbappbaseDao(NbappbaseDao nbappbaseDao) {
         this.nbappbaseDao = nbappbaseDao;
     }
 
