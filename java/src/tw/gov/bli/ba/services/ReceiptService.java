@@ -3956,7 +3956,8 @@ public class ReceiptService {
             evtForm.setEvtName(benForm.getTempEvtName());// 事故者姓名
             evtForm.setEvtIdnNo(benForm.getTempEvtIdnNo());// 事故者身分證號
             evtForm.setEvtBrDate(benForm.getTempEvtBrDate());// 事故者出生日期
-            evtForm.setEvTyp(benForm.getTempEvTyp());// 傷病分類
+            evtForm.setEvAppTyp(benForm.getTempEvAppTyp());// 申請傷病分類
+            evtForm.setEvTyp(benForm.getTempEvTyp());// 核定傷病分類
             evtForm.setApItem(benForm.getTempApItem());// 申請項目
         }
 

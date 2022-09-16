@@ -1385,6 +1385,7 @@
         <result column="STUDMK"         property="studMk"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MONINCOME"      property="monIncome"       jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />
         <result column="HANDICAPMK"     property="handIcapMk"      jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />                                                                                                                                                                                                                                                                     
+        <result column="MARRYDATE"      property="marryDate"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <!-- Disabled CheckMark Level Adjust -->
@@ -1823,6 +1824,7 @@
         <result column="ACCSEQNO"         property="accSeqNo"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MOBILEPHONE"      property="mobilePhone"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="BAAPPEXPANDID"    property="baappexpandId"     jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
+        <result column="EVAPPTYP"         property="evAppTyp"          jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="EVTYP"            property="evTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MARRYDATE"        property="marryDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="STUDMK"           property="studMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
@@ -12049,7 +12051,8 @@ UNION
                B.BAAPPEXPANDID,
                B.STUDMK,       
                B.MONINCOME,    
-               B.HANDICAPMK  
+               B.HANDICAPMK,
+               B.MARRYDATE
           FROM BAAPPBASE  A, BAAPPEXPAND  B
          WHERE A.BAAPPBASEID = B.BAAPPBASEID
            AND A.APNO = #apNo:VARCHAR#
@@ -12125,6 +12128,7 @@ UNION
                A.ACCSEQNO,
                A.MOBILEPHONE,
                B.BAAPPEXPANDID,
+               B.EVAPPTYP,
                B.EVTYP,
                B.MARRYDATE,
                B.STUDMK,
@@ -12207,6 +12211,7 @@ UNION
                A.ACCSEQNO,
                A.MOBILEPHONE,
                B.BAAPPEXPANDID,
+               B.EVAPPTYP,
                B.EVTYP,
                B.MARRYDATE,
                B.STUDMK,

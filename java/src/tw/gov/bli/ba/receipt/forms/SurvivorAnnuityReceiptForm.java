@@ -41,7 +41,8 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String evtName;// 事故者姓名
     private String evtIdnNo;// 事故者身分證號
     private String evtBrDate;// 事故者出生日期
-    private String evTyp;// 傷病分類
+    private String evAppTyp;// 申請傷病分類
+    private String evTyp;// 核定傷病分類
     private String apItem;// 申請項目
 
     // 遺屬資料
@@ -106,7 +107,8 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String oldEvtName;// 事故者姓名
     private String oldEvtIdnNo;// 事故者身分證號
     private String oldEvtBrDate;// 事故者出生日期
-    private String oldEvTyp;// 傷病分類
+    private String oldEvAppTyp;// 申請傷病分類
+    private String oldEvTyp;// 核定傷病分類
     private String oldApItem;// 申請項目
     private String oldBenNationTyp;// 國籍別
     private String oldBenSex;// 性別
@@ -164,7 +166,8 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String tempEvtName;// 事故者姓名
     private String tempEvtIdnNo;// 事故者身分證號
     private String tempEvtBrDate;// 事故者出生日期
-    private String tempEvTyp;// 傷病分類
+    private String tempEvAppTyp;// 申請傷病分類
+    private String tempEvTyp;// 核定傷病分類
     private String tempApItem;// 申請項目
 
     // ]
@@ -321,7 +324,15 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
         this.evtBrDate = evtBrDate;
     }
 
-    public String getEvTyp() {
+    public String getEvAppTyp() {
+		return evAppTyp;
+	}
+
+	public void setEvAppTyp(String evAppTyp) {
+		this.evAppTyp = evAppTyp;
+	}
+
+	public String getEvTyp() {
         return evTyp;
     }
 
@@ -792,7 +803,15 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
         this.oldEvtBrDate = oldEvtBrDate;
     }
 
-    public String getOldEvTyp() {
+    public String getOldEvAppTyp() {
+		return oldEvAppTyp;
+	}
+
+	public void setOldEvAppTyp(String oldEvAppTyp) {
+		this.oldEvAppTyp = oldEvAppTyp;
+	}
+
+	public String getOldEvTyp() {
         return oldEvTyp;
     }
 
@@ -1168,7 +1187,15 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
         this.tempEvtBrDate = tempEvtBrDate;
     }
 
-    public String getTempEvTyp() {
+    public String getTempEvAppTyp() {
+		return tempEvAppTyp;
+	}
+
+	public void setTempEvAppTyp(String tempEvAppTyp) {
+		this.tempEvAppTyp = tempEvAppTyp;
+	}
+
+	public String getTempEvTyp() {
         return tempEvTyp;
     }
 
