@@ -27,6 +27,7 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
     private String apNo4;// 受理編號-4
     private String appDate;// 申請日期
     private String apUbno;// 申請單位保險證號
+    private String sysCode;// 系統類別
 
     // 事故者個人資料
     private String evtNationTpe;// 事故者國籍別
@@ -61,13 +62,18 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
     private String benEvtRel; // 受益人與事故者關係
 
     // 保險事故
-    private String evTyp;// 傷病分類
+    private String evAppTyp;// 申請傷病分類
+    private String evTyp;// 核定傷病分類
     private String evtJobDate;// 診斷失能日期
     private String evCode;// 傷病原因
     private String criInPart1;// 受傷部位
     private String criInPart2;// 受傷部位
     private String criInPart3;// 受傷部位
     private String criMedium;// 媒 介 物
+    private String injDte;// 傷病發生日期
+    private String fvisitDte;// 初診日期
+    private String lsurgeryDte;// 最後手術日期
+    private String lsradiationDte;// 最後放射(化學)治療日期
     private String criInJdp1;// 失能項目
     private String criInJdp2;// 失能項目
     private String criInJdp3;// 失能項目
@@ -85,6 +91,7 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
     private String criInJnme2;// 國際疾病代碼
     private String criInJnme3;// 國際疾病代碼
     private String criInJnme4;// 國際疾病代碼
+    private String forinsAddr;// 外籍被保險人母國地址
 
     // 給付資料
     private String payTyp;// 給付方式
@@ -106,6 +113,7 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
     private String accName; // 戶名
     private String accRel; // 戶名與受益人關係
     private String grdBirth; // 法定代理人出生日期
+    private String apnoFm;// 來源受理編號
 
     private String sFlag36;// 國併勞
 
@@ -227,7 +235,15 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
         this.apUbno = apUbno;
     }
 
-    public String getEvtNationTpe() {
+    public String getSysCode() {
+		return sysCode;
+	}
+
+	public void setSysCode(String sysCode) {
+		this.sysCode = sysCode;
+	}
+
+	public String getEvtNationTpe() {
         return evtNationTpe;
     }
 
@@ -355,7 +371,15 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
         this.grdBrDate = grdBrDate;
     }
 
-    public String getEvTyp() {
+    public String getEvAppTyp() {
+		return evAppTyp;
+	}
+
+	public void setEvAppTyp(String evAppTyp) {
+		this.evAppTyp = evAppTyp;
+	}
+
+	public String getEvTyp() {
         return evTyp;
     }
 
@@ -810,5 +834,53 @@ public class DisabledAnnuityReceiptEvtCase implements Serializable {
     public void setGrdBirth(String grdBirth) {
         this.grdBirth = grdBirth;
     }
+
+	public String getInjDte() {
+		return injDte;
+	}
+
+	public void setInjDte(String injDte) {
+		this.injDte = injDte;
+	}
+
+	public String getFvisitDte() {
+		return fvisitDte;
+	}
+
+	public void setFvisitDte(String fvisitDte) {
+		this.fvisitDte = fvisitDte;
+	}
+
+	public String getLsurgeryDte() {
+		return lsurgeryDte;
+	}
+
+	public void setLsurgeryDte(String lsurgeryDte) {
+		this.lsurgeryDte = lsurgeryDte;
+	}
+
+	public String getLsradiationDte() {
+		return lsradiationDte;
+	}
+
+	public void setLsradiationDte(String lsradiationDte) {
+		this.lsradiationDte = lsradiationDte;
+	}
+
+	public String getForinsAddr() {
+		return forinsAddr;
+	}
+
+	public void setForinsAddr(String forinsAddr) {
+		this.forinsAddr = forinsAddr;
+	}
+
+	public String getApnoFm() {
+		return apnoFm;
+	}
+
+	public void setApnoFm(String apnoFm) {
+		this.apnoFm = apnoFm;
+	}
 
 }

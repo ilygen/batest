@@ -50,6 +50,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(#apNo:VARCHAR#,12,1) IN (TAL11,TAL12,TAL13,TAL14,TAL15))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                          UNION
                         SELECT '2' ORDERID
                               ,DATA2
@@ -58,6 +59,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(TAL20,1,2) <= SUBSTR(#apNo:VARCHAR#,11,2) AND SUBSTR(TAL20,3,2) >= SUBSTR(#apNo:VARCHAR#,11,2))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                          UNION
                         SELECT '3' ORDERID
                               ,DATA2
@@ -66,6 +68,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(#apNo:VARCHAR#,11,2) IN (TAL21,TAL22,TAL23,TAL24,TAL25))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                        )
                  ORDER BY ORDERID)
          WHERE ROWNUM=1
@@ -83,6 +86,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(#apNo:VARCHAR#,12,1) IN (TAL11,TAL12,TAL13,TAL14,TAL15))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                          UNION
                         SELECT '2' ORDERID
                               ,PRPNO
@@ -91,6 +95,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(TAL20,1,2) <= SUBSTR(#apNo:VARCHAR#,11,2) AND SUBSTR(TAL20,3,2) >= SUBSTR(#apNo:VARCHAR#,11,2))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                          UNION
                         SELECT '3' ORDERID
                               ,PRPNO
@@ -99,6 +104,7 @@
                            AND (PAYTYP||GROUPMK) LIKE (SUBSTR(#apNo:VARCHAR#,1,2)||'%')
                            AND (SUBSTR(#apNo:VARCHAR#,11,2) IN (TAL21,TAL22,TAL23,TAL24,TAL25))
                            AND (TRIM(STATUS) IS NULL OR STATUS <> 'D')
+                           AND INSKD = '1'
                        )
                  ORDER BY ORDERID)
          WHERE ROWNUM=1
@@ -118,6 +124,7 @@
                   SUBSTR(t.TAL20, 3, 2) >= SUBSTR(#apNo:VARCHAR#, 11, 2)) OR 
                  (SUBSTR(#apNo:VARCHAR#, 11, 2) IN (t.TAL21, t.TAL22, t.TAL23, t.TAL24, t.TAL25))) 
             AND (TRIM(t.STATUS) IS NULL OR t.STATUS <> 'D') 
+            AND INSKD = '1'
             AND ROWNUM = 1
             ]]>    
     </select>

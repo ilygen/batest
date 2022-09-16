@@ -284,8 +284,8 @@ is
                           ,t21.RECSEQ
                           ,t21.RECAMT
                           ,t21.RECREM
-                          -- ,t22.EVTPAYOTHERAAMT AS "DISAMT"  2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
-                          ,t21.DISAMT                       -- 2018/01/31 Add By ChugnYu
+                          ,t22.EVTPAYOTHERAAMT AS "DISAMT"     -- 2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
+                          -- ,t21.DISAMT                       -- 2018/01/31 Add By ChugnYu
                           ,t21.BENIDS
                           ,t21.APNO
                           ,t22.SEQNO

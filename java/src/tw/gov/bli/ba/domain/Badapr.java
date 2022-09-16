@@ -116,6 +116,8 @@ public class Badapr implements Serializable {
     private String benEvtRel;// 關係
     // payeeDataUpdate
     private String apItem; // 申請項目
+    private String appDate;// 申請日期
+    private String evtDieDate;// 事故者死亡日期
 
     // StopPaymentProcess
     private String stexpnd; // 止付條件(註)
@@ -833,7 +835,23 @@ public class Badapr implements Serializable {
         this.apItem = apItem;
     }
 
-    public String getStexpnd() {
+    public String getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(String appDate) {
+		this.appDate = appDate;
+	}
+
+	public String getEvtDieDate() {
+		return evtDieDate;
+	}
+
+	public void setEvtDieDate(String evtDieDate) {
+		this.evtDieDate = evtDieDate;
+	}
+
+	public String getStexpnd() {
         return stexpnd;
     }
 
