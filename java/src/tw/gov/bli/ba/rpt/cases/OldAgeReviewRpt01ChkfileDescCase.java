@@ -11,6 +11,7 @@ public class OldAgeReviewRpt01ChkfileDescCase implements Serializable {
     private String chkCode; // 編審註記代碼
     private String chkCodePost; // 編審註記代號類型
     private String chkResult; // 編審註記名稱
+    private String keyValue;// 關鍵欄位值
 
     public OldAgeReviewRpt01ChkfileDescCase() {
 
@@ -39,5 +40,13 @@ public class OldAgeReviewRpt01ChkfileDescCase implements Serializable {
     public void setChkResult(String chkResult) {
         this.chkResult = chkResult;
     }
+
+	public String getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(String keyValue) {
+		this.keyValue = keyValue;
+	}
 
 }

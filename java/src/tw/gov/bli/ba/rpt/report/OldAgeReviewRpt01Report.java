@@ -2106,7 +2106,10 @@ public class OldAgeReviewRpt01Report extends ReportBase {
                     }
 
                     addColumn(table, 10, 1, "編審註記說明：", fontCh12, 0, LEFT);
-                    addColumn(table, 50, 1, StringUtils.defaultString(chkfileDesc.getChkCode()) + " " + StringUtils.defaultString(chkfileDesc.getChkCodePost()) + " " + StringUtils.defaultString(chkfileDesc.getChkResult()), fontCh12, 0, LEFT);
+                    addColumn(table, 50, 1, StringUtils.defaultString(chkfileDesc.getChkCode()) + " "
+                    		+ StringUtils.defaultString(chkfileDesc.getChkCodePost()) + " "
+                			+ StringUtils.defaultString(chkfileDesc.getChkResult()) + " "
+                			+ StringUtils.defaultString(chkfileDesc.getKeyValue()), fontCh12, 0, LEFT);
                 }
 
                 // 塞入一行空白行

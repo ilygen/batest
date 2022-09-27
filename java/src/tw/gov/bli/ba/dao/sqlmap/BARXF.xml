@@ -62,31 +62,41 @@
     <!-- SurvivorReviewRpt 01 End -->
     
     <select id="selectRxfApNoByApNo" resultMap="BARXFResult">
-            Select  A.RXFAPNO,     
-                    A.RXFIDNNO,    
-                    A.RXFBRDATE,   
-                    A.RXFNAME,     
-                    A.APNO,        
-                    A.SEQNO,       
-                    A.BENIDNNO,    
-                    A.BENBRDATE,   
-                    A.BENNAME,     
-                    A.EVTJOBDATE,  
-                    A.DISPAYKIND,  
-                    A.STS,         
-                    A.SUBAMT,      
-                    A.RBAMT,       
-                    A.PRST,        
-                    A.PRDTE,       
-                    A.PRPNO,       
-                    A.PRTMK,       
-                    A.DATAKD      
-              From  BARXF A, BCARF B
-             where A.RXFAPNO = B.APNO
-               AND A.APNO = #apNo:VARCHAR#
-               AND A.SUBAMT > 0
-               AND A.PRTMK = 'Y'
-               AND (B.AMTTOT - B.AMTINC) >0
+    	SELECT A.RXFAPNO,
+		       A.RXFIDNNO,
+		       A.RXFBRDATE,
+		       A.RXFNAME,
+		       A.APNO,
+		       A.SEQNO,
+		       A.BENIDNNO,
+		       A.BENBRDATE,
+		       A.BENNAME,
+		       A.EVTJOBDATE,
+		       A.DISPAYKIND,
+		       A.STS,
+		       A.SUBAMT,
+		       A.RBAMT,
+		       A.PRST,
+		       A.PRDTE,
+		       A.PRPNO,
+		       A.PRTMK,
+		       A.DATAKD
+		  FROM BARXF A
+		 WHERE A.APNO = #apNo:VARCHAR#
+		   AND A.SUBAMT > 0
+		   AND A.PRTMK = 'Y'
+		   AND (EXISTS (SELECT *
+		                  FROM BCARF B
+		                 WHERE A.RXFAPNO = B.APNO
+		                   AND (B.AMTTOT - B.AMTINC) > 0) OR EXISTS
+		        (SELECT *
+		           FROM BEARF B
+		          WHERE A.RXFAPNO = B.APNO
+		            AND (B.AMTTOT - B.AMTINC) > 0) OR EXISTS
+		        (SELECT *
+		           FROM BBUNACPDTL B
+		          WHERE A.RXFAPNO = B.APNO
+		            AND RECREM > 0))
     </select>
     
     <select id="selectDataBy" resultMap="BARXFResult">
