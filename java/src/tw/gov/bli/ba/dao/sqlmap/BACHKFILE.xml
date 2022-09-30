@@ -746,13 +746,8 @@
     <select id="getOldAgeReviewRpt01ChkfileDescBy" resultMap="OldAgeReviewRpt01ChkfileDescResult">
         SELECT DISTINCT A.CHKCODE,
                         A.CHKCODEPOST,
-                        CASE
-                          WHEN A.CHKCODE = 'UK' THEN
-                           A.CHKRESULT || A.KEYVALUE
-                          ELSE
-                           A.CHKRESULT
-                        END AS CHKRESULT
-                        , A.KEYVALUE
+                        A.CHKRESULT,
+                        A.KEYVALUE
         FROM BACHKFILE A
         <dynamic prepend="WHERE">
             <isNotParameterPresent>
