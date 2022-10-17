@@ -238,7 +238,7 @@
     
     
     <select id="selectScheduleBatchJobStatus" resultMap="BABATCHJOBRPT10">
-                Select STATUS,BAJOBID,FILENAME,
+                Select STATUS,BAJOBID,FILENAME
                   From BABATCHJOB t
                  Where t.PAYCODE = #payCode:VARCHAR#
                  <![CDATA[
