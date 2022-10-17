@@ -52,6 +52,7 @@ import tw.gov.bli.common.util.ExceptionUtil;
  * 列印作業 - 月核定處理相關報表 - 核付清單及核付明細表 - 查詢頁面 (balp0d3a0l.jsp)
  * 
  * @author Goston
+ * @version  V1.1      20221014     Thomas Lin 
  */
 public class MonthlyRpt10Action extends BaseDispatchAction {
     private static Log log = LogFactory.getLog(MonthlyRpt10Action.class);
@@ -267,12 +268,25 @@ public class MonthlyRpt10Action extends BaseDispatchAction {
                         String printDate = DateUtility.getNowChineseDate();
                         String chkDate = queryForm.getChkDate();
                         String fileName = "";
-                        if (StringUtils.equals(paySeqNo, "2")) {
-                            fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+                        //V1.1 add 
+                        if (StringUtils.isNotBlank(paySeqNo)) {
+                        	fileName = batchJob.getFileName();
+                        } else {
+                        	if (StringUtils.equals(paySeqNo, "2")) {
+                                fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+                            }
+                            else {
+                                fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
+                            }
                         }
-                        else {
-                            fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
-                        }
+                        /*
+                         if (StringUtils.equals(paySeqNo, "2")) {
+                                fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+                            }
+                            else {
+                                fileName = queryForm.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
+                            }    
+                         */ // V1.1 end
 
                         File[] fileList = ReportUtility.listPDFFile(fileName);
                         if (fileList != null && fileList.length > 0) {

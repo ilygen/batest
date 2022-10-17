@@ -117,12 +117,18 @@ public class MonthlyRpt10Job implements Job {
                     String printDate = DateUtility.getNowChineseDate();
 
                     String fileName = "";
-                    if (StringUtils.equals(babatchjob.getPaySeqNo(), "2")) {
-                        fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+                    if (StringUtils.isNotBlank(babatchjob.getFileName())) {
+                    	fileName = babatchjob.getFileName();
+                    } else {
+                    	if (StringUtils.equals(babatchjob.getPaySeqNo(), "2")) {
+                            fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+                        }
+                        else {
+                            fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
+                        }
                     }
-                    else {
-                        fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
-                    }
+                    
+                    
                     log.info("報表寫入開始......");
                     outFile = PropertyHelper.getProperty("rpt.path") + fileName + ".pdf";
                     int n = reader.getNumberOfPages();

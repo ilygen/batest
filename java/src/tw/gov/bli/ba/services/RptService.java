@@ -153,7 +153,7 @@ import tw.gov.bli.common.domain.UserInfo;
  */
 /**
  * @author kn0561
- *
+ * @version  V1.1      20221014    Thomas Lin
  */
 public class RptService {
     private static Log log = LogFactory.getLog(RptService.class);
@@ -10591,6 +10591,17 @@ public class RptService {
         babatchjob.setProcType(procType);
         babatchjob.setStatus(status);
         babatchjob.setPaySeqNo(paySeqNo);
+        //20221014 Done BA 核付明細表
+        String printDate = DateUtility.getNowChineseDate();
+        String fileName = "";
+        if (StringUtils.equals(paySeqNo, "2")) {
+            fileName = payCode + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
+        }
+        else {
+            fileName = payCode + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
+        }
+        babatchjob.setFileName(fileName);
+        
         babatchjobDao.insertBatchJobM(babatchjob);
     }
 
