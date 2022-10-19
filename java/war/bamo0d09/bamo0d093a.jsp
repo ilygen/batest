@@ -629,17 +629,22 @@
         //var sYearTwenty = '<%=DateUtility.calYear(DateUtility.getNowChineseDate(),-20)%>';
         var sYearTwenty = '<%=DateUtility.calYear( DateUtility.getNowChineseDate().substring(0, 5).concat( String.valueOf(DateUtility.lastDay(DateUtility.getNowChineseDate())) ) ,-20)%>';
         var msg = "";
+        var checkForeignBenIdnError = false;// 外籍身份證檢核 flag
 		
 		var secondText = $("benIdnNo").value.substring(1,2);
 		if($("benIdnNo").value.length==10){
 		if(document.getElementsByName("benNationTyp")[1].checked && document.getElementsByName("benSex")[0].checked==true){
  			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
- 				msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				if (confirm('個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」，是否忽略檢核繼續進行存檔？') == false) {
+ 					checkForeignBenIdnError = true;
+ 				}
  				 $("benSex").focus();
     		}
  		}else if(document.getElementsByName("benNationTyp")[1].checked && document.getElementsByName("benSex")[1].checked==true){
  			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
- 				msg += '個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				if (confirm('個人資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」，是否忽略檢核繼續進行存檔？') == false) {
+ 					checkForeignBenIdnError = true;
+ 				}
  				 $("benSex").focus();
     		}
  		}
@@ -847,8 +852,9 @@
         if (msg != "") {
             alert(msg);
             return false;
-        }
-        else {
+        } else if (checkForeignBenIdnError) {
+        	return false;
+        } else {
             
             if(chkEvtBrDate()){
               if($("payCategory").value=='1' && Trim($("payTyp").value) == "1"){
