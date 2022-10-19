@@ -153,7 +153,7 @@ import tw.gov.bli.common.domain.UserInfo;
  */
 /**
  * @author kn0561
- * @version  V1.1      20221014    Thomas Lin
+ *
  */
 public class RptService {
     private static Log log = LogFactory.getLog(RptService.class);
@@ -10519,6 +10519,52 @@ public class RptService {
         babatchjobDao.updateBaBatchJobStatus(babatchjob);
 
     }
+    
+    /**
+     * 勞保年金線上排程-更新排程作業狀態
+     * 
+     * @param baJobId 資料列編號(jobid)
+     * @param nowWestDateTime 處理時間
+     * @param status 處理狀態
+     */
+    public void updateBaBatchJobStatusAfter(String baJobId, String nowWestDateTime, String status, String procType, String fileName) {
+        Babatchjob babatchjob = new Babatchjob();
+        babatchjob.setBaJobId(baJobId);
+        if (StringUtils.equals(status, "N") || StringUtils.equals(status, "E")) {
+            babatchjob.setProcEndTime(nowWestDateTime);
+            babatchjob.setProcType(procType);
+        }
+        else {
+            babatchjob.setProcBegTime(nowWestDateTime);
+        }
+        babatchjob.setStatus(status);
+        babatchjob.setFileName(fileName);
+        babatchjobDao.updateBaBatchJobStatus(babatchjob);
+
+    }
+    
+    /**
+     * 勞保年金線上排程-更新排程作業狀態
+     * 
+     * @param baJobId 資料列編號(jobid)
+     * @param nowWestDateTime 處理時間
+     * @param status 處理狀態
+     */
+    public void updateBaBatchJobStatus(String baJobId, String nowWestDateTime, String status, String procType, String fileName) {
+        Babatchjob babatchjob = new Babatchjob();
+        babatchjob.setBaJobId(baJobId);
+        if (StringUtils.equals(status, "N") || StringUtils.equals(status, "E")) {
+            babatchjob.setProcEndTime(nowWestDateTime);
+            babatchjob.setProcType(procType);
+        }
+        else {
+            babatchjob.setProcBegTime(nowWestDateTime);
+        }
+        babatchjob.setStatus(status);
+        babatchjob.setFileName(fileName);
+        babatchjobDao.updateBaBatchJobStatus(babatchjob);
+
+    }
 
     /**
      * 取出勞保年金作業目前要處理的工作
@@ -10591,17 +10637,6 @@ public class RptService {
         babatchjob.setProcType(procType);
         babatchjob.setStatus(status);
         babatchjob.setPaySeqNo(paySeqNo);
-        //20221014 Done BA 核付明細表
-        String printDate = DateUtility.getNowChineseDate();
-        String fileName = "";
-        if (StringUtils.equals(paySeqNo, "2")) {
-            fileName = payCode + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
-        }
-        else {
-            fileName = payCode + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
-        }
-        babatchjob.setFileName(fileName);
-        
         babatchjobDao.insertBatchJobM(babatchjob);
     }
 

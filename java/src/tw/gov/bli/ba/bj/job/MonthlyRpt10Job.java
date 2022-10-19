@@ -93,6 +93,7 @@ public class MonthlyRpt10Job implements Job {
                 else if ((ConstantKey.BAAPPBASE_PAGE_PAYKIND_S).equals(babatchjob.getPayCode())) {// 遺屬
                     caseList = rptService.getMonthlyRptS10RptType2DataBy(babatchjob.getPayCode(), babatchjob.getIssuYm(), chkDate);
                 }
+                String fileName = "";
                 if (caseList.size() > 0) {
                     ByteArrayOutputStream baoOutput = new ByteArrayOutputStream();
                     log.info("報表產製開始......");
@@ -116,19 +117,13 @@ public class MonthlyRpt10Job implements Job {
                     PdfCopy writer = null;
                     String printDate = DateUtility.getNowChineseDate();
 
-                    String fileName = "";
-                    if (StringUtils.isNotBlank(babatchjob.getFileName())) {
-                    	fileName = babatchjob.getFileName();
-                    } else {
-                    	if (StringUtils.equals(babatchjob.getPaySeqNo(), "2")) {
-                            fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
-                        }
-                        else {
-                            fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
-                        }
+                    
+                    if (StringUtils.equals(babatchjob.getPaySeqNo(), "2")) {
+                        fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_36_" + printDate;
                     }
-                    
-                    
+                    else {
+                        fileName = babatchjob.getPayCode() + "_" + chkDate + "_MonthlyRpt10Type2_" + printDate;
+                    }
                     log.info("報表寫入開始......");
                     outFile = PropertyHelper.getProperty("rpt.path") + fileName + ".pdf";
                     int n = reader.getNumberOfPages();
@@ -140,14 +135,14 @@ public class MonthlyRpt10Job implements Job {
                     finally {
                         ExceptionUtil.safeColse(fos);
                     }
-                    log.info("報表寫入完成......");
+                    log.info("報表寫入完成......file Name: "+ fileName);
                     /*
                      * for (int i = 1; i <= n; i++) { if (i == 1) { document = new Document(reader.getPageSizeWithRotation(1)); writer = new PdfCopy(document, new FileOutputStream(outFile)); } document.open(); PdfImportedPage page =
                      * writer.getImportedPage(reader, i); writer.addPage(page); if (i == n) { document.close(); writer.close(); } if (baoOutput != null) baoOutput.close(); }
                      */
 
                 }
-                rptService.updateBaBatchJobStatus(jobId, DateUtility.getNowWestDateTime(true), ConstantKey.STATUS_END, babatchjob.getProcType());
+                rptService.updateBaBatchJobStatusAfter(jobId, DateUtility.getNowWestDateTime(true), ConstantKey.STATUS_END, babatchjob.getProcType(), fileName);
             }
             log.info("勞保年金核付明細表排程結束" + jobId + "...");
         }
