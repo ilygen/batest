@@ -10519,6 +10519,52 @@ public class RptService {
         babatchjobDao.updateBaBatchJobStatus(babatchjob);
 
     }
+    
+    /**
+     * 勞保年金線上排程-更新排程作業狀態
+     * 
+     * @param baJobId 資料列編號(jobid)
+     * @param nowWestDateTime 處理時間
+     * @param status 處理狀態
+     */
+    public void updateBaBatchJobStatusAfter(String baJobId, String nowWestDateTime, String status, String procType, String fileName) {
+        Babatchjob babatchjob = new Babatchjob();
+        babatchjob.setBaJobId(baJobId);
+        if (StringUtils.equals(status, "N") || StringUtils.equals(status, "E")) {
+            babatchjob.setProcEndTime(nowWestDateTime);
+            babatchjob.setProcType(procType);
+        }
+        else {
+            babatchjob.setProcBegTime(nowWestDateTime);
+        }
+        babatchjob.setStatus(status);
+        babatchjob.setFileName(fileName);
+        babatchjobDao.updateBaBatchJobStatus(babatchjob);
+
+    }
+    
+    /**
+     * 勞保年金線上排程-更新排程作業狀態
+     * 
+     * @param baJobId 資料列編號(jobid)
+     * @param nowWestDateTime 處理時間
+     * @param status 處理狀態
+     */
+    public void updateBaBatchJobStatus(String baJobId, String nowWestDateTime, String status, String procType, String fileName) {
+        Babatchjob babatchjob = new Babatchjob();
+        babatchjob.setBaJobId(baJobId);
+        if (StringUtils.equals(status, "N") || StringUtils.equals(status, "E")) {
+            babatchjob.setProcEndTime(nowWestDateTime);
+            babatchjob.setProcType(procType);
+        }
+        else {
+            babatchjob.setProcBegTime(nowWestDateTime);
+        }
+        babatchjob.setStatus(status);
+        babatchjob.setFileName(fileName);
+        babatchjobDao.updateBaBatchJobStatus(babatchjob);
+
+    }
 
     /**
      * 取出勞保年金作業目前要處理的工作

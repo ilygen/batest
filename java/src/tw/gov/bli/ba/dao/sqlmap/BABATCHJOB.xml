@@ -60,6 +60,8 @@
     <resultMap id="BABATCHJOBRPT10"     class="Babatchjob">
         <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="STATUS"         property="status"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="FILENAME"       property="fileName"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="CHKDATE"        property="chkDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
    </resultMap>
    
     <resultMap id="PROCEDUREPROGRESSData" class="Babatchjob">
@@ -134,6 +136,7 @@
         	   PROCENDTIME = #procEndTime:VARCHAR#
               ,PROCTYPE = #procType:VARCHAR#
               ,STATUS = #status:VARCHAR#
+              ,FILENAME = #fileName:VARCHAR#
          WHERE BAJOBID = #baJobId:VARCHAR#
     </update>
     
@@ -238,8 +241,7 @@
     
     
     <select id="selectScheduleBatchJobStatus" resultMap="BABATCHJOBRPT10">
-                Select STATUS,
-                	   BAJOBID
+                Select STATUS,BAJOBID,FILENAME,CHKDATE
                   From BABATCHJOB t
                  Where t.PAYCODE = #payCode:VARCHAR#
                  <![CDATA[
