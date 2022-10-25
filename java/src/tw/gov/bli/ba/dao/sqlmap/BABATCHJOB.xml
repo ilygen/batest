@@ -136,6 +136,13 @@
         	   PROCENDTIME = #procEndTime:VARCHAR#
               ,PROCTYPE = #procType:VARCHAR#
               ,STATUS = #status:VARCHAR#
+         WHERE BAJOBID = #baJobId:VARCHAR#
+    </update>
+    <update id="updateRpt10BaBatchJobStatus">
+        UPDATE BABATCHJOB SET 
+        	   PROCENDTIME = #procEndTime:VARCHAR#
+              ,PROCTYPE = #procType:VARCHAR#
+              ,STATUS = #status:VARCHAR#
               ,FILENAME = #fileName:VARCHAR#
          WHERE BAJOBID = #baJobId:VARCHAR#
     </update>

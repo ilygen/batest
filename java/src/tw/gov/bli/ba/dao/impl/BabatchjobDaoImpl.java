@@ -75,6 +75,20 @@ public class BabatchjobDaoImpl extends SqlMapClientDaoSupport implements Babatch
 			}
 		}
 	}
+	
+	/**
+	 * 勞保年金線上產製媒體排程將作業-RPT10JOB更新排程作業狀態
+	 * 
+	 * @param baJobId  資料列編號(jobid)
+	 * @param nowWestDateTime 處理時間
+	 * @param status 處理狀態
+	 * @param fileName 
+	 */
+	public void updateBaBatchRpt10JobStatus(Babatchjob babatchjob) {
+		if (babatchjob != null) {
+				getSqlMapClientTemplate().update("BABATCHJOB.updateRpt10BaBatchJobStatus", babatchjob);
+		}
+	}
 	/**
 	 * 取出勞保年金媒體作業目前要處理的工作
 	 * 
