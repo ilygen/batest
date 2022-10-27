@@ -12,7 +12,10 @@ CREATE OR REPLACE PACKAGE BA.PKG_BAPROCRXF AUTHID DEFINER IS
         STS       BAUNACPDTL.STS%TYPE,      --資料狀況
         PAYKIND   BAUNACPDTL.PAYKIND%TYPE,  --給付種類
         BENNAME   BAAPPBASE.BENNAME%TYPE,   --受款人姓名
-        BENBRDATE BAAPPBASE.BENBRDATE%TYPE  --受款人出生日期
+        BENBRDATE BAAPPBASE.BENBRDATE%TYPE, --受款人出生日期
+        APPDATE   BAAPPBASE.APPDATE%TYPE,   -- 申請日期
+        PAYKINDNAME BAPARAM.PARAMNAME%TYPE, -- 給付種類中文
+        ISSUEAMT  BAAPPBASE.ISSUEAMT%TYPE   -- 核付金額  
     );
     rec_baunacpdtl typ_baunacpdtl_rec;
     TYPE typ_baunacpdtl_tab IS TABLE OF typ_baunacpdtl_rec;
@@ -57,7 +60,19 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAPROCRXF IS
             SELECT 
                 b.apno,     b.seqno,   b.issuym,   b.payym,  -- 受理編號, 受款人序號, 核定年月, 給付年月
                 b.benidnno, b.recamt,  b.recrem,   b.sts,    -- 受益人身分證號, 應收總金額, 未收總金額, 資料狀況
-                b.paykind,  p.benname, p.benbrdate           -- 給付種類, 受款人姓名, 受款人出生日期
+                b.paykind,  p.benname, p.benbrdate,          -- 給付種類, 受款人姓名, 受款人出生日期
+                p.appdate,  -- 申請日期
+                (case b.paykind when '35' then '勞保失能年金' 
+                  when '36' then '國保年金併計勞保失能'
+                  when '38' then '勞保失能年金併計國保年金'                  
+                  when '45' then '勞保老年年金'                
+                  when '48' then '勞保老年年金併計國保年資'
+                  when '49' then '勞保老年給付差額金'
+                  when '55' then '勞保遺屬年金'
+                  when '56' then '勞保遺屬年金(老年年金後續)'
+                  when '59' then '勞保遺屬年金(失能年金後續)'                                                                                                     
+                  end ) paykindname,  -- 給付種類中文,因現行baparam資料不完整,重構後改讀(select paramname from baparam where paramgroup ='PAYKIND' and paramcode=b.paykind) 
+                p.issueamt -- 核付金額  
             FROM baunacpdtl b, baappbase p
             WHERE b.recrem > 0
             AND b.mdchkmk <> 'D'
