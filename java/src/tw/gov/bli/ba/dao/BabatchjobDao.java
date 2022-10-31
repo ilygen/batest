@@ -37,14 +37,13 @@ public interface BabatchjobDao {
 	public void updateBaBatchJobStatus(Babatchjob babatchjob);
 	
 	/**
-	 * 勞保年金線上產製媒體排程將作業-更新Rpt10Job排程作業狀態
+	 * 勞保年金線上產製媒體排程將作業-更新排程作業狀態
 	 * 
 	 * @param baJobId  資料列編號(jobid)
 	 * @param nowWestDateTime 處理時間
 	 * @param status 處理狀態
-	 * @param fileName
 	 */
-	public void updateBaBatchRpt10JobStatus(Babatchjob babatchjob);
+	public void updateBaBatchJobStatusRpt10(Babatchjob babatchjob);
 	/**
 	 * 取出勞保年金媒體作業目前要處理的工作
 	 * 
@@ -164,6 +163,20 @@ public interface BabatchjobDao {
 	* @return Babatchjob 
 	*/
    public Babatchjob doScheduleBatchJobStatus(String issuYm, String chkDate, String payCode, String procType, String paySeqNo);
+   
+   /**
+ 	* 查詢勞核付明細表排程目前佇列中相同條件的狀態
+ 	* 
+ 	* @param issuYm   核定年月
+ 	* @param chkDate  核定日期 
+ 	* @param payCode  給付別
+ 	* @param procType 處理類別
+ 	* @param paySeqNo 傳入值(35,38:1;36:2)
+ 	* 
+ 	* @return Babatchjob 
+ 	*/
+    public Babatchjob doScheduleBatchJobStatusRpt10(String issuYm, String chkDate, String payCode, String procType, String paySeqNo);
+   
    
    /**
     * 查詢 Procedure 排程目前進度
