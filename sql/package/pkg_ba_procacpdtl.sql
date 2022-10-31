@@ -15,7 +15,7 @@ CREATE OR REPLACE Package BA.PKG_BA_ProcACPDtl
     REVISIONS:
     Ver   Date        Author       Description
     ----  ----------  -----------  ----------------------------------------------
-    1.0   2009/07/06  Angela Wu    Created this Package.
+    1.0   2009/07/06  Angela Wu    Created this Package. 
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -92,6 +92,7 @@ is
         1.3   2018/01/31  ChungYu      修改遺屬年金事故者勾稽到，事故者於老年及失能年金另案扣減時，
                                        由遺屬年金扣減時，寫入已收明細檔(BAACPDTL)需分攤至每位遺屬上，
                                        並依照扣減記錄檔(BACUTREC)實際沖抵的金額寫入。
+        1.4   2022/10/26  William      bcbcweb-46 sp_BA_MonthApprove 屬月核應收已收金額條件修改
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -284,8 +285,9 @@ is
                           ,t21.RECSEQ
                           ,t21.RECAMT
                           ,t21.RECREM
-                          ,t22.EVTPAYOTHERAAMT AS "DISAMT"     -- 2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
+                          --,t22.EVTPAYOTHERAAMT AS "DISAMT"     -- 2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
                           -- ,t21.DISAMT                       -- 2018/01/31 Add By ChugnYu
+                          ,(case when t22.EVTPAYOTHERAAMT>t21.DISAMT then t21.DISAMT else t22.EVTPAYOTHERAAMT end) DISAMT --20221025 BA的案件未收沖抵,bacutrec為S事故者撥付案與未收案的對應切割資料,BASURVAMOR有紀錄到遺屬但沒有未收的對應,已收資料應紀錄遺屬與未收的對應
                           ,t21.BENIDS
                           ,t21.APNO
                           ,t22.SEQNO
