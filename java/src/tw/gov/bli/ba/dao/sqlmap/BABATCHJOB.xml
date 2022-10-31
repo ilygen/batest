@@ -60,6 +60,11 @@
     <resultMap id="BABATCHJOBRPT10"     class="Babatchjob">
         <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="STATUS"         property="status"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+   </resultMap>
+   
+   <resultMap id="BABATCHJOBRPT10_1"     class="Babatchjob">
+        <result column="BAJOBID"        property="baJobId"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
+        <result column="STATUS"         property="status"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="FILENAME"       property="fileName"     jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CHKDATE"        property="chkDate"      jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
    </resultMap>
@@ -132,6 +137,14 @@
          WHERE BAJOBID = #baJobId:VARCHAR#
     </update>
     <update id="updateBaBatchJobStatusEndTime">
+        UPDATE BABATCHJOB SET 
+        	   PROCENDTIME = #procEndTime:VARCHAR#
+              ,PROCTYPE = #procType:VARCHAR#
+              ,STATUS = #status:VARCHAR#
+         WHERE BAJOBID = #baJobId:VARCHAR#
+    </update>
+    
+    <update id="updateBaBatchJobStatusRpt10">
         UPDATE BABATCHJOB SET 
         	   PROCENDTIME = #procEndTime:VARCHAR#
               ,PROCTYPE = #procType:VARCHAR#
@@ -241,6 +254,36 @@
     
     
     <select id="selectScheduleBatchJobStatus" resultMap="BABATCHJOBRPT10">
+                Select STATUS,BAJOBID
+                  From BABATCHJOB t
+                 Where t.PAYCODE = #payCode:VARCHAR#
+                 <![CDATA[
+                   and t.STATUS <> 'N'
+                   and ROWNUM = '1'
+                 ]]>
+                 <dynamic prepend="">
+                      <isNotParameterPresent>
+                       1 = 0
+                      </isNotParameterPresent>
+                      <isParameterPresent>
+                      <isNotEmpty prepend="AND" property="issuYm">
+                       t.ISSUYM = #issuYm:VARCHAR#
+                      </isNotEmpty>
+                       <isNotEmpty prepend="AND" property="chkDate">
+                       t.CHKDATE = #chkDate:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="procType">
+                       t.PROCTYPE = #procType:VARCHAR#
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="paySeqNo">
+                       t.PAYSEQNO = #paySeqNo:VARCHAR#
+                      </isNotEmpty>
+                      </isParameterPresent>
+                 </dynamic>
+                
+    </select>
+    
+    <select id="selectScheduleBatchJobStatusRpt10" resultMap="BABATCHJOBRPT10_1">
                 Select STATUS,BAJOBID,FILENAME,CHKDATE
                   From BABATCHJOB t
                  Where t.PAYCODE = #payCode:VARCHAR#

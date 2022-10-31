@@ -142,7 +142,7 @@ public class MonthlyRpt10Job implements Job {
                      */
 
                 }
-                rptService.updateBaBatchJobStatusAfter(jobId, DateUtility.getNowWestDateTime(true), ConstantKey.STATUS_END, babatchjob.getProcType(), fileName);
+                rptService.updateBaBatchJobStatusRpt10(jobId, DateUtility.getNowWestDateTime(true), ConstantKey.STATUS_END, babatchjob.getProcType(),fileName);
             }
             log.info("勞保年金核付明細表排程結束" + jobId + "...");
         }

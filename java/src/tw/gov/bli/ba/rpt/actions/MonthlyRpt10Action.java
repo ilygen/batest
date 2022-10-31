@@ -248,7 +248,7 @@ public class MonthlyRpt10Action extends BaseDispatchAction {
                 }
             }
             else {// 核付明細表
-                Babatchjob batchJob = rptService.doScheduleBatchJobStatus(DateUtility.changeChineseYearMonthType(queryForm.getIssuYm()), DateUtility.changeDateType(queryForm.getChkDate()), queryForm.getPayCode(), PROCTYPE_BATCH_RPT10, paySeqNo);
+                Babatchjob batchJob = rptService.doScheduleBatchJobStatusRpt10(DateUtility.changeChineseYearMonthType(queryForm.getIssuYm()), DateUtility.changeDateType(queryForm.getChkDate()), queryForm.getPayCode(), PROCTYPE_BATCH_RPT10, paySeqNo);
                 if (batchJob == null) {
                     String jobId = ScheduleHelper.scheduleNow(MonthlyRpt10Job.class, null, userData);
                     rptService.doScheduleBatchJob(jobId, DateUtility.changeChineseYearMonthType(queryForm.getIssuYm()), DateUtility.changeDateType(queryForm.getChkDate(), false), queryForm.getPayCode(), userData.getEmpNo(), userData.getDeptId(),
