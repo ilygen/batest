@@ -28,10 +28,10 @@
     </resultMap>    
     
     <select id="selectDataBy" resultMap = "BBARFResult">
-         Select  Trim(APNO) as APNO,     
-                  Trim(GVIDNO) as GVIDNO,   
+              Select  Trim(APNO) as APNO,    
+                  Trim(GVIDNO) as GVIDNO,  
                   GVNAME,
-                  GVSUM, 
+                  GVSUM,
                   TO_CHAR(BGNDTE, 'YYYYMMDD') As "BGNDTE",
                   CHKAMT,
                   PAYAMT,
@@ -46,11 +46,59 @@
                   STAAMT,
                   TO_CHAR(LSTDTE, 'YYYYMMDD') As "LSTDTE",
                   ADJCD,
-                  STS,   
-                  ENDMK 
-             From BCARF
+                  STS,  
+                  ENDMK
+              From BCARF
+              Where APNO = #apNo:VARCHAR#
+              And (AMTTOT - AMTINC) >0  
+          union
+              Select  Trim(APNO) as APNO,    
+                  Trim(GVIDNO) as GVIDNO,  
+                  GVNAME,
+                  GVSUM,
+                  TO_CHAR(BGNDTE, 'YYYYMMDD') As "BGNDTE",
+                  CHKAMT,
+                  PAYAMT,
+                  AMTTOT,
+                  AMTINC,
+                  INTTOT,
+                  INTINC,
+                  SCATOT,
+                  SCAINC,
+                  STATOT,
+                  STACNT,
+                  STAAMT,
+                  TO_CHAR(LSTDTE, 'YYYYMMDD') As "LSTDTE",
+                  ADJCD,
+                  STS,  
+                  ENDMK
+              From BEARF
+              Where APNO = #apNo:VARCHAR#
+              And (AMTTOT - AMTINC) >0                
+         union
+             Select  Trim(APNO) as APNO,    
+                  Trim(BENIDNNO) as GVIDNO,  
+                  '' GVNAME,
+                  1 GVSUM,
+                  unacpdate As "BGNDTE",
+                  0 CHKAMT,
+                  0 PAYAMT,
+                  RECAMT AMTTOT,
+                  (RECAMT-RECREM) AMTINC,
+                  0 INTTOT,
+                  0 INTINC,
+                  0 SCATOT,
+                  0 SCAINC,
+                  0 STATOT,
+                  0 STACNT,
+                  0 STAAMT,
+                  '' As "LSTDTE",
+                  '' ADJCD,
+                  STS,  
+                  ACTENDMK ENDMK
+             From bbunacpdtl
              Where APNO = #apNo:VARCHAR#
-              And (AMTTOT - AMTINC) >0   
+              And RECREM >0                      
     </select>
     
   <select id="selectDataForOnceWriteOff" resultMap = "BBARFResult">
