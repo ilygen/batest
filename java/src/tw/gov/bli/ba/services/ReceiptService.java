@@ -267,15 +267,9 @@ public class ReceiptService {
             caseObj.setChkPayEeacc("");
         }
 
-        // 「國、勞合併申請」= Y 時, 則「給付種類」= 48
+        // 「國、勞合併申請」= Y 時, 則「給付種類」= 48,babaweb-49 刪除
         // 「國、勞合併申請」= "" 時, 則「給付種類」= 45
-        if (("Y").equals(caseObj.getCombapMark())) {
-            caseObj.setPayKind("48");
-        }
-        else {
-            caseObj.setPayKind("45");
-        }
-
+        caseObj.setPayKind("45");
         caseObj.setAccRel("1");
 
         // 手機複驗
