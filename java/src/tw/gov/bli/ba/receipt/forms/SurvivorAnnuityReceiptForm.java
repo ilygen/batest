@@ -8,7 +8,7 @@ import tw.gov.bli.ba.framework.struts.forms.BaseValidatorForm;
 
 /**
  * 受理作業 - 遺屬年金給付受理作業 (BAAP0D030A)
- * 
+ *
  * @author Rickychi
  */
 public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
@@ -82,7 +82,7 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String chkPayBankId;// 帳號複驗 金融機構總代號
     private String chkBranchId;// 帳號複驗 分支代號
     private String chkPayEeacc;// 帳號複驗(後)
-    
+
     private String mobilePhone; // 手機複驗
     private String defaultGrdData;//法定代理人預設眷屬1
 
@@ -169,6 +169,7 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String tempEvAppTyp;// 申請傷病分類
     private String tempEvTyp;// 核定傷病分類
     private String tempApItem;// 申請項目
+    private String sysCode;// 系統類別
 
     // ]
 
@@ -1259,7 +1260,7 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     		chkBranchId = "";
     	}
         chkPayBankIdChkBranchId = chkPayBankId + chkBranchId;
-    	
+
 		return chkPayBankIdChkBranchId;
 	}
 
@@ -1322,5 +1323,12 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
 	public void setOldIinterDictMk(String oldIinterDictMk) {
 		this.oldIinterDictMk = oldIinterDictMk;
 	}
-    
+
+    public String getSysCode() {
+        return sysCode;
+    }
+
+    public void setSysCode(String sysCode) {
+        this.sysCode = sysCode;
+    }
 }
