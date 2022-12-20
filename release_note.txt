@@ -1,4 +1,4 @@
 Issue number:babaweb-55
 EXE_TYPE:java
 ISDEPLOY:true
-CODE_SCAN:true
+CODE_SCAN:true 
