@@ -1,14 +1,3 @@
-------------------------------------------------
--- Export file for user BA                    --
--- Created by JEOYU on 2017/11/8, 下午 04:21:54 --
-------------------------------------------------
-
-spool PKG_BA_UpdAnnuamt_20171108.log
-
-prompt
-prompt Creating package PKG_BA_UPDANNUAMT
-prompt ==================================
-prompt
 create or replace package ba.PKG_BA_UpdAnnuamt
 /********************************************************************************
     PROJECT:         BLI-BaWeb 勞保年金給付系統
@@ -46,10 +35,6 @@ authid definer is
 end PKG_BA_UpdAnnuamt;
 /
 
-prompt
-prompt Creating package body PKG_BA_UPDANNUAMT
-prompt =======================================
-prompt
 create or replace package body ba.PKG_BA_UpdAnnuamt
 is
     /********************************************************************************
@@ -70,6 +55,7 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/11/30  Evelyn Hsu    Created this procedure.
         1.2   2017/11/08  ChugnYU       加入更新老年差額金
+        1.3   2022/12/15  William       依babaweb-53 調整
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -97,7 +83,8 @@ is
              where t.APNO like (v_i_paycode||'%')
                and t.SEQNO = '0000'
                and t.PAYKIND in ('35','36','38','45','48','55','56','59')
-               and t.CASETYP in ('2','4','6')
+               --2022/12/15 Modify by William
+               and t.CASETYP in ('2','3','4','6')
                -- 2017/10/24 Modify By ChugnYu
                and t.PROCSTAT >= '10'
                and t.PROCSTAT < '99'
@@ -272,6 +259,3 @@ is
 
 end PKG_BA_UpdAnnuamt;
 /
-
-
-spool off
