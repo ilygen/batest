@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="/includes/include.jsp"%>
-<%@ page import="tw.gov.bli.ba.receipt.helper.CaseSessionHelper" %>       
+<%@ page import="tw.gov.bli.ba.receipt.helper.CaseSessionHelper" %>
 <%@ page import="tw.gov.bli.ba.util.DateUtility" %>
 <%@ page import="java.util.List" %>
 <%@ page import="tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptCase" %>
@@ -17,26 +17,26 @@
     <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
     <script type='text/javascript' src='<c:url value="/js/prototype.js"/>'></script>
     <script type='text/javascript' src='<c:url value="/js/ba_functions.js"/>'></script>
-    <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>        
+    <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>
     <html:javascript formName="SurvivorAnnuityReceiptForm" page="1" />
     <html:javascript formName="SurvivorAnnuityReceiptBenForm" page="1" />
     <script language="javascript" type="text/javascript">
     function initAll(){
         if('<c:out value="${SurvivorAnnuityReceiptBenForm.benOptionMode}" />'=="updateMode"){
             $("benOptionMode").value="updateMode";
-            $("insertModeBtn").style.display="none";  
-            $("insertModeStr").style.display="none";  
+            $("insertModeBtn").style.display="none";
+            $("insertModeStr").style.display="none";
             $("updateModeBtn").style.display="inline";
             $("updateModeStr").style.display="inline";
             $("dataIndex").innerHTML = $("dataIdx").value;
         }else{
             $("benOptionMode").value="insertMode";
-            $("insertModeBtn").style.display="inline";  
-            $("insertModeStr").style.display="inline";  
+            $("insertModeBtn").style.display="inline";
+            $("insertModeStr").style.display="inline";
             $("updateModeBtn").style.display="none";
             $("updateModeStr").style.display="none";
         }
-        
+
         //事故者國籍別
         if('<c:out value="${SurvivorAnnuityReceiptForm.evtNationTpe}" />'!=""){
             if('<c:out value="${SurvivorAnnuityReceiptForm.evtNationTpe}" />'=="1"){
@@ -55,14 +55,14 @@
                 $("evtSex").disabled = false;
                 $("evtNationCode").disabled = false;
                 $("evtNationCodeOption").disabled = false;
-            }            
+            }
         }else{
             $("evtNationTpe").value="1";
             $("evtSex").disabled = true;
             $("evtNationCode").disabled = true;
             $("evtNationCodeOption").disabled = true;
         }
-        
+
         //遺屬國籍別
 
         if('<c:out value="${SurvivorAnnuityReceiptBenForm.benNationTyp}" />'!=""){
@@ -96,7 +96,7 @@
                 }else{
                     $("benNationCodeOption").value = '<c:out value="${SurvivorAnnuityReceiptBenForm.benNationCode}" />';
                 }
-            }            
+            }
         }else{
             $("benNationTyp").value="1";
             $("commTyp").value="2";
@@ -107,49 +107,49 @@
             $("commZip").disabled = false;
             $("commAddr").disabled = false;
         }
-        
+
         //給付方式
         if('<c:out value="${SurvivorAnnuityReceiptBenForm.payCategory}" />' == "1"){
             $("payCategory1").checked=true;
             $("accData").value="";
             $("accData").disabled = true;
             $("payTyp").disabled = false;
-            if('<c:out value="${SurvivorAnnuityReceiptBenForm.payTyp}" />' == ""){ 
+            if('<c:out value="${SurvivorAnnuityReceiptBenForm.payTyp}" />' == ""){
                 $("payTyp").value="";
             }
         }else if('<c:out value="${SurvivorAnnuityReceiptBenForm.payCategory}" />' == "2"){
             $("payCategory2").checked=true;
             $("payTyp").value="";
-            $("payTyp").disabled = true; 
+            $("payTyp").disabled = true;
             $("payBankId").value="";
-            $("branchId").value="";         
-            $("payEeacc").value=""; 
+            $("branchId").value="";
+            $("payEeacc").value="";
             $("payBankId").disabled=true;
-            $("branchId").disabled=true;         
-            $("payEeacc").disabled=true; 
+            $("branchId").disabled=true;
+            $("payEeacc").disabled=true;
             //帳號複驗
             $("chkPayBankId").value = "";
             $("chkBranchId").value = "";
-            $("chkPayEeacc").value = ""; 
+            $("chkPayEeacc").value = "";
             $("chkPayBankId").disabled = true;
             $("chkBranchId").disabled = true;
             $("chkPayEeacc").disabled = true;
-            
-            $("accData").disabled = false; 
-            $("accData").value=""; 
+
+            $("accData").disabled = false;
+            $("accData").value="";
         }else{
             $("payCategory1").checked=true;
             $("accData").value="";
             $("accData").disabled = true;
-            $("payTyp").disabled = false; 
+            $("payTyp").disabled = false;
             $("payTyp").value="";
         }
         if(<%=((List)request.getSession().getAttribute(ConstantKey.BEN_OPTION_LIST)).size()%>==0){
             $("payCategory2").disabled = true;
-            $("accData").disabled = true; 
-            $("accData").value=""; 
+            $("accData").disabled = true;
+            $("accData").value="";
         }
-        
+
         //手機複驗
         enableMobilePhone();
         if($("mobilePhone").disabled == false){
@@ -157,18 +157,18 @@
         }else{
             $("mobilePhone").value="";
         }
-        
+
         if('<c:out value="${SurvivorAnnuityReceiptBenForm.focusLocation}" />'=="benNationTyp"){
             $("benNationTyp").focus();
         }else{
             $("apNo1").focus();
         }
         changeCommTyp();
-        changePayTyp();    
+        changePayTyp();
         chgBenEvtRel();
         chgMonIncomeMk();
     }
-    
+
     <%-- 1030813 payTyp=1時tab跳過0000 --%>
     function tabChange(){
 
@@ -181,8 +181,8 @@
               $("chkBranchId").tabIndex = 405;
        }
     }
-    
-    //變更 事故者國籍別 時畫面異動    
+
+    //變更 事故者國籍別 時畫面異動
     function changeEvtNationTpe(){
         if(Trim(asc($("evtNationTpe").value))=="1"){
             $("evtSex").disabled = true;
@@ -199,7 +199,7 @@
         }
         autoForeignEvtSex();
     }
-    
+
     function chgEvtNationTpeFocus(){
         if(Trim(asc($("evtNationTpe").value))=="1" && event.keyCode==9){
             $("evtName").focus();
@@ -207,8 +207,8 @@
             $("evtSex").focus();
         }
     }
-    
-    //變更 遺屬國籍別 時畫面異動    
+
+    //變更 遺屬國籍別 時畫面異動
     function changeBenNationTyp(){
         if(Trim(asc($("benNationTyp").value))=="1"){
             $("benSex").disabled = true;
@@ -233,7 +233,7 @@
         }
         autoForeignBenSex();
     }
-    
+
     function changeBenNationTypForBenUpdate(){
         if(Trim(asc($("benNationTyp").value))=="1"){
             $("benSex").disabled = true;
@@ -255,9 +255,9 @@
             $("commTyp").readOnly = true;
             $("commZip").disabled = false;
             $("commAddr").disabled = false;
-        }    
+        }
     }
-    
+
     function chgBenNationTypFocus(){
         if(Trim(asc($("benNationTyp").value=="1")) && event.keyCode==9){
             $("benName").focus();
@@ -265,21 +265,21 @@
             $("benSex").focus();
         }
     }
-    
+
     // Ajax for 取得 戶籍檔姓名
 
-    function initCvldtlName() {   
-        if(($("evtIdnNo").value != "") && !isNaN($("evtBrDate").value)){                                                                                                                                                                                                                                                                                      
-            receiptCommonAjaxDo.getCvldtlName($("evtIdnNo").value, $("evtBrDate").value, fillCvldtlName);                                                                                                                                                                                                                                                     
+    function initCvldtlName() {
+        if(($("evtIdnNo").value != "") && !isNaN($("evtBrDate").value)){
+            receiptCommonAjaxDo.getCvldtlName($("evtIdnNo").value, $("evtBrDate").value, fillCvldtlName);
         }else{
-            $("cvldtlName").value = ""; 
+            $("cvldtlName").value = "";
         }
     }
-    
+
     //檢核事故者出生日期 20121220 邏輯修改
-    function isValidEvtDateTrue() {   
+    function isValidEvtDateTrue() {
         var evtBrDate = $("evtBrDate").value;
-        
+
         if(isValidDate($("evtBrDate").value) == false){
           if(confirm("輸入之「事故者出生日期」錯誤，是否繼續進行存檔?") == true){
           return true;
@@ -291,11 +291,11 @@
           return true;
         }
 
-    }        
+    }
     //檢核事故者出生日期 20121220 邏輯修改
-    function isValidBenDateTrue() {   
+    function isValidBenDateTrue() {
         var evtBrDate = $("benBrDate").value;
-        
+
         if(isValidDate($("benBrDate").value) == false){
           if(confirm("輸入之「遺屬出生日期」錯誤，是否繼續進行存檔?") == true){
           return true;
@@ -307,82 +307,82 @@
           return true;
         }
 
-    }               
+    }
 
     function fillCvldtlName(name) {
-        $("cvldtlName").value = name;        
+        $("cvldtlName").value = name;
     }
-    
+
     // Ajax for 取得欲修改之眷屬資料
     function getBenDetailData(bafamilytempId, seqNo){
-        receiptCommonAjaxDo.getSurvivorBenTempDetailData(bafamilytempId, seqNo, setBenData);  
+        receiptCommonAjaxDo.getSurvivorBenTempDetailData(bafamilytempId, seqNo, setBenData);
     }
-    
+
     function setBenData(benCase){
         $('seqNo').value = benCase.seqNo;
-        $("benNationTyp").value = benCase.famNationTyp;     
-        if(benCase.famNationTyp == '2'){                                  
-            $("benSex").value = benCase.famSex;                                       
+        $("benNationTyp").value = benCase.famNationTyp;
+        if(benCase.famNationTyp == '2'){
+            $("benSex").value = benCase.famSex;
             $("benNationCode").value = benCase.famNationCode;
             $("benNationCodeOption").value = benCase.famNationCode;
-        }                                       
-        $("benName").value = benCase.famName;                                       
-        $("benAppDate").value = benCase.famAppDate;                                       
-        $("benIdnNo").value = benCase.famIdnNo;                                       
+        }
+        $("benName").value = benCase.famName;
+        $("benAppDate").value = benCase.famAppDate;
+        $("benIdnNo").value = benCase.famIdnNo;
         $("benBrDate").value = benCase.famBrDate;
         $("benEvtRel").value = benCase.famEvtRel;
-        $("tel1").value = benCase.tel1;                                       
-        $("tel2").value = benCase.tel2;                                       
-        $("commTyp").value = benCase.commTyp;                                       
-        $("commZip").value = benCase.commZip;                                       
-        $("commAddr").value = benCase.commAddr;                                       
-        $("grdName").value = benCase.grdName;                                       
-        $("grdIdnNo").value = benCase.grdIdnNo;                                       
-        $("grdBrDate").value = benCase.grdBrDate;                                       
+        $("tel1").value = benCase.tel1;
+        $("tel2").value = benCase.tel2;
+        $("commTyp").value = benCase.commTyp;
+        $("commZip").value = benCase.commZip;
+        $("commAddr").value = benCase.commAddr;
+        $("grdName").value = benCase.grdName;
+        $("grdIdnNo").value = benCase.grdIdnNo;
+        $("grdBrDate").value = benCase.grdBrDate;
         $("monIncomeMk").value = benCase.monIncomeMk;
-        if(benCase.monIncome!="" && benCase.monIncome!="null"  && benCase.monIncome!=null){                                       
-            $("monIncome").value = benCase.monIncome;            
-        }                           
+        if(benCase.monIncome!="" && benCase.monIncome!="null"  && benCase.monIncome!=null){
+            $("monIncome").value = benCase.monIncome;
+        }
         $("accSeqNo").value = benCase.accSeqNo;
-        $("payTyp").value = benCase.payTyp;    
+        $("payTyp").value = benCase.payTyp;
         $("payBankIdBranchId").value = benCase.payBankIdBranchId;
         $("payBankId").value = benCase.payBankId;
         $("branchId").value = benCase.branchId;
-        $("payEeacc").value = benCase.payEeacc;  
-        //帳號複驗 
+        $("payEeacc").value = benCase.payEeacc;
+        //帳號複驗
         $("chkPayBankIdChkBranchId").value = benCase.chkPayBankIdChkBranchId;
         $("chkPayBankId").value = benCase.chkPayBankId;
         $("chkBranchId").value = benCase.chkBranchId;
-        $("chkPayEeacc").value = benCase.chkPayEeacc;                                     
-        
+        $("chkPayEeacc").value = benCase.chkPayEeacc;
+
         if(benCase.accRel=="3"){
             $("payCategory2").checked = true;
-            $("payTyp").value = "";    
+            $("payTyp").value = "";
             $("payBankId").value = "";
             $("branchId").value = "";
             $("payEeacc").value = "";
             //帳號複驗
             $("chkPayBankId").value = "";
             $("chkBranchId").value = "";
-            $("chkPayEeacc").value = "";  
-            
-            $("payTyp").disabled = true;  
-            $("payBankId").disabled = true; 
-            $("branchId").disabled = true; 
+            $("chkPayEeacc").value = "";
+
+            $("payTyp").disabled = true;
+            $("payBankId").disabled = true;
+            $("branchId").disabled = true;
             $("payEeacc").disabled = true;
             //帳號複驗
             $("chkPayBankId").disabled = true;
             $("chkBranchId").disabled = true;
             $("chkPayEeacc").disabled = true;
-            
-            $("accData").disabled = false;  
+
+            $("accData").disabled = false;
         }else{
             $("payCategory1").checked = true;
-            $("payTyp").disabled = false;   
-            $("accData").disabled = true; 
+            $("payTyp").disabled = false;
+            $("accData").disabled = true;
             $("accData").value="";
         }
-        
+
         if(benCase.accSeqNoAmt == "1"){
             $("payCategory2").disabled = true;
             $("accData").disabled = true;
@@ -391,29 +391,29 @@
             $("payCategory2").disabled = false;
             getAccDataOptionList(benCase.bafamilytempId, benCase.seqNo);
         }
-        
+
         if(benCase.famEvtRel == '2'){
-            $("marryDate").value = benCase.marryDate;                                       
+            $("marryDate").value = benCase.marryDate;
         }
         if(benCase.famEvtRel == '4' || benCase.famEvtRel == '7'){
-            $("studMk").value = benCase.studMk;                         
+            $("studMk").value = benCase.studMk;
         }
         if(benCase.famEvtRel != '3' && benCase.famEvtRel != '5'){
-            $("handIcapMk").value = benCase.handIcapMk;      
+            $("handIcapMk").value = benCase.handIcapMk;
             $("interDictMk").value = benCase.interDictMk;
         }
-        
+
         var tel1 = benCase.tel1;
         var tel2 = benCase.tel2;
         var shortTel1 = "";
         var shortTel2 = "";
         if(tel1.length >=2){
-            shortTel1 = tel1.substring(0,2); 
+            shortTel1 = tel1.substring(0,2);
         }
         if(tel2.length >=2){
-            shortTel2 = tel2.substring(0,2); 
+            shortTel2 = tel2.substring(0,2);
         }
-    
+
         if((shortTel1=="09" && tel1.length==10) || (shortTel2=="09" && tel2.length==10)){
             $("mobilePhone").disabled = false;
             $("mobilePhone").value = benCase.mobilePhone;
@@ -421,13 +421,13 @@
             $("mobilePhone").disabled = true;
             $("mobilePhone").value = "";
         }
-        
+
         $("insertModeBtn").style.display="none";
-        $("insertModeStr").style.display="none";    
-        $("updateModeBtn").style.display="inline";    
+        $("insertModeStr").style.display="none";
+        $("updateModeBtn").style.display="inline";
         $("updateModeStr").style.display="inline";
-        $("benNationTyp").focus;   
-        
+        $("benNationTyp").focus;
+
         if($("dataIdx").value == "1"){
             $("defaultGrdData").disabled = true;
         }else{
@@ -439,47 +439,47 @@
         chgMonIncomeMk();
         changeCommTyp();
         changePayTyp();
-        
+
         $("benNationTyp").focus();
     }
-    
+
     //清空遺屬資料
     function cleanBenData(){
         $("seqNo").value = "";
-        $("benNationTyp").value = "1";           
-        $("benSex").value = "";                 
-        $("benNationCode").value = "";          
-        $("benName").value = "";                
-        $("benAppDate").value = "";             
-        $("benIdnNo").value = "";               
-        $("benBrDate").value = "";              
-        $("benEvtRel").value = "";              
-        $("tel1").value = "";                   
-        $("tel2").value = "";                   
-        $("commTyp").value = "2";                
-        $("commZip").value = "";                
-        $("commAddr").value = "";               
-        $("grdName").value = "";                
-        $("grdIdnNo").value = "";               
-        $("grdBrDate").value = "";              
-        $("marryDate").value = "";              
-        $("studMk").value = "";                 
-        $("monIncomeMk").value = "";            
-        $("monIncome").value = "";              
-        $("handIcapMk").value = "";               
-        $("interDictMk").value = "";            
-        $("accData").value = "";               
-        $("accSeqNo").value = ""; 
+        $("benNationTyp").value = "1";
+        $("benSex").value = "";
+        $("benNationCode").value = "";
+        $("benName").value = "";
+        $("benAppDate").value = "";
+        $("benIdnNo").value = "";
+        $("benBrDate").value = "";
+        $("benEvtRel").value = "";
+        $("tel1").value = "";
+        $("tel2").value = "";
+        $("commTyp").value = "2";
+        $("commZip").value = "";
+        $("commAddr").value = "";
+        $("grdName").value = "";
+        $("grdIdnNo").value = "";
+        $("grdBrDate").value = "";
+        $("marryDate").value = "";
+        $("studMk").value = "";
+        $("monIncomeMk").value = "";
+        $("monIncome").value = "";
+        $("handIcapMk").value = "";
+        $("interDictMk").value = "";
+        $("accData").value = "";
+        $("accSeqNo").value = "";
         $("mobilePhone").value = "";
         $("defaultGrdData").value = "";
-                                                
-        $("insertModeBtn").style.display="inline";  
-        $("insertModeStr").style.display="inline";  
+
+        $("insertModeBtn").style.display="inline";
+        $("insertModeStr").style.display="inline";
         $("updateModeBtn").style.display="none";
         $("updateModeStr").style.display="none";
         $("dataIdx").value = "";
         $('dataIndex').innerHTML = "";
-        
+
         $("benSex").disabled = true;
         $("benNationCode").disabled = true;
         $("benNationCodeOption").disabled = true;
@@ -487,46 +487,46 @@
         $("commZip").disabled = false;
         $("commAddr").disabled = false;
         $("mobilePhone").disabled = true;
-        
+
         $("payCategory1").checked = true;
         $("payCategory2").checked = false;
-        $("accData").disabled = true; 
-        $("accData").value=""; 
-        
+        $("accData").disabled = true;
+        $("accData").value="";
+
         //給付方式
         $("payCategory1").checked=true;
         $("payCategory2").checked = false;
         $("accData").value="";
         $("accData").disabled = true;
-        $("payTyp").disabled = false; 
+        $("payTyp").disabled = false;
         $("payTyp").value="";
-        $("payEeacc").value = "";               
+        $("payEeacc").value = "";
         $("payBankId").value = "";
         $("branchId").value = "";
         //帳號複驗
-        $("chkPayEeacc").value = "";  
+        $("chkPayEeacc").value = "";
         $("chkPayBankId").value = "";
         $("chkBranchId").value = "";
-         
-        $("defaultGrdData").disabled = false;                 
+
+        $("defaultGrdData").disabled = false;
         getAccDataOptionList($("benBafamilytempId").value, '');
     }
-    
+
     // Ajax for 取得 具領人選單
 
     function getAccDataOptionList(bafamilytempId, seqNo) {
-        receiptCommonAjaxDo.getBenOptionListForSurvivorTemp(bafamilytempId, seqNo, setAccDataOptionList);       
+        receiptCommonAjaxDo.getBenOptionListForSurvivorTemp(bafamilytempId, seqNo, setAccDataOptionList);
     }
 
     function setAccDataOptionList(accDataOption) {
         DWRUtil.removeAllOptions("accData");
         DWRUtil.addOptions("accData", {'':'請選擇'});
         DWRUtil.addOptions("accData", accDataOption ,'accSeqNo','accName');
-        
+
         if(accDataOption.length==0){
             $("payCategory2").disabled = true;
-            $("accData").disabled = true; 
-            $("accData").value=""; 
+            $("accData").disabled = true;
+            $("accData").value="";
         }else{
             $("payCategory2").disabled = false;
         }
@@ -537,14 +537,14 @@
                 break;
             }
         }
-    } 
-    
+    }
+
     //變更 通訊地址別 時畫面異動
 
     function changeCommTyp(){
         if(Trim(asc($("commTyp").value))=="1"){
             $("commZip").value = "";
-            $("commAddr").value = ""; 
+            $("commAddr").value = "";
             $("commZip").disabled = true;
             $("commAddr").disabled = true;
         }
@@ -553,7 +553,7 @@
             $("commAddr").disabled = false;
         }
     }
-        
+
     function chgCommTypFocus(){
         if(Trim(asc($("commTyp").value)) == 1 && event.keyCode==9){
             $("grdName").focus();
@@ -561,24 +561,24 @@
             $("commZip").focus();
         }
     }
-    
+
     //變更 給付方式 時畫面異動
 
     function chgPayCategory(){
         if($("payCategory1").checked==true){
             $("accData").value="";
             $("accData").disabled = true;
-            $("payTyp").disabled = false; 
+            $("payTyp").disabled = false;
             $("payTyp").value="";
         }
         if($("payCategory2").checked==true){
             $("payTyp").value="";
-            $("payTyp").disabled = true; 
-            $("payBankId").value="";  
-            $("branchId").value="";    
-            $("payEeacc").value=""; 
-            $("payBankId").disabled=true; 
-            $("branchId").disabled=true;   
+            $("payTyp").disabled = true;
+            $("payBankId").value="";
+            $("branchId").value="";
+            $("payEeacc").value="";
+            $("payBankId").disabled=true;
+            $("branchId").disabled=true;
             $("payEeacc").disabled=true;
              //帳號複驗
             $("chkPayBankId").disabled = true;
@@ -586,18 +586,18 @@
             $("chkPayEeacc").disabled = true;
             $("chkPayBankId").value = "";
             $("chkBranchId").value = "";
-            $("chkPayEeacc").value = "";  
-            
-            $("accData").disabled = false; 
-            $("accData").value=""; 
+            $("chkPayEeacc").value = "";
+
+            $("accData").disabled = false;
+            $("accData").value="";
         }
         if(<%=((List)request.getSession().getAttribute(ConstantKey.BEN_OPTION_LIST)).size()%>==0){
             $("payCategory2").disabled = true;
-            $("accData").disabled = true; 
-            $("accData").value=""; 
+            $("accData").disabled = true;
+            $("accData").value="";
         }
     }
-    
+
     function chgPayCategoryFocus(){
         if($("payCategory1").checked==true && event.keyCode==9){
             $("payBankId").focus();
@@ -605,7 +605,7 @@
             $("accData").focus();
         }
     }
-    
+
     //變更 給付方式 時畫面異動
 
     function changePayTyp(){
@@ -623,9 +623,9 @@
             $("chkBranchId").addClassName('disabledN');
             $("chkBranchId").disabled = false;
             $("chkPayEeacc").disabled = false;
-            
+
         }else if($("payTyp").value=="2"){
-        
+
             $("payBankId").disabled = false;
             $("branchId").disabled = false;
             $("payEeacc").disabled = false;
@@ -637,7 +637,7 @@
             $("chkPayEeacc").disabled = false;
             $("chkBranchId").readOnly = false;
             $("chkBranchId").removeClassName('disabledN');
-            
+
              if($("branchId").value == "0000"){
               $("branchId").value = "";
             }
@@ -648,8 +648,8 @@
             $("payBankId").disabled = true;
             $("branchId").disabled = true;
             $("payEeacc").disabled = true;
-            $("payBankId").value="";  
-            $("branchId").value="";    
+            $("payBankId").value="";
+            $("branchId").value="";
             $("payEeacc").value = "";
             //帳號複驗
             $("chkPayBankId").disabled = true;
@@ -657,14 +657,14 @@
             $("chkPayEeacc").disabled = true;
             $("chkPayBankId").value = "";
             $("chkBranchId").value = "";
-            $("chkPayEeacc").value = ""; 
+            $("chkPayEeacc").value = "";
         }
         else{
             $("payBankId").disabled = true;
             $("branchId").disabled = true;
             $("payEeacc").disabled = true;
-            $("payBankId").value="";  
-            $("branchId").value="";  
+            $("payBankId").value="";
+            $("branchId").value="";
             $("payEeacc").value = "";
             //帳號複驗
             $("chkPayBankId").disabled = true;
@@ -672,10 +672,10 @@
             $("chkPayEeacc").disabled = true;
             $("chkPayBankId").value = "";
             $("chkBranchId").value = "";
-            $("chkPayEeacc").value = ""; 
-        }    
+            $("chkPayEeacc").value = "";
+        }
     }
-    
+
     function chgPayTypFocus(){
         if((Trim(asc($("payTyp").value))=="1"||Trim(asc($("payTyp").value))=="2") && event.keyCode==9){
             $("payBankId").focus();
@@ -695,49 +695,49 @@
             }
         }
     }
-    
+
     //變更 關係 時畫面異動
 
     function chgBenEvtRel(){
         if(Trim(asc($("benEvtRel").value)) == "2"){
             $("marryDate").disabled = false;
             //$("marryDate").value = "";
-            $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = true;
             $("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";   
+            $("handIcapMk").disabled = false;
+            //$("handIcapMk").value = "";
+            $("interDictMk").disabled = false;
+            //$("interDictMk").value = "";
         }else if(Trim(asc($("benEvtRel").value)) == "4" || Trim(asc($("benEvtRel").value)) == "7"){
             $("marryDate").disabled = true;
             $("marryDate").value = "";
-            $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = false;
             //$("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";   
+            $("handIcapMk").disabled = false;
+            //$("handIcapMk").value = "";
+            $("interDictMk").disabled = false;
+            //$("interDictMk").value = "";
         }else if(Trim(asc($("benEvtRel").value)) == "3" || Trim(asc($("benEvtRel").value)) == "5"){
             $("marryDate").disabled = true;
             $("marryDate").value = "";
-            $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = true;
             $("studMk").value = "";
-            $("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-            $("handIcapMk").value = "";     
-            $("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
-            $("interDictMk").value = "";   
+            $("handIcapMk").disabled = true;
+            $("handIcapMk").value = "";
+            $("interDictMk").disabled = true;
+            $("interDictMk").value = "";
         }else{
             $("marryDate").disabled = true;
             $("marryDate").value = "";
-            $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = true;
             $("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";   
+            $("handIcapMk").disabled = false;
+            //$("handIcapMk").value = "";
+            $("interDictMk").disabled = false;
+            //$("interDictMk").value = "";
         }
     }
-    
+
     //變更 每月工作收入 時畫面異動
 
     function chgMonIncomeMk(){
@@ -750,7 +750,7 @@
             $("monIncome").disabled = true;
         }
     }
-    
+
     function chgMonIncomeMkFocus(){
         if((Trim(asc($("monIncomeMk").value).toUpperCase()) == "Y") && event.keyCode==9){
             $("monIncome").focus();
@@ -758,13 +758,13 @@
             $("handIcapMk").focus();
         }
     }
-    
+
     <%-- 進階欄位驗證 --%>
     <%-- 注意: 此部份之驗證須在 Validation.xml 驗證之後執行 --%>
     <%-- begin ... [ --%>
     function checkFields(){
         var msg = "";
-        
+
         var benDataSize = <%=((List<SurvivorAnnuityReceiptBenCase>)request.getSession().getAttribute(ConstantKey.SURVIVOR_ANNUITY_RECEIPT_BEN_DATA_LIST)).size()%>
         if(benDataSize==0){
             msg += "請先新增遺屬資料。\r\n"
@@ -777,7 +777,7 @@
             }
             //檢查事故者性別、國籍
 
-            <%--2009.11.23修改 國籍別=2時 性別&國籍非必填                                                                                                                                                                                                                                                                                                                                                      
+            <%--2009.11.23修改 國籍別=2時 性別&國籍非必填
             if($("evtNationTpe").value=="2"){
                 if($("evtSex").value == ""){
                     msg += "<bean:message bundle="<%=Global.BA_MSG%>" key="errors.required" arg0='<%=baResBundle.getMessage("label.receipt.survivorAnnuityReceipt.evtSex")%>' />\r\n"
@@ -786,7 +786,7 @@
                 if($("evtNationCode").value == ""){
                     msg += "<bean:message bundle="<%=Global.BA_MSG%>" key="errors.required" arg0='<%=baResBundle.getMessage("label.receipt.survivorAnnuityReceipt.evtNationCode")%>' />\r\n"
                     $("evtNationCode").focus();
-                }                  
+                }
             }
             --%>
             //檢查事故者死亡日期
@@ -796,7 +796,7 @@
                 $("evtDieDate").focus();
             }
         }
-        
+
         //檢核事故者出生日期  是否為數字 及 年月格式
         if($("evtBrDate").value.length < 7 && $("evtBrDate").value != ""){
                     msg += '輸入之「事故者出生日期」格式錯誤，請重新輸入\r\n';
@@ -821,7 +821,7 @@
                     $("evtBrDate").focus();
            }
         }
-        
+
         if(msg != ""){
             alert(msg);
             return false;
@@ -829,35 +829,35 @@
             return true;
         }
     }
-    
+
     function checkBenFields(){
         var msg = "";
-		
+
 		var secondText = $("evtIdnNo").value.substring(1,2);
 		if($("evtIdnNo").value.length==10){
 		if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
  			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
- 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';
  				 $("evtSex").focus();
     		}
  		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
  			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
- 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';
  				 $("evtSex").focus();
     		}
  		}
 		}
-		
+
 		var famText = $("benIdnNo").value.substring(1,2);
 		if($("benIdnNo").value.length==10){
 		if($("benNationTyp").value=="2" && $("benSex").value == "1"){
  			if(famText!="A" && famText!="a" && famText!="C" && famText!="c" && famText!="8"){
- 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';
  				 $("benSex").focus();
     		}
  		}else if($("benNationTyp").value=="2" && $("benSex").value == "2"){
  			if(famText!="B" && famText!="b" && famText!="D" && famText!="d" && famText!="9"){
- 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
+ 				msg += '遺屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';
  				 $("benSex").focus();
     		}
  		}
@@ -868,7 +868,7 @@
             msg += " 遺屬資料與事故者資料不得重覆。\r\n"
             $("benIdnNo").focus();
         }
-        
+
         //檢查遺屬性別、國籍
 
         <%--2009.11.23修改 國籍別=2時 性別&國籍非必填
@@ -881,7 +881,7 @@
             if($("benNationCode").value == ""){
                 msg += "<bean:message bundle="<%=Global.BA_MSG%>" key="errors.required" arg0='<%=baResBundle.getMessage("label.receipt.survivorAnnuityReceipt.benNationCode")%>' />\r\n"
                 $("benNationCode").focus();
-            }                  
+            }
         }
         --%>
         //2009.11.23修改 國籍別=2時 出生日期為非必填
@@ -905,7 +905,7 @@
             if($("commAddr").value == ""){
                 msg += "<bean:message bundle="<%=Global.BA_MSG%>" key="errors.required" arg0='<%=baResBundle.getMessage("label.receipt.survivorAnnuityReceipt.commAddr")%>' />\r\n"
                 $("commAddr").focus();
-            }               
+            }
         }
         // 檢查手機複驗
         if($("mobilePhone").disabled==false){
@@ -914,12 +914,12 @@
             var shortTel1 = "";
             var shortTel2 = "";
             if(tel1.length >=2){
-                shortTel1 = tel1.substring(0,2); 
+                shortTel1 = tel1.substring(0,2);
             }
             if(tel2.length >=2){
-                shortTel2 = tel2.substring(0,2); 
+                shortTel2 = tel2.substring(0,2);
             }
-            
+
             if(Trim($("mobilePhone").value)==""){
                 msg += "「手機複驗」為必填欄位。\r\n"
                 $("mobilePhone").focus();
@@ -927,7 +927,7 @@
                 msg += "「手機複驗」輸入有誤，請檢查。\r\n"
                 $("mobilePhone").focus();
             }
-        } 
+        }
         //檢查結婚日期
         //if($("benEvtRel").value=="2"){
         //    if($("marryDate").value == ""){
@@ -935,29 +935,29 @@
         //        $("marryDate").focus();
         //    }
         //}
-        
+
         //檢查帳號
         if($("payCategory1").checked==true){
             if(Trim($("payTyp").value) == ""){
                 msg += '「給付方式」：為必填欄位。\r\n';
-                $("payTyp").focus();   
+                $("payTyp").focus();
             }else{
                 if (Trim($("payTyp").value) == "1" || Trim($("payTyp").value) == "2"){
                     var payBankIdBranchId = Trim($("payBankId").value) + Trim($("branchId").value);
                     var payEeacc = Trim($("payEeacc").value);
-                    
+
                     if(Trim($("payBankId").value) == "" || Trim($("branchId").value) == "" || Trim($("payEeacc").value) == ""){
                         msg += '「帳號」：為必填欄位。\r\n';
-                        $("payBankId").focus();            
+                        $("payBankId").focus();
                     }
                     else if(isNaN($("payBankId").value) || isNaN($("branchId").value) || isNaN($("payEeacc").value)){
                         if(isNaN($("payBankId").value) || isNaN($("branchId").value)){
                             msg += '「帳號(前)」：必須為數字。\r\n';
-                            $("payBankId").focus();  
+                            $("payBankId").focus();
                         }
                         if(isNaN($("payEeacc").value)){
                             msg += '「帳號(後)」：必須為數字。\r\n';
-                            $("payEeacc").focus();  
+                            $("payEeacc").focus();
                         }
                     }
                     else{
@@ -975,19 +975,19 @@
          if (Trim($("payTyp").value) == "1" || Trim($("payTyp").value) == "2"){
             var chkPayBankIdChkBranchId = Trim($("chkPayBankId").value) + Trim($("chkBranchId").value);
             var chkPayEeacc = Trim($("chkPayEeacc").value);
-            
+
             if(Trim($("chkPayBankId").value) == "" || Trim($("chkBranchId").value) == "" || Trim($("chkPayEeacc").value) == ""){
                 msg += '「帳號複驗」：為必填欄位。\r\n';
-                $("chkPayBankId").focus();            
+                $("chkPayBankId").focus();
             }
             else if(isNaN($("chkPayBankId").value) || isNaN($("chkBranchId").value) || isNaN($("chkPayEeacc").value)){
                 if(isNaN($("chkPayBankId").value) || isNaN($("chkPayBankId").value)){
                     msg += '「帳號複驗(前)」：必須為數字。\r\n';
-                    $("chkPayBankId").focus();  
+                    $("chkPayBankId").focus();
                 }
                 if(isNaN($("chkPayEeacc").value)){
                     msg += '「帳號複驗(後)」：必須為數字。\r\n';
-                    $("chkPayEeacc").focus();  
+                    $("chkPayEeacc").focus();
                 }
             }
             else{
@@ -999,7 +999,7 @@
                     msg += '「帳號複驗(前)」：限定只能輸入700-0010或700-0021。\r\n';
                     $("chkPayBankId").focus();
                 }
-              
+
             }
         }
         //帳號複驗
@@ -1016,15 +1016,15 @@
         else if($("payCategory2").checked==true){
             if($('accData').value == ""){
                 msg += '「具領人下拉選單」：為必填欄位。\r\n';
-                $("accData").focus();   
+                $("accData").focus();
             }
         }
-        
+
         //檢核事故者出生日期  是否為數字 及 年月格式
         if($("benBrDate").value.length < 7 && $("benBrDate").value != ""){
                     msg += '輸入之「遺屬出生日期」格式錯誤，請重新輸入\r\n';
                     $("benBrDate").focus();
-        } 
+        }
         if(isNaN($("benBrDate").value)){
                     msg += '輸入之「遺屬出生日期」格式錯誤，請重新輸入\r\n';
                     $("benBrDate").focus();
@@ -1048,8 +1048,8 @@
                     msg += '輸入之「遺屬出生日期」格式錯誤，請重新輸入\r\n';
                     $("benBrDate").focus();
            }
-        }               
-        
+        }
+
         if(msg != ""){
             alert(msg);
             return false;
@@ -1058,14 +1058,14 @@
         }
     }
     <%-- ] ... end --%>
-    
-    
+
+
     <%-- 所有畫面清空重設 --%>
     function resetAll(){
         cleanForm();
         initAll();
     }
-    
+
     //新增/修改眷屬資料保留已輸入之事故者資料
 
     function saveTempEvtData(){
@@ -1087,7 +1087,7 @@
         $("tempEvTyp").value = $("evTyp").value;
         $("tempApItem").value = $("apItem").value;
     }
-    
+
     //將第一筆遺屬資料填入為預設代理人資料
 
     function setDefaultGrdData(){
@@ -1098,7 +1098,7 @@
             $("grdBrDate").value = '<c:out value="${SurvivorAnnuityReceiptBenDataList[0].benBrDateStr}" />';
         }
     }
-    
+
     //手機複驗
     function enableMobilePhone(){
         var tel1 = $("tel1").value;
@@ -1106,12 +1106,12 @@
         var shortTel1 = "";
         var shortTel2 = "";
         if(tel1.length >=2){
-            shortTel1 = tel1.substring(0,2); 
+            shortTel1 = tel1.substring(0,2);
         }
         if(tel2.length >=2){
-            shortTel2 = tel2.substring(0,2); 
+            shortTel2 = tel2.substring(0,2);
         }
-    
+
         if((shortTel1=="09" && tel1.length==10) || (shortTel2=="09" && tel2.length==10)){
             $("mobilePhone").disabled = false;
             //$("mobilePhone").value = "";
@@ -1128,9 +1128,9 @@
 		if($("evtIdnNo").value.length==10){
     	if($("evtNationTpe").value=="2" && Trim($("evtSex").value)==""){
     		if(secondText=="A" || secondText=="a" || secondText=="C" || secondText=="c" || secondText=="8"){
-    			$("evtSex").value = "1";	
+    			$("evtSex").value = "1";
     		}else if(secondText=="B" || secondText=="b" || secondText=="D" || secondText=="d" || secondText=="9"){
-    			$("evtSex").value = "2";	
+    			$("evtSex").value = "2";
     		}else{
     			$("evtSex").value = "";
     			alert('「不符合外來人口統一證號編碼原則，請輸入正確身分證」');
@@ -1148,16 +1148,16 @@
     	}
 		}
     }
-	
+
     //外國人身分證號碼自動帶入(遺屬)
     function autoForeignBenSex(){
     	var secondText = $("benIdnNo").value.substring(1,2);
 		if($("benIdnNo").value.length==10){
     	if($("benNationTyp").value=="2" && Trim($("benSex").value)==""){
     		if(secondText=="A" || secondText=="a" || secondText=="C" || secondText=="c" || secondText=="8"){
-    			$("benSex").value = "1";	
+    			$("benSex").value = "1";
     		}else if(secondText=="B" || secondText=="b" || secondText=="D" || secondText=="d" || secondText=="9"){
-    			$("benSex").value = "2";	
+    			$("benSex").value = "2";
     		}else{
     			$("benSex").value = "";
     			alert('遺屬資料「不符合外來人口統一證號編碼原則，請輸入正確身分證」');
@@ -1175,14 +1175,14 @@
     	}
 		}
     }
-	
-	
-	
-	
-	
+
+
+
+
+
  	// Added by EthanChen 20200115 [End]
     Event.observe(window, 'load', initAll, false);
-    Event.stopObserving(window, 'load', inputFieldFocus); 
+    Event.stopObserving(window, 'load', inputFieldFocus);
     </script>
 </head>
 <body scroll="no">
@@ -1192,22 +1192,23 @@
     <%@ include file="/includes/ba_header.jsp"%>
 
     <%@ include file="/includes/ba_menu.jsp"%>
-    
+
     <div id="main" class="mainBody">
         <fieldset>
             <legend>&nbsp;遺屬年金批次受理作業&nbsp;</legend>
-            
+
             <div align="right" id="showtime">
                 網頁下載時間：民國&nbsp;<func:nowDateTime />
             </div>
-            
+
             <table width="98%" border="0" align="center" cellpadding="2" cellspacing="2" class="px13">
                 <html:form action="/survivorAnnuityReceiptInsert" method="post" onsubmit="return validateSurvivorAnnuityReceiptForm(this);">
                     <html:hidden styleId="page" property="page" value="1" />
                     <html:hidden styleId="method" property="method" value="" />
                     <html:hidden styleId="bafamilytempId" property="bafamilytempId" value="<%=CaseSessionHelper.getSurvivorAnnuityReceiptBafamilytempIdStr(request) %>"/>
                     <html:hidden styleId="actionTyp" property="actionTyp" value="insertMode"/>
-                
+                    <html:hidden styleId="sysCode" property="sysCode" value="AA"/>
+
                     <tr>
                         <td align="right" colspan="8">
                             <acl:checkButton buttonName="btnConfirm">
@@ -1218,7 +1219,7 @@
                             </acl:checkButton>
                             <acl:checkButton buttonName="btnBack">
                                 <input tabindex="470" type="button" name="btnBack" class="button" value="返　回" onclick="$('page').value='1'; $('method').value='doBack'; document.SurvivorAnnuityReceiptForm.submit();"/>
-                            </acl:checkButton>                        
+                            </acl:checkButton>
                         </td>
                     </tr>
                     <tr>
@@ -1227,13 +1228,13 @@
                                 <tr>
                                     <td>
                                         <span class="issuetitle_L_down">受理編號：</span>
-                                        <html:text tabindex="2" property="apNo1" styleId="apNo1" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();" onkeyup="autotab($('apNo1'), $('apNo2'))"/>                                                                                                                                                          
-                                        &nbsp;-                                                                                                                                                                                                                                                                                                                   
-                                        <html:text tabindex="4" property="apNo2" styleId="apNo2" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value);" onkeyup="autotab($('apNo2'), $('apNo3'))"/>                                                                                                                                                                        
-                                        &nbsp;-                                                                                                                                                                                                                                                                                                                   
-                                        <html:text tabindex="6" property="apNo3" styleId="apNo3" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value);" onkeyup="autotab($('apNo3'), $('apNo4'))"/>                                                                                                                                                                        
-                                        &nbsp;-                                                                                                                                                                                                                                                                                                                   
-                                        <html:text tabindex="8" property="apNo4" styleId="apNo4" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value);" />                                                                                                                                                                        
+                                        <html:text tabindex="2" property="apNo1" styleId="apNo1" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();" onkeyup="autotab($('apNo1'), $('apNo2'))"/>
+                                        &nbsp;-
+                                        <html:text tabindex="4" property="apNo2" styleId="apNo2" styleClass="textinput" size="1" maxlength="1" onblur="this.value=asc(this.value);" onkeyup="autotab($('apNo2'), $('apNo3'))"/>
+                                        &nbsp;-
+                                        <html:text tabindex="6" property="apNo3" styleId="apNo3" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value);" onkeyup="autotab($('apNo3'), $('apNo4'))"/>
+                                        &nbsp;-
+                                        <html:text tabindex="8" property="apNo4" styleId="apNo4" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value);" />
                                     </td>
                                     <td>
                                         <span class="issuetitle_L_down">申請單位保險證號：</span>
@@ -1281,7 +1282,7 @@
                                             <html:select tabindex="70" property="evtNationCodeOption" onchange="$('evtNationCode').value=$('evtNationCodeOption').value;">
                                                 <html:option value="">請選擇</html:option>
                                                 <html:options collection="<%=ConstantKey.COUNTRYID_OPTION_LIST%>" property="countryId" labelProperty="cname" />
-                                            </html:select>    
+                                            </html:select>
                                         </label>
                                     </td>
                                 </tr>
@@ -1329,7 +1330,7 @@
                         </td>
                     </tr>
                 </html:form>
-                
+
                 <html:form action="/survivorAnnuityReceiptInsertBen" method="post" onsubmit="return validateSurvivorAnnuityReceiptBenForm(this);">
                     <html:hidden styleId="benPage" property="page" value="1" />
                     <html:hidden styleId="benMethod" property="method" value="" />
@@ -1340,31 +1341,31 @@
                     <html:hidden styleId="seqNo" property="seqNo"/>
                     <html:hidden styleId="dataIdx" property="dataIdx"/>
                     <%--for 暫存以輸入之事故者資料 [--%>
-                    <html:hidden styleId="tempApNo1" property="tempApNo1" value=""/>                            
-                    <html:hidden styleId="tempApNo2" property="tempApNo2" value=""/>                            
-                    <html:hidden styleId="tempApNo3" property="tempApNo3" value=""/>                            
-                    <html:hidden styleId="tempApNo4" property="tempApNo4" value=""/>                            
-                    <html:hidden styleId="tempApUbno" property="tempApUbno" value=""/>                          
-                    <html:hidden styleId="tempAppDate" property="tempAppDate" value=""/>                        
-                    <html:hidden styleId="tempEvtNationTpe" property="tempEvtNationTpe" value=""/>              
-                    <html:hidden styleId="tempEvtDieDate" property="tempEvtDieDate" value=""/>                  
-                    <html:hidden styleId="tempEvtSex" property="tempEvtSex" value=""/>                          
-                    <html:hidden styleId="tempEvtNationCode" property="tempEvtNationCode" value=""/>            
+                    <html:hidden styleId="tempApNo1" property="tempApNo1" value=""/>
+                    <html:hidden styleId="tempApNo2" property="tempApNo2" value=""/>
+                    <html:hidden styleId="tempApNo3" property="tempApNo3" value=""/>
+                    <html:hidden styleId="tempApNo4" property="tempApNo4" value=""/>
+                    <html:hidden styleId="tempApUbno" property="tempApUbno" value=""/>
+                    <html:hidden styleId="tempAppDate" property="tempAppDate" value=""/>
+                    <html:hidden styleId="tempEvtNationTpe" property="tempEvtNationTpe" value=""/>
+                    <html:hidden styleId="tempEvtDieDate" property="tempEvtDieDate" value=""/>
+                    <html:hidden styleId="tempEvtSex" property="tempEvtSex" value=""/>
+                    <html:hidden styleId="tempEvtNationCode" property="tempEvtNationCode" value=""/>
                     <html:hidden styleId="tempEvtNationCodeOption" property="tempEvtNationCodeOption" value=""/>
-                    <html:hidden styleId="tempEvtName" property="tempEvtName" value=""/>                        
-                    <html:hidden styleId="tempEvtIdnNo" property="tempEvtIdnNo" value=""/>                      
-                    <html:hidden styleId="tempEvtBrDate" property="tempEvtBrDate" value=""/>                    
+                    <html:hidden styleId="tempEvtName" property="tempEvtName" value=""/>
+                    <html:hidden styleId="tempEvtIdnNo" property="tempEvtIdnNo" value=""/>
+                    <html:hidden styleId="tempEvtBrDate" property="tempEvtBrDate" value=""/>
                     <html:hidden styleId="tempEvAppTyp" property="tempEvAppTyp" value=""/>
                     <html:hidden styleId="tempEvTyp" property="tempEvTyp" value=""/>
-                    <html:hidden styleId="tempApItem" property="tempApItem" value=""/>                          
+                    <html:hidden styleId="tempApItem" property="tempApItem" value=""/>
                     <%-- ]for 暫存以輸入之事故者資料 --%>
-                
+
                     <tr>
                         <td align="center" class="table1" colspan="8">
                             <table width="98%" cellpadding="3" cellspacing="4" class="px13">
                                 <tr>
-                                    <td colspan="2" class="issuetitle_L">                                                                                                                                                                                                                                                                                         
-                                        <table width="100%" class="px13">                                                                                                                                                                                                                                                                                         
+                                    <td colspan="2" class="issuetitle_L">
+                                        <table width="100%" class="px13">
                                             <tr>
                                                 <td align="left" style=" font:bold 0.95em/1.5em;color: #333333;line-height: 2em;">
                                                     <span class="systemMsg">▲</span>&nbsp;遺屬資料
@@ -1398,7 +1399,7 @@
                                         <span class="issuetitle_L_down">國籍別：</span>
                                         <html:text tabindex="130" property="benNationTyp" styleId="benNationTyp" styleClass="textinput"  size="1" maxlength="1" onkeyup="changeBenNationTyp();" onkeypress="chgBenNationTypFocus();" onblur="this.value=asc(this.value);"/>
                                         <span class="formtxt">(1-本國，2-外籍)</span>
-                                    </td>                
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td id="iss" width="50%">
@@ -1412,7 +1413,7 @@
                                         <html:select tabindex="160" property="benNationCodeOption" onchange="$('benNationCode').value=$('benNationCodeOption').value;">
                                             <html:option value="">請選擇</html:option>
                                             <html:options collection="<%=ConstantKey.COUNTRYID_OPTION_LIST%>" property="countryId" labelProperty="cname" />
-                                        </html:select>    
+                                        </html:select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1527,7 +1528,7 @@
                                 <tr>
                                     <td id="iss" colspan="2">
                                         <span class="issuetitle_L_down">　領有重度以上身心障礙手冊：</span>
-                                        <html:text tabindex="340" property="handIcapMk" styleId="handIcapMk" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>         
+                                        <html:text tabindex="340" property="handIcapMk" styleId="handIcapMk" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>
                                         <span class="formtxt">(領有重度以上身心障礙手冊者，請輸入Y)</span>
                                     </td>
                                 </tr>
@@ -1550,26 +1551,26 @@
                                         <span class="formtxt">
                                             <html:radio tabindex="360" styleId="payCategory1" property="payCategory" value="1" onclick="chgPayCategory();" onkeypress="chgPayCategoryFocus();" />本人領取
                                             <html:text tabindex="370" property="payTyp" styleId="payTyp" styleClass="textinput"  size="1" maxlength="1" onkeyup="changePayTyp();" onkeypress="chgPayTypFocus();" onblur="this.value=asc(this.value).toUpperCase();tabChange();"/>
-                                            <span class="formtxt">(1-匯入銀行帳戶，2-匯入郵局帳號，A-扣押戶)</span>  
+                                            <span class="formtxt">(1-匯入銀行帳戶，2-匯入郵局帳號，A-扣押戶)</span>
                                             <html:radio styleId="payCategory2" property="payCategory" value="2" onclick="chgPayCategory();" onkeypress="chgPayCategoryFocus();" />具名領取
                                             <html:select property="accData" >
                                                 <html:option value="">請選擇</html:option>
                                                 <logic:notEmpty name="<%=ConstantKey.BEN_OPTION_LIST%>">
                                                     <logic:iterate id="benList" name="<%=ConstantKey.BEN_OPTION_LIST%>">
-                                                        <html:option value="${benList.bafamilytempId};${benList.accSeqNo}" ><c:out value="${benList.accName}" /></html:option>                                                
+                                                        <html:option value="${benList.bafamilytempId};${benList.accSeqNo}" ><c:out value="${benList.accName}" /></html:option>
                                                     </logic:iterate>
                                                 </logic:notEmpty>
-                                            </html:select> 
+                                            </html:select>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="iss">                                    
+                                    <td id="iss">
                                         <span class="issuetitle_L_down">　帳號：</span>
                                         <html:text tabindex="380" property="payBankId" styleId="payBankId" styleClass="textinput" size="1" maxlength="3" onblur="this.value=asc(this.value);"/>&nbsp;-
                                         <html:text tabindex="385" property="branchId" styleId="branchId" styleClass="textinput" size="1" maxlength="4" onblur="this.value=asc(this.value);"/>&nbsp;-
                                         <html:text tabindex="390" property="payEeacc" styleId="payEeacc" styleClass="textinput" size="14" maxlength="14" onblur="if(Trim(asc(this.value))!=''){this.value=leftPad(asc(this.value), 14, '0')};"/>
-                                        <html:hidden styleId="payBankIdBranchId" property="payBankIdBranchId"/>      
+                                        <html:hidden styleId="payBankIdBranchId" property="payBankIdBranchId"/>
                                     </td>
                                     <td id="iss">
                                         <span class="issuetitle_L_down">　帳號複驗：</span>
@@ -1583,7 +1584,7 @@
                                     <td></td>
                                 </tr>
                             </table>
-                        </td>          
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="8" class="issuetitle_L">
@@ -1624,7 +1625,7 @@
                                     </acl:checkButton>
                                 </display:column>
                             </display:table>
-                        </td>                                                       
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="8"><hr width="100%" size="1px" noshade></td>
