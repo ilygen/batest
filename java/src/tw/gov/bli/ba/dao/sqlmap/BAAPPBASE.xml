@@ -5921,7 +5921,10 @@ UNION
                     </isNotEmpty>
                     <isNotEmpty prepend="" property="evtAppName">
                         EVTAPPNAME = #evtAppName:VARCHAR#,
-                    </isNotEmpty>           
+                    </isNotEmpty>     
+                   <isNotEmpty prepend="" property="payKind">
+              		  PAYKIND = #payKind:VARCHAR#,
+             	  </isNotEmpty>      
 	            </isParameterPresent>
 	        </dynamic>        
                APITEM = #apItem:VARCHAR#,
@@ -5963,7 +5966,6 @@ UNION
                BENDIEDATE = DECODE(SEQNO,'0000', #benDieDate:VARCHAR#, BENDIEDATE),
                DABAPNO = #dabApNo:VARCHAR#,
                EVTAGE = #evtAge:VARCHAR#,
-               PAYKIND = #payKind:VARCHAR#,
                EVTAPPIDNNO = #evtAppIdnNo:VARCHAR#,
                EVTAPPBRDATE = #evtAppBrDate:VARCHAR#,
                ACCIDN = #accIdn:VARCHAR#,
