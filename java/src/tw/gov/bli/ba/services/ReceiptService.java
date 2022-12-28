@@ -59,7 +59,7 @@ import tw.gov.bli.common.util.FrameworkLogUtil;
 
 /**
  * Service for 受理作業
- * 
+ *
  * @author Rickychi
  */
 public class ReceiptService {
@@ -86,7 +86,7 @@ public class ReceiptService {
     // ------------------------------ 老年年金受理作業 ------------------------------
     /**
      * 依畫面輸入欄位條件轉換 新增/修改 給付主檔 部分欄位<br>
-     * 
+     *
      * @param payBankIdBranchId 帳號(前)
      * @return
      */
@@ -305,7 +305,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔 資料清單
-     * 
+     *
      * @param evtIdnNo 事故者身分證號
      * @param apNo 受理編號
      * @param seqNo 序號
@@ -328,7 +328,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔 詳細資料
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      * @return
@@ -364,7 +364,7 @@ public class ReceiptService {
 
     /**
      * 新增 給付主檔 資料
-     * 
+     *
      * @param baappbase 給付主檔
      */
     public void insertBaappbaseData(UserBean userData, OldAgeAnnuityReceiptCase baappbaseData) {
@@ -421,7 +421,7 @@ public class ReceiptService {
         baappbase.setCrtUser(userData.getEmpNo());// 新增者代號
         baappbase.setCrtTime(DateUtility.getNowWestDateTime(true));// 新增日期時間
         baappbase.setPromoteUser(bbcmf09Dao.selectPrpNoBy(baappbase.getApNo()));// 承辦者代號
-        
+
         // Added by EthanChen 20210511 [Begin]
         // for ba_1100427619
         // 當專戶註記由空到有值時，要上專戶日期為系統日
@@ -461,7 +461,7 @@ public class ReceiptService {
 
     /**
      * 更新 給付主檔 資料
-     * 
+     *
      * @param baappbase 給付主檔
      */
     public void updateBaappbaseData(UserBean userData, OldAgeAnnuityReceiptCase baappbaseData) {
@@ -593,7 +593,7 @@ public class ReceiptService {
 
     /**
      * 刪除 給付主檔 資料
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      */
@@ -639,13 +639,13 @@ public class ReceiptService {
     // ------------------------------ 失能年金受理作業 ------------------------------
     /**
      * 依畫面輸入欄位條件轉換 新增/修改 給付主檔 部分欄位<br>
-     * 
+     *
      * @param caseObj 失能年金受理作業 事故者資料
      * @return
      */
     /**
      * 依畫面輸入欄位條件轉換 新增/修改 給付主檔 部分欄位<br>
-     * 
+     *
      * @param caseObj 失能年金受理作業 事故者資料
      * @return
      */
@@ -915,7 +915,7 @@ public class ReceiptService {
 
     /**
      * 依畫面輸入欄位條件轉換 新增/修改 給付主檔 部分欄位<br>
-     * 
+     *
      * @param caseObj 失能年金受理作業 事故者資料 For 國保資料
      * @return
      */
@@ -1162,7 +1162,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔 資料清單 for 失能年金受理作業
-     * 
+     *
      * @param evtIdnNo 事故者身分證號
      * @param apNo 受理編號
      * @return
@@ -1182,7 +1182,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 國保給付主檔(<code>NBAPPBASE</code>) 申請國保給付紀錄資料 for 失能年金給付受理
-     * 
+     *
      * @param apNo 國寶受理編號
      * @return 內含 <code>Nbappbase</code> 物件的 List
      */
@@ -1262,7 +1262,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔 詳細資料 for 失能年金受理作業
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      * @return
@@ -1280,7 +1280,7 @@ public class ReceiptService {
 
     /**
      * 新增 失能年金資料
-     * 
+     *
      * @param userData user資料
      * @param evtCase 事故者資料
      * @param famCaseList 眷屬資料
@@ -1405,7 +1405,7 @@ public class ReceiptService {
 
     /**
      * 新增 失能年金資料 For 國保
-     * 
+     *
      * @param userData user資料
      * @param evtCase 事故者資料
      * @param famCaseList 眷屬資料
@@ -1510,7 +1510,7 @@ public class ReceiptService {
 
     /**
      * 更新 給付主檔 資料
-     * 
+     *
      * @param baappbase 給付主檔
      */
     public void updateDataForDisabled(UserBean userData, DisabledAnnuityReceiptEvtCase evtCase) {
@@ -1628,7 +1628,7 @@ public class ReceiptService {
             beforBaappexpand.setLsurgeryDte(beforBaappbase.getLsurgeryDte());// 最後手術日期
             beforBaappexpand.setLsradiationDte(beforBaappbase.getLsradiationDte());// 最後放射(化學)治療日期
             beforBaappexpand.setForinsAddr(beforBaappbase.getForinsAddr());// 外籍被保險人母國地址
-            
+
         }
         // 更新給付主檔
         baappbaseDao.updateDataForDisabledAnnuityReceipt(baappbase);
@@ -1717,7 +1717,7 @@ public class ReceiptService {
 
     /**
      * 刪除 給付主檔、給付延伸主檔、眷屬檔資料
-     * 
+     *
      * @param baappbaseId 給付主檔資料列編號
      */
     public void deleteDataForDisabled(UserBean userData, BigDecimal baappbaseId) {
@@ -1755,7 +1755,7 @@ public class ReceiptService {
 
     /**
      * 依畫面輸入欄位條件轉換 眷屬檔 部分欄位 For 失能年金受理作業<br>
-     * 
+     *
      * @param payBankIdBranchId 帳號(前)
      * @return
      */
@@ -1790,7 +1790,7 @@ public class ReceiptService {
 
     /**
      * 新增 眷屬暫存檔資料 For 失能年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -1809,7 +1809,7 @@ public class ReceiptService {
 
     /**
      * 新增 眷屬資料 For 失能年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -1853,7 +1853,7 @@ public class ReceiptService {
 
     /**
      * 修改 眷屬暫存檔資料 For 失能年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -1869,7 +1869,7 @@ public class ReceiptService {
 
     /**
      * 修改 眷屬暫存檔資料 For 失能年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -1945,7 +1945,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) 遺屬資料 For 失能年金受理作業
-     * 
+     *
      * @param apNo 受理編號
      * @param baappbaseId 給付主檔資料列編號
      * @return 內含 <code>DisabledAnnuityReceiptFamCase</code> 物件的 List
@@ -1963,7 +1963,7 @@ public class ReceiptService {
 
     /**
      * 依傳入資料(<code>SurvivorAnnuityReceiptEvtCase</code>) 將西元年月日轉換成民國年月日 for 遺屬年金受理作業 事故者資料
-     * 
+     *
      * @param caseobj 轉換資料之物件
      * @return <code>DisabledAnnuityReceiptEvtCase</code> 物件
      */
@@ -2007,7 +2007,7 @@ public class ReceiptService {
 
     /**
      * 依傳入資料(<code>SurvivorAnnuityReceiptEvtCase</code>) 將西元年月日轉換成民國年月日 for 失能年金受理作業 事故者資料 國併勞
-     * 
+     *
      * @param caseobj 轉換資料之物件
      * @return <code>DisabledAnnuityReceiptEvtCase</code> 物件
      */
@@ -2030,7 +2030,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 眷屬檔 (<code>BAFAMILY</code>) 資料 For 失能年金受理作業
-     * 
+     *
      * @param bafamilyId 資料列編號
      * @param baappbaseId 給付主檔資料列編號
      * @param apNo 受理編號
@@ -2050,7 +2050,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 眷屬檔 (<code>BAFAMILY</code>) 已存在之眷屬資料 for 失能年金受理作業
-     * 
+     *
      * @param bafamilytempId 資料列編號
      * @param famIdnNo 遺屬/眷屬身分證號
      * @param famBrDate 遺屬/眷屬出生日期
@@ -2066,10 +2066,10 @@ public class ReceiptService {
         }
         return chkResult;
     }
-    
+
     /**
      * 保存畫面上已輸入之事故者資料 for 失能臨櫃受理
-     * 
+     *
      * @param evtForm
      * @param famForm
      * @return
@@ -2148,7 +2148,7 @@ public class ReceiptService {
 
     /**
      * 保存畫面上已輸入之事故者資料 for 失能受理
-     * 
+     *
      * @param evtForm
      * @param famForm
      * @return
@@ -2229,7 +2229,7 @@ public class ReceiptService {
     // ------------------------------ 遺屬年金受理作業 ------------------------------
     /**
      * 依傳入條件取得 給付主檔 資料清單 for 失能年金受理作業
-     * 
+     *
      * @param evtIdnNo 事故者身分證號
      * @param apNo 受理編號
      * @return
@@ -2248,7 +2248,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) 遺屬資料 For 遺屬年金受理作業
-     * 
+     *
      * @param apNo 受理編號
      * @param baappbaseId 給付主檔資料列編號
      * @return 內含 <code>DisabledAnnuityReceiptFamCase</code> 物件的 List
@@ -2270,7 +2270,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔(<code>BAAPPBASE</code>) 遺屬資料清單 for 遺屬年金受理作業
-     * 
+     *
      * @param apNo 受理編號
      * @param procStat 處理狀態
      * @param eqType SQL EqualType
@@ -2290,7 +2290,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔(<code>BAAPPBASE</code>) 事故者詳細資料 for 遺屬年金受理作業
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      * @return
@@ -2313,7 +2313,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔(<code>BAAPPBASE</code>) 遺屬詳細資料 for 遺屬年金受理作業
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param apNo 受理編號
      * @param procStat 處理狀態
@@ -2333,7 +2333,7 @@ public class ReceiptService {
 
     /**
      * 依傳入資料(<code>SurvivorAnnuityReceiptEvtCase</code>) 將西元年月日轉換成民國年月日 for 遺屬年金受理作業 事故者資料
-     * 
+     *
      * @param caseobj 轉換資料之物件
      * @return <code>SurvivorAnnuityReceiptEvtCase</code> 物件
      */
@@ -2351,7 +2351,7 @@ public class ReceiptService {
 
     /**
      * 依傳入資料(<code>SurvivorAnnuityReceiptBenCase</code>) 將西元年月日轉換成民國年月日 for 遺屬年金受理作業 遺屬資料
-     * 
+     *
      * @param caseobj 轉換資料之物件
      * @return <code>SurvivorAnnuityReceiptBenCase</code> 物件
      */
@@ -2369,7 +2369,7 @@ public class ReceiptService {
 
     /**
      * 依畫面輸入欄位條件轉換 新增/修改 給付主檔 部分欄位 For 遺屬年金受理作業
-     * 
+     *
      * @param caseObj 欲轉換之物件
      * @return
      */
@@ -2427,7 +2427,7 @@ public class ReceiptService {
 
     /**
      * 依畫面輸入欄位條件轉換 遺屬資料 部分欄位 For 遺屬年金受理作業
-     * 
+     *
      * @param caseObj 欲轉換之物件
      * @return
      */
@@ -2718,7 +2718,7 @@ public class ReceiptService {
 
     /**
      * 新增 遺屬暫存檔資料 For 遺屬年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -2737,13 +2737,13 @@ public class ReceiptService {
 
         bafamilytempDao.insertDataForSurvivorAnnuityReceipt(bafamilytemp);
         log.debug("Insert BAFAMILYTEMP Finished...");
-        
+
         return seqNo;
     }
 
     /**
      * 修改 遺屬暫存檔資料 For 遺屬年金受理作業<br>
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -2765,7 +2765,7 @@ public class ReceiptService {
 
     /**
      * 新增 給付主檔 資料 for 遺屬年金受理作業
-     * 
+     *
      * @param userData 使用者資料
      * @param baappbase 給付主檔
      */
@@ -2841,7 +2841,7 @@ public class ReceiptService {
 
     /**
      * 修改 給付主檔 資料 for 遺屬年金受理作業 遺屬資料
-     * 
+     *
      * @param userData 使用者資料
      * @param baappbase 給付主檔
      */
@@ -2997,7 +2997,7 @@ public class ReceiptService {
 
     /**
      * 新增 遺屬年金資料
-     * 
+     *
      * @param userData 使用者資料
      * @param evtCase 事故者資料
      * @param bafamilytempId 遺屬暫存檔資料列編號
@@ -3204,7 +3204,7 @@ public class ReceiptService {
 
     /**
      * 更新 給付主檔 資料 for 遺屬年金受理作業 事故者資料
-     * 
+     *
      * @param userData 使用者資料
      * @param evtCase 事故者資料
      */
@@ -3342,7 +3342,7 @@ public class ReceiptService {
 
     /**
      * 刪除 給付主檔 遺屬資料 for 遺屬年金受理作業
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      */
@@ -3414,7 +3414,7 @@ public class ReceiptService {
 
     /**
      * 刪除 給付主檔 資料 for 遺屬年金受理作業
-     * 
+     *
      * @param baappbaseId 資料列編號
      * @param procStat 處理狀態
      */
@@ -3464,7 +3464,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 眷屬檔 (<code>BAFAMILY</code>) 已存在之遺屬資料 for 遺屬年金受理作業
-     * 
+     *
      * @param apNo 受理編號
      * @param benIdnNo 遺屬身分證號
      * @param benBrDate 遺屬出生日期
@@ -3506,7 +3506,7 @@ public class ReceiptService {
     /**
      * 依傳入條件取得 戶政全戶檔 資料<br>
      * 為避免回傳資料超過一筆以上, 故查詢結果不等於一筆皆回傳空字串<br>
-     * 
+     *
      * @param idn 事故者身分證號
      * @param ebDate 出生日期
      * @return
@@ -3527,7 +3527,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 銀行資料檔 金融機構名稱<br>
-     * 
+     *
      * @param payBankIdBranchId 帳號(前)
      * @return
      */
@@ -3550,7 +3550,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 郵局代碼檔 郵局名稱<br>
-     * 
+     *
      * @param postId 郵局電腦代號 (「帳號」(前))
      * @return
      */
@@ -3578,7 +3578,7 @@ public class ReceiptService {
     public String getSequenceSApNo() {
         return baappbaseDao.getSequenceSApNo();
     }
-    
+
     /**
      * 取得 SEQUENCE BAS.BAAPNOK3
      * @return
@@ -3589,7 +3589,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) new 資料列編號
-     * 
+     *
      * @return <code>BigDecimal</code> 物件
      */
     public BigDecimal getNewbafamilytempId() {
@@ -3598,7 +3598,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 眷屬暫存檔檔 (<code>BAFAMILYTEMP</code>) 已存在之眷屬資料
-     * 
+     *
      * @param bafamilytempId 資料列編號
      * @param famIdnNo 遺屬/眷屬身分證號
      * @param famBrDate 遺屬/眷屬出生日期
@@ -3617,7 +3617,7 @@ public class ReceiptService {
 
     /**
      * 檢查APNO是否已經存在
-     * 
+     *
      * @param apNo 受理編號
      * @return
      */
@@ -3632,7 +3632,7 @@ public class ReceiptService {
 
     /**
      * 刪除 眷屬暫存檔資料
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -3646,7 +3646,7 @@ public class ReceiptService {
 
     /**
      * 更新 眷屬暫存檔資料
-     * 
+     *
      * @param caseObj 眷屬資料
      * @param userData user資料
      */
@@ -3661,7 +3661,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 遺屬眷屬暫存檔 (<code>BAFAMILYTEMP</code>) 資料
-     * 
+     *
      * @param bafamilytempId 資料列編號
      * @param seqNo 序號
      */
@@ -3673,7 +3673,7 @@ public class ReceiptService {
 
     /**
      * 刪除 眷屬暫存檔資料 By bafamilyId
-     * 
+     *
      * @param bafamilyId 眷屬檔資料列編號
      */
     public void deleteBafamilyDataByBafamilyId(BigDecimal bafamilyId, UserBean userData) {
@@ -3713,7 +3713,7 @@ public class ReceiptService {
 
     /**
      * 刪除 眷屬暫存檔資料 By baappbaseId
-     * 
+     *
      * @param baappbaseId 給付主檔資料列編號
      */
     public void deleteDisabledBafamilyDataByBaappbaseId(BigDecimal baappbaseId) {
@@ -3734,7 +3734,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔(<code>BAAPPBASE</code>) 被具名領取筆數
-     * 
+     *
      * @param apNo 受理編號
      * @param seqNo 資料列序號
      * @return <code>String</code> 物件
@@ -3751,7 +3751,7 @@ public class ReceiptService {
 
     /**
      * 依傳入條件取得 給付主檔(<code>BAAPPBASE</code>) 被具名領取筆數
-     * 
+     *
      * @param bafamilytempId 受理編號
      * @param seqNo 資料列序號
      * @return <code>String</code> 物件
@@ -3765,10 +3765,10 @@ public class ReceiptService {
         // return accSeqNoAmt;
         return bafamilytempDao.selectAccSeqNoAmt(bafamilytempId, seqNo);
     }
-    
+
     /**
      * 保存畫面上已輸入之事故者資料 for 遺屬臨櫃受理
-     * 
+     *
      * @param evtForm
      * @param famForm
      * @return
@@ -3794,14 +3794,14 @@ public class ReceiptService {
     		evtForm.setEvTyp(benForm.getTempEvTyp());// 核定傷病分類
     		evtForm.setApItem(benForm.getTempApItem());// 申請項目
     	}
-    	
+
     	return evtForm;
     }
-    
+
     public SurvivorAnnuityWalkInReceiptForm convertSurvivorTurnInData(SurvivorAnnuityWalkInReceiptForm form,
 			Baap0d060 baap0d060) {
     	BeanUtility.copyProperties(form, baap0d060);
-    	
+
     	String procType = form.getProcType();
     	// 日期轉換
 		// 申請日期
@@ -3820,14 +3820,6 @@ public class ReceiptService {
 		if (StringUtils.isNotBlank(baap0d060.getJudgeDate())) {
 			form.setJudgeDate(DateUtility.changeDateType(baap0d060.getJudgeDate()));
 		}
-		
-		// BC、BE 依身分證號判斷本國籍或外籍
-		if (StringUtils.contains("2,3", procType) && baap0d060.getEvtIdnNo().matches("[a-zA-Z][1-2]\\d{8}")) {
-			form.setEvtNationTpe("1");
-		} else {
-			form.setEvtNationTpe("2");
-		}
-		
 
 		// 當申請傷病分類為 1、3 時，核定傷病分類為 3
 		// 當申請傷病分類為 2、4 時，核定傷病分類為 4
@@ -3839,7 +3831,7 @@ public class ReceiptService {
 				form.setEvTyp("4");
 			}
 		}
-		
+
 		// 申請項目
 		// BC、BE 申請項目為 2 時寫入 5，其餘寫入 4
 		if (StringUtils.contains("2,3", procType)) {
@@ -3864,10 +3856,10 @@ public class ReceiptService {
 
 		return form;
     }
-    
+
     /**
 	 * 取得遺屬年金轉入受理作業所需要的個人資料
-	 * 
+	 *
 	 * @param apno
 	 * @param procType
 	 * @return
@@ -3885,17 +3877,17 @@ public class ReceiptService {
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 取得遺屬年金轉入受理作業所需要的遺屬資料
-	 * 
+	 *
 	 * @param form
 	 * @return
 	 */
 	public List<SurvivorAnnuityReceiptBenCase> getSurvivorTurnInBen(SurvivorAnnuityWalkInReceiptForm form,
 			UserBean userData, BigDecimal bafamilytempId) {
 		String procType = form.getProcType();
-		
+
 		List<SurvivorAnnuityReceiptBenCase> benList = null;
 		if (StringUtils.equals(procType, "2")) {
 			benList = baap0d060Dao.selectSurvivorTurnInBenFromBe(form.getApNoStr());
@@ -3904,7 +3896,7 @@ public class ReceiptService {
 		} else if (StringUtils.equals(procType, "4")) {
 			benList = baap0d060Dao.selectSurvivorTurnInBenFromBb(form.getApNoStrForBb());
 		}
-		
+
 		List<SurvivorAnnuityReceiptBenCase> benDataList = new ArrayList<>();
 		if (CollectionUtils.isNotEmpty(benList)) {
 			for (SurvivorAnnuityReceiptBenCase caseObj : benList) {
@@ -3929,7 +3921,7 @@ public class ReceiptService {
 
     /**
      * 保存畫面上已輸入之事故者資料 for 失能受理
-     * 
+     *
      * @param evtForm
      * @param famForm
      * @return
@@ -3957,10 +3949,10 @@ public class ReceiptService {
 
         return evtForm;
     }
-    
+
     /**
 	 * 將其它系統(BB、BC、BE)轉入的資料轉換成 form
-	 * 
+	 *
 	 * @param baap0d040
 	 * @return
 	 */
@@ -4054,7 +4046,7 @@ public class ReceiptService {
 
 	/**
 	 * 取得轉入受理作業所需要的資料
-	 * 
+	 *
 	 * @param apno
 	 * @param procType
 	 * @return
