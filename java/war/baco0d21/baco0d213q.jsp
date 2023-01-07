@@ -30,8 +30,8 @@
 </script>
 	<script language="javascript" type="text/javascript">
 <!--
-    //頁面欄位值初始化       
-    function initAll(){        
+    //頁面欄位值初始化
+    function initAll(){
        if($('origNotifyForm').value==''){
            $('notifyForm').value = '001';
        }
@@ -44,32 +44,32 @@
        }
        checkNotifyForm();
        checkMaadmrec();
-    }      
-    
+    }
+
     // Ajax for 取得 檢查核定格式
     function checkNotifyForm() {
         reviewCommonAjaxDo.checkNotifyForm($("apNo").value, checkNotifyFormResult);
     }
-    
-    function checkNotifyFormResult(checkResult){   
-        $("checkResult").value = checkResult;                
+
+    function checkNotifyFormResult(checkResult){
+        $("checkResult").value = checkResult;
     }
-    
+
     // Ajax for 檢核行政支援記錄檔
     function checkMaadmrec(){
     	reviewCommonAjaxDo.checkMaadmrec($("apNo").value, $("caseTyp").value, checkMaadmrecResult);
     }
-    
+
     function checkMaadmrecResult(checkResult1){
         var msg = "";
-        
+
     	$("checkResult1").value = checkResult1;
 
-        if(Trim($("checkResult1").value)!=""){  
+        if(Trim($("checkResult1").value)!=""){
             $("btnUpdate").disabled = true;
         	msg += "案件類別有誤，請重新編審！。\r\n"
-        }  	
-        
+        }
+
         if(msg != ""){
             alert(msg);
             return false;
@@ -77,7 +77,7 @@
             return true;
         }
     }
-    
+
     // Ajax for 更新核定資料
     function flashIssuData() {
         var payYm = $("payYmOption").value;
@@ -85,8 +85,8 @@
         var acceptMk = $("acceptMkOption").value;
         reviewCommonAjaxDo.flashIssuDataList(payYm, seqNo, acceptMk, setIssuData);
     }
-    
-    
+
+
     function setIssuData(issuDataList) {
         dwr.util.removeAllRows("benIssuDataTable");
         $("issuDataSpan").innerHTML = "";
@@ -102,15 +102,15 @@
                 var issuData = issuDataList[i];
                 var benIssueDataArray = issuData.benIssueDataArray;
                 var payYmStr = issuData.payYmStr;
-                
+
                 if(i%2 == 0){
                     innerHTMLStr += '<table id="tb" width="100%" cellpadding="3" cellspacing="5" class="px13">';
                 }else{
                     innerHTMLStr += '<table id="tb" width="100%" cellpadding="3" cellspacing="5" class="px13" bgcolor="#E8E8FF">';
                 }
-                
+
                 innerHTMLStr += '<tr><td class="issuetitle_L" colspan="10" ><span class="issuetitle_search">&#9658;</span>&nbsp;給付年月：' + payYmStr +'</td></tr>';
-                
+
                 for(var j=0; j<benIssueDataArray.length; j++){
                     benIssuData = benIssueDataArray[j];
                     innerHTMLStr += '<tr>';
@@ -142,7 +142,7 @@
                         acceptMkStr = "待處理";
                     }
                     innerHTMLStr += '<td class="issueinfo" width="10%">'+(acceptMkStr)+'</td>';
-                    
+
                     innerHTMLStr += '</tr>';
                 }
                 innerHTMLStr +='</table>';
@@ -150,7 +150,7 @@
         }
         $("issuDataSpan").innerHTML = innerHTMLStr;
     }
-    
+
     //字串處理
     //如果傳入值為null, 回傳" "；否則回傳原始傳入值
     //防止資料底線消失
@@ -164,7 +164,7 @@
 
     //送出前檢查
     function checkFields(){
-        var msg = "";       
+        var msg = "";
         //檢查核定格式
         //[
         if(Trim($("notifyForm").value)==""){
@@ -185,30 +185,37 @@
             }
         }
         //]
-        
-        if($("caseTyp").value=="2"){        
+
+        if($("caseTyp").value=="2"){
             if($("chgNote").value==""){
                 msg += "<bean:message bundle="<%=Global.BA_MSG%>" key="errors.required" arg0='<%=baResBundle.getMessage("label.review.chgNote")%>' />\r\n";
                 $("chgNote").focus();
             }
-        }       
-        
+        }
+
         if(msg != ""){
-            alert(msg);                                                                       
+            alert(msg);
             return false;
         }else{
-            var evtMcMkRadios = document.getElementsByName("evtMcMkRadio"); 
-            var manchkMk;
-                    
+            var evtMcMkRadios = document.getElementsByName("evtMcMkRadio");
+
             for (i = 0; i < evtMcMkRadios.length; i++) {
                 if (evtMcMkRadios[i].checked) {
                     $("manchkMk").value = evtMcMkRadios[i].value;
                 }
             }
+			if('Y' != $("manchkMk").value && 'N' != $("manchkMk").value) {
+				alert("人工審核結果必需有值");
+				return false;
+			}
+			if(0 == $('issueAmtTotal').value && 'Y' == $("manchkMk").value) {
+				alert("核定金額為0,人工審核結果應為不合格");
+				return false;
+			}
             return true;
-        } 
+        }
     }
-    
+
     Event.observe(window, 'load', initAll, false);
     </script>
 </head>
@@ -224,7 +231,7 @@
 			<html:form action="/survivorPaymentReview" method="post" onsubmit="">
 				<html:hidden styleId="page" property="page" value="1" />
 				<html:hidden styleId="method" property="method" value="" />
-				<html:hidden styleId="manchkMk" property="manchkMk" />
+				<html:hidden styleId="manchkMk" property="manchkMk" value="" />
 				<bean:define id="pay"
 					name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_CASE%>" />
 				<bean:define id="disabledData"
@@ -237,6 +244,7 @@
 				<input type="hidden" id="caseTyp" name="caseTyp"
 					value="<c:out value="${pay.caseTyp}" />">
 				<input type="hidden" id="q2" name="q2" value="<c:out value="${pay.q2}" />">
+				<input type="hidden" id="issueAmtTotal" value="<c:out value="${pay.issueAmtTotal}" />">
 				<fieldset>
 					<legend>
 						&nbsp;遺屬年金審核清單明細資料&nbsp;
@@ -255,7 +263,7 @@
 									<c:if
 										test="${(pay.q2 gt 0) and (pay.caseTyp ne '3' and pay.caseTyp ne '6')}">
 										<input type="button" id="btnUpdate" name="btnUpdate" class="button"
-											value="確　認" disabled="true" />&nbsp;                              
+											value="確　認" disabled="true" />&nbsp;
                                     </c:if>
 									<c:if
 										test="${(pay.q2 le 0) or ((pay.q2 gt 0) and (pay.caseTyp eq '3' or pay.caseTyp eq '6'))}">
@@ -449,7 +457,7 @@
 										</td>
 										<td colspan="7" class="issuetitle_L">
 											<c:if test="${pay.caseTyp eq '2'}">
-												<span class="needtxt">＊</span>                                    
+												<span class="needtxt">＊</span>
                                                              更正原因：
                                                 <html:select
 													property="chgNote">
@@ -515,90 +523,54 @@
 																<span class="issuetitle_L_down">人工審核結果：</span>
 																<label class="formtxt">
 																	<c:if test="${beneficiaryData.manchkMk eq 'Y'}">
-																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="Y" checked="true">Y-合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="Y" checked="true"
-																				disabled="true">Y-合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="N">N-不合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="N" disabled="true">N-不合格
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="">待處理
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="" disabled="true">待處理
-                                                                    </c:if>
+																		<c:choose>
+																			<c:when test="${beneficiaryData.manchkMkCtlY eq 'Y' && beneficiaryData.manchkMkCtlN eq 'Y'}">
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="Y">Y-合格
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="N">N-不合格
+																			</c:when>
+																			<c:otherwise>
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="Y" checked="true">Y-合格
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="N" disabled="true">N-不合格
+																			</c:otherwise>
+																		</c:choose>
 																	</c:if>
 																	<c:if test="${beneficiaryData.manchkMk eq 'N'}">
-																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="Y">Y-合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="Y" disabled="true">Y-合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="N" checked="true">N-不合格
-                                                                    </c:if>
-																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="N" checked="true"
-																				disabled="true">N-不合格
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="">待處理
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio"
-																				name="evtMcMk<c:out value="${index}" />" value="" disabled="true">待處理
-                                                                    </c:if>
+																		<c:choose>
+																			<c:when test="${beneficiaryData.manchkMkCtlY eq 'Y' && beneficiaryData.manchkMkCtlN eq 'Y'}">
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="Y">Y-合格
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="N">N-不合格
+																			</c:when>
+																			<c:otherwise>
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="Y" disabled="true">Y-合格
+																				<input type="radio" id="evtMcMkRadio"
+																					   name="evtMcMk<c:out value="${index}" />" value="N" checked="true">N-不合格
+																			</c:otherwise>
+																		</c:choose>
 																	</c:if>
 																	<c:if test="${beneficiaryData.manchkMk eq ' '}">
 																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'Y'}">
 																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="Y">Y-合格
-                                                                    </c:if>
+																				   value="Y">Y-合格
+																		</c:if>
 																		<c:if test="${beneficiaryData.manchkMkCtlY eq 'N'}">
 																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="Y" disabled="true">Y-合格
-                                                                    </c:if>
+																				   value="Y" disabled="true">Y-合格
+																		</c:if>
 																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'Y'}">
 																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="N">N-不合格
-                                                                    </c:if>
+																				   value="N">N-不合格
+																		</c:if>
 																		<c:if test="${beneficiaryData.manchkMkCtlN eq 'N'}">
 																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="N" disabled="true">N-不合格
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'Y'}">
-																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="" checked="true">待處理
-                                                                    </c:if>
-																		<c:if
-																			test="${beneficiaryData.manchkMkCtlSpace eq 'N'}">
-																			<input type="radio" id="evtMcMkRadio" name="evtMcMk"
-																				value="" checked="true" disabled="true">待處理
-                                                                    </c:if>
+																				   value="N" disabled="true">N-不合格
+																		</c:if>
 																	</c:if>
 																</label>
 															</td>
@@ -1119,320 +1091,6 @@
 								</table>
 							</td>
 						</tr>
-						<%--
-                        <tr>
-                            <td colspan="7" align="center" class="table1">
-                                <table width="98%" cellpadding="3" cellspacing="5" class="px13">
-                                    <tr>
-                                        <td colspan="4">
-                                            <table width="100%" cellpadding="0" cellspacing="0" class="px13">
-                                                <td width="85%" class="issuetitle_L">
-                                                    <span class="systemMsg">▲</span>&nbsp;總表資料
-                                                </td>
-                                                <td width="15%" id="tabsJ" class="issuetitle_L" valign="bottom">
-                                                    <a href="<c:url value="/survivorPaymentReview.do?method=doReviewRpt" />" onclick="Event.stopObserving(window, 'beforeunload', beforeUnload);"><span>檢視受理/審核清單</span></a>
-                                                </td>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">投保薪資：</span>
-                                            <fmt:formatNumber value="${pay.lsInsmAmt}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">平均薪資：</span>
-                                            <fmt:formatNumber value="${pay.insAvgAmt}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">核定總額：</span>
-                                            <fmt:formatNumber value="${pay.befIssueAmt}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">補發總額：</span>
-                                            <fmt:formatNumber value="${pay.supAmt}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">紓困總額：</span>
-                                            <fmt:formatNumber value="${pay.offsetAmt}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">扣減總額：</span>
-                                            <fmt:formatNumber value="${pay.otherAmt}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="4">
-                                            <span class="issuetitle_L_down">實付總額：</span>
-                                            <fmt:formatNumber value="${pay.aplPayAmt}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">實付年資：</span>
-                                            <c:out value="${pay.aplPaySeniY}" />年<c:out value="${pay.aplPaySeniM}" />月
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">投保年資：</span>
-                                            <c:out value="${pay.nitrmY}" />年<c:out value="${pay.nitrmM}" />月
-                                            (<c:out value="${pay.itrmY}" />年<c:out value="${pay.itrmD}" />日)
-                                        </td>
-                                    </tr>
-                                    
-                                    
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">申請單位保險證號：</span>
-                                            <c:out value="${pay.apUbno}" />
-                                            <c:out value="${pay.apubnock}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">事故發生單位保險證號：</span>
-                                            <c:out value="${pay.lsUbno}" />
-                                            <c:out value="${pay.lsUbnoCk}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">申請項目：</span>
-                                            <c:out value="${pay.apItemStr}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">判決日期：</span>
-                                            <c:out value="${disabledData.judgeDateStr}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" width="25%">
-                                            <span class="issuetitle_L_down">傷病分類：</span>
-                                            <c:out value="${disabledData.evTypStr}" />&nbsp;
-                                        </td>
-                                        <td id="iss" width="25%">
-                                            <span class="issuetitle_L_down">傷病原因：</span>
-                                            <c:out value="${disabledData.evCode}" />&nbsp;
-                                        </td>
-                                        <td id="iss" width="25%">
-                                            <span class="issuetitle_L_down">受傷部位：</span>
-                                            <c:out value="${disabledData.criInPartStr}" />&nbsp;
-                                        </td>
-                                        <td id="iss" width="25%">
-                                            <span class="issuetitle_L_down">符合第63條之1第3項：：</span>
-                                            <fmt:formatNumber value="${disabledData.famAppMkStr}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">國際疾病代碼：</span>
-                                            <c:out value="${disabledData.criInJnmeStr}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="1">
-                                            <span class="issuetitle_L_down">媒介物：</span>
-                                            <c:out value="${disabledData.criMedium}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="1">
-                                            <span class="issuetitle_L_down">先核普通：</span>
-                                            <c:out value="${disabledData.prType}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">基本月給付金額／計算式：</span>
-                                            <fmt:formatNumber value="${pay.oldaAmt}" />
-                                            &nbsp;／&nbsp;
-                                            <c:if test='${(pay.oldAb eq "1")}'>
-                                                <c:out value="<%=ConstantKey.BADAPR_OLDAB_STR_1 %>" />
-                                            </c:if>
-                                            <c:if test='${(pay.oldAb eq "2")}'>
-                                                <c:out value="<%=ConstantKey.BADAPR_OLDAB_STR_2 %>" />
-                                            </c:if>
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">
-                                                <c:if test='${(pay.apItem eq "2")}'>        
-                                                            減額期間／比率：
-                                                </c:if>
-                                                <c:if test='${(pay.apItem ne "2")}'>        
-                                                            展延期間／比率：
-                                                </c:if>
-                                            </span>
-                                            <c:out value="${pay.oldRateDateYMStr}" />
-                                            &nbsp;／&nbsp;
-                                            <c:out value="${pay.oldRate}" />%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">勞保給付金額：</span>
-                                            <fmt:formatNumber value="${pay.oldbAmt}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="2">
-                                            <span class="issuetitle_L_down">遺屬加計比例／金額：</span>
-                                            <fmt:formatNumber value="${pay.oldRate}" />%
-                                            &nbsp;／&nbsp;
-                                            <fmt:formatNumber value="${pay.oldRateAmt}" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="3">
-                                            <span class="issuetitle_L_down">屆齡日期：</span>
-                                            <c:out value="${pay.evtExpireDateStr}" />&nbsp;
-                                        </td>
-                                        <td id="iss" colspan="1">
-                                            <span class="issuetitle_L_down">符合日期：</span>
-                                            <c:out value="${pay.evtEligibleDateStr}" />&nbsp;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="4">
-                                            <span class="issuetitle_L_down">受理鍵入資料及修改紀錄：</span>
-                                            (鍵入/更正人員代號：<c:out value="${pay.crtUser}" />&nbsp;/&nbsp;<c:out value="${pay.updUser}" />)
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" class="table1">
-                                <table width="98%" cellpadding="3" cellspacing="5" class="px13">
-                                    <tr>
-                                        <td colspan="7" class="issuetitle_L">
-                                            <span class="systemMsg">▲</span>&nbsp;編審資料
-                                        </td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td colspan="7">
-                                            <bean:define id="payList" name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_PAY_DATA_LIST%>" />
-                                            <display:table name="pageScope.payList" id="listItem" pagesize="0">
-                                                <display:column title="給付年月" style="width:14%; text-align:center;">
-                                                    <c:out value="${listItem.payYmStr}" />&nbsp;
-                                                </display:column>
-                                                <display:column title="核定／物價調整金額" style="width:16%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.issueAmt}" />&nbsp;
-                                                </display:column>
-                                                <display:column title="應收／沖抵金額" style="width:14%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.recAmt}" />
-                                                    &nbsp;／&nbsp;
-                                                    <fmt:formatNumber value="${listItem.payBanance}" />
-                                                </display:column>
-                                                <display:column title="補發金額" style="width:14%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.supAmt}" />&nbsp;
-                                                </display:column>
-                                                <display:column title="事故者／遺屬扣減" style="width:14%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.otherAmt}" />&nbsp;
-                                                </display:column>
-                                                <display:column title="紓困金額" style="width:14%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.offsetAmt}" />&nbsp;
-                                                </display:column>
-                                                <display:column title="實付金額"  style="width:14%; text-align:right;">
-                                                    <fmt:formatNumber value="${listItem.aplPayAmt}" />&nbsp;
-                                                </display:column>
-                                            </display:table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="7">
-                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="px13">
-                                                <tr>
-                                                    <td id="iss" valign="top" width="14%">
-                                                        <span class="issuetitle_L_down">事故者編審註記：</span>
-                                                    </td>
-                                                    <td id="iss" valign="top" width="62%">
-                                                        <logic:iterate id="chkFileData" name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_EVT_CHK_LIST %>">                                                    
-                                                            <c:out value="${chkFileData.issuPayYm}" />：
-                                                            <logic:iterate id="chkFile" indexId="i" name="chkFileData" property="chkFileList">
-                                                                <span title="<c:out value="${chkFile.chkResult}" />">
-                                                                    <c:out value="${chkFile.chkCodePost}"/>
-                                                                </span>
-                                                                <c:if test="${i+1 ne chkFileData.chkFileDataSize}">
-                                                                    <c:out value=",　" />
-                                                                </c:if>
-                                                            </logic:iterate><br>
-                                                        </logic:iterate>
-                                                        <logic:empty name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_EVT_CHK_LIST %>">
-                                                            &nbsp;
-                                                        </logic:empty>
-                                                    </td>
-                                                    <td id="iss" valign="top" width="24%">
-                                                        <c:if test="${detail.loanMk eq '1'}">
-                                                            <strong><c:out value="<%=ConstantKey.BAAPPBASE_LOANMK_STR_1 %>" /></strong>
-                                                        </c:if>&nbsp;
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="1" valign="top" width="14%">
-                                            <span class="issuetitle_L_down">遺屬符合註記：</span>
-                                        </td>
-                                        <td id="iss" colspan="6" valign="top" width="86%">
-                                            <logic:iterate id="masterChkFile" name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_MATCH_CHK_LIST %>">                                                    
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="px13">
-                                                    <tr>
-                                                        <td valign="top" width="12%" align="left">
-                                                            <strong>遺屬序：<c:out value="${masterChkFile.seqNo}" /></strong>
-                                                        </td>
-                                                        <td valign="top" width="88%" align="left">
-                                                            <logic:iterate id="chkFileData" name="masterChkFile" property="otherChkDataList">                                                    
-                                                                <c:out value="${chkFileData.issuPayYm}" />：
-                                                                <logic:iterate id="chkFile" indexId="i" name="chkFileData" property="chkFileList">
-                                                                    <span title="<c:out value="${chkFile.chkResult}" />">
-                                                                        <c:out value="${chkFile.chkCodePost}"/>
-                                                                    </span>
-                                                                    <c:if test="${i+1 ne chkFileData.chkFileDataSize}">
-                                                                        <c:out value=",　" />
-                                                                    </c:if>
-                                                                </logic:iterate><br>
-                                                            </logic:iterate>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </logic:iterate>
-                                            <logic:empty name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_MATCH_CHK_LIST %>">
-                                                &nbsp;
-                                            </logic:empty>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="iss" colspan="1" valign="top" width="14%">
-                                            <span class="issuetitle_L_down">遺屬編審註記：</span>
-                                        </td>
-                                        <td id="iss" colspan="6" valign="top" width="86%">
-                                            <logic:iterate id="masterChkFile" name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_BEN_CHK_LIST %>">                                                    
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="px13">
-                                                    <tr>
-                                                        <td valign="top" width="12%" align="left">
-                                                            <strong>遺屬序：<c:out value="${masterChkFile.seqNo}" /></strong>
-                                                        </td>
-                                                        <td valign="top" width="88%" align="left">
-                                                            <logic:iterate id="chkFileData" name="masterChkFile" property="otherChkDataList">                                                    
-                                                                <c:out value="${chkFileData.issuPayYm}" />：
-                                                                <logic:iterate id="chkFile" indexId="i" name="chkFileData" property="chkFileList">
-                                                                    <span title="<c:out value="${chkFile.chkResult}" />">
-                                                                        <c:out value="${chkFile.chkCodePost}"/>
-                                                                    </span>
-                                                                    <c:if test="${i+1 ne chkFileData.chkFileDataSize}">
-                                                                        <c:out value=",　" />
-                                                                    </c:if>
-                                                                </logic:iterate><br>
-                                                            </logic:iterate>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </logic:iterate>
-                                            <logic:empty name="<%=ConstantKey.SURVIVOR_PAYMENT_REVIEW_BEN_CHK_LIST %>">
-                                                &nbsp;
-                                            </logic:empty>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        --%>
 						<tr>
 							<td colspan="7">
 								&nbsp;

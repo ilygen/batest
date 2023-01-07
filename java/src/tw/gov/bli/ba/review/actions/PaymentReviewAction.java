@@ -14,14 +14,11 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import tw.gov.bli.ba.ConstantKey;
-import tw.gov.bli.ba.domain.Maadmrec;
 import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.ba.framework.helper.CustomMessageHelper;
 import tw.gov.bli.ba.framework.helper.DatabaseMessageHelper;
 import tw.gov.bli.ba.framework.struts.actions.BaseDispatchAction;
 import tw.gov.bli.ba.helper.LoggingHelper;
-import tw.gov.bli.ba.query.cases.PaymentQueryDetailDataCase;
-import tw.gov.bli.ba.query.forms.PaymentQueryForm;
 import tw.gov.bli.ba.review.cases.PaymentReviewCase;
 import tw.gov.bli.ba.review.cases.PaymentReviewExtCase;
 import tw.gov.bli.ba.review.forms.PaymentReviewForm;
@@ -33,14 +30,13 @@ import tw.gov.bli.ba.services.ReviewService;
 import tw.gov.bli.ba.services.RptService;
 import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
-import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
 import tw.gov.bli.common.helper.SpringHelper;
 import tw.gov.bli.common.helper.UserSessionHelper;
 
 /**
  * 審核作業 - 給付審核作業 (BACO0D010A)
- * 
+ *
  * @author Rickychi
  */
 public class PaymentReviewAction extends BaseDispatchAction {
@@ -55,7 +51,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 查詢頁面 (baco0d010a.jsp)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -73,15 +69,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
             List<PaymentReviewCase> dataList = new ArrayList<PaymentReviewCase>();
             String apNo = iform.getApNoStr();// 畫面輸入之受理編號
 
-            // if (("1").equals(iform.getQryCond()) || ("2").equals(iform.getQryCond())) {
-            // 用 受理編號 查詢
-            // if (("1").equals(iform.getQryCond())) {
             dataList = reviewService.selectReviewDataFromBaappbase(apNo);
-            // }
-            // 用 列印日期 + 頁次 查詢
-            // else if (("2").equals(iform.getQryCond())) {
-            // dataList = reviewService.selectReviewDataFromExalist(DateUtility.changeDateType(iform.getRptDate()), iform.getPageNo());
-            // }
 
             if (dataList.size() <= 0) {
                 // 設定查無資料訊息
@@ -92,22 +80,8 @@ public class PaymentReviewAction extends BaseDispatchAction {
             }
             else if (dataList.size() == 1) {
                 PaymentReviewCase caseObj = new PaymentReviewCase();
-                // if (("1").equals(iform.getQryCond())) {
                 caseObj = dataList.get(0);
-                // }
-                // else if (("2").equals(iform.getQryCond())) {
-                // PaymentReviewCase tempCase = dataList.get(0);
-                // List<PaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbase(tempCase.getApNo());
-                // if (caseList.size() != 1) {
-                // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                // log.debug("執行 審核作業 - 給付審核作業 - 查詢頁面 PaymentReviewAction.doQuery() 完成 ... ");
-                // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                // }
-                // else {
-                // caseObj = caseList.get(0);
-                // }
-                // }
+
                 // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                 caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(apNo, caseObj.getIssuYm()));
                 caseObj.setQ2(reviewService.getQ2ForManchkMkRadio(apNo, caseObj.getIssuYm()));
@@ -122,8 +96,12 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
                 // 取得 核定資料
                 List<PaymentReviewExtCase> payList = reviewService.getPayData(caseObj.getApNo(), caseObj.getIssuYm());
+                BigDecimal issueAmtTotal = BigDecimal.ZERO;
+                for (PaymentReviewExtCase paymentReviewExtCase : payList) {
+                    issueAmtTotal = issueAmtTotal.add(paymentReviewExtCase.getIssueAmt());
+                }
+                caseObj.setIssueAmtTotal(issueAmtTotal);
                 // 取得 事故者編審註記資料
-                // List<PaymentReviewExtCase> chkList = reviewService.getPaymentReviewChkList(caseObj.getApNo(), "0000");
                 List<PaymentReviewExtCase> chkList = reviewService.getOldAgePaymentReviewEvtChkList(apNo);
                 // 取得 受款人編審註記資料
                 List<PaymentReviewCase> benChkList = reviewService.getOldAgePaymentReviewBenChkList(apNo);
@@ -174,10 +152,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 log.debug("執行 審核作業 - 給付審核作業 - 查詢頁面 PaymentReviewAction.doQuery() 完成 ... ");
                 return mapping.findForward(ConstantKey.FORWARD_QUERY_SUCCESS);
             }
-            // }
-            // else {
-            // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-            // }
         }
         catch (Exception e) {
             // 設定查詢失敗訊息
@@ -189,7 +163,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 個案審核 (baco0d011a.jsp)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -281,7 +255,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 受款人資料 (baco0d013q.jsp) 修改確認(單筆)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -309,7 +283,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
             for (int j = 0; j < origBeneficiaryDataList.size(); j++) {
                 baappbaseIdList.add((origBeneficiaryDataList.get(j)).getBaappbaseId());
             }
-            
+
             // 取得需記錄異動LOG的欄位資料
             // 為不影響前端頁面顯示, 故須複製一份 Form
             PaymentReviewForm tempForm = new PaymentReviewForm();
@@ -346,23 +320,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 List<PaymentReviewCase> benChkList = reviewService.getOldAgePaymentReviewBenChkList(apNo);
                 // 取得 受款人資料
                 List<PaymentReviewCase> beneficiaryDataList = reviewService.getAllIssuData(caseObj.getApNo());
-                // String showManchkMkMaster = "N";
-                // for (int i = 0; i < beneficiaryDataList.size(); i++) {
-                // PaymentReviewCase obj = beneficiaryDataList.get(i);
-                // if (("Y").equals(obj.getShowManchkMk()) || ("S").equals(obj.getShowManchkMk())) {
-                // showManchkMkMaster = "Y";
-                // }
-                // }
-                // caseObj.setShowManchkMkMaster(showManchkMkMaster);
-
-                // String updateBtnStatus = "N";
-                // if (("N").equals(caseObj.getAcceptMk().toUpperCase())) {
-                // updateBtnStatus = reviewService.checkBtnStatusForPaymentReview(caseObj.getApNo());
-                // }
-                // else {
-                // updateBtnStatus = "Y";
-                // }
-                // caseObj.setUpdateBtnStatus(updateBtnStatus);
 
                 // 取得 更正原因 清單
                 request.getSession().setAttribute(ConstantKey.CHGNOTE_OPTION_LIST, selectOptionService.getChgNoteOptionList());
@@ -371,21 +328,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
                 PaymentReviewForm modifyForm = new PaymentReviewForm();
                 BeanUtility.copyProperties(modifyForm, caseObj);
-
-                // 將 查詢結果 case 存到 Request Scope
-                // CaseSessionHelper.setPaymentReviewCase(caseObj, request);
-                // CaseSessionHelper.setPayDataList(payList, request);
-                // CaseSessionHelper.setPaymentReviewChkList(chkList, request);
-                // CaseSessionHelper.setPaymentReviewBenChkList(benChkList, request);
-                // CaseSessionHelper.setBeneficiaryDataList(beneficiaryDataList, request);
-                // CaseSessionHelper.setPaymentReviewBenNameList(benNameList, request);
-                // FormSessionHelper.setPaymentReviewForm(modifyForm, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk1List(detail1, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk2List(detail2, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk3List(detail3, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk4List(detail4, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk5List(detail5, request);
-                // CaseSessionHelper.setPaymentReviewLetterTypeMk6List(detail6, request);
 
                 // 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
                 FormSessionHelper.removePaymentReviewForm(request);
@@ -424,7 +366,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 受款人資料 (baco0d011q.jsp) 修改確認(多筆)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -450,14 +392,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 PaymentReviewForm qryCondForm = FormSessionHelper.getReviewQueryForm(request);
                 List<PaymentReviewCase> dataList = new ArrayList<PaymentReviewCase>();
 
-                // 用 受理編號 查詢
-                // if (("1").equals(qryCondForm.getQryCond())) {
                 dataList = reviewService.selectReviewDataFromBaappbase(qryCondForm.getApNoStr());
-                // }
-                // 用 列印日期 + 頁次 查詢
-                // else if (("2").equals(qryCondForm.getQryCond())) {
-                // dataList = reviewService.selectReviewDataFromExalist(DateUtility.changeDateType(qryCondForm.getRptDate()), qryCondForm.getPageNo());
-                // }
 
                 if (dataList.size() <= 0) {
                     // 設定查無資料訊息
@@ -468,22 +403,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 }
                 else if (dataList.size() == 1) {
                     PaymentReviewCase caseObj = new PaymentReviewCase();
-                    // if (("1").equals(iform.getQryCond())) {
                     caseObj = dataList.get(0);
-                    // }
-                    // else if (("2").equals(iform.getQryCond())) {
-                    // PaymentReviewCase tempCase = dataList.get(0);
-                    // List<PaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbase(tempCase.getApNo());
-                    // if (caseList.size() != 1) {
-                    // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                    // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                    // log.debug("執行 審核作業 - 給付審核作業 - 查詢頁面 PaymentReviewAction.doQuery() 完成 ... ");
-                    // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                    // }
-                    // else {
-                    // caseObj = caseList.get(0);
-                    // }
-                    // }
 
                     // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                     caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(qryCondForm.getApNoStr(), caseObj.getIssuYm()));
@@ -506,23 +426,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                     List<PaymentReviewCase> benChkList = reviewService.getOldAgePaymentReviewBenChkList(caseObj.getApNo());
                     // 取得 受款人資料
                     List<PaymentReviewCase> beneficiaryDataList = reviewService.getAllIssuData(caseObj.getApNo());
-                    // String showManchkMkMaster = "N";
-                    // for (int i = 0; i < beneficiaryDataList.size(); i++) {
-                    // PaymentReviewCase obj = beneficiaryDataList.get(i);
-                    // if (("Y").equals(obj.getShowManchkMk()) || ("S").equals(obj.getShowManchkMk())) {
-                    // showManchkMkMaster = "Y";
-                    // }
-                    // }
-                    // caseObj.setShowManchkMkMaster(showManchkMkMaster);
-                    //
-                    // String updateBtnStatus = "N";
-                    // if (("N").equals(caseObj.getAcceptMk().toUpperCase())) {
-                    // updateBtnStatus = reviewService.checkBtnStatusForPaymentReview(caseObj.getApNo());
-                    // }
-                    // else {
-                    // updateBtnStatus = "Y";
-                    // }
-                    // caseObj.setUpdateBtnStatus(updateBtnStatus);
 
                     // 取得 更正原因 清單
                     request.getSession().setAttribute(ConstantKey.CHGNOTE_OPTION_LIST, selectOptionService.getChgNoteOptionList());
@@ -576,7 +479,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 saveMessages(session, msgs);
 
                 return mapping.findForward(ConstantKey.FORWARD_UPDATE_FAIL);
-
             }
         }
         catch (Exception e) {
@@ -589,7 +491,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 返回清單
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -608,15 +510,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
             PaymentReviewForm qryCondForm = FormSessionHelper.getReviewQueryForm(request);
             String apNo = qryCondForm.getApNoStr();// 畫面輸入之受理編號
 
-            // if (("1").equals(qryCondForm.getQryCond()) || ("2").equals(qryCondForm.getQryCond())) {
-            // 用 受理編號 查詢
-            // if (("1").equals(qryCondForm.getQryCond())) {
             dataList = reviewService.selectReviewDataFromBaappbase(apNo);
-            // }
-            // 用 列印日期 + 頁次 查詢
-            // else if (("2").equals(qryCondForm.getQryCond())) {
-            // dataList = reviewService.selectReviewDataFromExalist(DateUtility.changeDateType(qryCondForm.getRptDate()), qryCondForm.getPageNo());
-            // }
 
             if (dataList.size() <= 0) {
                 // 設定查無資料訊息
@@ -627,22 +521,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
             }
             else if (dataList.size() == 1) {
                 PaymentReviewCase caseObj = new PaymentReviewCase();
-                // if (("1").equals(iform.getQryCond())) {
                 caseObj = dataList.get(0);
-                // }
-                // else if (("2").equals(iform.getQryCond())) {
-                // PaymentReviewCase tempCase = dataList.get(0);
-                // List<PaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbase(tempCase.getApNo());
-                // if (caseList.size() != 1) {
-                // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                // log.debug("執行 審核作業 - 給付審核作業 - 查詢頁面 PaymentReviewAction.doQuery() 完成 ... ");
-                // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                // }
-                // else {
-                // caseObj = caseList.get(0);
-                // }
-                // }
 
                 // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                 caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(apNo, caseObj.getIssuYm()));
@@ -659,7 +538,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 // 取得 編審給付資料
                 List<PaymentReviewExtCase> payList = reviewService.getPayData(caseObj.getApNo(), caseObj.getIssuYm());
                 // 取得 事故者編審註記資料
-                // List<PaymentReviewExtCase> chkList = reviewService.getPaymentReviewChkList(caseObj.getApNo(), "0000");
                 List<PaymentReviewExtCase> chkList = reviewService.getOldAgePaymentReviewEvtChkList(caseObj.getApNo());
                 // 取得 受款人編審註記資料
                 List<PaymentReviewCase> benChkList = reviewService.getOldAgePaymentReviewBenChkList(caseObj.getApNo());
@@ -705,10 +583,6 @@ public class PaymentReviewAction extends BaseDispatchAction {
                 log.debug("執行 審核作業 - 給付審核作業 - 查詢頁面 PaymentReviewAction.doQuery() 完成 ... ");
                 return mapping.findForward(ConstantKey.FORWARD_QUERY_SUCCESS);
             }
-            // }
-            // else {
-            // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-            // }
         }
         catch (Exception e) {
             // 設定查詢失敗訊息
@@ -720,7 +594,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 給付審核作業 - 返回
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -741,7 +615,7 @@ public class PaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 查詢作業 - 給付查詢作業 - 檢視受理審核清單
-     * 
+     *
      * @param mapping
      * @param form
      * @param request

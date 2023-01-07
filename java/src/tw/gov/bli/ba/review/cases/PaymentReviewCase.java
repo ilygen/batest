@@ -13,7 +13,7 @@ import tw.gov.bli.ba.util.PresentationUtility;
 
 /**
  * Case for 給付審核作業
- * 
+ *
  * @author Rickychi
  */
 public class PaymentReviewCase implements Serializable {
@@ -205,20 +205,7 @@ public class PaymentReviewCase implements Serializable {
     private String reliefKind; // 救濟種類
     private String reliefStat;// 行政救濟辦理情形
 
-    // private String isShowCond1;// 審核管制條件1 N:不顯示; Y:顯示「最後單位不得為空」
-    // private String isShowCond2;// 審核管制條件2 N:不顯示; Y:顯示「實發年資有誤」
-    // private String isShowCond3;// 審核管制條件3 N:不顯示; Y:顯示「單位墊付金額不得為零」
-    // private String isShowCond4;// 審核管制條件4 N:不顯示; Y:顯示「實際補償金額不得為零」
-    // private String isShowCond5;// 審核管制條件5 N:不顯示; Y:顯示「」
-    // private String isShowCond6;// 審核管制條件6 N:不顯示; Y:顯示「受款人可領金額有誤」
-    // private String isShowCond7;// 審核管制條件7 N:不顯示; Y:顯示「通訊地址欄位不得為空白」
-    // private String isShowCond8;// 審核管制條件8 N:不顯示; Y:顯示「編審註記待處理」
-    // private String isShowCond9;// 審核管制條件9 N:不顯示; Y:顯示「行政支援記錄未銷案」
-    // private String pageCondLittleMk;// 頁面審核管制條件小黃標 TITLE內容
-    // private String showManchkMk;// 核定資料 人工審核結果Radio
-    // private String manchkMkValue;// 核定資料 人工審核結果Radio值
-    // private Integer benDataQ1;// 受款人資料顯示判斷條件1
-    // private Integer benDataQ2;// 受款人資料顯示判斷條件2
+    private BigDecimal issueAmtTotal;// 核定/物價調整金額累加
 
     private List<Baapplog> baapplogList;// 更正記錄檔
 
@@ -640,86 +627,6 @@ public class PaymentReviewCase implements Serializable {
             return "";
         }
     }
-
-    // public String getIsShowCondStr() {
-    // String isShowCondStr = "";
-    //
-    // if (("Y").equals(getIsShowCond1())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_1;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_1;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond2())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_2;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_2;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond3())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_3;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_3;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond4())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_4;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_4;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond5())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_5;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_5;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond6())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_6;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_6;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond7())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_7;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_7;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond8())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_8;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_8;
-    // }
-    // }
-    // if (("Y").equals(getIsShowCond9())) {
-    // if (("").equals(isShowCondStr)) {
-    // isShowCondStr += ConstantKey.PAYMENT_REVIEW_CONDITION_9;
-    // }
-    // else {
-    // isShowCondStr += "／" + ConstantKey.PAYMENT_REVIEW_CONDITION_9;
-    // }
-    // }
-    // return isShowCondStr;
-    // }
-
-    // ]
 
     public BigDecimal getBaappbaseId() {
         return baappbaseId;
@@ -2129,114 +2036,11 @@ public class PaymentReviewCase implements Serializable {
         this.otherChkDataList = otherChkDataList;
     }
 
-    // public String getIsShowCond1() {
-    // return isShowCond1;
-    // }
-    //
-    // public void setIsShowCond1(String isShowCond1) {
-    // this.isShowCond1 = isShowCond1;
-    // }
-    //
-    // public String getIsShowCond2() {
-    // return isShowCond2;
-    // }
-    //
-    // public void setIsShowCond2(String isShowCond2) {
-    // this.isShowCond2 = isShowCond2;
-    // }
-    //
-    // public String getIsShowCond3() {
-    // return isShowCond3;
-    // }
-    //
-    // public void setIsShowCond3(String isShowCond3) {
-    // this.isShowCond3 = isShowCond3;
-    // }
-    //
-    // public String getIsShowCond4() {
-    // return isShowCond4;
-    // }
-    //
-    // public void setIsShowCond4(String isShowCond4) {
-    // this.isShowCond4 = isShowCond4;
-    // }
-    //
-    // public String getIsShowCond5() {
-    // return isShowCond5;
-    // }
-    //
-    // public void setIsShowCond5(String isShowCond5) {
-    // this.isShowCond5 = isShowCond5;
-    // }
-    //
-    // public String getIsShowCond6() {
-    // return isShowCond6;
-    // }
-    //
-    // public void setIsShowCond6(String isShowCond6) {
-    // this.isShowCond6 = isShowCond6;
-    // }
-    //
-    // public String getIsShowCond7() {
-    // return isShowCond7;
-    // }
-    //
-    // public void setIsShowCond7(String isShowCond7) {
-    // this.isShowCond7 = isShowCond7;
-    // }
-    //
-    // public String getPageCondLittleMk() {
-    // return pageCondLittleMk;
-    // }
-    //
-    // public void setPageCondLittleMk(String pageCondLittleMk) {
-    // this.pageCondLittleMk = pageCondLittleMk;
-    // }
-    // public String getIsShowCond8() {
-    // return isShowCond8;
-    // }
-    //
-    // public void setIsShowCond8(String isShowCond8) {
-    // this.isShowCond8 = isShowCond8;
-    // }
-    //
-    // public String getIsShowCond9() {
-    // return isShowCond9;
-    // }
-    //
-    // public void setIsShowCond9(String isShowCond9) {
-    // this.isShowCond9 = isShowCond9;
-    // }
-    //
-    // public Integer getBenDataQ1() {
-    // return benDataQ1;
-    // }
-    //
-    // public void setBenDataQ1(Integer benDataQ1) {
-    // this.benDataQ1 = benDataQ1;
-    // }
-    //
-    // public Integer getBenDataQ2() {
-    // return benDataQ2;
-    // }
-    //
-    // public void setBenDataQ2(Integer benDataQ2) {
-    // this.benDataQ2 = benDataQ2;
-    // }
-    //
-    // public String getShowManchkMk() {
-    // return showManchkMk;
-    // }
-    //
-    // public void setShowManchkMk(String showManchkMk) {
-    // this.showManchkMk = showManchkMk;
-    // }
-    //
-    // public String getManchkMkValue() {
-    // return manchkMkValue;
-    // }
-    //
-    // public void setManchkMkValue(String manchkMkValue) {
-    // this.manchkMkValue = manchkMkValue;
-    // }
+    public BigDecimal getIssueAmtTotal() {
+        return issueAmtTotal;
+    }
+
+    public void setIssueAmtTotal(BigDecimal issueAmtTotal) {
+        this.issueAmtTotal = issueAmtTotal;
+    }
 }
