@@ -6,28 +6,31 @@
 
     <resultMap id="NPCODEResult" class="Npcode">
         <result column="CODENO"      property="codeNo"      jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
-        <result column="CODENAME"    property="codeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />        
-    </resultMap>    
-    
+        <result column="CODENAME"    property="codeName"    jdbcType="VARCHAR"   javaType="java.lang.String"  nullValue="" />
+    </resultMap>
+
     <select id="selectNpCodeOptionBy" resultMap="NPCODEResult">
         SELECT CODENO, CODENAME
           FROM NPCODE
          WHERE CODEKIND = 'SCHOOLCODE'
+         <![CDATA[
+          AND (SCODEKIND is null or SCODEKIND != 'D')
+         ]]>
          ORDER BY CODENO
     </select>
-    
+
     <select id="selectNpCodeNameBy" resultMap="NPCODEResult">
         SELECT CODENO, CODENAME
           FROM NPCODE
          WHERE CODEKIND = 'SCHOOLCODE'
            AND CODENO =  #schoolCode:VARCHAR#
     </select>
-    
+
     <select id="selectNpSchoolNameBy" resultMap="NPCODEResult">
         SELECT CODENO, CODENAME
           FROM NPCODE
          WHERE CODEKIND = 'SCHOOLCODE'
            AND CODENAME LIKE '%' || #schoolName:VARCHAR# || '%'
-         ORDER BY CODENO      
-    </select>    
+         ORDER BY CODENO
+    </select>
 </sqlMap>
