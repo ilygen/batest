@@ -993,7 +993,9 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/06  Angela Wu    Created this procedure.
-
+        1.1   2023/01/03  William      依BABAWEB-59修改，
+                                       共同具領案件的媒體檔應合併為1筆,
+                                       當其中一筆為ISSUTYP=2,一筆為ISSUTYP=5, 則產出2筆媒體
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
 
@@ -1079,7 +1081,6 @@ is
                           ,tt2.ISSUYM
                           ,tt2.PAYYM
                           ,Sum(tt2.PAYAMT) as PAYAMT
-                          ,tt2.ISSUTYP
                           ,tt2.PAYSEQNO
                       from BAPAY tt2
                      where tt2.APNO like (v_i_paycode||'%')
@@ -1087,7 +1088,7 @@ is
                        and tt2.PAYDATE = v_i_paydate
                        and deCode(tt2.PAYTYP,'1','1','2','1','3',(deCode(tt2.BENEVTREL,'Z',' ','3')),tt2.PAYTYP) = v_paytyp
                        and tt2.payseqno = v_i_payseqno
-                     group by tt2.APNO,tt2.ACCSEQNO,tt2.PAYKIND,tt2.PAYTYP,tt2.ISSUYM,tt2.PAYYM,tt2.ISSUTYP,tt2.PAYSEQNO
+                     group by tt2.APNO,tt2.ACCSEQNO,tt2.PAYKIND,tt2.PAYTYP,tt2.ISSUYM,tt2.PAYYM,tt2.PAYSEQNO
                    ) t2
                where t1.APNO = t2.APNO
                  and t1.APNO like (v_i_paycode||'%')
