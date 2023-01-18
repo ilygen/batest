@@ -92,7 +92,8 @@ is
         1.3   2018/01/31  ChungYu      修改遺屬年金事故者勾稽到，事故者於老年及失能年金另案扣減時，
                                        由遺屬年金扣減時，寫入已收明細檔(BAACPDTL)需分攤至每位遺屬上，
                                        並依照扣減記錄檔(BACUTREC)實際沖抵的金額寫入。
-        1.4   2022/10/26  William      bcbcweb-46 sp_BA_MonthApprove 屬月核應收已收金額條件修改
+        1.4   2022/10/26  William      babaweb-46 sp_BA_MonthApprove 遺屬月核應收已收金額條件修改
+        1.5   2023/01/18  William      babaweb-63 sp_BA_MonthApprove 調整遺屬月核應收已收金額條件修改
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -126,6 +127,9 @@ is
         v_DisIssuym          varChar2(6);       -- 2015/11/25 Add By ChungYu
         v_DisPayym           varChar2(6);       -- 2015/11/25 Add By ChungYu
 
+        v_recamt             Number;
+        v_acp_recamt         Number;
+        
         --查詢月核付後,待立帳及應收回的受理案件資料
         Cursor c_dataCur is
             select t1.BENIDS
@@ -236,6 +240,7 @@ is
                   ,t2.RECSEQ
                   ,t2.RECAMT
                   ,t2.RECREM
+                  ,t2.EVTPAYOTHERAAMT
                   ,t2.DISAMT
                   ,t2.APNO
                   ,t2.SEQNO
@@ -285,9 +290,9 @@ is
                           ,t21.RECSEQ
                           ,t21.RECAMT
                           ,t21.RECREM
-                          --,t22.EVTPAYOTHERAAMT AS "DISAMT"     -- 2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
-                          -- ,t21.DISAMT                       -- 2018/01/31 Add By ChugnYu
-                          ,(case when t22.EVTPAYOTHERAAMT>t21.DISAMT then t21.DISAMT else t22.EVTPAYOTHERAAMT end) DISAMT --20221025 BA的案件未收沖抵,bacutrec為S事故者撥付案與未收案的對應切割資料,BASURVAMOR有紀錄到遺屬但沒有未收的對應,已收資料應紀錄遺屬與未收的對應
+                          ,t22.EVTPAYOTHERAAMT     -- 2018/01/31 Mark By ChugnYu 因會有部分收回的情況發生，所以要以實際沖抵的金額寫入
+                          ,t21.DISAMT                       -- 2018/01/31 Add By ChugnYu
+                          --,(case when t22.EVTPAYOTHERAAMT>t21.DISAMT then t21.DISAMT else t22.EVTPAYOTHERAAMT end) DISAMT --20221025 BA的案件未收沖抵,bacutrec為S事故者撥付案與未收案的對應切割資料,BASURVAMOR有紀錄到遺屬但沒有未收的對應,已收資料應紀錄遺屬與未收的對應
                           ,t21.BENIDS
                           ,t21.APNO
                           ,t22.SEQNO
@@ -613,8 +618,23 @@ is
                                            ,t.MDCHKMK = 'C'
                                            ,t.TXDATE = to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                       where t.BAUNACPDTLID = v_baunacpdtlid;
+                   
+                   --已收沖抵至各遺屬,總額不得超過扣減檔的收回金額20230117                   
+                   if nvl(v_dataSurCur.DISAMT,0) > nvl(v_dataSurCur.EVTPAYOTHERAAMT,0) then
+                      v_recamt :=  v_dataSurCur.EVTPAYOTHERAAMT ;
+                   else
+                      v_recamt :=  v_dataSurCur.DISAMT ;
+                   end if;                   
+                   select nvl(sum(recamt),0) into v_acp_recamt
+                   from ba.BAACPDTL 
+                   where baunacpdtlid=v_baunacpdtlid
+                   and issuym=v_dataSurCur.ISSUYM
+                   and payym=v_dataSurCur.PAYYM;                   
+                   if (v_dataSurCur.DISAMT - v_acp_recamt) < v_recamt then
+                     v_recamt := (v_dataSurCur.DISAMT - v_acp_recamt);
+                   end if;                                   
 
-                   if nvl(trim(v_dataSurCur.DISAMT),0)>0 then
+                   if v_recamt>0 then
                        v_g_acpCount := v_g_acpCount + 1;
 
                        --新增應收已收的資料
@@ -646,7 +666,7 @@ is
                                              ,v_dataSurCur.BENIDS
                                              ,v_dataSurCur.BENIDNNO
                                              ,deCode(v_dataSurCur.TYPEMK,'1','F','2','D','3','E','4','F','5','C',' ')
-                                             ,v_dataSurCur.DISAMT
+                                             ,v_recamt
                                              ,v_dataSurCur.DISPAYKIND
                                              ,v_dataSurCur.APNO
                                              ,v_dataSurCur.SEQNO
