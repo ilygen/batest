@@ -149,7 +149,7 @@ public class BaReportReplaceUtility {
 				baappbase.getIssuYm());
 		this.chkResult = chkResult;
 		this.chkResultA137 = chkResultA137;
-		
+
 		BaappexpandDao baappexpandDao = (BaappexpandDao) SpringHelper.getBeanById("baappexpandDao");
 		this.baappexpand = baappexpandDao.getDisabledReviewRpt01AnnuityPayList(baappbase.getApNo());
 
@@ -495,7 +495,7 @@ public class BaReportReplaceUtility {
 
 	/**
 	 * 將傳入的字串替換
-	 * 
+	 *
 	 * @param str 字串
 	 * @return 替換後字串
 	 */
@@ -511,7 +511,7 @@ public class BaReportReplaceUtility {
 
 	/**
 	 * 將傳入的List字串替換
-	 * 
+	 *
 	 * @param List字串
 	 * @return 替換後List字串
 	 */
@@ -853,7 +853,7 @@ public class BaReportReplaceUtility {
 						}
 						*/
 						if (StringUtils.isNotBlank(badaprApItem8.getAppDate()) && StringUtils.isNotBlank(badaprApItem8.getEvtDieDate())) {
-							List<BigDecimal> cpiRateList = 
+							List<BigDecimal> cpiRateList =
 									bacpirecDao.selectCpiRateByAppDateAndEvtDieDate(badaprApItem8.getAppDate(), badaprApItem8.getEvtDieDate());
 							for (BigDecimal cpiRate : cpiRateList) {
 								issueAmt = issueAmt.multiply(cpiRate).setScale(0, BigDecimal.ROUND_HALF_UP);
@@ -1371,7 +1371,7 @@ public class BaReportReplaceUtility {
 
 			} else {
 				// 如不是傳入核付日期 則使用系統年月判斷是否組改
-				
+
 				String aplpayDate = (badaprA133 != null ? badaprA133.getAplpayDate() : null);
 				if ("1".equalsIgnoreCase(baappbase.getPayTyp())) {
 					if (RptTitleUtility.isOrgChg(badaprA133.getIssuYm())) {
@@ -2178,18 +2178,17 @@ public class BaReportReplaceUtility {
 	}
 
 	// 遺屬每月補在學證明通知函中的替換變數(A124_每月通知函補送在學證明年度)顯示
-	// a.核定年月為8、9、10、11、12月者：顯示系統年度。b.核定年月為1、2、3、4、5、6、7月者：顯示系統年-1年之年度。
+	// a.核定年月為8、9、10、11、12月者：顯示當次月核定之核定年月之年度。b.核定年月為1、2、3、4、5、6、7月者：顯示當次月核定之核定年月-1年之年度。
 	public void A124() {
 		String MYear = "";
-
 		if (StringUtils.isNotBlank(baappbase.getIssuYm())) {
 			String MMonth = baappbase.getIssuYm().substring(4, 6);
 			if (StringUtils.equals(MMonth, "01") || StringUtils.equals(MMonth, "02") || StringUtils.equals(MMonth, "03")
 					|| StringUtils.equals(MMonth, "04") || StringUtils.equals(MMonth, "05")
 					|| StringUtils.equals(MMonth, "06") || StringUtils.equals(MMonth, "07")) {
-				MYear = DateUtility.calYear(DateUtility.getNowChineseDate(), -1).substring(0, 3);
+				MYear = DateUtility.calYear(DateUtility.changeWestYearMonthType(baappbase.getIssuYm()) + "01", -1).substring(0, 3);
 			} else {
-				MYear = DateUtility.getNowChineseDate().substring(0, 3);
+				MYear = DateUtility.changeWestYearMonthType(baappbase.getIssuYm()).substring(0, 3);
 			}
 		}
 
@@ -2519,11 +2518,11 @@ public class BaReportReplaceUtility {
 		/**
 		 * int iUnqualifiedPeople = 0; int iQualifiedPeople = 0; int
 		 * iUnqualifiedDeadPeople = 0; int iTotalPeople = 0;
-		 * 
+		 *
 		 * if (baappbasePrintList != null) {
-		 * 
+		 *
 		 * if (baappbasePrintList.size() > 0) {
-		 * 
+		 *
 		 * for (int i = 0; i < baappbasePrintList.size(); i++) { if
 		 * (baappbasePrintList.get(i).getCloseCause().equals("") &&
 		 * baappbasePrintList.get(i).getUnqualifiedCause().equals("")) {
@@ -2533,10 +2532,10 @@ public class BaReportReplaceUtility {
 		 * (!baappbasePrintList.get(i).getUnqualifiedCause().equals("") &&
 		 * !baappbasePrintList.get(i).getBenDieDate().equals("")){
 		 * iUnqualifiedDeadPeople = iUnqualifiedDeadPeople + 1; } }
-		 * 
+		 *
 		 * iTotalPeople = iQualifiedPeople + iUnqualifiedPeople -
 		 * iUnqualifiedDeadPeople;
-		 * 
+		 *
 		 * replaceValue.put(ConstantKey.A143, String.valueOf(iTotalPeople)); } else {
 		 * replaceValue.put(ConstantKey.A143, "0"); } } else {
 		 * replaceValue.put(ConstantKey.A143, "0"); }
@@ -2911,7 +2910,7 @@ public class BaReportReplaceUtility {
 		}
 
 		if (baappbasePrintListA150 != null && baappbasePrintListA150.size() > 0) {
-			
+
 			int firstPersonDate = baappbasePrintListA150.size();
 
 			A150String_1 = nameConcatForSchool2(baappbasePrintListA150, "01", "G", minPayYm);
@@ -2920,7 +2919,7 @@ public class BaReportReplaceUtility {
 //			if (StringUtils.isNotBlank(A150Map_1.get("str"))) {
 //				A150String_1 = A150Map_1.get("str") + "已於 " + A150Map_1.get("statusDate") + "畢業未在學且非無謀生能力；";
 //			}
-				
+
 			A150String_2 = nameConcat(baappbasePrintListA150, "02");
 			if (StringUtils.isNotBlank(A150String_2)) {
 				A150String_2 = A150String_2 + "年齡逾20歲，工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
@@ -2967,7 +2966,7 @@ public class BaReportReplaceUtility {
 					}
 				}
 			}
-				
+
 			if (StringUtils.isNotBlank(A150String_9)) {
 				A150String_9 = nameConcatFor09And10(A150String_9);
 				if (digamyDate.length() == 7){
@@ -2975,7 +2974,7 @@ public class BaReportReplaceUtility {
 				}
 				cnt = 0;
 			}
-			
+
 			firstPersonDate = baappbasePrintListA150.size();
 			for(int i = 0; i < baappbasePrintListA150.size(); i++) {
 				if (baappbasePrintListA150.get(i).getUnqualifiedCause().equals("10") && !baappbasePrintListA150.get(i).getBenDieDate().equals("")) {
@@ -2987,7 +2986,7 @@ public class BaReportReplaceUtility {
 					}
 				}
 			}
-				
+
 			if (StringUtils.isNotBlank(A150String_10)) {
 				A150String_10 = nameConcatFor09And10(A150String_10);
 				A150String_10 = A150String_10 + "已於" + benDieDate.substring(0, 3) + " 年 " + benDieDate.substring(3, 5) + " 月" + benDieDate.substring(5, 7) + " 日" + "死亡；";
@@ -3040,7 +3039,7 @@ public class BaReportReplaceUtility {
 				if (iLocation > 0){
 					A150String = A150String.substring(0, iLocation);
 				}
-				
+
 			}
 
 			replaceValue.put(ConstantKey.A150, A150String);
@@ -3129,12 +3128,12 @@ public class BaReportReplaceUtility {
 	public void A155() {
 		/**
 		 * // 顯示當次月核定之核定年月+1個月之年月及該月最後一日：例如，當次月核定為102年11月，則顯示103年1月31日。
-		 * 
+		 *
 		 * if (baappbase != null) {
-		 * 
+		 *
 		 * String afterIssuYm = DateUtility.calMonth(baappbase.getIssuYm() + "01", 1);
 		 * int iLastDay = DateUtility.lastDay(afterIssuYm);
-		 * 
+		 *
 		 * replaceValue.put(ConstantKey.A155,
 		 * DateUtility.formatChineseYearMonthString(DateUtility.changeWestYearMonthType(afterIssuYm.substring(0,
 		 * 6)), true) + String.valueOf(iLastDay) + "日"); } else {
@@ -3688,7 +3687,7 @@ public class BaReportReplaceUtility {
 			replaceValue.put(ConstantKey.K001, "");
 		}
 	}
-	
+
 	public String nameConcat(List<Baappbase> baappbasePrintListA150, String unqualifiedCause) {
 		int cnt = 0;
 		String str = "";
@@ -3698,11 +3697,11 @@ public class BaReportReplaceUtility {
 				cnt++;
 			}
 		}
-		
+
 		if (StringUtils.isNotBlank(str)) {
 			String array[] = str.split("，");
 			str = "";
-			
+
 			for(int i = 0; i < array.length; i++) {
 				if(i+1 < array.length -1) {
 					str = str + array[i] + "、";
@@ -3713,7 +3712,7 @@ public class BaReportReplaceUtility {
 				}
 			}
 		}
-		
+
 		return str;
 	}
 
@@ -3798,7 +3797,7 @@ public class BaReportReplaceUtility {
 		String str = "";
 		HashMap<String, String> map = new HashMap<String, String>();
 		BaappbaseDao baappbaseDao = (BaappbaseDao) SpringHelper.getBeanById("baappbaseDao");
-		
+
 		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
 			statusDate_S = baappbaseDao.selectMaxDateFromNbschool(baappbasePrintListA150.get(i).getBenIdnNo());
 			nbSchoolData = baappbaseDao.selectMaxDateFromNbschool2(baappbasePrintListA150.get(i).getBenIdnNo(), statusDate_S);
@@ -3823,7 +3822,7 @@ public class BaReportReplaceUtility {
 				statusDate = replaceValue.get(ConstantKey.A148);
 			}
 		}
-		
+
 		if (StringUtils.isNotBlank(str)) {
 			String array[] = str.split("，");
 			str = "";
@@ -3839,10 +3838,10 @@ public class BaReportReplaceUtility {
 			map.put("str", str);
 			map.put("statusDate", statusDate);
 		}
-		
+
 		return map;
 	}
-	
+
 	public String nameConcatFor09And10(String str) {
 		String array[] = str.split("，");
 		str = "";
@@ -3857,5 +3856,5 @@ public class BaReportReplaceUtility {
 		}
 		return str;
 	}
-	
+
 }
