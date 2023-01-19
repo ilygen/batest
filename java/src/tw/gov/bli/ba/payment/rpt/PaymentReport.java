@@ -28,7 +28,7 @@ import tw.gov.bli.common.util.ExceptionUtil;
 
 /**
  * 保險溢領給付收回繳款單
- * 
+ *
  * @author Zehua Chen
  */
 
@@ -51,7 +51,7 @@ public class PaymentReport extends ReportBase {
 
     /**
      * 加入空白行
-     * 
+     *
      * @param table
      * @param rows 行數
      * @throws Exception
@@ -64,7 +64,7 @@ public class PaymentReport extends ReportBase {
 
     /**
      * 刪除行
-     * 
+     *
      * @param table
      * @param rows 行數
      * @throws Exception
@@ -77,7 +77,7 @@ public class PaymentReport extends ReportBase {
 
     /**
      * 建立表頭
-     * 
+     *
      * @param payListSize 事故者 給付資料 筆數
      * @param attached 是否為附表
      * @return
@@ -192,7 +192,9 @@ public class PaymentReport extends ReportBase {
                     mapSend.put("nowStage2", (i + 1) + "/" + (caseList.size()));
                     mapSend.put("pageNum", (i + 1) + "/" + (caseList.size()));
                     if (StringUtils.equals(queryForm.getChkObj(), "1") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
-                        mapSend.put("paymentDateLine1", "文到30日內繳納");
+                        mapSend.put("paymentDateLine1", "文到之翌日起30日內繳納");
+                    }else if(StringUtils.equals(queryForm.getChkObj(), "3") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
+                        mapSend.put("paymentDateLine1", "文到之翌日起15日內繳納");
                     }
                     else {
                         mapSend.put("paymentDateLine1", DateUtility.formatChineseDateString(caseData.getPaymentDateLine(), true));
@@ -320,13 +322,14 @@ public class PaymentReport extends ReportBase {
                     mapSend.put("applyName2", appName);
                     mapSend.put("nowStage1", (i + 1) + "/" + (caseList.size()));
                     if (StringUtils.equals(queryForm.getChkObj(), "1") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
-                        mapSend.put("paymentDateLine2", "文到30日內繳納");
+                        mapSend.put("paymentDateLine2", "文到之翌日起30日內繳納");
+                    }else if(StringUtils.equals(queryForm.getChkObj(), "3") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
+                        mapSend.put("paymentDateLine2", "文到之翌日起15日內繳納");
                     }
                     else {
                         mapSend.put("paymentDateLine2", DateUtility.formatChineseDateString(caseData.getPaymentDateLine(), true));
                     }
                     mapSend.put("stagePayAmt2", formatBigDecimalToInteger(caseData.getRePayAmt().add(caseData.getExecAmt().add(caseData.getPayInterest()))));
-                    mapSend.put("twCode2", firstTwCode + "   " + secondTwCode + "   " + thirdTwCode);
 
                     mapSend.put("barCode1", firstTwCode);
                     mapSend.put("barCode2", secondTwCode);
@@ -619,7 +622,9 @@ public class PaymentReport extends ReportBase {
                 mapSend.put("nowStage2", (i + 1) + "/" + (caseList.size()));
                 mapSend.put("pageNum", (i + 1) + "/" + (caseList.size()));
                 if (StringUtils.equals(queryForm.getChkObj(), "1") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
-                    mapSend.put("paymentDateLine1", "文到30日內繳納");
+                    mapSend.put("paymentDateLine1", "文到之翌日起30日內繳納");
+                }else if(StringUtils.equals(queryForm.getChkObj(), "3") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
+                    mapSend.put("paymentDateLine1", "文到之翌日起15日內繳納");
                 }
                 else {
                     mapSend.put("paymentDateLine1", DateUtility.formatChineseDateString(caseData.getPaymentDateLine(), true));
@@ -747,13 +752,14 @@ public class PaymentReport extends ReportBase {
                 mapSend.put("applyName2", appName);
                 mapSend.put("nowStage1", (i + 1) + "/" + (caseList.size()));
                 if (StringUtils.equals(queryForm.getChkObj(), "1") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
-                    mapSend.put("paymentDateLine2", "文到30日內繳納");
+                    mapSend.put("paymentDateLine2", "文到之翌日起30日內繳納");
+                }else if(StringUtils.equals(queryForm.getChkObj(), "3") && StringUtils.isBlank(caseData.getPaymentDateLine())) {
+                    mapSend.put("paymentDateLine2", "文到之翌日起15日內繳納");
                 }
                 else {
                     mapSend.put("paymentDateLine2", DateUtility.formatChineseDateString(caseData.getPaymentDateLine(), true));
                 }
                 mapSend.put("stagePayAmt2", formatBigDecimalToInteger(caseData.getRePayAmt().add(caseData.getExecAmt().add(caseData.getPayInterest()))));
-                mapSend.put("twCode2", firstTwCode + "   " + secondTwCode + "   " + thirdTwCode);
 
                 mapSend.put("barCode1", firstTwCode);
                 mapSend.put("barCode2", secondTwCode);
