@@ -13,7 +13,7 @@ import tw.gov.bli.ba.util.PresentationUtility;
 
 /**
  * Case for 遺屬年金給付審核作業
- * 
+ *
  * @author Rickychi
  */
 public class SurvivorPaymentReviewCase implements Serializable {
@@ -137,9 +137,7 @@ public class SurvivorPaymentReviewCase implements Serializable {
     private String oldAplDpt; // 申請代算單位
     private String maxPayYm; // 給付年月(迄)
     private String minPayYm; // 給付年月(起)
-    // private BigDecimal aplpayAmt; // 實付總額
     private BigDecimal otherAmt; // 扣減金額
-    // private BigDecimal befIssueAmt; // 核定總額
     private String veriSeq; // 版次
     private String mchkTyp; // 月核案件類別
     private BigDecimal nitrmY; // 勞保投保(年-年金制)
@@ -152,7 +150,6 @@ public class SurvivorPaymentReviewCase implements Serializable {
     private BigDecimal noldtM; // 老年年資(月)
     private BigDecimal valSeniY; // 國保已繳年資(年)
     private BigDecimal valSeniM; // 國保已繳年資(月)
-    // private BigDecimal insAvgAmt; // 平均薪資
     private String oldAb; // 第一式/第二式
     private BigDecimal oldAmt; // 老年-第一式式金額/第二式式金額(擇領)
     private BigDecimal oldRate; // 加計比率(加發眷屬補助比率)
@@ -293,6 +290,7 @@ public class SurvivorPaymentReviewCase implements Serializable {
     private String hpSnam;// 醫院簡稱
     private String judgeDate;// 判決日期
     private String famAppMk;// 符合第63條之1第3項註記
+    private BigDecimal issueAmtTotal;// 核定/物價調整金額累加
 
     // ]
 
@@ -2978,4 +2976,11 @@ public class SurvivorPaymentReviewCase implements Serializable {
         this.supAmt = supAmt;
     }
 
+    public BigDecimal getIssueAmtTotal() {
+        return issueAmtTotal;
+    }
+
+    public void setIssueAmtTotal(BigDecimal issueAmtTotal) {
+        this.issueAmtTotal = issueAmtTotal;
+    }
 }

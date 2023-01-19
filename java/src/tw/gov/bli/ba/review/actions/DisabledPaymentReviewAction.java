@@ -25,6 +25,7 @@ import tw.gov.bli.ba.helper.LoggingHelper;
 import tw.gov.bli.ba.review.cases.DisabledPaymentReviewCase;
 import tw.gov.bli.ba.review.cases.DisabledPaymentReviewExtCase;
 import tw.gov.bli.ba.review.cases.PaymentReviewCase;
+import tw.gov.bli.ba.review.cases.PaymentReviewExtCase;
 import tw.gov.bli.ba.review.forms.DisabledPaymentReviewForm;
 import tw.gov.bli.ba.review.forms.PaymentReviewForm;
 import tw.gov.bli.ba.review.helper.CaseSessionHelper;
@@ -42,7 +43,7 @@ import tw.gov.bli.common.helper.UserSessionHelper;
 
 /**
  * 審核作業 - 失能年金給付審核作業 (BACO0D110A)
- * 
+ *
  * @author Rickychi
  */
 public class DisabledPaymentReviewAction extends BaseDispatchAction {
@@ -57,7 +58,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 查詢頁面 (baco0d010a.jsp)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -66,7 +67,6 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
      */
     public ActionForward doQuery(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
         log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 開始 ... ");
-
         HttpSession session = request.getSession();
         UserBean userData = (UserBean) UserSessionHelper.getUserData(request);
         DisabledPaymentReviewForm iform = (DisabledPaymentReviewForm) form;
@@ -75,15 +75,8 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
             List<DisabledPaymentReviewCase> dataList = new ArrayList<DisabledPaymentReviewCase>();
             String apNo = iform.getApNoStr();// 畫面輸入之受理編號
 
-            // if (("1").equals(iform.getQryCond()) || ("2").equals(iform.getQryCond())) {
-            // 用 受理編號 查詢
-            // if (("1").equals(iform.getQryCond())) {
             dataList = reviewService.selectReviewDataFromBaappbaseForDisabled(apNo);
-            // }
-            // 用 列印日期 + 頁次 查詢
-            // else if (("2").equals(iform.getQryCond())) {
-            // dataList = reviewService.selectReviewDataFromExalistForDisabled(DateUtility.changeDateType(iform.getRptDate()), iform.getPageNo());
-            // }
+
             if (dataList.size() <= 0) {
                 // 設定查無資料訊息
                 saveMessages(session, DatabaseMessageHelper.getNoResultMessage());
@@ -93,23 +86,8 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
             }
             else if (dataList.size() == 1) {
                 DisabledPaymentReviewCase caseObj = new DisabledPaymentReviewCase();
-                // if (("1").equals(iform.getQryCond())) {
                 caseObj = dataList.get(0);
-                // }
-                // else if (("2").equals(iform.getQryCond())) {
-                // DisabledPaymentReviewCase tempCase = dataList.get(0);
-                // List<DisabledPaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbaseForDisabled(tempCase.getApNo());
-                //
-                // if (caseList.size() != 1) {
-                // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                // log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 完成 ... ");
-                // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                // }
-                // else {
-                // caseObj = caseList.get(0);
-                // }
-                // }
+
                 // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                 caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(apNo, caseObj.getIssuYm()));
                 caseObj.setQ2(reviewService.getQ2ForManchkMkRadio(apNo, caseObj.getIssuYm()));
@@ -128,6 +106,11 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 DisabledPaymentReviewCase disabledData = reviewService.selectDisabledDataForDisabled(apNo);
                 // 取得 核定資料
                 List<DisabledPaymentReviewExtCase> payList = reviewService.getPayDataForDisabled(caseObj.getApNo(), caseObj.getIssuYm());
+                BigDecimal issueAmtTotal = BigDecimal.ZERO;
+                for (DisabledPaymentReviewExtCase disabledPaymentReviewExtCase : payList) {
+                    issueAmtTotal = issueAmtTotal.add(disabledPaymentReviewExtCase.getIssueAmt());
+                }
+                caseObj.setIssueAmtTotal(issueAmtTotal);
                 // 取得 事故者編審註記資料
                 List<DisabledPaymentReviewExtCase> evtChkList = reviewService.getDisabledPaymentReviewEvtChkList(caseObj.getApNo());
                 // 取得 眷屬編審註記資料
@@ -183,10 +166,6 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 完成 ... ");
                 return mapping.findForward(ConstantKey.FORWARD_QUERY_SUCCESS);
             }
-            // }
-            // else {
-            // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-            // }
         }
         catch (Exception e) {
             // 設定查詢失敗訊息
@@ -198,7 +177,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 個案審核 (baco0d011a.jsp)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -297,7 +276,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 受款人資料 (baco0d013q.jsp) 修改確認(單筆)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -325,7 +304,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
             for (int j = 0; j < origBeneficiaryDataList.size(); j++) {
                 baappbaseIdList.add((origBeneficiaryDataList.get(j)).getBaappbaseId());
             }
-            
+
             // 取得需記錄異動LOG的欄位資料
             // 為不影響前端頁面顯示, 故須複製一份 Form
             DisabledPaymentReviewForm tempForm = new DisabledPaymentReviewForm();
@@ -374,24 +353,6 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 DisabledPaymentReviewForm modifyForm = new DisabledPaymentReviewForm();
                 BeanUtility.copyProperties(modifyForm, caseObj);
 
-                // 將 查詢結果 case 存到 Request Scope
-                // CaseSessionHelper.setDisabledPaymentReviewCase(caseObj, request);
-                // CaseSessionHelper.setDisabledPaymentReviewOccAccData(occAccData, request);
-                // CaseSessionHelper.setDisabledPaymentReviewDisabledData(disabledData, request);
-                // CaseSessionHelper.setDisabledPayDataList(payList, request);
-                // CaseSessionHelper.setDisabledPaymentReviewEvtChkList(evtChkList, request);
-                // CaseSessionHelper.setDisabledPaymentReviewBenChkList(benChkList, request);
-                // CaseSessionHelper.setDisabledPaymentReviewMatchChkList(matchChkList, request);
-                // CaseSessionHelper.setDisabledBeneficiaryDataList(beneficiaryDataList, request);
-                // CaseSessionHelper.setDisabledPaymentReviewBenNameList(benNameList, request);
-                // FormSessionHelper.setDisabledPaymentReviewForm(modifyForm, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk1List(detail1, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk2List(detail2, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk3List(detail3, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk4List(detail4, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk5List(detail5, request);
-                // CaseSessionHelper.setDisabledPaymentReviewLetterTypeMk6List(detail6, request);
-
                 // 將之前的 Form 及相關 List Case / Detail Case 自 Session 中移除
                 FormSessionHelper.removeDisabledPaymentReviewForm(request);
                 FormSessionHelper.removeDisabledPaymentReviewQueryForm(request);
@@ -429,7 +390,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 受款人資料 (baco0d011q.jsp) 修改確認(多筆)
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -456,13 +417,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 List<DisabledPaymentReviewCase> dataList = new ArrayList<DisabledPaymentReviewCase>();
 
                 // 用 受理編號 查詢
-                // if (("1").equals(qryCondForm.getQryCond())) {
                 dataList = reviewService.selectReviewDataFromBaappbaseForDisabled(qryCondForm.getApNoStr());
-                // }
-                // 用 列印日期 + 頁次 查詢
-                // else if (("2").equals(qryCondForm.getQryCond())) {
-                // dataList = reviewService.selectReviewDataFromExalistForDisabled(DateUtility.changeDateType(qryCondForm.getRptDate()), qryCondForm.getPageNo());
-                // }
 
                 if (dataList.size() <= 0) {
                     // 設定查無資料訊息
@@ -473,22 +428,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 }
                 else if (dataList.size() == 1) {
                     DisabledPaymentReviewCase caseObj = new DisabledPaymentReviewCase();
-                    // if (("1").equals(iform.getQryCond())) {
                     caseObj = dataList.get(0);
-                    // }
-                    // else if (("2").equals(iform.getQryCond())) {
-                    // DisabledPaymentReviewCase tempCase = dataList.get(0);
-                    // List<DisabledPaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbaseForDisabled(tempCase.getApNo());
-                    // if (caseList.size() != 1) {
-                    // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                    // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                    // log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 完成 ... ");
-                    // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                    // }
-                    // else {
-                    // caseObj = caseList.get(0);
-                    // }
-                    // }
 
                     // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                     caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(qryCondForm.getApNoStr(), caseObj.getIssuYm()));
@@ -584,7 +524,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 返回清單
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -603,15 +543,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
             DisabledPaymentReviewForm qryCondForm = FormSessionHelper.getDisabledPaymentReviewQueryForm(request);
             String apNo = qryCondForm.getApNoStr();// 畫面輸入之受理編號
 
-            // if (("1").equals(qryCondForm.getQryCond()) || ("2").equals(qryCondForm.getQryCond())) {
-            // 用 受理編號 查詢
-            // if (("1").equals(qryCondForm.getQryCond())) {
             dataList = reviewService.selectReviewDataFromBaappbaseForDisabled(apNo);
-            // }
-            // 用 列印日期 + 頁次 查詢
-            // else if (("2").equals(qryCondForm.getQryCond())) {
-            // dataList = reviewService.selectReviewDataFromExalistForDisabled(DateUtility.changeDateType(qryCondForm.getRptDate()), qryCondForm.getPageNo());
-            // }
 
             if (dataList.size() <= 0) {
                 // 設定查無資料訊息
@@ -622,22 +554,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
             }
             else if (dataList.size() == 1) {
                 DisabledPaymentReviewCase caseObj = new DisabledPaymentReviewCase();
-                // if (("1").equals(iform.getQryCond())) {
                 caseObj = dataList.get(0);
-                // }
-                // else if (("2").equals(iform.getQryCond())) {
-                // DisabledPaymentReviewCase tempCase = dataList.get(0);
-                // List<DisabledPaymentReviewCase> caseList = reviewService.selectReviewDataFromBaappbaseForDisabled(tempCase.getApNo());
-                // if (caseList.size() != 1) {
-                // // 設定顯示訊息：W1002-案件狀態已變更，請確認後重新執行
-                // saveMessages(session, DatabaseMessageHelper.getStatusChangeMessage());
-                // log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 完成 ... ");
-                // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-                // }
-                // else {
-                // caseObj = caseList.get(0);
-                // }
-                // }
 
                 // 取得 Q1,Q2 for 判斷「人工審核結果」radio button用
                 caseObj.setQ1(reviewService.getQ1ForManchkMkRadio(apNo, caseObj.getIssuYm()));
@@ -707,10 +624,6 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
                 log.debug("執行 審核作業 - 失能年金給付審核作業 - 查詢頁面 DisabledPaymentReviewAction.doQuery() 完成 ... ");
                 return mapping.findForward(ConstantKey.FORWARD_QUERY_SUCCESS);
             }
-            // }
-            // else {
-            // return mapping.findForward(ConstantKey.FORWARD_QUERY_FAIL);
-            // }
         }
         catch (Exception e) {
             // 設定查詢失敗訊息
@@ -722,7 +635,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 審核作業 - 失能年金給付審核作業 - 返回
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
@@ -743,7 +656,7 @@ public class DisabledPaymentReviewAction extends BaseDispatchAction {
 
     /**
      * 查詢作業 - 給付查詢作業 - 檢視受理審核清單
-     * 
+     *
      * @param mapping
      * @param form
      * @param request
