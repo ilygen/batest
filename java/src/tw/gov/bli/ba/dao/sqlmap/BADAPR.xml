@@ -1443,14 +1443,14 @@
  
     <select id="selectPayDataBy" resultMap="PayDataResult">
         SELECT A.PAYYM,                        
-               SUM(DECODE(A.MCHKTYP,'2',DECODE(A.SUPRECMK,'C',A.SUPAMT,'D',0,A.ISSUEAMT)
-                           ,'5',DECODE(A.SUPRECMK,'C',A.SUPAMT,'D',0,A.ISSUEAMT),A.ISSUEAMT)) AS ISSUEAMT,
-               SUM(A.RECAMT) AS RECAMT,
+               SUM(DECODE(A.MCHKTYP,'2',DECODE(A.SUPRECMK,'C',nvl(A.SUPAMT,0),'D',0,nvl(A.ISSUEAMT,0))
+                           ,'5',DECODE(A.SUPRECMK,'C',nvl(A.SUPAMT,0),'D',0,nvl(A.ISSUEAMT,0)),nvl(A.ISSUEAMT,0))) AS ISSUEAMT,
+               SUM(nvl(A.RECAMT,0)) AS RECAMT,
                SUM(NVL(A.PAYBANANCE,0)+NVL(A.REMITAMT,0)+NVL(A.OVRCUTAMT,0)) AS PAYBANANCE,
-               SUM(A.SUPAMT) AS SUPAMT,
-               SUM(DECODE(A.BENEVTREL,'F',0,A.OFFSETAMT)) AS OFFSETAMT,
-               SUM(A.OTHERAMT) AS OTHERAMT,       
-               SUM(A.APLPAYAMT) AS APLPAYAMT        
+               SUM(nvl(A.SUPAMT,0)) AS SUPAMT,
+               SUM(DECODE(A.BENEVTREL,'F',0,nvl(A.OFFSETAMT,0))) AS OFFSETAMT,
+               SUM(nvl(A.OTHERAMT,0)) AS OTHERAMT,       
+               SUM(nvl(A.APLPAYAMT,0)) AS APLPAYAMT        
           FROM BADAPR A               
          WHERE A.APNO = #apNo:VARCHAR#
            AND A.ISSUYM = #issuYm:VARCHAR# 
