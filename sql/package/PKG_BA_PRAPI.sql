@@ -1551,7 +1551,7 @@ is
                                        and t1.PAYEEACC = t2.PAYEEACC;
 
                                     --取消改匯資料時,若給付主檔的帳號資料已由給付處修改時,則不異動給付主檔的帳號資料,僅異動改匯檔的資料
-                                    if v_baappbase_updflag <> 0 then
+                                    --if v_baappbase_updflag <> 0 then  
                                         --若於出納系統取消改匯時,除了需將已改匯的資料還原寫回給付主檔外,另外也將改前值及改後值一併寫入BAAPPLog
                                         --比對給付主檔中的"戶名"與退匯資料檔中的原退匯資料的"戶名"。若有變更者,需將改前值及改後值一併寫入BAAPPLog
                                         if v_paytyp_a <> 'A' then
@@ -1692,7 +1692,7 @@ is
                                                                   ,t.UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                                              where t.BAAPPBASEID = v_baappbaseID;
                                         end if;
-                                    end if;
+                                   -- end if;
                                 end Loop;
                             exception
                                 when others
