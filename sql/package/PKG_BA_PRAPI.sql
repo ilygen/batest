@@ -16,6 +16,7 @@ CREATE OR REPLACE Package BA.PKG_BA_PRAPI
     Ver   Date        Author       Description
     ----  ----------  -----------  ----------------------------------------------
     1.0   2009/07/16  Angela Wu    Created this Package.
+    1.1   2023/01/18  William      babaweb-62, sp_BA_CancelAmendment要多一個參數(帳號)
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -92,6 +93,7 @@ authid definer is
         v_i_procempno        in      varChar2,
         v_i_procdeptid       in      varChar2,
         v_i_procip           in      varChar2,
+        v_i_acctno           in      varChar2,
         v_o_procMsgCode      out     varChar2,
         v_o_procMsg          out     varChar2
     );
@@ -1203,7 +1205,7 @@ is
                         *v_i_procempno           (varChar2)        --作業人員
                         *v_i_procdeptid          (varChar2)        --作業人員單位ID
                         *v_i_procip              (varChar2)        --作業人員IP
-
+                        *v_i_acctno              (varChar2)        --帳號
         PARAMETER(OUT): *v_o_procMsgCode         (varChar2)        --回傳處理結果訊息代碼
                         *v_o_procMsg             (varChar2)        --回傳處理結果訊息
 
@@ -1232,6 +1234,7 @@ is
         v_i_procempno        in      varChar2,
         v_i_procdeptid       in      varChar2,
         v_i_procip           in      varChar2,
+        v_i_acctno           in      varChar2,
         v_o_procMsgCode      out     varChar2,
         v_o_procMsg          out     varChar2
     ) is
@@ -1343,7 +1346,8 @@ is
                                              '給付年月：('||v_i_payym||'),'||CHR(10)||
                                              '作業人員：('||v_i_procempno||'),'||CHR(10)||
                                              '作業人員單位ID：('||v_i_procdeptid||'),'||CHR(10)||
-                                             '作業人員IP：('||v_i_procip||'),');
+                                             '作業人員IP：('||v_i_procip||'),'||CHR(10)||
+                                             '帳號：('||v_i_acctno||'),');
 
                  --  2017/12/07 寫入開始LOG Add By ChungYu
 
@@ -1547,7 +1551,7 @@ is
                                        and t1.PAYEEACC = t2.PAYEEACC;
 
                                     --取消改匯資料時,若給付主檔的帳號資料已由給付處修改時,則不異動給付主檔的帳號資料,僅異動改匯檔的資料
-                                    if v_baappbase_updflag <> 0 then
+                                    --if v_baappbase_updflag <> 0 then  
                                         --若於出納系統取消改匯時,除了需將已改匯的資料還原寫回給付主檔外,另外也將改前值及改後值一併寫入BAAPPLog
                                         --比對給付主檔中的"戶名"與退匯資料檔中的原退匯資料的"戶名"。若有變更者,需將改前值及改後值一併寫入BAAPPLog
                                         if v_paytyp_a <> 'A' then
@@ -1688,7 +1692,7 @@ is
                                                                   ,t.UPDTIME = to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                                              where t.BAAPPBASEID = v_baappbaseID;
                                         end if;
-                                    end if;
+                                   -- end if;
                                 end Loop;
                             exception
                                 when others
