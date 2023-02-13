@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="/includes/include.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html:html>
     <head>
     <acl:setProgId progId="BAMO0D183C" />
@@ -33,7 +33,7 @@
                     }
                 }
                 frm['btnBack'].disabled = false;
-                
+
             } else {
                 $("benEvtRel").disabled = true;
                 $("benName").disabled = true;
@@ -50,19 +50,19 @@
                 	frm['benSex'][0].disabled = true;
                 	frm['benSex'][1].disabled = true;
                 }
-                
+
             }
         } else {
             $("appDateSection").style.display = "inline";
         }
     }
-    
+
     //存檔時，判斷給付方式為本人領取中的「1-匯入銀行帳戶」或「2-匯入郵寄帳號」，則出現提示訊息「請確認專戶的設定是否正確」
     function chkSpecialAcc(){
-        var payTyp = $("payTyp").value; 
+        var payTyp = $("payTyp").value;
         if(payTyp=="1"||payTyp=="2"){
             if($("specialAccAfter").checked == false){
-              
+
               if($("origPayBankIdBranchId").value != $("payBankId").value + $("branchId").value || $("origPayEeacc").value != $("payEeacc").value){
                if(confirm("如非專戶請按確定，如為專戶請按取消並勾選專戶")){
                   return true;
@@ -79,7 +79,7 @@
             return true;
         }
     }
-    
+
     function changePayCategory(){
         if($("payCategory1").checked){//本人領取
             $("accSeqNo").value='';
@@ -93,52 +93,52 @@
         if($("payCategory2").checked){//具名領取
             $("payTyp").value="";
             $("payBankId").value ="";
-            $("branchId").value ="";  
-            $("payAccount").value=""; 
-            $("payEeacc").value=""; 
-            $("bankName").value=""; 
-            $("accName").value=""; 
+            $("branchId").value ="";
+            $("payAccount").value="";
+            $("payEeacc").value="";
+            $("bankName").value="";
+            $("accName").value="";
             $("accountContent1").style.display = "none";
             $("accountContent2").style.display = "none";
             $("accountContent3").style.display = "none";
-            $("payTyp").disabled = true; 
+            $("payTyp").disabled = true;
             $("accSeqNo").disabled = false;
 
-        }          
+        }
     }
-    
+
     //給付方式初始化
-    function initPayType(){      
-        var payTyp = $("payTyp").value;  
+    function initPayType(){
+        var payTyp = $("payTyp").value;
         $("accSeqNo").value='<c:out value="${DisabledPayeeDataUpdateDetailCase.seqNo}" />';
         $("payBankIdBranchId").value ='<c:out value="${DisabledPayeeDataUpdateDetailCase.payBankId}"/>' + '<c:out value="${DisabledPayeeDataUpdateDetailCase.branchId}" />';
         $("payBankId").value ='<c:out value="${DisabledPayeeDataUpdateDetailCase.payBankId}"/>';
         $("branchId").value ='<c:out value="${DisabledPayeeDataUpdateDetailCase.branchId}" />';
-        $("payEeacc").value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.payEeacc}" />'; 
-        $("bankName").value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.bankName}" />';             
+        $("payEeacc").value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.payEeacc}" />';
+        $("bankName").value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.bankName}" />';
         if(payTyp=="1"||payTyp=="2"){
             $("accountContent1").style.display="inline";
-            $("accountContent2").style.display="none";  
+            $("accountContent2").style.display="none";
             $("accountContent3").style.display = "inline";
             $("payAccount").value = "";
-        	$("bankName").value = ""; 
+        	$("bankName").value = "";
         	$("specialAccContent").style.display="inline";
         	if($("origSpecialAcc").value == "Y"){
                  $("specialAccAfter").checked = true;
-            }                                                                  
-        }                        
-        if(payTyp==""||payTyp=="3"||payTyp=="4" || payTyp=="A"){   
-            $("accName").value = "";             
-            $("payBankIdBranchId").value="";     
-        	$("payEeacc").value=""; 
-        	$("payAccount").value=""; 
-        	$("bankName").value=""; 
+            }
+        }
+        if(payTyp==""||payTyp=="3"||payTyp=="4" || payTyp=="A"){
+            $("accName").value = "";
+            $("payBankIdBranchId").value="";
+        	$("payEeacc").value="";
+        	$("payAccount").value="";
+        	$("bankName").value="";
         	//$("accName").value="";
             $("accountContent1").style.display="none";
-            $("accountContent2").style.display="none";  
-            $("accountContent3").style.display = "none";  
-            $("specialAccContent").style.display="none";                                    
-        }                        
+            $("accountContent2").style.display="none";
+            $("accountContent3").style.display = "none";
+            $("specialAccContent").style.display="none";
+        }
         if(payTyp=="5"||payTyp=="6"){
             $("accName").value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.accName}" />';
             $("payBankIdBranchId").value="";
@@ -146,8 +146,8 @@
         	$("bankName").value ='<c:out value="${DisabledPayeeDataUpdateDetailCase.bankName}" />';
             $("accountContent1").style.display="none";
             $("accountContent2").style.display="inline";
-            $("accountContent3").style.display = "inline"; 
-            $("specialAccContent").style.display="none";                                    
+            $("accountContent3").style.display = "inline";
+            $("specialAccContent").style.display="none";
         }
         if(payTyp=="1"){
             $("payBankId").disabled = false;
@@ -163,24 +163,24 @@
             $("payEeacc").disabled = false;
             $("branchId").readOnly = false;
             $("branchId").removeClassName('disabledN');
-           
+
         if($("branchId").value == "0000"){
             $("branchId").value = "";
         }
-        }     
+        }
     }
-    
-    // 變更 給付方式(本人領取) 時畫面異動  
-    function changePayType(){      
+
+    // 變更 給付方式(本人領取) 時畫面異動
+    function changePayType(){
         var payTyp = $("payTyp").value;
-        $("accName").value = "";  
+        $("accName").value = "";
         $("accSeqNo").value='';
         $("payBankId").value ='';
         $("branchId").value ='';
-        $("payEeacc").value = ''; 
-        $("bankName").value = '';   
+        $("payEeacc").value = '';
+        $("bankName").value = '';
         $("payAccount").value = '';
-        //$("accName").value="";          
+        //$("accName").value="";
         if(payTyp=="1"||payTyp=="2"){
             if ($("accName").value == '') {
                 if($('benName')!=null){
@@ -188,23 +188,23 @@
                 }
             }
             $("accountContent1").style.display="inline";
-            $("accountContent2").style.display="none"; 
+            $("accountContent2").style.display="none";
             $("accountContent3").style.display="inline";
-            $("specialAccContent").style.display="inline";  
+            $("specialAccContent").style.display="inline";
         }else{
-            $("specialAccContent").style.display="none";    
-        }                           
+            $("specialAccContent").style.display="none";
+        }
         if(payTyp==""||payTyp=="3"||payTyp=="4" || payTyp=="A"){
             $("accountContent1").style.display="none";
             $("accountContent2").style.display="none";
-            $("accountContent3").style.display="none";  
-            $("specialAccContent").style.display="none";                                    
-        }                        
-        if(payTyp=="5"||payTyp=="6"){       
+            $("accountContent3").style.display="none";
+            $("specialAccContent").style.display="none";
+        }
+        if(payTyp=="5"||payTyp=="6"){
             $("accountContent1").style.display="none";
-            $("accountContent2").style.display="inline"; 
-            $("accountContent3").style.display="inline";  
-            $("specialAccContent").style.display="none";                                
+            $("accountContent2").style.display="inline";
+            $("accountContent3").style.display="inline";
+            $("specialAccContent").style.display="none";
         }
         if(payTyp=="1"){
             $("payBankId").disabled = false;
@@ -220,13 +220,13 @@
             $("payEeacc").disabled = false;
             $("branchId").readOnly = false;
             $("branchId").removeClassName('disabledN');
-           
+
         if($("branchId").value == "0000"){
             $("branchId").value = "";
         }
-        }     
+        }
     }
-    
+
     // 變更 通訊地址別 時畫面異動
     function changeCommTyp(){
         if($("commTyp").value=="1"){
@@ -235,7 +235,7 @@
             $("addContent1").style.display="none";
         	$("addContent2").style.display="inline";
             DWREngine.setAsync(false);
-            
+
 			if(!isValidDate($("benBrDate").value)){
                 alert('輸入之「受款人出生日期」錯誤，請重新確認。\r\n');
             }else{
@@ -325,7 +325,7 @@
         }
         autoForeignBenSex();
     }
-    
+
     // 身分查核年月
 	function chkIdnChkNote() {
         if($("idnChkNote1").checked){
@@ -335,7 +335,7 @@
         }
         else if($("idnChkNote2").checked){
             $("chkForeigner").style.display="inline";
-        } 
+        }
 	}
 
     function toggleAccNameOnAccountReset() {
@@ -372,13 +372,12 @@
         }
     };
 
-    // 若「關係」<>1 且未滿20歲者之受款人,「婚姻狀況」,婚姻狀況預設"未婚"
+    // 若「關係」<>1 且未滿18歲者之受款人,「婚姻狀況」,婚姻狀況預設"未婚"
     var DefaultMarritalStatusSetter = {
         isNotAdult : function() {
             var benBrDate = calDay($("benBrDate").value, 0);
-            <%--var sYearTwenty = '<%=DateUtility.calYear(DateUtility.getNowChineseDate(),-20)%>';--%>
-            var sYearTwenty = '<%=DateUtility.calYear( DateUtility.getNowChineseDate().substring(0, 5).concat( String.valueOf(DateUtility.lastDay(DateUtility.getNowChineseDate())) ) ,-20)%>';
-            return benBrDate > sYearTwenty;
+            var sYearEighteen = '<%=DateUtility.calYear( DateUtility.getNowChineseDate().substring(0, 5).concat( String.valueOf(DateUtility.lastDay(DateUtility.getNowChineseDate())) ) ,-18)%>';
+            return benBrDate > sYearEighteen;
         },
         initMarritalStatus : function(){
         	var mk = '<c:out value="${DisabledPayeeDataUpdateDetailCase.benMarrMk}"/>';
@@ -415,8 +414,7 @@
         var nowDate = "<%=DateUtility.getNowChineseDate()%>";
         var nowDateYM = nowDate.substring(0,5);
         var benBrDate = calDay($("benBrDate").value,0);
-        <%--var sYearTwenty = '<%=DateUtility.calYear(DateUtility.getNowChineseDate(), -20)%>';--%>
-        var sYearTwenty = '<%=DateUtility.calYear( DateUtility.getNowChineseDate().substring(0, 5).concat( String.valueOf(DateUtility.lastDay(DateUtility.getNowChineseDate())) ) ,-20)%>';
+        var sYearEighteen = '<%=DateUtility.calYear( DateUtility.getNowChineseDate().substring(0, 5).concat( String.valueOf(DateUtility.lastDay(DateUtility.getNowChineseDate())) ) ,-18)%>';
         var benSeqNo = '<c:out value="${DisabledPayeeDataUpdateDetailForm.seqNo}" />';
         var evtSeqNo = '<c:out value="${DisabledPayeeDataUpdateQueryCase[0].seqNo}" />';
         var isEvtDieDateUpdatable = '<c:out value="${isEvtDieDateUpdatable}" />';
@@ -426,7 +424,7 @@
         var frm = document.forms['DisabledPayeeDataUpdateDetailForm'];
         var payKind = '<c:out value="${DisabledPayeeDataUpdateDetailCase.payKind}"/>';
         var validator = new SimpleValidator();
-		
+
 		var secondText = $("benIdnNo").value.substring(1,2);
 		if($("benIdnNo").value.length==10){
 		if(document.getElementsByName("benNationTyp")[1].checked && document.getElementsByName("benSex")[0].checked==true){
@@ -466,13 +464,13 @@
 
             /*validator.isNotTheSame( [{name : '「法定代理人身份證號與生日」', value : Trim($F('grdIdnNo') +Trim($F('grdBrDate')) )},
                                      {name : '「受款人身份證號與生日」',     value : (Trim($F("benIdnNo")) + Trim($F("benBrDate"))) } ] );*/
-            
+
             validator.isNotTheSame( [{name : '「法定代理人身份證號」', value : Trim($F('grdIdnNo')  )},
                                      {name : '「受款人身份證號」',     value : (Trim($F("benIdnNo")) ) } ] );
-			
+
 			validator.isNotTheSame( [{name : '「法定代理人身份證號」', value : Trim($F('grdIdnNo')  )},
                                      {name : '「事故者身份證號」',     value : Trim(evtIdnNo) } ] );
-			
+
             if (!validator.isRequiredValueEmpty('「繼承人申請日期」', $('appDate'))) {
                 if(payKind !== '36'){
                 validator.isGreaterThanOrEqual({name : '「繼承人申請日期」', value : $F('appDate')},
@@ -492,7 +490,7 @@
                     validator.isAlphaNumericValue('「國籍」', $F('benNationCode'))
                 }
             }
-            
+
             if(frm['idnChkNote']){
                 var oldIdnChkYm = "";
                 if(Trim($("oldIdnChkYm").value)!=""){
@@ -500,12 +498,12 @@
                 }else{
                     oldIdnChkYm = today.substring(0 , 5);
                 }
-            
+
                 if (frm['idnChkNote'][0].checked) {
                     if(parseNumber(oldIdnChkYm) > parseNumber(today.substring(0 , 5))){
                         validator.addErrorMsg('「身分查核年月」大於系統年月，不得點選自動遞延13個月。');
                         initIdnChkNote();
-                    }                   
+                    }
                 }
                 else if(frm['idnChkNote'][1].checked){
                     if(Trim($("idnChkYear").value) == ""){
@@ -526,12 +524,12 @@
             }
 
             if ((!frm['payCategory'][0].checked && !frm['payCategory'][1].checked) ||
-                 (frm['payCategory'][0].checked && Trim($F('payTyp')) === '') || 
+                 (frm['payCategory'][0].checked && Trim($F('payTyp')) === '') ||
                  (frm['payCategory'][1].checked && Trim($F('accSeqNo')) === '')) {
                 validator.isRequiredValueEmpty('「給付方式」', $('payTyp'));
             }
 
-            if (benBrDate > sYearTwenty) {
+            if (benBrDate > sYearEighteen) {
                 if (( $F('benEvtRel') === '4' || $F('benEvtRel') === '6' || $F('benEvtRel') === '7')) {
                     validator.isRequiredValueEmpty('「婚姻狀況」', frm['benMarrMk']);
                 }
@@ -597,13 +595,13 @@
                     validator.addErrorMsg('「國籍別」為外籍不得輸入中華民國之國籍代碼');
                 }
             }
-            
+
              if (document.getElementsByName("benNationTyp")[0].checked==true){
 	                 if(!isValidIdNoForTest($("benIdnNo").value) || !chkPID_CHAR($("benIdnNo").value))
 	                 	 validator.addErrorMsg('「受款人身分證號(保險證號)」輸入有誤，請輸入長度為10 碼且符合格式的資料。');
-	              
+
 	          }
-	          
+
 	            if (document.getElementsByName("benNationTyp")[1].checked==true){
 	             	if(!isEngNum($("benIdnNo").value)){
 	             		validator.addErrorMsg('「受款人身分證號(保險證號)」格式錯誤。');
@@ -682,7 +680,7 @@
             return false;
             }
         }
-        
+
     }
 
     function moveFocus(elementId) {
@@ -703,7 +701,7 @@
             }
         }
     };
-    
+
      <%-- 1030813 payTyp=1時tab跳過0000 --%>
     function tabChange(){
 
@@ -712,9 +710,9 @@
        }else{
           $("branchId").tabIndex = 0;
        }
-      
+
     }
-    
+
          <%-- 1030813 payTyp=1時tab跳過0000 --%>
     function autoTabChange(){
 
@@ -723,20 +721,20 @@
        }else{
           autotab($('payBankId'), $('branchId'));
        }
-      
+
     }
 
     function resetForm(){
         document.DisabledPayeeDataUpdateDetailForm.reset();
         initAll();
     }
-    
+
     function initAll(){
         tabChange();
         checkIdnoExist();
         $('benNationTyp').value = '<c:out value="${DisabledPayeeDataUpdateDetailCase.benNationTyp}"/>';
         $('commTyp').value ='<c:out value="${DisabledPayeeDataUpdateDetailCase.commTyp}" />';
-        
+
         // 給付方式
         var accRel = '<c:out value="${DisabledPayeeDataUpdateDetailCase.accRel}" />';
         if(accRel == '3'){
@@ -758,7 +756,7 @@
         if(toHideCoreceiveNameListDropDownMenu == "true"){
             $("coreceiveSection").style.display="none";
         }
-        
+
         changeCommTyp();
 
         //領取人初始化
@@ -776,23 +774,23 @@
         else if($("payCategory").value=="2"){//具名領取
             $("payTyp").value="";
             $("payBankId").value="";
-            $("branchId").value="";     
-            $("payAccount").value=""; 
-            $("payEeacc").value=""; 
-            $("bankName").value=""; 
-            $("accName").value=""; 
+            $("branchId").value="";
+            $("payAccount").value="";
+            $("payEeacc").value="";
+            $("bankName").value="";
+            $("accName").value="";
             $("accountContent1").style.display="none";
             $("accountContent2").style.display="none";
             $("accountContent3").style.display="none";
-            
-            $("payTyp").disabled = true; 
+
+            $("payTyp").disabled = true;
             var accSeqNoControl = '<c:out value="${DisabledPayeeDataUpdateQueryCaseAccSeqNoControl}" />';
             if(accSeqNoControl == "1"){
                 document.getElementsByName("payCategory")[1].disabled = true;
                 $("accSeqNo").disabled = true;
             } else {
                 document.getElementsByName("payCategory")[1].disabled = false;
-                $("accSeqNo").disabled = false; 
+                $("accSeqNo").disabled = false;
             }
 
             //取得受款人accRel及accSeqNo之值,若accRel = '3'則表示有具名領取人物, 此時依其accSeqNo決定選單要選到哪個序號
@@ -803,8 +801,8 @@
                     accseqOption.options[i].selected = true;
                 }
             }
-        }          
-        
+        }
+
         toggleReadonlyFieldForEvt();
         // 身份查核年月 showCheckYm==true才會出現
         var showCheckYm = '<c:out value="${DisabledPayeeDataUpdateQueryCaseQ1}" />';
@@ -818,7 +816,7 @@
         Event.observe('benBrDate', 'blur', DefaultMarritalStatusSetter.setDefaultMarritalStatus, false);
         Event.observe('benEvtRel', 'change', DefaultMarritalStatusSetter.setDefaultMarritalStatus, false);
     }
-    
+
     <%-- 重置身分查核年月預設值 --%>
     function initIdnChkNote() {
         $("chkForeigner").style.display="none";
@@ -826,14 +824,14 @@
         $("idnChkNote2").checked = false;
         $("idnChkYear").value = "";
         $("idnChkMonth").value = "";
-        
+
         var oldIdnChkYm = "";
         if(Trim($("oldIdnChkYm").value)!=""){
             oldIdnChkYm = changeDateType($("oldIdnChkYm").value+"01").substring(0 , 5);
         }else{
             oldIdnChkYm = today.substring(0 , 5);
         }
-        
+
         if($("oldIdnChkNote").value=='1'){
             $("chkForeigner").style.display="none";
             if(parseNumber(oldIdnChkYm) > parseNumber(today.substring(0 , 5))){
@@ -857,47 +855,47 @@
             $("idnChkMonth").value = "";
         }
     }
-    
+
                 // Ajax for 取得 出生日期錯誤參數 確認是否有此筆資料P120436303 0480229  $("benIdnNo").value,$("benBrDate").value
-    		    function checkIdnoExist() {   
+    		    function checkIdnoExist() {
         		    if(isNaN($("benBrDate").value) == false){
         		    updateCommonAjaxDo.checkIdnoExist($("benIdnNo").value,$("benBrDate").value,checkIdnoExistResult);
         		    }
     		    }
-    		    function checkIdnoExistResult(idnoExist) {  
+    		    function checkIdnoExistResult(idnoExist) {
     		       $("idnoExist").value = idnoExist;
     		    }
 
             //檢核事故者出生日期 20121220 邏輯修改
-            function isValidEvtDateTrue() {   
+            function isValidEvtDateTrue() {
             var evtBrDate = $("benBrDate").value;
 
             if(isValidDate($("benBrDate").value) == false){
-        
+
             if($("idnoExist").value == null || $("idnoExist").value == "" || $("idnoExist").value == "null"){
             alert("輸入之「受款人出生日期」錯誤，請重新輸入");
             return false;
             }else{
               return true;
-            }  
+            }
             }else{
               return true;
             }
         }
-        
+
             function chkEvtBrDate() {
             //檢核事故者出生日期  是否為數字 及 年月格式
-        
-            var msg = ""; 
-        
+
+            var msg = "";
+
             if($("benBrDate").value.length < 7){
                         msg += '輸入之「受款人出生日期」錯誤，請重新輸入\r\n';
                         $("benBrDate").focus();
-            } 
+            }
             if(isNaN($("benBrDate").value)){
                         msg += '輸入之「受款人出生日期」錯誤，請重新輸入\r\n';
                         $("benBrDate").focus();
-                       
+
             }
             if($("benBrDate").value.length == 7){
                var chkMonth = $("benBrDate").value.substring(3,5);
@@ -913,19 +911,19 @@
                if(chkfrist != "-"){
                         msg += '輸入之「受款人出生日期」錯誤，請重新輸入\r\n';
                         $("benBrDate").focus();
-                       
+
                }
                if(chkMonth > 12 || chkDay > 32){
                         msg += '輸入之「受款人出生日期」錯誤，請重新輸入\r\n';
                         $("benBrDate").focus();
                }
-            }        
-        
-        
+            }
+
+
             if(msg != ""){
                 alert(msg);
                 return false;
-            }else{    
+            }else{
                 if(isValidEvtDateTrue()){
                 return true;
                 }else{
@@ -933,9 +931,9 @@
                 }
             }
         }
-	 	 
+
 	  // Added by JohnsonHuang 20200115 [Begin]
-        //外國人身分證號碼自動帶入		
+        //外國人身分證號碼自動帶入
 		function autoForeignBenSex(){
 			var secondText = $("benIdnNo").value.substring(1,2);
 			if($("benIdnNo").value.length==10){
@@ -943,13 +941,13 @@
 				document.getElementsByName("benSex")[0].checked==false && document.getElementsByName("benSex")[1].checked==false){
 				if(secondText=="A" || secondText=="a" || secondText=="C" || secondText=="c" || secondText=="8"){
 					document.getElementsByName("benSex")[0].checked=true;
-					document.getElementsByName("benSex")[1].checked=false;   	
+					document.getElementsByName("benSex")[1].checked=false;
 				}else if(secondText=="B" || secondText=="b" || secondText=="D" || secondText=="d" || secondText=="9"){
 					document.getElementsByName("benSex")[0].checked=false;
-					document.getElementsByName("benSex")[1].checked=true;	
+					document.getElementsByName("benSex")[1].checked=true;
 				}else{
 					document.getElementsByName("benSex")[0].checked=false;
-					document.getElementsByName("benSex")[1].checked=false; 
+					document.getElementsByName("benSex")[1].checked=false;
 					alert('個人資料「不符合外來人口統一證號編碼原則，請輸入正確身分證」');
 				}
 			}else{
@@ -976,8 +974,8 @@
     	<%@ include file="/includes/ba_header.jsp"%>
 
     	<%@ include file="/includes/ba_menu.jsp"%>
-    
-        	
+
+
                 <div id="main" class="mainBody">
                 <html:form action="/disabledPayeeDataUpdateDetail" method="post" onsubmit="return validateDisabledPayeeDataUpdateDetailForm(this);">
                     <fieldset>
@@ -1124,7 +1122,7 @@
                                                 	<c:if test="${DisabledPayeeDataUpdateDetailForm.seqNo eq '0000'}">
                                                 		<span class="issuetitle_L_down">身分查核年月
                                                             <c:if test='${not empty DisabledPayeeDataUpdateDetailForm.idnChkYear}'>
-                                                                (<c:out value="${DisabledPayeeDataUpdateDetailForm.idnChkYear}"/>年<c:out value="${DisabledPayeeDataUpdateDetailForm.idnChkMonth}" />月)    
+                                                                (<c:out value="${DisabledPayeeDataUpdateDetailForm.idnChkYear}"/>年<c:out value="${DisabledPayeeDataUpdateDetailForm.idnChkMonth}" />月)
                                                             </c:if>
                                                         	：</span>
                                                 		<span class="formtxt">
@@ -1163,9 +1161,9 @@
                                             		</logic:notEmpty>
                                         			</html:select>
                                                     </div>
-                                                    <div id="specialAccContent" style="display: none;">   
+                                                    <div id="specialAccContent" style="display: none;">
                        		                            <input type="checkbox" id="specialAccAfter" name="specialAccAfter" value="Y">專戶
-                    	                            </div> 
+                    	                            </div>
                                     			</span>
                                             </td>
                                         </tr>
@@ -1183,11 +1181,11 @@
                                         			<html:text property="payAccount" styleId="payAccount" styleClass="textinput" size="21" maxlength="21" onblur="this.value=asc(this.value).toUpperCase();"/>
                                         			&nbsp;
                                         			<span class="needtxt">＊</span><span class="issuetitle_L_down">金融機構名稱：</span>
-                                        			<html:text property="bankName" styleId="bankName" styleClass="textinput" size="50" maxlength="120" onblur="this.value=asc(this.value).toUpperCase();"/>                                   　   
+                                        			<html:text property="bankName" styleId="bankName" styleClass="textinput" size="50" maxlength="120" onblur="this.value=asc(this.value).toUpperCase();"/>                                   　
                                     			</div>
                                     			<div id="accountContent3">
                                                 	<span class="needtxt">＊</span><span class="issuetitle_L_down">戶　名：</span>
-                                                	<html:text property="accName" styleId="accName" styleClass="textinput" size="50" maxlength="50" onchange="this.value=Trim($('accName').value)" onblur="this.value=asc(this.value).toUpperCase();"/>                                    			
+                                                	<html:text property="accName" styleId="accName" styleClass="textinput" size="50" maxlength="50" onchange="this.value=Trim($('accName').value)" onblur="this.value=asc(this.value).toUpperCase();"/>
                                     			</div>
                                             </td>
                                         </tr>

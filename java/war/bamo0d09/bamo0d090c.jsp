@@ -9,19 +9,13 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/menu.css'/>" />
     <script type='text/javascript' src='<c:url value="/js/prototype.js"/>'></script>
     <script type='text/javascript' src='<c:url value="/js/ba_functions.js"/>'></script>
-    <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>      
-    <html:javascript formName="OldAgeDeathRepayForm" page="1" />                   
+    <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>
+    <html:javascript formName="OldAgeDeathRepayForm" page="1" />
     <script language="javascript" type="text/javascript">
-    <!--
-    //頁面欄位值初始化       
-    function initAll(){        
-    
-    }    
-    
     function checkFields(){
-        
+
         var msg = "";
-        
+
         if(Trim($F("seqNo")).length == 0){
             msg+="請輸入「受款人序」\r\n";
             $("seqNo").focus();
@@ -34,15 +28,15 @@
             msg+="「受款人序」格式錯誤\r\n";
             $("seqNo").focus();
         }
-        
+
         if(msg!=""){
             alert(msg);
             return false;
         }else{
             return true;
-        }         
+        }
     }
-    
+
     function initAllForClean(){
         $("apNo1").value="";
         $("apNo2").value="";
@@ -50,13 +44,13 @@
         $("apNo4").value="";
         $("seqNo").value="";
     }
-    
+
 	<%-- 畫面重設 --%>
     function resetForm(){
         cleanForm();
         initAllForClean();
-    }	
-    
+    }
+
     Event.observe(window, 'load', initAll, false);
     </script>
 </head>
@@ -72,14 +66,14 @@
         <html:form action="/oldAgeDeathRepay" method="post" onsubmit="return validateOldAgeDeathRepayForm(this);">
         <html:hidden styleId="page" property="page" value="1" />
         <html:hidden styleId="method" property="method" value="" />
-        
+
         <fieldset>
             <legend>&nbsp;老年年金受款人死亡改匯處理&nbsp;</legend>
-            
+
             <div align="right" id="showtime">
                 網頁下載時間：民國&nbsp;<func:nowDateTime />
             </div>
-            
+
             <table width="98%" border="0" align="center" cellpadding="2" cellspacing="2" class="px13">
                 <tr>
                     <td colspan="2" align="right">
@@ -88,7 +82,7 @@
                         </acl:checkButton>
                         <acl:checkButton buttonName="btnClear">
                             <input name="btnClear" type="reset" class="button" value="清  除 " onclick="resetForm()">
-                        </acl:checkButton>                        
+                        </acl:checkButton>
                     </td>
                 </tr>
                 <tr>
@@ -105,7 +99,7 @@
                         &nbsp;-
                         <html:text property="apNo4" styleId="apNo4" styleClass="textinput" size="5" maxlength="5" onblur="this.value=asc(this.value)" />
                     </td>
-                </tr>   
+                </tr>
                 <tr>
                     <td width="30%" align="right">
                         <span class="needtxt">＊</span>
@@ -117,7 +111,7 @@
                     <td>
                         <html:hidden styleId="checkQryData4" property="checkQryData4" value="" />
                     </td>
-                </tr>                                
+                </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
                 </tr>
@@ -127,7 +121,7 @@
                  　                 &nbsp;1.<span class="needtxt">＊</span>為必填欄位。<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.執行本作業前，請先鍵入受款人之死亡日期，及新增改匯之繼承人資料。
               </td>
-          </tr>                                                   
+          </tr>
             </table>
         </fieldset>
         </html:form>
