@@ -17,7 +17,7 @@ begin
     select count(*)  into v_cnt
     from baproperty where name='update.status.for.mb'; 
     if v_cnt<=0 then
-      insert into baproperty (name,value) values ('update.status.for.mb',p_status);  
+      insert into baproperty (name,value,note) values ('update.status.for.mb',p_status,'產媒體時寫入N,供MB系統暫停抽檔作業');  
     else
       update baproperty 
       set value = p_status
