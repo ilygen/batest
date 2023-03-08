@@ -225,11 +225,10 @@ is
                     v_rec_plog.pseq      := '1';
                     v_rec_plog.proctime  := SYSDATE;
                     v_rec_plog.procname  := 'sp_BA_updSBMK';
-                    v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：'|| v_result || '：' || v_resultCode;
+                    v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：APNO='||v_i_apno||','|| v_result || '：' || v_resultCode;
                     pkg_plog.sp_ins_log(v_rec_plog);
                 end if;
-                
-                commit;
+
           End If;
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb SBMK Error ： '|| v_result || '：' || v_resultCode;
@@ -243,7 +242,7 @@ is
           v_rec_plog.pseq      := '1';
           v_rec_plog.proctime  := SYSDATE;
           v_rec_plog.procname  := 'sp_BA_updSBMK';
-          v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：'||SQLCODE || SQLERRM;
+          v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：：APNO='||v_i_apno||','||SQLCODE || SQLERRM;
           v_rec_plog.msg2      := dbms_utility.format_error_backtrace;
           pkg_plog.sp_ins_log(v_rec_plog);
     End;
@@ -324,9 +323,35 @@ is
                                         v_resultCode,
                                         to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                         );
+
+               if v_result <> '1' then
+                    v_rec_plog.userid    := v_i_user;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '1'; --INFO
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := 'sp_BA_updUINMK';
+                    v_rec_plog.msg1      := 'Update Ci.Cipb UINMK Error ：APNO='||v_i_apno||','|| v_result || '：' || v_resultCode;
+                    pkg_plog.sp_ins_log(v_rec_plog);
+                end if;
           End If;
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb UINMK Error ： '|| v_result || '：' || v_resultCode;
+    Exception when others then
+          pkg_plog.error('pdate Ci.Cipb SBMK Error='||sqlcode||' ， '||'錯誤訊息='||SQLERRM,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE); 
+          v_rec_plog.userid    := v_i_user;
+          v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+          v_rec_plog.starttime := SYSDATE;
+          v_rec_plog.typemk    := '1';
+          v_rec_plog.levelmk   := '3'; 
+          v_rec_plog.pseq      := '1';
+          v_rec_plog.proctime  := SYSDATE;
+          v_rec_plog.procname  := 'sp_BA_updUINMK';
+          v_rec_plog.msg1      := 'Update Ci.Cipb UINMK Error ：：APNO='||v_i_apno||','||SQLCODE || SQLERRM;
+          v_rec_plog.msg2      := dbms_utility.format_error_backtrace;
+          pkg_plog.sp_ins_log(v_rec_plog);
     End;
     --Procedure sp_BA_updUINMK
 
