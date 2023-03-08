@@ -291,6 +291,7 @@ is
 
     v_result          VARCHAR2(1)         := NULL;
     v_resultCode      VARCHAR2(300)       := NULL;
+    v_rec_plog plog%ROWTYPE;
 
     Begin
           /*
