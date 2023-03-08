@@ -233,7 +233,6 @@ is
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb SBMK Error ： '|| v_result || '：' || v_resultCode;
     Exception when others then
-          pkg_plog.error('pdate Ci.Cipb SBMK Error='||sqlcode||' ， '||'錯誤訊息='||SQLERRM,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE); 
           v_rec_plog.userid    := v_i_user;
           v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
           v_rec_plog.starttime := SYSDATE;
@@ -341,7 +340,6 @@ is
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb UINMK Error ： '|| v_result || '：' || v_resultCode;
     Exception when others then
-          pkg_plog.error('pdate Ci.Cipb SBMK Error='||sqlcode||' ， '||'錯誤訊息='||SQLERRM,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE); 
           v_rec_plog.userid    := v_i_user;
           v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
           v_rec_plog.starttime := SYSDATE;
