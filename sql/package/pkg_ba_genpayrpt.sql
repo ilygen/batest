@@ -4779,7 +4779,8 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2010/10/01  Kiyomi       Created this procedure.
-
+        1.1   2023/03/09  William      依據babaweb-68修改，增加查詢的條件，
+                                       只產製已同意代扣之補償金單位
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
 
@@ -4850,7 +4851,15 @@ is
                        and t21.PAYTYP in ('1','2','3')
                        and t21.CHKDATE = v_i_chkdate
                        and (t21.APLPAYDATE is not null and nvl(trim(t21.APLPAYDATE),' ')<>' ')
-                   ) t2,PBBMSA t3,CAUB t4
+                   ) t2
+                   ,(SELECT b.* from
+                      (select apno ,benidnno from baappbase where seqno='0000') a1,
+                      (select apno, oldapldpt from baappbase where  seqno<>'0000' and benevtrel='Z') a2,
+                     PBBMSA b
+                      where  a1.benidnno = b.BMEVIDNO
+                      and a2.oldapldpt=b.bmoldapldpt
+                      AND a1.apno = a2.apno ) t3  --20230309 babaweb-68
+                  ,CAUB t4
              where t1.APNO = t2.APNO
                and t1.ISSUYM = t2.ISSUYM
                and t1.PAYYM = t2.PAYYM
