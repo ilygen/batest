@@ -1,14 +1,3 @@
--------------------------------------------------
--- Export file for user BA                     --
--- Created by JEOYU on 2018/10/19, 下午 12:41:54 --
--------------------------------------------------
-
-spool pkg_ba_updcistatus_20181019.log
-
-prompt
-prompt Creating package PKG_BA_UPDCISTATUS
-prompt ===================================
-prompt
 CREATE OR REPLACE Package BA.PKG_BA_updCIStatus
 /********************************************************************************
     PROJECT:         BLI-BaWeb 勞保年金給付系統
@@ -116,10 +105,6 @@ authid definer is
 End;
 /
 
-prompt
-prompt Creating package body PKG_BA_UPDCISTATUS
-prompt ========================================
-prompt
 CREATE OR REPLACE Package Body BA.PKG_BA_updCIStatus
 is
 
@@ -148,6 +133,7 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2012/04/11  ChungYu Lin  Created this Package.
+        1.1   2023/03/08  William      依據babaweb-69修改，增加log
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -170,6 +156,8 @@ is
     v_result          VARCHAR2(1)         := NULL;
     v_resultCode      VARCHAR2(300)       := NULL;
     v_sbmk            VARCHAR2(10)        := NULL;
+    v_rec_plog plog%ROWTYPE;
+
     Begin
           /*
              2012/12/18 Modify By ChungYu 不給付案要清除領取給付註記 ，所以會傳Null 進來
@@ -228,10 +216,34 @@ is
                                           v_resultCode,
                                           to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                          );
+                if v_result <> '1' then
+                    v_rec_plog.userid    := v_i_user;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '1'; --INFO
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := 'sp_BA_updSBMK';
+                    v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：APNO='||v_i_apno||','|| v_result || '：' || v_resultCode;
+                    pkg_plog.sp_ins_log(v_rec_plog);
+                end if;
 
           End If;
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb SBMK Error ： '|| v_result || '：' || v_resultCode;
+    Exception when others then
+          v_rec_plog.userid    := v_i_user;
+          v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+          v_rec_plog.starttime := SYSDATE;
+          v_rec_plog.typemk    := '1';
+          v_rec_plog.levelmk   := '3'; 
+          v_rec_plog.pseq      := '1';
+          v_rec_plog.proctime  := SYSDATE;
+          v_rec_plog.procname  := 'sp_BA_updSBMK';
+          v_rec_plog.msg1      := 'Update Ci.Cipb SBMK Error ：：APNO='||v_i_apno||','||SQLCODE || SQLERRM;
+          v_rec_plog.msg2      := dbms_utility.format_error_backtrace;
+          pkg_plog.sp_ins_log(v_rec_plog);
     End;
     --Procedure sp_BA_updSBMK
 
@@ -278,6 +290,7 @@ is
 
     v_result          VARCHAR2(1)         := NULL;
     v_resultCode      VARCHAR2(300)       := NULL;
+    v_rec_plog plog%ROWTYPE;
 
     Begin
           /*
@@ -310,9 +323,34 @@ is
                                         v_resultCode,
                                         to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                         );
+
+               if v_result <> '1' then
+                    v_rec_plog.userid    := v_i_user;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '1'; --INFO
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := 'sp_BA_updUINMK';
+                    v_rec_plog.msg1      := 'Update Ci.Cipb UINMK Error ：APNO='||v_i_apno||','|| v_result || '：' || v_resultCode;
+                    pkg_plog.sp_ins_log(v_rec_plog);
+                end if;
           End If;
           v_o_return     := v_result;
           v_o_returnCode := 'Update Ci.Cipb UINMK Error ： '|| v_result || '：' || v_resultCode;
+    Exception when others then
+          v_rec_plog.userid    := v_i_user;
+          v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+          v_rec_plog.starttime := SYSDATE;
+          v_rec_plog.typemk    := '1';
+          v_rec_plog.levelmk   := '3'; 
+          v_rec_plog.pseq      := '1';
+          v_rec_plog.proctime  := SYSDATE;
+          v_rec_plog.procname  := 'sp_BA_updUINMK';
+          v_rec_plog.msg1      := 'Update Ci.Cipb UINMK Error ：：APNO='||v_i_apno||','||SQLCODE || SQLERRM;
+          v_rec_plog.msg2      := dbms_utility.format_error_backtrace;
+          pkg_plog.sp_ins_log(v_rec_plog);
     End;
     --Procedure sp_BA_updUINMK
 
@@ -3855,6 +3893,3 @@ is
 
 End;
 /
-
-
-spool off
