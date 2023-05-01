@@ -55,9 +55,32 @@
     	document.getElementById("btnDownMedia").disabled = false;
     	document.getElementById("btnProcQuery").disabled = false;
     }
+    Date.prototype.Format = function (fmt) { //author: meizz 
+        var o = {
+            "M+": this.getMonth() + 1, //月份 
+            "d+": this.getDate(), //日 
+            "h+": this.getHours(), //小时 
+            "m+": this.getMinutes(), //分 
+            "s+": this.getSeconds(), //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }           
+
+    function defaultDate(){
+    	var now = new Date().Format("yyyyMMdd");
+    	var issuYmStr = changeDateType(now).substring(0, 5);
+    	var chkDateStr = changeDateType(now);
+        $("issuYm").value = issuYmStr;
+        $("chkDate").value = chkDateStr;
+    }
     //頁面欄位值初始化       
     function initAll(){        
-		  
+    	defaultDate();
     }    
      <%-- 畫面重設 --%>
     function cleanAll(){
@@ -109,7 +132,7 @@
                 <tr>
                    <td  width="15%" align="center"/>
                    <td  width="30%" align="left" class="issuetitle_L_down"> <span class="needtxt">＊</span>核付處理類別： 
-                        <html:select property="issuTyp" onchange="cleanDate()">
+                        <html:select property="issuTyp" onchange="defaultDate()">
                             <html:option value="">請選擇</html:option>
                             <html:option value="1">月核付</html:option>
                             <html:option value="2">第一次改匯核付</html:option>
