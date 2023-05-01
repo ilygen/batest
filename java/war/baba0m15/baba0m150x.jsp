@@ -73,9 +73,8 @@
 
     function defaultDate(){
     	var now = new Date().Format("yyyyMMdd");
-    	var issuYmStr = changeDateType(now).substring(0, 5);
     	var chkDateStr = changeDateType(now);
-        $("issuYm").value = issuYmStr;
+        $("issuYm").value = "";
         $("chkDate").value = chkDateStr;
     }
     //頁面欄位值初始化       
