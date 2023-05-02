@@ -17,6 +17,7 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import org.owasp.encoder.Encode;
 
+import common.util.dbutil.DbToolsUtils;
 import tw.gov.bli.ba.util.ExceptionUtility;
 
 public class FtpHelper {
@@ -81,7 +82,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
 
             ftp.changeWorkingDirectory(dirForTxtDownload);
 
@@ -149,7 +150,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
 
             // 搬檔
             ftp.changeWorkingDirectory(dirForRecordFile);
@@ -204,7 +205,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
 
             // 搬檔
             ftp.changeWorkingDirectory(dirForDataFile);
@@ -256,7 +257,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
 
             // 取得紀錄檔檔名
             ftp.changeWorkingDirectory(dirForRecordFile);
@@ -333,7 +334,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
             // 取得紀錄檔檔名
             ftp.changeWorkingDirectory(dirForRecordFileMedia);
             InputStream is = retrieveFileStream(ftp, dirForRecordFileMedia + mfileName);
@@ -454,7 +455,7 @@ public class FtpHelper {
                 throw new RuntimeException("FTP 連線失敗...");
             }
 
-            ftp.login(userId, userPass);
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
 
             ByteArrayOutputStream baoOutput = new ByteArrayOutputStream();
 
