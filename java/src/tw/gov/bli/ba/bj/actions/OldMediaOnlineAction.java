@@ -267,9 +267,9 @@ public class OldMediaOnlineAction extends BaseDispatchAction {
         HttpSession session = request.getSession();
         OldMediaOnlineForm queryForm = (OldMediaOnlineForm) form;
         MediaUploadFile mediaUploadFile = new MediaUploadFile();
-        boolean result = mediaUploadFile.doUploadFile(queryForm.getMfileName());
 
         try {
+            boolean result = mediaUploadFile.doUploadFile(queryForm.getMfileName());
             if (result) {
                 if (queryForm.getFtpSeq().intValue() >= 1) {
                     bjService.updateData(queryForm.getMfileName(), queryForm.getMfileDate(), DateUtility.changeDateType(queryForm.getChkDate()));
