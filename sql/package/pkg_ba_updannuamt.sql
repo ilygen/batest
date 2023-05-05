@@ -58,6 +58,7 @@ is
         1.3   2022/12/15  William       依babaweb-53 調整
         1.4   2023/03/30  William       依babaweb-71修改
                                         老年差額金=一次給付金額 – 老年累計已領年金金額 – 失能累計已領年金金額
+        1.5   2023/05/05  William       調整查詢失能累計已領年金金額，合併回cursor_1
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -73,7 +74,6 @@ is
         v_rowCount                 Number ;
         v_genFlag                  Number;
         v_annuAMT                  Number;
-        v_dabannuamt               Number;
         v_marginAMT                Number;    
 
         --查詢待更新核付資料的受理案件資料
@@ -82,6 +82,7 @@ is
                   ,t.SEQNO             --受款人序
                   ,t.ONCEPAYMK         -- 一次給付符合註記  2017/11/08 Add By ChungUu
                   ,t.ONCEISSUEAMT      -- 一次給付金額      2017/11/08 Add By ChungUu
+                  ,nvl(t.DABANNUAMT,0) as DABANNUAMT
               from BAAPPBASE t
              where t.APNO like (v_i_paycode||'%')
                and t.SEQNO = '0000'
@@ -212,18 +213,9 @@ is
               
                 --  2017/11/08 加入更新老年差額金欄位
                 if ( v_i_paycode = 'L' ) then
-                    --v1.4 20230330 加入失能金額計算
-                    begin
-                       select nvl(t1.DABANNUAMT,0) into v_dabannuamt
-                         from baappbase t1
-                       where  t1.APNO = v_dataCur_1.APNO
-                        and t1.SEQNO = '0000' ;
-                    Exception when no_data_found then
-                         v_dabannuamt :=0;
-                    end;
-
-                    if ((v_dataCur_1.ONCEPAYMK <> 'N') And ((v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dabannuamt)>0)) then 
-                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dabannuamt;
+                    --v1.4  加入失能金額(DABANNUAMT)計算
+                    if ((v_dataCur_1.ONCEPAYMK <> 'N') And ((v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT)>0)) then 
+                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT);
                     else
                          v_marginAMT := 0;
                     end if;
