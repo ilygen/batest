@@ -215,7 +215,7 @@ is
                 if ( v_i_paycode = 'L' ) then
                     --v1.4  加入失能金額(DABANNUAMT)計算
                     if ((v_dataCur_1.ONCEPAYMK <> 'N') And ((v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT)>0)) then 
-                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT);
+                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT;
                     else
                          v_marginAMT := 0;
                     end if;
