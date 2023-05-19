@@ -95,7 +95,26 @@ CREATE OR REPLACE PACKAGE BA.PKG_BAAPPLYDATA AUTHID DEFINER IS
         ,GRDIDNNO         BAAPPBASE.GRDIDNNO%TYPE        -- 法定代理人身分證號
         ,GRDNAME          BAAPPBASE.GRDNAME%TYPE         -- 法定代理人姓名
         ,GRDBRDATE        BAAPPBASE.GRDBRDATE%TYPE       -- 法定代理人出生日期
-        );
+        ,APITEM           BAAPPBASE.APITEM%type          --申請項目
+        ,IDNCHKYM         BAAPPBASE.IDNCHKYM%type        --身分查核年月
+        ,UPDUSER          BAAPPBASE.Upduser%type         --異動者代號
+        ,UPDTIME          BAAPPBASE.Updtime%type         --異動日期時間
+        ,CRIMEDIUM        BAAPPEXPAND.CRIMEDIUM%type     --媒介物
+        ,CRIINJCL1        BAAPPEXPAND.CRIINJCL1%type     --失能等級1
+        ,CRIINJCL2        BAAPPEXPAND.CRIINJCL2%type     --失能等級2
+        ,CRIINJCL3        BAAPPEXPAND.CRIINJCL3%type     --失能等級3
+        ,CRIINISSUL       BAAPPEXPAND.CRIINISSUL%type    --核定等級
+        ,CRIINJDP1        BAAPPEXPAND.CRIINJDP1%type     --失能項目1
+        ,CRIINJDP2        BAAPPEXPAND.CRIINJDP2%type     --失能項目2
+        ,CRIINJDP3        BAAPPEXPAND.CRIINJDP3%type     --失能項目3
+        ,CRIINJDP4        BAAPPEXPAND.CRIINJDP4%type     --失能項目4
+        ,CRIINJDP5        BAAPPEXPAND.CRIINJDP5%type     --失能項目5
+        ,CRIINJDP6        BAAPPEXPAND.CRIINJDP6%type     --失能項目6
+        ,CRIINJDP7        BAAPPEXPAND.CRIINJDP7%type     --失能項目7
+        ,CRIINJDP8        BAAPPEXPAND.CRIINJDP8%type     --失能項目8
+        ,CRIINJDP9        BAAPPEXPAND.CRIINJDP9%type     --失能項目9
+        ,criinjdp10       BAAPPEXPAND.CRIINJDP10%type    --失能項目10
+  );
     TYPE ba_baappbase_tab IS TABLE OF ba_baappbase_rec;
 
     TYPE ba_badapr_rec IS RECORD(
@@ -256,22 +275,35 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAAPPLYDATA IS
                A.PAYEEACC,
                A.GRDIDNNO,
                A.GRDNAME,
-               A.GRDBRDATE
+               A.GRDBRDATE,
+                A.APITEM,
+                A.IDNCHKYM,
+                A.UPDUSER,
+                A.UPDTIME,
+                B.CRIMEDIUM,
+                B.CRIINJCL1,
+                B.CRIINJCL2,
+                B.CRIINJCL3,
+                B.CRIINISSUL,
+                B.CRIINJDP1,
+                B.CRIINJDP2,
+                B.CRIINJDP3,
+                B.CRIINJDP4,
+                B.CRIINJDP5,
+                B.CRIINJDP6,
+                B.CRIINJDP7,
+                B.CRIINJDP8,
+                B.CRIINJDP9,
+                B.criinjdp10
           FROM BAAPPBASE A
           LEFT OUTER JOIN BAAPPEXPAND B
             ON A.APNO = B.APNO
            AND A.SEQNO = B.SEQNO
          WHERE NVL(A.CASEMK, 'X') != 'D'
-           AND EXISTS (SELECT 1
-                  FROM (SELECT APNO
-                          FROM BAAPPBASE
-                         WHERE BENIDNNO = P_IDN
-                        UNION ALL
-                        SELECT APNO
-                          FROM BAAPPBASE
-                         WHERE BENBRDATE = P_BRITH
-                           AND BENNAME = P_NAME) T
-                 WHERE T.APNO = A.APNO)
+         AND ( (A.seqno<>'0000' and BENIDNNO = P_IDN)
+           or  (A.seqno<>'0000' and BENBRDATE = P_BRITH AND BENNAME = P_NAME)
+           or  (A.seqno='0000' and A.Evtidnno = P_IDN)
+           or  (A.seqno='0000' and A.Evtbrdate = P_BRITH AND A.Evtname = P_NAME) )
          ORDER BY A.APNO, A.SEQNO;
 
     CURSOR badapr_cursor(
