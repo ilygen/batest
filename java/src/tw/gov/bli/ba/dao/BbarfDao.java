@@ -12,7 +12,7 @@ public interface BbarfDao {
      * @param apNo 受理編號
      * @return
      */
-    public Bbarf selectDataBy(String apNo);
+    public Bbarf selectDataBy(String apNo, String seqNo);
     /**
      * 依傳入條件取得 現金給付應收未收檔(<code>BBARF</code>) 資料 
      * 
