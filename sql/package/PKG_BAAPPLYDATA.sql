@@ -184,7 +184,7 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAAPPLYDATA IS
     ) RETURN ba_baappbase_rec IS
         SELECT A.APNO,
                A.SEQNO,
-               'AA' AS SYSCODE, --系統類別
+               A.SYSCODE, --系統類別
                SUBSTR(A.APNO, 1, 1) AS PAYCODE,
                A.IMK,
                A.PAYKIND,
