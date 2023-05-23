@@ -2860,9 +2860,9 @@ public class BaReportReplaceUtility {
 		if (!baappbase.getEvtJobDate().equals("")) {
 			String A172Ym = "";
 			if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-				A172Ym = DateUtility.changeDateType(DateUtility.calYear(Integer.toString(DATE_20230101), 20));
+				A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 20));// 遺屬滿20歲日期
 			}else {
-				A172Ym = DateUtility.changeDateType(DateUtility.calYear(Integer.toString(DATE_20230101), 18));
+				A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 18));// 遺屬滿18歲日期
 			}
 			replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
 		}
@@ -2873,25 +2873,27 @@ public class BaReportReplaceUtility {
 		if (!baappbase.getEvtJobDate().equals("")) {
 			String A173Ym = "";
 			if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(Integer.toString(DATE_20230101), 20), 1));
+				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 20), 1));
 			}else {
-				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(Integer.toString(DATE_20230101), 18), 1));
+				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 18), 1));
 			}
 			replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
 		}
 	}
 	
 	//成年年齡
+	//一、事故日期 < 1120101且遺屬出生日期 < 1120101：顯示「20」。
+	//二、符合事故日期 >= 1120101或符合事故日期 < 1120101且遺屬出生日期 >= 1120101：顯示「18」。
 	public void A184() {
 		if (baappbase != null && baappbase.getEvtJobDate() != null) {
 			if (!baappbase.getEvtJobDate().equals("")) {
-				String ben1820Date = "";
+				String adultAge = "";
 				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-					ben1820Date = DateUtility.calYear(benData.getBenBrDate(), 20);// 遺屬滿20歲日期
-				}else {
-					ben1820Date = DateUtility.calYear(benData.getBenBrDate(), 18);// 遺屬滿18歲日期
+					adultAge = "20";
+				} else if (NumberUtils.toInt(baappbase.getEvtJobDate()) >= DATE_20230101 || (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) >= DATE_20230101)) {
+					adultAge = "18";
 				}
-				replaceValue.put(ConstantKey.A184, ben1820Date);
+				replaceValue.put(ConstantKey.A184, adultAge);
 			}
 		}
 	}
