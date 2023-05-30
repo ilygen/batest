@@ -5320,7 +5320,7 @@ public class RptService {
             List<OldAgeReviewRpt04Case> caseList = new ArrayList<OldAgeReviewRpt04Case>();
 
             for (Barxf barxf : barxfList) {
-                Bbarf bbarf = bbarfDao.selectDataBy(barxf.getRxfApNo(), barxf.getSeqNo());
+                Bbarf bbarf = bbarfDao.selectDataBy(barxf.getRxfApNo(), barxf.getBenIdnNo());
                 Baappbase data = baappbaseDao.selectOldAgeReviewRpt04DataBy(barxf.getApNo(), barxf.getSeqNo());
                 OldAgeReviewRpt04Case caseData = new OldAgeReviewRpt04Case();
                 // 待收回[

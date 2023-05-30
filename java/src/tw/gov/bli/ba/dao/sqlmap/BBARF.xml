@@ -98,7 +98,7 @@
                   ACTENDMK ENDMK
              From bbunacpdtl
              Where APNO = #apNo:VARCHAR#
-              And SEQNO = #seqNo:VARCHAR#
+              And BENIDNNO = #gvIdno:VARCHAR#
               And RECREM >0                      
     </select>
     
