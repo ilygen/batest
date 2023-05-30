@@ -2038,6 +2038,7 @@ public class ConstantKey {
     public static final String A172 = "A172";// 成年之年月
     public static final String A173 = "A173";// 成年之次月
     public static final String A184 = "A184";// 成年年齡
+    public static final String A185 = "A185";// 不合格者仍在學，無需審議文句
 
     public static final String L011 = "L011";// 老年差額金通知 - 首次給付年月
     public static final String L012 = "L012";// 老年差額金通知 - 給付年月

@@ -465,6 +465,7 @@ public class BaReportReplaceUtility {
 		A173();
 		A184();
 		A150();//A150會用到A164、A165、A172、A173、A184
+		A185();
 
 		if (baappbase.getApNo().substring(0, 1).equals("K")) {
 			K001();
@@ -2896,6 +2897,48 @@ public class BaReportReplaceUtility {
 				replaceValue.put(ConstantKey.A184, adultAge);
 			}
 		}
+	}
+
+	//不合格者仍在學，無需審議文句
+	//遺屬所選的不合格原因代碼有01、05、06、11、12、18、20其中之一時
+	public void A185() {
+		List<String> unqualifiedCauseList = Arrays.asList(new String[]{"01", "05", "06", "11", "12", "18", "20"});
+		if (baappbasePrintList != null) {
+
+			if (baappbasePrintList.size() > 0) {
+				String A185String = "";
+				ArrayList<String> sNameList = new ArrayList<String>();
+
+				for (int i = 0; i < baappbasePrintList.size(); i++) {
+					if (!baappbasePrintList.get(i).getSeqNo().equals("0000")
+							&& unqualifiedCauseList.contains(baappbasePrintList.get(i).getUnqualifiedCause())
+							&& baappbasePrintList.get(i).getBenDieDate().equals("")) {
+						sNameList.add(baappbasePrintList.get(i).getBenName());
+					}
+				}
+
+				for (int i = 0; i < sNameList.size(); i++) {
+					if (i != sNameList.size() - 1 && i != sNameList.size() - 2) {
+						A185String = A185String + sNameList.get(i) + "、";
+					} else if (i == sNameList.size() - 2 && i != sNameList.size() - 1) {
+						A185String = A185String + sNameList.get(i) + "及";
+					} else if (i == sNameList.size() - 1) {
+						A185String = A185String + sNameList.get(i);
+					}
+				}
+
+				if (sNameList.size() > 0) {
+					replaceValue.put(ConstantKey.A185, "【註：倘" + A185String + "仍在學，請檢具在學證明送局憑辦，註明「補件」及填寫受理編號，「無須」填具勞工保險爭議事項審議申請書】");
+				} else {
+					replaceValue.put(ConstantKey.A185, "");
+				}
+			} else {
+				replaceValue.put(ConstantKey.A185, "");
+			}
+		} else {
+			replaceValue.put(ConstantKey.A185, "");
+		}
+
 	}
 
 	// 投保薪資分級表第一級
