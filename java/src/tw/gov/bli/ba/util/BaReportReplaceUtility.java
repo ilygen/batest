@@ -464,7 +464,7 @@ public class BaReportReplaceUtility {
 		A172();
 		A173();
 		A184();
-		A150();//A150會用到A164、A165、A172、A173、A184
+		A150();//A150會用到A003、A164、A165、A167、A168、A172、A173、A184
 		A185();
 
 		if (baappbase.getApNo().substring(0, 1).equals("K")) {
@@ -2976,14 +2976,15 @@ public class BaReportReplaceUtility {
 		String A150String_16 = "";
 		String A150String_17 = "";
 		String A150String_18 = "";
-		String A150String_19 = "";
-		String A150String_20 = "";
+		String A150String_23 = "";
+		String A150String_24 = "";
 		String maxPayYm = "";
 		String minPayYm = "";
 		String minWage = "0";
 		int cnt = 0;
 		String digamyDate = "";
 		String benDieDate = "";
+		String A003Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A003)) ? replaceValue.get(ConstantKey.A003) : "";
 		String A164Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A164)) ? replaceValue.get(ConstantKey.A164) : "";
 		String A165Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A165)) ? replaceValue.get(ConstantKey.A165) : "";
 		String A167Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A167)) ? replaceValue.get(ConstantKey.A167) : "";
@@ -3137,20 +3138,20 @@ public class BaReportReplaceUtility {
 			    A150String_18 = A150String_18 + "於" + A172Value + "年滿" + A184Value + "歲，" + A173Value + "起未在學且非無謀生能力";
 			}
 			
-			A150String_19 = nameConcat(baappbasePrintListA150, "19");
-			if (StringUtils.isNotBlank(A150String_19)) {
-				A150String_19 = A150String_19 + "年齡逾" + A184Value +"歲，" + A167Value + "及" + A168Value + "工作收入超過投保薪資分級表第一級（" + minWage + "元）";
+			A150String_23 = nameConcat(baappbasePrintListA150, "23");
+			if (StringUtils.isNotBlank(A150String_23)) {
+				A150String_23 = A150String_23 + "與" + A003Value + "之婚姻關係存續未滿一年，且未扶養符合請領遺屬年金給付條件之子女";
 			}
 			
-			A150String_20 = nameConcat(baappbasePrintListA150, "20");
-			if (StringUtils.isNotBlank(A150String_20)) {
-				A150String_20 = A150String_20 + "年齡逾" + A184Value + "歲，" + A167Value + "起未在學且非無謀生能力";
+			A150String_24 = nameConcat(baappbasePrintListA150, "24");
+			if (StringUtils.isNotBlank(A150String_24)) {
+				A150String_24 = A150String_24 + "年齡未滿45歲，且未扶養符合請領遺屬年金給付條件之子女";
 			}
 
 			A150String = A150String_1 + A150String_2 + A150String_3 + A150String_4 + A150String_5 + A150String_6
 					   + A150String_7 + A150String_8 + A150String_9 + A150String_10 + A150String_11 + A150String_12
 					   + A150String_13 + A150String_14 + A150String_15 + A150String_16 + A150String_17
-					   + A150String_18 + A150String_19 + A150String_20;
+					   + A150String_18 + A150String_23 + A150String_24;
 
 			if (A150String.length() > 0) {
 				int iLocation = A150String.lastIndexOf("；");
