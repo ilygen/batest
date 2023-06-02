@@ -56,6 +56,9 @@ is
         1.0   2009/11/30  Evelyn Hsu    Created this procedure.
         1.2   2017/11/08  ChugnYU       加入更新老年差額金
         1.3   2022/12/15  William       依babaweb-53 調整
+        1.4   2023/03/30  William       依babaweb-71修改
+                                        老年差額金=一次給付金額 – 老年累計已領年金金額 – 失能累計已領年金金額
+        1.5   2023/05/05  William       調整查詢失能累計已領年金金額，合併回cursor_1
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -79,6 +82,7 @@ is
                   ,t.SEQNO             --受款人序
                   ,t.ONCEPAYMK         -- 一次給付符合註記  2017/11/08 Add By ChungUu
                   ,t.ONCEISSUEAMT      -- 一次給付金額      2017/11/08 Add By ChungUu
+                  ,nvl(t.DABANNUAMT,0) as DABANNUAMT
               from BAAPPBASE t
              where t.APNO like (v_i_paycode||'%')
                and t.SEQNO = '0000'
@@ -209,9 +213,9 @@ is
               
                 --  2017/11/08 加入更新老年差額金欄位
                 if ( v_i_paycode = 'L' ) then
-                    
-                    if ((v_dataCur_1.ONCEPAYMK <> 'N') And ((v_dataCur_1.ONCEISSUEAMT-v_annuAMT)>0)) then 
-                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT;
+                    --v1.4  加入失能金額(DABANNUAMT)計算
+                    if ((v_dataCur_1.ONCEPAYMK <> 'N') And ((v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT)>0)) then 
+                         v_marginAMT := v_dataCur_1.ONCEISSUEAMT-v_annuAMT-v_dataCur_1.DABANNUAMT;
                     else
                          v_marginAMT := 0;
                     end if;
