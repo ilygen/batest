@@ -301,15 +301,17 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAAPPLYDATA IS
            AND A.SEQNO = B.SEQNO
          WHERE NVL(A.CASEMK, 'X') != 'D' 
           AND EXISTS (SELECT 1
-                  FROM (SELECT APNO
+                  FROM (SELECT APNO , SEQNO
                           FROM BAAPPBASE t1
                          WHERE seqno<>'0000' and (BENIDNNO = P_IDN or (BENBRDATE = P_BRITH AND BENNAME = P_NAME))
                         UNION ALL
-                        SELECT APNO
+                        SELECT APNO, SEQNO
                           FROM BAAPPBASE t2
                          WHERE seqno='0000' and (Evtidnno = P_IDN or (Evtbrdate = P_BRITH AND Evtname = P_NAME))
                          ) T
-                 WHERE T.APNO = A.APNO)
+                 WHERE T.APNO = A.APNO
+                       and T.SEQNO = A.SEQNO
+                )
          ORDER BY A.APNO, A.SEQNO;
 
     CURSOR badapr_cursor(
