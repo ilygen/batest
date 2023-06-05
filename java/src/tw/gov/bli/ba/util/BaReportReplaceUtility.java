@@ -2859,26 +2859,30 @@ public class BaReportReplaceUtility {
 	//成年之年月
 	public void A172() {
 		if (!baappbase.getEvtJobDate().equals("")) {
-			String A172Ym = "";
-			if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-				A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 20));// 遺屬滿20歲日期
-			}else {
-				A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 18));// 遺屬滿18歲日期
+			if (benData != null && !"".equals(benData.getBenBrDate())) {
+				String A172Ym = "";
+				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
+					A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 20));// 遺屬滿20歲日期
+				}else {
+					A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 18));// 遺屬滿18歲日期
+				}
+				replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
 			}
-			replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
 		}
 	}
 	
 	//成年之次月
 	public void A173() {
 		if (!baappbase.getEvtJobDate().equals("")) {
-			String A173Ym = "";
-			if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 20), 1));
-			}else {
-				A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 18), 1));
+			if (benData != null && !"".equals(benData.getBenBrDate())) {
+				String A173Ym = "";
+				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
+					A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 20), 1));
+				}else {
+					A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 18), 1));
+				}
+				replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
 			}
-			replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
 		}
 	}
 	
@@ -2888,13 +2892,15 @@ public class BaReportReplaceUtility {
 	public void A184() {
 		if (baappbase != null && baappbase.getEvtJobDate() != null) {
 			if (!baappbase.getEvtJobDate().equals("")) {
-				String adultAge = "";
-				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-					adultAge = "20";
-				} else if (NumberUtils.toInt(baappbase.getEvtJobDate()) >= DATE_20230101 || (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) >= DATE_20230101)) {
-					adultAge = "18";
+				if (benData != null && !"".equals(benData.getBenBrDate())) {
+					String adultAge = "";
+					if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
+						adultAge = "20";
+					} else if (NumberUtils.toInt(baappbase.getEvtJobDate()) >= DATE_20230101 || (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) >= DATE_20230101)) {
+						adultAge = "18";
+					}
+					replaceValue.put(ConstantKey.A184, adultAge);
 				}
-				replaceValue.put(ConstantKey.A184, adultAge);
 			}
 		}
 	}
