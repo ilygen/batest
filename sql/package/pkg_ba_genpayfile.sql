@@ -1434,7 +1434,7 @@ is
                                         ||v_PayDataCur.SPACE2
                                         ||v_PayDataCur.PAYYM2
                                         ||v_PayDataCur.IDN2
-                                        ||convert(substr(RPAD(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1'),30,'　'),1,15)||v_PayDataCur.INSKD2, 'ZHT16BIG5', 'UTF8')
+                                        ||substr(RPAD(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1'),30,'　'),1,15)||v_PayDataCur.INSKD2
                                         ||v_PayDataCur.EMGMK2
                                         ||v_PayDataCur.RPAYDATE2
                                         ||v_PayDataCur.ISSUYM2

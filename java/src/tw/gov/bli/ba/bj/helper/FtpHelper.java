@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -236,6 +238,59 @@ public class FtpHelper {
     }
 
     /**
+     * 將指定的 資料文字檔 檔案搬移到 dirForDataFile 目錄中
+     * 
+     * @param fileName 欲備份的檔名
+     */
+    public void moveFileMedia(String fileName) {
+        if (StringUtils.isBlank(dirForDataFile))
+            return;
+
+        FTPClient ftp = new FTPClient();
+        ftp.setControlEncoding(controlEncoding);
+
+        try {
+            int reply;
+            ftp.connect(serverAddress, Integer.parseInt(serverPort));
+            reply = ftp.getReplyCode();
+
+            if (!FTPReply.isPositiveCompletion(reply)) {
+                ftp.disconnect();
+                log.error("FTP 連線失敗...");
+                throw new RuntimeException("FTP 連線失敗...");
+            }
+
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
+
+            // 搬檔
+            ftp.changeWorkingDirectory(dirForRecordFile);
+            boolean bOperation = ftp.rename(fileName, dirForDataFile + fileName);
+
+            if (!bOperation)
+                log.info("資料文字檔" + Encode.forJava(fileName) + "檔案搬移失敗 Code:" + ftp.getReplyCode() + "搬移檔案路徑：" + dirForDataFile);
+            else
+                log.info("資料文字檔" + Encode.forJava(fileName) + "檔案搬移成功 Code:" + ftp.getReplyCode());
+
+            ftp.logout();
+
+        }
+        catch (Exception e) {
+            log.error("FtpHelper.moveFileMedia() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
+            throw new RuntimeException("FTP 發生錯誤:" + StringUtils.defaultString(e.getMessage()));
+        }
+        finally {
+            if (ftp.isConnected()) {
+                try {
+                    ftp.disconnect();
+                }
+                catch (IOException ioe) {
+                    // do nothing
+                }
+            }
+        }
+    }
+
+    /**
      * 取得所有在 dirForRecordFile 目錄中的 紀錄檔檔名
      * 
      * @return 回傳 String Array, 每個檔名分別為 Array 中的一個 String 物件
@@ -279,6 +334,67 @@ public class FtpHelper {
         }
         catch (Exception e) {
             log.error("FtpHelper.getRecordFileNames() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
+            throw new RuntimeException("FTP 發生錯誤:" + StringUtils.defaultString(e.getMessage()));
+        }
+        finally {
+            if (ftp.isConnected()) {
+                try {
+                    ftp.disconnect();
+                }
+                catch (IOException ioe) {
+                    // do nothing
+                }
+            }
+        }
+    }
+
+    /**
+     * 取得所有在 dirForRecordFile 目錄中的 資料文字檔檔名
+     * 
+     * @return 回傳 Map List, 每個 Map 分別為檔名和 File timestamp
+     */
+    public List<Map> getRecordFileNames2() {
+        FTPClient ftp = new FTPClient();
+        ftp.setControlEncoding(controlEncoding);
+
+        try {
+            int reply;
+            ftp.connect(serverAddress, Integer.parseInt(serverPort));
+            reply = ftp.getReplyCode();
+
+            if (!FTPReply.isPositiveCompletion(reply)) {
+                ftp.disconnect();
+                log.error("FTP 連線失敗...");
+                throw new RuntimeException("FTP 連線失敗...");
+            }
+
+            ftp.login(userId, DbToolsUtils.decrypt(userPass));
+
+            // 取得資料文字檔檔名
+            ftp.changeWorkingDirectory(dirForRecordFile);
+            FTPFile[] files = ftp.listFiles();
+            ArrayList<Map> list = new ArrayList<Map>();
+            for (int i = 0; i < files.length; i++) {
+                FTPFile file = files[i];
+
+                if (file.isFile()) {
+                	for (String paidMarkFileNamePreS: paidMarkFileNamePrefix) {
+                        if (StringUtils.startsWithIgnoreCase(file.getName(), paidMarkFileNamePreS)) {
+                            Map<String, Object> fileMap = new HashMap<String, Object>();
+                        	fileMap.put("filename", file.getName());
+                        	fileMap.put("timestamp", file.getTimestamp());
+                            list.add(fileMap);
+                        }
+                	}
+                }
+            }
+
+            ftp.logout();
+
+            return list;
+        }
+        catch (Exception e) {
+            log.error("FtpHelper.getRecordFileMediaNames() 發生錯誤:" + ExceptionUtility.getStackTrace(e));
             throw new RuntimeException("FTP 發生錯誤:" + StringUtils.defaultString(e.getMessage()));
         }
         finally {

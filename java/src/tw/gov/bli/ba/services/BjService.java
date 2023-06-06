@@ -3,6 +3,8 @@ package tw.gov.bli.ba.services;
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -214,6 +216,108 @@ public class BjService {
 			// 存檔處理完後將 FTP 上的檔案搬移到備份目錄
 			ftpClient.backupRecordFile(fileName);
 		} // ] ... end if (fileContent != null)
+	}
+
+	/**
+	 * 給付媒體回押註記 及 收回作業 - FTP 資料文字檔 處理
+	 * 
+	 * @param fileName
+	 * @param fileTimestamp
+	 */
+	public void insertRecordFileData(String fileName, Calendar fileTimestamp) {
+		// 取得資料文字檔內容
+		String[] fileContent = ftpClient.getRecordFileContent(fileName);
+		if (fileContent != null) { // ... [
+			Babatchrec recordData = new Babatchrec();
+			recordData.setProcStat("0"); // 處理狀態 0: 未處理 1: 已入排程、2: 排程處理中 3: 已處理
+			recordData.setProcFlag("0"); // 回押註記
+
+			// get first line
+			// sample: "1005     BLI     BL111111222139862           0000000027530500000000141 1111122                                                              "
+			String line = fileContent[0];
+			// 批次處理類型 及 檔案名稱
+			for (String paidMarkFileNamePrefix : ftpClient.getPaidMarkFileNamePrefix()) {
+				if (StringUtils.startsWithIgnoreCase(fileName, paidMarkFileNamePrefix)) { // 給付媒體回押註記
+					recordData.setBatchTyp("01");
+					recordData.setFileName(fileName);
+					break;
+				}
+			}
+
+			for (String writeOffFileNamePrefix : ftpClient.getWriteOffFileNamePrefix()) {
+				if (StringUtils.startsWithIgnoreCase(fileName, writeOffFileNamePrefix)) { // 收回沖銷
+					recordData.setBatchTyp("02");
+					recordData.setFileName(fileName);
+					break;
+				}
+			}
+
+			if (StringUtils.isBlank(recordData.getBatchTyp())) {
+				throw new RuntimeException("檔案名稱錯誤");
+			}
+
+			// 筆數
+			String frec = StringUtils.substring(line, 59, 69);
+			if (StringUtils.isNotBlank(frec))
+				recordData.setDataCount(new BigDecimal(frec));
+
+			// 資料來源
+			String upname = "土地銀行";
+			if (StringUtils.isNotBlank(upname))
+				recordData.setUpOrgan(upname);
+
+			// 資料來源單位 ID
+			String cmpid = "03700301"; // 土地銀行統編
+			if (StringUtils.isNotBlank(cmpid))
+				recordData.setUpOrganId(cmpid);
+
+			// 檔案產生時間
+			if (fileTimestamp != null) {
+				recordData.setUpTime(DateUtility.parseDateToWestDateTime(fileTimestamp.getTime(), true));
+			}
+
+			// 總金額
+			String amount = StringUtils.substring(line, 45, 59);
+			if (StringUtils.isNotBlank(amount))
+				recordData.setAmount(new BigDecimal(amount));
+
+			// 發件單位 , 出帳類別 , 出帳日期 , 資料來源類別
+			if (StringUtils.length(recordData.getFileName()) >= 26) {
+				// 發件單位
+				recordData.setSunit(StringUtils.substring(recordData.getFileName(), 3, 6));
+				// 出帳類別
+				recordData.setTaTyp(StringUtils.substring(recordData.getFileName(), 0, 3));
+				// 出帳日期
+				recordData.setPayDate(
+						DateUtility.changeDateType(StringUtils.substring(recordData.getFileName(), 6, 13)));
+				// 資料來源類別 1: T, 2: K, 3: S
+				String akind = StringUtils.substring(recordData.getFileName(), 25, 26);
+				if (StringUtils.isNotBlank(akind)) {
+					if (akind.equals("1")) {
+						recordData.setUpTyp("T");
+					} else if (akind.equals("2")) {
+						recordData.setUpTyp("K");
+					} else if (akind.equals("3")) {
+						recordData.setUpTyp("S");
+					}
+				}
+			}
+
+			// 異動日期時間
+			recordData.setUpdTime(DateUtility.getNowWestDateTime(true));
+
+			// 存檔處理
+			log.info("新增資料文字檔資料至 BABATCHREC 開始，檔名:" + StringUtils.trimToEmpty(fileName));
+			BigDecimal key = babatchrecDao.insertData(recordData);
+			if (key != null)
+				log.info("BABATCHREC.BABATCHRECID = " + StringUtils.trimToEmpty(key.toPlainString()) + "，檔名:"
+						+ StringUtils.trimToEmpty(fileName));
+
+			log.info("新增資料文字檔資料至 BABATCHREC 完成，檔名:" + StringUtils.trimToEmpty(fileName));
+
+			// 存檔處理完後將 FTP 上的檔案搬移到 DataFile 目錄
+			ftpClient.moveFileMedia(fileName);
+		}
 	}
 
 	/**

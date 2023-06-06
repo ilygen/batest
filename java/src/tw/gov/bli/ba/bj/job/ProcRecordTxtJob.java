@@ -1,5 +1,10 @@
 package tw.gov.bli.ba.bj.job;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import tw.gov.bli.ba.bj.helper.BatchHelper;
@@ -8,7 +13,7 @@ import tw.gov.bli.ba.services.BjService;
 import tw.gov.bli.ba.util.ExceptionUtility;
 
 /**
- * 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 處理
+ * 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理
  * 
  * @author Goston
  */
@@ -22,32 +27,34 @@ public class ProcRecordTxtJob {
         try {
             
             if (!BatchHelper.needExecuteBatch()) {
-                log.info("本主機不須執行 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 處理...");
+                log.info("本主機不須執行 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理...");
                 
                 return;
             }
             
-            log.info("開始 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 處理...");
+            log.info("開始 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理...");
 
-            // 取得紀錄檔檔名清單
-            String[] fileNames = ftpClient.getRecordFileNames();
+            // 取得資料文字檔檔名清單
+            List<Map> fileList = ftpClient.getRecordFileNames2();
 
-            // 處理紀錄檔
-            if (fileNames != null) {
-                for (int i = 0; i < fileNames.length; i++) {
+            // 處理資料文字檔
+            if (fileList != null) {
+                for (Map file: fileList) {
                     try {
-                        bjService.insertRecordData(fileNames[i]);
+                        bjService.insertRecordFileData(
+                        	MapUtils.getString(file, "filename", ""),
+                        	(Calendar)MapUtils.getObject(file, "timestamp"));
                     }
                     catch (Exception e) {
-                        log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
+                        log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
                     }
                 }
             }
 
-            log.info("處理 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 完成...");
+            log.info("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 完成...");
         }
         catch (Exception e) {
-            log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 紀錄檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
+            log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
         }
     }
 
