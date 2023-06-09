@@ -5,6 +5,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.struts.action.ActionForm;
+
+import common.util.dbutil.DbToolsUtils;
 import tw.gov.bli.ba.bj.cases.MediaOnlineDownloadCase;
 import tw.gov.bli.ba.bj.forms.OldMediaBatchForm;
 import tw.gov.bli.ba.bj.helper.CaseSessionHelper;
@@ -28,20 +30,21 @@ public class MediaUploadFile {
 
     /**
      * 媒體檔作業 - 媒體檔下載 - 傳送作業
+     * @throws Exception 
      */
-    public boolean doUploadFile(String mfileName) {
+    public boolean doUploadFile(String mfileName) throws Exception {
         log.error("批次處理 - 老年年金批次產製媒體檔作業-媒體檔下載-傳送作業OldMediaBatchAction.doUploadFile() 開始 ...");
 
         String srcIp = PropertyHelper.getProperty("ftpDbClient.serverAddress");
         int srcPort = Integer.parseInt(PropertyHelper.getProperty("ftpDbClient.serverPort"));
         String srcUserId = PropertyHelper.getProperty("ftpDbClient.userId");
-        String srcPwd = PropertyHelper.getProperty("ftpDbClient.userPass");
+        String srcPwd = DbToolsUtils.decrypt(PropertyHelper.getProperty("ftpDbClient.userPass"));
         String srcDir = PropertyHelper.getProperty("ftpDbClient.dirForRecordFileMedia");
 
         String desIp = PropertyHelper.getProperty("ftpOutClient.serverAddress");
         int desPort = Integer.parseInt(PropertyHelper.getProperty("ftpOutClient.serverPort"));
         String desUserId = PropertyHelper.getProperty("ftpOutClient.userId");
-        String desPwd = PropertyHelper.getProperty("ftpOutClient.userPass");
+        String desPwd = DbToolsUtils.decrypt(PropertyHelper.getProperty("ftpOutClient.userPass"));
         String desDir = PropertyHelper.getProperty("ftpOutClient.dirForDataFile");
 
         FTPClient srcFTP = new FTPClient();

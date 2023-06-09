@@ -9,6 +9,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import common.util.dbutil.DbToolsUtils;
 import tw.gov.bli.ba.ConstantKey;
 import tw.gov.bli.ba.bj.forms.CheckExecForm;
 import tw.gov.bli.ba.framework.helper.DatabaseMessageHelper;
@@ -21,14 +22,14 @@ import java.io.InputStream;
 
 public class CheckExecAction extends BaseDispatchAction {
 	private BjService bjService;
-	public ActionForward doUpload(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward doUpload(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
 		CheckExecForm iform = (CheckExecForm) form;
 		String add = PropertyHelper.getProperty("ftpDbClient.serverAddress");
 		int port = Integer.parseInt(PropertyHelper.getProperty("ftpDbClient.serverPort"));
 		String ac = PropertyHelper.getProperty("ftpDbClient.userId");
-		String pwd = PropertyHelper.getProperty("ftpDbClient.userPass");
+		String pwd = DbToolsUtils.decrypt(PropertyHelper.getProperty("ftpDbClient.userPass"));
 		String des = PropertyHelper.getProperty("ftpDbClient.dirForRecordFileMedia");
 		FTPClient ftp = new FTPClient();
 		try {

@@ -294,9 +294,9 @@ public class DisabledMediaOnlineAction extends BaseDispatchAction {
         HttpSession session = request.getSession();
         DisabledMediaOnlineForm queryForm = (DisabledMediaOnlineForm) form;
         MediaUploadFile mediaUploadFile = new MediaUploadFile();
-        boolean result = mediaUploadFile.doUploadFile(queryForm.getMfileName());
 
         try {
+            boolean result = mediaUploadFile.doUploadFile(queryForm.getMfileName());
             if (result) {
                 if (queryForm.getFtpSeq().intValue() >= 1) {
                     bjService.updateData(queryForm.getMfileName(), queryForm.getMfileDate(), DateUtility.changeDateType(queryForm.getChkDate()));
