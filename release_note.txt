@@ -1,4 +1,4 @@
-Issue number:babaweb-77
-EXE_TYPE:java,sql
-ISDEPLOY:true
-CODE_SCAN:true
+Issue number:
+EXE_TYPE:
+ISDEPLOY:
+CODE_SCAN:
