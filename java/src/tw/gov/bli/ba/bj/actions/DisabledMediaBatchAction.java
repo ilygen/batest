@@ -192,7 +192,7 @@ public class DisabledMediaBatchAction extends BaseDispatchAction  {
 			ServletOutputStream out = response.getOutputStream();
 			try {
 				// 為解決 UNIX 下中文變亂碼的問題, 需強制指定輸出內容編碼
-				IOUtils.copy(in, out, Global.IO_ENCODING);
+				IOUtils.copy(in, out, Global.IO_ENCODING_UTF8);
 			} finally {
 				IOUtils.closeQuietly(out);
 				IOUtils.closeQuietly(in);
