@@ -89,6 +89,7 @@ authid definer is
         v_i_mtestmk        in      varChar2,
         v_i_payseqno       in      varChar2,
         v_i_bajobid        in      varChar2,
+        v_i_userid         in      varChar2,
         v_o_flag           out     varchar2
     );
 
@@ -1309,6 +1310,7 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/06  Angela Wu    Created this procedure.
+        2.0   2023/06/13  ttlin        額外產檔至MG.
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -1321,12 +1323,18 @@ is
         v_i_mtestmk        in      varChar2,
         v_i_payseqno       in      varChar2,
         v_i_bajobid        in      varChar2,
+        v_i_userid         in      varChar2,
         v_o_flag           out     Varchar2
     ) is
         v_filepath         varChar2(50) := 'EXCHANGE';         --轉出給付媒體檔的存放目錄
         v_PayNum           Number(8) := 0;
         v_PayAMT           Number(12) := 0;
         v_fileid           UTL_FILE.FILE_TYPE;
+        --增加MG參數
+        v_fileid_mg        MG.PKG_MG_FILE_UTIL.MG_FILE_TYPE;
+        v_file_dir  VARCHAR2(100) := 'BA_FILES';
+        v_msgCode   VARCHAR2(10000);
+        v_msg       VARCHAR2(10000);
 
         --查詢及計算各媒體檔的首錄及尾錄金額
         Cursor c_dataCur is
@@ -1391,11 +1399,27 @@ is
                 v_PayAMT := 0;
 
                 v_fileid := utl_file.fopen(v_filepath,v_dataCur.MFILENAME,'w');
+                MG.PKG_MG_FILE_UTIL.FOPEN(v_file_dir, v_dataCur.MFILENAME, 'W', null, v_i_userid, v_fileid_mg, v_msgCode, v_msg);
 
                 --產生給付媒體檔(BL1&BLA)
                 if v_dataCur.TATYP2<>'LAB' then
                     --組合及產生首錄資料錄
                     utl_file.put_line(v_fileid
+                                     ,'1'
+                                    ||v_dataCur.SUNIT2
+                                    ||RPAD('005',8,' ')
+                                    ||v_dataCur.TATYP2
+                                   ||v_dataCur.PAYDATE2
+                                    ||'1'
+                                    ||RPAD('139862',17,' ')
+                                    ||LPAD(v_dataCur.AMT,14,'0')
+                                    ||LPAD(v_dataCur.DATACOUNT,10,'0')
+                                    ||v_dataCur.INSKD2
+                                    ||v_dataCur.EMGMK2
+                                    ||v_dataCur.BLPAYDT
+                                    ||RPAD(' ',62,' '));
+                    -- MG
+                    MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
                                      ,'1'
                                     ||v_dataCur.SUNIT2
                                     ||RPAD('005',8,' ')
@@ -1419,6 +1443,28 @@ is
 
                         --組合及產生明細錄資料錄
                         utl_file.put_line(v_fileid
+                                         ,v_PayDataCur.RC2
+                                        ||v_PayDataCur.SUNIT2
+                                        ||v_PayDataCur.HBANK2
+                                        ||v_PayDataCur.BBANK2
+                                        ||v_PayDataCur.TATYP2
+                                        ||v_PayDataCur.PAYDATE2
+                                        ||v_PayDataCur.ACCNO2
+                                        ||v_PayDataCur.AMT2
+                                        ||v_PayDataCur.STAT2
+                                        ||v_PayDataCur.APNO2
+                                        ||v_PayDataCur.SEQ2
+                                        ||v_PayDataCur.PAYTYP2
+                                        ||v_PayDataCur.SPACE2
+                                        ||v_PayDataCur.PAYYM2
+                                        ||v_PayDataCur.IDN2
+                                        ||substr(RPAD(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1'),30,'　'),1,15)||v_PayDataCur.INSKD2
+                                        ||v_PayDataCur.EMGMK2
+                                        ||v_PayDataCur.RPAYDATE2
+                                        ||v_PayDataCur.ISSUYM2
+                                        ||v_PayDataCur.NC2);
+                        -- MG
+                        MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
                                          ,v_PayDataCur.RC2
                                         ||v_PayDataCur.SUNIT2
                                         ||v_PayDataCur.HBANK2
@@ -1498,8 +1544,26 @@ is
                                     ||v_dataCur.EMGMK2
                                     ||v_dataCur.BLPAYDT
                                     ||LPAD(' ',32,' '));
+                    -- MG
+                    MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
+                                     ,'3'
+                                    ||v_dataCur.SUNIT2
+                                    ||RPAD('005',8,' ')
+                                    ||v_dataCur.TATYP2
+                                    ||v_dataCur.PAYDATE2
+                                    ||'1'
+                                    ||RPAD('139862',17,' ')
+                                    ||v_dataCur.PAYDATE2
+                                    ||LPAD(v_dataCur.AMT,14,'0')
+                                    ||LPAD(v_dataCur.DATACOUNT,10,'0')
+                                    ||LPAD('0',14,'0')
+                                    ||LPAD('0',10,'0')
+                                    ||v_dataCur.EMGMK2
+                                    ||v_dataCur.BLPAYDT
+                                    ||LPAD(' ',32,' '));
 
                      utl_file.fclose(v_fileid);
+                     MG.PKG_MG_FILE_UTIL.FCLOSE(v_fileid_mg);
 
                      --修改log作法 by TseHua 20180419
                     sp_ba_recbatchjobdtl(BAJOBDTLID.NEXTVAL, v_i_bajobid, '0',
@@ -1509,6 +1573,14 @@ is
                 else
                      --組合及產生首錄資料錄
                      utl_file.put_line(v_fileid
+                                      ,'1'
+                                     ||RPAD(v_dataCur.SUNIT2,3,' ')
+                                     ||'005'
+                                     ||'245-03'
+                                     ||LPAD(nvl(trim(v_dataCur.PAYDATE2),'0'),8,'0')
+                                     ||RPAD(' ',55,' '));
+                      -- MG
+                     MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
                                       ,'1'
                                      ||RPAD(v_dataCur.SUNIT2,3,' ')
                                      ||'005'
@@ -1526,6 +1598,20 @@ is
 
                          --組合及產生明細錄資料錄
                          utl_file.put_line(v_fileid
+                                          ,v_PayDataCur.RC2
+                                         ||v_PayDataCur.ACCNO2
+                                         ||v_PayDataCur.BBANK2
+                                         ||v_PayDataCur.DLINESEQNO
+                                         ||v_PayDataCur.IDN2
+                                         ||LPAD(nvl(trim(v_PayDataCur.DLINEDATE),'0'),8,'0')
+                                         ||LPAD(v_PayDataCur.AMT2,6,'0')
+                                         ||v_PayDataCur.APNO2
+                                         ||LPAD(v_PayDataCur.ISSUYM2,6,'0')
+                                         ||LPAD(v_PayDataCur.PAYYM2,6,'0')
+                                         ||v_PayDataCur.DLINEMK
+                                         );
+                         -- MG
+                         MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
                                           ,v_PayDataCur.RC2
                                          ||v_PayDataCur.ACCNO2
                                          ||v_PayDataCur.BBANK2
@@ -1568,8 +1654,16 @@ is
                                      ||RPAD(' ',27,' ')
                                      ||LPAD(v_dataCur.AMT,14,'0')
                                      ||LPAD(' ',19,' '));
+                     -- MG
+                     MG.PKG_MG_FILE_UTIL.PUT_LINE(v_fileid_mg
+                                      ,'3'
+                                     ||LPAD(v_dataCur.DATACOUNT,15,'0')
+                                     ||RPAD(' ',27,' ')
+                                     ||LPAD(v_dataCur.AMT,14,'0')
+                                     ||LPAD(' ',19,' '));
 
                       utl_file.fclose(v_fileid);
+                      MG.PKG_MG_FILE_UTIL.FCLOSE(v_fileid_mg);
 
                      --修改log作法 by TseHua 20180419
                       sp_ba_recbatchjobdtl(BAJOBDTLID.NEXTVAL, v_i_bajobid, '0',
