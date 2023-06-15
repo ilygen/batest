@@ -461,9 +461,6 @@ public class BaReportReplaceUtility {
 		A165();
 		A167();
 		A168();
-		A172();
-		A173();
-		A184();
 		A150();//A150會用到A003、A164、A165、A167、A168、A172、A173、A184
 		A185();
 
@@ -2857,31 +2854,39 @@ public class BaReportReplaceUtility {
 		}
 	}
 	//成年之年月
-	public void A172() {
-		if (!baappbase.getEvtJobDate().equals("")) {
-			if (benData != null && !"".equals(benData.getBenBrDate())) {
-				String A172Ym = "";
-				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-					A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 20));// 遺屬滿20歲日期
-				}else {
-					A172Ym = DateUtility.changeDateType(DateUtility.calYear(benData.getBenBrDate(), 18));// 遺屬滿18歲日期
+	public void A172(String unqualifiedCause) {
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+			if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+				if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					String A172Ym = "";
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
+						A172Ym = DateUtility.changeDateType(DateUtility.calYear(baappbaseA150.getBenBrDate(), 20));// 遺屬滿20歲日期
+					}else {
+						A172Ym = DateUtility.changeDateType(DateUtility.calYear(baappbaseA150.getBenBrDate(), 18));// 遺屬滿18歲日期
+					}
+					replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
 				}
-				replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
+				break;
 			}
 		}
 	}
 	
 	//成年之次月
-	public void A173() {
-		if (!baappbase.getEvtJobDate().equals("")) {
-			if (benData != null && !"".equals(benData.getBenBrDate())) {
-				String A173Ym = "";
-				if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
-					A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 20), 1));
-				}else {
-					A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(benData.getBenBrDate(), 18), 1));
+	public void A173(String unqualifiedCause) {
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+			if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+				if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					String A173Ym = "";
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
+						A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(baappbaseA150.getBenBrDate(), 20), 1));
+					} else {
+						A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(baappbaseA150.getBenBrDate(), 18), 1));
+					}
+					replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
 				}
-				replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
+				break;
 			}
 		}
 	}
@@ -2889,20 +2894,23 @@ public class BaReportReplaceUtility {
 	//成年年齡
 	//一、事故日期 < 1120101且遺屬出生日期 < 1120101：顯示「20」。
 	//二、符合事故日期 >= 1120101或符合事故日期 < 1120101且遺屬出生日期 >= 1120101：顯示「18」。
-	public void A184() {
-		if (baappbase != null && baappbase.getEvtJobDate() != null) {
-			if (!baappbase.getEvtJobDate().equals("")) {
-				if (benData != null && !"".equals(benData.getBenBrDate())) {
-					String adultAge = "";
-					if (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) < DATE_20230101 ) {
+	public void A184(String unqualifiedCause) {
+		String adultAge = "18";
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+		    if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+		    	if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
 						adultAge = "20";
-					} else if (NumberUtils.toInt(baappbase.getEvtJobDate()) >= DATE_20230101 || (NumberUtils.toInt(baappbase.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(benData.getBenBrDate()) >= DATE_20230101)) {
+					} else if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) >= DATE_20230101 ||
+							(NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) >= DATE_20230101)) {
 						adultAge = "18";
 					}
-					replaceValue.put(ConstantKey.A184, adultAge);
-				}
+		    	}
+				break;
 			}
 		}
+		replaceValue.put(ConstantKey.A184, adultAge);
 	}
 
 	//不合格者仍在學，無需審議文句
@@ -2995,9 +3003,9 @@ public class BaReportReplaceUtility {
 		String A165Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A165)) ? replaceValue.get(ConstantKey.A165) : "";
 		String A167Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A167)) ? replaceValue.get(ConstantKey.A167) : "";
 		String A168Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A168)) ? replaceValue.get(ConstantKey.A168) : "";
-		String A172Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A172)) ? replaceValue.get(ConstantKey.A172) : "";
-		String A173Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A173)) ? replaceValue.get(ConstantKey.A173) : "";
-		String A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+		String A172Value = "";
+		String A173Value = "";
+		String A184Value = "";
 
 //		BaappbaseDao baappbaseDao = (BaappbaseDao) SpringHelper.getBeanById("baappbaseDao");
 		// 畢業年月、休學年月、退學年月 NBSCHOOL.STATUSDATE_E
@@ -3031,11 +3039,15 @@ public class BaReportReplaceUtility {
 
 			A150String_2 = nameConcat(baappbasePrintListA150, "02");
 			if (StringUtils.isNotBlank(A150String_2)) {
+				A184("02");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
 				A150String_2 = A150String_2 + "年齡逾" + A184Value + "歲，工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
 			}
 
 			A150String_3 = nameConcat(baappbasePrintListA150, "03");
 			if (StringUtils.isNotBlank(A150String_3)) {
+				A184("03");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
 				A150String_3 = A150String_3 + "年齡逾" + A184Value + "歲，" + A165Value + "及" + A164Value + "工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
 			}
 
@@ -3046,11 +3058,15 @@ public class BaReportReplaceUtility {
 
 			A150String_5 = nameConcat(baappbasePrintListA150, "05");
 			if (StringUtils.isNotBlank(A150String_5)) {
+				A184("05");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
 				A150String_5 = A150String_5 + "年齡逾" + A184Value + "歲，未在學且非無謀生能力；";
 			}
 
 			A150String_6 = nameConcat(baappbasePrintListA150, "06");
 			if (StringUtils.isNotBlank(A150String_6)) {
+				A184("06");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
 				A150String_6 = A150String_6 + "年齡逾" + A184Value + "歲，" + A165Value + "起未在學且非無謀生能力；";
 			}
 
@@ -3141,6 +3157,13 @@ public class BaReportReplaceUtility {
 			
 			A150String_18 = nameConcat(baappbasePrintListA150, "18");
 			if (StringUtils.isNotBlank(A150String_18)) {
+				A172("18");
+				A172Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A172)) ? replaceValue.get(ConstantKey.A172) : "";
+				A173("18");
+				A173Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A173)) ? replaceValue.get(ConstantKey.A173) : "";
+				A184("18");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+
 			    A150String_18 = A150String_18 + "於" + A172Value + "年滿" + A184Value + "歲，" + A173Value + "起未在學且非無謀生能力";
 			}
 			
