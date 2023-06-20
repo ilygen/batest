@@ -14,6 +14,12 @@
     <script type='text/javascript' src='<c:url value="/js/ba_onload.js"/>'></script>
     <html:javascript formName="AdviceMaintDetailForm" page="1" />
     <script language="javascript" type="text/javascript">
+    var actionurl ="<c:url value='/adviceMaintDetail.do?method='/>";
+    <%-- 畫面導向 --%>	
+    function doAction(command) {
+    	document.forms[0].action = actionurl + command;
+    	document.forms[0].submit();
+    }
     <%-- begin 檢查必填欄位 --%>
     function checkRequireFields() {
         var msg = "";
@@ -114,9 +120,14 @@
     function initAll() {
         dwr.util.useLoadingMessage("<bean:message key="msg.system.loading"/>");    
     }
+    
+    function doDelete() {
+//     	location.href='<c:url value="/adviceMaintDetail.do"/>?method=doDeleteDataCount&type=add&rowId=<c:out value="${listItem_rowNum}" />';
+    	doAction("doDeleteDataCount");
+    }
 
     Event.observe(window, 'load', initAll , false);
-    -->
+//     -->
     </script>
 </head>
 
@@ -218,11 +229,13 @@
                         <display:table name="pageScope.list" id="listItem" pagesize="<%=ConstantKey.LIST_PAGE_SIZE%>" >
                         <display:column title="序號" style="width:8%; text-align:center;">
                             <c:out value="${listItem_rowNum}" />
+                            <html:hidden styleId="rowId" property="rowId" value="${listItem_rowNum}" />
                         </display:column>
                         <display:column property="dataCont" title="說　明" style="width:30%; text-align:left;" />
                         <display:column title="資料明細" style="width:14%; text-align:center;" >
                             <input type="button" class="button" name="btnMod" value="修改" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doModifyDataCount&type=add&rowId=<c:out value="${listItem_rowNum}" />';">
-                            <input type="button" class="button" name="btnDel" value="刪除" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doDeleteDataCount&type=add&rowId=<c:out value="${listItem_rowNum}" />';">
+                            <input type="button" class="button" name="btnDel" value="刪除" onclick="doDelete()">
+<%--                             <input type="button" class="button" name="btnDel" value="刪除" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doDeleteDataCount&type=add&rowId=<c:out value="${listItem_rowNum}" />';"> --%>
                         </display:column>
                         </display:table>
 			        </td>
