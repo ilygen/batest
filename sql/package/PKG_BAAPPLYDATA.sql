@@ -299,11 +299,19 @@ CREATE OR REPLACE PACKAGE BODY BA.PKG_BAAPPLYDATA IS
           LEFT OUTER JOIN BAAPPEXPAND B
             ON A.APNO = B.APNO
            AND A.SEQNO = B.SEQNO
-         WHERE NVL(A.CASEMK, 'X') != 'D'
-         AND ( (A.seqno<>'0000' and BENIDNNO = P_IDN)
-           or  (A.seqno<>'0000' and BENBRDATE = P_BRITH AND BENNAME = P_NAME)
-           or  (A.seqno='0000' and A.Evtidnno = P_IDN)
-           or  (A.seqno='0000' and A.Evtbrdate = P_BRITH AND A.Evtname = P_NAME) )
+         WHERE NVL(A.CASEMK, 'X') != 'D' 
+          AND EXISTS (SELECT 1
+                  FROM (SELECT APNO , SEQNO
+                          FROM BAAPPBASE t1
+                         WHERE seqno<>'0000' and (BENIDNNO = P_IDN or (BENBRDATE = P_BRITH AND BENNAME = P_NAME))
+                        UNION ALL
+                        SELECT APNO, SEQNO
+                          FROM BAAPPBASE t2
+                         WHERE seqno='0000' and (Evtidnno = P_IDN or (Evtbrdate = P_BRITH AND Evtname = P_NAME))
+                         ) T
+                 WHERE T.APNO = A.APNO
+                       and T.SEQNO = A.SEQNO
+                )
          ORDER BY A.APNO, A.SEQNO;
 
     CURSOR badapr_cursor(

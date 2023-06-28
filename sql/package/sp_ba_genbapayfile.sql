@@ -367,7 +367,7 @@ begin
                    PKG_BA_genPayFile.sp_BA_genBAGivetmpDtl(v_issuym,v_paycode,v_chkdate,v_paydate,v_proctime,v_payseqno,v_i_bajobid, v_g_flag);
 
                    --產生給付媒體檔
-                   PKG_BA_genPayFile.sp_BA_genBAGivePayFile(v_issuym,v_paycode,v_paydate,v_mtestmk,v_payseqno,v_i_bajobid, v_g_flag);
+                   PKG_BA_genPayFile.sp_BA_genBAGivePayFile(v_issuym,v_paycode,v_paydate,v_mtestmk,v_payseqno,v_i_bajobid,v_i_procempno, v_g_flag);
 
                    --更新給付核付資料
                    SP_BA_UpdAPLPayData(v_i_issutyp,v_issuym,v_paycode,v_paydate,v_mtestmk,v_procempno,v_procdeptid,v_procip,v_payseqno,v_i_bajobid,v_chkdate, v_proctype ,v_g_flag);
