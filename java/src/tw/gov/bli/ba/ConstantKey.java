@@ -2032,6 +2032,13 @@ public class ConstantKey {
     public static final String A162 = "A162";// 退學年月 (NBSCHOOL)
     public static final String A163 = "A163";// 入帳對象
     public static final String A164 = "A164";// 實付金額不為 0 之最小給付年月
+    public static final String A165 = "A165";// 實付金額不為0之最小給付年月的前一個月
+    public static final String A167 = "A167";// 實付金額不為0之最大給付年月
+    public static final String A168 = "A168";// 實付金額不為0之最大給付年月的次月
+    public static final String A172 = "A172";// 成年之年月
+    public static final String A173 = "A173";// 成年之次月
+    public static final String A184 = "A184";// 成年年齡
+    public static final String A185 = "A185";// 不合格者仍在學，無需審議文句
 
     public static final String L011 = "L011";// 老年差額金通知 - 首次給付年月
     public static final String L012 = "L012";// 老年差額金通知 - 給付年月
