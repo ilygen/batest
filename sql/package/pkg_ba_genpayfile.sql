@@ -16,6 +16,8 @@ CREATE OR REPLACE Package BA.PKG_BA_genPayFile
     Ver   Date        Author       Description
     ----  ----------  -----------  ----------------------------------------------
     1.0   2009/07/06  Angela Wu    Created this Package.
+    1.1   2023/06/29  William      According to BABAWEB-80, create a new function,fc_transchinese, 
+                                   For fixing gibberish in media file,rebuild a new string
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -25,6 +27,11 @@ authid definer is
     v_g_errMsg                     varChar2(4000);
     v_g_ProgName                   varChar2(200);
     v_g_flag                       varchar2(1);
+
+    function fc_transchinese (
+          v_str in varchar2
+    ) return varchar2 ;
+
     procedure sp_BA_genBAPay (
         v_i_issuym         in      varChar2,
         v_i_paycode        in      varChar2,
@@ -109,6 +116,62 @@ End;
 
 CREATE OR REPLACE Package Body BA.PKG_BA_genPayFile
 is
+  /*****************************************************************************************
+     NAME:     fc_transchinese
+     Purpose : 將不是中文的內容清除
+
+     REVISIONS:
+     Ver        Date        Author           Description
+     ---------  ----------  ---------------  -----------------------------------------------
+     1.0        2023/06/29   William         初版
+
+   *****************************************************************************************/
+Function fc_transchinese (v_str in varchar2)
+    return varchar2  is 
+ 
+    v_return varchar2(100);
+    v_i            Number;
+    v_lenStr       Number;
+    v_tmpStr       varChar2(10);
+    v_hexstr       VARCHAR(600);
+ BEGIN
+    v_i := 1;
+    v_lenStr := 0;
+    v_tmpStr := '';
+    v_return := '';
+    v_hexstr:='';
+
+    if nvl(trim(utl_raw.cast_to_raw(v_str)),' ')<>' ' then
+         v_lenStr := length(utl_raw.cast_to_raw(v_str));
+    end if;
+    v_hexstr := utl_raw.cast_to_raw(v_str);
+    LOOP    
+		if (substr(v_hexstr,v_i,1) <>'E') then --半形，清除
+		   v_i := v_i + 2;
+		else
+			v_tmpStr := substr(v_hexstr,v_i,6); --全形取6個			
+			IF substr(v_tmpStr,1,2) ='ED' THEN --難字, 取12個
+				 v_return := v_return || utl_raw.cast_to_varchar2(substr(utl_raw.cast_to_raw(v_str),v_i,12));
+				 v_i := v_i + 12;
+			ELSE
+				IF ((v_tmpStr>= 'E4B880' AND v_tmpStr<='E9BFBF')  --中文字  
+					OR  (v_tmpStr>= 'E39080' AND v_tmpStr<='E4B6BF')  --中文字  
+                    or (v_tmpStr= 'E38080') --全型空白
+					OR (v_tmpStr>= 'EFBC81' AND v_tmpStr<='EFBD9E')) THEN    --符號        
+				   v_return := v_return || utl_raw.cast_to_varchar2(v_tmpStr);
+				ELSE 
+					v_return := v_return || '？';
+				END IF;
+				 v_i := v_i + 6;
+			end if;
+		 end if;
+        exit when v_i>v_lenStr;
+    end loop;
+
+    return v_return;
+ exception when others then
+    return v_str;
+ END fc_transchinese;
     /********************************************************************************
         PROJECT:         BLI-BaWeb 勞保年金給付系統
         NAME:            PKG_BA_genPayFile.sp_BA_genBAPay
@@ -1458,7 +1521,7 @@ is
                                         ||v_PayDataCur.SPACE2
                                         ||v_PayDataCur.PAYYM2
                                         ||v_PayDataCur.IDN2
-                                        ||substr(RPAD(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1'),30,'　'),1,15)||v_PayDataCur.INSKD2
+                                        ||substr(RPAD(fc_transchinese(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1')),30,'　'),1,15)||v_PayDataCur.INSKD2
                                         ||v_PayDataCur.EMGMK2
                                         ||v_PayDataCur.RPAYDATE2
                                         ||v_PayDataCur.ISSUYM2
@@ -1480,7 +1543,7 @@ is
                                         ||v_PayDataCur.SPACE2
                                         ||v_PayDataCur.PAYYM2
                                         ||v_PayDataCur.IDN2
-                                        ||substr(RPAD(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1'),30,'　'),1,15)||v_PayDataCur.INSKD2
+                                        ||substr(RPAD(fc_transchinese(fn_BA_transCharValue(replace(v_PayDataCur.NAME2,' ','　'),'1')),30,'　'),1,15)||v_PayDataCur.INSKD2
                                         ||v_PayDataCur.EMGMK2
                                         ||v_PayDataCur.RPAYDATE2
                                         ||v_PayDataCur.ISSUYM2
