@@ -90,7 +90,7 @@ is
         v_flag_rc                Number;
         v_dataCount              Number;
         v_statflag               Number;
-        v_flagCount              Number := 11;
+        v_flagCount              Number := 10;
         v_updGivedtlRowCount     Number := 0;
         v_updGiveTmpRowCount     Number := 0;
 
@@ -344,7 +344,7 @@ is
                                         );*/
 
                                         --需比對的資料欄位總計值=v_flagCount,故其比對結果的flag總和需=v_flagCount
-                                        if (v_flag_sunit+v_flag_hbank+v_flag_bbank+v_flag_accno+v_flag_amt+v_flag_space+v_flag_idn+v_flag_name+v_flag_emgmk+v_flag_nc+v_flag_rc)=v_flagCount then
+                                        if (v_flag_sunit+v_flag_hbank+v_flag_bbank+v_flag_accno+v_flag_amt+v_flag_space+v_flag_idn+v_flag_emgmk+v_flag_nc+v_flag_rc)=v_flagCount then
                                             v_updflag := '1';
                                         else
                                             v_updflag := '2';
