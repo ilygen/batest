@@ -313,9 +313,12 @@ is
                                         end if;
 
                                         --比對"受款人姓名(Big5)"
+                                        --BABAWEB-80 媒體回押不檢核姓名
+                                        /*
                                         if v_name = v_name_t then
                                             v_flag_name := 1;
                                         end if;
+                                        */
 
                                         --比對"緊急專案註記"
                                         if v_emgmk = v_emgmk_t then
