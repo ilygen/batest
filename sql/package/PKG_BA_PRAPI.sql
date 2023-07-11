@@ -1893,28 +1893,10 @@ is
         v_o_procMsgCode      out     varChar2,
         v_o_procMsg          out     varChar2
     ) is
-        v_badaprID           Number;
-        v_remitmk_b          varChar2(1);
-        v_remitdate_b        varChar2(8);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
-      /*  Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
-          select t.BADAPRID
-              ,t.REMITMK
-              ,t.REMITDATE
-          from BADAPR t
-          where t.APNO = v_apno
-           and t.SEQNO = v_seqno
-           and t.ISSUYM = v_oriissuym
-           and t.PAYYM = v_payym
-           and t.REMITMK in ('2','3')
-           and t.MTESTMK = 'F'
-           and t.MANCHKMK = 'Y'
-           and t.APLPAYMK = '3'
-           and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
-           and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
-           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' '); */
-
+        
+        -- babaweb-82
         Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
             select t.BADAPRID
               ,t.REMITMK
@@ -1944,9 +1926,6 @@ is
             v_g_errMsg := '';
             v_o_procMsgCode := ' ';
             v_o_procMsg := ' ';
-            v_badaprID := 0;
-            v_remitmk_b := '';
-            v_remitdate_b := '';
 
             --  2017/12/07 寫入開始LOG Add By ChungYu
             v_jobno  := REPLACE(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSXFF'),'.','');
