@@ -17,6 +17,7 @@ CREATE OR REPLACE Package BA.PKG_BA_PRAPI
     ----  ----------  -----------  ----------------------------------------------
     1.0   2009/07/16  Angela Wu    Created this Package.
     1.1   2023/01/18  William      babaweb-62, sp_BA_CancelAmendment要多一個參數(帳號)
+    1.2   2023/07/11  William      依據babaweb-82,修改 sp_BA_ManRemitAplpay
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -1871,6 +1872,9 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2012/08/22  Angela Wu    Created this procedure.
         1.1   2017/12/07  ChungYu      加入執行期間的Log紀錄.
+        1.2   2023/07/11  William      依據babaweb-82修改，
+                                       1.因CPI(物價指數)調整，同一筆資料在badapr會有44,45 2筆資料，造成查詢badapr table
+                                         問題，由單筆into改為cursor處理
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -1894,6 +1898,22 @@ is
         v_remitdate_b        varChar2(8);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
+        Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
+          select t.BADAPRID
+              ,t.REMITMK
+              ,t.REMITDATE
+          from BADAPR t
+          where t.APNO = v_apno
+           and t.SEQNO = v_seqno
+           and t.ISSUYM = v_oriissuym
+           and t.PAYYM = v_payym
+           and t.REMITMK in ('2','3')
+           and t.MTESTMK = 'F'
+           and t.MANCHKMK = 'Y'
+           and t.APLPAYMK = '3'
+           and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
+           and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
+           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
 
         begin
             v_g_ProgName := 'PKG_BA_PRAPI.sp_BA_ManRemitAplpay';
@@ -2010,26 +2030,6 @@ is
                            and t.PAYYM = v_i_payym
                            and t.AFMK = '1';
 
-                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄改前值及改後值
-                        select t.BADAPRID
-                              ,t.REMITMK
-                              ,t.REMITDATE
-                          into v_badaprID
-                              ,v_remitmk_b
-                              ,v_remitdate_b
-                          from BADAPR t
-                         where t.APNO = v_i_apno
-                           and t.SEQNO = v_i_seqno
-                           and t.ISSUYM = v_i_oriissuym
-                           and t.PAYYM = v_i_payym
-                           and t.REMITMK in ('2','3')
-                           and t.MTESTMK = 'F'
-                           and t.MANCHKMK = 'Y'
-                           and t.APLPAYMK = '3'
-                           and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
-                           and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
-                           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
-
                         --更新給付核定檔中,後續處理狀況的相關欄位
                         Update BADAPR t set t.REMITDATE = v_i_remitdate
                                            ,t.REMITMK = '1'
@@ -2045,24 +2045,28 @@ is
                            and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
                            and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
                            and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
-
-                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄MMAPLog
-                        PKG_BA_RecordLog.sp_BA_recMMAPLog('BADAPR'
-                                                         ,'BADAPRID='||v_badaprID
-                                                         ,(fn_BA_transDateValue(to_Char(Sysdate,'YYYYMMDD'),'1')||substr(to_Char(systimestamp,'HH24MISSFF'),1,8))
-                                                         ,'[BA]PKG_BA_PRAPI.sp_BA_ManRemitAplpay'
-                                                         ,'DB(SP)'
-                                                         ,v_i_procdeptid
-                                                         ,v_i_procempno
-                                                         ,v_i_procip
-                                                         ,'U'
-                                                         ,'REMITMK,REMITDATE'
-                                                         ,v_remitmk_b||','||v_remitdate_b
-                                                         ,'1,'||v_i_remitdate
-                                                         ,''
-                                                         ,''
-                                                         ,'0'
-                                                         );
+                           
+                        -- BABAWEB-82
+                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄改前值及改後值
+                        for v_badaprData  in c_badaprData(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym) Loop
+                               --因介接出納系統，故由出納系統異動的核定檔資訊需記錄MMAPLog
+                               PKG_BA_RecordLog.sp_BA_recMMAPLog('BADAPR'
+                                                                ,'BADAPRID='||v_badaprData.BADAPRID
+                                                                ,(fn_BA_transDateValue(to_Char(Sysdate,'YYYYMMDD'),'1')||substr(to_Char(systimestamp,'HH24MISSFF'),1,8))
+                                                                ,'[BA]PKG_BA_PRAPI.sp_BA_ManRemitAplpay'
+                                                                ,'DB(SP)'
+                                                                ,v_i_procdeptid
+                                                                ,v_i_procempno
+                                                                ,v_i_procip
+                                                                ,'U'
+                                                                ,'REMITMK,REMITDATE'
+                                                                ,v_badaprData.REMITMK||','||v_badaprData.REMITDATE
+                                                                ,'1,'||v_i_remitdate
+                                                                ,''
+                                                                ,''
+                                                                ,'0'
+                                                                );
+                        end Loop;
                     else
                         v_g_procMsgCode := '1';
                         v_g_procMsg := v_g_procMsg || '該筆資料尚未進行改匯初核作業';
