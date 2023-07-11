@@ -1898,7 +1898,7 @@ is
         v_remitdate_b        varChar2(8);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
-        Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
+      /*  Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
           select t.BADAPRID
               ,t.REMITMK
               ,t.REMITDATE
@@ -1913,7 +1913,28 @@ is
            and t.APLPAYMK = '3'
            and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
            and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
-           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
+           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' '); */
+
+        Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
+            select t.BADAPRID
+              ,t.REMITMK
+              ,t.REMITDATE
+            from BADAPR t
+            where t.APNO = v_apno
+            and t.SEQNO = v_seqno
+            and t.ISSUYM = v_oriissuym
+            and t.PAYYM = v_payym
+            and t.REMITMK in ('2','3')
+            and t.MTESTMK = 'F'
+            and t.MANCHKMK = 'Y'
+            and t.APLPAYMK = '3'
+            and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
+            and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
+            and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');        
+
+        TYPE c_badapr_TAB_TYPE IS TABLE OF c_badaprData%ROWTYPE INDEX BY BINARY_INTEGER;
+        t_badapr c_badapr_TAB_TYPE;
+        v_badapr c_badaprData%ROWTYPE;
 
         begin
             v_g_ProgName := 'PKG_BA_PRAPI.sp_BA_ManRemitAplpay';
@@ -2030,6 +2051,10 @@ is
                            and t.PAYYM = v_i_payym
                            and t.AFMK = '1';
 
+                        OPEN c_badaprData(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym);     
+                        FETCH c_badaprData BULK COLLECT INTO t_badapr ;
+                        CLOSE c_badaprData;
+
                         --更新給付核定檔中,後續處理狀況的相關欄位
                         Update BADAPR t set t.REMITDATE = v_i_remitdate
                                            ,t.REMITMK = '1'
@@ -2048,10 +2073,12 @@ is
                            
                         -- BABAWEB-82
                         --因介接出納系統，故由出納系統異動的核定檔資訊需記錄改前值及改後值
-                        for v_badaprData  in c_badaprData(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym) Loop
+                        IF t_badapr.count <> 0 THEN
+                          for i in 1..t_badapr.count loop
+                            v_badapr :=  t_badapr(i);
                                --因介接出納系統，故由出納系統異動的核定檔資訊需記錄MMAPLog
                                PKG_BA_RecordLog.sp_BA_recMMAPLog('BADAPR'
-                                                                ,'BADAPRID='||v_badaprData.BADAPRID
+                                                                ,'BADAPRID='||v_badapr.BADAPRID
                                                                 ,(fn_BA_transDateValue(to_Char(Sysdate,'YYYYMMDD'),'1')||substr(to_Char(systimestamp,'HH24MISSFF'),1,8))
                                                                 ,'[BA]PKG_BA_PRAPI.sp_BA_ManRemitAplpay'
                                                                 ,'DB(SP)'
@@ -2060,13 +2087,14 @@ is
                                                                 ,v_i_procip
                                                                 ,'U'
                                                                 ,'REMITMK,REMITDATE'
-                                                                ,v_badaprData.REMITMK||','||v_badaprData.REMITDATE
+                                                                ,v_badapr.REMITMK||','||v_badapr.REMITDATE
                                                                 ,'1,'||v_i_remitdate
                                                                 ,''
                                                                 ,''
                                                                 ,'0'
                                                                 );
-                        end Loop;
+                          end Loop;
+                        end if;
                     else
                         v_g_procMsgCode := '1';
                         v_g_procMsg := v_g_procMsg || '該筆資料尚未進行改匯初核作業';
