@@ -93,6 +93,7 @@ is
         v_flagCount              Number := 10;
         v_updGivedtlRowCount     Number := 0;
         v_updGiveTmpRowCount     Number := 0;
+        v_rec_plog               plog%ROWTYPE;
 
         begin
             v_g_ProgName := 'PKG_BA_ProcGiveDtl.sp_BA_chkReturnPayFile';
@@ -389,7 +390,18 @@ is
 
                                     v_g_procMsgCode := '1';
                                     v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：無法更新給付入帳媒體明細檔(BAGIVEDTL)，受理編號：'||v_apno;
-                                    pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>無法更新給付入帳媒體明細檔(BAGIVEDTL)，受理編號：'||v_apno,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                                    v_rec_plog.userid    := v_g_procempno;
+                                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                                    v_rec_plog.starttime := SYSDATE;
+                                    v_rec_plog.typemk    := '1';
+                                    v_rec_plog.levelmk   := '3';
+                                    v_rec_plog.pseq      := '1';
+                                    v_rec_plog.proctime  := SYSDATE;
+                                    v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                                    v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>無法更新給付入帳媒體明細檔(BAGIVEDTL)，受理編號：'||v_apno;
+                                    pkg_plog.sp_ins_log(v_rec_plog);
+
                                     exit;
                                 else
                                     v_updGivedtlRowCount := v_updGivedtlRowCount+SQL%ROWCOUNT;
@@ -427,7 +439,18 @@ is
                                     v_g_procMsgCode := '1';
                                     v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：'||SQLErrm;
                                     v_g_errMsg := SQLErrm;
-                                    pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                                    v_rec_plog.userid    := v_g_procempno;
+                                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                                    v_rec_plog.starttime := SYSDATE;
+                                    v_rec_plog.typemk    := '1';
+                                    v_rec_plog.levelmk   := '3';
+                                    v_rec_plog.pseq      := '1';
+                                    v_rec_plog.proctime  := SYSDATE;
+                                    v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                                    v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg;
+                                    v_rec_plog.msg2      := DBMS_UTILITY.FORMAT_ERROR_BACKTRACE;
+                                    pkg_plog.sp_ins_log(v_rec_plog);
                                     exit;
                         end;
 
@@ -463,8 +486,18 @@ is
                                          ||' 筆、更新出帳檔比對註記筆數：'||v_updGiveTmpRowCount||' 筆。';
                                          --||'(批次序號：'||v_i_babatchrecid||'、給付別：'||v_i_paycode||'、'||'作業人員：'||v_i_procempno||')';
 
-                            pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體轉入檢核完成。檢核筆數：'||v_g_i||' 筆、更新入帳檔比對註記筆數：'||v_updGivedtlRowCount
-                                                    ||' 筆、更新出帳檔比對註記筆數：'||v_updGiveTmpRowCount||' 筆。(批次序號：'||v_i_babatchrecid||'、給付別：'||v_i_paycode||'、'||'作業人員：'||v_i_procempno||')');
+                            v_rec_plog.userid    := v_g_procempno;
+                            v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                            v_rec_plog.starttime := SYSDATE;
+                            v_rec_plog.typemk    := '1';
+                            v_rec_plog.levelmk   := '1'; --INFO
+                            v_rec_plog.pseq      := '1';
+                            v_rec_plog.proctime  := SYSDATE;
+                            v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                            v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體轉入檢核完成。檢核筆數：'||v_g_i||' 筆、更新入帳檔比對註記筆數：'||v_updGivedtlRowCount
+                                                    ||' 筆、更新出帳檔比對註記筆數：'||v_updGiveTmpRowCount||' 筆。(批次序號：'||v_i_babatchrecid||'、給付別：'||v_i_paycode||'、'||'作業人員：'||v_i_procempno||')';
+                            pkg_plog.sp_ins_log(v_rec_plog);
+
                         end if;
                     else
                         if v_statflag <> 2 then
@@ -481,7 +514,17 @@ is
 
                             v_g_procMsgCode := '1';
                             v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：查無待檢核的給付媒體資料。';
-                            pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待檢核的給付媒體資料。');
+
+                            v_rec_plog.userid    := v_g_procempno;
+                            v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                            v_rec_plog.starttime := SYSDATE;
+                            v_rec_plog.typemk    := '1';
+                            v_rec_plog.levelmk   := '3';
+                            v_rec_plog.pseq      := '1';
+                            v_rec_plog.proctime  := SYSDATE;
+                            v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                            v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待檢核的給付媒體資料。';
+                            pkg_plog.sp_ins_log(v_rec_plog);
                         end if;
                     end if;
                 else
@@ -499,7 +542,17 @@ is
 
                         v_g_procMsgCode := '1';
                         v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：查無待處理的批次記錄檔。';
-                        pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待處理的批次記錄檔。');
+
+                        v_rec_plog.userid    := v_g_procempno;
+                        v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                        v_rec_plog.starttime := SYSDATE;
+                        v_rec_plog.typemk    := '1';
+                        v_rec_plog.levelmk   := '3';
+                        v_rec_plog.pseq      := '1';
+                        v_rec_plog.proctime  := SYSDATE;
+                        v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                        v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待處理的批次記錄檔。';
+                        pkg_plog.sp_ins_log(v_rec_plog);
                     end if;
                 end if;
             else
@@ -516,7 +569,17 @@ is
 
                 v_g_procMsgCode := '1';
                 v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')，請重新檢核傳入值。';
-                pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')');
+
+                v_rec_plog.userid    := v_g_procempno;
+                v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                v_rec_plog.starttime := SYSDATE;
+                v_rec_plog.typemk    := '1';
+                v_rec_plog.levelmk   := '3';
+                v_rec_plog.pseq      := '1';
+                v_rec_plog.proctime  := SYSDATE;
+                v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')';
+                pkg_plog.sp_ins_log(v_rec_plog);
             end if;
             v_o_procMsgCode := v_g_procMsgCode;
             v_o_procMsg := v_g_procMsg;
@@ -537,7 +600,19 @@ is
                     v_g_procMsgCode := '1';
                     v_g_procMsg := 'W0060 資料轉入有誤，請確認後重新執行。原因：'||SQLErrm;
                     v_g_errMsg := SQLErrm;
-                    pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                    v_rec_plog.userid    := v_g_procempno;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '3';
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                    v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg;
+                    v_rec_plog.msg2      := DBMS_UTILITY.FORMAT_ERROR_BACKTRACE;
+                    pkg_plog.sp_ins_log(v_rec_plog);
+
                     v_o_procMsgCode := v_g_procMsgCode;
                     v_o_procMsg := v_g_procMsg;
         end;
@@ -556,6 +631,7 @@ is
         v_paycode            varChar2(1);
         v_tatyp              varChar2(3);
         v_stexpndrecmk       varChar2(1);
+        v_rec_plog           plog%ROWTYPE;
 
         --媒體回押產生的退匯資料
         Cursor c_dataCur_1 is
@@ -1061,7 +1137,17 @@ is
                         if v_g_i>0 then
                             if v_g_procMsgCode = '0' then
                                 v_g_procMsg := 'G1007 回押作業完成。回押資料總筆數：'||v_g_i||' 筆；寫入退匯資料檔筆數：'||v_g_j||' 筆。';
-                                pkg_plog.info(RPAD(v_g_ProgName,85,'-')||'>>給付媒體回押作業完成。回押資料總筆數：'||v_g_i||' 筆；寫入退匯資料檔筆數：'||v_g_j||' 筆。');
+
+                                v_rec_plog.userid    := v_g_procempno;
+                                v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                                v_rec_plog.starttime := SYSDATE;
+                                v_rec_plog.typemk    := '1';
+                                v_rec_plog.levelmk   := '1'; --INFO
+                                v_rec_plog.pseq      := '1';
+                                v_rec_plog.proctime  := SYSDATE;
+                                v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                                v_rec_plog.msg1      := RPAD(v_g_ProgName,85,'-')||'>>給付媒體回押作業完成。回押資料總筆數：'||v_g_i||' 筆；寫入退匯資料檔筆數：'||v_g_j||' 筆。';
+                                pkg_plog.sp_ins_log(v_rec_plog);
 
                                 --更新批次作業記錄檔
                                 update BABATCHREC t1 set t1.PROCSTAT = '5'
@@ -1090,7 +1176,17 @@ is
                                 commit;
                                 v_g_procMsgCode := '1';
                                 v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：'||v_g_procMsg;
-                                pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體回押作業失敗：'||v_g_procMsg,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                                v_rec_plog.userid    := v_g_procempno;
+                                v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                                v_rec_plog.starttime := SYSDATE;
+                                v_rec_plog.typemk    := '1';
+                                v_rec_plog.levelmk   := '3';
+                                v_rec_plog.pseq      := '1';
+                                v_rec_plog.proctime  := SYSDATE;
+                                v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                                v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體回押作業失敗：'||v_g_procMsg;
+                                pkg_plog.sp_ins_log(v_rec_plog);
                             end if;
                         else
                             rollback;
@@ -1105,7 +1201,17 @@ is
 
                             v_g_procMsgCode := '1';
                             v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：查無待回押的媒體入帳明細檔資料。';
-                            pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待回押的媒體入帳明細檔資料。');
+
+                            v_rec_plog.userid    := v_g_procempno;
+                            v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                            v_rec_plog.starttime := SYSDATE;
+                            v_rec_plog.typemk    := '1';
+                            v_rec_plog.levelmk   := '3';
+                            v_rec_plog.pseq      := '1';
+                            v_rec_plog.proctime  := SYSDATE;
+                            v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                            v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待回押的媒體入帳明細檔資料。';
+                            pkg_plog.sp_ins_log(v_rec_plog);
                         end if;
                     exception
                         when others
@@ -1123,7 +1229,18 @@ is
                                 v_g_procMsgCode := '1';
                                 v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：'||SQLErrm;
                                 v_g_errMsg := SQLErrm;
-                                pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體回押作業失敗：'||v_g_errMsg,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                                v_rec_plog.userid    := v_g_procempno;
+                                v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                                v_rec_plog.starttime := SYSDATE;
+                                v_rec_plog.typemk    := '1';
+                                v_rec_plog.levelmk   := '3';
+                                v_rec_plog.pseq      := '1';
+                                v_rec_plog.proctime  := SYSDATE;
+                                v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                                v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付媒體回押作業失敗：'||v_g_errMsg;
+                                v_rec_plog.msg2      := DBMS_UTILITY.FORMAT_ERROR_BACKTRACE;
+                                pkg_plog.sp_ins_log(v_rec_plog);
                     end;
                 else
                     rollback;
@@ -1138,7 +1255,17 @@ is
 
                     v_g_procMsgCode := '1';
                     v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：查無待處理的批次記錄檔。';
-                    pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待處理的批次記錄檔。');
+
+                    v_rec_plog.userid    := v_g_procempno;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '3';
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                    v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>查無待處理的批次記錄檔。';
+                    pkg_plog.sp_ins_log(v_rec_plog);
                 end if;
             else
                 rollback;
@@ -1153,7 +1280,17 @@ is
 
                 v_g_procMsgCode := '1';
                 v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')，請重新檢核傳入值。';
-                pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')');
+
+                v_rec_plog.userid    := v_g_procempno;
+                v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                v_rec_plog.starttime := SYSDATE;
+                v_rec_plog.typemk    := '1';
+                v_rec_plog.levelmk   := '3';
+                v_rec_plog.pseq      := '1';
+                v_rec_plog.proctime  := SYSDATE;
+                v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>給付別傳入錯誤('||nvl(trim(UPPER(v_i_paycode)),' ')||')';
+                pkg_plog.sp_ins_log(v_rec_plog);
             end if;
 
             v_o_procMsgCode := v_g_procMsgCode;
@@ -1174,7 +1311,19 @@ is
                     v_g_procMsgCode := '1';
                     v_g_procMsg := 'W1005 資料回押有誤，請確認後重新執行。原因：'||SQLErrm;
                     v_g_errMsg := SQLErrm;
-                    pkg_plog.error(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg,DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+
+                    v_rec_plog.userid    := v_g_procempno;
+                    v_rec_plog.jobid     := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS');
+                    v_rec_plog.starttime := SYSDATE;
+                    v_rec_plog.typemk    := '1';
+                    v_rec_plog.levelmk   := '3';
+                    v_rec_plog.pseq      := '1';
+                    v_rec_plog.proctime  := SYSDATE;
+                    v_rec_plog.procname  := regexp_substr(v_g_ProgName, '[^.]+', 1, 2);
+                    v_rec_plog.msg1      := RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg;
+                    v_rec_plog.msg2      := DBMS_UTILITY.FORMAT_ERROR_BACKTRACE;
+                    pkg_plog.sp_ins_log(v_rec_plog);
+
                     v_o_procMsgCode := v_g_procMsgCode;
                     v_o_procMsg := v_g_procMsg;
         end;

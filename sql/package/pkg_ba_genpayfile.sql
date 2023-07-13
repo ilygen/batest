@@ -151,7 +151,8 @@ Function fc_transchinese (v_str in varchar2)
 		else
 			v_tmpStr := substr(v_hexstr,v_i,6); --全形取6個			
 			IF substr(v_tmpStr,1,2) ='ED' THEN --難字, 取12個
-				 v_return := v_return || utl_raw.cast_to_varchar2(substr(utl_raw.cast_to_raw(v_str),v_i,12));
+				 --v_return := v_return || utl_raw.cast_to_varchar2(substr(utl_raw.cast_to_raw(v_str),v_i,12));
+				 v_return := v_return || '？';
 				 v_i := v_i + 12;
 			ELSE
 				IF ((v_tmpStr>= 'E4B880' AND v_tmpStr<='E9BFBF')  --中文字  
