@@ -17,7 +17,10 @@ CREATE OR REPLACE Package BA.PKG_BA_PRAPI
     ----  ----------  -----------  ----------------------------------------------
     1.0   2009/07/16  Angela Wu    Created this Package.
     1.1   2023/01/18  William      babaweb-62, sp_BA_CancelAmendment要多一個參數(帳號)
-    1.2   2023/07/11  William      依據babaweb-82,修改 sp_BA_ManRemitAplpay
+    1.2   2023/07/13  William      依據babaweb-82修改，
+                                   1.因CPI(物價指數)調整，出納系統同步人工電匯資料為多筆，
+                                     sp_BA_ManRemitAplpay增加一個paykind參數
+
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -102,6 +105,7 @@ authid definer is
     procedure sp_BA_ManRemitAplpay (
         v_i_apno             in      varChar2,
         v_i_seqno            in      varChar2,
+        v_i_paykind          in      varChar2,
         v_i_oriissuym        in      varChar2,
         v_i_payym            in      varChar2,
         v_i_remitdate        in      varChar2,
@@ -554,6 +558,8 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/16  Angela Wu    Created this procedure.
         1.1   2017/12/07  ChungYu      加入執行期間的Log紀錄.
+        1.2   2023/07/12  William      依據babaweb-82修改，
+                                       1.因出納系統
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -605,7 +611,7 @@ is
         v_issuym             varChar2(6);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
-        --v_rs                 varChar2(1000);
+        v_paykind          varchar2(5) := '';
 
         --查詢已核定(決行)的案件於給付主檔的帳號資料
         Cursor c_dataCur is
@@ -1059,8 +1065,16 @@ is
 
                                 --add by Angela 20121107
                                 if v_i_paytyp = '7' then
-
-                                    PKG_BA_PRAPI.sp_BA_ManRemitAplpay(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym,v_i_paydate,v_i_procempno,v_i_procdeptid,v_i_procip,v_g_procMsgCode,v_g_procMsg);
+                                    --babaweb-82 取得paykind
+                                    select issukind into v_paykind
+                                      from BAREGIVEDTL t
+                                     where t.APNO = v_i_apno
+                                       and t.TRANSACTIONID = v_i_transactionid
+                                       and t.TRANSACTIONSEQ = v_i_transactionseq
+                                       and t.ORIISSUYM = v_i_oriissuym
+                                       and t.PAYYM = v_i_payym ;
+                                      
+                                    PKG_BA_PRAPI.sp_BA_ManRemitAplpay(v_i_apno,v_i_seqno,v_paykind,v_i_oriissuym,v_i_payym,v_i_paydate,v_i_procempno,v_i_procdeptid,v_i_procip,v_g_procMsgCode,v_g_procMsg);
 
                                     /*
                                     -- Removed by EthanChen 20220620 for babaweb-34
@@ -1853,6 +1867,7 @@ is
 
         PARAMETER(IN):  *v_i_apno                (varChar2)        --受理編號
                         *v_i_seqno               (varChar2)        --受款人序
+                        *v_i_paykind             (varChar2)        --給付種類
                         *v_i_oriissuym           (varChar2)        --原始核定年月
                         *v_i_payym               (varChar2)        --給付年月
                         *v_i_remitdate           (varChar2)        --後續處理日期
@@ -1872,9 +1887,9 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2012/08/22  Angela Wu    Created this procedure.
         1.1   2017/12/07  ChungYu      加入執行期間的Log紀錄.
-        1.2   2023/07/11  William      依據babaweb-82修改，
-                                       1.因CPI(物價指數)調整，同一筆資料在badapr會有44,45 2筆資料，造成查詢badapr table
-                                         問題，由單筆into改為cursor處理
+        1.2   2023/07/13  William      依據babaweb-82修改，
+                                       1.因CPI(物價指數)調整，出納系統同步人工電匯資料為多筆，
+                                         更新badapr增加一個paykind條件
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -1884,6 +1899,7 @@ is
     procedure sp_BA_ManRemitAplpay (
         v_i_apno             in      varChar2,
         v_i_seqno            in      varChar2,
+        v_i_paykind          in      varChar2,
         v_i_oriissuym        in      varChar2,
         v_i_payym            in      varChar2,
         v_i_remitdate        in      varChar2,
@@ -1893,30 +1909,11 @@ is
         v_o_procMsgCode      out     varChar2,
         v_o_procMsg          out     varChar2
     ) is
+        v_badaprID           Number;
+        v_remitmk_b          varChar2(1);
+        v_remitdate_b        varChar2(8);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
-        
-        -- babaweb-82
-        Cursor c_badaprData (v_apno varchar2,v_seqno varchar2,v_oriissuym varchar2,v_payym varchar2 ) is 
-            select t.BADAPRID
-              ,t.REMITMK
-              ,t.REMITDATE
-            from BADAPR t
-            where t.APNO = v_apno
-            and t.SEQNO = v_seqno
-            and t.ISSUYM = v_oriissuym
-            and t.PAYYM = v_payym
-            and t.REMITMK in ('2','3')
-            and t.MTESTMK = 'F'
-            and t.MANCHKMK = 'Y'
-            and t.APLPAYMK = '3'
-            and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
-            and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
-            and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');        
-
-        TYPE c_badapr_TAB_TYPE IS TABLE OF c_badaprData%ROWTYPE INDEX BY BINARY_INTEGER;
-        t_badapr c_badapr_TAB_TYPE;
-        v_badapr c_badaprData%ROWTYPE;
 
         begin
             v_g_ProgName := 'PKG_BA_PRAPI.sp_BA_ManRemitAplpay';
@@ -1926,6 +1923,9 @@ is
             v_g_errMsg := '';
             v_o_procMsgCode := ' ';
             v_o_procMsg := ' ';
+            v_badaprID := 0;
+            v_remitmk_b := '';
+            v_remitdate_b := '';
 
             --  2017/12/07 寫入開始LOG Add By ChungYu
             v_jobno  := REPLACE(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSXFF'),'.','');
@@ -2030,9 +2030,26 @@ is
                            and t.PAYYM = v_i_payym
                            and t.AFMK = '1';
 
-                        OPEN c_badaprData(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym);     
-                        FETCH c_badaprData BULK COLLECT INTO t_badapr ;
-                        CLOSE c_badaprData;
+                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄改前值及改後值
+                        select t.BADAPRID
+                              ,t.REMITMK
+                              ,t.REMITDATE
+                          into v_badaprID
+                              ,v_remitmk_b
+                              ,v_remitdate_b
+                          from BADAPR t
+                         where t.APNO = v_i_apno
+                           and t.SEQNO = v_i_seqno
+                           and t.ISSUYM = v_i_oriissuym
+                           and t.PAYYM = v_i_payym
+                           and t.paykind = v_i_paykind
+                           and t.REMITMK in ('2','3')
+                           and t.MTESTMK = 'F'
+                           and t.MANCHKMK = 'Y'
+                           and t.APLPAYMK = '3'
+                           and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
+                           and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
+                           and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
 
                         --更新給付核定檔中,後續處理狀況的相關欄位
                         Update BADAPR t set t.REMITDATE = v_i_remitdate
@@ -2042,6 +2059,7 @@ is
                            and t.SEQNO = v_i_seqno
                            and t.ISSUYM = v_i_oriissuym
                            and t.PAYYM = v_i_payym
+                           and t.paykind = v_i_paykind
                            and t.MTESTMK = 'F'
                            and t.MANCHKMK = 'Y'
                            and t.REMITMK in ('2','3')
@@ -2049,31 +2067,24 @@ is
                            and (t.CHKDATE is not null and nvl(trim(t.CHKDATE),' ')<>' ')
                            and (t.REMITDATE is not null and nvl(trim(t.REMITDATE),' ')<>' ')
                            and (t.APLPAYDATE is not null and nvl(trim(t.APLPAYDATE),' ')<>' ');
-                           
-                        -- BABAWEB-82
-                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄改前值及改後值
-                        IF t_badapr.count <> 0 THEN
-                          for i in 1..t_badapr.count loop
-                            v_badapr :=  t_badapr(i);
-                               --因介接出納系統，故由出納系統異動的核定檔資訊需記錄MMAPLog
-                               PKG_BA_RecordLog.sp_BA_recMMAPLog('BADAPR'
-                                                                ,'BADAPRID='||v_badapr.BADAPRID
-                                                                ,(fn_BA_transDateValue(to_Char(Sysdate,'YYYYMMDD'),'1')||substr(to_Char(systimestamp,'HH24MISSFF'),1,8))
-                                                                ,'[BA]PKG_BA_PRAPI.sp_BA_ManRemitAplpay'
-                                                                ,'DB(SP)'
-                                                                ,v_i_procdeptid
-                                                                ,v_i_procempno
-                                                                ,v_i_procip
-                                                                ,'U'
-                                                                ,'REMITMK,REMITDATE'
-                                                                ,v_badapr.REMITMK||','||v_badapr.REMITDATE
-                                                                ,'1,'||v_i_remitdate
-                                                                ,''
-                                                                ,''
-                                                                ,'0'
-                                                                );
-                          end Loop;
-                        end if;
+
+                        --因介接出納系統，故由出納系統異動的核定檔資訊需記錄MMAPLog
+                        PKG_BA_RecordLog.sp_BA_recMMAPLog('BADAPR'
+                                                         ,'BADAPRID='||v_badaprID
+                                                         ,(fn_BA_transDateValue(to_Char(Sysdate,'YYYYMMDD'),'1')||substr(to_Char(systimestamp,'HH24MISSFF'),1,8))
+                                                         ,'[BA]PKG_BA_PRAPI.sp_BA_ManRemitAplpay'
+                                                         ,'DB(SP)'
+                                                         ,v_i_procdeptid
+                                                         ,v_i_procempno
+                                                         ,v_i_procip
+                                                         ,'U'
+                                                         ,'PAYKIND,REMITMK,REMITDATE'
+                                                         ,v_i_paykind||','||v_remitmk_b||','||v_remitdate_b
+                                                         ,'1,'||v_i_remitdate
+                                                         ,''
+                                                         ,''
+                                                         ,'0'
+                                                         );
                     else
                         v_g_procMsgCode := '1';
                         v_g_procMsg := v_g_procMsg || '該筆資料尚未進行改匯初核作業';
