@@ -57,7 +57,8 @@ public class MonthlyRpt05Report extends ReportBase {
 
         // addColumn(table, 60, 1, " ", fontCh8, 0, CENTER);
         addColumn(table, 15, 1, " ", fontCh20, 0, RIGHT);
-        addColumnAssignLineSpace(table, 30, 1, RptTitleUtility.getRpt05Title(caseData.getAplpayDate())+"  函", fontCh22b, 0, 0, LEFT);
+        // 20230711 BABAWEB-81 遺屬核定函邊界調整
+        addColumnAssignLineSpace(table, 30, 1, RptTitleUtility.getRpt05Title(caseData.getAplpayDate())+"  函", fontCh22b, 10, 0, LEFT);
         addColumnAssignVAlignment(table, 15, 1, StringUtils.leftPad(String.valueOf(PageNo), 5, "0"), fontCh10, 0, RIGHT, TOP);
         // addColumn(table, 60, 1, " ", fontCh8, 0, CENTER);
 
