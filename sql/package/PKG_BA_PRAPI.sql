@@ -17,6 +17,10 @@ CREATE OR REPLACE Package BA.PKG_BA_PRAPI
     ----  ----------  -----------  ----------------------------------------------
     1.0   2009/07/16  Angela Wu    Created this Package.
     1.1   2023/01/18  William      babaweb-62, sp_BA_CancelAmendment要多一個參數(帳號)
+    1.2   2023/07/13  William      依據babaweb-82修改，
+                                   1.因CPI(物價指數)調整，出納系統同步人工電匯資料為多筆，
+                                     sp_BA_ManRemitAplpay增加一個paykind參數
+
 
     NOTES:
     1.各 Procedure 所需傳入資料請參考 Package Body 中各 Procedure 的註解說明。
@@ -101,6 +105,7 @@ authid definer is
     procedure sp_BA_ManRemitAplpay (
         v_i_apno             in      varChar2,
         v_i_seqno            in      varChar2,
+        v_i_paykind          in      varChar2,
         v_i_oriissuym        in      varChar2,
         v_i_payym            in      varChar2,
         v_i_remitdate        in      varChar2,
@@ -553,6 +558,8 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/16  Angela Wu    Created this procedure.
         1.1   2017/12/07  ChungYu      加入執行期間的Log紀錄.
+        1.2   2023/07/12  William      依據babaweb-82修改，
+                                       1.因出納系統
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -604,7 +611,7 @@ is
         v_issuym             varChar2(6);
         v_jobno              mmjoblog.job_no%TYPE;
         v_starttime          TIMESTAMP;
-        --v_rs                 varChar2(1000);
+        v_paykind          varchar2(5) := '';
 
         --查詢已核定(決行)的案件於給付主檔的帳號資料
         Cursor c_dataCur is
@@ -1058,8 +1065,16 @@ is
 
                                 --add by Angela 20121107
                                 if v_i_paytyp = '7' then
-
-                                    PKG_BA_PRAPI.sp_BA_ManRemitAplpay(v_i_apno,v_i_seqno,v_i_oriissuym,v_i_payym,v_i_paydate,v_i_procempno,v_i_procdeptid,v_i_procip,v_g_procMsgCode,v_g_procMsg);
+                                    --babaweb-82 取得paykind
+                                    select issukind into v_paykind
+                                      from BAREGIVEDTL t
+                                     where t.APNO = v_i_apno
+                                       and t.TRANSACTIONID = v_i_transactionid
+                                       and t.TRANSACTIONSEQ = v_i_transactionseq
+                                       and t.ORIISSUYM = v_i_oriissuym
+                                       and t.PAYYM = v_i_payym ;
+                                      
+                                    PKG_BA_PRAPI.sp_BA_ManRemitAplpay(v_i_apno,v_i_seqno,v_paykind,v_i_oriissuym,v_i_payym,v_i_paydate,v_i_procempno,v_i_procdeptid,v_i_procip,v_g_procMsgCode,v_g_procMsg);
 
                                     /*
                                     -- Removed by EthanChen 20220620 for babaweb-34
@@ -1852,6 +1867,7 @@ is
 
         PARAMETER(IN):  *v_i_apno                (varChar2)        --受理編號
                         *v_i_seqno               (varChar2)        --受款人序
+                        *v_i_paykind             (varChar2)        --給付種類
                         *v_i_oriissuym           (varChar2)        --原始核定年月
                         *v_i_payym               (varChar2)        --給付年月
                         *v_i_remitdate           (varChar2)        --後續處理日期
@@ -1871,6 +1887,9 @@ is
         ----  ----------  -----------  ----------------------------------------------
         1.0   2012/08/22  Angela Wu    Created this procedure.
         1.1   2017/12/07  ChungYu      加入執行期間的Log紀錄.
+        1.2   2023/07/13  William      依據babaweb-82修改，
+                                       1.因CPI(物價指數)調整，出納系統同步人工電匯資料為多筆，
+                                         更新badapr增加一個paykind條件
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -1880,6 +1899,7 @@ is
     procedure sp_BA_ManRemitAplpay (
         v_i_apno             in      varChar2,
         v_i_seqno            in      varChar2,
+        v_i_paykind          in      varChar2,
         v_i_oriissuym        in      varChar2,
         v_i_payym            in      varChar2,
         v_i_remitdate        in      varChar2,
@@ -2022,6 +2042,7 @@ is
                            and t.SEQNO = v_i_seqno
                            and t.ISSUYM = v_i_oriissuym
                            and t.PAYYM = v_i_payym
+                           and t.paykind = v_i_paykind
                            and t.REMITMK in ('2','3')
                            and t.MTESTMK = 'F'
                            and t.MANCHKMK = 'Y'
@@ -2038,6 +2059,7 @@ is
                            and t.SEQNO = v_i_seqno
                            and t.ISSUYM = v_i_oriissuym
                            and t.PAYYM = v_i_payym
+                           and t.paykind = v_i_paykind
                            and t.MTESTMK = 'F'
                            and t.MANCHKMK = 'Y'
                            and t.REMITMK in ('2','3')
@@ -2056,8 +2078,8 @@ is
                                                          ,v_i_procempno
                                                          ,v_i_procip
                                                          ,'U'
-                                                         ,'REMITMK,REMITDATE'
-                                                         ,v_remitmk_b||','||v_remitdate_b
+                                                         ,'PAYKIND,REMITMK,REMITDATE'
+                                                         ,v_i_paykind||','||v_remitmk_b||','||v_remitdate_b
                                                          ,'1,'||v_i_remitdate
                                                          ,''
                                                          ,''
