@@ -5114,7 +5114,9 @@ SELECT
 
            <![CDATA[ 
 select NVL(MIN(PAYYM), '000000') As "MINPAYYM",
-       NVL(MAX(PAYYM), '000000') As "MAXPAYYM"
+       NVL(MAX(PAYYM), '000000') As "MAXPAYYM",
+       NVL(SUBSTR(TO_CHAR(ADD_MONTHS(TO_DATE(MIN(PAYYM),'YYYYMM') , -1), 'YYYYMMDD'),1,6), '000000') as PREMINPAYYM,
+       NVL(SUBSTR(TO_CHAR(ADD_MONTHS(TO_DATE(MAX(PAYYM),'YYYYMM') , 1), 'YYYYMMDD'),1,6), '000000') as NEXTMAXPAYYM
   from (
         select seqno, payym
           from (SELECT seqno, payym

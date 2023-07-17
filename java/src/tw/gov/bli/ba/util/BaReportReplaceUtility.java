@@ -79,6 +79,7 @@ public class BaReportReplaceUtility {
 	private HashMap<String, Object> badaprPayYmA164;
 	private BigDecimal avgWgL018;
 	private HashMap<String, Object> issueDateL023; // 老年差額金通知 - 第一、二次發文日期
+	private static final int DATE_20230101 = 20230101;
 
 	/*
 	 * for 受益人資料替換 須傳入依照事故人之SEQNO ISSUYM所查詢出來的Badapr chkCode資料
@@ -443,7 +444,6 @@ public class BaReportReplaceUtility {
 		A147();
 		A148();
 		A149();
-		A150();
 		A151();
 		A152();
 		A153();
@@ -458,6 +458,11 @@ public class BaReportReplaceUtility {
 		A162();
 		A163();
 		A164();
+		A165();
+		A167();
+		A168();
+		A150();//A150會用到A003、A164、A165、A167、A168、A172、A173、A184
+		A185();
 
 		if (baappbase.getApNo().substring(0, 1).equals("K")) {
 			K001();
@@ -2848,6 +2853,107 @@ public class BaReportReplaceUtility {
 			replaceValue.put(ConstantKey.A148, "000年00月");
 		}
 	}
+	//成年之年月
+	public void A172(String unqualifiedCause) {
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+			if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+				if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					String A172Ym = "";
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
+						A172Ym = DateUtility.changeDateType(DateUtility.calYear(baappbaseA150.getBenBrDate(), 20));// 遺屬滿20歲日期
+					}else {
+						A172Ym = DateUtility.changeDateType(DateUtility.calYear(baappbaseA150.getBenBrDate(), 18));// 遺屬滿18歲日期
+					}
+					replaceValue.put(ConstantKey.A172, A172Ym.substring(0, 3) + " 年 " + A172Ym.substring(3, 5) + " 月");
+				}
+				break;
+			}
+		}
+	}
+	
+	//成年之次月
+	public void A173(String unqualifiedCause) {
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+			if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+				if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					String A173Ym = "";
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
+						A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(baappbaseA150.getBenBrDate(), 20), 1));
+					} else {
+						A173Ym = DateUtility.changeDateType(DateUtility.calMonth(DateUtility.calYear(baappbaseA150.getBenBrDate(), 18), 1));
+					}
+					replaceValue.put(ConstantKey.A173, A173Ym.substring(0, 3) + " 年 " + A173Ym.substring(3, 5) + " 月");
+				}
+				break;
+			}
+		}
+	}
+	
+	//成年年齡
+	//一、事故日期 < 1120101且遺屬出生日期 < 1120101：顯示「20」。
+	//二、符合事故日期 >= 1120101或符合事故日期 < 1120101且遺屬出生日期 >= 1120101：顯示「18」。
+	public void A184(String unqualifiedCause) {
+		String adultAge = "18";
+		for (int i = 0; i < baappbasePrintListA150.size(); i++) {
+			Baappbase baappbaseA150 = baappbasePrintListA150.get(i);
+		    if (baappbaseA150.getUnqualifiedCause().equals(unqualifiedCause) && baappbaseA150.getBenDieDate().equals("")) {
+		    	if (!"".equals(baappbaseA150.getEvtJobDate()) && !"".equals(baappbaseA150.getBenBrDate())) {
+					if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) < DATE_20230101 ) {
+						adultAge = "20";
+					} else if (NumberUtils.toInt(baappbaseA150.getEvtJobDate()) >= DATE_20230101 ||
+							(NumberUtils.toInt(baappbaseA150.getEvtJobDate()) < DATE_20230101 && NumberUtils.toInt(baappbaseA150.getBenBrDate()) >= DATE_20230101)) {
+						adultAge = "18";
+					}
+		    	}
+				break;
+			}
+		}
+		replaceValue.put(ConstantKey.A184, adultAge);
+	}
+
+	//不合格者仍在學，無需審議文句
+	//遺屬所選的不合格原因代碼有01、05、06、11、12、18、20其中之一時
+	public void A185() {
+		List<String> unqualifiedCauseList = Arrays.asList(new String[]{"01", "05", "06", "11", "12", "18", "20"});
+		if (baappbasePrintList != null) {
+
+			if (baappbasePrintList.size() > 0) {
+				String A185String = "";
+				ArrayList<String> sNameList = new ArrayList<String>();
+
+				for (int i = 0; i < baappbasePrintList.size(); i++) {
+					if (!baappbasePrintList.get(i).getSeqNo().equals("0000")
+							&& unqualifiedCauseList.contains(baappbasePrintList.get(i).getUnqualifiedCause())
+							&& baappbasePrintList.get(i).getBenDieDate().equals("")) {
+						sNameList.add(baappbasePrintList.get(i).getBenName());
+					}
+				}
+
+				for (int i = 0; i < sNameList.size(); i++) {
+					if (i != sNameList.size() - 1 && i != sNameList.size() - 2) {
+						A185String = A185String + sNameList.get(i) + "、";
+					} else if (i == sNameList.size() - 2 && i != sNameList.size() - 1) {
+						A185String = A185String + sNameList.get(i) + "及";
+					} else if (i == sNameList.size() - 1) {
+						A185String = A185String + sNameList.get(i);
+					}
+				}
+
+				if (sNameList.size() > 0) {
+					replaceValue.put(ConstantKey.A185, "【註：倘" + A185String + "仍在學，請檢具在學證明送局憑辦，註明「補件」及填寫受理編號，「無須」填具勞工保險爭議事項審議申請書】");
+				} else {
+					replaceValue.put(ConstantKey.A185, "");
+				}
+			} else {
+				replaceValue.put(ConstantKey.A185, "");
+			}
+		} else {
+			replaceValue.put(ConstantKey.A185, "");
+		}
+
+	}
 
 	// 投保薪資分級表第一級
 	public void A149() {
@@ -2883,12 +2989,23 @@ public class BaReportReplaceUtility {
 		String A150String_15 = "";
 		String A150String_16 = "";
 		String A150String_17 = "";
+		String A150String_18 = "";
+		String A150String_23 = "";
+		String A150String_24 = "";
 		String maxPayYm = "";
 		String minPayYm = "";
 		String minWage = "0";
 		int cnt = 0;
 		String digamyDate = "";
 		String benDieDate = "";
+		String A003Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A003)) ? replaceValue.get(ConstantKey.A003) : "";
+		String A164Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A164)) ? replaceValue.get(ConstantKey.A164) : "";
+		String A165Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A165)) ? replaceValue.get(ConstantKey.A165) : "";
+		String A167Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A167)) ? replaceValue.get(ConstantKey.A167) : "";
+		String A168Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A168)) ? replaceValue.get(ConstantKey.A168) : "";
+		String A172Value = "";
+		String A173Value = "";
+		String A184Value = "";
 
 //		BaappbaseDao baappbaseDao = (BaappbaseDao) SpringHelper.getBeanById("baappbaseDao");
 		// 畢業年月、休學年月、退學年月 NBSCHOOL.STATUSDATE_E
@@ -2922,12 +3039,16 @@ public class BaReportReplaceUtility {
 
 			A150String_2 = nameConcat(baappbasePrintListA150, "02");
 			if (StringUtils.isNotBlank(A150String_2)) {
-				A150String_2 = A150String_2 + "年齡逾20歲，工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
+				A184("02");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+				A150String_2 = A150String_2 + "年齡逾" + A184Value + "歲，工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
 			}
 
 			A150String_3 = nameConcat(baappbasePrintListA150, "03");
 			if (StringUtils.isNotBlank(A150String_3)) {
-				A150String_3 = A150String_3 + "年齡逾20歲，" + minPayYm + "及" + maxPayYm + "工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
+				A184("03");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+				A150String_3 = A150String_3 + "年齡逾" + A184Value + "歲，" + A165Value + "及" + A164Value + "工作收入超過投保薪資分級表第一級（" + minWage + "元）；";
 			}
 
             A150String_4 = nameConcat(baappbasePrintListA150, "04");
@@ -2937,12 +3058,16 @@ public class BaReportReplaceUtility {
 
 			A150String_5 = nameConcat(baappbasePrintListA150, "05");
 			if (StringUtils.isNotBlank(A150String_5)) {
-				A150String_5 = A150String_5 + "年齡逾20歲，未在學且非無謀生能力；";
+				A184("05");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+				A150String_5 = A150String_5 + "年齡逾" + A184Value + "歲，未在學且非無謀生能力；";
 			}
 
 			A150String_6 = nameConcat(baappbasePrintListA150, "06");
 			if (StringUtils.isNotBlank(A150String_6)) {
-				A150String_6 = A150String_6 + "年齡逾20歲，" + minPayYm + "起未在學且非無謀生能力；";
+				A184("06");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+				A150String_6 = A150String_6 + "年齡逾" + A184Value + "歲，" + A165Value + "起未在學且非無謀生能力；";
 			}
 
 			A150String_7 = nameConcat(baappbasePrintListA150, "07");
@@ -3029,10 +3154,33 @@ public class BaReportReplaceUtility {
 			if (StringUtils.isNotBlank(A150String_17)) {
 			    A150String_17 = A150String_17 + "於" + minPayYm + "失蹤；";
 			}
+			
+			A150String_18 = nameConcat(baappbasePrintListA150, "18");
+			if (StringUtils.isNotBlank(A150String_18)) {
+				A172("18");
+				A172Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A172)) ? replaceValue.get(ConstantKey.A172) : "";
+				A173("18");
+				A173Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A173)) ? replaceValue.get(ConstantKey.A173) : "";
+				A184("18");
+				A184Value = StringUtils.isNotBlank(replaceValue.get(ConstantKey.A184)) ? replaceValue.get(ConstantKey.A184) : "";
+
+			    A150String_18 = A150String_18 + "於" + A172Value + "年滿" + A184Value + "歲，" + A173Value + "起未在學且非無謀生能力";
+			}
+			
+			A150String_23 = nameConcat(baappbasePrintListA150, "23");
+			if (StringUtils.isNotBlank(A150String_23)) {
+				A150String_23 = A150String_23 + "與" + A003Value + "之婚姻關係存續未滿一年，且未扶養符合請領遺屬年金給付條件之子女";
+			}
+			
+			A150String_24 = nameConcat(baappbasePrintListA150, "24");
+			if (StringUtils.isNotBlank(A150String_24)) {
+				A150String_24 = A150String_24 + "年齡未滿45歲，且未扶養符合請領遺屬年金給付條件之子女";
+			}
 
 			A150String = A150String_1 + A150String_2 + A150String_3 + A150String_4 + A150String_5 + A150String_6
 					   + A150String_7 + A150String_8 + A150String_9 + A150String_10 + A150String_11 + A150String_12
-					   + A150String_13 + A150String_14 + A150String_15 + A150String_16 + A150String_17;
+					   + A150String_13 + A150String_14 + A150String_15 + A150String_16 + A150String_17
+					   + A150String_18 + A150String_23 + A150String_24;
 
 			if (A150String.length() > 0) {
 				int iLocation = A150String.lastIndexOf("；");
@@ -3466,6 +3614,48 @@ public class BaReportReplaceUtility {
 			}
 		} else {
 			replaceValue.put(ConstantKey.A164, "000年00月");
+		}
+	}
+	//實付金額不為0之最小給付年月的前一個月
+	public void A165() {
+		if (badaprPayYmA164 != null) {
+			if (!(badaprPayYmA164.get("PREMINPAYYM") == null) && !badaprPayYmA164.get("PREMINPAYYM").equals("000000")
+					&& !badaprPayYmA164.get("PREMINPAYYM").equals("")) {
+				String minPayYm = DateUtility.changeDateType(badaprPayYmA164.get("PREMINPAYYM") + "01");
+				replaceValue.put(ConstantKey.A165, minPayYm.substring(0, 3) + " 年 " + minPayYm.substring(3, 5) + " 月");
+			} else {
+				replaceValue.put(ConstantKey.A165, "000年00月");
+			}
+		} else {
+			replaceValue.put(ConstantKey.A165, "000年00月");
+		}
+	}
+	//實付金額不為0之最大給付年月
+	public void A167() {
+		if (badaprPayYmA164 != null) {
+			if (!(badaprPayYmA164.get("MAXPAYYM") == null) && !badaprPayYmA164.get("MAXPAYYM").equals("000000")
+					&& !badaprPayYmA164.get("MAXPAYYM").equals("")) {
+				String minPayYm = DateUtility.changeDateType(badaprPayYmA164.get("MAXPAYYM") + "01");
+				replaceValue.put(ConstantKey.A167, minPayYm.substring(0, 3) + " 年 " + minPayYm.substring(3, 5) + " 月");
+			} else {
+				replaceValue.put(ConstantKey.A167, "000年00月");
+			}
+		} else {
+			replaceValue.put(ConstantKey.A167, "000年00月");
+		}
+	}
+	//實付金額不為0之最大給付年月的次月
+	public void A168() {
+		if (badaprPayYmA164 != null) {
+			if (!(badaprPayYmA164.get("NEXTMAXPAYYM") == null) && !badaprPayYmA164.get("NEXTMAXPAYYM").equals("000000")
+					&& !badaprPayYmA164.get("NEXTMAXPAYYM").equals("")) {
+				String minPayYm = DateUtility.changeDateType(badaprPayYmA164.get("NEXTMAXPAYYM") + "01");
+				replaceValue.put(ConstantKey.A168, minPayYm.substring(0, 3) + " 年 " + minPayYm.substring(3, 5) + " 月");
+			} else {
+				replaceValue.put(ConstantKey.A168, "000年00月");
+			}
+		} else {
+			replaceValue.put(ConstantKey.A168, "000年00月");
 		}
 	}
 
