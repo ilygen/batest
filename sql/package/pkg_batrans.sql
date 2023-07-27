@@ -36,10 +36,10 @@ CREATE OR REPLACE PACKAGE ba.pkg_batrans AUTHID DEFINER IS
     criinjnme2  baappexpand.criinjnme2%TYPE, --國際疾病代碼2
     criinjnme3  baappexpand.criinjnme3%TYPE, --國際疾病代碼3
     criinjnme4  baappexpand.criinjnme4%TYPE, --國際疾病代碼4
-    sickdate    VARCHAR2(8), --傷病發生日期 (重構才加)
-    diagdate    VARCHAR2(8), --初診日期 (重構才加)
-    surgerday   VARCHAR2(8), --最後手術日期 (重構才加)
-    treatdate   VARCHAR2(8), --最後放射(化學)治療日期 (重構才加)
+    sickdate    baappexpand.injdte%TYPE, --傷病發生日期 (重構才加)
+    diagdate    baappexpand.fvisitdte%TYPE, --初診日期 (重構才加)
+    surgerday   baappexpand.lsurgerydte%TYPE, --最後手術日期 (重構才加)
+    treatdate   baappexpand.lsradiationdte%TYPE, --最後放射(化學)治療日期 (重構才加)
     paytyp      baappbase.paytyp%TYPE, --給付方式
     payeeacc    baappbase.payeeacc%TYPE, --帳號
     evtdiedate  baappbase.evtdiedate%TYPE, --事故者死亡日期
@@ -189,10 +189,10 @@ CREATE OR REPLACE PACKAGE BODY ba.pkg_batrans IS
                          e.criinjnme2, --國際疾病代碼2
                          e.criinjnme3, --國際疾病代碼3
                          e.criinjnme4, --國際疾病代碼4
-                         '' sickdate, --傷病發生日期 (重構才加)
-                         '' diagdate, --初診日期 (重構才加)
-                         '' surgerday, --最後手術日期 (重構才加)
-                         '' treatdate, --最後放射(化學)治療日期 (重構才加)
+                         e.injdte AS sickdate, --傷病發生日期 (重構才加)
+                         e.fvisitdte AS diagdate, --初診日期 (重構才加)
+                         e.lsurgerydte AS surgerday, --最後手術日期 (重構才加)
+                         e.lsradiationdte AS treatdate, --最後放射(化學)治療日期 (重構才加)
                          b.paytyp, --給付方式
                          b.payeeacc, --帳號
                          b.evtdiedate, --事故者死亡日期
