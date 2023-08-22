@@ -2070,7 +2070,7 @@ Function fc_transchinese (v_str in varchar2)
         Cursor c_dataCur_LBAC is
             select t1.APNO                                                 --受理編號
                   ,t1.SEQNO                                                --序號
-                  ,t3.PAYKIND                                              --給付種類
+                  ,t1.PAYKIND                                              --給付種類 BABAWEB-86 William
                   ,t3.INSKD                                                --保險別
                   ,t3.BENEVTREL                                            --受益人與事故者關係
                   ,t3.BENIDS                                               --受益人社福識別碼
@@ -2103,6 +2103,7 @@ Function fc_transchinese (v_str in varchar2)
                           ,tt1.ORIISSUYM
                           ,tt1.PAYYM
                           ,tt1.PAYTYP
+                          ,tt1.ISSUKIND as PAYKIND     --BABAWEB-86 William
                           ,tt1.PAYBANKID
                           ,tt1.BRANCHID
                           ,tt1.PAYEEACC
@@ -2123,6 +2124,7 @@ Function fc_transchinese (v_str in varchar2)
                           ,tt2.SEQNO
                           ,tt2.ISSUYM
                           ,tt2.PAYYM
+                          ,tt2.PAYKIND       --BABAWEB-86 William
                           ,tt2.MCHKTYP as CASETYP
                           ,0 as PAYRATE
                           ,' ' as DLINEDATE
@@ -2157,6 +2159,7 @@ Function fc_transchinese (v_str in varchar2)
                and t2.SEQNO = t3.SEQNO
                and t1.ORIISSUYM = t2.ISSUYM
                and t1.PAYYM = t2.PAYYM
+               and t1.PAYKIND = t2.PAYKIND           --BABAWEB-86 William
                and t1.APNO like (v_i_paycode||'%');
 
         --查詢已核付待發只有補償金單位的改匯資料(不分給付方式,全抓)
