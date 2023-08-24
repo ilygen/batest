@@ -94,6 +94,8 @@ is
                                        並依照扣減記錄檔(BACUTREC)實際沖抵的金額寫入。
         1.4   2022/10/26  William      babaweb-46 sp_BA_MonthApprove 遺屬月核應收已收金額條件修改
         1.5   2023/01/18  William      babaweb-63 sp_BA_MonthApprove 調整遺屬月核應收已收金額條件修改
+        1.6   2023/08/24  William      babaweb-87 查詢扣減記錄寫入已收明細檔時，全額立帳已收回
+                                       會有多筆的情形，由單筆改為迴圈處理
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -381,6 +383,33 @@ is
                         and NVL(t21.RECAMT,0) > 0 ) t2
               where t1.APNO = t2.APNO
               order by t2.APNO,t2.SEQNO,t2.ISSUYM,t2.PAYYM;
+
+         Cursor c_dataRecCur_disamt (v_dis_apno varchar2,v_dis_seqno varchar2,v_dis_issuym varchar2,       
+                       v_dis_payym varchar2,v_dis_paykind varchar2,v_dis_mtestmk varchar2,
+                       v_dis_chkdate varchar2) is 
+          select t.BACUTRECID
+                     ,t.DISPAYKIND
+                     ,t.TYPEMK
+                     ,t.DISAMT
+                     ,t.TRANSACTIONID
+                     ,t.TRANSACTIONSEQ
+                     ,t.INSKD
+                     ,t.ACTENDMK
+                     ,t.NACHGMK
+                     ,t.APNO             -- 2015/11/25 Add By ChungYu
+                     ,t.SEQNO            -- 2015/11/25 Add By ChungYu
+                     ,t.ISSUYM           -- 2015/11/25 Add By ChungYu
+                     ,t.PAYYM            -- 2015/11/25 Add By ChungYu
+                   from BACUTREC t
+                  where t.MAPNO = v_dis_apno
+                    and t.MSEQNO = v_dis_seqno
+                    and t.MISSUYM = v_dis_issuym
+                    and t.MPAYYM = v_dis_payym
+                    and t.DISPAYKIND = v_dis_paykind
+                    and t.MTESTMK = v_dis_mtestmk
+                    and t.CHKDATE = v_dis_chkdate
+                    and (nvl(trim(t.DISDATE),' ')<>' ' or trim(t.DISDATE) is not null)
+                    and (nvl(trim(t.DISAMT),0))>0;
 
         begin
             v_g_ProgName := 'PKG_BA_ProcACPDtl.sp_BA_MonthApprove';
@@ -790,50 +819,16 @@ is
                        trim(t.DISDATE) is not null)
                    and (nvl(trim(t.DISAMT), 0)) > 0;
 
-                if(v_dataRecNum > 0)then
-                            --add by Angela 20140523 全額立帳若已收回，則需再回寫已收檔資料
-                          select t.BACUTRECID
-                              ,t.DISPAYKIND
-                              ,t.TYPEMK
-                              ,t.DISAMT
-                              ,t.TRANSACTIONID
-                              ,t.TRANSACTIONSEQ
-                              ,t.INSKD
-                              ,t.ACTENDMK
-                              ,t.NACHGMK
-                              ,t.APNO             -- 2015/11/25 Add By ChungYu
-                              ,t.SEQNO            -- 2015/11/25 Add By ChungYu
-                              ,t.ISSUYM           -- 2015/11/25 Add By ChungYu
-                              ,t.PAYYM            -- 2015/11/25 Add By ChungYu
-                            into v_bacutrecid
-                              ,v_dispaykind
-                              ,v_typemk
-                              ,v_disamt
-                              ,v_transactionid
-                              ,v_transactionseq
-                              ,v_inskd
-                              ,v_actendmk
-                              ,v_nachgmk
-                              ,v_DisApno          -- 2015/11/25 Add By ChungYu
-                              ,v_DisSeqno         -- 2015/11/25 Add By ChungYu
-                              ,v_DisIssuym        -- 2015/11/25 Add By ChungYu
-                              ,v_DisPayym         -- 2015/11/25 Add By ChungYu
-                            from BACUTREC t
-                           where t.MAPNO = v_dataRecCur.APNO
-                             and t.MSEQNO = v_dataRecCur.SEQNO
-                             and t.MISSUYM = v_dataRecCur.ISSUYM
-                             and t.MPAYYM = v_dataRecCur.PAYYM
-                             and t.DISPAYKIND = v_dataRecCur.PAYKIND
-                             and t.MTESTMK = v_i_mtestmk
-                             and t.CHKDATE = v_i_chkdate
-                             and (nvl(trim(t.DISDATE),' ')<>' ' or trim(t.DISDATE) is not null)
-                             and (nvl(trim(t.DISAMT),0))>0;
-
+                if(v_dataRecNum > 0) then
+                    --babaweb-87 William 改為多筆迴圈
+                    --add by Angela 20140523 全額立帳若已收回，則需再回寫已收檔資料
+                    for v_dataRecCur_disamat in c_dataRecCur_disamt(v_dataRecCur.APNO,v_dataRecCur.SEQNO,v_dataRecCur.ISSUYM,v_dataRecCur.PAYYM,v_dataRecCur.PAYKIND
+                        ,v_i_mtestmk,v_i_chkdate) loop
                           --更新扣減記錄檔的註記欄位
                           update BACUTREC t set t.UNACPMK = 'Y'
-                                  where t.BACUTRECID = v_bacutrecid;
+                                  where t.BACUTRECID = v_dataRecCur_disamat.BACUTRECID;
 
-                          if nvl(trim(v_disamt),0)>0 then
+                          if nvl(trim(v_dataRecCur_disamat.DISAMT),0)>0 then
                             v_g_acpCount := v_g_acpCount + 1;
 
                             --新增應收已收的資料
@@ -864,16 +859,16 @@ is
                                        ,v_baunacpdtlid
                                        ,v_dataRecCur.BENIDS
                                        ,v_dataRecCur.BENIDNNO
-                                       ,deCode(v_typemk,'1','F','2','D','3','E','4','F','5','C',' ')
-                                       ,v_disamt
-                                       ,v_dispaykind
-                                       ,v_DisApno
-                                       ,v_DisSeqno
-                                       ,v_DisIssuym
-                                       ,v_DisPayym
-                                       ,v_transactionid
-                                       ,v_transactionseq
-                                       ,v_inskd
+                                       ,deCode(v_dataRecCur_disamat.TYPEMK,'1','F','2','D','3','E','4','F','5','C',' ')
+                                       ,v_dataRecCur_disamat.DISAMT
+                                       ,v_dataRecCur_disamat.DISPAYKIND
+                                       ,v_dataRecCur_disamat.APNO
+                                       ,v_dataRecCur_disamat.SEQNO
+                                       ,v_dataRecCur_disamat.ISSUYM
+                                       ,v_dataRecCur_disamat.PAYYM
+                                       ,v_dataRecCur_disamat.TRANSACTIONID
+                                       ,v_dataRecCur_disamat.TRANSACTIONSEQ
+                                       ,v_dataRecCur_disamat.INSKD
                                        ,v_i_chkdate
                                        ,'A'
                                        ,v_i_procempno
@@ -881,18 +876,19 @@ is
                                        ,to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                        ,v_NLWKMK
                                        ,v_ADWKMK
-                                       ,v_nachgmk
+                                       ,v_dataRecCur_disamat.nachgmk
                             );
 
                             --更新應收款立帳的相關資料。
-                            update BAUNACPDTL t set t.RECREM = nvl(to_Number(t.RECREM),0)-nvl(to_Number(v_disamt),0)
-                                         ,t.ACTENDMK = v_actendmk
-                                         ,t.PAYKIND = v_dispaykind
+                            update BAUNACPDTL t set t.RECREM = nvl(to_Number(t.RECREM),0)-nvl(to_Number(v_dataRecCur_disamat.DISAMT),0)
+                                         ,t.ACTENDMK = v_dataRecCur_disamat.ACTENDMK
+                                         ,t.PAYKIND = v_dataRecCur_disamat.DISPAYKIND
                                          ,t.MDCHKMK = 'C'
                                          ,t.TXDATE = to_Char(Sysdate,'YYYYMMDDHH24MISS')
                                       where t.BAUNACPDTLID = v_baunacpdtlid;
                             end if;
-                        end if;
+                        end loop;
+                end if;
             end Loop;
 
             --修改log作法 by TseHua 20180419
@@ -908,11 +904,12 @@ is
                     v_g_flag := '1';
                     v_o_flag := v_g_flag;
                     v_g_errMsg := SQLErrm;
-                    dbms_output.put_line(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg);
+                    --dbms_output.put_line(RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg);
 
                     --修改log作法 by TseHua 20180419
                     sp_ba_recbatchjobdtl(BAJOBDTLID.NEXTVAL, v_i_bajobid, '1',
-                       RPAD('**Err:'||v_g_ProgName,85,'-')||'>>'||v_g_errMsg,replace(to_char(systimestamp, 'yyyyMMddHH24missxff'),'.',''));
+                        trim(substr(RPAD('**Err:'||v_g_ProgName||'->>'||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE||DBMS_UTILITY.FORMAT_ERROR_STACK,490,' '),1,490)),
+                       replace(to_char(systimestamp, 'yyyyMMddHH24missxff'),'.',''));
 
         end;
     --procedure sp_BA_MonthApprove End
