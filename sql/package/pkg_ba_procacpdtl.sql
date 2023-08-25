@@ -901,6 +901,7 @@ is
         exception
             when others
                 then
+                    ROLLBACK; -- babaweb-87
                     v_g_flag := '1';
                     v_o_flag := v_g_flag;
                     v_g_errMsg := SQLErrm;
