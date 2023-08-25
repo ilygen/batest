@@ -213,7 +213,7 @@ begin
                 *********************************************************************************************/
 
 
-                v_rowCount := 0;
+/*                v_rowCount := 0;
                 if v_i_issutyp = '1' then
                     select Count(*)
                       into v_rowCount
@@ -252,7 +252,29 @@ begin
                         replace(to_char(systimestamp, 'yyyyMMddHH24missxff'),'.',''));
                         v_g_flag := '0';
                         v_o_flag := v_g_flag;
-                end if;
+                end if;*/
+                
+                   --執行應收款立帳及應收款已收作業
+                   PKG_BA_ProcACPDtl.sp_BA_MonthApprove(v_issuym,v_paycode,v_chkDate,v_mtestmk,v_procempno,v_i_bajobid,v_g_flag);
+
+                   PKG_BA_genPayRPT.sp_BA_genPayRPT_7_S(v_issuym,v_paycode,v_chkdate,v_paydate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);              --應收款立帳清冊 (應收款立帳核定清單)
+                   PKG_BA_genPayRPT.sp_BA_genPayRPT_8_S(v_issuym,v_paycode,v_chkdate,v_paydate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);              --應收已收清冊 (應收已收核定清單)
+
+                   PKG_BA_genPayRPTSUMAccount.sp_BA_genPaySUMRPT_7_S(v_issuym,v_paycode,v_chkdate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);
+                   PKG_BA_genPayRPTSUMAccount.sp_BA_genPayACCOUNTRPT_7_S(v_issuym,v_paycode,v_chkdate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);
+
+                   PKG_BA_genPayRPTSUMAccount.sp_BA_genPaySUMRPT_8_S(v_issuym,v_paycode,v_chkdate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);
+                   PKG_BA_genPayRPTSUMAccount.sp_BA_genPayACCOUNTRPT_8_S(v_issuym,v_paycode,v_chkdate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);
+
+                   PKG_BA_genPFMPFD.sp_BA_genPFMPFDRPT_7_S(v_issuym,v_chkdate,v_payseqno,v_cprndt,v_i_bajobid,v_paydate,v_g_flag);
+                   PKG_BA_genPFMPFD.sp_BA_genPFMPFDRPT_8_S(v_issuym,v_chkdate,v_paydate,v_payseqno,v_cprndt,v_i_bajobid,v_g_flag);
+
+                   --修改log作法 by TseHua 20180419
+                   sp_ba_recbatchjobdtl(BAJOBDTLID.NEXTVAL, v_i_bajobid, '0',
+                      '媒體產製完成:(給付別-' || v_paycode || ')' || v_i_issuym,replace(to_char(systimestamp, 'yyyyMMddHH24missxff'),'.',''));
+                    v_o_flag := v_g_flag;                
+                
+                
             else
                  --修改log作法 by TseHua 20180419
                   sp_ba_recbatchjobdtl(BAJOBDTLID.NEXTVAL, v_i_bajobid,  '0',
