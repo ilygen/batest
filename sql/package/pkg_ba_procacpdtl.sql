@@ -479,7 +479,9 @@ is
                            and t.SEQNO = v_dataCur.MSEQNO
                            and t.ISSUYM = v_dataCur.MISSUYM
                            and t.PAYYM = v_dataCur.MPAYYM
-                           and t.PAYKIND = v_dataCur.DISPAYKIND;
+                           and t.PAYKIND = v_dataCur.DISPAYKIND
+                           and rownum=1
+                           order by t.BAUNACPDTLID;
                     else
                         v_baunacpdtlid := v_dataCur.RECSEQ;
                     end if;
@@ -634,7 +636,9 @@ is
                           and t.SEQNO = v_dataSurCur.MSEQNO
                           and t.ISSUYM = v_dataSurCur.MISSUYM
                           and t.PAYYM = v_dataSurCur.MPAYYM
-                          and t.PAYKIND = v_dataSurCur.DISPAYKIND;
+                          and t.PAYKIND = v_dataSurCur.DISPAYKIND
+                          and rownum=1
+                          order by t.BAUNACPDTLID;
                    else
                        v_baunacpdtlid := v_dataSurCur.RECSEQ;
                    end if;
@@ -901,7 +905,6 @@ is
         exception
             when others
                 then
-                    ROLLBACK; -- babaweb-87
                     v_g_flag := '1';
                     v_o_flag := v_g_flag;
                     v_g_errMsg := SQLErrm;
