@@ -490,6 +490,7 @@
             if (famCase.studMk == 'Y') {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
+            	$("schoolCodeOption").value = famCase.schoolCode;
             } else {
             	clearSchoolCodeContent();
             }
@@ -499,6 +500,7 @@
             if (famCase.studMk == 'Y') {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
+            	$("schoolCodeOption").value = famCase.schoolCode;
             } else {
             	clearSchoolCodeContent();
             }

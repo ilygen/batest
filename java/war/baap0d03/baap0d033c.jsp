@@ -435,6 +435,7 @@
             if (benCase.studMk == 'Y') {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = benCase.schoolCode;
+            	$("schoolCodeOption").value = benCase.schoolCode;
             } else {
             	clearSchoolCodeContent();
             }
