@@ -115,6 +115,9 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
             // 取得國籍清單
             request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
 
+            // 取得學校代碼
+            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
+
             // 眷屬資料清單
             List<DisabledAnnuityReceiptFamCase> famDataList = new ArrayList<DisabledAnnuityReceiptFamCase>();
 
@@ -264,6 +267,8 @@ public class DisabledAnnuityReceiptAction extends BaseDispatchAction {
 
                 // 取得國籍清單
                 request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                // 取得學校代碼
+                request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                 // 取得眷屬資料
                 List<DisabledAnnuityReceiptFamCase> famDataList = receiptService.getBafamilyDataForDiasbled(evtCase.getBaappbaseId(), evtCase.getApNo());
 
