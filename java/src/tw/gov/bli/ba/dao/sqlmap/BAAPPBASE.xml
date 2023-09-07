@@ -12219,6 +12219,7 @@ UNION
                B.EVTYP,
                B.MARRYDATE,
                B.STUDMK,
+               B.SCHOOLCODE,
                B.MONINCOMEMK,
                B.MONINCOME,
                B.HANDICAPMK,
