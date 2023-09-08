@@ -1903,6 +1903,7 @@ public class ReceiptService {
             afterBafamily.setMarryDate(caseObj.getMarryDate());
             afterBafamily.setRaiseChildMk(caseObj.getRaiseChildMk());
             afterBafamily.setStudMk(caseObj.getStudMk());
+            afterBafamily.setSchoolCode(caseObj.getSchoolCode());
             afterBafamily.setMonIncomeMk(caseObj.getMonIncomeMk());
             afterBafamily.setMonIncome(caseObj.getMonIncome());
             afterBafamily.setHandIcapMk(caseObj.getHandIcapMk());
@@ -2889,6 +2890,7 @@ public class ReceiptService {
             afterBaappbase.setAccRel(baappbase.getAccRel());// 戶名與受益人關係
             afterBaappbase.setAccSeqNo(baappbase.getAccSeqNo());// 被共同具領之受款人員序號
             afterBaappbase.setStudMk(baappbase.getStudMk());// 在學
+            afterBaappbase.setSchoolCode(baappbase.getSchoolCode());// 學校代碼
             afterBaappbase.setMonIncomeMk(baappbase.getMonIncomeMk());// 每月工作收入註記
             afterBaappbase.setMonIncome(baappbase.getMonIncome());// 每月工作收入
             afterBaappbase.setHandIcapMk(baappbase.getHandIcapMk());// 領有重度以上身心障礙手冊或證明

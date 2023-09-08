@@ -799,6 +799,7 @@
                INTERDICTMK = #interDictMk:VARCHAR#,
                HANDICAPMK = #handIcapMk:VARCHAR#,
                STUDMK = #studMk:VARCHAR#,
+               SCHOOLCODE = #schoolCode:VARCHAR#, 
                UPDUSER = #updUser:VARCHAR#,
                UPDTIME = #updTime:VARCHAR#
          WHERE BAAPPEXPANDID = #baappexpandId:NUMERIC#

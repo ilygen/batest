@@ -94,6 +94,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
             BigDecimal bafamilytempId = receiptService.getNewbafamilytempId();
             // 取得國籍清單
             request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+            // 取得學校代碼
+            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
             // 取得具名領取清單
             request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, new ArrayList<Baappbase>());
             // 眷屬資料清單
@@ -157,6 +159,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                 // String benIdnBrDate = receiptService.transExistBenIdnBrDate(benDataList);
                 // 取得國籍清單
                 request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                // 取得學校代碼
+                request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                 // 取得具名領取清單
                 request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, selectOptionService.getBenOptionListForSurvivor(null, detailData.getApNo()));
 
@@ -531,6 +535,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                     // [
                     // 取得國籍清單
                     request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                    // 取得學校代碼
+                    request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                     // 取得具名領取清單
                     request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, selectOptionService.getBenOptionListForSurvivorTemp(caseObj.getBafamilytempId(), null));
                     // 眷屬資料清單
@@ -568,6 +574,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                     // [
                     // 取得國籍清單
                     request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                    // 取得學校代碼
+                    request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                     // 取得具名領取清單
                     request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, selectOptionService.getBenOptionListForSurvivor(null, caseObj.getApNo()));
                     // 眷屬資料清單
@@ -643,6 +651,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                     // [
                     // 取得國籍清單
                     request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                    // 取得學校代碼
+                    request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                     // 取得具名領取清單
                     request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, selectOptionService.getBenOptionListForSurvivorTemp(benCase.getBafamilytempId(), null));
                     // 眷屬資料清單
@@ -690,6 +700,8 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                     // [
                     // 取得國籍清單
                     request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+                    // 取得學校代碼
+                    request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
                     // 取得具名領取清單
                     request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, selectOptionService.getBenOptionListForSurvivor(null, benCase.getApNo()));
                     // 眷屬資料清單

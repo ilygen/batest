@@ -38,6 +38,7 @@ public class DisabledAnnuityReceiptFamCase implements Serializable {
     private BigDecimal monIncome;// 每月工作收入金額
     private String handIcapMk;// 領有重度以上身心障礙手冊
     private String interDictMk;// 受禁治產(監護)宣告
+    private String schoolCode; //學校代碼
 
     private List<Baapplog> baapplogList;// 更正記錄檔
 
@@ -309,5 +310,13 @@ public class DisabledAnnuityReceiptFamCase implements Serializable {
     public void setBafamilyId(BigDecimal bafamilyId) {
         this.bafamilyId = bafamilyId;
     }
+
+	public String getSchoolCode() {
+		return schoolCode;
+	}
+
+	public void setSchoolCode(String schoolCode) {
+		this.schoolCode = schoolCode;
+	}
 
 }

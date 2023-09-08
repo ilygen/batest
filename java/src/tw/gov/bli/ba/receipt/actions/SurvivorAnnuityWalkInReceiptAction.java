@@ -112,6 +112,8 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 
 			// 取得國籍清單
 			request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST, selectOptionService.getCountry());
+            // 取得學校代碼
+            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST, selectOptionService.selectNpCodeOptionBy());
 			// 取得具名領取清單
 			request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST, new ArrayList<Baappbase>());
 
@@ -285,6 +287,9 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					// 取得國籍清單
 					request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST,
 							selectOptionService.getCountry());
+		            // 取得學校代碼
+		            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST,
+		            		selectOptionService.selectNpCodeOptionBy());
 					// 取得具名領取清單
 					request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST,
 							selectOptionService.getBenOptionListForSurvivorTemp(caseObj.getBafamilytempId(), null));
@@ -324,6 +329,9 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					// 取得國籍清單
 					request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST,
 							selectOptionService.getCountry());
+		            // 取得學校代碼
+		            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST,
+		            		selectOptionService.selectNpCodeOptionBy());
 					// 取得具名領取清單
 					request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST,
 							selectOptionService.getBenOptionListForSurvivor(null, caseObj.getApNo()));
@@ -404,6 +412,9 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					// 取得國籍清單
 					request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST,
 							selectOptionService.getCountry());
+		            // 取得學校代碼
+		            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST,
+		            		selectOptionService.selectNpCodeOptionBy());
 					// 取得具名領取清單
 					request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST,
 							selectOptionService.getBenOptionListForSurvivorTemp(benCase.getBafamilytempId(), null));
@@ -456,6 +467,9 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 					// 取得國籍清單
 					request.getSession().setAttribute(ConstantKey.COUNTRYID_OPTION_LIST,
 							selectOptionService.getCountry());
+		            // 取得學校代碼
+		            request.getSession().setAttribute(ConstantKey.SCHOOLCODE_OPTION_LIST,
+		            		selectOptionService.selectNpCodeOptionBy());
 					// 取得具名領取清單
 					request.getSession().setAttribute(ConstantKey.BEN_OPTION_LIST,
 							selectOptionService.getBenOptionListForSurvivor(null, benCase.getApNo()));

@@ -91,6 +91,9 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     private String benOptionMode;// 遺屬資料新增/修改模式
     private String focusLocation;//foucs位置
 
+	private String schoolCode;// 學校代碼
+	private String schoolCodeOption; //學校代碼 下單選單
+
     // Field for baapplog
     // [
     private String oldApNo;// 受理編號
@@ -1227,6 +1230,22 @@ public class SurvivorAnnuityReceiptForm extends BaseValidatorForm {
     public void setFocusLocation(String focusLocation) {
         this.focusLocation = focusLocation;
     }
+
+	public String getSchoolCode() {
+		return schoolCode;
+	}
+
+	public void setSchoolCode(String schoolCode) {
+		this.schoolCode = schoolCode;
+	}
+
+	public String getSchoolCodeOption() {
+		return schoolCodeOption;
+	}
+
+	public void setSchoolCodeOption(String schoolCodeOption) {
+		this.schoolCodeOption = schoolCodeOption;
+	}
 
     public String getMobilePhone() {
         return mobilePhone;
