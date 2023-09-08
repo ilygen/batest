@@ -473,13 +473,14 @@ is
                 --判斷該帳務資料是否已有應收款立帳資料
                 if nvl(trim(v_dataCur.TYPEMK),' ')<>'0' or (nvl(trim(v_dataCur.TYPEMK),' ')='0' and nvl(trim(v_dataCur.RECSEQ),' ')<>' ') then
                     if nvl(trim(v_dataCur.TYPEMK),' ')<>'0' and nvl(trim(v_dataCur.RECSEQ),' ')=' ' then
-                        select BAUNACPDTLID into v_baunacpdtlid
+                        select min(BAUNACPDTLID) into v_baunacpdtlid
                           from BAUNACPDTL t
                          where t.APNO = v_dataCur.MAPNO
                            and t.SEQNO = v_dataCur.MSEQNO
                            and t.ISSUYM = v_dataCur.MISSUYM
                            and t.PAYYM = v_dataCur.MPAYYM
-                           and t.PAYKIND = v_dataCur.DISPAYKIND;
+                           and t.PAYKIND = v_dataCur.DISPAYKIND
+                           and rownum=1 ;
                     else
                         v_baunacpdtlid := v_dataCur.RECSEQ;
                     end if;
@@ -628,13 +629,14 @@ is
 
                 --取得應收款立帳紀錄編號資料
                    if nvl(trim(v_dataSurCur.TYPEMK),' ')<>'0' and nvl(trim(v_dataSurCur.RECSEQ),' ')=' ' then
-                       select BAUNACPDTLID into v_baunacpdtlid
+                       select min(BAUNACPDTLID) into v_baunacpdtlid
                          from BAUNACPDTL t
                         where t.APNO = v_dataSurCur.MAPNO
                           and t.SEQNO = v_dataSurCur.MSEQNO
                           and t.ISSUYM = v_dataSurCur.MISSUYM
                           and t.PAYYM = v_dataSurCur.MPAYYM
-                          and t.PAYKIND = v_dataSurCur.DISPAYKIND;
+                          and t.PAYKIND = v_dataSurCur.DISPAYKIND
+                          and rownum=1;
                    else
                        v_baunacpdtlid := v_dataSurCur.RECSEQ;
                    end if;
@@ -901,7 +903,6 @@ is
         exception
             when others
                 then
-                    ROLLBACK; -- babaweb-87
                     v_g_flag := '1';
                     v_o_flag := v_g_flag;
                     v_g_errMsg := SQLErrm;
