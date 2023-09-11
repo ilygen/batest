@@ -127,13 +127,16 @@
     <%-- 畫面導向 --%>	
     function doAction(command) {
     	document.forms[0].action = actionurl + command;
-    	if(command == 'doDeleteDataCount'){
+    	if(command == 'doDeleteDataCount' || command == 'doModifyDataCount'){
     		document.forms[0].method = 'post';
     	}
     	document.forms[0].submit();
     }
     function doDelete() {
     	doAction("doDeleteDataCount");
+    }
+    function doModify() {
+    	doAction("doModifyDataCount");
     }
     /* --> */
     </script>		
@@ -255,9 +258,10 @@
                         </display:column>
                         <display:column property="dataCont" title="說　明" style="width:30%; text-align:left;" />
                         <display:column title="資料明細" style="width:14%; text-align:center;" >
-                            <input type="button" class="button" name="btnMod" value="修改" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doModifyDataCount&type=modify&rowId=<c:out value="${listItem_rowNum}" />';">
-                            <input type="button" class="button" name="btnDel" value="刪除" onclick="doDelete()">
+                            <%-- <input type="button" class="button" name="btnMod" value="修改" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doModifyDataCount&type=modify&rowId=<c:out value="${listItem_rowNum}" />';"> --%>
 <%--                             <input type="button" class="button" name="btnDel" value="刪除" onclick="location.href='<c:url value="/adviceMaintDetail.do"/>?method=doDeleteDataCount&type=modify&rowId=<c:out value="${listItem_rowNum}" />';"> --%>
+							<input type="button" class="button" name="btnMod" value="修改" onclick="doModify()">
+							<input type="button" class="button" name="btnDel" value="刪除" onclick="doDelete()">
                         </display:column>
                         </display:table>
 			        </td>
