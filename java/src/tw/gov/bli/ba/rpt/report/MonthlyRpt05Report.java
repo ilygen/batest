@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -18,6 +19,7 @@ import tw.gov.bli.ba.domain.Baappbase;
 import tw.gov.bli.ba.domain.Babatchjobdtl;
 import tw.gov.bli.ba.domain.Baunqualifiednotice;
 import tw.gov.bli.ba.framework.domain.UserBean;
+import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.rpt.cases.MonthlyRpt05Case;
 import tw.gov.bli.ba.services.BjService;
 import tw.gov.bli.ba.services.RptService;
@@ -45,7 +47,9 @@ public class MonthlyRpt05Report extends ReportBase {
     }
 
     public Table printPage(MonthlyRpt05Case caseData) throws Exception {
-    	
+        int SigWidth = NumberUtils.toInt(PropertyHelper.getProperty("signature.width"));
+        int SigHeight = NumberUtils.toInt(PropertyHelper.getProperty("signature.height"));
+
     	if(flag == 0){  //寫入成功 寫檔一開始PDF new Page有使用所以下一筆要再 new page
     		document.newPage();
     		flag = 1;   //先設初始
@@ -169,7 +173,8 @@ public class MonthlyRpt05Report extends ReportBase {
         if (StringUtils.isNotBlank(caseData.getManager())) {
             //addColumn(table, 60, 1, "     " + RptTitleUtility.getManegerTitle(caseData.getAplpayDate(), caseData.getManagerStr()), fontCh20, 0, LEFT);
 //        	addColumn(table, 60, 1, "     " + caseData.getManager(), fontCh20, 0, LEFT);
-            drawString(document, "     " + caseData.getManager(), 10, 130, 0, 20, "left");
+            //drawString(document, "     " + caseData.getManager(), 10, 130, 0, 20, "left");
+            drawImage(caseData.getManagerImg(), 18, 268, SigWidth, SigHeight); // 單位：mm
         }
         else {
 //            addColumn(table, 60, 1, "     ", fontCh20, 0, LEFT);
@@ -179,7 +184,7 @@ public class MonthlyRpt05Report extends ReportBase {
         String Pbm0001 = StringUtils.replace(caseData.getPbm0001(), " ", "");
         
         //直接用畫的上去不會造成跳頁問題
-        drawString(document, Pbm0001, 456, 45, 0, 12, "right");
+        drawString(document, Pbm0001, 456, 16, 0, 12, "right");
         
         return table;
     }

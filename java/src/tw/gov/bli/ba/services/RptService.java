@@ -65,6 +65,7 @@ import tw.gov.bli.ba.dao.BbpmaDao;
 import tw.gov.bli.ba.dao.BebmsaDao;
 import tw.gov.bli.ba.dao.BirefDao;
 import tw.gov.bli.ba.dao.BxadminsDao;
+import tw.gov.bli.ba.dao.BxdirnameimgDao;
 import tw.gov.bli.ba.dao.CaubDao;
 import tw.gov.bli.ba.dao.CipbDao;
 import tw.gov.bli.ba.dao.CipgDao;
@@ -96,6 +97,7 @@ import tw.gov.bli.ba.domain.Bagivetmpdtl;
 import tw.gov.bli.ba.domain.Bahandicapterm;
 import tw.gov.bli.ba.domain.Balp0d020;
 import tw.gov.bli.ba.domain.Balp0d330;
+import tw.gov.bli.ba.domain.Bamanager;
 import tw.gov.bli.ba.domain.Banotify;
 import tw.gov.bli.ba.domain.Baoncepay;
 import tw.gov.bli.ba.domain.Bapairr;
@@ -221,6 +223,7 @@ public class RptService {
     private UpdateService updateService;
     private CvldtlDao cvldtlDao;
     private BaappattfileDao baappattfileDao;
+    private BxdirnameimgDao bxdirnameimgDao;
     
     private BbgovnpesDao bbgovnpesDao;
     private BbmtybefDao bbmtybefDao;
@@ -6099,6 +6102,8 @@ public class RptService {
 
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
+        Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+        byte[] managerImg = bamanager.getAttachment();
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -6218,6 +6223,7 @@ public class RptService {
             }
 
             monthlyRpt05Case.setManager(manager);
+            monthlyRpt05Case.setManagerImg(managerImg);
             monthlyRpt05Case.setReceiveName(receiveName);
             monthlyRpt05Case.setRealName(baappbaseDao.getSingleReceiveNameBy(baappbase.getApNo(), baappbase.getSeqNo()));
             monthlyRpt05Case.setApNo(apNo);
@@ -6317,6 +6323,8 @@ public class RptService {
 
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
+        Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+        byte[] managerImg = bamanager.getAttachment();
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -6393,6 +6401,7 @@ public class RptService {
             }
 
             monthlyRpt05Case.setManager(manager);
+            monthlyRpt05Case.setManagerImg(managerImg);
             monthlyRpt05Case.setApNo(apNo);
             monthlyRpt05Case.setSeqNo(baappbase.getSeqNo());
             monthlyRpt05Case.setNotifyForm(baappbase.getNotifyForm());
@@ -6469,6 +6478,8 @@ public class RptService {
 
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
+        Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+        byte[] managerImg = bamanager.getAttachment();
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -6696,6 +6707,7 @@ public class RptService {
                 }
 
                 monthlyRpt05Case.setManager(manager);
+                monthlyRpt05Case.setManagerImg(managerImg);
                 monthlyRpt05Case.setReceiveName(receiveName);
                 monthlyRpt05Case.setRealName(sRealName + sGender);
                 monthlyRpt05Case.setApNo(apNo);
@@ -8001,6 +8013,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = bamanager.getAttachment();
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -8129,6 +8143,7 @@ public class RptService {
             MonthlyRpt29Case.setMessage(message);
 
             MonthlyRpt29Case.setManager(manager);
+            MonthlyRpt29Case.setManagerImg(managerImg);
 
             caseList.add(MonthlyRpt29Case);
 
@@ -8187,6 +8202,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = bamanager.getAttachment();
 
             MonthlyRpt30Case MonthlyRpt30Case = new MonthlyRpt30Case();
 
@@ -8380,6 +8397,7 @@ public class RptService {
             MonthlyRpt30Case.setMessage(message);
 
             MonthlyRpt30Case.setManager(manager);
+            MonthlyRpt30Case.setManagerImg(managerImg);
 
             caseList.add(MonthlyRpt30Case);
 
@@ -8454,6 +8472,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = bamanager.getAttachment();
 
             MonthlyRpt31Case MonthlyRpt31Case = new MonthlyRpt31Case();
 
@@ -8726,6 +8746,7 @@ public class RptService {
             MonthlyRpt31Case.setMessage(message);
 
             MonthlyRpt31Case.setManager(manager);
+            MonthlyRpt31Case.setManagerImg(managerImg);
 
             MonthlyRpt31Case.setApNo(StringUtils.trimToEmpty(baappbase.getApNo()));
             MonthlyRpt31Case.setSeqNo(StringUtils.trimToEmpty(baappbase.getSeqNo()));
@@ -8863,6 +8884,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = bamanager.getAttachment();
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -8986,6 +9009,7 @@ public class RptService {
             MonthlyRpt29Case.setMessage(message);
 
             MonthlyRpt29Case.setManager(manager);
+            MonthlyRpt29Case.setManagerImg(managerImg);
 
             caseList.add(MonthlyRpt29Case);
 
@@ -9048,6 +9072,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = bamanager.getAttachment();
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -9108,6 +9134,7 @@ public class RptService {
             MonthlyRpt29Case.setMessage(message);
 
             MonthlyRpt29Case.setManager(manager);
+            MonthlyRpt29Case.setManagerImg(managerImg);
 
             caseList.add(MonthlyRpt29Case);
 
@@ -9333,6 +9360,8 @@ public class RptService {
         List<Bapflbac> dataList = bapflbacDao.getMonthlyRpt16DataBy(payCode, sIssuYm, apNo, benIdn, sChkDate);
         // 總經理名稱
         String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+        Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+        byte[] managerImg = bamanager.getAttachment();
 
         for (Bapflbac rptData : dataList) {
             MonthlyRpt16Case caseData = new MonthlyRpt16Case();
@@ -9357,6 +9386,7 @@ public class RptService {
             caseData.setCommTel(rptData.getCommTel()); // 電話
 
             caseData.setManager(manager); // 總經理名稱
+            caseData.setManagerImg(managerImg); // 總經理署名圖
 
             caseList.add(caseData);
         }
@@ -11762,6 +11792,10 @@ public class RptService {
 	 */
 	public void setBbgovnbefDao(BbgovnbefDao bbgovnbefDao) {
 		this.bbgovnbefDao = bbgovnbefDao;
+	}
+
+	public void setBxdirnameimgDao(BxdirnameimgDao bxdirnameimgDao) {
+		this.bxdirnameimgDao = bxdirnameimgDao;
 	}
 
 }

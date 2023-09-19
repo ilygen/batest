@@ -25,6 +25,7 @@ public class MonthlyRpt16Case implements Serializable {
     private String commAddr; // 地址
     private String commTel; // 電話
     private String manager;// 總經理名稱
+    private byte[] managerImg;// 總經理署名圖
 
     /**
      * 給付別中文名稱
@@ -250,6 +251,14 @@ public class MonthlyRpt16Case implements Serializable {
 
 	public void setManager(String manager) {
 		this.manager = manager;
+	}
+
+	public byte[] getManagerImg() {
+		return managerImg;
+	}
+
+	public void setManagerImg(byte[] managerImg) {
+		this.managerImg = managerImg;
 	}
 
 }

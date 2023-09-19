@@ -75,6 +75,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="bahandicaptermDao" ref="bahandicaptermDao" />
         <property name="cvldtlDao" ref="cvldtlDao" />
         <property name="baappattfileDao" ref="baappattfileDao" />
+        <property name="bxdirnameimgDao" ref="bxdirnameimgDao" />
         <property name="bbgovnbefDao" ref="bbgovnbefDao" />
         <property name="bbgovnpesDao" ref="bbgovnpesDao" />
         <property name="bbmtybefDao" ref="bbmtybefDao" />

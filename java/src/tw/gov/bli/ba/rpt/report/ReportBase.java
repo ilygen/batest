@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -16,6 +17,7 @@ import com.lowagie.text.BadElementException;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
@@ -159,6 +161,8 @@ public abstract class ReportBase {
 
     // 底線字型 - 標楷體
     public Font fontKCh12l = null;
+
+    public static final float PX_PER_MM = 2.8333333F;
 
     // 繼承的 Class 要寫
     abstract public Document createDocument();
@@ -1126,4 +1130,43 @@ public abstract class ReportBase {
             }
         }
     }
+
+    //將以 mm 為單位的值換算為單位 pixel
+    float pt(float mm) {
+        return mm * PX_PER_MM;
+    }
+
+    //將以當前頁左上角為坐標原點的 y 坐標值轉為 PDF 之以左下角為原點之值(單位: pt)
+    float transY(float y) {
+        return writer.getPageSize().getHeight() - y;
+    }
+
+    public void drawImage(String imgPath, float x, float y, float width, float height) throws DocumentException, IOException {
+    	PdfContentByte cb = writer.getDirectContent();
+    	Image image = Image.getInstance(imgPath);
+		image.scaleAbsolute((width > 0) ? pt(width) : image.getPlainWidth(), (height > 0) ? pt(height) : image.getPlainHeight());
+		image.setAbsolutePosition(pt(x), transY(pt(y)) - image.getScaledHeight());
+
+    	cb.addImage(image);
+    }
+
+    public void drawImage(byte[] imgByte, float x, float y, float width, float height) throws DocumentException, IOException {
+    	PdfContentByte cb = writer.getDirectContent();
+		Image image = Image.getInstance(imgByte);
+		image.scaleAbsolute((width > 0) ? pt(width) : image.getPlainWidth(), (height > 0) ? pt(height) : image.getPlainHeight());
+		image.setAbsolutePosition(pt(x), transY(pt(y)) - image.getScaledHeight());
+
+    	cb.addImage(image);
+    }
+
+    public void addImage(Table table, byte[] imgByte, int iImageWidth, int iImageHeight, int icolspan, int irowspan, int borderWidth, int iImageOffsetX, int iImageOffsetY) throws BadElementException, MalformedURLException, IOException {
+    	Image image = Image.getInstance(imgByte);
+    	image.scaleAbsolute(pt(iImageWidth), pt(iImageHeight));
+    	Cell cell = new Cell(new Phrase(new Chunk(image, pt(iImageOffsetX), pt(iImageOffsetY))));
+    	cell.setBorder(borderWidth);
+    	cell.setColspan(icolspan);
+    	cell.setRowspan(irowspan);
+
+    	table.addCell(cell);
+	}
 }

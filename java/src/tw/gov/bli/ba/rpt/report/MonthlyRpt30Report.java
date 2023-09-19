@@ -4,13 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
-import com.lowagie.text.Element;
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.Table;
-import com.lowagie.text.Image;
 import tw.gov.bli.ba.framework.domain.UserBean;
+import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.rpt.cases.MonthlyRpt30Case;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.RptTitleUtility;
@@ -29,6 +29,8 @@ public class MonthlyRpt30Report extends ReportBase {
 
     public Table printPage(MonthlyRpt30Case caseData, HashMap<String, Object> map) throws Exception {
         String rptKind = (String) map.get("rptKind");
+        int SigWidth = NumberUtils.toInt(PropertyHelper.getProperty("signature.width"));
+        int SigHeight = NumberUtils.toInt(PropertyHelper.getProperty("signature.height"));
 
         document.newPage();
         // 建立表格
@@ -109,7 +111,8 @@ public class MonthlyRpt30Report extends ReportBase {
         // 20091210 增加列印總經理
         if (StringUtils.isNotBlank(caseData.getManager())) {
             // addColumn(table, 60, 1, " " + RptTitleUtility.getManegerTitle(caseData.getAplpayDate(), caseData.getManagerStr()), fontCh20, 0, LEFT);
-            addColumn(table, 60, 1, "     " + caseData.getManager(), fontCh20, 0, LEFT);
+            //addColumn(table, 60, 1, "     " + caseData.getManager(), fontCh20, 0, LEFT);
+            drawImage(caseData.getManagerImg(), 18, 268, SigWidth, SigHeight); // 單位：mm
         }
         else {
             addColumn(table, 60, 1, "     ", fontCh20, 0, LEFT);

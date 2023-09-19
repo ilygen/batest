@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.owasp.encoder.Encode;
 
 import com.lowagie.text.Document;
@@ -37,6 +38,9 @@ public class MonthlyRpt16Report extends ReportBase {
     }
 
     public Table printPage(MonthlyRpt16Case caseData, String description1) throws Exception {
+        int SigWidth = NumberUtils.toInt(PropertyHelper.getProperty("signature.width"));
+        int SigHeight = NumberUtils.toInt(PropertyHelper.getProperty("signature.height"));
+
         document.newPage();
         // 建立表格
         Table table = createTable(60);
@@ -100,18 +104,20 @@ public class MonthlyRpt16Report extends ReportBase {
             addColumnAssignLineSpace(table, 60, 1, " ", fontCh1, 0, 0, RIGHT);
         }
 
-        for (int i = 0; i < 19; i++)
+        for (int i = 0; i < 17; i++)
             table.deleteLastRow();
         // 列印總經理
         if (StringUtils.isNotBlank(caseData.getManager())) {
-            addColumn(table, 60, 1, "     " + caseData.getManager(), fontKCh20, 0, LEFT);
+            //addColumn(table, 60, 1, "     ", fontKCh20, 0, LEFT);
+//            drawImage(caseData.getManagerImg(), 18, 268, 100, 25); // 單位：mm
+        	addImage(table, caseData.getManagerImg(), SigWidth, SigHeight, 60, 1, 0, 11, 0); // 單位：mm
         }
         else {
             addColumn(table, 60, 1, "     ", fontKCh20, 0, LEFT);
         }
-        for (int i = 0; i < 2; i++) {
-            addColumnAssignLineSpace(table, 60, 1, "　", fontKCh20, 1, 0, RIGHT);
-        }
+//        for (int i = 0; i < 2; i++) {
+//            addColumnAssignLineSpace(table, 60, 1, "　", fontKCh20, 1, 0, RIGHT);
+//        }
 
         return table;
     }

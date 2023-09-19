@@ -64,6 +64,7 @@
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BBCMF08.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/MAADMREC.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BXADMINS.xml" />
+    <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BXDIRNAMEIMG.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/KCAF.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BALP0D020.xml" />
     <sqlMap resource="tw/gov/bli/ba/dao/sqlmap/BAAP0D040.xml" />
