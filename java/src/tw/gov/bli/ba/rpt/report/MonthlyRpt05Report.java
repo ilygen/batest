@@ -170,7 +170,7 @@ public class MonthlyRpt05Report extends ReportBase {
         }
 
         // 20091210 增加列印總經理
-        if (StringUtils.isNotBlank(caseData.getManager())) {
+        if (caseData.getManagerImg() != null) {
             //addColumn(table, 60, 1, "     " + RptTitleUtility.getManegerTitle(caseData.getAplpayDate(), caseData.getManagerStr()), fontCh20, 0, LEFT);
 //        	addColumn(table, 60, 1, "     " + caseData.getManager(), fontCh20, 0, LEFT);
             //drawString(document, "     " + caseData.getManager(), 10, 130, 0, 20, "left");

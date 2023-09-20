@@ -107,7 +107,7 @@ public class MonthlyRpt16Report extends ReportBase {
         for (int i = 0; i < 17; i++)
             table.deleteLastRow();
         // 列印總經理
-        if (StringUtils.isNotBlank(caseData.getManager())) {
+        if (caseData.getManagerImg() != null) {
             //addColumn(table, 60, 1, "     ", fontKCh20, 0, LEFT);
 //            drawImage(caseData.getManagerImg(), 18, 268, 100, 25); // 單位：mm
         	addImage(table, caseData.getManagerImg(), SigWidth, SigHeight, 60, 1, 0, 11, 0); // 單位：mm

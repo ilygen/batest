@@ -106,7 +106,7 @@ public class MonthlyRpt29Report extends ReportBase {
             table.deleteLastRow();
 
         // 20091210 增加列印總經理
-        if (StringUtils.isNotBlank(caseData.getManager())) {
+        if (caseData.getManagerImg() != null) {
             //addColumn(table, 60, 1, "     " + RptTitleUtility.getManegerTitle(caseData.getAplpayDate(), caseData.getManagerStr()), fontCh20, 0, LEFT);
         	//addColumn(table, 60, 1, "     " + caseData.getManager(), fontCh20, 0, LEFT);
             drawImage(caseData.getManagerImg(), 18, 268, SigWidth, SigHeight); // 單位：mm

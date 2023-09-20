@@ -6103,7 +6103,7 @@ public class RptService {
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
         Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-        byte[] managerImg = bamanager.getAttachment();
+        byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -6324,7 +6324,7 @@ public class RptService {
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
         Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-        byte[] managerImg = bamanager.getAttachment();
+        byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -6479,7 +6479,7 @@ public class RptService {
         // 總經理名稱
         String manager = bapasignDao.selectManager(badaprList.get(0).getAplpayDate());
         Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-        byte[] managerImg = bamanager.getAttachment();
+        byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
         // 核定通知書檢核碼
         Pbm0001 pbm0001 = new Pbm0001();
@@ -8014,7 +8014,7 @@ public class RptService {
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
             Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-            byte[] managerImg = bamanager.getAttachment();
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -8203,7 +8203,7 @@ public class RptService {
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
             Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-            byte[] managerImg = bamanager.getAttachment();
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt30Case MonthlyRpt30Case = new MonthlyRpt30Case();
 
@@ -8473,7 +8473,7 @@ public class RptService {
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
             Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-            byte[] managerImg = bamanager.getAttachment();
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt31Case MonthlyRpt31Case = new MonthlyRpt31Case();
 
@@ -8885,7 +8885,7 @@ public class RptService {
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
             Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-            byte[] managerImg = bamanager.getAttachment();
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -9073,7 +9073,7 @@ public class RptService {
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
             Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-            byte[] managerImg = bamanager.getAttachment();
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt29Case MonthlyRpt29Case = new MonthlyRpt29Case();
 
@@ -9361,7 +9361,7 @@ public class RptService {
         // 總經理名稱
         String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
         Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
-        byte[] managerImg = bamanager.getAttachment();
+        byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
         for (Bapflbac rptData : dataList) {
             MonthlyRpt16Case caseData = new MonthlyRpt16Case();

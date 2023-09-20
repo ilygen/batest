@@ -165,7 +165,7 @@ public class MonthlyRpt31Report extends ReportBase {
 
 
         // 20091210 增加列印總經理
-        if (StringUtils.isNotBlank(caseData.getManager())) {
+        if (caseData.getManagerImg() != null) {
             drawImage(caseData.getManagerImg(), 18, 268, SigWidth, SigHeight); // 單位：mm
 
             if (rptKind.equals("001")) {
