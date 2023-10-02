@@ -96,6 +96,7 @@
         <result column="FAMIDNNO"           property="famIdnNo"                jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="FAMBRDATE"          property="famBrDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />     
         <result column="STUDMK"             property="studMk"                  jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
+        <result column="SCHOOLCODE"         property="schoolCode"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
         <result column="MONINCOME"          property="monIncome"               jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />    
         <result column="HANDICAPMK"         property="handIcapMk"              jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />    
         <result column="MARRYDATE"          property="marryDate"               jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
@@ -346,6 +347,7 @@
             INTERDICTMK,
             HANDICAPMK,
             STUDMK,
+            SCHOOLCODE,
             CRTUSER,
             CRTTIME
         )
@@ -370,6 +372,7 @@
             #interDictMk:VARCHAR#,
             #handIcapMk:VARCHAR#,
             #studMk:VARCHAR#,
+            #schoolCode:VARCHAR#,
             #crtUser:VARCHAR#,
             #crtTime:VARCHAR#
         )
@@ -392,6 +395,7 @@
                INTERDICTMK = #interDictMk:VARCHAR#,
                HANDICAPMK = #handIcapMk:VARCHAR#,
                STUDMK = #studMk:VARCHAR#,
+               SCHOOLCODE = #schoolCode:VARCHAR#,
                UPDUSER = #updUser:VARCHAR#,
                UPDTIME = #updTime:VARCHAR#
         WHERE BAFAMILYID = #bafamilyId:NUMERIC#
@@ -514,7 +518,8 @@
                FAMNAME,   
                FAMIDNNO,
                FAMBRDATE,  
-               STUDMK,    
+               STUDMK,
+               SCHOOLCODE,
                MONINCOME, 
                HANDICAPMK,
                MARRYDATE

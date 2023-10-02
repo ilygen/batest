@@ -185,6 +185,7 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
+            clearSchoolCodeContent();
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
             //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
@@ -194,7 +195,12 @@
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = false;
             //$("raiseChildMk").value = "";
-            $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = false;
+            if ($("studMk").value == 'Y') {
+            	$("schoolCodeContent").style.display="inline";            	
+            } else {
+                clearSchoolCodeContent();
+            }
             //$("studMk").value = "";
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
@@ -205,7 +211,12 @@
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
             $("raiseChildMk").value = "";
-            $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
+            $("studMk").disabled = false;
+            if ($("studMk").value == 'Y') {
+            	$("schoolCodeContent").style.display="inline";            	
+            } else {
+            	clearSchoolCodeContent();
+            }
             //$("studMk").value = "";
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
@@ -218,6 +229,7 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
+            clearSchoolCodeContent();
             //$("handIcapMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
             //$("interDictMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
@@ -229,6 +241,7 @@
             $("raiseChildMk").value = "";
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
+            clearSchoolCodeContent();
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("handIcapMk").value = "";     
             //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
@@ -473,10 +486,24 @@
         }
         if(famCase.famEvtRel == '4'){
             $("raiseChildMk").value = famCase.raiseChildMk;  
-            $("studMk").value = famCase.studMk;                         
+            $("studMk").value = famCase.studMk;
+            if (famCase.studMk == 'Y') {
+            	$("schoolCodeContent").style.display="inline";
+            	$("schoolCode").value = famCase.schoolCode;
+            	$("schoolCodeOption").value = famCase.schoolCode;
+            } else {
+            	clearSchoolCodeContent();
+            }
         }
         if(famCase.famEvtRel == '7'){
             $("studMk").value = famCase.studMk;                          
+            if (famCase.studMk == 'Y') {
+            	$("schoolCodeContent").style.display="inline";
+            	$("schoolCode").value = famCase.schoolCode;
+            	$("schoolCodeOption").value = famCase.schoolCode;
+            } else {
+            	clearSchoolCodeContent();
+            }
         }
         if(famCase.famEvtRel != '3' && famCase.famEvtRel != '5'){
             //$("handIcapMk").value = famCase.handIcapMk;      
@@ -962,7 +989,8 @@
         }else{
             $("apNo1").focus();
         }
-        changePayTyp();        
+        changePayTyp();
+        clearSchoolCodeContent();
         <%--
         // 受傷部位
         if('<c:out value="${DisabledAnnuityWalkInReceiptQueryForm.criInPart2}" />'!=""){
@@ -1099,6 +1127,7 @@
         $("insertModeStr").style.display="inline";  
         $("updateModeBtn").style.display="none";
         $("updateModeStr").style.display="none";
+        clearSchoolCodeContent();
         
         changeFamNationTyp();
         chgFamEvtRel();
@@ -1352,6 +1381,45 @@
 		$('method').value='doBack';
 		document.DisabledAnnuityWalkInReceiptQueryForm.submit();
 	}
+
+	// 學校代碼下拉選單變動
+    function changeSchoolCodeOption(){
+    	$("schoolCode").value = $("schoolCodeOption").value;    
+	}	
+
+	// 學校代碼下拉選單變動
+    function changeSchoolCode(){
+    	$("schoolCodeOption").value = $("schoolCode").value;    
+	}
+
+    <%-- 學校代碼查詢 --%>
+    function doQuerySchool(){
+        var argsObj = new Object();
+        
+        argsObj.schoolCode = $F("schoolCode");
+
+        var res = window.showModalDialog('<c:url value="/bamo0d07/bamo0d076q.jsp"/>', argsObj, 'dialogWidth:560px;dialogHeight:500px;status:no');
+        
+        if (res != null) {
+            $("schoolCode").value = res.schoolCode;
+            $("schoolCodeOption").value = res.schoolCode;		        
+        }
+    }        	
+
+    // 在學變動
+    function chgStud() {
+        if ($("studMk").value == 'Y') {
+        	$("schoolCodeContent").style.display="inline";            	
+        } else {
+        	clearSchoolCodeContent();
+        }
+    }
+
+    function clearSchoolCodeContent() {
+        $("schoolCodeContent").style.display="none";
+        $("schoolCode").value = '';
+        $("schoolCodeOption").selectedIndex = 0;
+    }
 
     // Added by JohnsonHuang 20200115 [End]
     Event.observe(window, 'load', initAll, false);
@@ -1913,10 +1981,23 @@
                             <tr>                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" colspan="2">　 <span class="issuetitle_L_down">是否在學：</span>                                                                                                                                                                                                                                                 
                                     <html:text tabindex="620" property="studMk" styleId="studMk" styleClass="textinput" size="1" maxlength="1"
-                                    	onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                           
+                                    	onkeyup="chgStud();" onblur="this.value=asc(this.value).toUpperCase();"/>                                                                                                                                                           
                                     <span class="formtxt">(在學者，請輸入Y)</span>                                                                                                                                                                                                                                                                            
                                 </td>                                                                                                                                                                                                                                                                                                                         
                             </tr>                                                                                                                                                                                                                                                                                                                             
+                            <tr>
+                                <td id="iss" colspan="3">
+                                    <div id="schoolCodeContent">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="issuetitle_L_down">學校代碼：</span>
+                                        <html:text property="schoolCode" styleId="schoolCode" styleClass="textinput" size="7" maxlength="4" onblur="this.value=asc(this.value);changeSchoolCode();" />
+                                        <html:select property="schoolCodeOption" styleId="schoolCodeOption" styleClass="formtxt" tabindex="14" onchange="changeSchoolCodeOption();">
+                                            <html:option value="">請選擇</html:option>
+                                            <html:options collection="<%=ConstantKey.SCHOOLCODE_OPTION_LIST%>" property="codeNo" labelProperty="codeString" />
+                                        </html:select>
+                                        <input name="btnQuerySchool" type="button" class="button_120" value="學校名稱查詢" onclick="doQuerySchool();">
+                                    </div>
+                                </td>
+                            </tr>    
                             <tr>                                                                                                                                                                                                                                                                                                                              
                                 <td id="iss" colspan="2">　 <span class="issuetitle_L_down">每月工作收入：</span>                                                                                                                                                                                                                                             
                                     <html:text tabindex="630" property="monIncomeMk" styleId="monIncomeMk" styleClass="textinput" size="1" maxlength="1"

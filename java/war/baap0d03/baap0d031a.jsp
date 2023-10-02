@@ -167,6 +167,7 @@
         changePayTyp();
         chgBenEvtRel();
         chgMonIncomeMk();
+        clearSchoolCodeContent();
     }
 
     <%-- 1030813 payTyp=1時tab跳過0000 --%>
@@ -397,6 +398,13 @@
         }
         if(benCase.famEvtRel == '4' || benCase.famEvtRel == '7'){
             $("studMk").value = benCase.studMk;
+            if (benCase.studMk == 'Y') {
+            	$("schoolCodeContent").style.display="inline";
+            	$("schoolCode").value = benCase.schoolCode;
+            	$("schoolCodeOption").value = benCase.schoolCode;
+            } else {
+            	clearSchoolCodeContent();
+            }
         }
         if(benCase.famEvtRel != '3' && benCase.famEvtRel != '5'){
             $("handIcapMk").value = benCase.handIcapMk;
@@ -510,6 +518,7 @@
 
         $("defaultGrdData").disabled = false;
         getAccDataOptionList($("benBafamilytempId").value, '');
+        clearSchoolCodeContent();
     }
 
     // Ajax for 取得 具領人選單
@@ -707,6 +716,7 @@
             $("handIcapMk").disabled = false;
             //$("handIcapMk").value = "";
             $("interDictMk").disabled = false;
+            clearSchoolCodeContent();
             //$("interDictMk").value = "";
         }else if(Trim(asc($("benEvtRel").value)) == "4" || Trim(asc($("benEvtRel").value)) == "7"){
             $("marryDate").disabled = true;
@@ -716,6 +726,11 @@
             $("handIcapMk").disabled = false;
             //$("handIcapMk").value = "";
             $("interDictMk").disabled = false;
+            if ($("studMk").value == 'Y') {
+            	$("schoolCodeContent").style.display="inline";            	
+            } else {
+                clearSchoolCodeContent();
+            }
             //$("interDictMk").value = "";
         }else if(Trim(asc($("benEvtRel").value)) == "3" || Trim(asc($("benEvtRel").value)) == "5"){
             $("marryDate").disabled = true;
@@ -726,6 +741,7 @@
             $("handIcapMk").value = "";
             $("interDictMk").disabled = true;
             $("interDictMk").value = "";
+            clearSchoolCodeContent();
         }else{
             $("marryDate").disabled = true;
             $("marryDate").value = "";
@@ -734,6 +750,7 @@
             $("handIcapMk").disabled = false;
             //$("handIcapMk").value = "";
             $("interDictMk").disabled = false;
+            clearSchoolCodeContent();
             //$("interDictMk").value = "";
         }
     }
@@ -1176,6 +1193,44 @@
 		}
     }
 
+	// 學校代碼下拉選單變動
+    function changeSchoolCodeOption(){
+    	$("schoolCode").value = $("schoolCodeOption").value;    
+	}	
+
+	// 學校代碼下拉選單變動
+    function changeSchoolCode(){
+    	$("schoolCodeOption").value = $("schoolCode").value;    
+	}
+
+    <%-- 學校代碼查詢 --%>
+    function doQuerySchool(){
+        var argsObj = new Object();
+        
+        argsObj.schoolCode = $F("schoolCode");
+
+        var res = window.showModalDialog('<c:url value="/bamo0d07/bamo0d076q.jsp"/>', argsObj, 'dialogWidth:560px;dialogHeight:500px;status:no');
+        
+        if (res != null) {
+            $("schoolCode").value = res.schoolCode;
+            $("schoolCodeOption").value = res.schoolCode;		        
+        }
+    }        	
+
+    // 在學變動
+    function chgStud() {
+        if ($("studMk").value == 'Y') {
+        	$("schoolCodeContent").style.display="inline";            	
+        } else {
+        	clearSchoolCodeContent();
+        }
+    }
+
+    function clearSchoolCodeContent() {
+        $("schoolCodeContent").style.display="none";
+        $("schoolCode").value = '';
+        $("schoolCodeOption").selectedIndex = 0;
+    }
 
 
 
@@ -1512,8 +1567,17 @@
                                     </td>
                                     <td id="iss">
                                         <span class="issuetitle_L_down">　在　學：</span>
-                                        <html:text tabindex="310" property="studMk" styleId="studMk" styleClass="textinput"  size="1" maxlength="1" onblur="this.value=asc(this.value).toUpperCase();"/>
-                                        <span class="formtxt">(在學者，請輸入Y)</span>
+                                        <html:text tabindex="310" property="studMk" styleId="studMk" styleClass="textinput"  size="1" maxlength="1" onkeyup="chgStud();" onblur="this.value=asc(this.value).toUpperCase();"/>
+                                        <span class="formtxt">(在學者，請輸入Y)&nbsp;</span>
+                                        <span id="schoolCodeContent">
+                                            <span class="issuetitle_L_down">學校代碼：</span>
+                                            <html:text property="schoolCode" styleId="schoolCode" styleClass="textinput" size="7" maxlength="4" onblur="this.value=asc(this.value);changeSchoolCode();" />
+                                            <html:select property="schoolCodeOption" styleId="schoolCodeOption" styleClass="formtxt" tabindex="14" onchange="changeSchoolCodeOption();">
+                                                <html:option value="">請選擇</html:option>
+                                                <html:options collection="<%=ConstantKey.SCHOOLCODE_OPTION_LIST%>" property="codeNo" labelProperty="codeString" />
+                                            </html:select>
+                                            <input name="btnQuerySchool" type="button" class="button_120" value="學校名稱查詢" onclick="doQuerySchool();">
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>

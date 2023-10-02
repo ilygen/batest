@@ -1828,6 +1828,7 @@
         <result column="EVTYP"            property="evTyp"             jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MARRYDATE"        property="marryDate"         jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="STUDMK"           property="studMk"            jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
+        <result column="SCHOOLCODE"       property="schoolCode"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MONINCOMEMK"      property="monIncomeMk"       jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
         <result column="MONINCOME"        property="monIncome"         jdbcType="NUMERIC"      javaType="java.math.BigDecimal" />         
         <result column="HANDICAPMK"       property="handIcapMk"        jdbcType="VARCHAR"      javaType="java.lang.String" nullValue="" />
@@ -12134,6 +12135,7 @@ UNION
                B.EVTYP,
                B.MARRYDATE,
                B.STUDMK,
+               B.SCHOOLCODE,
                B.MONINCOMEMK,
                B.MONINCOME,
                B.HANDICAPMK,
@@ -12217,6 +12219,7 @@ UNION
                B.EVTYP,
                B.MARRYDATE,
                B.STUDMK,
+               B.SCHOOLCODE,
                B.MONINCOMEMK,
                B.MONINCOME,
                B.HANDICAPMK,

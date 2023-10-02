@@ -77,6 +77,7 @@ public class SurvivorAnnuityWalkInReceiptForm extends BaseValidatorForm {
 	private String monIncomeMk;// 每月工作收入註記
 	private BigDecimal monIncome;// 每月工作收入
 	private String schoolCode;// 學校代碼
+	private String schoolCodeOption; //學校代碼 下單選單
 	private String benMarrMk;// 婚姻狀況
 	private String adoPtDate;// 收養日期
 	private String handIcapMk;// 領有重度以上身心障礙手冊或證明
@@ -638,6 +639,14 @@ public class SurvivorAnnuityWalkInReceiptForm extends BaseValidatorForm {
 
 	public void setSchoolCode(String schoolCode) {
 		this.schoolCode = schoolCode;
+	}
+
+	public String getSchoolCodeOption() {
+		return schoolCodeOption;
+	}
+
+	public void setSchoolCodeOption(String schoolCodeOption) {
+		this.schoolCodeOption = schoolCodeOption;
 	}
 
 	public String getBenMarrMk() {
