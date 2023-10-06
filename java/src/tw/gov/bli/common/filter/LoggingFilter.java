@@ -62,7 +62,8 @@ public class LoggingFilter implements Filter {
         // 紀錄 Portal Log, 至於是否紀錄在 doPortalLog 會判斷
         FrameworkLogUtil.doPortalLog(req);
         //20210514針對網站弱點Cookie加入SameSite屬性和設定上HSTS標籤至標頭檔上
-        res.setHeader("Set-Cookie", "SameSite=Lax");
+        //20231004將cookie設置 httpOnly旗標
+        res.setHeader("Set-Cookie", "SameSite=Lax;HttpOnly");
         res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
         chain.doFilter(request, response);
     }
