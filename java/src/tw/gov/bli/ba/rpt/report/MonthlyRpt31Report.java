@@ -61,7 +61,7 @@ public class MonthlyRpt31Report extends ReportBase {
         addColumnAssignLineSpace(table, 60, 1, "　", fontCh1, 0, 0, RIGHT);
         
         addColumnAssignLineSpace(table, 35, 1, "　", fontCh1, 0, 0, RIGHT);
-        addColumnAssignLineSpace(table, 25, 1, "機關地址：10013台北市羅斯福路1段4號", fontCh11, 0, 0, LEFT);
+        addColumnAssignLineSpace(table, 25, 1, "機關地址：100232台北市羅斯福路1段4號", fontCh11, 0, 0, LEFT);
         
         addColumnAssignLineSpace(table, 2, 1, "　", fontCh1, 0, 0, RIGHT);
         addColumnAssignLineSpace(table, 33, 1, "掛　號", fontCh12, 0, 0, LEFT);

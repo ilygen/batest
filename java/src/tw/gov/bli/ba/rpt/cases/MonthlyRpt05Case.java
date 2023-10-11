@@ -22,6 +22,7 @@ public class MonthlyRpt05Case implements Serializable {
     private String issuYm;
     private String pbm0001;// 核定通知書檢核碼
     private String manager;// 總經理名稱
+    private byte[] managerImg;// 總經理署名圖
     private String notifyForm;
     private String seqNo;
 
@@ -219,4 +220,12 @@ public class MonthlyRpt05Case implements Serializable {
     public void setRmp_Name(String rmp_Name) {
         this.rmp_Name = rmp_Name;
     }
+
+	public byte[] getManagerImg() {
+		return managerImg;
+	}
+
+	public void setManagerImg(byte[] managerImg) {
+		this.managerImg = managerImg;
+	}
 }

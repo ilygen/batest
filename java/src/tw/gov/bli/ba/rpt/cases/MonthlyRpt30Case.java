@@ -19,6 +19,7 @@ public class MonthlyRpt30Case implements Serializable {
     private String issuYm;
     private String pbm0001;// 核定通知書檢核碼
     private String manager;// 總經理名稱
+    private byte[] managerImg;// 總經理署名圖
 
     // 主旨 & 說明
     private String dataContK01C0101;
@@ -584,4 +585,12 @@ public class MonthlyRpt30Case implements Serializable {
     public void setEvtBrDate(String evtBrDate) {
         this.evtBrDate = evtBrDate;
     }
+
+	public byte[] getManagerImg() {
+		return managerImg;
+	}
+
+	public void setManagerImg(byte[] managerImg) {
+		this.managerImg = managerImg;
+	}
 }

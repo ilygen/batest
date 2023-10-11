@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BXDIRNAMEIMG">
+
+    <typeAlias alias="Bamanager" type="tw.gov.bli.ba.domain.Bamanager" />
+
+    <resultMap id="selectFile" class="Bamanager">
+        <result column="attachment"          property="attachment"         jdbcType="BLOB" />
+    </resultMap>
+
+    <select id="selectFile" resultMap="selectFile">
+        select attachment from table(bx.pkg_bxapi.fn_getblidirnameimg())
+    </select>
+
+</sqlMap>
