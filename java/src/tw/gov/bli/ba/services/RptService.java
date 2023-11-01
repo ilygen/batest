@@ -8472,6 +8472,8 @@ public class RptService {
 
             // 總經理名稱
             String manager = bapasignDao.selectManager(DateUtility.getNowWestDate());
+            Bamanager bamanager = bxdirnameimgDao.selectFile("M", DateUtility.getNowWestDate());
+            byte[] managerImg = (bamanager != null ? bamanager.getAttachment():null);
 
             MonthlyRpt31Case MonthlyRpt31Case = new MonthlyRpt31Case();
 
@@ -8744,6 +8746,7 @@ public class RptService {
             MonthlyRpt31Case.setMessage(message);
 
             MonthlyRpt31Case.setManager(manager);
+            MonthlyRpt31Case.setManagerImg(managerImg);
 
             MonthlyRpt31Case.setApNo(StringUtils.trimToEmpty(baappbase.getApNo()));
             MonthlyRpt31Case.setSeqNo(StringUtils.trimToEmpty(baappbase.getSeqNo()));

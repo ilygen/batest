@@ -4,16 +4,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
-import com.lowagie.text.Element;
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.Table;
-import com.lowagie.text.Image;
 import tw.gov.bli.ba.framework.domain.UserBean;
+import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.rpt.cases.MonthlyRpt31Case;
-import tw.gov.bli.ba.util.DateUtility;
-import tw.gov.bli.ba.util.RptTitleUtility;
 import tw.gov.bli.ba.util.StringUtility;
 
 public class MonthlyRpt31Report extends ReportBase {
@@ -43,6 +41,8 @@ public class MonthlyRpt31Report extends ReportBase {
 
     public Table printPage(MonthlyRpt31Case caseData, HashMap<String, Object> map) throws Exception {
         String rptKind = (String) map.get("rptKind");
+        int SigWidth = NumberUtils.toInt(PropertyHelper.getProperty("signature.width"));
+        int SigHeight = NumberUtils.toInt(PropertyHelper.getProperty("signature.height"));
 
         document.newPage();
         // 建立表格
@@ -165,29 +165,31 @@ public class MonthlyRpt31Report extends ReportBase {
 
 
         // 20091210 增加列印總經理
-        if (StringUtils.isNotBlank(caseData.getManager())) {
+        if (caseData.getManagerImg() != null) {
+            drawImage(caseData.getManagerImg(), 18, 268, SigWidth, SigHeight); // 單位：mm
+
             if (rptKind.equals("001")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 6);
             }
             else if (rptKind.equals("001U") || rptKind.equals("001P")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 4);
             }
             else if (rptKind.equals("002")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 29);
             }
             else if (rptKind.equals("002U") || rptKind.equals("002P")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 26);
             }
             else if (rptKind.equals("003")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 31);
             }
             else if (rptKind.equals("003U") || rptKind.equals("003P")) {
-                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
+//                drawString(document, caseData.getManager(), 62, 75, 0, 20 ,"left");
 //                addEmptyRow(table, 29);
             }
 
