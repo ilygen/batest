@@ -224,7 +224,7 @@
               From  BARXF A
              where A.SUBAMT > 0
                AND A.PRTMK = 'Y'
-               AND BENIDNNO = #benidnNo:VARCHAR#
+               AND BENIDNNO = #benIdnNo:VARCHAR#
                AND BENBRDATE = #benBrDate:VARCHAR#
                AND (EXISTS(
                			SELECT 1 FROM BCARF B WHERE A.RXFAPNO = B.APNO AND (B.AMTTOT - B.AMTINC) > 0
