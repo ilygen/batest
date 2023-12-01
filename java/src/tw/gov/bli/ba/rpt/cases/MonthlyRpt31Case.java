@@ -19,6 +19,7 @@ public class MonthlyRpt31Case implements Serializable {
     private String issuYm;
     private String pbm0001;// 核定通知書檢核碼
     private String manager;// 總經理名稱
+    private byte[] managerImg;// 總經理署名圖
 
     // 主旨 & 說明
     private String dataContL00101;
@@ -762,4 +763,12 @@ public class MonthlyRpt31Case implements Serializable {
     public void setDupeIdnNoMk(String dupeIdnNoMk) {
         this.dupeIdnNoMk = dupeIdnNoMk;
     }
+
+	public byte[] getManagerImg() {
+		return managerImg;
+	}
+
+	public void setManagerImg(byte[] managerImg) {
+		this.managerImg = managerImg;
+	}
 }
