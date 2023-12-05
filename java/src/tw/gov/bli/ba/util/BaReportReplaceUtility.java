@@ -108,6 +108,13 @@ public class BaReportReplaceUtility {
 		this.checkAmtCaseData = checkAmtCaseData;
 		this.benData = benData;
 		this.baappbasePrintList = baappbasePrintList;
+		//如果是L案，才給A137初始化設定
+		if(baappbase.getApNo().substring(0, 1).equals("L")) {
+			BachkfileDao bachkfileDao = (BachkfileDao) SpringHelper.getBeanById("bachkfileDao");
+			String chkResultA137 = bachkfileDao.selectForRptReplaceA137(baappbase.getApNo(), baappbase.getSeqNo(),
+					baappbase.getIssuYm());
+			this.chkResultA137 = chkResultA137;
+		}
 		initialReplaceCode(isBalp010);
 	}
 
