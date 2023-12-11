@@ -108,6 +108,13 @@ public class BaReportReplaceUtility {
 		this.checkAmtCaseData = checkAmtCaseData;
 		this.benData = benData;
 		this.baappbasePrintList = baappbasePrintList;
+		//如果是L案，才給A137初始化設定
+		if(baappbase.getApNo().substring(0, 1).equals("L")) {
+			BachkfileDao bachkfileDao = (BachkfileDao) SpringHelper.getBeanById("bachkfileDao");
+			String chkResultA137 = bachkfileDao.selectForRptReplaceA137(baappbase.getApNo(), baappbase.getSeqNo(),
+					baappbase.getIssuYm());
+			this.chkResultA137 = chkResultA137;
+		}
 		initialReplaceCode(isBalp010);
 	}
 
@@ -2424,7 +2431,7 @@ public class BaReportReplaceUtility {
 			if (baappbase != null) {
 				if (StringUtils.isNotBlank(baappbase.getEvtDieDate())) {
 					replaceValue.put(ConstantKey.A137,
-							"查被保險人生前有雇主為其提繳新制勞工退休金（勞退個人專戶），請依勞工退休金條例規定，由當序順位遺屬（同勞保本人死亡給付請領順位），向本局提出申請；如有拋棄繼承，應由其餘順位遺屬請領之。如有申請疑義請電02-23961266轉分機5099洽詢。");
+							"查被保險人生前有雇主為其提繳新制勞工退休金（勞退個人專戶），請依勞工退休金條例規定，由當序順位遺屬（同勞保本人死亡給付請領順位）於其死亡之翌日起10年內向本局提出申請；如有拋棄繼承，應由其餘順位遺屬請領之。如有申請疑義請電02-23961266轉分機5099洽詢。");
 				} else {
 					replaceValue.put(ConstantKey.A137,
 							"94年7月以後有雇主為被保險人提繳新制勞工退休金，現已符合請領條件，如被保險人欲請領勞工退休金，請另填寫勞工退休金申請書向本局提出申請。如有申請疑義請電02-23961266轉5099分機洽詢。");
