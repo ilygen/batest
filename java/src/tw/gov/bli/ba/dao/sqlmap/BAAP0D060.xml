@@ -255,4 +255,11 @@
 		 ORDER BY SEQNO
     </select>
     
+    <select id="selectSurvivorBcApno" resultClass="java.lang.String">
+          Select APNO 
+            From BCPMA 
+           Where EVIDNO = #idn:VARCHAR#
+             And TURNINAPNO = #apNo:VARCHAR#
+    </select>
+
 </sqlMap>

@@ -69,6 +69,20 @@ public class SurvivorAnnuityReceiptEvtCase implements Serializable {
         return getApNo().substring(0, 1) + "-" + getApNo().substring(1, 2) + "-" + getApNo().substring(2, 7) + "-" + getApNo().substring(7, 12);
     }
 
+    public String getBcApNoStrDisplay(String bcApNo) {
+		String apnoStr = bcApNo;
+		if (bcApNo.length() >= 12) {
+			apnoStr = bcApNo.substring(0, 3);
+			apnoStr = apnoStr + "-" + bcApNo.substring(3, 4) + "-" + bcApNo.substring(4, 6) + "-" + bcApNo.substring(6, 12);;
+
+			if (apnoStr.length() == 14) {
+				apnoStr = apnoStr + "-" + apnoStr.substring(12, 14);
+			}
+		}
+
+		return apnoStr;
+    }
+
     public String getAppDateStr() {
         if (StringUtils.isNotBlank(getAppDate()) && getAppDate().length() == 8) {
             return DateUtility.changeDateType(getAppDate());

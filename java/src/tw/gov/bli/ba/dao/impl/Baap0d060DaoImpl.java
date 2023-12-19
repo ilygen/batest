@@ -62,4 +62,13 @@ public class Baap0d060DaoImpl extends SqlMapClientDaoSupport implements Baap0d06
 		return getSqlMapClientTemplate().queryForList("BAAP0D060.selectSurvivorTurnInBenFromBb", map);
 	}
 
+	@Override
+	public List<String> selectSurvivorBcApno(String idn, String apNo) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("idn", idn);
+        map.put("apNo", apNo);
+
+        return getSqlMapClientTemplate().queryForList("BAAP0D060.selectSurvivorBcApno", map);
+	}
+
 }

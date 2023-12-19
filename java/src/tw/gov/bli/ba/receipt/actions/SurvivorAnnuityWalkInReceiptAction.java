@@ -196,8 +196,15 @@ public class SurvivorAnnuityWalkInReceiptAction extends BaseDispatchAction {
 						if (StringUtils.equals(ConstantKey.DO_CHECK_MARK_FAIL, returnCode)) {
 							saveMessages(session, CustomMessageHelper.getCheckMarkFailMessage()); // 設定即時編審失敗訊息
 						} else {
-							saveMessages(session,
-									DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay()));
+							// 查詢BC受理編號
+							List<String> bcApNoList = receiptService.selectSurvivorBcApno(evtCase.getEvtIdnNo(), apNo);
+							if (bcApNoList != null && bcApNoList.size() > 0) {
+								saveMessages(session,
+										DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay(), evtCase.getBcApNoStrDisplay(bcApNoList.get(0))));
+							} else {
+								saveMessages(session,
+										DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay()));
+							}
 						}
 
 						// 取得 遺屬眷屬暫存檔(BAFAMILYTEMP) 暫存檔資料列編號(Sequence.BAFAMILYTEMPID)

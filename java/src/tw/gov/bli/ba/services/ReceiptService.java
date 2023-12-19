@@ -4066,6 +4066,17 @@ public class ReceiptService {
 		return list;
 	}
 
+    /**
+     * 依傳入條件取得 現金給付主檔(<code>BCPMA</code>) for 受理作業
+     * 
+     * @param idn 身分證號
+     * @param apNo BA受理編號
+     * @return <code>List<String></code>
+     */
+    public List<String> selectSurvivorBcApno(String idn, String apNo) {
+    	return baap0d060Dao.selectSurvivorBcApno(idn, apNo);
+    }
+
     // ------------------------------ 共用function ------------------------------
 
     public void setBaappbaseDao(BaappbaseDao baappbaseDao) {

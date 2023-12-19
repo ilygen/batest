@@ -136,6 +136,17 @@ public class DatabaseMessageHelper {
     }
 
     /**
+     * 訊息: G1001 受理編號：{受理編號}　BC受理編號={BC受理編號} 資料新增成功
+     * 
+     * @return
+     */
+    public static ActionMessages getReceiptSaveSuccessMessage(String apNo, String bcApNo) {
+        ActionMessages msgs = new ActionMessages();
+        msgs.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("msg.db.receiptSaveSuccessWithBcApNo", apNo, bcApNo));
+        return msgs;
+    }
+
+    /**
      * 訊息: G1002 受理編號：{受理編號}資料更新成功
      * 
      * @return
