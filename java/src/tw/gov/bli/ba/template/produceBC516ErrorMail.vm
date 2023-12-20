@@ -1,0 +1,7 @@
+<html>
+<body>
+<pre>
+　　BC 516案新增失敗，受理編號：${apNo}，錯誤訊息：${errMsg}
+</pre>
+</body>
+</html>

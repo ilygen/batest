@@ -1,6 +1,7 @@
 package tw.gov.bli.ba.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import tw.gov.bli.ba.domain.Baap0d060;
 import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptBenCase;
@@ -55,13 +56,14 @@ public interface Baap0d060Dao {
 	 */
 	List<SurvivorAnnuityReceiptBenCase> selectSurvivorTurnInBenFromBb(String apno);
 
-    /**
-     * 依傳入條件取得 現金給付主檔(<code>BCPMA</code>) for 受理作業
-     * 
-     * @param idn 身分證號
-     * @param apNo BA受理編號
-     * @return <code>List<String></code>
-     */
-    public List<String> selectSurvivorBcApno(String idn, String apNo);
+	/**
+	 * call BC.PKG_TRANCASE_BATOBC.sp_acp_516 提供BA執行自動受理516案
+	 * 
+	 * @param baapno  年金受理編號
+	 * @param casetyp 0:死亡給付喪葬津貼 9:職災補償一次金 (9為預留，避免日後需求變更)
+	 * @param kind    1:臨櫃鍵入   2:整批鍵入
+	 * @return
+	 */
+	Map<String, Object> callSpAcp516(String baapno, String casetyp, String kind);
 
 }

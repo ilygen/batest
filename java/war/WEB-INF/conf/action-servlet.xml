@@ -136,15 +136,18 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean name="/survivorAnnuityWalkInReceiptQuery" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <!-- baap0d061a.jsp -->
     <bean name="/survivorAnnuityWalkInReceiptInsert" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <bean name="/survivorAnnuityWalkInReceiptInsertBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityWalkInReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     
     <!-- ] -->
@@ -155,29 +158,35 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean name="/survivorAnnuityReceiptQuery" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <!-- baap0d031c.jsp -->
     <bean name="/survivorAnnuityReceiptInsert" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <bean name="/survivorAnnuityReceiptInsertBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <!-- baap0d032a.jsp -->
     <bean name="/survivorAnnuityReceiptList" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <!-- baap0d033a.jsp -->
     <bean name="/survivorAnnuityReceiptModify" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <bean name="/survivorAnnuityReceiptModifyBen" class="tw.gov.bli.ba.receipt.actions.SurvivorAnnuityReceiptAction">
         <property name="receiptService" ref="receiptService" />
         <property name="selectOptionService" ref="selectOptionService" />
+        <property name="bjService" ref="bjService" />
     </bean>
     <!-- ] -->
 

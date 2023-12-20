@@ -255,11 +255,18 @@
 		 ORDER BY SEQNO
     </select>
     
-    <select id="selectSurvivorBcApno" resultClass="java.lang.String">
-          Select APNO 
-            From BCPMA 
-           Where EVIDNO = #idn:VARCHAR#
-             And TURNINAPNO = #apNo:VARCHAR#
-    </select>
+    <!-- [  BC.PKG_TRANCASE_BATOBC.sp_acp_516 -->
+    <parameterMap id="callSpAcp516Param" class="java.util.HashMap" >
+        <parameter property="v_in_baapno"        jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_in_casetyp"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_in_kind"          jdbcType="VARCHAR"      javaType="java.lang.String"        mode="IN" />
+        <parameter property="v_out_rtncode"      jdbcType="VARCHAR"      javaType="java.lang.String"        mode="OUT" />
+        <parameter property="v_out_rtnmsg"       jdbcType="VARCHAR"      javaType="java.lang.String"        mode="OUT" />
+    </parameterMap>
+
+    <procedure id="sp_acp_516" parameterMap="callSpAcp516Param" >
+        { call BC.PKG_TRANCASE_BATOBC.sp_acp_516(?, ?, ?, ?, ?) }
+    </procedure>
+    <!-- ] -->
 
 </sqlMap>

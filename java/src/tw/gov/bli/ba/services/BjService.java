@@ -2120,6 +2120,21 @@ public class BjService {
 
 	}
 
+	public void sendBc516ErrorMail(String payCode, String apNo, String errMsg) {
+		try {
+			List<Bauseremail> dataList = bauseremailDao.selectBaMediaUserEmailDataListBy(payCode);
+			if (dataList.size() > 0 && dataList != null) {
+				for (int i = 0; i < dataList.size(); i++) {
+					Bauseremail bauseremail = dataList.get(i);
+					// 發送執行BC 516案受理失敗信
+					mailHelper.sendBc516ErrorMail(payCode, apNo, errMsg, bauseremail.getEmailAddr());
+				}
+			}
+		} catch (Exception e) {
+			log.error("發送執行BC 516案受理失敗信錯誤  (mailTo: " + ") : " + ExceptionUtility.getStackTrace(e));
+		}
+	}
+
 	/**
 	 * 產生媒體檔案(call storeprocedure)
 	 * 

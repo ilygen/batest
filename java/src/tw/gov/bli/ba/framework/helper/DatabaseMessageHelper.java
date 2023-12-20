@@ -136,7 +136,7 @@ public class DatabaseMessageHelper {
     }
 
     /**
-     * 訊息: G1001 受理編號：{受理編號}　BC受理編號={BC受理編號} 資料新增成功
+     * 訊息: G1001 受理編號：{受理編號} 資料新增成功(BC：{BC受理編號|錯誤訊息})
      * 
      * @return
      */
