@@ -62,4 +62,19 @@ public class Baap0d060DaoImpl extends SqlMapClientDaoSupport implements Baap0d06
 		return getSqlMapClientTemplate().queryForList("BAAP0D060.selectSurvivorTurnInBenFromBb", map);
 	}
 
+	/**
+	 * 提供BA執行自動受理516案
+	 */
+	@Override
+	public Map<String, Object> callSpAcp516(String baapno, String casetyp, String kind) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("v_in_baapno", baapno);
+		map.put("v_in_casetyp", casetyp);
+		map.put("v_in_kind", kind);
+
+		Integer count = (Integer) getSqlMapClientTemplate().queryForObject("BAAP0D060.sp_acp_516", map);
+
+		return map;
+	}
+
 }

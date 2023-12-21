@@ -3,6 +3,7 @@ package tw.gov.bli.ba.services;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -4065,6 +4066,18 @@ public class ReceiptService {
 		}
 		return list;
 	}
+
+    /**
+     * call BC.PKG_TRANCASE_BATOBC.sp_acp_516 提供BA執行自動受理516案
+     * 
+	 * @param baapno  年金受理編號
+	 * @param casetyp 0:死亡給付喪葬津貼 9:職災補償一次金 (9為預留，避免日後需求變更)
+	 * @param kind    1:臨櫃鍵入   2:整批鍵入
+	 * @return
+	 */
+    public Map<String, Object> callSpAcp516(String baapno, String casetyp, String kind) {
+        return baap0d060Dao.callSpAcp516(baapno, casetyp, kind);
+    }
 
     // ------------------------------ 共用function ------------------------------
 

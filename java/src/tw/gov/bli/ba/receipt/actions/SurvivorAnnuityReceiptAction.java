@@ -3,6 +3,7 @@ package tw.gov.bli.ba.receipt.actions;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +29,7 @@ import tw.gov.bli.ba.receipt.cases.SurvivorAnnuityReceiptEvtCase;
 import tw.gov.bli.ba.receipt.forms.SurvivorAnnuityReceiptForm;
 import tw.gov.bli.ba.receipt.helper.CaseSessionHelper;
 import tw.gov.bli.ba.receipt.helper.FormSessionHelper;
+import tw.gov.bli.ba.services.BjService;
 import tw.gov.bli.ba.services.ReceiptService;
 import tw.gov.bli.ba.services.SelectOptionService;
 import tw.gov.bli.ba.util.BeanUtility;
@@ -72,6 +74,7 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
 
     private ReceiptService receiptService;
     private SelectOptionService selectOptionService;
+    private BjService bjService;
 
     /**
      * 受理作業 - 遺屬年金給付受理作業 - 登錄新增作業
@@ -315,8 +318,23 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
                         // 新增遺屬年金受理資料
                         receiptService.insertDataForSurvivor(userData, evtCase, iform.getBafamilytempId());
 
+						// call BC.PKG_TRANCASE_BATOBC.sp_acp_516 提供BA執行自動受理516案
+						// 20231121 [BACMEXTEND-70] 因業務單位需求，BA臨櫃受理及批次受理的S案皆寫入BC系統
+						Map<String, Object> map = receiptService.callSpAcp516(apNo, "0", "2");
+						String rtnCode = (String) map.get("v_out_rtncode");
+						String rtnMsg = (String) map.get("v_out_rtnmsg");
+						String bcApNoDisplay = rtnMsg;
+						if (StringUtils.equals(rtnCode, "0")) {
+	    					log.info("BC 516案 apno: " + rtnMsg);
+	    					bcApNoDisplay = evtCase.getBcApNoStrDisplay(rtnMsg);
+						} else {
+							log.error("BC 516案 error message: " + rtnMsg);
+							// send mail
+							bjService.sendBc516ErrorMail(ConstantKey.BAAPPBASE_PAGE_PAYKIND_S, apNo, rtnMsg);
+						}
+
                         // 設定新增成功訊息
-                        saveMessages(session, DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay()));
+                        saveMessages(session, DatabaseMessageHelper.getReceiptSaveSuccessMessage(evtCase.getApNoStrDisplay(), bcApNoDisplay));
 
                         // 取得 遺屬眷屬暫存檔(BAFAMILYTEMP) 暫存檔資料列編號(Sequence.BAFAMILYTEMPID)
                         BigDecimal bafamilytempId = receiptService.getNewbafamilytempId();
@@ -943,5 +961,9 @@ public class SurvivorAnnuityReceiptAction extends BaseDispatchAction {
     public void setSelectOptionService(SelectOptionService selectOptionService) {
         this.selectOptionService = selectOptionService;
     }
+
+	public void setBjService(BjService bjService) {
+		this.bjService = bjService;
+	}
 
 }

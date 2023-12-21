@@ -9,7 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -105,6 +104,39 @@ public class MailHelper {
         };
         mailSender.send(preparator);
     }
+
+    /**
+     * 發送執行BC 516案受理失敗信
+     * 
+     * @param payCode
+     * @param apNo
+     * @param errMsg
+     */
+    public void sendBc516ErrorMail(final String payCode, final String apNo, final String errMsg, final String email) {
+    	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    	mailSender.setHost(MAIL_HOST);
+    	mailSender.setDefaultEncoding(MAIL_ENCODING);
+    	MimeMessagePreparator preparator = new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+                String subject = String.format("&BC 516案新增失敗案件受理編號：%s&", apNo);
+
+                MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);
+                message.setTo(email);
+                message.setFrom(new InternetAddress(MAIL_FROM, "noreply", MAIL_ENCODING));
+                message.setSubject(subject);
+                Map<String, String> map = new HashMap<String, String>();
+                
+                map.put("apNo", apNo);
+                map.put("errMsg", errMsg);
+                
+                String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "tw/gov/bli/ba/template/produceBC516ErrorMail.vm", MAIL_ENCODING, map);
+                message.setText(text, true);
+
+            }
+        };
+        mailSender.send(preparator);
+    }
+
     public void setVelocityEngine(VelocityEngine velocityEngine) {
         this.velocityEngine = velocityEngine;
     }
