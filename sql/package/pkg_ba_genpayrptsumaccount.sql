@@ -7105,6 +7105,7 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2012/03/15  ChungYu Lin  Created this procedure.
+        1.1   2023/12/22  William      依據babaweb-96,修正錯誤的sql
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -7172,7 +7173,7 @@ is
                AND CPRNDATE = v_i_cprndt    --add by Angela 20130731
                AND NVL(TRIM(NLWKMK),' ') = NVL(TRIM(v_i_nlwkmk),' ')      --add by Angela 20130731
                AND NVL(TRIM(ADWKMK),' ') = NVL(TRIM(v_i_adwkmk),' ')      --add by Angela 20130731
-             GROUP BY NLWKMK, ADWKMK, PAYKIND
+             GROUP BY NLWKMK, ADWKMK, DECODE(PAYKIND,'37','37','35') AS PAYKIND  --BABAWEB-96 20231222
              ORDER BY NLWKMK, ADWKMK, PAYKIND;
 
         begin
