@@ -7173,7 +7173,7 @@ is
                AND CPRNDATE = v_i_cprndt    --add by Angela 20130731
                AND NVL(TRIM(NLWKMK),' ') = NVL(TRIM(v_i_nlwkmk),' ')      --add by Angela 20130731
                AND NVL(TRIM(ADWKMK),' ') = NVL(TRIM(v_i_adwkmk),' ')      --add by Angela 20130731
-             GROUP BY NLWKMK, ADWKMK, DECODE(PAYKIND,'37','37','35') AS PAYKIND  --BABAWEB-96 20231222
+             GROUP BY NLWKMK, ADWKMK, DECODE(PAYKIND,'37','37','35')   --BABAWEB-96 20231222
              ORDER BY NLWKMK, ADWKMK, PAYKIND;
 
         begin
@@ -8213,7 +8213,7 @@ is
                AND CPRNDATE = v_i_cprndt    --add by Angela 20130731
                AND NVL(TRIM(NLWKMK),' ') = NVL(TRIM(v_i_nlwkmk),' ')      --add by Angela 20130731
                AND NVL(TRIM(ADWKMK),' ') = NVL(TRIM(v_i_adwkmk),' ')      --add by Angela 20130731
-             GROUP BY NLWKMK, ADWKMK, DECODE(PAYKIND,'37','37','35') AS PAYKIND  --BABAWEB-96 20231222
+             GROUP BY NLWKMK, ADWKMK, DECODE(PAYKIND,'37','37','35')   --BABAWEB-96 20231222
              ORDER BY NLWKMK, ADWKMK, PAYKIND;
 
         begin
