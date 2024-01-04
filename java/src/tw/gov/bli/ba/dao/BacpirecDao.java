@@ -77,6 +77,6 @@ public interface BacpirecDao {
      * @param evtDieDate
      * @return
      */
-    List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate);
+    List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate, String payDate);
 
 }
