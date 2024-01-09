@@ -1,14 +1,3 @@
-------------------------------------------------
--- Export file for user BA                    --
--- Created by JEOYU on 2018/7/18, 下午 02:08:25 --
-------------------------------------------------
-
-spool pkg_ba_getcidata_20180718.log
-
-prompt
-prompt Creating package PKG_BA_GETCIDATA
-prompt =================================
-prompt
 CREATE OR REPLACE Package BA.PKG_BA_getCIData
 /********************************************************************************
     PROJECT:         BLI-BaWeb 勞保年金給付系統
@@ -133,11 +122,6 @@ authid definer is
         v_i_intyp               in      varChar2
     );                                --  2017/08/01 Add By ChungYu 勞保老年年金更新被保險人同單位年資
 
-
-    /*Procedure sp_BA_updHBEDMK (
-        v_i_intyp               in      varChar2,
-        v_i_idnno               in      varChar2
-    );*/
     Procedure sp_BA_updHBEDMK (
         v_i_intyp               in      varChar2,
         v_i_idnno               in      varChar2,
@@ -153,10 +137,6 @@ authid definer is
 End;
 /
 
-prompt
-prompt Creating package body PKG_BA_GETCIDATA
-prompt ======================================
-prompt
 CREATE OR REPLACE Package Body BA.PKG_BA_getCIData
 is
 
@@ -178,8 +158,9 @@ is
         REVISIONS:
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
-       .0   2012/03/31  ChungYu Lin  Created this Package.
-
+        1.0   2012/03/31  ChungYu Lin  Created this Package.
+        1.1   2024/01/09  William      依據BABAWEB-101，
+                                       調修刪除CIPB的順序及參數
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
 
@@ -249,10 +230,10 @@ is
                Order By IDNSEQ;
 
    begin
-
-           -- begin
+                 --清除該身分證被保險人資料
+                Delete from CIPB Where INTYP = v_i_intyp  And IDN like v_i_idnno ||'%'
+                        And APNO = v_i_apno And SEQNO = v_i_seqno;
                 --讀出保險別 v_i_intyp 的 CIPB同身分證被保險人資料，並依身分證號序號(IDNSEQ)排列
-
                 for v_CurCIPB in c_dataCur_CIPB Loop
                  Begin
                      v_idnno := Rpad(v_CurCIPB.IDN,10,' ') || v_CurCIPB.IDNSEQ;           -- IDN 不足十碼要補空白至十碼  2012/04/25  遺屬提出
@@ -280,14 +261,6 @@ is
                          END IF;
                          v_POM := v_POM || NVL(v_CurCIPB.POM3,' ');
                      End If;
-
-
-                     --清除該身分證被保險人資料
-                     Delete from CIPB Where INTYP = v_i_intyp  And IDN = v_idnno
-                                        And APNO = v_i_apno And SEQNO = v_i_seqno;
-                     -- v_Idn   := v_CurCIPB.IDN || v_CurCIPB.IDNSEQ;
-                     -- DBMS_OUTPUT.PUT_LINE('v_Idn=' || v_Idn );
-
                      --  2012/04/26  已領取失能要呼叫年資副程式，要帶入勞保給付年資起算日(LIQDTE)
                      v_LIQDTE := Null;
                      If (v_CurCIPB.SBMK1 = '2') Then
@@ -2522,6 +2495,3 @@ is
 
 End;
 /
-
-
-spool off
