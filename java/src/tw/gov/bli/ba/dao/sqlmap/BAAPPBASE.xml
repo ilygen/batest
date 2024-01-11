@@ -9693,7 +9693,10 @@ UNION
                 BENNATIONCODE,
                 CLOSECAUSE,
                 EVTIDS,
-                PAYYMS
+                (select PAYYMS From BAAPPBASE
+                  Where APNO = #apNo:VARCHAR#
+                    AND SEQNO = '0000'
+                    And CASEMK is null) PAYYMS
            From BAAPPBASE
           Where APNO = #apNo:VARCHAR#
             And CASEMK is null
