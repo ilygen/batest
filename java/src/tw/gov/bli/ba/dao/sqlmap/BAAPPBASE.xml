@@ -1217,7 +1217,6 @@
         <result column="BENNATIONCODE"    property="benNationCode"    jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="CLOSECAUSE"       property="closeCause"       jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
         <result column="EVTIDS"           property="evtIds"          jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
-        <result column="PAYYMS"           property="payYms"           jdbcType="VARCHAR"  javaType="java.lang.String" nullValue="" />
     </resultMap>
     
     <resultMap id="MaxDateFromNbschoolMap" class="Baappbase">
@@ -9692,11 +9691,7 @@ UNION
                 ISSUNOTIFYINGMK,
                 BENNATIONCODE,
                 CLOSECAUSE,
-                EVTIDS,
-                (select PAYYMS From BAAPPBASE
-                  Where APNO = #apNo:VARCHAR#
-                    AND SEQNO = '0000'
-                    And CASEMK is null) PAYYMS
+                EVTIDS
            From BAAPPBASE
           Where APNO = #apNo:VARCHAR#
             And CASEMK is null
