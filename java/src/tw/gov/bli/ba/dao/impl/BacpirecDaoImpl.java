@@ -114,11 +114,18 @@ public class BacpirecDaoImpl extends SqlMapClientDaoSupport implements BacpirecD
     }
 
 	@Override
-	public List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate) {
+	public List<BigDecimal> selectCpiRateByAppDateAndEvtDieDate(String appDate, String evtDieDate,String payDate) {
 		Map<String, Object> map = new HashMap<>();
 		if (StringUtils.isNotBlank(appDate)) {
 			map.put("appYm", StringUtils.substring(appDate, 0, 6));
-			map.put("appYear", StringUtils.substring(appDate, 0, 4));
+			if (StringUtils.isNotBlank(payDate)) {			
+				 if ( Integer.parseInt(StringUtils.substring(appDate, 0, 4))>Integer.parseInt(StringUtils.substring(payDate, 0, 4))  )  //取大的年
+					 map.put("appYear", StringUtils.substring(appDate, 0, 4)); //申請年 > 首次核定年
+				 else
+					 map.put("appYear", StringUtils.substring(payDate, 0, 4));		
+			}
+			else 
+			  map.put("appYear", StringUtils.substring(appDate, 0, 4));
 		}
 		if (StringUtils.isNotBlank(evtDieDate)) {
 			map.put("evtDieYm", StringUtils.substring(evtDieDate, 0, 6));

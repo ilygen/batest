@@ -848,6 +848,7 @@
         <result column="CPIRATE"         property="cpiRate"       jdbcType="NUMERIC"     javaType="java.math.BigDecimal" nullValue="0"/>
         <result column="APPDATE"         property="appDate"       jdbcType="VARCHAR"     javaType="java.lang.String"       nullValue="" />
         <result column="EVTDIEDATE"      property="evtDieDate"    jdbcType="VARCHAR"     javaType="java.lang.String"       nullValue="" />
+        <result column="PAYYMS"          property="payYmBegin"    jdbcType="VARCHAR"     javaType="java.lang.String"       nullValue="" />
     </resultMap>
     
     <resultMap id="ReplaceDataPersonalResult" class="Badapr">
@@ -4825,7 +4826,8 @@ Select A.APNO,
                T.CPIRATE,
                T1.APITEM,
                T1.APPDATE,
-               T1.EVTDIEDATE
+               T1.EVTDIEDATE,
+               T1.PAYYMS
           From BADAPR T ,BAAPPBASE T1
          Where T.APNO = #apNo:VARCHAR#
            And T.SEQNO = '0000'

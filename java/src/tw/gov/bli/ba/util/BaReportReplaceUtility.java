@@ -866,7 +866,7 @@ public class BaReportReplaceUtility {
 						*/
 						if (StringUtils.isNotBlank(badaprApItem8.getAppDate()) && StringUtils.isNotBlank(badaprApItem8.getEvtDieDate())) {
 							List<BigDecimal> cpiRateList =
-									bacpirecDao.selectCpiRateByAppDateAndEvtDieDate(badaprApItem8.getAppDate(), badaprApItem8.getEvtDieDate());
+									bacpirecDao.selectCpiRateByAppDateAndEvtDieDate(badaprApItem8.getAppDate(), badaprApItem8.getEvtDieDate(),badaprApItem8.getPayYmBegin());
 							for (BigDecimal cpiRate : cpiRateList) {
 								issueAmt = issueAmt.multiply(cpiRate).setScale(0, BigDecimal.ROUND_HALF_UP);
 							}
