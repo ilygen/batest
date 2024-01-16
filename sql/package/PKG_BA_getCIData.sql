@@ -230,9 +230,12 @@ is
                Order By IDNSEQ;
 
    begin
-                 --清除該身分證被保險人資料
-                Delete from CIPB Where INTYP = v_i_intyp  And IDN like v_i_idnno ||'%'
+                --為避免傳入的v_i_dinno為空，導致刪除了事故者的資料
+                If nvl(v_i_idnno,'@') <> '@' then 
+                   --清除該身分證被保險人資料
+                   Delete from CIPB Where INTYP = v_i_intyp  And IDN like v_i_idnno ||'%'
                         And APNO = v_i_apno And SEQNO = v_i_seqno;
+                end if;
                 --讀出保險別 v_i_intyp 的 CIPB同身分證被保險人資料，並依身分證號序號(IDNSEQ)排列
                 for v_CurCIPB in c_dataCur_CIPB Loop
                  Begin
