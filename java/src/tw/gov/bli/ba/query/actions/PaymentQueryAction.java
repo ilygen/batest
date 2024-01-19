@@ -395,6 +395,9 @@ public class PaymentQueryAction extends BaseDispatchAction {
                 String evtIdnNo = qryForm.getIdn();
                 String evtBrDate = qryForm.getBrDateStr();
 
+                // 累計已領年金金額 = dabAnnuAmt + annuAmt
+                detail.setAnnuAmt(detail.getDabAnnuAmt().add(detail.getAnnuAmt()));
+
                 // 取得 承辦人分機號碼
                 detail.setEmpExt(queryService.getEmpExtData(detail.getApNo()));
 
