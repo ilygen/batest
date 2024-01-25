@@ -11982,7 +11982,7 @@ UNION
 		]]>
 			AND A.APNO = B.APNO
 			AND B.SEQNO = B.SEQNO
-			ORDER BY A.APPDATE
+			ORDER BY A.SEQNO
     </select>
     
     <select id="selectSurvivorRptExtRefDataList" resultMap="survivorExtRefDataListResult">
