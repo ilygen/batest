@@ -713,11 +713,13 @@ public class BjService {
 	 * @param baBatchRecId 資料清單
 	 * @param empNo        員工編號
 	 */
+	@SuppressWarnings("unchecked")
 	public String doUpdatePaidMarkBJ(String[] baBatchRecId, String empNo, UserBean userData) {
 		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
 		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
 //		select * from baproperty where NAME='ftpClient.dirForDataFile'
 		
+		@SuppressWarnings("rawtypes")
 		Map map = new HashMap();
 		map.put("ipaddr", mgMrUtil.getIp());
 		map.put("portno", mgMrUtil.getPort());
@@ -775,9 +777,14 @@ public class BjService {
 									
 									// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
 									map.put("ftpdir", _ftpoutput_BK); // change dir
-									File downloadFile = new File(mgMrUtil.getWorkDir(), mfileName);
-									upload(map, mgMrUtil.getUserid(), downloadFile);
-									
+//									File downloadFile = new File(mgMrUtil.getWorkDir(), mfileName);
+//									upload(map, mgMrUtil.getUserid(), downloadFile);
+									// 確保工作目錄有效
+//									String workDir = mgMrUtil.getWorkDir();
+									if (isValidDirectory(downloadFilepath)) {
+//										File downloadFile = new File(workDir, mfileName);
+									    upload(map, mgMrUtil.getUserid(), new File(downloadFilepath));
+									}
 								} // end if(txtFile != null)
 								
 		            		}	
@@ -866,6 +873,12 @@ public class BjService {
 //		}
 		return payCode;
 	}
+	
+	private boolean isValidDirectory(String directory) {
+	    File dir = new File(directory);
+	    return dir.exists() && dir.isDirectory();
+	}
+
 	
 	/**
 	 * 呼叫StoreProcedure Name:Ba_ProcGiveDtl('1',qry_BABATCHREC.BABATCHRECID)
