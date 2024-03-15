@@ -52,8 +52,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
             </list>
         </property>
         
-<!--         <property name="ip" value="${mg.ip}" /> -->
-<!--         <property name="port" value="${mg.port}" /> -->
         <!-- for Develop Release -->
         <!--
         <property name="controlEncoding" value="MS950" />
@@ -131,13 +129,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
             </list>
         </property>
         -->
-    </bean>
-    
-    <bean id="mgMrUtil" class="tw.gov.bli.common.util.MgMrUtil">
-        <property name="ip" value="${mg.ip}" />
-        <property name="port" value="${mg.port}" />
-        <property name="userid" value="${sys.default.userid}" />
-        <property name="workDir" value="${rpt.path}" />
     </bean>
     
     <!-- IMPORTANT: All Directory Value must Begin and End with '/' -->

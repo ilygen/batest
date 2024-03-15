@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.owasp.encoder.Encode;
@@ -361,8 +360,13 @@ public class BjService {
 	 */
 	public void insertRecordFileData_Mg(Map map, String fileName, Calendar fileTimestamp) {
 		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
+		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
+		String ipaddr = PropertyHelper.getProperty("mg.ip");
+		String portno = PropertyHelper.getProperty("mg.port");
+		String loginid = PropertyHelper.getProperty("sys.default.userid");
+		String workDir = PropertyHelper.getProperty("rpt.path");
 		// 取得fileName文字名檔案
-    	List<MgFile> mgFiles = mgMrUtil.query(map, fileName, "", mgMrUtil.getUserid());
+    	List<MgFile> mgFiles = mgMrUtil.query(map, fileName, "", loginid);
 //		// 取得資料文字檔內容
 		if (mgFiles != null) { 
 			Babatchrec recordData = new Babatchrec();
@@ -375,14 +379,14 @@ public class BjService {
 //                map.put("ftpdir", _ftpinput); // change dir
             	if (StringUtils.endsWith(fileName, ".txt") || StringUtils.endsWith(fileName, ".TXT")) {
             		// 下載遠端檔案
-            		String statusDownload = mgMrUtil.download(map, mgFileName, mgMrUtil.getWorkDir(), mgMrUtil.getUserid());
+            		String statusDownload = mgMrUtil.download(map, mgFileName, workDir, loginid);
             		if (MgMrUtil.MG_MR_SUCCESS_CODE.equals(statusDownload)) {
             			// 下載成功後開始讀取內容
             			log.debug("download success.");
 //						String outputFilenamePr = "PROC_BA_" + mgFileName;
 						
 			            //下載到本機後位置
-						String downloadFilepath = mgMrUtil.getWorkDir() + fileName ;
+						String downloadFilepath = workDir + fileName ;
 						
 						String[] fileLinseList = getTxtFileContent(downloadFilepath);
 						// get first line
@@ -471,8 +475,8 @@ public class BjService {
 						
 						// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
 						map.put("ftpdir", _ftpoutput_BK); // change dir
-						File downloadFile = new File(mgMrUtil.getWorkDir(), fileName);
-						upload(map, mgMrUtil.getUserid(), downloadFile);
+						File downloadFile = new File(workDir, fileName);
+						upload(map, loginid, downloadFile);
 
             		} else {
             			log.error("download failed!");
@@ -715,15 +719,19 @@ public class BjService {
 	 */
 	@SuppressWarnings("unchecked")
 	public String doUpdatePaidMarkBJ(String[] baBatchRecId, String empNo, UserBean userData) {
+		//baproperty
 		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
 		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
-//		select * from baproperty where NAME='ftpClient.dirForDataFile'
+		String ipaddr = PropertyHelper.getProperty("mg.ip");
+		String portno = PropertyHelper.getProperty("mg.port");
+		String loginid = PropertyHelper.getProperty("sys.default.userid");
+		String workDir = PropertyHelper.getProperty("rpt.path");
 		
 		@SuppressWarnings("rawtypes")
 		Map map = new HashMap();
-		map.put("ipaddr", mgMrUtil.getIp());
-		map.put("portno", mgMrUtil.getPort());
-		map.put("loginid", mgMrUtil.getUserid());
+		map.put("ipaddr", ipaddr);
+		map.put("portno", portno);
+		map.put("loginid", loginid);
 		map.put("ftpdir", _ftpinput);
 		
 		String payCode = "";
@@ -735,7 +743,7 @@ public class BjService {
 				String mfileDate = DateUtility.getNowWestDateTime(true);
 				
 				// 取得fileName文字名檔案
-				List<MgFile> mgFiles = mgMrUtil.query(map, mfileName, "", mgMrUtil.getUserid());
+				List<MgFile> mgFiles = mgMrUtil.query(map, mfileName, "", loginid);
 //				// 取得資料文字檔內容
 				if (mgFiles != null) { 
 					// 取得資料文字檔內容(先將檔案下載下來在讀取內容)
@@ -745,13 +753,13 @@ public class BjService {
 
 		            	if (StringUtils.endsWith(mgFileName, ".txt") || StringUtils.endsWith(mgFileName, ".TXT")) {
 		            		// 下載遠端檔案
-		            		String statusDownload = mgMrUtil.download(map, mgFileName, mgMrUtil.getWorkDir(), mgMrUtil.getUserid());
+		            		String statusDownload = mgMrUtil.download(map, mgFileName, workDir, loginid);
 		            		if (MgMrUtil.MG_MR_SUCCESS_CODE.equals(statusDownload)) {
 		            			// 下載成功後開始讀取內容
 		            			log.debug("download success.");
 								
 					            //下載到本機後位置
-								String downloadFilepath = mgMrUtil.getWorkDir() + mfileName ;
+								String downloadFilepath = workDir + mfileName ;
 								log.debug("downloadFilepath: " + downloadFilepath);
 								
 								String[] txtFile = getTxtFileContent(downloadFilepath);
@@ -777,13 +785,13 @@ public class BjService {
 									
 									// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
 									map.put("ftpdir", _ftpoutput_BK); // change dir
-//									File downloadFile = new File(mgMrUtil.getWorkDir(), mfileName);
-//									upload(map, mgMrUtil.getUserid(), downloadFile);
+//									File downloadFile = new File(workDir, mfileName);
+//									upload(map, loginid, downloadFile);
 									// 確保工作目錄有效
-//									String workDir = mgMrUtil.getWorkDir();
+//									String workDir = workDir;
 									if (isValidDirectory(downloadFilepath)) {
 //										File downloadFile = new File(workDir, mfileName);
-									    upload(map, mgMrUtil.getUserid(), new File(downloadFilepath));
+									    upload(map, loginid, new File(downloadFilepath));
 									}
 								} // end if(txtFile != null)
 								

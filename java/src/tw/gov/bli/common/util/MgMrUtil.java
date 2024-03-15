@@ -2,8 +2,8 @@ package tw.gov.bli.common.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -46,11 +46,6 @@ public class MgMrUtil {
 	public final static String MG_MR_SUCCESS_CODE = "00";
 	public final static String MG_MR_FAIL_CODE = "99";
 	
-    private String ip;
-    private String port;
-    private String userid;
-    private String workDir;
-
 	enum Type {
 		MG("MG"), MR("MR");
 		String value;
@@ -692,36 +687,4 @@ public class MgMrUtil {
     	return '%';
     }
     
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public String getPort() {
-		return port;
-	}
-
-	public void setPort(String port) {
-		this.port = port;
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
-	public String getWorkDir() {
-		return workDir;
-	}
-
-	public void setWorkDir(String workDir) {
-		this.workDir = workDir;
-	}
-
 }
