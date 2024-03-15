@@ -498,7 +498,7 @@ public class BjService {
 	}
 	
 	private String[] getTxtFileContent(String downloadFilepath) {
-		String _txtFileEncoding = ftpClient.getTxtFileEncoding();
+		String _txtFileEncoding = PropertyHelper.getProperty("ftpClient.txtFileEncoding");
 		ArrayList<String> list = new ArrayList<String>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(downloadFilepath)), _txtFileEncoding));) {
             String strLine = "";
@@ -717,7 +717,6 @@ public class BjService {
 	 * @param baBatchRecId 資料清單
 	 * @param empNo        員工編號
 	 */
-	@SuppressWarnings("unchecked")
 	public String doUpdatePaidMarkBJ(String[] baBatchRecId, String empNo, UserBean userData) {
 		//baproperty
 		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
@@ -727,7 +726,6 @@ public class BjService {
 		String loginid = PropertyHelper.getProperty("sys.default.userid");
 		String workDir = PropertyHelper.getProperty("rpt.path");
 		
-		@SuppressWarnings("rawtypes")
 		Map map = new HashMap();
 		map.put("ipaddr", ipaddr);
 		map.put("portno", portno);
@@ -3025,5 +3023,13 @@ public class BjService {
 
 	public void setBamfileftprecordDao(BamfileftprecordDao bamfileftprecordDao) {
 		this.bamfileftprecordDao = bamfileftprecordDao;
+	}
+	
+	public MgMrUtil getMgMrUtil() {
+		return mgMrUtil;
+	}
+
+	public void setMgMrUtil(MgMrUtil mgMrUtil) {
+		this.mgMrUtil = mgMrUtil;
 	}
 }

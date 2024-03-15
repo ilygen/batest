@@ -345,6 +345,9 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean id="procRecordTxtJob" class="tw.gov.bli.ba.bj.job.ProcRecordTxtJob">
         <property name="ftpClient" ref="ftpClient" />
         <property name="bjService" ref="bjService" />
+        <property name="mgMrUtil" ref="mgMrUtil" />
     </bean>
     
+    <bean id="mgMrUtil" class="tw.gov.bli.common.util.MgMrUtil">
+    </bean>
 </beans>
