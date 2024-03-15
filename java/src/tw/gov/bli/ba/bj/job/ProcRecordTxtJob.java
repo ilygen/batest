@@ -1,25 +1,17 @@
 package tw.gov.bli.ba.bj.job;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import tw.gov.bli.ba.bj.helper.BatchHelper;
 import tw.gov.bli.ba.bj.helper.FtpHelper;
-import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.services.BjService;
 import tw.gov.bli.ba.util.ExceptionUtility;
-import tw.gov.bli.common.util.MgFile;
-import tw.gov.bli.common.util.MgMrUtil;
 
 /**
  * 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理
@@ -31,7 +23,7 @@ public class ProcRecordTxtJob {
 
     private FtpHelper ftpClient;
     private BjService bjService;
-    private MgMrUtil mgMrUtil;
+//    private MgMrUtil mgMrUtil;
     
 //	public void process() {
 //		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
@@ -121,18 +113,18 @@ public class ProcRecordTxtJob {
      * 
      * @return 回傳 MgFile List
      */
-    public List<MgFile> getMGPaidMarkFileNameFileNames(List<MgFile> mgFiles) {
-    	List<MgFile> getList = new ArrayList<>();
-    	for (MgFile file: mgFiles) {
-        	for (String paidMarkFileNamePrefix : ftpClient.getPaidMarkFileNamePrefix()) {
-				if (StringUtils.startsWithIgnoreCase(file.getName(), paidMarkFileNamePrefix)) { // 給付媒體回押註記
-					getList.add(file);
-					log.debug("getList Filename: " + file.getName());
-				}
-			}
-        }
-    	return getList;
-    }
+//    public List<MgFile> getMGPaidMarkFileNameFileNames(List<MgFile> mgFiles) {
+//    	List<MgFile> getList = new ArrayList<>();
+//    	for (MgFile file: mgFiles) {
+//        	for (String paidMarkFileNamePrefix : ftpClient.getPaidMarkFileNamePrefix()) {
+//				if (StringUtils.startsWithIgnoreCase(file.getName(), paidMarkFileNamePrefix)) { // 給付媒體回押註記
+//					getList.add(file);
+//					log.debug("getList Filename: " + file.getName());
+//				}
+//			}
+//        }
+//    	return getList;
+//    }
     
     public FtpHelper getFtpClient() {
         return ftpClient;
@@ -150,13 +142,13 @@ public class ProcRecordTxtJob {
         this.bjService = bjService;
     }
 
-	public MgMrUtil getMgMrUtil() {
-		return mgMrUtil;
-	}
-
-	public void setMgMrUtil(MgMrUtil mgMrUtil) {
-		this.mgMrUtil = mgMrUtil;
-	}
+//	public MgMrUtil getMgMrUtil() {
+//		return mgMrUtil;
+//	}
+//
+//	public void setMgMrUtil(MgMrUtil mgMrUtil) {
+//		this.mgMrUtil = mgMrUtil;
+//	}
 
     
 }
