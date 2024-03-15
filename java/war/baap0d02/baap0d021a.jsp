@@ -195,33 +195,23 @@
             $("raiseChildMk").disabled = false;
             //$("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";            	
             } else {
                 clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
-        }else if($("famEvtRel").value=="7"){                                                                                                                                                                                                                                                                                                                        
+        }else if($("famEvtRel").value=="7"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
             $("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";            	
             } else {
             	clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
-        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){                                                                                                                                                                                                                                                                                                                                              
+        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
@@ -486,7 +476,7 @@
         if(famCase.famEvtRel == '4'){
             $("raiseChildMk").value = famCase.raiseChildMk;  
             $("studMk").value = famCase.studMk;                         
-            if (famCase.studMk == 'Y') {
+            if ( Trim(asc($("studMk").values)).toUpperCase()  == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -496,7 +486,7 @@
         }
         if(famCase.famEvtRel == '7'){
             $("studMk").value = famCase.studMk;                          
-            if (famCase.studMk == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -726,8 +716,8 @@
  				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
  				 $("evtSex").focus();
     		}
- 		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
- 			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
+ 		}else if($("evtNationTpe").value==="2" && $("evtSex").value === "2"){
+ 			if(secondText!=="B" && secondText!=="b" && secondText!=="D" && secondText!=="d" && secondText!=="9"){
  				msg += '身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
  				 $("evtSex").focus();
     		}
@@ -735,14 +725,14 @@
 		}
 		
 		var famText = $("famIdnNo").value.substring(1,2);
-		if($("famIdnNo").value.length==10){
-		if($("famNationTyp").value=="2" && $("famSex").value == "1"){
- 			if(famText!="A" && famText!="a" && famText!="C" && famText!="c" && famText!="8"){
+		if($("famIdnNo").value.length===10){
+		if($("famNationTyp").value==="2" && $("famSex").value === "1"){
+ 			if(famText!=="A" && famText!=="a" && famText!=="C" && famText!=="c" && famText!=="8"){
  				msg += '眷屬，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
  				 $("famSex").focus();
     		}
- 		}else if($("famNationTyp").value=="2" && $("famSex").value == "2"){
- 			if(famText!="B" && famText!="b" && famText!="D" && famText!="d" && famText!="9"){
+ 		}else if($("famNationTyp").value==="2" && $("famSex").value === "2"){
+ 			if(famText!=="B" && famText!=="b" && famText!=="D" && famText!=="d" && famText!=="9"){
  				msg += '眷屬，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」\r\n';	
  				 $("famSex").focus();
     		}
@@ -750,7 +740,7 @@
 		}
         
         // 檢查眷屬身分證號與生日是否與事故者相同
-        if($("famIdnNo").value == $("evtIdnNo").value && $("famBrDate").value == $("evtBrDate").value){
+        if($("famIdnNo").value === $("evtIdnNo").value && $("famBrDate").value === $("evtBrDate").value){
             msg += " 眷屬資料與事故者資料不得重覆。\r\n"
             $("famIdnNo").focus();
         }
@@ -788,7 +778,7 @@
                     msg += '輸入之「眷屬出生日期」格式錯誤，請重新輸入\r\n';
                     $("famBrDate").focus();
         }
-        if($("famBrDate").value.length == 7){
+        if($("famBrDate").value.length === 7){
            var chkMonth = $("famBrDate").value.substring(3,5);
            var chkDay   = $("famBrDate").value.substring(5,7);
            if(chkMonth > 12 || chkDay > 32){
@@ -797,7 +787,7 @@
            }
         }                                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                                                                               
-        if(msg != ""){                                                                                                                                                                                                                                                                                                                                        
+        if(msg !== ""){
             alert(msg);                                                                                                                                                                                                                                                                                                                                       
             return false;                                                                                                                                                                                                                                                                                                                                     
         }else{                                                                                                                                                                                                                                                                                                                                                
@@ -809,7 +799,7 @@
                                                                                                                                                                                                                                                                                                                                                               
     function initAll(){
         
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famOptionMode}" />'=="updateMode"){
+        if('<c:out value="${DisabledAnnuityReceiptFamForm.famOptionMode}" />'==="updateMode"){
             $("famOptionMode").value="updateMode";
             $("insertModeBtn").style.display="none";  
             $("insertModeStr").style.display="none";  
@@ -825,13 +815,13 @@
         }
         
         //受理編號第一碼
-        if('<c:out value="${DisabledAnnuityReceiptForm.apNo1}" />'==""){
+        if('<c:out value="${DisabledAnnuityReceiptForm.apNo1}" />'===""){
             $("apNo1").value = "K"; 
         }
        
         //事故者國籍                                                                                                                                                                                                                                                                                                                                    
-        if('<c:out value="${DisabledAnnuityReceiptForm.evtNationTpe}" />'!=""){
-            if('<c:out value="${DisabledAnnuityReceiptForm.evtNationTpe}" />'=="1"){
+        if('<c:out value="${DisabledAnnuityReceiptForm.evtNationTpe}" />'!==""){
+            if('<c:out value="${DisabledAnnuityReceiptForm.evtNationTpe}" />'==="1"){
                 $("evtSex").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("evtNationCode").disabled = true;                                                                                                                                                                                                                                                                                                           
                 $("evtNationCodeOption").disabled = true;                                                                                                                                                                                                                                                                                                     
@@ -839,7 +829,7 @@
                 $("evtNationCode").value = "";                                                                                                                                                                                                                                                                                                                
                 $("evtNationCodeOption").value = "";                                                                                                                                                                                                                                                                                                          
                 $("commTyp").readOnly = false;                                                                                                                                                                                                                                                                                                                
-                if('<c:out value="${DisabledAnnuityReceiptForm.commTyp}" />'=="1"){
+                if('<c:out value="${DisabledAnnuityReceiptForm.commTyp}" />'==="1"){
                     $("commZip").disabled = true;                                                                                                                                                                                                                                                                                                             
                     $("commAddr").disabled = true;                                                                                                                                                                                                                                                                                                            
                     $("commZip").value = "";                                                                                                                                                                                                                                                                                                                  
@@ -870,7 +860,7 @@
         }
         //手機複驗
         enableMobilePhone();
-        if($("mobilePhone").disabled == false){
+        if($("mobilePhone").disabled === false){
             $("mobilePhone").value='<c:out value="${DisabledAnnuityReceiptForm.mobilePhone}" />';
         }else{
             $("mobilePhone").value="";
@@ -886,8 +876,8 @@
         --%>
         
         //眷屬國籍                                                                                                                                                                                                                                                                                                                              
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'!=""){
-            if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'=="1"){
+        if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'!==""){
+            if('<c:out value="${DisabledAnnuityReceiptFamForm.famNationTyp}" />'==="1"){
                 $("famSex").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("famNationCode").disabled = true;                                                                                                                                                                                                                                                                                                           
                 $("famNationCodeOption").disabled = true;                                                                                                                                                                                                                                                                                                     
@@ -906,8 +896,8 @@
             $("famNationCodeOption").disabled = true;                                                                                                                                                                                                                                                                                                         
         }
         //眷屬關係
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'!=""){
-            if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="2"){
+        if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'!==""){
+            if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'==="2"){
                 $("marryDate").disabled = false;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -918,7 +908,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="4"){
+            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'==="4"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = false;
@@ -929,7 +919,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="7"){
+            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'==="7"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -940,7 +930,7 @@
                 //$("handIcapMk").value = "";     
                 //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
                 //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
-            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="3"||'<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'=="5"){
+            }else if('<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'==="3"||'<c:out value="${DisabledAnnuityReceiptFamForm.famEvtRel}" />'==="5"){
                 $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
                 $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
                 $("raiseChildMk").disabled = true;
@@ -970,7 +960,7 @@
             //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
             //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
         }
-        if('<c:out value="${DisabledAnnuityReceiptFamForm.focusLocation}" />'=="famNationTyp"){
+        if('<c:out value="${DisabledAnnuityReceiptFamForm.focusLocation}" />'==="famNationTyp"){
             $("famNationTyp").focus();
         }else{
             $("apNo1").focus();
@@ -1193,7 +1183,7 @@
     //將第一筆遺屬資料填入為預設代理人資料
     function setDefaultGrdData(){
         var listSize = '<%=((List)request.getSession().getAttribute(ConstantKey.DISABLED_ANNUITY_RECEIPT_FAM_DATA_LIST)).size()%>';
-        if(Trim(asc($("defaultGrdData").value)).toUpperCase() == "Y" && listSize>0){
+        if(Trim(asc($("defaultGrdData").value)).toUpperCase() === "Y" && listSize>0){
             $("grdName").value = '<c:out value="${DisabledAnnuityReceiptFamDataList[0].famName}" />';
             $("grdIdnNo").value = '<c:out value="${DisabledAnnuityReceiptFamDataList[0].famIdnNo}" />';
             $("grdBrDate").value = '<c:out value="${DisabledAnnuityReceiptFamDataList[0].famBrDateStr}" />';
@@ -1213,7 +1203,7 @@
             shortTel2 = tel2.substring(0,2); 
         }
     
-        if((shortTel1=="09" && tel1.length==10) || (shortTel2=="09" && tel2.length==10)){
+        if((shortTel1==="09" && tel1.length===10) || (shortTel2==="09" && tel2.length===10)){
             $("mobilePhone").disabled = false;
             //$("mobilePhone").value = "";
         }else{
@@ -1226,7 +1216,7 @@
     
     // 檢查手機複驗
     function checkMobilePhone(){
-        if($("mobilePhone").disabled==false){
+        if($("mobilePhone").disabled===false){
             var tel1 = $("tel1").value;
             var tel2 = $("tel2").value;
             var shortTel1 = "";
@@ -1252,7 +1242,7 @@
     }
     
     function chgMobilePhoneFocus(){
-        if(event.keyCode==9){
+        if(event.keyCode===9){
             var tel1 = $("tel1").value;
             var tel2 = $("tel2").value;
             var shortTel1 = "";
@@ -1264,18 +1254,8 @@
                 shortTel2 = tel2.substring(0,2); 
             }
             
-            if(Trim($("mobilePhone").value)==""||($("mobilePhone").value).length != 10 ||!((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
-                //$("evtHandIcapMk").disabled = true;
-                //$("evtHandIcapMk").value = "";
-                //alert("手機號碼輸入有誤，請檢查。\r\n");
-                
-                //$("evtHandIcapMk").disabled = true;
-                //$("evtHandIcapMk").value = "";
-                //$("defaultGrdData").focus();
+            if(Trim($("mobilePhone").value)===""||($("mobilePhone").value).length !== 10 ||!((shortTel1==="09" && $("mobilePhone").value===$("tel1").value)||(shortTel2==="09" && $("mobilePhone").value===$("tel2").value))){
                 $("grdName").focus();
-            }else{
-                //$("evtHandIcapMk").disabled = false;
-                //$("evtHandIcapMk").focus();
             }
         }
     }   
@@ -1283,23 +1263,23 @@
     //外國人身分證號碼自動帶入(個人)
     function autoForeignEvtSex(){
     	var secondText = $("evtIdnNo").value.substring(1,2);
-		if($("evtIdnNo").value.length==10){
-    	if($("evtNationTpe").value=="2" && Trim($("evtSex").value)==""){
-    		if(secondText=="A" || secondText=="a" || secondText=="C" || secondText=="c" || secondText=="8"){
+		if($("evtIdnNo").value.length===10){
+    	if($("evtNationTpe").value==="2" && Trim($("evtSex").value)===""){
+    		if(secondText==="A" || secondText==="a" || secondText==="C" || secondText==="c" || secondText==="8"){
     			$("evtSex").value = "1";	
-    		}else if(secondText=="B" || secondText=="b" || secondText=="D" || secondText=="d" || secondText=="9"){
+    		}else if(secondText==="B" || secondText==="b" || secondText==="D" || secondText==="d" || secondText==="9"){
     			$("evtSex").value = "2";	
     		}else{
     			$("evtSex").value = "";
     			alert('「不符合外來人口統一證號編碼原則，請輸入正確身分證」');
     		}
     	}else{
-    		if($("evtNationTpe").value=="2" && $("evtSex").value == "1"){
-     			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
+    		if($("evtNationTpe").value==="2" && $("evtSex").value === "1"){
+     			if(secondText!=="A" && secondText!=="a" && secondText!=="C" && secondText!=="c" && secondText!=="8"){
      				alert('身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」');
         		}
-     		}else if($("evtNationTpe").value=="2" && $("evtSex").value == "2"){
-     			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
+     		}else if($("evtNationTpe").value==="2" && $("evtSex").value === "2"){
+     			if(secondText!=="B" && secondText!=="b" && secondText!=="D" && secondText!=="d" && secondText!=="9"){
      				alert('身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」');
         		}
      		}
@@ -1310,23 +1290,23 @@
     //外國人身分證號碼自動帶入(眷屬)
     function autoForeignFamSex(){
     	var secondText = $("famIdnNo").value.substring(1,2);
-		if($("famIdnNo").value.length==10){
-    	if($("famNationTyp").value=="2" && Trim($("famSex").value)==""){
-    		if(secondText=="A" || secondText=="a" || secondText=="C" || secondText=="c" || secondText=="8"){
+		if($("famIdnNo").value.length===10){
+    	if($("famNationTyp").value==="2" && Trim($("famSex").value)===""){
+    		if(secondText==="A" || secondText==="a" || secondText==="C" || secondText==="c" || secondText==="8"){
     			$("famSex").value = "1";	
-    		}else if(secondText=="B" || secondText=="b" || secondText=="D" || secondText=="d" || secondText=="9"){
+    		}else if(secondText==="B" || secondText==="b" || secondText==="D" || secondText==="d" || secondText==="9"){
     			$("famSex").value = "2";	
     		}else{
     			$("famSex").value = "";
     			alert('眷屬資料「不符合外來人口統一證號編碼原則，請輸入正確身分證」');
     		}
     	}else{
-    		if($("famNationTyp").value=="2" && $("famSex").value == "1"){
-     			if(secondText!="A" && secondText!="a" && secondText!="C" && secondText!="c" && secondText!="8"){
+    		if($("famNationTyp").value==="2" && $("famSex").value === "1"){
+     			if(secondText!=="A" && secondText!=="a" && secondText!=="C" && secondText!=="c" && secondText!=="8"){
      				alert('眷屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」');
         		}
-     		}else if($("famNationTyp").value=="2" && $("famSex").value == "2"){
-     			if(secondText!="B" && secondText!="b" && secondText!="D" && secondText!="d" && secondText!="9"){
+     		}else if($("famNationTyp").value==="2" && $("famSex").value === "2"){
+     			if(secondText!=="B" && secondText!=="b" && secondText!=="D" && secondText!=="d" && secondText!=="9"){
      				alert('眷屬資料，身份證與性別不相符，請輸入正確「性別」或「事故者身分證字號」');
         		}
      		}
@@ -1360,7 +1340,7 @@
 
     // 在學變動
     function chgStud() {
-        if ($("studMk").value == 'Y') {
+        if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
         	$("schoolCodeContent").style.display="inline";            	
         } else {
         	clearSchoolCodeContent();

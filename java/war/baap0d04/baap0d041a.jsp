@@ -186,43 +186,29 @@
             $("studMk").disabled = true;                                                                                                                                                                                                                                                                                                                   
             $("studMk").value = "";
             clearSchoolCodeContent();
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                           
-        }else if($("famEvtRel").value=="4"){                                                                                                                                                                                                                                                                                                                        
+        }else if($("famEvtRel").value=="4"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = false;
             //$("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
-            	$("schoolCodeContent").style.display="inline";            	
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+            	$("schoolCodeContent").style.display="inline";
             } else {
                 clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
-        }else if($("famEvtRel").value=="7"){                                                                                                                                                                                                                                                                                                                        
+        }else if($("famEvtRel").value=="7"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
             $("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
-            	$("schoolCodeContent").style.display="inline";            	
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+            	$("schoolCodeContent").style.display="inline";
             } else {
             	clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
-        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){                                                                                                                                                                                                                                                                                                                                              
+        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
@@ -464,9 +450,6 @@
         $("famIdnNo").value = famCase.famIdnNo;                                       
         $("famBrDate").value = famCase.famBrDate;
         $("famEvtRel").value = famCase.famEvtRel;
-        //$("marryDate").value = famCase.marryDate;                                       
-        //$("raiseChildMk").value = famCase.raiseChildMk;                                       
-        //$("studMk").value = famCase.studMk;                                       
         $("monIncomeMk").value = famCase.monIncomeMk;
         if(famCase.monIncome!="" && famCase.monIncome!="null"  && famCase.monIncome!=null){                                       
             $("monIncome").value = famCase.monIncome;            
@@ -487,7 +470,7 @@
         if(famCase.famEvtRel == '4'){
             $("raiseChildMk").value = famCase.raiseChildMk;  
             $("studMk").value = famCase.studMk;
-            if (famCase.studMk == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -496,8 +479,8 @@
             }
         }
         if(famCase.famEvtRel == '7'){
-            $("studMk").value = famCase.studMk;                          
-            if (famCase.studMk == 'Y') {
+            $("studMk").value = famCase.studMk;
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -1408,8 +1391,8 @@
 
     // 在學變動
     function chgStud() {
-        if ($("studMk").value == 'Y') {
-        	$("schoolCodeContent").style.display="inline";            	
+        if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+        	$("schoolCodeContent").style.display="inline";
         } else {
         	clearSchoolCodeContent();
         }
