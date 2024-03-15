@@ -52,6 +52,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
             </list>
         </property>
         
+        
         <!-- for Develop Release -->
         <!--
         <property name="controlEncoding" value="MS950" />
@@ -267,7 +268,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                 <value>${ftpApClient.writeOffFileNamePrefix}</value>
             </list>
         </property>
-        
+
         <!-- for Testing Release -->
         <!--
         <property name="controlEncoding" value="MS950" />
@@ -344,7 +345,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean id="procRecordTxtJob" class="tw.gov.bli.ba.bj.job.ProcRecordTxtJob">
         <property name="ftpClient" ref="ftpClient" />
         <property name="bjService" ref="bjService" />
-        <property name="mgMrUtil" ref="mgMrUtil" />
     </bean>
     
 </beans>
