@@ -476,7 +476,7 @@
         if(famCase.famEvtRel == '4'){
             $("raiseChildMk").value = famCase.raiseChildMk;  
             $("studMk").value = famCase.studMk;                         
-            if ( Trim(asc($("studMk").values)).toUpperCase()  == "Y") {
+            if ( Trim(asc($("studMk").values).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
