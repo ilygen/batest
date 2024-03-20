@@ -34,7 +34,7 @@ public class ProcRecordTxtJob {
     private MgMrUtil mgMrUtil;
     
 	public void process() {
-		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
+		String _ftpinput = PropertyHelper.getProperty("mgBankFileNPME");//紀錄檔存放之目錄ftpClient.dirForRecordFile
 		String ipaddr = PropertyHelper.getProperty("mg.ip");
 		String portno = PropertyHelper.getProperty("mg.port");
 		String loginid = PropertyHelper.getProperty("sys.default.userid");
@@ -44,10 +44,6 @@ public class ProcRecordTxtJob {
 		map.put("loginid", loginid);
 		map.put("ftpdir", _ftpinput);
 		try {
-			log.info("ipaddr get: " + ipaddr + " set: " + MapUtils.getString(map, "ipaddr") + " portno get: " + portno + " set: " + MapUtils.getString(map, "portno"));
-			log.info("loginid get: " + loginid + " set: " + MapUtils.getString(map, "loginid") + " ftpdir get: " + _ftpinput + " set: " + MapUtils.getString(map, "ftpdir"));
-			
-//		    System.out.println("ipaddr: " + ipaddr + " portno: " + portno + " loginid: " + loginid + " ftpdir: " + _ftpinput);
 		    if (!BatchHelper.needExecuteBatch()) {
 		        log.info("本主機不須執行 給付媒體回押註記 及 收回沖銷 - MG 資料文字檔 處理...");
 		        return;
@@ -68,7 +64,6 @@ public class ProcRecordTxtJob {
 						Date date =sdf.parse(file.getCreateDate());
 						Calendar calendar = Calendar.getInstance();
 						calendar.setTime(date);
-						
 						bjService.insertRecordFileData_Mg(map, file.getName(), calendar);
 					}
 					catch (Exception e) {
@@ -83,41 +78,6 @@ public class ProcRecordTxtJob {
 		    log.error("處理 給付媒體回押註記 及 收回沖銷 - MG 資料文字檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
 		}
 	}
-
-//    public void process() {
-//        try {
-//            
-//            if (!BatchHelper.needExecuteBatch()) {
-//                log.info("本主機不須執行 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理...");
-//                
-//                return;
-//            }
-//            
-//            log.info("開始 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 處理...");
-//
-//            // 取得資料文字檔檔名清單
-//            List<Map> fileList = ftpClient.getRecordFileNames2();
-//
-//            // 處理資料文字檔
-//            if (fileList != null) {
-//                for (Map file: fileList) {
-//                    try {
-//                        bjService.insertRecordFileData(
-//                        	MapUtils.getString(file, "filename", ""),
-//                        	(Calendar)MapUtils.getObject(file, "timestamp"));
-//                    }
-//                    catch (Exception e) {
-//                        log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
-//                    }
-//                }
-//            }
-//
-//            log.info("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 完成...");
-//        }
-//        catch (Exception e) {
-//            log.error("處理 給付媒體回押註記 及 收回沖銷 - FTP 資料文字檔 發生錯誤, 原因: " + ExceptionUtility.getStackTrace(e));
-//        }
-//    }
 
 	/**
      * 只取所有在 MG 目錄中的 PaidMarkFileNamePrefix檔名
