@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,6 +44,9 @@ public class ProcRecordTxtJob {
 		map.put("loginid", loginid);
 		map.put("ftpdir", _ftpinput);
 		try {
+			log.info("ipaddr get: " + ipaddr + " set: " + MapUtils.getString(map, "ipaddr") + " portno get: " + portno + " set: " + MapUtils.getString(map, "portno"));
+			log.info("loginid get: " + loginid + " set: " + MapUtils.getString(map, "loginid") + " ftpdir get: " + _ftpinput + " set: " + MapUtils.getString(map, "ftpdir"));
+			
 //		    System.out.println("ipaddr: " + ipaddr + " portno: " + portno + " loginid: " + loginid + " ftpdir: " + _ftpinput);
 		    if (!BatchHelper.needExecuteBatch()) {
 		        log.info("本主機不須執行 給付媒體回押註記 及 收回沖銷 - MG 資料文字檔 處理...");

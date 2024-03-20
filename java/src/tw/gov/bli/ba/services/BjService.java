@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -726,11 +727,14 @@ public class BjService {
 		String loginid = PropertyHelper.getProperty("sys.default.userid");
 		String workDir = PropertyHelper.getProperty("rpt.path");
 		
-		Map map = new HashMap();
+		Map<String, Object> map = new HashMap();
 		map.put("ipaddr", ipaddr);
 		map.put("portno", portno);
 		map.put("loginid", loginid);
 		map.put("ftpdir", _ftpinput);
+
+		log.info("ipaddr get: " + ipaddr + " set: " + MapUtils.getString(map, "ipaddr") + " portno get: " + portno + " set: " + MapUtils.getString(map, "portno"));
+		log.info("loginid get: " + loginid + " set: " + MapUtils.getString(map, "loginid") + " ftpdir get: " + _ftpinput + " set: " + MapUtils.getString(map, "ftpdir"));
 		
 		String payCode = "";
 		for (int i = 0; i < baBatchRecId.length; i++) {

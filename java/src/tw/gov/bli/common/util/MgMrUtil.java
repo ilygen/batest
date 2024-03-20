@@ -191,6 +191,8 @@ public class MgMrUtil {
 							MapUtils.getString(ftpConfig, "ftpdir") + "/" + subDir : 
 							MapUtils.getString(ftpConfig, "ftpdir");
 			
+			log.info("reportid: " + reportid + " loginid: " + loginid + " type: " + type + " isDeleteFile: " + isDeleteFile + " crossAP: " + crossAP);
+			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + ftpdir);
 			return uploadIncomingTarget(file, 
 										loginid, 
 										reportid, 
@@ -228,6 +230,8 @@ public class MgMrUtil {
 		
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			log.info("開始傳參數");
+			log.info("filename: " + fileName + " outputdir: " + outputDir + " loginid: " + loginid);
+			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + MapUtils.getString(ftpConfig, "ftpdir"));
 			MultipartEntityBuilder entityBuilder = createMultipartEntityBuilder(b -> b
 		            .addTextBody("filename", fileName, ContentType.TEXT_PLAIN)                               
 		            .addTextBody("outputdir", outputDir, ContentType.TEXT_PLAIN)                            
@@ -304,7 +308,8 @@ public class MgMrUtil {
 
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			log.info("開始傳參數");
-			
+			log.info("prefix: " + prefix + " suffix: " + suffix + " loginid: " + loginid);
+			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + MapUtils.getString(ftpConfig, "ftpdir"));
 			MultipartEntityBuilder entityBuilder = createMultipartEntityBuilder(b -> b
 		            .addTextBody("prefix", prefix, ContentType.TEXT_PLAIN)                               
 		            .addTextBody("suffix", suffix, ContentType.TEXT_PLAIN)                            
@@ -629,6 +634,7 @@ public class MgMrUtil {
 	}
 	
 	private MultipartEntityBuilder createMultipartEntityBuilder(Consumer<MultipartEntityBuilder> consumer) {
+		log.info("開始傳參數 - createMultipartEntityBuilder");
 	    MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 	    builder.setCharset(StandardCharsets.UTF_8);
 	    builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
