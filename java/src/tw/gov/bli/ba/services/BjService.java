@@ -366,6 +366,7 @@ public class BjService {
 		String portno = PropertyHelper.getProperty("mg.port");
 		String loginid = PropertyHelper.getProperty("sys.default.userid");
 		String workDir = PropertyHelper.getProperty("rpt.path");
+		
 		// 取得fileName文字名檔案
     	List<MgFile> mgFiles = mgMrUtil.query(map, fileName, "", loginid);
 //		// 取得資料文字檔內容
@@ -475,10 +476,16 @@ public class BjService {
 						log.info("新增資料文字檔資料至 BABATCHREC 完成，檔名:" + StringUtils.trimToEmpty(fileName));
 						
 						// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
-						map.put("ftpdir", _ftpoutput_BK); // change dir
-						File downloadFile = new File(workDir, fileName);
-						upload(map, loginid, downloadFile);
-
+						Map<String, Object> uploadMap = new HashMap();
+	            		uploadMap.put("ipaddr", ipaddr);
+	            		uploadMap.put("portno", portno);
+	            		uploadMap.put("loginid", loginid);
+	            		uploadMap.put("ftpdir", _ftpoutput_BK); // change dir
+//						File downloadFile = new File(workDir, fileName);
+//						upload(uploadMap, loginid, downloadFile);
+						if (isValidDirectory(downloadFilepath)) {
+						    upload(uploadMap, loginid, new File(downloadFilepath));
+						}
             		} else {
             			log.error("download failed!");
             		}
@@ -786,14 +793,16 @@ public class BjService {
 									log.info("給付媒體回押註記 新增 " + (txtFile.length - 2) + " 筆資料至 BAGIVEDTL");
 									
 									// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
-									map.put("ftpdir", _ftpoutput_BK); // change dir
-//									File downloadFile = new File(workDir, mfileName);
-//									upload(map, loginid, downloadFile);
+									Map<String, Object> uploadMap = new HashMap();
+									uploadMap.put("ipaddr", ipaddr);
+									uploadMap.put("portno", portno);
+									uploadMap.put("loginid", loginid);
+									uploadMap.put("ftpdir", _ftpoutput_BK); // change dir
+									log.info("ftpdir get: " + _ftpinput + " set: " + MapUtils.getString(uploadMap, "ftpdir"));
 									// 確保工作目錄有效
-//									String workDir = workDir;
 									if (isValidDirectory(downloadFilepath)) {
 //										File downloadFile = new File(workDir, mfileName);
-									    upload(map, loginid, new File(downloadFilepath));
+									    upload(uploadMap, loginid, new File(downloadFilepath));
 									}
 								} // end if(txtFile != null)
 								
@@ -886,6 +895,7 @@ public class BjService {
 	
 	private boolean isValidDirectory(String directory) {
 	    File dir = new File(directory);
+	    log.info("isValidDirectory: " + directory + " exists() = " + (dir.exists() && dir.isDirectory()));
 	    return dir.exists() && dir.isDirectory();
 	}
 
