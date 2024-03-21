@@ -191,8 +191,6 @@ public class MgMrUtil {
 							MapUtils.getString(ftpConfig, "ftpdir") + "/" + subDir : 
 							MapUtils.getString(ftpConfig, "ftpdir");
 			
-			log.info("reportid: " + reportid + " loginid: " + loginid + " type: " + type + " isDeleteFile: " + isDeleteFile + " crossAP: " + crossAP);
-			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + ftpdir);
 			return uploadIncomingTarget(file, 
 										loginid, 
 										reportid, 
@@ -230,8 +228,6 @@ public class MgMrUtil {
 		
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			log.info("開始傳參數");
-			log.info("filename: " + fileName + " outputdir: " + outputDir + " loginid: " + loginid);
-			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + MapUtils.getString(ftpConfig, "ftpdir"));
 			MultipartEntityBuilder entityBuilder = createMultipartEntityBuilder(b -> b
 		            .addTextBody("filename", fileName, ContentType.TEXT_PLAIN)                               
 		            .addTextBody("outputdir", outputDir, ContentType.TEXT_PLAIN)                            
@@ -308,8 +304,6 @@ public class MgMrUtil {
 
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			log.info("開始傳參數");
-			log.info("prefix: " + prefix + " suffix: " + suffix + " loginid: " + loginid);
-			log.info("ipaddr: " + MapUtils.getString(ftpConfig, "ipaddr") + " portno: " + MapUtils.getString(ftpConfig, "portno") + " ftpdir: " + MapUtils.getString(ftpConfig, "ftpdir"));
 			MultipartEntityBuilder entityBuilder = createMultipartEntityBuilder(b -> b
 		            .addTextBody("prefix", prefix, ContentType.TEXT_PLAIN)                               
 		            .addTextBody("suffix", suffix, ContentType.TEXT_PLAIN)                            
@@ -530,6 +524,7 @@ public class MgMrUtil {
 			if (responseEntity != null) {
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(responseEntity.getContent(), StandardCharsets.UTF_8))) {
 					String line = reader.readLine();
+					log.info("line：" + line);
 					log.info("結束執行MgMrUtil.move");
 					return (String)new JSONObject(line).get("statuscode");
 				}

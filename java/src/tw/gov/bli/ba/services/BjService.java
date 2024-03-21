@@ -475,13 +475,14 @@ public class BjService {
 						log.info("新增資料文字檔資料至 BABATCHREC 完成，檔名:" + StringUtils.trimToEmpty(fileName));
 						
 						// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
-						Map<String, Object> uploadMap = new HashMap();
-	            		uploadMap.put("ipaddr", ipaddr);
-	            		uploadMap.put("portno", portno);
-	            		uploadMap.put("loginid", loginid);
-	            		uploadMap.put("ftpdir", ftpData); // change dir
-	            		String ftpoutput = ftpRecord + fileName;
-	            		String statusMove = mgMrUtil.move(uploadMap, ftpoutput, ftpData, loginid);
+						Map<String, Object> moveMap = new HashMap();
+						moveMap.put("ipaddr", ipaddr);
+						moveMap.put("portno", portno);
+						moveMap.put("loginid", loginid);
+//	            		moveMap.put("ftpdir", ftpData); // change dir
+						moveMap.put("ftpdir", ftpRecord); 
+//	            		String ftpoutput = ftpRecord + fileName;
+	            		String statusMove = mgMrUtil.move(moveMap, fileName, ftpData, loginid);
 	            		log.debug("mgMrUtil.move status: " + statusMove);
 //					    **upload(uploadMap, loginid, new File(downloadFilepath));
             		} else {
