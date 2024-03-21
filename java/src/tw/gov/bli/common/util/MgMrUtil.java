@@ -500,6 +500,7 @@ public class MgMrUtil {
 
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
 			log.info("開始傳參數");
+			log.info("sourcefilepath: " + sourcefilepath + " targetDirPath: " + targetDirPath);
 			MultipartEntityBuilder entityBuilder = createMultipartEntityBuilder(b -> b
 		            .addTextBody("sourcefilepath",  sourcefilepath, ContentType.TEXT_PLAIN)                               
 		            .addTextBody("targetdirpath", targetDirPath, ContentType.TEXT_PLAIN)                            

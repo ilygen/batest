@@ -481,8 +481,8 @@ public class BjService {
 						moveMap.put("loginid", loginid);
 //	            		moveMap.put("ftpdir", ftpData); // change dir
 						moveMap.put("ftpdir", ftpRecord); 
-//	            		String ftpoutput = ftpRecord + fileName;
-	            		String statusMove = mgMrUtil.move(moveMap, fileName, ftpData, loginid);
+	            		String ftpoutput = ftpRecord + fileName;
+	            		String statusMove = mgMrUtil.move(moveMap, ftpoutput, ftpData, loginid);
 	            		log.debug("mgMrUtil.move status: " + statusMove);
 //					    **upload(uploadMap, loginid, new File(downloadFilepath));
             		} else {
