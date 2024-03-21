@@ -60,10 +60,16 @@ public class ProcRecordTxtJob {
 		    	log.debug("tampList : " + tampList.size());
 		        for (MgFile file: tampList) {
 					try {
-						SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-						Date date =sdf.parse(file.getCreateDate());
-						Calendar calendar = Calendar.getInstance();
-						calendar.setTime(date);
+//						SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+//						Date date =sdf.parse(file.getCreateDate());
+//						Calendar calendar = Calendar.getInstance();
+//						calendar.setTime(date);
+						
+//						"uploadTime 格式 2024/03/20 16:50:20";
+				        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				        Date date = dateFormat.parse(file.getUploadTime());
+				        Calendar calendar = Calendar.getInstance();
+			            calendar.setTime(date);
 						bjService.insertRecordFileData_Mg(map, file.getName(), calendar);
 					}
 					catch (Exception e) {
