@@ -340,7 +340,7 @@ public class PaymentReprintAction  extends BaseDispatchAction {
 	    		   mPayKind = paymentData.getPayKind();
 	    		   paymentSex = paymentData.getPaymentSex();
 	    	   }
-	    	   String evtName = paymentService.getEvtNameFromBaappbase(queryForm.getIdn());
+	    	   String evtName = paymentService.getEvtNameFromBaappbaseByIdnAndApno(queryForm.getIdn(), mApno);
 	    	   String empExt = queryService.getEmpExtData(mApno);// 分機
   	    	   int execAmt = 0;
   	    	   int interestAmt = 0;
