@@ -20685,6 +20685,12 @@ UNION
 			   FROM BAAPPBASE t1
 			  WHERE t1.BENIDNNO = #idn:VARCHAR#
      </select>
+     <select id="selectEvtNameByIdnAndApno" resultClass="java.lang.String">
+		     SELECT distinct t1.EVTNAME
+			   FROM BAAPPBASE t1
+			  WHERE t1.BENIDNNO = #idn:VARCHAR#
+			    AND t1.APNO = #apno:VARCHAR#
+     </select>
      <select id="selectBenNameIdn" resultMap="baseDataResult">
 			  SELECT e.BENIDNNO, 
 			      	 e.BENNAME
