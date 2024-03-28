@@ -4742,8 +4742,12 @@ public class BaappbaseDaoImpl extends SqlMapClientDaoSupport implements Baappbas
 	public String selectEvtNameByIdnAndApno(String idn, String apno) {
 		HashMap<String, String> map = new HashMap<String, String>();
 
-        if (StringUtils.isNotBlank(idn) && StringUtils.isNotBlank(apno))
+    	if (StringUtils.isNotBlank(idn)) {
             map.put("idn", idn);
+    	}
+        if (StringUtils.isNotBlank(apno)) {
+            map.put("apno", apno);
+        }
         return (String) getSqlMapClientTemplate().queryForObject("BAAPPBASE.selectEvtNameByIdnAndApno", map);
 	}
 
