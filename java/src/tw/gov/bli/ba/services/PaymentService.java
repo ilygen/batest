@@ -288,6 +288,15 @@ public class PaymentService {
     public String getEvtNameFromBaappbase(String idn){//受理編號的事故者姓名
     	return baappbaseDao.selectEvtName(idn);
     }
+    
+    /**
+     * @param apno 受理編號
+     * @param idnNo 身分證號
+     * @return
+     */
+    public String getEvtNameFromBaappbaseByIdnAndApno(String idn, String apno){//受理編號的事故者姓名
+    	return baappbaseDao.selectEvtNameByIdnAndApno(idn, apno);
+    }
     /**
      * 依傳入條件取得 主檔受益人資料
      * 
