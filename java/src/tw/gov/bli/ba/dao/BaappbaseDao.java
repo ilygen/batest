@@ -2486,6 +2486,14 @@ public interface BaappbaseDao {
      * @return
      */
     public String selectEvtName(String idn);
+    
+    /**
+     * 依傳入條件取得 受理編號的事故者姓名
+     * 
+     * @param idn 身分證號 apno 受理編號
+     * @return
+     */
+    public String selectEvtNameByIdnAndApno(String idn, String apno);
 
     /**
      * 依傳入條件取得 給付主檔 (<code>BAAPPBASE</code>) 資料 FOR 老年年金應收收回處理作業-現金收回

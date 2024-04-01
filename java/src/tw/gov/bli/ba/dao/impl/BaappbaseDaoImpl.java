@@ -4738,6 +4738,18 @@ public class BaappbaseDaoImpl extends SqlMapClientDaoSupport implements Baappbas
             map.put("idn", idn);
         return (String) getSqlMapClientTemplate().queryForObject("BAAPPBASE.selectEvtName", map);
     }
+    
+	public String selectEvtNameByIdnAndApno(String idn, String apno) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+    	if (StringUtils.isNotBlank(idn)) {
+            map.put("idn", idn);
+    	}
+        if (StringUtils.isNotBlank(apno)) {
+            map.put("apno", apno);
+        }
+        return (String) getSqlMapClientTemplate().queryForObject("BAAPPBASE.selectEvtNameByIdnAndApno", map);
+	}
 
     /**
      * 依傳入條件取得 給付主檔 (<code>BAAPPBASE</code>) 資料 FOR 老年年金應收收回處理作業-現金收回
@@ -5121,4 +5133,5 @@ public class BaappbaseDaoImpl extends SqlMapClientDaoSupport implements Baappbas
 		}
 		return getSqlMapClientTemplate().update("BAAPPBASE.updateCasemkByApnoAndSeqno", map);
 	}
+
 }
