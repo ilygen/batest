@@ -195,33 +195,23 @@
             $("raiseChildMk").disabled = false;
             //$("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";            	
             } else {
                 clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                            
-        }else if($("famEvtRel").value=="7"){                                                                                                                                                                                                                                                                                                                        
+        }else if($("famEvtRel").value=="7"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
             $("raiseChildMk").value = "";
             $("studMk").disabled = false;
-            if ($("studMk").value == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";            	
             } else {
             	clearSchoolCodeContent();
             }
-            //$("studMk").value = "";
-            //$("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            //$("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("interDictMk").value = "";                                                                                                                                                                                                                                                                                                                   
-        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){                                                                                                                                                                                                                                                                                                                                              
+        }else if($("famEvtRel").value=="3"||$("famEvtRel").value=="5"){
             $("marryDate").disabled = true;                                                                                                                                                                                                                                                                                                                  
             $("marryDate").value = "";                                                                                                                                                                                                                                                                                                                        
             $("raiseChildMk").disabled = true;
@@ -486,7 +476,7 @@
         if(famCase.famEvtRel == '4'){
             $("raiseChildMk").value = famCase.raiseChildMk;  
             $("studMk").value = famCase.studMk;                         
-            if (famCase.studMk == 'Y') {
+            if ( Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -496,7 +486,7 @@
         }
         if(famCase.famEvtRel == '7'){
             $("studMk").value = famCase.studMk;                          
-            if (famCase.studMk == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = famCase.schoolCode;
             	$("schoolCodeOption").value = famCase.schoolCode;
@@ -797,7 +787,7 @@
            }
         }                                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                                                                               
-        if(msg != ""){                                                                                                                                                                                                                                                                                                                                        
+        if(msg != ""){
             alert(msg);                                                                                                                                                                                                                                                                                                                                       
             return false;                                                                                                                                                                                                                                                                                                                                     
         }else{                                                                                                                                                                                                                                                                                                                                                
@@ -1265,17 +1255,7 @@
             }
             
             if(Trim($("mobilePhone").value)==""||($("mobilePhone").value).length != 10 ||!((shortTel1=="09" && $("mobilePhone").value==$("tel1").value)||(shortTel2=="09" && $("mobilePhone").value==$("tel2").value))){
-                //$("evtHandIcapMk").disabled = true;
-                //$("evtHandIcapMk").value = "";
-                //alert("手機號碼輸入有誤，請檢查。\r\n");
-                
-                //$("evtHandIcapMk").disabled = true;
-                //$("evtHandIcapMk").value = "";
-                //$("defaultGrdData").focus();
                 $("grdName").focus();
-            }else{
-                //$("evtHandIcapMk").disabled = false;
-                //$("evtHandIcapMk").focus();
             }
         }
     }   
@@ -1360,7 +1340,7 @@
 
     // 在學變動
     function chgStud() {
-        if ($("studMk").value == 'Y') {
+        if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
         	$("schoolCodeContent").style.display="inline";            	
         } else {
         	clearSchoolCodeContent();

@@ -431,8 +431,8 @@
             $("marryDate").value = benCase.marryDate;                                       
         }
         if(benCase.benEvtRel == '4' || benCase.benEvtRel == '7'){
-            $("studMk").value = benCase.studMk;                         
-            if (benCase.studMk == 'Y') {
+            $("studMk").value = benCase.studMk;
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = benCase.schoolCode;
             	$("schoolCodeOption").value = benCase.schoolCode;
@@ -756,12 +756,10 @@
             $("marryDate").disabled = true;
             $("marryDate").value = "";
             $("studMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("studMk").value = "";
-            $("handIcapMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            //$("handIcapMk").value = "";     
-            $("interDictMk").disabled = false;                                                                                                                                                                                                                                                                                                                   
-            if ($("studMk").value == 'Y') {
-            	$("schoolCodeContent").style.display="inline";            	
+            $("handIcapMk").disabled = false;
+            $("interDictMk").disabled = false;
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+            	$("schoolCodeContent").style.display="inline";
             } else {
                 clearSchoolCodeContent();
             }
@@ -1244,8 +1242,8 @@
 
     // 在學變動
     function chgStud() {
-        if ($("studMk").value == 'Y') {
-        	$("schoolCodeContent").style.display="inline";            	
+        if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+        	$("schoolCodeContent").style.display="inline";
         } else {
         	clearSchoolCodeContent();
         }
