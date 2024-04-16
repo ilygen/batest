@@ -50,7 +50,7 @@
             <replacefilter token="${rootLogger}" value="DEBUG"/>
             <replacefilter token="${configuration}" value="DEBUG"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/weblogic.xml">
+        <replace encoding="utf-8" file="${war.dir}/weblogic.xml">
             <replacefilter token="${BliapRunHostAddress}" value="bliapbde.bli.gov.tw"/>
         </replace>
     </target>
@@ -65,7 +65,7 @@
         <replacefilter token="${rootLogger}" value="INFO"/>
         <replacefilter token="${configuration}" value="ERROR"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/weblogic.xml">
+        <replace encoding="utf-8" file="${war.dir}/weblogic.xml">
             <replacefilter token="${BliapRunHostAddress}" value="bliapbte.bli.gov.tw"/>
         </replace>
     </target>
@@ -80,7 +80,7 @@
         <replacefilter token="${rootLogger}" value="INFO"/>
         <replacefilter token="${configuration}" value="ERROR"/>
         </replace>
-        <replace encoding="utf-8" file="${src.dir}/weblogic.xml">
+        <replace encoding="utf-8" file="${war.dir}/weblogic.xml">
             <replacefilter token="${BliapRunHostAddress}" value="bliapbon.bli.gov.tw"/>
         </replace>
     </target>
