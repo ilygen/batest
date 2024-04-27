@@ -38,6 +38,7 @@
         <echo message="backupFile..."/>
         <copy file="${war.dir}/web.xml" tofile="./web.xml.ori" overwrite="true"/>
         <copy file="${src.dir}/log4j2.xml" tofile="./log4j2.xml.ori" overwrite="true"/>
+        <copy file="${war.dir}/weblogic.xml" tofile="${war.dir}/weblogic.xml.bk" overwrite="true"/>
     </target>
     
     <target name="replaceDev">
@@ -131,7 +132,9 @@
         <echo message="reverseFile..."/>
         <copy file="./web.xml.ori" tofile="${war.dir}/web.xml" overwrite="true"/>
         <copy file="./log4j2.xml.ori" tofile="${src.dir}/log4j2.xml" overwrite="true"/>
+        <copy file="${war.dir}/weblogic.xml.bk" tofile="${war.dir}/weblogic.xml" overwrite="true"/>
         <delete file="./web.xml.ori"/>
         <delete file="./log4j2.xml.ori"/>
+        <delete file="${war.dir}/weblogic.xml.bk"/>
     </target>
 </project>
