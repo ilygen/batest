@@ -17,7 +17,7 @@ http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
  		 <wls:cookie-name>JSESSIONIDBAWEB</wls:cookie-name>
 		 <wls:cookie-http-only>true</wls:cookie-http-only>
 		 <wls:cookie-secure>true</wls:cookie-secure>
-		 <wls:cookie-domain>${BliapRunHostAddress};SameSite=Strict</wls:cookie-domain>
+		 <wls:cookie-path>/;SameSite=Strict</wls:cookie-path>
 	 </wls:session-descriptor>
     
 </wls:weblogic-web-app>
