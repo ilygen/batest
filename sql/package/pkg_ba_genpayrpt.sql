@@ -4353,6 +4353,7 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/16  Angela Wu    Created this procedure.
+        1.1   2024/05/02  William      依據BABAWEB-108修改，增加撈職保一次金及年金資料的條件
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -4423,6 +4424,8 @@ is
                                                                                      ,'14','1'
                                                                                      ,'33','3'
                                                                                      ,'53','5',' ')
+                                            when '3' then deCode(substr(tt2.APNO,5,2),'21','2'
+                                                                                     ,'31','3',' ') 
                                             when 'B' then deCode(substr(tt2.APNO,5,2),'71','7'
                                                                                      ,'73','7'
                                                                                      ,'75','7'
@@ -4435,7 +4438,7 @@ is
                       where tt2.OTAPNO like (v_i_paycode||'%')
                         and tt2.ISSUYM = v_i_issuym
                         and tt2.MTESTMK = v_i_mtestmk
-                        and tt2.DATAKD in ('1','2','6','7','8','A','B')) t2
+                        and tt2.DATAKD in ('1','2','3','4','6','7','8','A','B')) t2
                where t1.APNO = t2.APNO
                  and t1.SEQNO = t2.SEQNO
                  and t1.ISSUYM = t2.ISSUYM
@@ -4567,6 +4570,7 @@ is
         Ver   Date        Author       Description
         ----  ----------  -----------  ----------------------------------------------
         1.0   2009/07/16  Angela Wu    Created this procedure.
+        1.1   2024/05/02  William      依據BABAWEB-108修改，增加撈職保一次金及年金資料的條件
 
         NOTES:
         1.於上方的PARAMETER(IN)中,打"*"者為必傳入之參數值。
@@ -4636,6 +4640,8 @@ is
                                                                                      ,'14','1'
                                                                                      ,'33','3'
                                                                                      ,'53','5',' ')
+                                            when '3' then deCode(substr(tt2.APNO,5,2),'21','2'
+                                                                                     ,'31','3',' ') 
                                             when 'B' then deCode(substr(tt2.APNO,5,2),'71','7'
                                                                                      ,'73','7'
                                                                                      ,'75','7'
@@ -4648,7 +4654,7 @@ is
                       where tt2.OTAPNO like (v_i_paycode||'%')
                         and tt2.ISSUYM = v_i_issuym
                         and tt2.MTESTMK = v_i_mtestmk
-                        and tt2.DATAKD in ('1','2','6','7','8','A','B')) t2
+                        and tt2.DATAKD in ('1','2','3','4','6','7','8','A','B')) t2
                where t1.APNO = t2.APNO
                  and t1.SEQNO = t2.SEQNO
                  and t1.ISSUYM = t2.ISSUYM
