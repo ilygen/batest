@@ -398,7 +398,7 @@
         }
         if(benCase.famEvtRel == '4' || benCase.famEvtRel == '7'){
             $("studMk").value = benCase.studMk;
-            if (benCase.studMk == 'Y') {
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
             	$("schoolCodeContent").style.display="inline";
             	$("schoolCode").value = benCase.schoolCode;
             	$("schoolCodeOption").value = benCase.schoolCode;
@@ -722,12 +722,10 @@
             $("marryDate").disabled = true;
             $("marryDate").value = "";
             $("studMk").disabled = false;
-            //$("studMk").value = "";
             $("handIcapMk").disabled = false;
-            //$("handIcapMk").value = "";
             $("interDictMk").disabled = false;
-            if ($("studMk").value == 'Y') {
-            	$("schoolCodeContent").style.display="inline";            	
+            if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+            	$("schoolCodeContent").style.display="inline";
             } else {
                 clearSchoolCodeContent();
             }
@@ -1219,8 +1217,8 @@
 
     // 在學變動
     function chgStud() {
-        if ($("studMk").value == 'Y') {
-        	$("schoolCodeContent").style.display="inline";            	
+        if (Trim(asc($("studMk").value).toUpperCase() ) == "Y") {
+        	$("schoolCodeContent").style.display="inline";
         } else {
         	clearSchoolCodeContent();
         }
