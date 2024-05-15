@@ -669,4 +669,17 @@ public class FtpHelper {
         FtpHelper.log = log;
     }
 
+	public String getUserId() {
+		return this.userId;
+	}
+
+	public String getUserPass() {
+		return this.userPass;
+	}
+
+	public String getTxtFileEncoding() {
+		return this.txtFileEncoding;
+	}
+    
+    
 }
