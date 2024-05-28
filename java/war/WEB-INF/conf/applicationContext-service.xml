@@ -357,6 +357,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <property name="baapplogDao" ref="baapplogDao" />
         <property name="bansfDao" ref="bansfDao" />
         <property name="bamfileftprecordDao" ref="bamfileftprecordDao" />
+        <property name="mgMrUtil" ref="mgMrUtil" />
     </bean>
 
     <!-- Service for Review Fee -->

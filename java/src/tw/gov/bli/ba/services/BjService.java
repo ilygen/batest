@@ -1,6 +1,12 @@
 package tw.gov.bli.ba.services;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,7 +51,27 @@ import tw.gov.bli.ba.bj.cases.Trans2OverdueReceivableBJDetailCase;
 import tw.gov.bli.ba.bj.cases.UpdatePaidMarkBJCase;
 import tw.gov.bli.ba.bj.helper.FtpApHelper;
 import tw.gov.bli.ba.bj.helper.FtpHelper;
-import tw.gov.bli.ba.dao.*;
+import tw.gov.bli.ba.dao.BaappbaseDao;
+import tw.gov.bli.ba.dao.BaapplogDao;
+import tw.gov.bli.ba.dao.BabatchjobDao;
+import tw.gov.bli.ba.dao.BabatchjobdtlDao;
+import tw.gov.bli.ba.dao.BabatchrecDao;
+import tw.gov.bli.ba.dao.BadaprDao;
+import tw.gov.bli.ba.dao.BagivedtlDao;
+import tw.gov.bli.ba.dao.BagivetmpdtlDao;
+import tw.gov.bli.ba.dao.BamfileftprecordDao;
+import tw.gov.bli.ba.dao.BansfDao;
+import tw.gov.bli.ba.dao.BaonlinejobDao;
+import tw.gov.bli.ba.dao.BapaissudateDao;
+import tw.gov.bli.ba.dao.BaprocedureDao;
+import tw.gov.bli.ba.dao.BaproceduredataDao;
+import tw.gov.bli.ba.dao.BaproceduredtlDao;
+import tw.gov.bli.ba.dao.BarvcaseDao;
+import tw.gov.bli.ba.dao.BarvconfirmDao;
+import tw.gov.bli.ba.dao.BaunacpdtlDao;
+import tw.gov.bli.ba.dao.BaunacprecDao;
+import tw.gov.bli.ba.dao.BauseremailDao;
+import tw.gov.bli.ba.dao.RunprocedurejobDao;
 import tw.gov.bli.ba.domain.Baappbase;
 import tw.gov.bli.ba.domain.Babatchjob;
 import tw.gov.bli.ba.domain.Babatchjobdtl;
@@ -63,9 +90,12 @@ import tw.gov.bli.ba.domain.Baunacprec;
 import tw.gov.bli.ba.domain.Bauseremail;
 import tw.gov.bli.ba.framework.domain.UserBean;
 import tw.gov.bli.ba.helper.MailHelper;
+import tw.gov.bli.ba.helper.PropertyHelper;
 import tw.gov.bli.ba.util.BeanUtility;
 import tw.gov.bli.ba.util.DateUtility;
 import tw.gov.bli.ba.util.ExceptionUtility;
+import tw.gov.bli.common.util.MgFile;
+import tw.gov.bli.common.util.MgMrUtil;
 
 /**
  * Service for 批次處理
@@ -99,12 +129,15 @@ public class BjService {
 	private FtpApHelper ftpApClient;
 	private BansfDao bansfDao;
 	private BamfileftprecordDao bamfileftprecordDao;
+	private MgMrUtil mgMrUtil;
+	
 	/**
 	 * 給付媒體回押註記 及 收回作業 - FTP 紀錄檔 處理
 	 * 
 	 * @param fileName
 	 */
 	public void insertRecordData(String fileName) {
+		
 		// 取得紀錄檔內容
 		String[] fileContent = ftpClient.getRecordFileContent(fileName);
 
@@ -319,6 +352,176 @@ public class BjService {
 			ftpClient.moveFileMedia(fileName);
 		}
 	}
+	
+	/**
+	 * 給付媒體回押註記 及 收回作業 - MG 資料文字檔 處理
+	 * 
+	 * @param fileName
+	 * @param fileTimestamp
+	 */
+	public void insertRecordFileData_Mg(Map map, String fileName, Calendar fileTimestamp) {
+//		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
+		String ftpData = PropertyHelper.getProperty("mgBankFileIn");//文字檔存放之目錄ftpClient.dirForDataFile
+		String ftpRecord = PropertyHelper.getProperty("mgBankFileNPME");//紀錄檔存放之目錄ftpClient.dirForRecordFile
+		String ipaddr = PropertyHelper.getProperty("mg.ip");
+		String portno = PropertyHelper.getProperty("mg.port");
+		String loginid = PropertyHelper.getProperty("sys.default.userid");
+		String workDir = PropertyHelper.getProperty("rpt.path");
+		
+		// 取得fileName文字名檔案
+    	List<MgFile> mgFiles = mgMrUtil.query(map, fileName, "", loginid);
+//		// 取得資料文字檔內容
+		if (mgFiles != null) { 
+			Babatchrec recordData = new Babatchrec();
+			recordData.setProcStat("0"); // 處理狀態 0: 未處理 1: 已入排程、2: 排程處理中 3: 已處理
+			recordData.setProcFlag("0"); // 回押註記
+			
+			// 取得資料文字檔內容(先將檔案下載下來在讀取內容)
+			for(int i=0; i < mgFiles.size(); i++){
+            	String mgFileName = mgFiles.get(i).getName();
+            	if (StringUtils.endsWith(fileName, ".txt") || StringUtils.endsWith(fileName, ".TXT")) {
+            		// 下載遠端檔案
+            		String statusDownload = mgMrUtil.download(map, mgFileName, workDir, loginid);
+            		if (MgMrUtil.MG_MR_SUCCESS_CODE.equals(statusDownload)) {
+            			// 下載成功後開始讀取內容
+            			log.debug("download success.");
+						
+			            //下載到本機後位置
+						String downloadFilepath = workDir + fileName ;
+						
+						String[] fileLinseList = getTxtFileContent(downloadFilepath);
+						// get first line
+						// sample: "1005     BLI     BL111111222139862           0000000027530500000000141 1111122                                                              "
+						String line = fileLinseList[0];
+						
+						// 批次處理類型 及 檔案名稱
+						for (String paidMarkFileNamePrefix : ftpClient.getPaidMarkFileNamePrefix()) {
+							if (StringUtils.startsWithIgnoreCase(fileName, paidMarkFileNamePrefix)) { // 給付媒體回押註記
+								recordData.setBatchTyp("01");
+								recordData.setFileName(fileName);
+								break;
+							}
+						}
+			
+						for (String writeOffFileNamePrefix : ftpClient.getWriteOffFileNamePrefix()) {
+							if (StringUtils.startsWithIgnoreCase(fileName, writeOffFileNamePrefix)) { // 收回沖銷
+								recordData.setBatchTyp("02");
+								recordData.setFileName(fileName);
+								break;
+							}
+						}
+			
+						if (StringUtils.isBlank(recordData.getBatchTyp())) {
+							throw new RuntimeException("檔案名稱錯誤");
+						}
+			
+						// 筆數
+						String frec = StringUtils.substring(line, 59, 69);
+						if (StringUtils.isNotBlank(frec))
+							recordData.setDataCount(new BigDecimal(frec));
+			
+						// 資料來源
+						String upname = "土地銀行";
+						if (StringUtils.isNotBlank(upname))
+							recordData.setUpOrgan(upname);
+			
+						// 資料來源單位 ID
+						String cmpid = "03700301"; // 土地銀行統編
+						if (StringUtils.isNotBlank(cmpid))
+							recordData.setUpOrganId(cmpid);
+			
+						// 檔案產生時間
+						if (fileTimestamp != null) {
+							recordData.setUpTime(DateUtility.parseDateToWestDateTime(fileTimestamp.getTime(), true));
+						}
+			
+						// 總金額
+						String amount = StringUtils.substring(line, 45, 59);
+						if (StringUtils.isNotBlank(amount))
+							recordData.setAmount(new BigDecimal(amount));
+			
+						// 發件單位 , 出帳類別 , 出帳日期 , 資料來源類別
+						if (StringUtils.length(recordData.getFileName()) >= 26) {
+							// 發件單位
+							recordData.setSunit(StringUtils.substring(recordData.getFileName(), 3, 6));
+							// 出帳類別
+							recordData.setTaTyp(StringUtils.substring(recordData.getFileName(), 0, 3));
+							// 出帳日期
+							recordData.setPayDate(
+									DateUtility.changeDateType(StringUtils.substring(recordData.getFileName(), 6, 13)));
+							// 資料來源類別 1: T, 2: K, 3: S
+							String akind = StringUtils.substring(recordData.getFileName(), 25, 26);
+							if (StringUtils.isNotBlank(akind)) {
+								if (akind.equals("1")) {
+									recordData.setUpTyp("T");
+								} else if (akind.equals("2")) {
+									recordData.setUpTyp("K");
+								} else if (akind.equals("3")) {
+									recordData.setUpTyp("S");
+								}
+							}
+						}
+			
+						// 異動日期時間
+						recordData.setUpdTime(DateUtility.getNowWestDateTime(true));
+			
+						// 存檔處理
+						log.info("新增資料文字檔資料至 BABATCHREC 開始，檔名:" + StringUtils.trimToEmpty(fileName));
+						BigDecimal key = babatchrecDao.insertData(recordData);
+						if (key != null)
+							log.info("BABATCHREC.BABATCHRECID = " + StringUtils.trimToEmpty(key.toPlainString()) + "，檔名:"
+									+ StringUtils.trimToEmpty(fileName));
+			
+						log.info("新增資料文字檔資料至 BABATCHREC 完成，檔名:" + StringUtils.trimToEmpty(fileName));
+						
+						// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
+						Map<String, Object> moveMap = new HashMap();
+						moveMap.put("ipaddr", ipaddr);
+						moveMap.put("portno", portno);
+						moveMap.put("loginid", loginid);
+//	            		moveMap.put("ftpdir", ftpData); // change dir
+						moveMap.put("ftpdir", ftpRecord); 
+	            		String ftpoutput = ftpRecord + fileName;
+	            		String statusMove = mgMrUtil.move(moveMap, ftpoutput, ftpData, loginid);
+	            		log.debug("mgMrUtil.move status: " + statusMove);
+//					    **upload(uploadMap, loginid, new File(downloadFilepath));
+            		} else {
+            			log.error("download failed!");
+            		}
+            	} else {
+            		log.info("ftpRecord :  " + fileName + " file not found");
+            	}
+            }
+		}
+	}
+	
+	
+	private void upload(Map map, String loginid, File file) {
+		String statusUpload = mgMrUtil.upload_MG(map, file, loginid, true);
+		final String msg = StringUtils.equals(MgMrUtil.MG_MR_SUCCESS_CODE, statusUpload) ? 
+		        String.join(" ", file.getName(), "MG上傳檔案成功") :
+		        String.join(" ", file.getName(), "MG上傳檔案失敗，請洽資訊人員");
+		log.debug(msg);
+	}
+	
+	private String[] getTxtFileContent(String downloadFilepath) {
+		String _txtFileEncoding = PropertyHelper.getProperty("ftpClient.txtFileEncoding");
+		ArrayList<String> list = new ArrayList<String>();
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(downloadFilepath)), _txtFileEncoding));) {
+            String strLine = "";
+			
+			while ((strLine = br.readLine()) != null) {
+				if (StringUtils.isNotBlank(StringUtils.trimToEmpty(strLine)))
+                    list.add(strLine);
+			}
+			
+		} catch (FileNotFoundException e) {
+			log.error("downloadFilepath FileNotFoundException: " + e.getMessage());
+		} catch (IOException e) {
+			log.error("downloadFilepath IOException: " + e.getMessage());
+		}
+		return list.toArray(new String[0]);
+	}
 
 	/**
 	 * 依傳入條件取得 應收帳務記錄檔(<code>BAUNACPREC</code>) 資料 for 轉催收作業
@@ -522,81 +725,102 @@ public class BjService {
 	 * @param empNo        員工編號
 	 */
 	public String doUpdatePaidMarkBJ(String[] baBatchRecId, String empNo, UserBean userData) {
+		//baproperty
+		String _ftpoutput_BK = PropertyHelper.getProperty("mgBankFileBK");
+		String _ftpinput = PropertyHelper.getProperty("mgBankFileIn");//原本是讀取ftpClient.dirForDataFile
+		String ipaddr = PropertyHelper.getProperty("mg.ip");
+		String portno = PropertyHelper.getProperty("mg.port");
+		String loginid = PropertyHelper.getProperty("sys.default.userid");
+		String workDir = PropertyHelper.getProperty("rpt.path");
+		
+		Map<String, Object> map = new HashMap();
+		map.put("ipaddr", ipaddr);
+		map.put("portno", portno);
+		map.put("loginid", loginid);
+		map.put("ftpdir", _ftpinput);
+
 		String payCode = "";
-		String procMsg = "";
 		for (int i = 0; i < baBatchRecId.length; i++) {
 			if (baBatchRecId[i].length() != 0) {
 				String[] recIdFileName = baBatchRecId[i].split(";");
 				BigDecimal batchRecId = new BigDecimal(recIdFileName[0]);
 				String mfileName = recIdFileName[1];
 				String mfileDate = DateUtility.getNowWestDateTime(true);
+				
+				// 取得fileName文字名檔案
+				List<MgFile> mgFiles = mgMrUtil.query(map, mfileName, "", loginid);
+//				// 取得資料文字檔內容
+				if (mgFiles != null) { 
+					// 取得資料文字檔內容(先將檔案下載下來在讀取內容)
+					for(int k=0; k < mgFiles.size(); k++){
+		            	String mgFileName = mgFiles.get(k).getName();
+//		            	log.debug("MgFile.mgFileName: " + mgFileName);
 
-				Babatchrec babatchrec = new Babatchrec();
-				babatchrec.setBaBatchRecId(batchRecId);
-				babatchrec.setProcStat("2"); // 2-排程處理中
-				babatchrec.setBatchTyp("01");
-				babatchrec.setStTime(DateUtility.getNowWestDateTime(true));
-				babatchrec.setUpdTime(mfileDate);
-				// 更新批次作業記錄檔
-				babatchrecDao.updateUpdatePaidMarkBJ(babatchrec);
+		            	if (StringUtils.endsWith(mgFileName, ".txt") || StringUtils.endsWith(mgFileName, ".TXT")) {
+		            		// 下載遠端檔案
+		            		String statusDownload = mgMrUtil.download(map, mgFileName, workDir, loginid);
+		            		if (MgMrUtil.MG_MR_SUCCESS_CODE.equals(statusDownload)) {
+		            			// 下載成功後開始讀取內容
+		            			log.debug("download success.");
+								
+					            //下載到本機後位置
+								String downloadFilepath = workDir + mfileName ;
+								log.debug("downloadFilepath: " + downloadFilepath);
+								
+								String[] txtFile = getTxtFileContent(downloadFilepath);
+								
+								Babatchrec babatchrec = new Babatchrec();
+								babatchrec.setBaBatchRecId(batchRecId);
+								babatchrec.setProcStat("2"); // 2-排程處理中
+								babatchrec.setBatchTyp("01");
+								babatchrec.setStTime(DateUtility.getNowWestDateTime(true));
+								babatchrec.setUpdTime(mfileDate);
+								// 更新批次作業記錄檔
+								babatchrecDao.updateUpdatePaidMarkBJ(babatchrec);
+								
+								log.info("給付媒體回押註記 自 " + Encode.forJava(mfileName) + " 讀取 " + txtFile.length + " 行資料");
+								
+								if (txtFile != null) {
+									payCode = txtFile[1].substring(57, 58); // 文字檔第二行抓取
+									
+									// 批次新增資料
+									bagivedtlDao.insertStringData(batchRecId.toPlainString(), mfileName, mfileDate, txtFile);
+									
+									log.info("給付媒體回押註記 新增 " + (txtFile.length - 2) + " 筆資料至 BAGIVEDTL");
+									
+									// 存檔處理完後將 MG 上的檔案搬移到 BK 目錄
+									Map<String, Object> uploadMap = new HashMap();
+									uploadMap.put("ipaddr", ipaddr);
+									uploadMap.put("portno", portno);
+									uploadMap.put("loginid", loginid);
+									uploadMap.put("ftpdir", _ftpoutput_BK); // change dir
+//									log.info("ftpdir get: " + _ftpinput + " set: " + MapUtils.getString(uploadMap, "ftpdir"));
+									// 確保工作目錄有效
+								    upload(uploadMap, loginid, new File(downloadFilepath));
+								} // end if(txtFile != null)
+								
+		            		}	
+		            	} else {
+		            		log.info("mginput :  " + mfileName + " file not found");
+		            	}
+            		}
+				}else {
+					log.info("MgFile fileName: " + mfileName + " 查無資料");
+				}
 
-				// 抓取FTP上的檔案轉至BABATCHRECTMP
-				String[] txtFile = ftpClient.getTxtFileContent(mfileName);
-
-				log.info("給付媒體回押註記 自 " + Encode.forJava(mfileName) + " 讀取 " + txtFile.length + " 行資料");
-
-				if (txtFile != null) {
-					payCode = txtFile[1].substring(57, 58); // 文字檔第二行抓取
-
-					/*
-					 * List<BatchRecTemp> caseList = new ArrayList<BatchRecTemp>(); for (int j = 1;
-					 * j < txtFile.length - 1; j++) { if (StringUtils.isNotBlank(txtFile[j])) {
-					 * BatchRecTemp caseData = new BatchRecTemp();
-					 * caseData.setBaBatchRecId(batchRecId); caseData.setMfileName(fileName);
-					 * caseData.setMfileDate(DateUtility.getNowWestDateTime(true));
-					 * caseData.setSeqNo(Integer.toString(j));
-					 * caseData.setRc2(txtFile[j].substring(0, 1));
-					 * caseData.setSunit2(txtFile[j].substring(1, 9));
-					 * caseData.setHbank2(txtFile[j].substring(9, 12));
-					 * caseData.setBbank2(txtFile[j].substring(12, 17));
-					 * caseData.setTaTyp2(txtFile[j].substring(17, 20));
-					 * caseData.setPayDate2(txtFile[j].substring(20, 27));
-					 * caseData.setAccNo2(txtFile[j].substring(27, 41));
-					 * caseData.setAmt2(txtFile[j].substring(41, 55));
-					 * caseData.setStat2(txtFile[j].substring(55, 57));
-					 * caseData.setApNo2(txtFile[j].substring(57, 69));
-					 * caseData.setSeq2(txtFile[j].substring(69, 73));
-					 * caseData.setPayTyp2(txtFile[j].substring(73, 75));
-					 * caseData.setSpace2(txtFile[j].substring(75, 77));
-					 * caseData.setPayYm2(txtFile[j].substring(77, 82));
-					 * caseData.setIdN2(txtFile[j].substring(82, 92));
-					 * caseData.setName2(txtFile[j].substring(92, 107));
-					 * caseData.setInsKd2(txtFile[j].substring(107, 108));
-					 * caseData.setEmgMk2(txtFile[j].substring(108, 109));
-					 * caseData.setRpayDate2(txtFile[j].substring(109, 116));
-					 * caseData.setIssuYm2(txtFile[j].substring(116, 121));
-					 * caseData.setNc2(txtFile[j].substring(121, 125)); caseData.setCompareMk("0");
-					 * caseData.setUpdTime(DateUtility.getNowWestDateTime(true)); if (j == 2) {
-					 * payCode = txtFile[j].substring(57, 58); } caseList.add(caseData); } }
-					 */
-
-					// 批次新增資料
-					bagivedtlDao.insertStringData(batchRecId.toPlainString(), mfileName, mfileDate, txtFile);
-
-					// 呼叫StoreProcedure Name:Ba_ProcGiveDtl('1',qry_BABATCHREC.BABATCHRECID)
-					/*
-					 * procMsg = doUpdatePaidMarkStatus1("1", payCode, batchRecId, userData);
-					 */
-					log.info("給付媒體回押註記 新增 " + (txtFile.length - 2) + " 筆資料至 BAGIVEDTL");
-
-					// 存檔處理完後將 FTP 上的檔案搬移到備份目錄
-					ftpClient.backupFile(mfileName);
-				} // end if(txtFile != null)
 			}
 		}
+		
 		return payCode;
 	}
+	
+	private boolean isValidDirectory(String directory) {
+	    File dir = new File(directory);
+	    log.info("isValidDirectory: " + directory + " exists() = " + (dir.exists() && dir.isDirectory()));
+	    return dir.exists() && dir.isDirectory();
+	}
 
+	
 	/**
 	 * 呼叫StoreProcedure Name:Ba_ProcGiveDtl('1',qry_BABATCHREC.BABATCHRECID)
 	 * 
@@ -2734,5 +2958,13 @@ public class BjService {
 
 	public void setBamfileftprecordDao(BamfileftprecordDao bamfileftprecordDao) {
 		this.bamfileftprecordDao = bamfileftprecordDao;
+	}
+	
+	public MgMrUtil getMgMrUtil() {
+		return mgMrUtil;
+	}
+
+	public void setMgMrUtil(MgMrUtil mgMrUtil) {
+		this.mgMrUtil = mgMrUtil;
 	}
 }
