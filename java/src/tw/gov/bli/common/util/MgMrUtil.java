@@ -48,7 +48,7 @@ public class MgMrUtil {
 	public final static String MG_MR_SUCCESS_CODE = "00";
 	public final static String MG_MR_FAIL_CODE = "99";
 	
-	private final String downloadPath="/apdir/ba/";
+	private final String downloadPath="/apdir/bas/";
 	
 	enum Type {
 		MG("MG"), MR("MR");
