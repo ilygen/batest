@@ -6,8 +6,10 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -45,6 +47,8 @@ public class MgMrUtil {
 
 	public final static String MG_MR_SUCCESS_CODE = "00";
 	public final static String MG_MR_FAIL_CODE = "99";
+	
+	private final String downloadPath="/apdir/ba/";
 	
 	enum Type {
 		MG("MG"), MR("MR");
@@ -257,18 +261,22 @@ public class MgMrUtil {
 			if (result != null && !result.isEmpty()) {
 				JSONObject json = new JSONObject(result);
 				statuscode = json.getString("statuscode");
-				String base64Str = json.getString("downloadFile");
-				byte[] downloadFile = Base64.getDecoder().decode(base64Str);
-				//讀取檔案資料
-				file = new File(cleanString(outputDir), cleanString(fileName));
+				Path path = Paths.get(downloadPath + fileName);
 				
-				// 處理下載的檔案
-				try(OutputStream os = new FileOutputStream(file);){
-		            os.write(downloadFile);
-		            log.debug(file.getAbsolutePath() + "下載成功");
-				} catch (Exception e) {
-					log.error("MgMrUtil.download OutputStream error：" + e.getMessage(), e);
-				}
+				if(statuscode.contentEquals("00") && Files.exists(path)) {
+		    		//讀取檔案資料
+		    		file = new File(cleanString(outputDir), cleanString(fileName));
+		    		
+		    		// 處理下載的檔案
+		    		try(OutputStream os = new FileOutputStream(file);){
+		    			byte[] bytes = Files.readAllBytes(path);
+		    			os.write(bytes);
+		    			log.debug(file.getAbsolutePath() + "下載成功");
+		    		} catch (Exception e) {
+		    			log.error("MgMrUtil.download OutputStream error：" + e.getMessage(), e);
+		    		}
+		        }
+				
 			}
 			log.info("結束執行MgMrUtil.download");
 			return (String) new JSONObject(result).get("statuscode");
