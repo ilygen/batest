@@ -14,7 +14,10 @@ http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
      	<wls:show-archived-real-path-enabled>true</wls:show-archived-real-path-enabled>
      </wls:container-descriptor>
      <wls:session-descriptor>
- 		 <wls:cookie-name>BaWeb</wls:cookie-name>
+ 		 <wls:cookie-name>JSESSIONIDBAWEB</wls:cookie-name>
+		 <wls:cookie-http-only>true</wls:cookie-http-only>
+		 <wls:cookie-secure>true</wls:cookie-secure>
+		 <wls:cookie-path>/;SameSite=Strict</wls:cookie-path>
 	 </wls:session-descriptor>
     
 </wls:weblogic-web-app>
