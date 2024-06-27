@@ -62,7 +62,7 @@
                     </td>
                     
                     <td>
-                        <html:text property="idn" styleId="idn" tabindex="10" styleClass="textinput" size="15" maxlength="10"  />
+                        <html:text property="idn" styleId="idn" tabindex="10" styleClass="textinput" size="23" maxlength="20"  />
 		            </td>
                 </tr>
 	            <tr>
