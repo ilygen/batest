@@ -6588,7 +6588,12 @@ is
                         *v_i_bajobid       (varChar2)       --線上批次id
         PARAMETER(OUT):
                         *v_o_flag          (varChar2)       --傳出值 0:成功；1:失敗 2014/10/16 Add by Zehua
-
+        REVISIONS:
+        Ver   Date        Author       Description
+        ----  ----------  -----------  ----------------------------------------------
+        1.0                            初版
+        1.1   2024/06/28  William      依據BABAWEB-112修改，
+                                       查詢應收未收資料，無需加上baappbase.prostat的條件
     ********************************************************************************/
     Procedure sp_BA_genPayRPT_16_S (
         v_i_paycode             in      varChar2,
@@ -6644,7 +6649,8 @@ is
                           ,t21.BENEVTREL
                       from BAAPPBASE t21
                      where t21.APNO like (v_i_paycode||'%')
-                       and (t21.PROCSTAT = '50' or (trim(t21.MANCHKMK) is not null and t21.PROCSTAT = '90'))) t2  --20131117 Modify by Angela
+                       -- and (t21.PROCSTAT = '50' or (trim(t21.MANCHKMK) is not null and t21.PROCSTAT = '90')) -- babaweb-112
+                       ) t2  --20131117 Modify by Angela
                 where t1.APNO = t2.APNO
                   and t1.SEQNO = t2.SEQNO
                   and t2.SEQNO <> '0000'
